@@ -1,0 +1,13 @@
+bookdown::bs4_book:
+  css: bs4_style.css
+  theme:
+    primary: "#721009"
+  repo: https://github.com/quantmeth/MQR
+  download: ["pdf", "epub"]
+bookdown::pdf_book:
+  includes:
+    in_header: preamble.tex
+  latex_engine: xelatex
+  citation_package: biblatex
+  keep_tex: yes
+bookdown::epub_book: default

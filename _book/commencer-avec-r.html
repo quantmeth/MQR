@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title> 2 Commencer avec R | Méthodes Quantitatives avec R</title>
+<meta name="author" content="P.-O. Caron">
+<meta name="description" content="R (R Core Team, 2021) est un logiciel de programmation statistique libre-accès et un environnement pour la computation statistique et l’affichage graphique. Il s’agit d’un projet GNU qui est...">
+<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta property="og:title" content=" 2 Commencer avec R | Méthodes Quantitatives avec R">
+<meta property="og:type" content="book">
+<meta property="og:description" content="R (R Core Team, 2021) est un logiciel de programmation statistique libre-accès et un environnement pour la computation statistique et l’affichage graphique. Il s’agit d’un projet GNU qui est...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content=" 2 Commencer avec R | Méthodes Quantitatives avec R">
+<meta name="twitter:description" content="R (R Core Team, 2021) est un logiciel de programmation statistique libre-accès et un environnement pour la computation statistique et l’affichage graphique. Il s’agit d’un projet GNU qui est...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Méthodes Quantitatives avec R</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled"><li><a class="" href="index.html"><span class="header-section-number"> 2</span> Commencer avec R</a></li></ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/quantmeth/QuantMethR%s">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="commencer-avec-r" class="section level1" number="2">
+<h1>
+<span class="header-section-number"> 2</span> Commencer avec <strong>R</strong><a class="anchor" aria-label="anchor" href="#commencer-avec-r"><i class="fas fa-link"></i></a>
+</h1>
+<!-- # Introduction {#rudiments-intro .unnumbered} -->
+<p><strong>R</strong> <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-R-base" role="doc-biblioref">R Core Team, 2021</a>)</span> est un logiciel de programmation statistique libre-accès et un environnement pour la computation statistique et l’affichage graphique. Il s’agit d’un projet GNU qui est similaire au langage et à l’environnement S, développés aux Laboratoires Bell (anciennement AT&amp;T, aujourd’hui Lucent Technologies) par John Chambers. Créé par <strong>R</strong>oss Ihaka et <strong>R</strong>obert Gentleman, <strong>R</strong> fournit une grande variété de techniques statistiques (modélisation linéaire et non linéaire, analyses statistiques classiques, analyse de séries chronologiques, classification) et graphiques, et est hautement extensible.</p>
+<p><strong>R</strong> est un logiciel basé sur la syntaxe plutôt qu’une approche pointer-et-cliquer (<em>point-and-click</em>) comme les logiciels traditionnels. Il peut être plus effrayant ou apparaître trop complexe pour un nouvel utilisateur, mais une fois apprivoisée, cette bête démontre un bien meilleur potentiel que ce soit en automatisation, en personnalisation, en production de figure de haute qualité, etc. <strong>R</strong> a l’avantage de mettre en plein contrôle ses utilisateurs. Bref, c’est une créature qu’il vaut la peine de maîtriser.</p>
+<p>Les logiciels traditionnelles suspendent trop souvent la réflexion critique. Ils sont dociles. L’usager clique sur les bonnes options et obtient les résultats désirés (espérons-le!). En échange d’une expérience “simple et intuitive”, ils compromettent l’épanouissement de l’utilisateur et rendent l’analyse statistique comme une boîte noire, un programme dont le fonctionnement ne peut être connu. Sont évacuées toutes connaissances des analyses, seules les entrées et les sorties sont pertinentes.</p>
+<p>En se limitant à ces logiciels, les utilisateurs sont également à la merci des compagnies qui les distribuent. Par exemple, elles maintiennent des prix exorbitants pour des licences annuelles, malgré le faible soutien technique, la désuétude ou le manque de mise à jour, la présence de bogues informatiques. Ces problèmes sont monnaie courante bien que la licence ne soit pas de la petite monnaie.</p>
+<p>Contrairement aux logiciels traditionnels, <strong>R</strong> permet de réaliser les analyses, mais aussi de les programmer soi-même, de générer des données propres à un modèle, de rester à jour sur les nouvelles tendances et les découvertes en méthodologie de la recherche, de partager aisément les connaissances et la reproduction d’analyses sophistiquées, et tout cela, gratuitement. Évidemment, cela n’est possible que par l’immense communauté derrière le logiciel.</p>
+<div id="pourquoi-r" class="section level2" number="2.1">
+<h2>
+<span class="header-section-number">2.1</span> Pourquoi <strong>R</strong>?<a class="anchor" aria-label="anchor" href="#pourquoi-r"><i class="fas fa-link"></i></a>
+</h2>
+<p><strong>R</strong> est complètement gratuit. Il est le logiciel le plus utilisé parmi les scientifiques de sciences de données, statisticiens, etc. Il est l’exemple ultime d’une plateforme communautaire qui fait mieux que les compétiteurs commerciaux. De plus en plus de personnes migrent vers <strong>R</strong>, mais peu de ses utilisateurs quittent le logiciel vers un autre. Et plus de personnes se joignent à la communauté, plus il y a de documentation, d’aide, de soutien, que ce soit sous forme de livres, de vidéos, d’article, d’ateliers, de formations. L’expérience <strong>R</strong> devient de plus en plus accessible aux nouveaux immigrants. Comme le code source est ouvert, ses utilisateurs collaborent à la création de modules augmentant ses capacités qui permettent de résoudre des problèmes de plus en plus sophistiqués (et pas juste en statistiques!). Ces modules sont également gratuits et il y en a littéralement des milliers.</p>
+<p>L’avantage de maîtriser <strong>R</strong>, plus spécifiquement de l’utilisation de syntaxe, pour l’expérimentateur est de rendre l’analyse statistique facilement <em>transmissible</em> entre expérimentateur (facilite grandement la collaboration), <em>reproductible</em> (vérification et collaboration), <em>répétable</em> (pour de nouvelles données ou expériences), et <em>ajustable</em> (pour de nouveaux scénarios). Quelqu’un d’autre peut jeter un oeil à l’analyse réalisée et voir exactement ce qui s’est produit, tant dans la gestion du jeu de données que l’analyse et la génération de graphiques. L’analyse peut être reproduite par les pairs, voire répéter si des données supplémentaires ont été recueillies ou si une nouvelle expérience a été réalisée.</p>
+<p>Même si <strong>R</strong> est un langage de programmation et que cela peut en intimider plus d’un, il est relativement intuitif à apprendre et assez simple d’utilisation dans la mesure où les ressources appropriées pour apprendre sont accessibles à l’utilisateur. L’apprentissage de la programmation, même si ce n’est pas en <strong>R,</strong> permet de mieux comprendre le fonctionnement des ordinateurs en plus de reconsidérer le dogmatisme de tout-puissant “algorithmes”. Il permettra aussi à l’utilisateur lorsqu’il saura suffisamment maîtriser la bête à créer lui-même la syntaxe qu’il lui permettra de résoudre les problèmes sur lesquels il s’intéresse.</p>
+<p>Enfin, <strong>R</strong> possède un incroyable moteur pour la visualisation de données et de capacités graphiques. Aucun autre logiciel ne lui arrive à la cheville.</p>
+</div>
+<div id="installer-r" class="section level2" number="2.2">
+<h2>
+<span class="header-section-number">2.2</span> Installer <strong>R</strong><a class="anchor" aria-label="anchor" href="#installer-r"><i class="fas fa-link"></i></a>
+</h2>
+<p><strong>R</strong> est compatible pour Windows, Mac et Linux. Pour télécharger le logiciel, il faut se rendre sur le site <a href="http://www.r-project.org" class="uri">http://www.r-project.org</a> et sélectionner les hyperliens “download R” ou “CRAN mirror”. Il faut ensuite choisir un <em>mirror</em> de son pays d’origine. Par la suite, la page permet de choisir la version appropriée à son système d’exploitation. Il faut alors suivre les indications.</p>
+<p>Il est principalement utilisé en anglais bien qu’on peut le définir en français. La plupart de l’aide sera également en anglais surtout celle pour les analyses avancées. Toutefois, il y a beaucoup de ressources accessibles en ligne en français en ce qui a attrait à l’initiation à <strong>R</strong>.</p>
+<div id="rstudio" class="section level3" number="2.2.1">
+<h3>
+<span class="header-section-number">2.2.1</span> <strong>R</strong>Studio<a class="anchor" aria-label="anchor" href="#rstudio"><i class="fas fa-link"></i></a>
+</h3>
+<p>Bien que <strong>R</strong> puisse être utilisé seul, son aspect rudimentaire pourra en inquiéter plus d’un (surtout un.e étudiant.e en sciences humaines et sociales). Le logiciel <strong>R</strong>Studio permet une utilisation plus fluide et intuitive pour les usagers ayant peu ou pas d’expériences en programmation. <strong>R</strong>Studio est un environnement de développement intégré (IDE pour <em>integrated development environment</em>) pour R. Il comprend une console, un éditeur de mise en évidence de la syntaxe qui prend en charge l’exécution directe du code, ainsi que des outils de traçage, d’historique, de débogage et de gestion de l’espace de travail. Le logiciel est gratuit et libre-accès pour une utilisation personnelle. Il comporte aussi une version commerciale qui nécessite un certain déboursement de fonds.</p>
+<p>Pour télécharger le logiciel, il faut se rendre sur le site <a href="http:rstudio.com" class="uri">http:rstudio.com</a> et naviguez jusqu’au téléchargement du logiciel, ou aller spécifiquement sur <a href="https://www.rstudio.com/products/rstudio/download/#download" class="uri">https://www.rstudio.com/products/rstudio/download/#download</a>, où il sera possible de télécharger la version gratuite de <strong>R</strong>Studio. <strong>R</strong>Studio est uniquement disponible en anglais.</p>
+<div id="les-avantages-de-rstudio" class="section level4" number="2.2.1.1">
+<h4>
+<span class="header-section-number">2.2.1.1</span> Les avantages de <strong>R</strong>Studio<a class="anchor" aria-label="anchor" href="#les-avantages-de-rstudio"><i class="fas fa-link"></i></a>
+</h4>
+<p>L’avantage de <strong>R</strong>Studio, comparativement à l’utilisation unique de <strong>R</strong>, est d’offrir une gestion de la console, du script, de l’environnement des variables et des documents externes en une seule interface (et beaucoup d’autres avantages!). En plus de la console (ce que <strong>R</strong> fournit), <strong>R</strong>Studio permet l’édition de syntaxe qui pourra être commandée ligne par ligne en utilisant <strong>CTRL + Enter</strong> (Windows) ou <strong>CMD + Enter</strong> (MacOS), ce qui pourra s’avérer fort utile lors de la programmation de fonction ou d’analyses de données. <strong>R</strong>Studio affiche également les variables en mémoire dans le menu <em>Global Environment</em>, ce qui permet de suivre l’état de la programmation. Enfin, <strong>R</strong>Studio affiche dans un quatrième menu les fichiers dans le directoire des fichiers <strong>R</strong> ce qui permet de voir notamment les jeux de données, mais aussi d’autres fonctions ou scripts. C’est également à cet endroit où l’aide (<em>help</em>) sera fournie et les figures (<em>plot</em>) affichées.</p>
+<p>Tout le contenu du présent ouvrage pourra être réalisé avec <strong>R</strong> ou avec <strong>R</strong>Studio, toutefois l’usage de ce dernier sera plus agréable aux lecteurs et lectrices.</p>
+<p>Oh! Une autre avantage de <strong>R</strong>studio est qu’il peut être utiliser comme un éditeur de texte. D’ailleurs, cet ouvrage est complètement rédigé avec <strong>R</strong>Studio (avec le package <code>Rmarkdown</code>).</p>
+</div>
+</div>
+<div id="autres-options" class="section level3" number="2.2.2">
+<h3>
+<span class="header-section-number">2.2.2</span> Autres options<a class="anchor" aria-label="anchor" href="#autres-options"><i class="fas fa-link"></i></a>
+</h3>
+<p>Il existe plusieurs interfaces utilisateurs graphiques (GUI pour <em>Graphical User Interface</em>) pour <strong>R</strong> comme <em>R Commander</em> (certainement l’option la plus connue en sciences humaines et sociales) ou <em>JASP</em>, mais aussi plusieurs autres. Ces deux options sont gratuites et libre-accès. Il existe aussi d’autres options payantes. Ces logiciels visent l’utilisation de <strong>R</strong> par une approche pointer-et-cliquer (<em>point-and-click</em>) au travers les analyses plutôt que de recourir à la syntaxe. Ces options plus intuitives pour l’utilisateur sans expérience en programmation auront parfois des effets limitatifs pour des analyses plus avancées et ont comme effet indésirable de promouvoir la boîte noire statistique.</p>
+</div>
+</div>
+<div id="démarrer-r-ou-rstudio" class="section level2" number="2.3">
+<h2>
+<span class="header-section-number">2.3</span> Démarrer <strong>R</strong> ou <strong>R</strong>Studio<a class="anchor" aria-label="anchor" href="#d%C3%A9marrer-r-ou-rstudio"><i class="fas fa-link"></i></a>
+</h2>
+<p>À l’ouverture de <strong>R</strong>, le logiciel présente la console, une interface très rudimentaire (et assez déstabilisante pour un logiciel pourtant si promu). Une fois le logiciel ouvert, l’application offre une invitation discrète à écrire des commandes. Le symbole <code>&gt;</code> au bas de la console est une invite (<em>prompt</em>) indiquant où taper les commandes. C’est à cette ligne de commande que les expressions seront immédiatement évaluées.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:ConsoleR"></span>
+<img src="image/ConsoleR.PNG" alt="Ouverture (effrayante!) de la console R" width="75%"><p class="caption">
+Figure 2.1: Ouverture (effrayante!) de la console R
+</p>
+</div>
+<p>Dans la Figure <a href="commencer-avec-r.html#fig:ConsoleR">2.1</a>, <strong>R</strong> est défini en français. Cela n’a pour effet que de modifier le menu déroulant (“Fichier, Edition, etc.”) au sommet du logiciel et les différentes options de ce menu. Le fonctionnement reste le même (les fonctions ne sont pas traduites, par exemple).</p>
+<p>La console <strong>R</strong> n’étant pas un éditeur de texte, il faudra enregistrer la syntaxe utilisée lors d’une séance pour la conserver. Le logiciel offre une option d’écriture de script intégré, mais n’est pas lié directement à la console. Il faudra donc se résoudre à abuser du copier-coller ou à sourcer le script (tâche plus ardue pour les nouveaux utilisateurs). Plusieurs éditeurs de texte sont utiles ou même construits pour directement travailler avec <strong>R</strong>, le plus connu étant certainement <strong>R</strong>Studio. L’environnement intégré sera beaucoup plus fonctionnel.</p>
+<p>La figure <a href="commencer-avec-r.html#fig:ConsoleRStudio">2.2</a>, montre l’interface de <strong>R</strong>Studio, déjà un peu moins intimidante que celle de <strong>R</strong>. À l’ouverture de <strong>R</strong>Studio, quatre types de fenêtres sont disponibles : la console (cadran inférieur gauche), les scripts (cadran supérieur gauche), l’environnement (cadran supérieur droit) et l’affichage (cadran inférieur droit). L’emplacement de ces cadrans peut être modifié selon les désirs de l’utilisateur.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:ConsoleRStudio"></span>
+<img src="image/ConsoleRStudio.PNG" alt="Ouverture (moins effrayante) de **R**Studio" width="75%"><p class="caption">
+Figure 2.2: Ouverture (moins effrayante) de <strong>R</strong>Studio
+</p>
+</div>
+<p>La console <strong>R</strong>Studio est identique à la console usuelle retrouvée avec <strong>R</strong>. Elle sert les mêmes fonctions. Le script est un éditeur de texte dans lequel de la syntaxe sera rédigée, sauvegardée, manipulée, et tester. S’il n’est pas ouvert ou s’il faut ouvrir un script supplémentaire, il faut procéder par le menu déroulant.</p>
+<blockquote>
+<p>File</p>
+</blockquote>
+<blockquote>
+<p>New File</p>
+</blockquote>
+<blockquote>
+<p>R Script</p>
+</blockquote>
+<p>ou bien <strong>CTRL + Shift + N</strong>. Il peut y avoir plusieurs scripts ouverts simultanément. L’environnement global permet de connaître les variables et fonctions maison en mémoire vive. L’onglet <em>History</em> montre les dernières lignes de code commandées (non affichées dans la figure - il suffit de cliquer sur l’onglet à côté de <em>Environment</em>). Enfin, le cadran inférieur droit montre le fichier de travail <strong>R</strong> qui contiendra ordinairement les fichiers de travail actifs (scripts, jeu de données, fonctions maison, etc.) C’est très utile pour travailler par projet. Si aucun directoire n’est demandé explicitement par <strong>R</strong> (par exemple, si un jeu de donnée doit être téléchargé), le logiciel cherchera par défaut dans le fichier actif pour télécharger les fichiers demandés. Il est une bonne pratique que de s’assurer d’être dans le bon fichier, car cela pourra causer quelques soucis à l’occasion.</p>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="empty"></div>
+<div class="empty"></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <div id="book-on-this-page"></div>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Méthodes Quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-05-12.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>
