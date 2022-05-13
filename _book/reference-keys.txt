@@ -36,6 +36,7 @@ les-packages
 installer-des-packages
 appeler-un-package
 obtenir-de-laide
+en-cas-de-pépins
 fonctions-statistiques-essentielles
 la-longueur
 la-somme
@@ -46,7 +47,6 @@ lécart-type
 les-graines
 les-distributions
 création-dune-matrice
-en-cas-de-pépins
 gestion-de-base-des-jeux-de-données
 quelques-conseils-de-gestion
 sauvegarder-un-jeu-de-données
@@ -91,4 +91,3 @@ boîte-à-moustache
 histogramme
 les-barres-derreurs
 pour-aller-plus-loin
-url-your-book-url-like-httpsbookdown.orgyihuibookdown
