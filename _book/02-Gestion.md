@@ -8,6 +8,8 @@ Réaliser des analyses statistiques et des représentations graphiques nécessit
 
 # Gestion de base des jeux de données
 
+Réaliser des analyses statistiques et des représentations graphiques nécessite un jeu de données sur lequel travailler. Après l'ouverture de **R**, l'usager remarquera aisément que le logiciel n'est pas un tableur (tableau de données), c'est caractéristique là peut-être même frappé à la première ouverture!) comme d'autres logiciels bien connus. Il faudra donc conserver des données dans un fichier externe de la même façon qu'un script, à l'exception qu'il faudra importer les données pour son utilisation.
+
 Un jeu de données porte généralement les extensions ".Rdata", lorsqu'elles proviennent de **R**, ou d'extensions ".dat" et ".txt". Évidemment, **R** permet une grande flexibilité, il est ainsi possible d'exporter et d'importer dans d'autres extensions.
 
 Les extensions ".Rdata" sont des environnements **R**, elles contiennent potentiellement plusieurs variables, comme une séance de travail complète. Elles ont aussi l'avantage que, si l'utilisateur double-clique sur un fichier d'extension ".Rdata", celui-ci s'ouvre automatiquement dans l'environnement **R**.
