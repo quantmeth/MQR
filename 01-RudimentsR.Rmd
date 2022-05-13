@@ -417,6 +417,7 @@ Il existe également la fonction `??nom` qui produit une liste de toutes fonctio
 Il arrive parfois que le code utilisé ne fonctionne pas, que des erreurs se produisent ou que des fonctions fort utiles demeurent inconnues. Même après plusieurs années d'utilisation, les utilisateurs font encore quotidiennement des erreurs (au moins une!). Un excellent outil est d'utiliser un moteur de recherche dans un fureteur de prédilection, de poser une question à l'aide de quelques mots clés bien choisis, préférablement en anglais, et en y inscrivant "with R" ou "in R" ou "R". La plupart du temps, les programmeurs de packages auront une solution sur leur site ou leurs instructions de packages. Il y a aussi des plateformes publiques et en ligne, comme [StackOverflow](https://stackoverflow.com/) qui collectent questions et réponses sur le codage. D'autres utilisateurs peuvent avoir posé la même question et des auteurs de programmes R et d'autres usagers y auront répondu aux bénéfices de tous. Dans le cas d'une solution introuvable, ces mêmes plateformes permettent de poser de nouvelles questions.  Il faudra toutefois attendre qu'un usager plus expérimenté prenne le temps d'y répondre.
 
 # Fonctions statistiques essentielles
+
 Dans cette section, des fonctions utilisées couramment seront présentées. L'accent est mis sur la définition de la fonction (qu'est-ce qu'elle calcule?), le développement d'une fonction maison (rédigée par l'usager pour la mettre en pratique) et l'identification de la fonction déjà implantée en **R**.
 
 ## La longueur
@@ -607,6 +608,8 @@ matrix(1:3, ncol = 3, nrow = 3, byrow = TRUE)
 # Une matrice avec un nombre d'entrées égale au nombre de cellule
 matrix(1:16, ncol = 4, nrow = 4)
 ```
+
+Les matrices sont une formes de jeu données (numérique seulement). Plus tard, les `data.frame` ou jeu de données seront présentés.
 
 # Exercices {#exercice-rudiments .unnumbered}
 1. Rédiger une fonction calculant la moyenne d'une variable.
