@@ -2,21 +2,20 @@
 
 <!-- # Introduction {#gestions-intro .unnumbered} -->
 
-Réaliser des analyses statistiques et des représentations graphiques nécessite un jeu de données sur lequel travailler. Après l'ouverture de **R**, l'usager remarquera aisément que le logiciel n'est pas un tableur (tableau de données), c'est caractéristique là peut-être même frappé à la première ouverture!) comme d'autres logiciels bien connus. Il faudra donc conserver des données dans un fichier externe de la même façon qu'un script, à l'exception qu'il faudra importer les données pour son utilisation.
+<!-- Réaliser des analyses statistiques et des représentations graphiques nécessite un jeu de données sur lequel travailler. Après l'ouverture de **R**, l'usager remarquera aisément que le logiciel n'est pas un tableur (tableau de données), c'est caractéristique là peut-être même frappé à la première ouverture!) comme d'autres logiciels bien connus. Il faudra donc conserver des données dans un fichier externe de la même façon qu'un script, à l'exception qu'il faudra importer les données pour son utilisation. -->
 
 <!-- Dans cette section, la création, le téléchargement et la sauvegarde de jeux de données seront abordés. Ensuite, les manipulations rudimentaires d'un jeu de données seront expliquées. -->
 
-# Gestion de base des jeux de données
+# Gestion rudimentaire des jeux de données
 
-Réaliser des analyses statistiques et des représentations graphiques nécessite un jeu de données sur lequel travailler. Après l'ouverture de **R**, l'usager remarquera aisément que le logiciel n'est pas un tableur (tableau de données), c'est caractéristique là peut-être même frappé à la première ouverture!) comme d'autres logiciels bien connus. Il faudra donc conserver des données dans un fichier externe de la même façon qu'un script, à l'exception qu'il faudra importer les données pour son utilisation.
+Réaliser des analyses statistiques et des représentations graphiques nécessitent un jeu de données sur lequel travailler. Après l'ouverture de **R**, l'usager remarquera aisément que le logiciel n'est pas un tableur (tableau de données), contrairement aux logiciels traditionnels. Cette caractéristique l'a peut-être même frappé à la première ouverture! Pour utiliser données, il faudra les conserver dans un fichier externe de la même façon qu'un script, à l'exception qu'il faudra importer les données pour son utilisation.
 
 Un jeu de données porte généralement les extensions ".Rdata", lorsqu'elles proviennent de **R**, ou d'extensions ".dat" et ".txt". Évidemment, **R** permet une grande flexibilité, il est ainsi possible d'exporter et d'importer dans d'autres extensions.
 
 Les extensions ".Rdata" sont des environnements **R**, elles contiennent potentiellement plusieurs variables, comme une séance de travail complète. Elles ont aussi l'avantage que, si l'utilisateur double-clique sur un fichier d'extension ".Rdata", celui-ci s'ouvre automatiquement dans l'environnement **R**.
 
-Il est recommandé de ne jamais manipuler les fichiers de données une fois toutes les vérifications réalisées (absence d'erreur dans les données). Il ne sera jamais nécessaire de modifier ces fichiers avec **R**. Contrairement aux logiciels traditionnels dans lesquels les modifications sont apportées directement aux valeurs ou ajoutées aux fichiers, cela n'est pas nécessaire dans la mesure où les syntaxes décrivant ces manipulations sont conservées. Il devient impossible d'endommager, de corrompre ou d'altérer le fichier de données. Les données originales restent intactes. Il suffit de les importer puis de commander la syntaxe qui lui est associée.
+Il est recommandé de ne jamais manipuler les fichiers de données une fois toutes les vérifications réalisées (absence d'erreur dans les données). Il ne sera jamais nécessaire de modifier ces fichiers avec **R**. Contrairement aux logiciels traditionnels dans lesquels les modifications sont apportées directement aux valeurs ou ajoutées aux fichiers, cela n'est pas nécessaire dans la mesure où les syntaxes décrivant ces manipulations sont conservées. Il devient impossible d'endommager, de corrompre ou d'altérer le fichier de données. Les données originales restent intactes. Il suffit de les importer puis de commander la syntaxe qui lui est associée pour obtenir de nouveau la version *propre* du jeu de données.
 
-Il est possible de voir les données en utilisant la fonction `View()` et en y insérant le nom de la variable. Le logiciel afficher un tableur avec les données, dont il sera impossible de modifier les valeurs. Cela peut être utile pour s'assurer que le jeu de données est en ordre.
 
 ## Quelques conseils de gestion
 
@@ -35,6 +34,10 @@ Voici quelques conseils pour la gestion le jeu de données.
 * Si les données proviennent d'un autre logiciel, vérifier la présence de  commentaires qui pourraient occasionner des lignes ou colonnes supplémentaires et ainsi corrompre le jeu de données.
 
 * Vérifier que l'exportation et l'importation se sont bien déroulées.
+
+## Voir la base de données
+
+Il est possible de voir les données en utilisant la fonction `View()` et en y insérant le nom de la variable. Le logiciel afficher un tableur avec les données, dont il sera impossible de modifier les valeurs. Cela peut être utile pour s'assurer que le jeu de données est en ordre, bien importé, ou le consulter.
 
 ## Sauvegarder un jeu de données
 
@@ -211,11 +214,11 @@ mean(valeurs.nettoyees)
 ```
 
 
-# Entrée de données
+## Entrée de données
 
 S'il y a bien une caractéristique de **R** qui rebute les nouveaux utilisateurs, c'est certainement que le logiciel ne soit pas prévu pour la saisie de données ou du moins que cela ne soit pas mis à l'avant-plan. Lorsque le logiciel s'ouvre, que ce soit **R** ou **R**Studio, l'aspect *table de données* n'existe pas. L'utilisateur pour qui il s'agit de sa première utilisation (et habitué à des logiciels traditionnels) reste pantois : où les données sont-elles entrées?
   
-## Entrée de données avec `data.entry()` (R de base)
+### Entrée de données avec `data.entry()` (R de base)
 
 De base, **R** offre la possibilité d'entrer des données dans un tableur avec la commande `jd = data.entry()`. Si une base de données est demandée comme argument (p. ex., `data.entry(data = jd)`), alors le jeu de données est ouvert. Il est aussi possible d'ouvrir le fichier avec des variables déjà créées avec **R**. Si un tableur vierge est désiré, alors taper `data.entry(1)` dans la console ouvrira le tableur avec une seule valeur (`1`), L'utilisateur peut alors modifier les noms de colonnes et entrer les données comme il le ferait avec un logiciel traditionnel. Comme il est possible de le voir à la Figure \@ref(fig:dataentry), l'interface est bien moins attrayante que ses compétiteurs.
 
@@ -225,15 +228,22 @@ knitr::include_graphics("image//data_entry.PNG")
 
 Lorsque l'entrée de données est terminée, l'utilisateur doit sauvegarder le jeu de données ou l'environnement de travail qui pourront être importés pour de futures utilisations ou entrées. En général, l'utilisateur qui entre manuellement ces données préférera certainement un autre tableur, mais **R** est certainement en mesure de faire ce travail. 
 
-## Entrée de données avec `data_edit` (package `DataEditR`)
+### Entrée de données avec `data_edit` (package `DataEditR`)
 
 Depuis tout récemment (juillet 2021), il existe un package qui permet de faire l'entrée de données en tableur avec **R**. Il s'agit du package `DataEditR` [@DataEditR], une interface utilisateur graphique. Il résout l'un de plus grands défis lorsqu'un utilisateur migre des tableurs traditionnels vers **R**, c'est-à-dire d'accomplir la transition d'une feuille de calcul interactive où il est possible de pointer et cliquer pour modifier, ajouter, supprimer des donnes vers un mode strict de syntaxe.
 
 Pour démarrer, il faut d'abord installer le package, puis l'appeler. Pour commencer à entrer des données, la syntaxe `data_edit()` est suffisante. Pour ouvrir un jeu de données, il suffit de l'ajouter en argument `data_edit(jd)`.
 
+Une fois l'interface ouvert, il est possible de manipuler le jeu de données avec les options affichés et avec le clic droit qui permettra notamment d'ajouter des lignes et des colonnes.
+
 ```{r, eval = FALSE, warning=FALSE}
+# Pour installer le package
 install.packages("DataEditR")
+
+# Pour rendre la package accessible
 library("DataEditR")
+
+# La fonction
 data_edit()
 ```
 
@@ -269,10 +279,18 @@ Si les lignes du fichier sont de tailles inégales, **R** assumera qu'il s'agit 
 
 ## Fichiers d'extension .txt
 
-Un fichier d'extension `.txt` ou un fichier texte délimité par des tabulations (*tab-delimited text files*) est importé à l'aide de la fonction `read.table()`.
+Un fichier d'extension `.txt` est un fichier texte délimité par des tabulations (*tab-delimited text files*) et est importé à l'aide de la fonction `read.table()`.
 
 ```{r, eval=FALSE}
 jd = read.table("fichier.txt")
+```
+
+## Fichiers d'extension .dat
+
+Un fichier d'extension `.dat` est un fichier générique de données et est importé à l'aide de la fonction `read.table()`.
+
+```{r, eval=FALSE}
+jd = read.table("fichier.dat")
 ```
 
 ## Fichiers d'extension .csv
@@ -394,16 +412,19 @@ jd = read.table(file.choose())
 
 L'utilisateur devra alors identifier manuellement (pointer et cliquer) où se trouve le fichier. Il devra se promener de fichier en fichier jusqu'à ce qu'il arrive au bon jeu de données, un peu comme le font les logiciels traditionnels lorsque l'utilisateur souhaite sauvegarder un fichier à un certain endroit.
 
+## Importation avec **R**Studio
 
-<!-- TODO -->
-<!-- ## Importation avec **R**Studio -->
+**R**Studio offre également un interface qui lui est propre pour importer des jeux de données. Cette méthode est accessible en réalisant
+> File
+> Import Dataset
 
+et en sélectionnant le type de fichier. Il suffit alors de suivre les instructions. **R**Studio offrira même une syntaxe pour répliquer l'importation au besoin.
 
 ## Conseils d'importation
 
 Parfois des valeurs s'ajoutent lors de l'exportation ou l'importation des données. Des logiciels traditionnels font parfois ce mauvais tour. Une vérification de la base de données est par conséquent impérative, surtout lors de la première utilisation du jeu de données. Deux méthodes de vérification sont suggérées. D'abord ouvrir le fichier avec un éditeur de texte de base, comme bloc-notes, pour s'assurer qu'aucun caractère ne s'est indésirable ajouté à l'insu de l'utilisateur. Ensuite, voir avec la fonction `View()` dans **R** si la base de données s'affiche correctement et que les variables, et lignes semblent correspondre à ce qui est attendu.
 
-## Gestion avancée de jeux de données
+# Gestion avancée de jeux de données
 
 Avec **R**, il ne sera jamais nécessaire de manipuler directement le fichier contenant les données. Cette pratique est déconseillée. Préserver le fichier original intact évite de nombreuses complications, comme la compatibilité entre les versions, la reproductibilité des bases, la maintenance, etc. Toutes les manipulations seront conservées dans un script. Cela favorise le partage entre collègues, mais aussi le suivi des modifications apportées en comparant tout simplement les traces dans entre les syntaxes. Le jeu de données est importé dans la console et il ne sera plus touché par l'utilisateur. Le script consevera les manipulations réalisées qui pourront être refaites facilement en quelques cliques.
 
@@ -416,7 +437,10 @@ Le nom *tidyverse* [@tidy] est une contraction de *tidy* (bien rangé) et de *un
 Pour utiliser le package `tidyverse`, il faudra d'abord l'installer puis l'appeler.
 
 ```{r, eval = FALSE}
+# Installer le package
 install.packages("tidyverse")
+
+# Rendre le package accessible
 library(tidyverse)
 ```
 
@@ -424,11 +448,11 @@ library(tidyverse)
 
 Un des avantages et nouveautés d'utiliser le `tidyverse` est d'obtenir l'opérateur `%>%` (appelée *pipe* en anglais que l'on pourrait traduire par *tuyau*) qui provient originellement du package `magrittr` [@magri] et est importé par `dplyr`. L'opérateur favorise la lisibilité et la productivité, car il est plus facile de suivre le flux de plusieurs fonctions à travers ces *tuyaux* que de revenir en arrière lorsque plusieurs fonctions sont imbriquées. En fait, il favorise la lecture par verbes, soit par action (fonction), dans une séquence temporelle intuitive. Si les arguments sont placés en une seule ligne, non seulement la ligne est-elle longue et complexe, voire illisible, mais, en plus, les éléments les plus à gauche (les premiers à la lecture) sont les derniers opérés. Si chacune des fonctions était en ligne, alors il faudrait écraser ou créer des variables temporaires inutiles tout simplement pour arriver à réaliser les fonctions. La philosophie `tidyverse`, par l'usage de `%>%`, évite tous ses problèmes.
 
-L'opérateur `%>%` s'ajoute à la fin d'une ligne syntaxe. Son fonctionnement se traduit par l'argument de la ligne à gauche est introduit dans la fonction de droite. Il peut être commandé plus rapidement avec le raccourci **CTRL + Shift + M** sur Windows. En plus de l'opérateur `%>%` , `dplyr` offre de nouvelles fonctions pour gérer une base de données. Quelques-unes des plus importantes sont décrites ici. Par la suite, une mise en contexte permettra de mieux comprendre leur fonctionnement.
+L'opérateur `%>%` s'ajoute à la fin d'une ligne syntaxe. Son fonctionnement se traduit par l'argument de la ligne à gauche est introduit dans la fonction de droite, et ce, du haut vers le bas. Il peut être commandé plus rapidement avec le raccourci **Ctrl + Shift + M** sur Windows. En plus de l'opérateur `%>%` , `dplyr` offre de nouvelles fonctions pour gérer un jeu de données. Quelques-unes des plus importantes sont décrites ici. Par la suite, une mise en situation permettra de mieux comprendre leur fonctionnement.
 
 ### Sélectionner des variables
 
-Pour sélectionner des données d'un très grand jeu de données, la fonction `select()` permettra de choisir les variables à conserver. Pour utiliser la fonction, il suffit d'indiquer les variables par leur nom de colonne dans la fonction.
+Pour sélectionner des données d'un très grand jeu de données, la fonction `select()` permettra de choisir les variables à conserver. Pour utiliser la fonction, il suffit d'indiquer les variables par leur nom de colonne dans la fonction. Aucun besoin de guillemets.
 
 ### Sélectionner des participants
 
@@ -450,14 +474,14 @@ S'il y a des groupes ou des catégories, le sommaire peut être divisé avec la 
 
 Il existe plusieurs autres fonctions possibles. Notamment, `slice()` permet de choisir les unités désirées en passant comme argument la base de données et le ou les numéros de ligne; `sample_slice()` qui est très similaire, retourne des lignes aléatoires; `rename()`, similaire à `select()`, permet de renommer les variables; `arrange` reclasse par ordre croissant en fonction d'une variable placée en argument. Et il y en a plusieurs autres.
 
-## Mise en pratique
+## Mise en situation
 
 Pour mettre en pratique la philosophie `tidyverse`, voici un exemple tiré du jeu de données `starwars`. Ce jeu de données possède de nombreuses caractéristiques (diversité de variables, de mesures, données manquantes) qui en font un jeu de données similaires à ce qu'un expérimentateur pourrait obtenir. Le jeu de données est déjà disponible avec **R**.
 
 Sans plus de préliminaire, la fonction `head()` donne un aperçu du jeu de données 
 
 ```{r}
-head(starwars[,1:6])
+starwars[,1:6]
 ``` 
 
 Pour obtenir de l'information sur ce jeu de données.
@@ -510,7 +534,7 @@ Les étapes à considérer sont les suivantes : sélectionner les variables pert
 # Importer le tidyverse avant de commencer
 library(tidyverse)
 
-jd = starwars %>% 
+jd <-  starwars %>% 
   select(sex, mass, height, species) %>% 
   filter(species == "Human") %>% 
   na.omit() %>% 
@@ -521,7 +545,7 @@ jd
 
 Les étapes de la syntaxe se lisent comme suit :
 
-* La première ligne `starwars %>% ` indique l'objet sur lequel il faut passer les fonctions subséquentes;
+* La première ligne `starwars %>% ` indique l'objet sur lequel il faut passer les fonctions subséquentes et la sortie est assignée à `jd`;
 
 * puis, `select(sex, mass, height, species) %>%` indique les variables à conserver pour les fonctions subséquentes;
 
@@ -536,11 +560,11 @@ Les étapes de la syntaxe se lisent comme suit :
 Si une méthode plus traditionnelle avait été utilisée, la syntaxe pourrait ressembler à ceci.
 
 ```{r}
-jd = starwars[, c("sex", "mass", "height", "species")]  # select()
-jd = jd[jd[, "species"] == "Human",]                    # filter()
-jd = na.omit(jd)                                        # na.omit()
-jd[,"height"] = jd[,"height"] / 100                     # mutate()
-jd[,"IMC"] = jd[,"mass"] / jd[,"height"]^2              # mutate()
+jd <- starwars[, c("sex", "mass", "height", "species")]  # select()
+jd <- jd[jd[, "species"] == "Human",]                    # filter()
+jd <- na.omit(jd)                                        # na.omit()
+jd[,"height"] <- jd[,"height"] / 100                     # mutate()
+jd[,"IMC"] <- jd[,"mass"] / jd[,"height"]^2              # mutate()
 jd
 ```
 
@@ -563,9 +587,9 @@ jd %>%
   summarise(mean(IMC), sd(IMC), min(IMC), max(IMC), length(IMC)) 
 ```
 
-La base de données issues de ces opérations pourra par la suite être utilisée normalement pour réaliser des analyses statistiques. Il existe des packages pour demeurer dans le `tidyverse` comme `rstatix`. 
+La base de données issues de ces opérations pourra par la suite être utilisée normalement pour réaliser des analyses statistiques. Il existe des packages pour demeurer dans le `tidyverse` comme `rstatix` où il est possible de faire des test-$t$ avec `test_t()` ou des corrations avec `cor_test()`, par exemple. Voir la documentation complète du package pour une vue d'ensemble de ce qu'il est possible d'accomplier avec `rstatix`. Cela dit, l'utilisateur préférera probablement utiliser d'autres méthodes lorsque des analyses statistiques seront nécessaires.
 
-```{r, warning = FALSE}
+```{r, warning = FALSE, message=FALSE}
 library(rstatix)
 # Test-t sur l'IMC en fonction du sexe
 jd %>% 
@@ -679,7 +703,7 @@ ggplot(data = jd) +
   coord_flip()
 ```
 
-Une fonction intéressante est la fonction `coord_flip()` qui tourne (*flip*) les axes, les coordonnées. Elle peut être pratique pour améliorer la qualité visuelle de certains graphiques.
+Une fonction intéressante est la fonction `coord_flip()` qui tourne (*flip*) les axes, les coordonnées. L'axe $x$  prend la place de $y$; $y$ prend la place de $x$. Elle peut être pratique pour améliorer la qualité visuelle de certains graphiques.
 
 ## Histogramme
 
@@ -727,7 +751,7 @@ Les barres d'erreur sont une représentation géométrique à part entière. C'e
 
 La figure \@ref(fig:erreurbar) illustre les différences entre moyennes avec des barres d'erreur à partir de la base de données `ToothGrowth`, une étude de l'effet de la vitamine C (`dose`) selon leur administration (jus ou supplément `supp`) sur la longueur des dents des cochons d'inde. Il y a deux facteurs et une variable continue.
 
-La première étape est de tirer les statistiques sommaires, moyennes, écart type, tailles des groupes. ici, la syntaxe tire profit de `groupe_by()` pour tirer les groupes et en faire le sommaire. Le sommaire `summarise` permet d'obtenir les statistiques, notamment la moyenne, l'erreur standard (`se`) pour en calculer l'intervalle autour la moyenne `ci`.
+La première étape est de tirer les statistiques sommaires, moyennes, écart type, tailles des groupes. La syntaxe tire profit de `groupe_by()` pour tirer les groupes et en faire le sommaire. Le sommaire `summarise` permet d'obtenir les statistiques, notamment la moyenne, l'erreur standard (`se`) pour en calculer l'intervalle autour de la moyenne `ci`.
 
 ```{r erreurbar, fig.cap="Les effets de la vitamine C sur les cochons d'inde", fig.align='center', out.height="75%", out.width="75%"}
 jd = ToothGrowth %>% 
@@ -751,11 +775,11 @@ jd %>%
     geom_point()
 ```
 
-Une fois ces statistiques calculées et enregistrées dans le nouveau jeu de données `jd`, il est possible de créer le graphique avec les représentations géométriques désirées. Remarquer comment spécifié la cartographie dans le niveau `ggplot()` rend la syntaxe moins compliquée. Cette syntaxe produit un graphique avec `dose` comme axe des x, `supp` comme pointeurs et les moyennes de `len` (longueur moyenne des dents). La fonction `geom_errorbar()` indique où placer les limites inférieures et supérieures des intervalles. Les arguments `size = 5` et `width = .05` sont ajoutés par pur esthétisme. L'argument `.groups = "drop"` de `summarise` permet d'éviter une avertissement expliquant qu'une variable de groupement est utilisé pour regrouper les résultats à la fin. Ajouter ou retirer cet argument ne change pas les calculs.
+Une fois ces statistiques calculées et enregistrées dans le nouveau jeu de données `jd`, il est possible de créer le graphique avec les représentations géométriques désirées. Remarquer comment spécifié la cartographie dans le niveau `ggplot()` rend la syntaxe moins compliquée. Cette syntaxe produit un graphique avec `dose` à l' axe des $x$, `supp` comme pointeurs et les moyennes de `len` (longueur moyenne des dents). La fonction `geom_errorbar()` indique où placer les limites inférieures et supérieures des intervalles. Les arguments `size = 5` et `width = .05` sont ajoutés par pur esthétisme. L'argument `.groups = "drop"` de `summarise` permet d'éviter une avertissement expliquant qu'une variable de groupement est utilisé pour regrouper les résultats à la fin. Ajouter ou retirer cet argument ne change pas les calculs.
 
 ## Pour aller plus loin
 
-Il existe une multitudes de livres, de sites web, de tutoriels en ligne et d'atelier pour donner l'occasion au lecteur d'aller plus loin dans sa conception graphique. Voici quelques ouvrages de références : *Le R Graphics Cookbook* (Chang) repérable à https://r-graphics.org/, *ggplot2: elegant graphics for data analysis* (Wickham) repérable à https://ggplot2-book.org/  ou *R Graphics* (Murrel) repérable à https://www.stat.auckland.ac.nz/~paul/RG2e/.
+Il existe une multitudes de livres, de sites web, de tutoriels en ligne et d'atelier pour donner l'occasion au lecteur d'aller plus loin dans sa conception graphique. Voici quelques ouvrages de références : Le *R Graphics Cookbook* (Chang) repérable à https://r-graphics.org/, *ggplot2: elegant graphics for data analysis* (Wickham) repérable à https://ggplot2-book.org/  ou *R Graphics* (Murrel) repérable à https://www.stat.auckland.ac.nz/~paul/RG2e/.
 
 # Exercices {#exercice-gestion .unnumbered}
 

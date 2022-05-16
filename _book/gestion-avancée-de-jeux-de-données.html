@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title> 6 Gestion avancée de jeux de données | Méthodes Quantitatives avec R</title>
+<meta name="author" content="P.-O. Caron">
+<meta name="description" content="Avec R, il ne sera jamais nécessaire de manipuler directement le fichier contenant les données. Cette pratique est déconseillée. Préserver le fichier original intact évite de nombreuses...">
+<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta property="og:title" content=" 6 Gestion avancée de jeux de données | Méthodes Quantitatives avec R">
+<meta property="og:type" content="book">
+<meta property="og:url" content="mqr.teluq.ca/gestion-avancée-de-jeux-de-données.html">
+<meta property="og:description" content="Avec R, il ne sera jamais nécessaire de manipuler directement le fichier contenant les données. Cette pratique est déconseillée. Préserver le fichier original intact évite de nombreuses...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content=" 6 Gestion avancée de jeux de données | Méthodes Quantitatives avec R">
+<meta name="twitter:description" content="Avec R, il ne sera jamais nécessaire de manipuler directement le fichier contenant les données. Cette pratique est déconseillée. Préserver le fichier original intact évite de nombreuses...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Méthodes Quantitatives avec R</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Bienvenue!</a></li>
+<li><a class="" href="pr%C3%A9face.html">Préface</a></li>
+<li class="book-part">Les rudiments de R</li>
+<li><a class="" href="commencer-avec-r.html"><span class="header-section-number">1</span> Commencer avec R</a></li>
+<li><a class="" href="programmer-avec-r.html"><span class="header-section-number">2</span> Programmer avec R</a></li>
+<li><a class="" href="fonctions-statistiques-essentielles.html"><span class="header-section-number">3</span> Fonctions statistiques essentielles</a></li>
+<li><a class="" href="exercice-rudiments.html">Exercices</a></li>
+<li class="book-part">Importation, gestion et visualisation de jeux de données</li>
+<li><a class="" href="gestion-rudimentaire-des-jeux-de-donn%C3%A9es.html"><span class="header-section-number">4</span> Gestion rudimentaire des jeux de données</a></li>
+<li><a class="" href="importation-de-jeux-de-donn%C3%A9es.html"><span class="header-section-number">5</span> Importation de jeux de données</a></li>
+<li><a class="active" href="gestion-avanc%C3%A9e-de-jeux-de-donn%C3%A9es.html"><span class="header-section-number">6</span> Gestion avancée de jeux de données</a></li>
+<li><a class="" href="visualisation-des-donn%C3%A9es.html"><span class="header-section-number">7</span> Visualisation des données</a></li>
+<li><a class="" href="exercice-gestion.html">Exercices</a></li>
+<li><a class="" href="solutions.html">Solutions</a></li>
+<li><a class="" href="r%C3%A9f%C3%A9rences.html">Références</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/quantmeth/MQR">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="gestion-avancée-de-jeux-de-données" class="section level1" number="6">
+<h1>
+<span class="header-section-number"> 6</span> Gestion avancée de jeux de données<a class="anchor" aria-label="anchor" href="#gestion-avanc%C3%A9e-de-jeux-de-donn%C3%A9es"><i class="fas fa-link"></i></a>
+</h1>
+<p>Avec <strong>R</strong>, il ne sera jamais nécessaire de manipuler directement le fichier contenant les données. Cette pratique est déconseillée. Préserver le fichier original intact évite de nombreuses complications, comme la compatibilité entre les versions, la reproductibilité des bases, la maintenance, etc. Toutes les manipulations seront conservées dans un script. Cela favorise le partage entre collègues, mais aussi le suivi des modifications apportées en comparant tout simplement les traces dans entre les syntaxes. Le jeu de données est importé dans la console et il ne sera plus touché par l’utilisateur. Le script consevera les manipulations réalisées qui pourront être refaites facilement en quelques cliques.</p>
+<p>En pratique, l’expérimentateur aura le jeu de données officielles (final) avec lequel travailler. Il pourra l’importer tel que précisé dans la section précédente. Par la suite, il ne lui reste qu’à mettre en place le nettoyage et la préparation du jeu de données. Il existe plusieurs méthodes pour réalise la gestion; il ne faut pas s’étonner de voir d’autres ouvrages aborder la gestion de données d’une autre façon. Au final, la meilleure méthode est celle qui m’est l’utilisateur à son aise. Le présent ouvrage tente de monter une approche intuitive et simple, mais il ne faut pas en faire un dogme.</p>
+<div id="le-tidyverse" class="section level2" number="6.1">
+<h2>
+<span class="header-section-number">6.1</span> Le tidyverse<a class="anchor" aria-label="anchor" href="#le-tidyverse"><i class="fas fa-link"></i></a>
+</h2>
+<p>Le nom <em>tidyverse</em> <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-tidy" role="doc-biblioref">Wickham et al., 2019</a>)</span> est une contraction de <em>tidy</em> (bien rangé) et de <em>universe</em>. Le package est fondé sur le concept de <em>tidy data</em>, développé par Hadley <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-Wickham14" role="doc-biblioref">Wickham, 2014</a>)</span>. Il repose sur une philosophie d’organisation des données facilitant la gestion, la préparation et le nettoyage préalable aux analyses quantitatives. Plusieurs packages respectent cette philosophie et font partie intégrante du <em>tidyverse</em>, comme <code>ggplot2</code> (présentation graphique), <code>dplyr</code> (manipulation de données), <code>readr</code> (importation de données), <code>tibble</code> (nouvelle catégorie de <em>data frame</em>), mais bien d’autres également. Ces packages font part intégrante de l’univers <em>tidy</em> et sont téléchargés simultanément avec le package.</p>
+<p>Pour utiliser le package <code>tidyverse</code>, il faudra d’abord l’installer puis l’appeler.</p>
+<div class="sourceCode" id="cb74"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Installer le package</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"tidyverse"</span><span class="op">)</span>
+
+<span class="co"># Rendre le package accessible</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></code></pre></div>
+</div>
+<div id="les-fonctions-utiles" class="section level2" number="6.2">
+<h2>
+<span class="header-section-number">6.2</span> Les fonctions utiles<a class="anchor" aria-label="anchor" href="#les-fonctions-utiles"><i class="fas fa-link"></i></a>
+</h2>
+<p>Un des avantages et nouveautés d’utiliser le <code>tidyverse</code> est d’obtenir l’opérateur <code>%&gt;%</code> (appelée <em>pipe</em> en anglais que l’on pourrait traduire par <em>tuyau</em>) qui provient originellement du package <code>magrittr</code> <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-magri" role="doc-biblioref">Bache &amp; Wickham, 2020</a>)</span> et est importé par <code>dplyr</code>. L’opérateur favorise la lisibilité et la productivité, car il est plus facile de suivre le flux de plusieurs fonctions à travers ces <em>tuyaux</em> que de revenir en arrière lorsque plusieurs fonctions sont imbriquées. En fait, il favorise la lecture par verbes, soit par action (fonction), dans une séquence temporelle intuitive. Si les arguments sont placés en une seule ligne, non seulement la ligne est-elle longue et complexe, voire illisible, mais, en plus, les éléments les plus à gauche (les premiers à la lecture) sont les derniers opérés. Si chacune des fonctions était en ligne, alors il faudrait écraser ou créer des variables temporaires inutiles tout simplement pour arriver à réaliser les fonctions. La philosophie <code>tidyverse</code>, par l’usage de <code>%&gt;%</code>, évite tous ses problèmes.</p>
+<p>L’opérateur <code>%&gt;%</code> s’ajoute à la fin d’une ligne syntaxe. Son fonctionnement se traduit par l’argument de la ligne à gauche est introduit dans la fonction de droite, et ce, du haut vers le bas. Il peut être commandé plus rapidement avec le raccourci <strong>Ctrl + Shift + M</strong> sur Windows. En plus de l’opérateur <code>%&gt;%</code> , <code>dplyr</code> offre de nouvelles fonctions pour gérer un jeu de données. Quelques-unes des plus importantes sont décrites ici. Par la suite, une mise en situation permettra de mieux comprendre leur fonctionnement.</p>
+<div id="sélectionner-des-variables" class="section level3" number="6.2.1">
+<h3>
+<span class="header-section-number">6.2.1</span> Sélectionner des variables<a class="anchor" aria-label="anchor" href="#s%C3%A9lectionner-des-variables"><i class="fas fa-link"></i></a>
+</h3>
+<p>Pour sélectionner des données d’un très grand jeu de données, la fonction <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> permettra de choisir les variables à conserver. Pour utiliser la fonction, il suffit d’indiquer les variables par leur nom de colonne dans la fonction. Aucun besoin de guillemets.</p>
+</div>
+<div id="sélectionner-des-participants" class="section level3" number="6.2.2">
+<h3>
+<span class="header-section-number">6.2.2</span> Sélectionner des participants<a class="anchor" aria-label="anchor" href="#s%C3%A9lectionner-des-participants"><i class="fas fa-link"></i></a>
+</h3>
+<p>Pour filtrer les participants selon les caractéristiques désirées, la fonction <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> permettra de sélectionner les unités satisfaisant les conditions spécifiées. Pour utiliser la fonction, il faut indiquer le ou les arguments conditionnels à respecter et sur quelle variable.</p>
+<p>Dans ce contexte la fonction <code>na.if()</code> peut être utile pour retirer une valeur aberrante.</p>
+</div>
+<div id="transformer-et-créer-des-variables" class="section level3" number="6.2.3">
+<h3>
+<span class="header-section-number">6.2.3</span> Transformer et créer des variables<a class="anchor" aria-label="anchor" href="#transformer-et-cr%C3%A9er-des-variables"><i class="fas fa-link"></i></a>
+</h3>
+<p>Pour créer ou transformer des variables, la fonction <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> permettra de créer de nouvelles variables à partir des valeurs déjà dans le jeu de données. Il suffit d’indiquer dans la fonction, le calcul qui doit être opérer.</p>
+</div>
+<div id="sommariser-les-informations-pertinentes" class="section level3" number="6.2.4">
+<h3>
+<span class="header-section-number">6.2.4</span> Sommariser les informations pertinentes<a class="anchor" aria-label="anchor" href="#sommariser-les-informations-pertinentes"><i class="fas fa-link"></i></a>
+</h3>
+<p>Pour obtenir des informations sur le jeu de données ainsi créées, la fonction <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code> permettra notamment d’obtenir des statistiques d’intérêt. En ajoutant, dans la fonction, les fonctions désirées, comme <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code> ou <code><a href="https://rdrr.io/r/stats/sd.html">sd()</a></code>, avec les variables sur lesquelles elles devraient être opérées ou encore <code><a href="https://dplyr.tidyverse.org/reference/context.html">n()</a></code> pour connaître la taille des groupes.</p>
+<p>S’il y a des groupes ou des catégories, le sommaire peut être divisé avec la fonction <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> où la variable nominale est spécifiée.</p>
+</div>
+<div id="autres-fonctions" class="section level3" number="6.2.5">
+<h3>
+<span class="header-section-number">6.2.5</span> Autres fonctions<a class="anchor" aria-label="anchor" href="#autres-fonctions"><i class="fas fa-link"></i></a>
+</h3>
+<p>Il existe plusieurs autres fonctions possibles. Notamment, <code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice()</a></code> permet de choisir les unités désirées en passant comme argument la base de données et le ou les numéros de ligne; <code>sample_slice()</code> qui est très similaire, retourne des lignes aléatoires; <code><a href="https://dplyr.tidyverse.org/reference/rename.html">rename()</a></code>, similaire à <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code>, permet de renommer les variables; <code>arrange</code> reclasse par ordre croissant en fonction d’une variable placée en argument. Et il y en a plusieurs autres.</p>
+</div>
+</div>
+<div id="mise-en-situation" class="section level2" number="6.3">
+<h2>
+<span class="header-section-number">6.3</span> Mise en situation<a class="anchor" aria-label="anchor" href="#mise-en-situation"><i class="fas fa-link"></i></a>
+</h2>
+<p>Pour mettre en pratique la philosophie <code>tidyverse</code>, voici un exemple tiré du jeu de données <code>starwars</code>. Ce jeu de données possède de nombreuses caractéristiques (diversité de variables, de mesures, données manquantes) qui en font un jeu de données similaires à ce qu’un expérimentateur pourrait obtenir. Le jeu de données est déjà disponible avec <strong>R</strong>.</p>
+<p>Sans plus de préliminaire, la fonction <code><a href="https://rdrr.io/r/utils/head.html">head()</a></code> donne un aperçu du jeu de données</p>
+<div class="sourceCode" id="cb75"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">starwars</span><span class="op">[</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>
+<span class="co">#&gt; # A tibble: 87 x 6</span>
+<span class="co">#&gt;    name         height  mass hair_color skin_color eye_color</span>
+<span class="co">#&gt;    &lt;chr&gt;         &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;    </span>
+<span class="co">#&gt;  1 Luke Skywal~    172    77 blond      fair       blue     </span>
+<span class="co">#&gt;  2 C-3PO           167    75 &lt;NA&gt;       gold       yellow   </span>
+<span class="co">#&gt;  3 R2-D2            96    32 &lt;NA&gt;       white, bl~ red      </span>
+<span class="co">#&gt;  4 Darth Vader     202   136 none       white      yellow   </span>
+<span class="co">#&gt;  5 Leia Organa     150    49 brown      light      brown    </span>
+<span class="co">#&gt;  6 Owen Lars       178   120 brown, gr~ light      blue     </span>
+<span class="co">#&gt;  7 Beru Whites~    165    75 brown      light      blue     </span>
+<span class="co">#&gt;  8 R5-D4            97    32 &lt;NA&gt;       white, red red      </span>
+<span class="co">#&gt;  9 Biggs Darkl~    183    84 black      light      brown    </span>
+<span class="co">#&gt; 10 Obi-Wan Ken~    182    77 auburn, w~ fair       blue-gray</span>
+<span class="co">#&gt; # ... with 77 more rows</span></code></pre></div>
+<p>Pour obtenir de l’information sur ce jeu de données.</p>
+<div class="sourceCode" id="cb76"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="op">?</span><span class="va">starwars</span></code></pre></div>
+<p>Voici la description du jeu de données (traduction libre),</p>
+<blockquote>
+<p>Les données d’origine, issues de SWAPI, l’API de Star Wars, <a href="https://swapi.dev/" class="uri">https://swapi.dev/</a>, ont été révisées pour tenir compte des recherches supplémentaires sur la détermination du genre et du sexe des personnages.</p>
+</blockquote>
+<p>Peu utile comme descripteur, une inspection des données est plus informative. Pour afficher le jeu de données dans un nouvel onglet.</p>
+<div class="sourceCode" id="cb77"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/View.html">View</a></span><span class="op">(</span><span class="va">starwars</span><span class="op">)</span></code></pre></div>
+<p>Le fichier contient, le nom de 87 personnages mesurés sur 14 variables, soit</p>
+<ul>
+<li><p>le nom;</p></li>
+<li><p>la taille (cm);</p></li>
+<li><p>le poids (kg);</p></li>
+<li><p>la couleur des cheveux, de la peau et des yeux (trois variables);</p></li>
+<li><p>l’année de naissance;</p></li>
+<li><p>le sexe biologique (mâle, femelle, hermaphrodite ou aucun);</p></li>
+<li><p>le genre;</p></li>
+<li><p>la planète natale;</p></li>
+<li><p>l’espèce;</p></li>
+<li><p>une liste de films où le personnage apparaît;</p></li>
+<li><p>une liste des véhicules que le personnage a piloté;</p></li>
+<li><p>une liste des vaisseaux que le personnage a piloté.</p></li>
+</ul>
+<p>L’objectif est de cette mise en situation est de comparer les hommes et les femmes humaines par rapport à leur indice de masse corporelle (IMC) ou <em>body mass index</em> (BMI). Le calcul de l’IMC consiste à diviser le poids par la taille au carré (kg/m<sup>2</sup>).</p>
+<p>Les étapes à considérer sont les suivantes : sélectionner les variables pertinentes, filtrer en retirant les unités d’espèces non humaines, tenir compte des données manquantes, corriger la taille des unités qui devrait être en mètre et non en centimètre (divisé par 100) et créer l’indice de masse corporelle.</p>
+<div class="sourceCode" id="cb78"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Importer le tidyverse avant de commencer</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
+
+<span class="va">jd</span> <span class="op">&lt;-</span>  <span class="va">starwars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">sex</span>, <span class="va">mass</span>, <span class="va">height</span>, <span class="va">species</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">species</span> <span class="op">==</span> <span class="st">"Human"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html">na.omit</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>height <span class="op">=</span> <span class="va">height</span>  <span class="op">/</span> <span class="fl">100</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>IMC <span class="op">=</span> <span class="va">mass</span> <span class="op">/</span> <span class="va">height</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span>  
+<span class="va">jd</span>
+<span class="co">#&gt; # A tibble: 22 x 5</span>
+<span class="co">#&gt;    sex     mass height species   IMC</span>
+<span class="co">#&gt;    &lt;chr&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;</span>
+<span class="co">#&gt;  1 male      77   1.72 Human    26.0</span>
+<span class="co">#&gt;  2 male     136   2.02 Human    33.3</span>
+<span class="co">#&gt;  3 female    49   1.5  Human    21.8</span>
+<span class="co">#&gt;  4 male     120   1.78 Human    37.9</span>
+<span class="co">#&gt;  5 female    75   1.65 Human    27.5</span>
+<span class="co">#&gt;  6 male      84   1.83 Human    25.1</span>
+<span class="co">#&gt;  7 male      77   1.82 Human    23.2</span>
+<span class="co">#&gt;  8 male      84   1.88 Human    23.8</span>
+<span class="co">#&gt;  9 male      80   1.8  Human    24.7</span>
+<span class="co">#&gt; 10 male      77   1.7  Human    26.6</span>
+<span class="co">#&gt; # ... with 12 more rows</span></code></pre></div>
+<p>Les étapes de la syntaxe se lisent comme suit :</p>
+<ul>
+<li><p>La première ligne <code>starwars %&gt;%</code> indique l’objet sur lequel il faut passer les fonctions subséquentes et la sortie est assignée à <code>jd</code>;</p></li>
+<li><p>puis, <code>select(sex, mass, height, species) %&gt;%</code> indique les variables à conserver pour les fonctions subséquentes;</p></li>
+<li><p>puis, <code>filter(species == "Human")</code> filtre les unités qui sont humains et passe aux fonctions subséquentes;</p></li>
+<li><p>puis, <code>na.omit() %&gt;%</code> retire les valeurs manquantes des unités dans le jeu de données et passe aux fonctions subséquentes;</p></li>
+<li><p>puis, <code>mutate(height = height  / 100) %&gt;%</code>, transforme la variable <code>height</code> et passe à la dernière fonction;</p></li>
+<li><p>enfin, <code>mutate(IMC = mass / height^2)</code> crée la variable d’IMC.</p></li>
+</ul>
+<p>Si une méthode plus traditionnelle avait été utilisée, la syntaxe pourrait ressembler à ceci.</p>
+<div class="sourceCode" id="cb79"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">jd</span> <span class="op">&lt;-</span> <span class="va">starwars</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"sex"</span>, <span class="st">"mass"</span>, <span class="st">"height"</span>, <span class="st">"species"</span><span class="op">)</span><span class="op">]</span>  <span class="co"># select()</span>
+<span class="va">jd</span> <span class="op">&lt;-</span> <span class="va">jd</span><span class="op">[</span><span class="va">jd</span><span class="op">[</span>, <span class="st">"species"</span><span class="op">]</span> <span class="op">==</span> <span class="st">"Human"</span>,<span class="op">]</span>                    <span class="co"># filter()</span>
+<span class="va">jd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html">na.omit</a></span><span class="op">(</span><span class="va">jd</span><span class="op">)</span>                                        <span class="co"># na.omit()</span>
+<span class="va">jd</span><span class="op">[</span>,<span class="st">"height"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">jd</span><span class="op">[</span>,<span class="st">"height"</span><span class="op">]</span> <span class="op">/</span> <span class="fl">100</span>                     <span class="co"># mutate()</span>
+<span class="va">jd</span><span class="op">[</span>,<span class="st">"IMC"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">jd</span><span class="op">[</span>,<span class="st">"mass"</span><span class="op">]</span> <span class="op">/</span> <span class="va">jd</span><span class="op">[</span>,<span class="st">"height"</span><span class="op">]</span><span class="op">^</span><span class="fl">2</span>              <span class="co"># mutate()</span>
+<span class="va">jd</span>
+<span class="co">#&gt; # A tibble: 22 x 5</span>
+<span class="co">#&gt;    sex     mass height species   IMC</span>
+<span class="co">#&gt;    &lt;chr&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;</span>
+<span class="co">#&gt;  1 male      77   1.72 Human    26.0</span>
+<span class="co">#&gt;  2 male     136   2.02 Human    33.3</span>
+<span class="co">#&gt;  3 female    49   1.5  Human    21.8</span>
+<span class="co">#&gt;  4 male     120   1.78 Human    37.9</span>
+<span class="co">#&gt;  5 female    75   1.65 Human    27.5</span>
+<span class="co">#&gt;  6 male      84   1.83 Human    25.1</span>
+<span class="co">#&gt;  7 male      77   1.82 Human    23.2</span>
+<span class="co">#&gt;  8 male      84   1.88 Human    23.8</span>
+<span class="co">#&gt;  9 male      80   1.8  Human    24.7</span>
+<span class="co">#&gt; 10 male      77   1.7  Human    26.6</span>
+<span class="co">#&gt; # ... with 12 more rows</span></code></pre></div>
+<p>Le jeu de données est créé en autant de ligne de syntaxe. Par contre, la lecture n’est pas aussi intuitive qu’avec l’utilisation de l’opérateur <code>%&gt;%</code> et des fonctions associées <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code>. Il ne faut pas trop penser à quoi ressemblerait ces manipulations en une seule ligne de syntaxe.</p>
+<p>Une fois le jeu de données prêt, il est possible d’obtenir les informations sommaires. Ici, la moyenne, l’écart type, la valeur minimale et maximale ainsi que le nombre de données sont demandés en fonction du sexe. À cette étape, l’avantage d’embrasser la philosophie <code>tidyverse</code> apparaît, en quelques lignes rudimentaires, les cinq statistiques demandées sont affichées, et ce, par groupes.</p>
+<div class="sourceCode" id="cb80"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">jd</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">sex</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">IMC</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">IMC</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">IMC</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">IMC</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">IMC</span><span class="op">)</span><span class="op">)</span> 
+<span class="co">#&gt; # A tibble: 2 x 6</span>
+<span class="co">#&gt;   sex    `mean(IMC)` `sd(IMC)` `min(IMC)` `max(IMC)`</span>
+<span class="co">#&gt;   &lt;chr&gt;        &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;</span>
+<span class="co">#&gt; 1 female        22.0      5.51       16.5       27.5</span>
+<span class="co">#&gt; 2 male          26.0      4.29       21.5       37.9</span>
+<span class="co">#&gt; # ... with 1 more variable: `length(IMC)` &lt;int&gt;</span></code></pre></div>
+<p>La base de données issues de ces opérations pourra par la suite être utilisée normalement pour réaliser des analyses statistiques. Il existe des packages pour demeurer dans le <code>tidyverse</code> comme <code>rstatix</code> où il est possible de faire des test-<span class="math inline">\(t\)</span> avec <code>test_t()</code> ou des corrations avec <code><a href="https://rpkgs.datanovia.com/rstatix/reference/cor_test.html">cor_test()</a></code>, par exemple. Voir la documentation complète du package pour une vue d’ensemble de ce qu’il est possible d’accomplier avec <code>rstatix</code>. Cela dit, l’utilisateur préférera probablement utiliser d’autres méthodes lorsque des analyses statistiques seront nécessaires.</p>
+<div class="sourceCode" id="cb81"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rpkgs.datanovia.com/rstatix/">rstatix</a></span><span class="op">)</span>
+<span class="co"># Test-t sur l'IMC en fonction du sexe</span>
+<span class="va">jd</span> <span class="op"><a href="https://rpkgs.datanovia.com/rstatix/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://rpkgs.datanovia.com/rstatix/reference/t_test.html">t_test</a></span><span class="op">(</span><span class="va">IMC</span> <span class="op">~</span> <span class="va">sex</span><span class="op">)</span>
+<span class="co">#&gt; # A tibble: 1 x 8</span>
+<span class="co">#&gt;   .y.   group1 group2    n1    n2 statistic    df     p</span>
+<span class="co">#&gt; * &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;  &lt;int&gt; &lt;int&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
+<span class="co">#&gt; 1 IMC   female male       3    19     -1.23  2.40 0.326</span>
+
+<span class="co"># Analyse de corrélations</span>
+<span class="va">jd</span> <span class="op"><a href="https://rpkgs.datanovia.com/rstatix/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">IMC</span>, <span class="va">mass</span>, <span class="va">height</span><span class="op">)</span> <span class="op"><a href="https://rpkgs.datanovia.com/rstatix/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://rpkgs.datanovia.com/rstatix/reference/cor_test.html">cor_test</a></span><span class="op">(</span><span class="op">)</span> 
+<span class="co">#&gt; # A tibble: 9 x 8</span>
+<span class="co">#&gt;   var1   var2     cor statistic         p conf.low conf.high</span>
+<span class="co">#&gt;   &lt;chr&gt;  &lt;chr&gt;  &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;</span>
+<span class="co">#&gt; 1 IMC    IMC     1      2.12e+8 5.26e-155    1.00      1    </span>
+<span class="co">#&gt; 2 IMC    mass    0.85   7.32e+0 4.47e-  7    0.674     0.938</span>
+<span class="co">#&gt; 3 IMC    height  0.18   8.13e-1 4.26e-  1   -0.262     0.558</span>
+<span class="co">#&gt; 4 mass   IMC     0.85   7.32e+0 4.47e-  7    0.674     0.938</span>
+<span class="co">#&gt; 5 mass   mass    1      3.00e+8 5.13e-158    1         1    </span>
+<span class="co">#&gt; 6 mass   height  0.65   3.84e+0 1.02e-  3    0.317     0.842</span>
+<span class="co">#&gt; 7 height IMC     0.18   8.13e-1 4.26e-  1   -0.262     0.558</span>
+<span class="co">#&gt; 8 height mass    0.65   3.84e+0 1.02e-  3    0.317     0.842</span>
+<span class="co">#&gt; 9 height height  1    Inf       0            1         1    </span>
+<span class="co">#&gt; # ... with 1 more variable: method &lt;chr&gt;</span></code></pre></div>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="importation-de-jeux-de-donn%C3%A9es.html"><span class="header-section-number">5</span> Importation de jeux de données</a></div>
+<div class="next"><a href="visualisation-des-donn%C3%A9es.html"><span class="header-section-number">7</span> Visualisation des données</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#gestion-avanc%C3%A9e-de-jeux-de-donn%C3%A9es"><span class="header-section-number">6</span> Gestion avancée de jeux de données</a></li>
+<li><a class="nav-link" href="#le-tidyverse"><span class="header-section-number">6.1</span> Le tidyverse</a></li>
+<li>
+<a class="nav-link" href="#les-fonctions-utiles"><span class="header-section-number">6.2</span> Les fonctions utiles</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#s%C3%A9lectionner-des-variables"><span class="header-section-number">6.2.1</span> Sélectionner des variables</a></li>
+<li><a class="nav-link" href="#s%C3%A9lectionner-des-participants"><span class="header-section-number">6.2.2</span> Sélectionner des participants</a></li>
+<li><a class="nav-link" href="#transformer-et-cr%C3%A9er-des-variables"><span class="header-section-number">6.2.3</span> Transformer et créer des variables</a></li>
+<li><a class="nav-link" href="#sommariser-les-informations-pertinentes"><span class="header-section-number">6.2.4</span> Sommariser les informations pertinentes</a></li>
+<li><a class="nav-link" href="#autres-fonctions"><span class="header-section-number">6.2.5</span> Autres fonctions</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#mise-en-situation"><span class="header-section-number">6.3</span> Mise en situation</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/quantmeth/MQR/blob/master/02-Gestion.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/quantmeth/MQR/edit/master/02-Gestion.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Méthodes Quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-05-16.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

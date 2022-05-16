@@ -1,3 +1,4 @@
+fig:saumon
 fig:ConsoleR
 fig:ConsoleRStudio
 tab:unnamed-chunk-22
@@ -21,8 +22,8 @@ rstudio
 les-avantages-de-rstudio
 autres-options
 démarrer-r-ou-rstudio
-programmer-avec-r
 les-scripts
+programmer-avec-r
 les-variables
 les-opérateurs-arithmétiques
 les-commentaires
@@ -47,8 +48,10 @@ lécart-type
 les-graines
 les-distributions
 création-dune-matrice
-gestion-de-base-des-jeux-de-données
+répéter-des-valeurs
+gestion-rudimentaire-des-jeux-de-données
 quelques-conseils-de-gestion
+voir-la-base-de-données
 sauvegarder-un-jeu-de-données
 jeux-de-données-provenant-de-r-et-de-packages
 création-des-jeux-de-données-artificielles
@@ -66,6 +69,7 @@ entrée-de-données-avec-data_edit-package-dataeditr
 importation-de-jeux-de-données
 la-fonction-de-base
 fichiers-dextension-.txt
+fichiers-dextension-.dat
 fichiers-dextension-.csv
 fichiers-délimités
 fichiers-dextension-.sav-.dta-.syd-et-.mtp
@@ -74,6 +78,7 @@ fichiers-dextension-.html
 fichiers-dextension-.json
 fichiers-dextension-.sas7bdat
 emplacement-du-jeu-de-données
+importation-avec-rstudio
 conseils-dimportation
 gestion-avancée-de-jeux-de-données
 le-tidyverse
@@ -83,7 +88,7 @@ sélectionner-des-participants
 transformer-et-créer-des-variables
 sommariser-les-informations-pertinentes
 autres-fonctions
-mise-en-pratique
+mise-en-situation
 visualisation-des-données
 ggplot2
 diagramme-de-dispersion

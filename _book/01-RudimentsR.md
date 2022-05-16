@@ -59,7 +59,7 @@ Dans la Figure \@ref(fig:ConsoleR), **R** est défini en français. Cela n'a pou
 
 La console **R** n'étant pas un éditeur de texte, il faudra enregistrer la syntaxe utilisée lors d'une séance pour la conserver. Le logiciel offre une option d'écriture de script intégré, mais n'est pas lié directement à la console. Il faudra donc se résoudre à abuser du copier-coller ou à sourcer le script (tâche plus ardue pour les nouveaux utilisateurs). Plusieurs éditeurs de texte sont utiles ou même construits pour directement travailler avec **R**, le plus connu étant certainement **R**Studio. L'environnement intégré sera beaucoup plus fonctionnel.
 
-La figure \@ref(fig:ConsoleRStudio), montre l'interface de **R**Studio, déjà un peu moins intimidante que celle de **R**. À l'ouverture de **R**Studio, quatre types de fenêtres sont disponibles : la console (cadran inférieur gauche), les scripts (cadran supérieur gauche), l'environnement (cadran supérieur droit) et l'affichage (cadran inférieur droit). L'emplacement de ces cadrans peut être modifié selon les désirs de l'utilisateur.
+La Figure \@ref(fig:ConsoleRStudio), montre l'interface de **R**Studio, déjà un peu moins intimidante que celle de **R**. À l'ouverture de **R**Studio, quatre types de fenêtres sont disponibles : la console (cadran inférieur gauche), les scripts (cadran supérieur gauche), l'environnement (cadran supérieur droit) et l'affichage (cadran inférieur droit). L'emplacement de ces cadrans peut être modifié selon les désirs de l'utilisateur.
 
 <div class="figure" style="text-align: center">
 <img src="image//ConsoleRStudio.PNG" alt="Ouverture (moins effrayante) de **R**Studio" width="75%" />
@@ -69,20 +69,19 @@ La figure \@ref(fig:ConsoleRStudio), montre l'interface de **R**Studio, déjà u
 La console **R**Studio est identique à la console usuelle retrouvée avec **R**. Elle sert les mêmes fonctions. Le script est un éditeur de texte dans lequel de la syntaxe sera rédigée, sauvegardée, manipulée, et tester. S'il n'est pas ouvert ou s'il faut ouvrir un script supplémentaire, il faut procéder par le menu déroulant.
 
 > File
-
 > New File
-
 > R Script
 
 ou bien **CTRL + Shift + N**. Il peut y avoir plusieurs scripts ouverts simultanément. L'environnement global permet de connaître les variables et fonctions maison en mémoire vive. L'onglet *History* montre les dernières lignes de code commandées (non affichées dans la figure - il suffit de cliquer sur l'onglet à côté de *Environment*). Enfin, le cadran  inférieur droit montre le fichier de travail **R** qui contiendra ordinairement les fichiers de travail actifs (scripts, jeu de données, fonctions maison, etc.) C'est très utile pour travailler par projet. Si aucun directoire n'est demandé explicitement par **R** (par exemple, si un jeu de donnée doit être téléchargé), le logiciel cherchera par défaut dans le fichier actif pour télécharger les fichiers demandés. Il est une bonne pratique que de s'assurer d'être dans le bon fichier, car cela pourra causer quelques soucis à l'occasion.
 
+## Les scripts
+Ce qu'il importe le plus avec **R**, et ce qui fait resplendir **R**Studio, est de conserver la syntaxe d'une session à l'autre. Le logiciel ne le fait pas très bien. Il faudra sauvegarder dans un script les expressions et le code utilisés. Ces fichiers ont souvent comme extension ".R" et permettront de conserver, voire partager la syntaxe. Il sera possible d'y ajouter des commentaires pour de futures utilisations. Tout éditeur de texte peut permettre la sauvegarde de syntaxe, certains seront mieux que d'autres pour l'utilisation avec **R**. 
+
+**R**Studio contient déjà un panneau contenant un script qu'il sera possible de sauvegarder et de rouler directement dans la console. Ce dernier est directement lié et il est possible de rouler la syntaxe ligne par ligne avec  **CTRL + Enter** (Windows) ou **CMD + Enter** (MacOS).
 
 # Programmer avec **R**
 
 Dans les prochaines sections, les différents éléments de programmation permettant la création et la manipulation de données seront présentés.
-
-## Les scripts
-Ce qu'il importe le plus avec **R**, mais où  **R**Studio resplendit, est de conserver la syntaxe d'une session à l'autre, ce que le logiciel ne fait pas très bien. Il faudra sauvegarder dans un script les expressions et le code utilisés. Ces fichiers ont souvent comme extension ".R" et permettront de conserver, voire partager la syntaxe. Il sera possible d'y ajouter des commentaires pour de futures utilisations. Tout éditeur de texte peut permettre la sauvegarde de syntaxe, certains seront mieux que d'autres pour l'utilisation avec **R**.
 
 ## Les variables
 Pour manipuler les données, il faut recourir à des variables. Afin de leur attribuer une valeur, il faut assigner cette valeur avec `<-` (**ALT + -**) ou `=`, par exemple,
@@ -186,6 +185,7 @@ resultat
 Dans cet exemple, la première ligne est ignorée. Autrement, la console **R** produirait une erreur, car cette ligne est pour le logiciel pur charabia!
 
 ## Définir une chaîne de caractère
+
 La plupart du temps, les variables utilisées seront numériques, c'est-à-dire qu'elles contiendront des nombres. Parfois en analyses de données, il pourra s'agir de chaîne de caractères (*string*), autrement dit, de mots. Les chaînes de caractères sont définis par le double apostrophe `"..."`, où on remplace les trois points par les mots désirés.
 
 ```r
@@ -218,7 +218,7 @@ Et les deux.
 
 
 ```r
-phrase <- c(1,"Chat", 2,"Souris")
+phrase <- c(1, "Chat", 2, "Souris")
 phrase
 #> [1] "1"      "Chat"   "2"      "Souris"
 ```
@@ -252,6 +252,7 @@ phrase[-c(1,3)]
 Dans le premier exemple, seul un élément est demandé. Dans le deuxième exemple, la commande `1:3` produit la série de $1,2,3$ et en extrait ces nombres. Dans le dernier exemple, la fonction `c()` est astucieusement utilisée pour extraire les éléments $2$ et $4$. Le quatrième exemple montre comment retirer un élément en utilisant des valeurs négatives et le cinquième exemple montre comment retirer des éléments.
 
 ## Les fonctions
+
 **R** offre une multitude de fonctions et permet également à l'usager de bâtir ses propres fonctions (fonctions maison). Elles permettent d'automatiser des calculs (généralement, mais peut faire beaucoup plus!). Tout au long de cet ouvrage, les fonctions seront identifiées par l'ajout de parenthèse à leur fin, comme ceci : `function()`. Ces fonctions ont généralement la forme suivante.
 
 
@@ -283,10 +284,13 @@ addition2 <- function(a, b) {
   # Le résultat est assigné à une variable
   somme <- a + b
 }
+
 # Ne produit pas de sortie
 addition2(100, 241)
+
 # Comme il y a assignation, total n'est pas affichée
 total <- addition2(100, 241)
+
 # En roulant total, la sortie affiche bien la sortie de addition2()
 total
 #> [1] 341
@@ -301,6 +305,7 @@ addition3 <- function(a, b) {
   somme <- a + b
   return(somme)
 }
+
 # Les deux fonctions produisent une sortie
 addition3(4, 6)
 #> [1] 10
@@ -449,8 +454,6 @@ L'arbre de décision peut devenir aussi compliqué que l'utilisateur le désire 
 
 Il peut arriver pour certaines fonctions de devoir spécifier si certains paramètres sont vrais (`TRUE`) ou faux (`FALSE`) ou de définir des variables ayant ces valeurs. Lorsque c'est le cas, il est toujours recommandé d'écrire les valeurs logiques tout au long comme `TRUE` et `FALSE`, même si **R** reconnaît `T` et `F`, car ces dernières peuvent être réassignées, contrairement aux premières.
 
-
-
 ## Les packages
 
 L'utilisation de packages (souvent nommées bibliothèques, modules, paquets ou paquetage en français - ici, l'usage de *package* sera maintenu) est l'attrait principal de **R**. Pour éviter l'anglicisme, Antidote suggère *forfait*, *achat groupé* ou *progiciel* (ce dernier étant certainement le terme approprié). 
@@ -470,7 +473,6 @@ install.packages("...")
 où les `"..."` doivent être remplacé par le nom du package. Il est important de bien inscrire le nom du package entre guillemet anglophone. Il est aussi possible de sélectionner
 
 > Tools;
-
 > Install Packages...
 
 puis de nommer le package sous l'onglet package. Avec **R** il faudra auparavant choisir un miroir (sélectionner un pays), ce qui ne sera pas nécessaire avec **R**Studio. Une fois téléchargé, il ne sera plus nécessaire de refaire cette étape à nouveau, à l'exception de potentielles et ultérieures mises à jour lorsqu'elles devront être réalisées.
@@ -508,15 +510,16 @@ Il arrive parfois que le code utilisé ne fonctionne pas, que des erreurs se pro
 Dans cette section, des fonctions utilisées couramment seront présentées. L'accent est mis sur la définition de la fonction (qu'est-ce qu'elle calcule?), le développement d'une fonction maison (rédigée par l'usager pour la mettre en pratique) et l'identification de la fonction déjà implantée en **R**.
 
 ## La longueur
-La longueur d'une variable correspond au nombre d'éléments qu'elle contient. La fonction `length()` permettra d'obtenir ce résultat. Il sera particulièrement utile lorsqu'il faudra calculer, par exemple, la taille d'échantillon (le nombre d'unités d'observation d'une variable).
 
-La somme d'une chaîne de caractère est toujours de $1$, peu importe le nombre de caractères. La fonction `nchar()` produira le nombre de caractères.
+La longueur d'une variable correspond au nombre d'éléments qu'elle contient. La fonction `length()` permettra d'obtenir ce résultat. Ce sera particulièrement utile lorsqu'il faudra calculer, par exemple, le nombre de boucle à réaliser à partir des éléments d'un vecteur ou la taille d'échantillon (le nombre d'unités d'observation d'une variable), bien que `ncol()` (nombre de colonnes) et `nrow()` (nombre de lignes) soient plus intuitives pour les matrices et les jeux de données.
 
-Une variable qui existe, mais qui ne contient pas de valeur aura une longueur égale $0$. Ce type de variable est utile lorsqu'il faut créer une variable qui aura une taille variable.
+La somme d'une chaîne de caractères est toujours de $1$, peu importe le nombre de caractères. La fonction `nchar()` produira le nombre de caractères.
+
+Une variable qui existe, mais qui ne contient pas de valeur aura une longueur égale $0$. Ce type de variable est utile lorsqu'il faut créer une variable qui aura une taille changeant d'une situation à l'autre.
 
 
 ```r
-x <- c(1,2,3)
+x <- c(1, 2, 3)
 length(x)
 #> [1] 3
 
@@ -530,7 +533,7 @@ nchar(y)
 
 ## La somme
 
-Il sera très fréquent de devoir calculer des sommes de variables pour en obtenir le total. En tant qu'humain, le calcul d'une série de nombre correspond à prendre chaque nombre et de les additionner un à un. La fonction suivante reproduit assez bien ce qu'un humain ferait (avec ses quelques caprices de programmation tel que devoir déclarer l'existence de la variable de `total` et spécifier le nombre d'éléments à calculer).
+Il est possible de calculer des sommes de variables pour en obtenir le total. En tant qu'humain, le calcul d'une série de nombre correspond à prendre chaque nombre et de les additionner un à un. La fonction suivante reproduit assez bien ce qu'un humain ferait (avec ses quelques caprices de programmation tel que devoir déclarer l'existence de la variable de `total` et spécifier le nombre d'éléments à calculer).
 
 
 ```r
@@ -551,29 +554,32 @@ sum(x)
 #> [1] 9
 ```
 
-À noter que l'utilisation de la boucle est à des fins illustratives uniquement. En termes de rendement computationnel, elle est bien peu efficace. Il faudra privilégier la fonction `sum()` pour calculer le total de son entrée.
+À noter que l'utilisation de la boucle est à des fins illustratives seulement. En termes de rendement computationnel, elle est bien peu efficace. Il faudra privilégier la fonction `sum()` pour calculer le total de son entrée.
 
-Il faut prendre garde : **R** calcule le total de tous les éléments de l'entrée sans égard aux lignes et aux colonnes. Si deux variables étaient entrées par inadvertance, alors R calculerait la somme de ces deux variables plutôt que de retourner deux totaux. À cette fin, les fonctions `rowSums()` et `colSums()` seront utiles lorsqu'il faudra calculer des sommes sur des lignes (*row*) ou des colonnes (*col*).
+Il faut prendre garde : **R** calcule le total de tous les éléments de l'entrée sans égard aux lignes et aux colonnes. Autrement dit, il vectorise les entrées. Si deux variables étaient entrées par inadvertance, alors R calculerait la somme de ces deux variables plutôt que de retourner deux totaux. À cette fin, les fonctions `rowSums()` et `colSums()` seront utiles lorsqu'il faudra calculer des sommes sur des lignes (*row*) ou des colonnes (*col*).
 
 ## La moyenne
 
 La moyenne est une mesure de tendance centrale qui représente le centre d'équilibre d'une distribution (un centre de gravité en quelque sorte). Si le poids d'un des côtés d'une distribution de probabilité était altéré (plus lourde ou plus légère), alors la moyenne se déplacerait en conséquence.
 
-La moyenne d'un échantillon correspond à la somme de toutes les unités d'une variable divisée par le nombre de données de cette variable ou, mathématiquement, $$\bar{x}=\frac{\Sigma_{i=1}^n x}{n} $$ où $x$ est la variable, $n$ est le nombre d'unité et $\Sigma_i^n$ représente la somme de toutes les unités de $x$. **R** possède déjà une fonction permettant de calculer la moyenne sans effort, `mean()` où l'argument est la variable. Il est également possible de développer une fonction maison pour calculer la moyenne comme
+La moyenne d'un échantillon correspond à la somme de toutes les unités d'une variable divisée par le nombre de données de cette variable ou, mathématiquement, $$\bar{x}=\frac{\Sigma_{i=1}^n x}{n} $$ où $x$ est la variable, $n$ est le nombre d'unité et $\Sigma_i^n$ représente la somme de toutes les unités de $x$. **R** possède déjà une fonction permettant de calculer la moyenne sans effort, `mean()` où l'argument est la variable. Il est possible de développer une fonction maison pour calculer la moyenne comme
 
 
 ```r
 x_bar <- sum(x)/length(x)
 ```
-où `sum(x)` calculer la somme de toutes les unités de `x`, `/` permet la division et `length(x)` calculer le nombre d'unité dans la moyenne.
-Par exemple, à partir d'une variable `x`, les fonctions suivantes donnent le même résultat. Par contre la fonction `mean()` est beaucoup plus robuste que cette dernière équation.
+
+où `sum(x)` calculer la somme de toutes les unités de `x`, `/` permet la division et `length(x)` calcule le nombre d'unités du vecteur `x`. Par exemple, à partir d'une variable `x`, les fonctions suivantes donnent le même résultat. Par contre la fonction `mean()` est beaucoup plus robuste que cette dernière équation.
+
 
 ```r
 # Création de la variable
 x <- c(0, 1, 2, 3, 4, 5)
+
 # La moyenne
 mean(x)
 #> [1] 2.5
+
 # La moyenne
 sum(x)/length(x)
 #> [1] 2.5
@@ -582,9 +588,9 @@ sum(x)/length(x)
 Comme pour `sum()`, les fonctions `rowMeans()` et `colMeans()` seront utiles lorsqu'il faudra calculer des moyennes sur des lignes (*row*) ou des colonnes (*col*).
 
 ## La médiane
-La médiane d'un échantillon correspond à la valeur où $50\%$ des données se situe au-dessous et au-dessus de cette valeur. C'est la valeur au centre des autres (lorsqu'elles sont ordonnées). Quand le nombre de données est impair, le $\frac{(n+1)}{2}$^e^ élément est la médiane. Quand le nombre est pair, la moyenne des deux valeurs au centre correspond à la médiane. Cette statistique est intéressante comme mesure de tendance centrale, car elle est plus robuste aux valeurs aberrantes (moins sensibles) que la moyenne .
+La médiane d'un échantillon correspond à la valeur où $50\%$ des données se situe au-dessous et au-dessus de cette valeur. C'est la valeur au centre des autres (lorsqu'elles sont ordonnées). Quand le nombre de données est impair, le $\frac{(n+1)}{2}$^e^ élément est la médiane. Quand le nombre est pair, la moyenne des deux valeurs au centre correspond à la médiane. Cette statistique est intéressante comme mesure de tendance centrale, car elle est plus robuste aux valeurs aberrantes (moins sensibles) que la moyenne.
 
-Évidemment, **R** offre déjà une fonction `median()` pour réaliser le calcul. Il est toutefois possible de programmer une fonction maison. Il faudra utiliser la fonction `sort()` pour ordonner les données (croissant par défaut).
+Évidemment, **R** offre déjà une fonction `median()` pour réaliser le calcul. Il est toutefois possible de programmer une fonction maison. Il faut utiliser la fonction `sort()` pour ordonner les données (croissant par défaut).
 
 
 ```r
@@ -593,6 +599,7 @@ mediane <- function(x) {
   s <- sort(x)
   ifelse(n%%2 == 1, s[(n + 1) / 2], mean(s[n / 2 + 0:1]))
 }
+
 # Tester ensuite:
 x <- c(42, 23, 53, 77, 93, 20, 37, 24, 60, 62)
 median(x)
@@ -603,11 +610,13 @@ mediane(x)
 
 L'expression `n%%2`, lue $n \bmod 2$, joue astucieusement le rôle de vérifier si `n` est impaire. La formule générale $x \bmod y$ représente une opération binaire associant à deux entiers naturels le reste de la division du premier par le second. Par exemple, $60 \bmod 7$, noter `60%%7` dans **R**, donne $4$ soit le reste de $7*8 + 4 = 60$. Le logiciel le confirme.
 
+
 ```r
 60%%7
 #> [1] 4
 ```
-Il s'agit d'une technique de programmation très  pratique. Dans le cas de `n%%2`, la formule donne $1$ dans le cas d'un nombre impair ou $0$ dans le cas d'un nombre pair, puis teste ce résultat pour déterminer s'il réalise `s[(n+1)/2]` lorsque `n%%2==1`(`TRUE`) , ce qui correspond à choisir l'élément au centre d'un vecteur de taille impair, ou bien `mean(s[n/2+0:1]` lorsque `n%%2==0`(`FALSE`) , ce qui correspond à choisir les deux éléments au centre d'un vecteur pair et d'en faire la moyenne. Il s'agit de l'une des nombreuses façons selon lesquelles il est possible de programmer la médiane.
+
+Il s'agit d'une technique de programmation très pratique. Dans le cas de `n%%2`, la formule donne $1$ dans le cas d'un nombre impair ou $0$ dans le cas d'un nombre pair, puis teste ce résultat pour déterminer s'il réalise `s[(n+1)/2]` lorsque `n%%2==1`(`TRUE`) , ce qui correspond à choisir l'élément au centre d'un vecteur de taille impair, ou bien `mean(s[n/2+0:1]` lorsque `n%%2==0`(`FALSE`) , ce qui correspond à choisir les deux éléments au centre d'un vecteur pair et d'en faire la moyenne. Il s'agit de l'une des nombreuses façons selon lesquelles il est possible de programmer la médiane.
 
 ## La variance
 
@@ -666,9 +675,11 @@ set.seed("nombre")
 ```
 Il suffit de spécifier cette commande (en remplaçant `nombre` par un nombre) en début de syntaxe pour définir la séquence de nombre. Cette fonction sera utilisée à plusieurs reprises dans le but de reproduire les mêmes sorties.
 
+Cette fonction est présentée, car elle reviendra régulièrement dans ce livre pour qu'il soit possible de reproduire et obtenir exactement les mêmes résultats.
+
 ## Les distributions
 
-Il existe plusieurs distributions déjà programmées avec **R**. Voici les principales utilisées dans cet ouvrage.
+Il existe plusieurs distributions statistiques déjà programmées avec **R**. Voici les principales utilisées dans cet ouvrage.
 
 <table class=" lightable-classic table" style='font-family: "Arial Narrow", "Source Sans Pro", sans-serif; width: auto !important; margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto;'>
 <caption>(\#tab:unnamed-chunk-42)Noms des distributions, fonctions et leurs arguments</caption>
@@ -713,21 +724,25 @@ Il existe plusieurs distributions déjà programmées avec **R**. Voici les prin
 </tbody>
 </table>
 
-Les libellés ci-dessus ne commanderont pas de fonction. Il faut joindre en préfixe à ces distributions l'une des quatre lettres suivantes : `d`, `p`,`q`, ou `r`. La plus simple est certainement `r` (*random*) qui génère `n` valeurs aléatoires de la distribution demandée selon les paramètres spécifiés. Les fonctions `q` (quantile) prend un argument de 0 à 1 (100%), soit un percentile et retourne la valeur de la distribution. La fonction `p` (probabilité) retourne la probabilité cumulative (du minimum jusqu'à la valeur) d'une valeur de cette distribution. Enfin, la lettre `d` (densité) permet, notamment, d'obtenir les valeurs de densité de la distribution.
+Les libellés ci-dessus ne commanderont pas de fonction. Il faut joindre en préfixe à ces distributions l'une des quatre lettres suivantes : `d`, `p`,`q`, ou `r`. La plus simple est certainement `r` (*random*) qui génère `n` valeurs aléatoires de la distribution demandée selon les paramètres spécifiés. Les fonctions `q` (quantile) prennent un argument de 0 à 1 (100%), soit un percentile et retourne la valeur de la distribution. La fonction `p` (probabilité) retourne la probabilité cumulative (du minimum jusqu'à la valeur) d'une valeur de cette distribution. Enfin, la lettre `d` (densité) permet, notamment, d'obtenir les valeurs de densité de la distribution.
 
 Voici un exemple avec la distribution normale.
 
 ```r
 set.seed(9876)
+
 # Génère 5 nombres aléatoires en fonction des paramètres
 rnorm(n = 5, mean = 10, sd = .5)
 #> [1] 10.5  9.4  9.9 10.0 10.0
+
 # Retourne les valeurs associés à ces probabilités
 qnorm(c(.025,.975))
 #> [1] -2  2
+
 # Retourne la probabilité d'obtenir un score de 1.645 et moins
 pnorm(1.645)
 #> [1] 0.95
+
 # La valeur de la densité de la distribution
 dnorm(0)
 #> [1] 0.4
@@ -737,7 +752,7 @@ Ces quatre lettres peuvent être associées à toutes les distributions énumér
 
 ## Création d'une matrice
 
-Une dernière fonction, la fonction `matrix()` sera utile pour créer des matrices. La fonction utilise trois arguments, une matrice de nombre à entrer dans la matrice, un nombre de colonnes et un nombre de lignes. La fonction utilise le recyclage, ce qui pourra être utile à certaines occasions.
+La fonction `matrix()` sera utile pour créer des matrices, commes des matrices de covariances, par exemple. La fonction utilise trois arguments, une matrice de nombre à entrer dans la matrice, un nombre de colonnes et un nombre de lignes. La fonction utilise le recyclage, ce qui pourra être utile à certaines occasions.
 
 
 ```r
@@ -747,12 +762,14 @@ matrix(0, ncol = 3, nrow = 3)
 #> [1,]    0    0    0
 #> [2,]    0    0    0
 #> [3,]    0    0    0
+
 # Une matrice contenant les nombres 1:3 pour une matrice 3x3
 matrix(1:3, ncol = 3, nrow = 3)
 #>      [,1] [,2] [,3]
 #> [1,]    1    1    1
 #> [2,]    2    2    2
 #> [3,]    3    3    3
+
 # Si la séquence préféré serait de gauche à droite plutôt
 # de bas en haut
 matrix(1:3, ncol = 3, nrow = 3, byrow = TRUE)
@@ -760,6 +777,7 @@ matrix(1:3, ncol = 3, nrow = 3, byrow = TRUE)
 #> [1,]    1    2    3
 #> [2,]    1    2    3
 #> [3,]    1    2    3
+
 # Une matrice avec un nombre d'entrées égale au nombre de cellule
 matrix(1:16, ncol = 4, nrow = 4)
 #>      [,1] [,2] [,3] [,4]
@@ -771,9 +789,28 @@ matrix(1:16, ncol = 4, nrow = 4)
 
 Les matrices sont une formes de jeu données (numérique seulement). Plus tard, les `data.frame` ou jeu de données seront présentés.
 
+## Répéter des valeurs
+
+La fonction `rep()` sera utile pour répéter volontairement des valeurs. Il y deux possibilité de répétitions: l'argument `times` définit le nombre de fois que le vecteur est répété; l'arguement `each` définit le nombre de fois que chaque élément est répété.
+
+
+```r
+vec <- c(2, 4, "chat")
+
+# Répéter vec trois fois
+rep(vec, times = 3)
+#> [1] "2"    "4"    "chat" "2"    "4"    "chat" "2"    "4"   
+#> [9] "chat"
+
+# Répéter chaque éléments de vec trois fois
+rep(vec, each = 3)
+#> [1] "2"    "2"    "2"    "4"    "4"    "4"    "chat" "chat"
+#> [9] "chat"
+```
 # Exercices {#exercice-rudiments .unnumbered}
-1. Rédiger une fonction calculant la moyenne d'une variable.
-2. Rédiger une fonction pour générer une séquence de Fibonacci (chaque nombre est la somme des deux précédents) jusqu'à une certaine valeur, soit $1,1,2,3,5,8,...$.
-3. Rédiger une fonction calculant un score-$z$ pour une variable.
-4. Rédiger une fonction calculant l'hypoténuse d'un triangle rectangle.
-5. Rédiger une fonction qui pivote une liste de $k$  éléments par $n$. Par exemple, une liste de six ($k=6$ comme $[1,2,3,4,5,6]$) pivoté de deux ($n=2$) devient ($[3,4,5,6,1,2]$).
+1. Quel est le résultat de `mean <- c(1, 2, 3)`? Pourquoi?
+2. Rédiger une fonction calculant l'hypoténuse d'un triangle rectangle. Rappel, le théorème de Pythagore est $c^2=a^2+b^2$.
+3. Rédiger une fonction calculant un score-$z$ pour une variable. Rappel, un score-$z$, correspond à $z=\frac{x-\mu}{\sigma}$.
+4. Rédiger une fonction calculant la médiane d'une variable (ne recopier pas celle de ce livre).
+5. Rédiger une fonction pour générer une séquence de Fibonacci (chaque nombre est la somme des deux précédents) jusqu'à une certaine valeur, soit $1,1,2,3,5,8,...$.
+6. Rédiger une fonction qui pivote une liste de $k$ éléments par $n$. Par exemple, une liste de six ($k=6$ comme $[1,2,3,4,5,6]$) pivoté de deux ($n=2$) devient ($[3,4,5,6,1,2]$).

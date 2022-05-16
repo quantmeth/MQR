@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Solutions | Méthodes Quantitatives avec R</title>
+<meta name="author" content="P.-O. Caron">
+<meta name="description" content="Partie 1  Quel est le résultat de mean &lt;- c(1, 2, 3)? Pourquoi? Le résultat est \(1, 2, 3\). Le fait d’assigner une valeur à une fonction (ou variable) écrase cette dernière. mean &lt;- c(1, 2, 3)...">
+<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta property="og:title" content="Solutions | Méthodes Quantitatives avec R">
+<meta property="og:type" content="book">
+<meta property="og:url" content="mqr.teluq.ca/solutions.html">
+<meta property="og:description" content="Partie 1  Quel est le résultat de mean &lt;- c(1, 2, 3)? Pourquoi? Le résultat est \(1, 2, 3\). Le fait d’assigner une valeur à une fonction (ou variable) écrase cette dernière. mean &lt;- c(1, 2, 3)...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Solutions | Méthodes Quantitatives avec R">
+<meta name="twitter:description" content="Partie 1  Quel est le résultat de mean &lt;- c(1, 2, 3)? Pourquoi? Le résultat est \(1, 2, 3\). Le fait d’assigner une valeur à une fonction (ou variable) écrase cette dernière. mean &lt;- c(1, 2, 3)...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Méthodes Quantitatives avec R</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Bienvenue!</a></li>
+<li><a class="" href="pr%C3%A9face.html">Préface</a></li>
+<li class="book-part">Les rudiments de R</li>
+<li><a class="" href="commencer-avec-r.html"><span class="header-section-number">1</span> Commencer avec R</a></li>
+<li><a class="" href="programmer-avec-r.html"><span class="header-section-number">2</span> Programmer avec R</a></li>
+<li><a class="" href="fonctions-statistiques-essentielles.html"><span class="header-section-number">3</span> Fonctions statistiques essentielles</a></li>
+<li><a class="" href="exercice-rudiments.html">Exercices</a></li>
+<li class="book-part">Importation, gestion et visualisation de jeux de données</li>
+<li><a class="" href="gestion-rudimentaire-des-jeux-de-donn%C3%A9es.html"><span class="header-section-number">4</span> Gestion rudimentaire des jeux de données</a></li>
+<li><a class="" href="importation-de-jeux-de-donn%C3%A9es.html"><span class="header-section-number">5</span> Importation de jeux de données</a></li>
+<li><a class="" href="gestion-avanc%C3%A9e-de-jeux-de-donn%C3%A9es.html"><span class="header-section-number">6</span> Gestion avancée de jeux de données</a></li>
+<li><a class="" href="visualisation-des-donn%C3%A9es.html"><span class="header-section-number">7</span> Visualisation des données</a></li>
+<li><a class="" href="exercice-gestion.html">Exercices</a></li>
+<li><a class="active" href="solutions.html">Solutions</a></li>
+<li><a class="" href="r%C3%A9f%C3%A9rences.html">Références</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/quantmeth/MQR">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="solutions" class="section level1 unnumbered">
+<h1>Solutions<a class="anchor" aria-label="anchor" href="#solutions"><i class="fas fa-link"></i></a>
+</h1>
+<div id="partie-1" class="section level2 unnumbered">
+<h2>Partie 1<a class="anchor" aria-label="anchor" href="#partie-1"><i class="fas fa-link"></i></a>
+</h2>
+<blockquote>
+<ol style="list-style-type: decimal">
+<li>Quel est le résultat de <code>mean &lt;- c(1, 2, 3)</code>? Pourquoi?</li>
+</ol>
+</blockquote>
+<p>Le résultat est <span class="math inline">\(1, 2, 3\)</span>. Le fait d’assigner une valeur à une fonction (ou variable) écrase cette dernière.</p>
+<div class="sourceCode" id="cb93"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">mean</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span>
+<span class="va">mean</span>
+<span class="co">#&gt; [1] 1 2 3</span></code></pre></div>
+<blockquote>
+<ol start="2" style="list-style-type: decimal">
+<li>Rédiger une fonction calculant l’hypoténuse d’un triangle rectangle. Rappel, le théorème de Pythagore est <span class="math inline">\(c^2=a^2+b^2\)</span>.</li>
+</ol>
+</blockquote>
+<p>En prenant <code>a</code> et <code>b</code> comme arguments.</p>
+<div class="sourceCode" id="cb94"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">hypothenus</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">a</span>, <span class="va">b</span><span class="op">)</span><span class="op">{</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">a</span><span class="op">^</span><span class="fl">2</span> <span class="op">+</span> <span class="va">b</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span>
+<span class="op">}</span>
+<span class="fu">hypothenus</span><span class="op">(</span><span class="fl">3</span>, <span class="fl">4</span><span class="op">)</span>
+<span class="co">#&gt; [1] 5</span></code></pre></div>
+<blockquote>
+<ol start="3" style="list-style-type: decimal">
+<li>Rédiger une fonction calculant un score-<span class="math inline">\(z\)</span> pour une variable. Rappel, un score-<span class="math inline">\(z\)</span>, correspond à <span class="math inline">\(z=\frac{x-\mu}{\sigma}\)</span>.</li>
+</ol>
+</blockquote>
+<p>Deux possibilités ici. Soit <code>x</code> est un vecteur contenant plusieurs nombres ou il est un nombre et il faut ajouter la moyenne (<span class="math inline">\(\mu\)</span>) et l’écart type (<span class="math inline">\(\sigma\)</span>).</p>
+<div class="sourceCode" id="cb95"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Premier cas</span>
+<span class="va">score.z</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span>
+  <span class="op">(</span><span class="va">x</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
+<span class="op">}</span> 
+
+<span class="co"># Deuxième cas</span>
+<span class="va">score.z</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">mu</span>, <span class="va">sigma</span><span class="op">)</span> <span class="op">{</span>
+  <span class="op">(</span><span class="va">x</span><span class="op">-</span><span class="va">mu</span><span class="op">)</span><span class="op">/</span><span class="va">sigma</span>
+<span class="op">}</span> 
+
+<span class="fu">score.z</span><span class="op">(</span><span class="fl">130</span>, mu <span class="op">=</span> <span class="fl">100</span>, sigma <span class="op">=</span> <span class="fl">15</span><span class="op">)</span>
+<span class="co">#&gt; [1] 2</span></code></pre></div>
+<p>Le premier cas est l’équivalent de la fonction <code><a href="https://rdrr.io/r/base/scale.html">scale()</a></code> qui rempliera la même tâche.</p>
+<blockquote>
+<ol start="4" style="list-style-type: decimal">
+<li>Rédiger une fonction calculant la médiane d’une variable (ne recopier pas celle de ce livre).</li>
+</ol>
+</blockquote>
+<p>Voici une autre fonction calculant une médiane d’un vecteur.</p>
+<div class="sourceCode" id="cb96"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">mediane</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span>
+  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
+  <span class="va">longueur</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
+  <span class="kw">if</span> <span class="op">(</span><span class="va">longueur</span><span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span><span class="fl">2</span><span class="op">)</span> <span class="op">{</span>
+    <span class="co"># Si impair</span>
+    <span class="co"># Prendre la valeur centrale</span>
+    <span class="va">x</span><span class="op">[</span><span class="op">(</span><span class="va">longueur</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span><span class="op">/</span><span class="fl">2</span><span class="op">]</span>
+  <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span>
+    <span class="co"># Si pair</span>
+    <span class="co"># Faire la moyenne des deux éléments du centre</span>
+    <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">x</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="va">longueur</span><span class="op">/</span><span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span> <span class="op">+</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span>
+  <span class="op">}</span>
+<span class="op">}</span></code></pre></div>
+<p>Encore une fois (il n’y a pas vraiment de façon de l’éviter), <code>%%2</code> permet de tester si pair (<code>FALSE</code>, car <code>0</code> si pair) ou impair (<code>TRUE</code>, car <code>1</code> si impair), puis de prendre la valeur à la position correspondante. Il y a plusieurs façons de tirer les éléments du vecteur.</p>
+<blockquote>
+<ol start="5" style="list-style-type: decimal">
+<li>Rédiger une fonction pour générer une séquence de Fibonacci (chaque nombre est la somme des deux précédents) jusqu’à une certaine valeur, soit <span class="math inline">\(1,1,2,3,5,8,...\)</span>.</li>
+</ol>
+</blockquote>
+<p>Plusieurs solutions possibles dont en voici deux.</p>
+<div class="sourceCode" id="cb97"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">fibonnaci1</span> <span class="op">&lt;-</span>  <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">{</span>
+  <span class="co"># n est le nombre d'éléments de la série demandée.</span>
+  <span class="co"># Création d'un vecteur de taille n ne contenant que des 1.</span>
+  <span class="va">serie</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="va">n</span><span class="op">)</span>
+  <span class="co"># Le premier test logique rapporte la (n = 1) ou </span>
+  <span class="co"># les deux (n = 2) premières valeurs.</span>
+  <span class="kw">if</span><span class="op">(</span><span class="va">n</span> <span class="op">&lt;=</span> <span class="fl">2</span><span class="op">)</span><span class="op">{</span>
+    <span class="va">serie</span> <span class="op">&lt;-</span>  <span class="va">serie</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="va">n</span><span class="op">]</span>
+    <span class="co"># Le deuxième réalise les calculs pour les autres options.  </span>
+  <span class="op">}</span><span class="kw">else</span><span class="op">{</span>
+    <span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">3</span><span class="op">:</span><span class="va">n</span><span class="op">)</span><span class="op">{</span>
+      <span class="va">serie</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span>  <span class="va">serie</span><span class="op">[</span><span class="va">i</span><span class="op">-</span><span class="fl">1</span><span class="op">]</span> <span class="op">+</span> <span class="va">serie</span><span class="op">[</span><span class="va">i</span><span class="op">-</span><span class="fl">2</span><span class="op">]</span>  
+    <span class="op">}</span>
+  <span class="op">}</span>
+  <span class="va">serie</span>
+<span class="op">}</span></code></pre></div>
+<p>En voici une autre en utilisant la récursion (une fonction qui s’appelle elle-même).</p>
+<div class="sourceCode" id="cb98"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">fibonnaci2</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">{</span>
+  <span class="kw">if</span><span class="op">(</span><span class="va">n</span> <span class="op">&lt;=</span> <span class="fl">2</span><span class="op">)</span><span class="op">{</span>
+    <span class="co"># Si la n est plus petit que 2, alors retourne 1</span>
+    <span class="fl">1</span>
+  <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span>
+    <span class="co"># Autrement, retourne, les deux valeurs de Fibonncaci précédentes.</span>
+    <span class="fu">fibonnaci2</span><span class="op">(</span><span class="va">n</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span> <span class="op">+</span> <span class="fu">fibonnaci2</span> <span class="op">(</span><span class="va">n</span><span class="op">-</span><span class="fl">2</span><span class="op">)</span>
+  <span class="op">}</span>
+<span class="op">}</span></code></pre></div>
+<p>Les voici comparées.</p>
+<div class="sourceCode" id="cb99"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">8</span>
+<span class="fu">fibonnaci1</span><span class="op">(</span><span class="va">n</span><span class="op">)</span>
+<span class="co">#&gt; [1]  1  1  2  3  5  8 13 21</span>
+<span class="fu">fibonnaci2</span><span class="op">(</span><span class="va">n</span><span class="op">)</span>
+<span class="co">#&gt; [1] 21</span></code></pre></div>
+<blockquote>
+<ol start="6" style="list-style-type: decimal">
+<li>Rédiger une fonction qui pivote une liste de <span class="math inline">\(k\)</span> éléments par <span class="math inline">\(n\)</span>. Par exemple, une liste de six (<span class="math inline">\(k=6\)</span> comme <span class="math inline">\([1,2,3,4,5,6]\)</span>) pivoté de deux (<span class="math inline">\(n=2\)</span>) devient (<span class="math inline">\([3,4,5,6,1,2]\)</span>).</li>
+</ol>
+</blockquote>
+<p>Plusieurs solutions possibles dont en voici une.</p>
+<div class="sourceCode" id="cb100"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">pivot</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">k</span>, <span class="va">n</span><span class="op">)</span><span class="op">{</span>
+  <span class="va">pivoter</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">(</span><span class="va">n</span><span class="op">+</span><span class="fl">1</span><span class="op">)</span><span class="op">:</span><span class="va">k</span>, <span class="fl">1</span><span class="op">:</span><span class="va">n</span><span class="op">)</span>
+  <span class="va">pivoter</span>
+<span class="op">}</span>
+<span class="co"># Original</span>
+<span class="va">k</span> <span class="op">&lt;-</span> <span class="fl">6</span>
+<span class="fl">1</span><span class="op">:</span><span class="va">k</span>
+<span class="co">#&gt; [1] 1 2 3 4 5 6</span>
+
+<span class="co"># Pivoté</span>
+<span class="fu">pivot</span><span class="op">(</span>k <span class="op">=</span> <span class="va">k</span>, n <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
+<span class="co">#&gt; [1] 3 4 5 6 1 2</span></code></pre></div>
+</div>
+<div id="partie-2" class="section level2 unnumbered">
+<h2>Partie 2<a class="anchor" aria-label="anchor" href="#partie-2"><i class="fas fa-link"></i></a>
+</h2>
+
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="exercice-gestion.html">Exercices</a></div>
+<div class="next"><a href="r%C3%A9f%C3%A9rences.html">Références</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#solutions">Solutions</a></li>
+<li><a class="nav-link" href="#partie-1">Partie 1</a></li>
+<li><a class="nav-link" href="#partie-2">Partie 2</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/quantmeth/MQR/blob/master/07-Solutions.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/quantmeth/MQR/edit/master/07-Solutions.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Méthodes Quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-05-16.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

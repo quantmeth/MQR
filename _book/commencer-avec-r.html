@@ -6,14 +6,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title> 1 Commencer avec R | Méthodes Quantitatives avec R</title>
 <meta name="author" content="P.-O. Caron">
-<meta name="description" content="R (R Core Team, 2021) est un logiciel de programmation statistique libre-accès et un environnement pour la computation statistique et l’affichage graphique. Il s’agit d’un projet GNU qui est...">
+<meta name="description" content="R (R Core Team, 2022) est un logiciel de programmation statistique libre-accès et un environnement pour la computation statistique et l’affichage graphique. Il s’agit d’un projet GNU qui est...">
 <meta name="generator" content="bookdown 0.24 with bs4_book()">
 <meta property="og:title" content=" 1 Commencer avec R | Méthodes Quantitatives avec R">
 <meta property="og:type" content="book">
-<meta property="og:description" content="R (R Core Team, 2021) est un logiciel de programmation statistique libre-accès et un environnement pour la computation statistique et l’affichage graphique. Il s’agit d’un projet GNU qui est...">
+<meta property="og:url" content="mqr.teluq.ca/commencer-avec-r.html">
+<meta property="og:description" content="R (R Core Team, 2022) est un logiciel de programmation statistique libre-accès et un environnement pour la computation statistique et l’affichage graphique. Il s’agit d’un projet GNU qui est...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content=" 1 Commencer avec R | Méthodes Quantitatives avec R">
-<meta name="twitter:description" content="R (R Core Team, 2021) est un logiciel de programmation statistique libre-accès et un environnement pour la computation statistique et l’affichage graphique. Il s’agit d’un projet GNU qui est...">
+<meta name="twitter:description" content="R (R Core Team, 2022) est un logiciel de programmation statistique libre-accès et un environnement pour la computation statistique et l’affichage graphique. Il s’agit d’un projet GNU qui est...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
@@ -48,11 +49,12 @@
 <li><a class="" href="fonctions-statistiques-essentielles.html"><span class="header-section-number">3</span> Fonctions statistiques essentielles</a></li>
 <li><a class="" href="exercice-rudiments.html">Exercices</a></li>
 <li class="book-part">Importation, gestion et visualisation de jeux de données</li>
-<li><a class="" href="gestion-de-base-des-jeux-de-donn%C3%A9es.html"><span class="header-section-number">4</span> Gestion de base des jeux de données</a></li>
-<li><a class="" href="entr%C3%A9e-de-donn%C3%A9es.html"><span class="header-section-number">5</span> Entrée de données</a></li>
-<li><a class="" href="importation-de-jeux-de-donn%C3%A9es.html"><span class="header-section-number">6</span> Importation de jeux de données</a></li>
+<li><a class="" href="gestion-rudimentaire-des-jeux-de-donn%C3%A9es.html"><span class="header-section-number">4</span> Gestion rudimentaire des jeux de données</a></li>
+<li><a class="" href="importation-de-jeux-de-donn%C3%A9es.html"><span class="header-section-number">5</span> Importation de jeux de données</a></li>
+<li><a class="" href="gestion-avanc%C3%A9e-de-jeux-de-donn%C3%A9es.html"><span class="header-section-number">6</span> Gestion avancée de jeux de données</a></li>
 <li><a class="" href="visualisation-des-donn%C3%A9es.html"><span class="header-section-number">7</span> Visualisation des données</a></li>
 <li><a class="" href="exercice-gestion.html">Exercices</a></li>
+<li><a class="" href="solutions.html">Solutions</a></li>
 <li><a class="" href="r%C3%A9f%C3%A9rences.html">Références</a></li>
 </ul>
 
@@ -66,7 +68,7 @@
 <span class="header-section-number"> 1</span> Commencer avec <strong>R</strong><a class="anchor" aria-label="anchor" href="#commencer-avec-r"><i class="fas fa-link"></i></a>
 </h1>
 <!-- # Introduction {#rudiments-intro .unnumbered} -->
-<p><strong>R</strong> <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-R-base" role="doc-biblioref">R Core Team, 2021</a>)</span> est un logiciel de programmation statistique libre-accès et un environnement pour la computation statistique et l’affichage graphique. Il s’agit d’un projet GNU qui est similaire au langage et à l’environnement S, développés aux Laboratoires Bell (anciennement AT&amp;T, aujourd’hui Lucent Technologies) par John Chambers. Créé par <strong>R</strong>oss Ihaka et <strong>R</strong>obert Gentleman, <strong>R</strong> fournit une grande variété de techniques statistiques (modélisation linéaire et non linéaire, analyses statistiques classiques, analyse de séries chronologiques, classification) et graphiques, et est hautement extensible.</p>
+<p><strong>R</strong> <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-R-base" role="doc-biblioref">R Core Team, 2022</a>)</span> est un logiciel de programmation statistique libre-accès et un environnement pour la computation statistique et l’affichage graphique. Il s’agit d’un projet GNU qui est similaire au langage et à l’environnement S, développés aux Laboratoires Bell (anciennement AT&amp;T, aujourd’hui Lucent Technologies) par John Chambers. Créé par <strong>R</strong>oss Ihaka et <strong>R</strong>obert Gentleman, <strong>R</strong> fournit une grande variété de techniques statistiques (modélisation linéaire et non linéaire, analyses statistiques classiques, analyse de séries chronologiques, classification) et graphiques, et est hautement extensible.</p>
 <p><strong>R</strong> est un logiciel basé sur la syntaxe plutôt qu’une approche pointer-et-cliquer (<em>point-and-click</em>) comme les logiciels traditionnels. Il peut être plus effrayant ou apparaître trop complexe pour un nouvel utilisateur, mais une fois apprivoisée, cette bête démontre un bien meilleur potentiel que ce soit en automatisation, en personnalisation, en production de figure de haute qualité, etc. <strong>R</strong> a l’avantage de mettre en plein contrôle ses utilisateurs. Bref, c’est une créature qu’il vaut la peine de maîtriser.</p>
 <p>Les logiciels traditionnelles suspendent trop souvent la réflexion critique. Ils sont dociles. L’usager clique sur les bonnes options et obtient les résultats désirés (espérons-le!). En échange d’une expérience “simple et intuitive”, ils compromettent l’épanouissement de l’utilisateur et rendent l’analyse statistique comme une boîte noire, un programme dont le fonctionnement ne peut être connu. Sont évacuées toutes connaissances des analyses, seules les entrées et les sorties sont pertinentes.</p>
 <p>En se limitant à ces logiciels, les utilisateurs sont également à la merci des compagnies qui les distribuent. Par exemple, elles maintiennent des prix exorbitants pour des licences annuelles, malgré le faible soutien technique, la désuétude ou le manque de mise à jour, la présence de bogues informatiques. Ces problèmes sont monnaie courante bien que la licence ne soit pas de la petite monnaie.</p>
@@ -121,7 +123,7 @@ Figure 1.1: Ouverture (effrayante!) de la console R
 </div>
 <p>Dans la Figure <a href="commencer-avec-r.html#fig:ConsoleR">1.1</a>, <strong>R</strong> est défini en français. Cela n’a pour effet que de modifier le menu déroulant (“Fichier, Edition, etc.”) au sommet du logiciel et les différentes options de ce menu. Le fonctionnement reste le même (les fonctions ne sont pas traduites, par exemple).</p>
 <p>La console <strong>R</strong> n’étant pas un éditeur de texte, il faudra enregistrer la syntaxe utilisée lors d’une séance pour la conserver. Le logiciel offre une option d’écriture de script intégré, mais n’est pas lié directement à la console. Il faudra donc se résoudre à abuser du copier-coller ou à sourcer le script (tâche plus ardue pour les nouveaux utilisateurs). Plusieurs éditeurs de texte sont utiles ou même construits pour directement travailler avec <strong>R</strong>, le plus connu étant certainement <strong>R</strong>Studio. L’environnement intégré sera beaucoup plus fonctionnel.</p>
-<p>La figure <a href="commencer-avec-r.html#fig:ConsoleRStudio">1.2</a>, montre l’interface de <strong>R</strong>Studio, déjà un peu moins intimidante que celle de <strong>R</strong>. À l’ouverture de <strong>R</strong>Studio, quatre types de fenêtres sont disponibles : la console (cadran inférieur gauche), les scripts (cadran supérieur gauche), l’environnement (cadran supérieur droit) et l’affichage (cadran inférieur droit). L’emplacement de ces cadrans peut être modifié selon les désirs de l’utilisateur.</p>
+<p>La Figure <a href="commencer-avec-r.html#fig:ConsoleRStudio">1.2</a>, montre l’interface de <strong>R</strong>Studio, déjà un peu moins intimidante que celle de <strong>R</strong>. À l’ouverture de <strong>R</strong>Studio, quatre types de fenêtres sont disponibles : la console (cadran inférieur gauche), les scripts (cadran supérieur gauche), l’environnement (cadran supérieur droit) et l’affichage (cadran inférieur droit). L’emplacement de ces cadrans peut être modifié selon les désirs de l’utilisateur.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:ConsoleRStudio"></span>
 <img src="image/ConsoleRStudio.PNG" alt="Ouverture (moins effrayante) de **R**Studio" width="75%"><p class="caption">
@@ -130,15 +132,18 @@ Figure 1.2: Ouverture (moins effrayante) de <strong>R</strong>Studio
 </div>
 <p>La console <strong>R</strong>Studio est identique à la console usuelle retrouvée avec <strong>R</strong>. Elle sert les mêmes fonctions. Le script est un éditeur de texte dans lequel de la syntaxe sera rédigée, sauvegardée, manipulée, et tester. S’il n’est pas ouvert ou s’il faut ouvrir un script supplémentaire, il faut procéder par le menu déroulant.</p>
 <blockquote>
-<p>File</p>
-</blockquote>
-<blockquote>
-<p>New File</p>
-</blockquote>
-<blockquote>
-<p>R Script</p>
+<p>File
+New File
+R Script</p>
 </blockquote>
 <p>ou bien <strong>CTRL + Shift + N</strong>. Il peut y avoir plusieurs scripts ouverts simultanément. L’environnement global permet de connaître les variables et fonctions maison en mémoire vive. L’onglet <em>History</em> montre les dernières lignes de code commandées (non affichées dans la figure - il suffit de cliquer sur l’onglet à côté de <em>Environment</em>). Enfin, le cadran inférieur droit montre le fichier de travail <strong>R</strong> qui contiendra ordinairement les fichiers de travail actifs (scripts, jeu de données, fonctions maison, etc.) C’est très utile pour travailler par projet. Si aucun directoire n’est demandé explicitement par <strong>R</strong> (par exemple, si un jeu de donnée doit être téléchargé), le logiciel cherchera par défaut dans le fichier actif pour télécharger les fichiers demandés. Il est une bonne pratique que de s’assurer d’être dans le bon fichier, car cela pourra causer quelques soucis à l’occasion.</p>
+</div>
+<div id="les-scripts" class="section level2" number="1.4">
+<h2>
+<span class="header-section-number">1.4</span> Les scripts<a class="anchor" aria-label="anchor" href="#les-scripts"><i class="fas fa-link"></i></a>
+</h2>
+<p>Ce qu’il importe le plus avec <strong>R</strong>, et ce qui fait resplendir <strong>R</strong>Studio, est de conserver la syntaxe d’une session à l’autre. Le logiciel ne le fait pas très bien. Il faudra sauvegarder dans un script les expressions et le code utilisés. Ces fichiers ont souvent comme extension “.R” et permettront de conserver, voire partager la syntaxe. Il sera possible d’y ajouter des commentaires pour de futures utilisations. Tout éditeur de texte peut permettre la sauvegarde de syntaxe, certains seront mieux que d’autres pour l’utilisation avec <strong>R</strong>.</p>
+<p><strong>R</strong>Studio contient déjà un panneau contenant un script qu’il sera possible de sauvegarder et de rouler directement dans la console. Ce dernier est directement lié et il est possible de rouler la syntaxe ligne par ligne avec <strong>CTRL + Enter</strong> (Windows) ou <strong>CMD + Enter</strong> (MacOS).</p>
 </div>
 </div>
   <div class="chapter-nav">
@@ -156,6 +161,7 @@ Figure 1.2: Ouverture (moins effrayante) de <strong>R</strong>Studio
 </ul>
 </li>
 <li><a class="nav-link" href="#d%C3%A9marrer-r-ou-rstudio"><span class="header-section-number">1.3</span> Démarrer R ou RStudio</a></li>
+<li><a class="nav-link" href="#les-scripts"><span class="header-section-number">1.4</span> Les scripts</a></li>
 </ul>
 
       <div class="book-extra">
@@ -173,7 +179,7 @@ Figure 1.2: Ouverture (moins effrayante) de <strong>R</strong>Studio
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Méthodes Quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-05-13.</p>
+    <p>"<strong>Méthodes Quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-05-16.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
