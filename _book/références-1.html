@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Références | Méthodes Quantitatives avec R</title>
+<meta name="author" content="P.-O. Caron">
+<meta name="description" content="Bache, S. M., &amp; Wickham, H. (2020). Magrittr: A forward-pipe operator for r. https://CRAN.R-project.org/package=magrittr  Bennett, C. M., Baird, A. A., Miller, M. B., &amp; Wolford, G. L. (2010)....">
+<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta property="og:title" content="Références | Méthodes Quantitatives avec R">
+<meta property="og:type" content="book">
+<meta property="og:url" content="mqr.teluq.ca/références-1.html">
+<meta property="og:description" content="Bache, S. M., &amp; Wickham, H. (2020). Magrittr: A forward-pipe operator for r. https://CRAN.R-project.org/package=magrittr  Bennett, C. M., Baird, A. A., Miller, M. B., &amp; Wolford, G. L. (2010)....">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Références | Méthodes Quantitatives avec R">
+<meta name="twitter:description" content="Bache, S. M., &amp; Wickham, H. (2020). Magrittr: A forward-pipe operator for r. https://CRAN.R-project.org/package=magrittr  Bennett, C. M., Baird, A. A., Miller, M. B., &amp; Wolford, G. L. (2010)....">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Méthodes Quantitatives avec R</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Bienvenue!</a></li>
+<li><a class="" href="pr%C3%A9face.html">Préface</a></li>
+<li class="book-part">Rudiments</li>
+<li><a class="" href="commencer.html"><span class="header-section-number">1</span> Commencer</a></li>
+<li><a class="" href="programmer.html"><span class="header-section-number">2</span> Programmer</a></li>
+<li><a class="" href="calculer.html"><span class="header-section-number">3</span> Calculer</a></li>
+<li><a class="" href="exercice-rudiments.html">Exercices</a></li>
+<li class="book-part">Jeux de données</li>
+<li><a class="" href="g%C3%A8rer.html"><span class="header-section-number">4</span> Gèrer</a></li>
+<li><a class="" href="importer.html"><span class="header-section-number">5</span> Importer</a></li>
+<li><a class="" href="manipuler.html"><span class="header-section-number">6</span> Manipuler</a></li>
+<li><a class="" href="visualiser.html"><span class="header-section-number">7</span> Visualiser</a></li>
+<li><a class="" href="exercice-gestion.html">Exercices</a></li>
+<li class="book-part">Analyses statistiques</li>
+<li><a class="" href="inf%C3%A9rer.html"><span class="header-section-number">8</span> Inférer</a></li>
+<li><a class="" href="analyser.html"><span class="header-section-number">9</span> Analyser</a></li>
+<li><a class="" href="exercice-analyse.html">Exercices</a></li>
+<li><a class="" href="techniques-avanc%C3%A9es-de-mod%C3%A9lisation.html"><span class="header-section-number">10</span> Techniques avancées de modélisation</a></li>
+<li><a class="" href="simulations.html"><span class="header-section-number">11</span> Simulations</a></li>
+<li><a class="" href="r%C3%A9gression.html"><span class="header-section-number">12</span> Régression</a></li>
+<li><a class="" href="la-r%C3%A9gression.html"><span class="header-section-number">13</span> La régression</a></li>
+<li><a class="" href="lanalyse-de-r%C3%A9gression.html"><span class="header-section-number">14</span> L’analyse de régression</a></li>
+<li><a class="" href="r%C3%A9f%C3%A9rences.html"><span class="header-section-number">15</span> Références</a></li>
+<li><a class="" href="solutions.html">Solutions</a></li>
+<li><a class="active" href="r%C3%A9f%C3%A9rences-1.html">Références</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/quantmeth/MQR">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="références-1" class="section level1 unnumbered">
+<h1>Références<a class="anchor" aria-label="anchor" href="#r%C3%A9f%C3%A9rences-1"><i class="fas fa-link"></i></a>
+</h1>
+
+<div id="refs" class="references csl-bib-body hanging-indent" line-spacing="2">
+<div id="ref-magri" class="csl-entry">
+Bache, S. M., &amp; Wickham, H. (2020). <em>Magrittr: A forward-pipe operator for r</em>. <a href="https://CRAN.R-project.org/package=magrittr">https://CRAN.R-project.org/package=magrittr</a>
+</div>
+<div id="ref-Bennett10" class="csl-entry">
+Bennett, C. M., Baird, A. A., Miller, M. B., &amp; Wolford, G. L. (2010). Neural correlates of interspecies perspectives taking in the post-moterm atlantic salmon : An argument for proper multiple comparisons correction. <em>Journal of the Serendipitous and Unexpected Results (Jsur.org)</em>, <em>1</em>(1), 1–5.
+</div>
+<div id="ref-Canty21" class="csl-entry">
+Canty, A., &amp; Ripley, B. D. (2021). <em>Boot: Bootstrap r (s-plus) functions</em>.
+</div>
+<div id="ref-Caron21" class="csl-entry">
+Caron, P.-O., &amp; Lemardelet, L. (2021). The variance sum law and its implication for modelling. <em>The Quantitative Methods for Psychology</em>, <em>17</em>(2), 80–85. <a href="https://doi.org/10.20982/tqmp.17.2.p080">https://doi.org/10.20982/tqmp.17.2.p080</a>
+</div>
+<div id="ref-casella2002" class="csl-entry">
+Casella, G., &amp; Berger, R. L. (2002). <em>Statistical inference</em>. Duxbury.
+</div>
+<div id="ref-Cohen03" class="csl-entry">
+Cohen, J., Cohen, P., West, S. G., &amp; Aiken, L. S. (2003). <em>Applied multiple regression/correlation analysis for the behavioral sciences</em> (III). Erlbaum.
+</div>
+<div id="ref-Efron79" class="csl-entry">
+Efron, B., &amp; Tibshriani, R. (1979). <em>An introduction to the bootstrap</em>. Chapman &amp; Hall.
+</div>
+<div id="ref-Eklund16" class="csl-entry">
+Eklund, A., Nichols, T. E., &amp; Knutsson, H. (2016). Cluster failure: Why fMRI inferences for spatial extent have inflated false-positive rates. <em>Proceedings of the National Academy of Sciences of the United States of America</em>, <em>113</em>(28), 7900–7905. <a href="https://doi.org/10.1073/pnas.1602413113">https://doi.org/10.1073/pnas.1602413113</a>
+</div>
+<div id="ref-DataEditR" class="csl-entry">
+Hammill, D. (2021). <em>DataEditR: An interactive editor for viewing, entering, filtering &amp; editing data</em>. <a href="https://CRAN.R-project.org/package=DataEditR">https://CRAN.R-project.org/package=DataEditR</a>
+</div>
+<div id="ref-Millman83" class="csl-entry">
+Millman, M. H. (1983). A statistical analysis of casino blackjack. <em>The American Mathematical Monthly</em>, <em>90</em>(7), 431–436.
+</div>
+<div id="ref-R-base" class="csl-entry">
+R Core Team. (2022). <em>R: A language and environment for statistical computing</em>. R Foundation for Statistical Computing. <a href="https://www.R-project.org/">https://www.R-project.org/</a>
+</div>
+<div id="ref-Rodgers88" class="csl-entry">
+Rodgers, J. L., &amp; Nicewander, W. A. (1988). Thirteen ways to look at the correlation coefficient. <em>The American Statistician</em>, <em>42</em>(1), 59–66. <a href="https://doi.org/10.1080/00031305.1988.10475524">https://doi.org/10.1080/00031305.1988.10475524</a>
+</div>
+<div id="ref-Selvin75" class="csl-entry">
+Selvin, S. (1975). A problem in probability (letter to the editor). <em>The American Statistician</em>, <em>29</em>(1), 67.
+</div>
+<div id="ref-bootstrap" class="csl-entry">
+Tibshirani, R., &amp; Leisch, F. (2019). <em>Bootstrap: Functions for the book "an introduction to the bootstrap"</em>. <a href="https://CRAN.R-project.org/package=bootstrap">https://CRAN.R-project.org/package=bootstrap</a>
+</div>
+<div id="ref-Wickham14" class="csl-entry">
+Wickham, H. (2014). Tidy data. <em>Journal of Statistical Software, Articles</em>, <em>59</em>(10), 1–23. <a href="https://doi.org/10.18637/jss.v059.i10">https://doi.org/10.18637/jss.v059.i10</a>
+</div>
+<div id="ref-tidy" class="csl-entry">
+Wickham, H., Averick, M., Bryan, J., Chang, W., McGowan, L. D., François, R., Grolemund, G., Hayes, A., Henry, L., Hester, J., Kuhn, M., Pedersen, T. L., Miller, E., Bache, S. M., Moller, K., Ooms, J., Robinson, D., Seidel, D. P., Spinu, V., … Yutani, H. (2019). Welcome to the <span class="nocase">tidyverse</span>. <em>Journal of Open Source Software</em>, <em>4</em>(43), 1686. <a href="https://doi.org/10.21105/joss.01686">https://doi.org/10.21105/joss.01686</a>
+</div>
+</div>
+</div>
+<div class="footnotes footnotes-end-of-document">
+<hr>
+<ol>
+<li id="fn1"><p>Ou encore la variance qui est la somme des écarts au carré. Les expérimentateurs s’intéressent aux sommes de variables en fait.<a href="inf%C3%A9rer.html#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>La section est partiellement basée sur <span class="citation">Caron &amp; Lemardelet (<a href="r%C3%A9f%C3%A9rences-1.html#ref-Caron21" role="doc-biblioref">2021</a>)</span>.<a href="techniques-avanc%C3%A9es-de-mod%C3%A9lisation.html#fnref2" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="solutions.html">Solutions</a></div>
+<div class="empty"></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav"><li><a class="nav-link" href="#r%C3%A9f%C3%A9rences-1">Références</a></li></ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/quantmeth/MQR/blob/master/12-references.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/quantmeth/MQR/edit/master/12-references.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Méthodes Quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-05-18.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

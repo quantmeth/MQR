@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title> 11 L’association linéaire | Méthodes Quantitatives avec R</title>
+<meta name="author" content="P.-O. Caron">
+<meta name="description" content="11.1 La covariance La covariance représente une mesure du degré auquel une variable augmente lorsque l’autre augmente. Elle correspond au produit moyen entre deux variables centrées (dont les...">
+<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta property="og:title" content=" 11 L’association linéaire | Méthodes Quantitatives avec R">
+<meta property="og:type" content="book">
+<meta property="og:url" content="mqr.teluq.ca/lassociation-linéaire.html">
+<meta property="og:description" content="11.1 La covariance La covariance représente une mesure du degré auquel une variable augmente lorsque l’autre augmente. Elle correspond au produit moyen entre deux variables centrées (dont les...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content=" 11 L’association linéaire | Méthodes Quantitatives avec R">
+<meta name="twitter:description" content="11.1 La covariance La covariance représente une mesure du degré auquel une variable augmente lorsque l’autre augmente. Elle correspond au produit moyen entre deux variables centrées (dont les...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Méthodes Quantitatives avec R</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Bienvenue!</a></li>
+<li><a class="" href="pr%C3%A9face.html">Préface</a></li>
+<li class="book-part">Les rudiments</li>
+<li><a class="" href="commencer.html"><span class="header-section-number">1</span> Commencer</a></li>
+<li><a class="" href="programmer.html"><span class="header-section-number">2</span> Programmer</a></li>
+<li><a class="" href="fonctions-statistiques-essentielles.html"><span class="header-section-number">3</span> Fonctions statistiques essentielles</a></li>
+<li><a class="" href="exercice-rudiments.html">Exercices</a></li>
+<li class="book-part">Jeux de données</li>
+<li><a class="" href="g%C3%A8rer.html"><span class="header-section-number">4</span> Gèrer</a></li>
+<li><a class="" href="importer.html"><span class="header-section-number">5</span> Importer</a></li>
+<li><a class="" href="manipuler.html"><span class="header-section-number">6</span> Manipuler</a></li>
+<li><a class="" href="visualiser.html"><span class="header-section-number">7</span> Visualiser</a></li>
+<li><a class="" href="exercice-gestion.html">Exercices</a></li>
+<li class="book-part">Analyses statistiques</li>
+<li><a class="" href="inf%C3%A9rer.html"><span class="header-section-number">8</span> Inférer</a></li>
+<li><a class="" href="analyses-bivari%C3%A9es.html"><span class="header-section-number">9</span> Analyses bivariées</a></li>
+<li><a class="" href="les-diff%C3%A9rences-de-moyennes.html"><span class="header-section-number">10</span> Les différences de moyennes</a></li>
+<li><a class="active" href="lassociation-lin%C3%A9aire.html"><span class="header-section-number">11</span> L’association linéaire</a></li>
+<li><a class="" href="test-pour-donn%C3%A9es-nominales.html"><span class="header-section-number">12</span> Test pour données nominales</a></li>
+<li><a class="" href="exercice-analyse.html">Exercices</a></li>
+<li><a class="" href="solutions.html">Solutions</a></li>
+<li><a class="" href="r%C3%A9f%C3%A9rences.html">Références</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/quantmeth/MQR">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="lassociation-linéaire" class="section level1" number="11">
+<h1>
+<span class="header-section-number"> 11</span> L’association linéaire<a class="anchor" aria-label="anchor" href="#lassociation-lin%C3%A9aire"><i class="fas fa-link"></i></a>
+</h1>
+<div id="la-covariance" class="section level2" number="11.1">
+<h2>
+<span class="header-section-number">11.1</span> La covariance<a class="anchor" aria-label="anchor" href="#la-covariance"><i class="fas fa-link"></i></a>
+</h2>
+<p>La covariance représente une mesure du degré auquel une variable augmente lorsque l’autre augmente. Elle correspond au produit moyen entre deux variables centrées (dont les moyennes sont soustraites). On retrouve l’équation sous la forme suivante.
+<span class="math display">\[\text{cov}_{xy} = \sigma_{xy}=\frac{1}{n-1}\sum_{i=1}^n(x_i-\bar{x})(y_i-\bar{y})\]</span></p>
+<p>La covariance est une extension multivariée de la variance. La variance est le produit d’une variable <strong>centrée</strong> avec elle-même (le carré de la variable), <span class="math display">\[\sigma^2=\frac{1}{n-1}\sum_{i=1}^nx_ix_i\]</span>.</p>
+<p>En transformant <span class="math inline">\(x\)</span> et <span class="math inline">\(y\)</span> pour qu’elles soient <strong>centrées</strong>, l’aspect de produit entre les deux variables devient évident dans l’expression de la covariance.
+<span class="math display">\[\text{cov}_{xy} = \frac{1}{n-1}\sum_{i=1}^nxy\]</span>
+La programmation de la covariance pourrait se traduire ainsi.</p>
+<div class="sourceCode" id="cb120"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">covariance</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span><span class="op">{</span>
+  <span class="co"># X est une data.frame ou matrice de n sujets par p variables</span>
+  <span class="va">n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
+  <span class="co"># centrer variables</span>
+  <span class="va">xc</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
+  <span class="va">yc</span> <span class="op">&lt;-</span> <span class="va">y</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span>
+  <span class="va">prod.xy</span> <span class="op">&lt;-</span> <span class="va">xc</span> <span class="op">*</span> <span class="va">yc</span>
+  <span class="va">cov.xy</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">prod.xy</span><span class="op">)</span> <span class="op">/</span> <span class="op">(</span><span class="va">n</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span>
+  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">cov.xy</span><span class="op">)</span>
+<span class="op">}</span></code></pre></div>
+<p>La fonction de base <code><a href="https://rdrr.io/r/stats/cor.html">cov()</a></code> sera plus efficace (plus robuste et plus simple) que la fonction maison précédente. La fonction <code><a href="https://rdrr.io/r/stats/cor.html">cov()</a></code> peut tenir compte de plus de deux variables.
+La covariance indique la direction de la covariation entre les deux variables, positives ou négatives, mais n’indique pas la force de la relation. Bien qu’une covariance de 0 indique l’absence de colinéarité, une covariance de 120 n’est pas nécessairement plus forte qu’une covariance de 1. La mesure est intrinsèquement influencée par les unités l’échelle de mesure. Il serait aberrant de considérer le système métrique comme moins efficace, car ces mesures sont moins variables que les mesures impériales. (Il y a plusieurs raisons de préférer le système métrique, mais ce n’en est pas une!)</p>
+</div>
+<div id="la-corrélation" class="section level2" number="11.2">
+<h2>
+<span class="header-section-number">11.2</span> La corrélation<a class="anchor" aria-label="anchor" href="#la-corr%C3%A9lation"><i class="fas fa-link"></i></a>
+</h2>
+<p>La corrélation représente le degré d’association linéaire entre deux variables. Une façon simple de considérer la corrélation est de la concevoir comme une covariance standardisée. Elle varie entre -1 et 1, ces deux dernières valeurs impliquant, respectivement, une relation parfaitement négative et positive entre les deux variables. En plus d’indiquer la direction de la relation, la corrélation suggère une force à ce lien. Lorsque la valeur de la corrélation est nulle, <span class="math inline">\(r=0\)</span>, un diagramme de dispersion ne montre qu’un nuage de point épars (sans structure), plus la corrélation augmente (en terme absolu) plus le nuage tends vers une ligne droite. La figure ci-jointe montre différentes valeurs de corrélation et un exemple de nuage de point qui lui est associé.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:unnamed-chunk-19"></span>
+<img src="04-Analyses_files/figure-html/unnamed-chunk-19-1.png" alt="Illustrations de diagrammes de dispersion associé en fonction de corrélations" width="50%" height="50%"><p class="caption">
+Figure 11.1: Illustrations de diagrammes de dispersion associé en fonction de corrélations
+</p>
+</div>
+<p>En statistiques, la corrélation est souvent représentée par la lettre grecque <span class="math inline">\(\rho\)</span> (rho) ou l’usuel <span class="math inline">\(r\)</span> lorsqu’il s’agit d’une estimation à partir d’un échantillon.</p>
+<p>Il y a plusieurs méthodes pour calculer la corrélation. Une première est de considérer la corrélation comme le produit de variables standardisées (autrement dit, score-<span class="math inline">\(z\)</span>). Pour la covariance, la moyenne était soustraite de la variable, donc des variables centrées. Pour la corrélation, on divise l’écart type également pour obtenir des variables standardisées.</p>
+<p>En admettant que <span class="math inline">\(x\)</span> et <span class="math inline">\(y\)</span> sont déjà <strong>standardisée</strong>, <span class="math inline">\(z_x,z_y\)</span>, comme c’était le cas pour la covariance, l’aspect de produit entre les deux variables est conservé.
+<span class="math display">\[\text{cor}_{xy} = r_{xy}= \frac{1}{n-1}\sum_{i=1}^nz_xz_y\]</span></p>
+<p>Il est possible de calculer la directement la corrélation à partir de la covariance, soit en divisant par le produit des écarts types des variables.</p>
+<p><span class="math display">\[r_{xy} = \frac{\text{cov}_{xy}}{\sigma_x\sigma_y}\]</span></p>
+<p>Voici trois options de programmation de la corrélation. La première et la deuxième sont basées sur la covariance. Dans la première, la covariance est calculée de nouveau dans la fonction. La deuxième quant à elle profite avantageusement de l’existence d’une fonction maison qui calcule directement la covariance. La troisième recourt au produit de variables standardisées.</p>
+<div class="sourceCode" id="cb121"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Option 1 : Calcul complet</span>
+<span class="va">correlation1</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span><span class="op">{</span>
+  <span class="va">n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
+  <span class="co"># centrer variables</span>
+  <span class="va">xc</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
+  <span class="va">yc</span> <span class="op">&lt;-</span> <span class="va">y</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span>
+  <span class="va">prod.xy</span> <span class="op">&lt;-</span> <span class="va">xc</span> <span class="op">*</span> <span class="va">yc</span>
+  <span class="va">cov.xy</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">prod.xy</span><span class="op">)</span> <span class="op">/</span> <span class="op">(</span><span class="va">n</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span>
+  <span class="va">cor.xy</span> <span class="op">&lt;-</span> <span class="va">cov.xy</span> <span class="op">/</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span><span class="op">)</span>
+  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">cor.xy</span><span class="op">)</span>
+<span class="op">}</span>
+
+<span class="co"># Option 2 : Basé sur la covariance</span>
+<span class="va">correlation2</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span><span class="op">{</span>
+  <span class="va">cov.xy</span> <span class="op">&lt;-</span> <span class="fu">covariance</span><span class="op">(</span><span class="va">x</span>,<span class="va">y</span><span class="op">)</span> 
+  <span class="va">cor.xy</span> <span class="op">&lt;-</span> <span class="va">cov.xy</span> <span class="op">/</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span><span class="op">)</span>
+  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">cor.xy</span><span class="op">)</span>
+<span class="op">}</span>
+
+<span class="co"># Option 3 : Basé sur des variables standardisées</span>
+<span class="va">correlation3</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span><span class="op">{</span>
+  <span class="va">n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
+  <span class="va">xs</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="va">x</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
+  <span class="va">ys</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="va">y</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span>
+  <span class="va">cor.xy</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">xs</span><span class="op">*</span><span class="va">ys</span><span class="op">)</span><span class="op">/</span><span class="op">(</span><span class="va">n</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span>
+  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">cor.xy</span><span class="op">)</span>
+<span class="op">}</span></code></pre></div>
+<p>Évidemment, <strong>R</strong> possède une fonction de base pour le calcul d’une corrélation entre deux variables ou d’une matrice de corrélation (à partir d’un jeu de données de deux variables ou plus). Il s’agit de <code><a href="https://rdrr.io/r/stats/cor.html">cor()</a></code>. Ces trois fonctions maison en plus de la fonction <strong>R</strong> sont comparées ci-dessous. Pour ce faire, un jeu de données est créé possédant les caractéristiques désirées. Dans ce cas-ci, la taille d’échantillon est fixée à <span class="math inline">\(n=10000\)</span> pour assurer une bonne précision dans l’échantillon et une corrélation <span class="math inline">\(r=.7\)</span>.</p>
+<p>Une façon simple de produire des données à partir d’une matrice de corrélation (ou de covariance) est d’utiliser la fonction <code>mvrnorm()</code> du package <code>MASS</code>. Elle évitera pour l’instant d’introduire les manipulations mathématiques nécessaires (ce sera donc pour l’instant l’une de ces boîtes noires ayant la confiance de l’utilisateur). La fonction <code>mvrnorm()</code> pour <em>MultiVariate Random NORMmal</em> nécessite trois arguments : La taille d’échantillon <code>n</code>, les moyennes <code>mu</code> des <span class="math inline">\(p\)</span> variables et la matrice de covariance <code>Sigma</code> (la corrélation est un cas particulier de la covariance où les variables sont standardisées). Le lecteur avisé aura noté la ressemblance de nomenclature entre <code>mvrnorm()</code> (multivariée) et
+<code><a href="https://rdrr.io/r/stats/Normal.html">rnorm()</a></code> (univariée). Enfin, la dernière étape est de produire une matrice de covariance <span class="math inline">\(p \times p\)</span>. La fonction <code><a href="https://rdrr.io/r/base/matrix.html">matrix()</a></code> prend une variable de données, dans cet exemple , <code>c(1, r, r, 1)</code> qu’elle répartit ligne par colonne. Comme <span class="math inline">\(p=2\)</span>, cela crée une matrice <span class="math inline">\(2 \times 2\)</span>.</p>
+<div class="sourceCode" id="cb122"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">820</span><span class="op">)</span>
+<span class="co"># Taille d'échantillon importante pour réduire l'erreur d'échantillonnage</span>
+<span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">10000</span>
+<span class="co"># La corrélation désirée</span>
+<span class="va">r</span> <span class="op">&lt;-</span> <span class="fl">.70</span>
+<span class="co"># Création d'une matrice de corrélation</span>
+<span class="va">R</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="va">r</span>, <span class="va">r</span>, <span class="fl">1</span><span class="op">)</span>, nrow <span class="op">=</span> <span class="fl">2</span>, ncol <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
+<span class="co"># Création des données </span>
+<span class="va">donnees</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="fu">MASS</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/MASS/man/mvrnorm.html">mvrnorm</a></span><span class="op">(</span>n <span class="op">=</span> <span class="va">n</span>, mu <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span><span class="op">)</span>, Sigma <span class="op">=</span> <span class="va">R</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">donnees</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"x"</span>, <span class="st">"y"</span><span class="op">)</span>
+<span class="co"># Voici la matrice de corrélation</span>
+<span class="va">R</span>
+<span class="co">#&gt;      [,1] [,2]</span>
+<span class="co">#&gt; [1,]  1.0  0.7</span>
+<span class="co">#&gt; [2,]  0.7  1.0</span>
+<span class="co"># Voici une visualisation partielle des données</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">donnees</span><span class="op">)</span>
+<span class="co">#&gt;        x      y</span>
+<span class="co">#&gt; 1  0.635  0.914</span>
+<span class="co">#&gt; 2 -0.193  0.360</span>
+<span class="co">#&gt; 3 -0.602 -1.213</span>
+<span class="co">#&gt; 4 -0.841 -0.986</span>
+<span class="co">#&gt; 5 -0.105 -1.771</span>
+<span class="co">#&gt; 6 -2.147 -1.590</span>
+<span class="co"># Vérifications des variables</span>
+<span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">donnees</span><span class="op">$</span><span class="va">x</span><span class="op">)</span>; <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">donnees</span><span class="op">$</span><span class="va">y</span><span class="op">)</span>; <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">donnees</span><span class="op">$</span><span class="va">x</span><span class="op">)</span>; <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">donnees</span><span class="op">$</span><span class="va">y</span><span class="op">)</span>
+<span class="co">#&gt; [1] -0.00578</span>
+<span class="co">#&gt; [1] -0.00531</span>
+<span class="co">#&gt; [1] 0.999</span>
+<span class="co">#&gt; [1] 1.01</span>
+<span class="co"># Les résultats sont près des attentes</span>
+<span class="co"># Vérifications de la corrélations</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">donnees</span><span class="op">$</span><span class="va">x</span>, <span class="va">donnees</span><span class="op">$</span><span class="va">y</span><span class="op">)</span>
+<span class="co">#&gt; [1] 0.699</span>
+<span class="fu">correlation1</span><span class="op">(</span><span class="va">donnees</span><span class="op">$</span><span class="va">x</span>, <span class="va">donnees</span><span class="op">$</span><span class="va">y</span><span class="op">)</span>
+<span class="co">#&gt; [1] 0.699</span>
+<span class="fu">correlation2</span><span class="op">(</span><span class="va">donnees</span><span class="op">$</span><span class="va">x</span>, <span class="va">donnees</span><span class="op">$</span><span class="va">y</span><span class="op">)</span>
+<span class="co">#&gt; [1] 0.699</span>
+<span class="fu">correlation3</span><span class="op">(</span><span class="va">donnees</span><span class="op">$</span><span class="va">x</span>, <span class="va">donnees</span><span class="op">$</span><span class="va">y</span><span class="op">)</span>
+<span class="co">#&gt; [1] 0.699</span>
+<span class="co"># Les résultats sont près des attentes et identiques</span></code></pre></div>
+<p>Pour tester la probabilité d’obtenir cette valeur, la corrélation <span class="math inline">\(r\)</span> peut se transformer monotonement en valeur-<span class="math inline">\(t\)</span>, ce qui permet de calculer des valeurs-<span class="math inline">\(p\)</span> par la suite.</p>
+<p><span class="math display">\[ t_{n-2} = \frac{r}{(\frac{\sqrt{1-r^2}}{\sqrt{n-2}})} \]</span>
+Cette formule se traduit simplement en code <strong>R</strong>.</p>
+<div class="sourceCode" id="cb123"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Création d'une matrice de corrélation, </span>
+<span class="co"># il pourrait également s'agir d'un vecteur ou d'un scalaire.</span>
+<span class="va">r</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">.5</span>,<span class="fl">.4</span>,<span class="fl">.5</span>,<span class="fl">1</span>,<span class="fl">.3</span>,<span class="fl">.4</span>,<span class="fl">.3</span>,<span class="fl">1</span><span class="op">)</span>,<span class="fl">3</span>,<span class="fl">3</span><span class="op">)</span>
+<span class="co"># Nombre d'unités (valeur arbitraire ici)</span>
+<span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">10</span>
+<span class="co"># Valeurs t</span>
+<span class="va">vt</span> <span class="op">&lt;-</span> <span class="va">r</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">n</span> <span class="op">-</span> <span class="fl">2</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fl">1</span> <span class="op">-</span> <span class="va">r</span> <span class="op">^</span> <span class="fl">2</span><span class="op">)</span>
+<span class="co"># Valeurs-p</span>
+<span class="va">vp</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="fl">1</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">pt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">vt</span><span class="op">)</span>, df <span class="op">=</span> <span class="va">n</span> <span class="op">-</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span> <span class="op">*</span> <span class="fl">2</span>
+<span class="va">vt</span> ; <span class="va">vp</span>
+<span class="co">#&gt;      [,1]  [,2]  [,3]</span>
+<span class="co">#&gt; [1,]  Inf 1.633 1.234</span>
+<span class="co">#&gt; [2,] 1.63   Inf 0.889</span>
+<span class="co">#&gt; [3,] 1.23 0.889   Inf</span>
+<span class="co">#&gt;       [,1]  [,2]  [,3]</span>
+<span class="co">#&gt; [1,] 0.000 0.141 0.252</span>
+<span class="co">#&gt; [2,] 0.141 0.000 0.400</span>
+<span class="co">#&gt; [3,] 0.252 0.400 0.000</span></code></pre></div>
+<p>Dans le code ci-dessous, l’équation précédente est subtilement réarrangée pour être plus simple et élégante quoiqu’équivalente.
+<span class="math display">\[ t_{n-2} = \frac{r}{(\frac{\sqrt{1-r^2}}{\sqrt{n-2}})} = \frac{r\sqrt{n-2}}{\sqrt{1-r^2}}\]</span>
+La première a l’avantage de montrer la relation entre l’estimateur et l’erreur type alors que la seconde est moins encombrante.</p>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="les-diff%C3%A9rences-de-moyennes.html"><span class="header-section-number">10</span> Les différences de moyennes</a></div>
+<div class="next"><a href="test-pour-donn%C3%A9es-nominales.html"><span class="header-section-number">12</span> Test pour données nominales</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#lassociation-lin%C3%A9aire"><span class="header-section-number">11</span> L’association linéaire</a></li>
+<li><a class="nav-link" href="#la-covariance"><span class="header-section-number">11.1</span> La covariance</a></li>
+<li><a class="nav-link" href="#la-corr%C3%A9lation"><span class="header-section-number">11.2</span> La corrélation</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/quantmeth/MQR/blob/master/04-Analyses.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/quantmeth/MQR/edit/master/04-Analyses.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Méthodes Quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-05-18.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

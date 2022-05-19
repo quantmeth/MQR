@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title> 14 L’analyse de régression | Méthodes Quantitatives avec R</title>
+<meta name="author" content="P.-O. Caron">
+<meta name="description" content="Lorsque le jeu de données est obtenu, il est temps de procéder à l’analyse de régression. Essentiellement, l’analyse de régression produit à peu près ceci (mais en algèbre matricielle). Pour aider...">
+<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta property="og:title" content=" 14 L’analyse de régression | Méthodes Quantitatives avec R">
+<meta property="og:type" content="book">
+<meta property="og:url" content="mqr.teluq.ca/lanalyse-de-régression.html">
+<meta property="og:description" content="Lorsque le jeu de données est obtenu, il est temps de procéder à l’analyse de régression. Essentiellement, l’analyse de régression produit à peu près ceci (mais en algèbre matricielle). Pour aider...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content=" 14 L’analyse de régression | Méthodes Quantitatives avec R">
+<meta name="twitter:description" content="Lorsque le jeu de données est obtenu, il est temps de procéder à l’analyse de régression. Essentiellement, l’analyse de régression produit à peu près ceci (mais en algèbre matricielle). Pour aider...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Méthodes Quantitatives avec R</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Bienvenue!</a></li>
+<li><a class="" href="pr%C3%A9face.html">Préface</a></li>
+<li class="book-part">Rudiments</li>
+<li><a class="" href="commencer.html"><span class="header-section-number">1</span> Commencer</a></li>
+<li><a class="" href="programmer.html"><span class="header-section-number">2</span> Programmer</a></li>
+<li><a class="" href="calculer.html"><span class="header-section-number">3</span> Calculer</a></li>
+<li><a class="" href="exercice-rudiments.html">Exercices</a></li>
+<li class="book-part">Jeux de données</li>
+<li><a class="" href="g%C3%A8rer.html"><span class="header-section-number">4</span> Gèrer</a></li>
+<li><a class="" href="importer.html"><span class="header-section-number">5</span> Importer</a></li>
+<li><a class="" href="manipuler.html"><span class="header-section-number">6</span> Manipuler</a></li>
+<li><a class="" href="visualiser.html"><span class="header-section-number">7</span> Visualiser</a></li>
+<li><a class="" href="exercice-gestion.html">Exercices</a></li>
+<li class="book-part">Analyses statistiques</li>
+<li><a class="" href="inf%C3%A9rer.html"><span class="header-section-number">8</span> Inférer</a></li>
+<li><a class="" href="analyser.html"><span class="header-section-number">9</span> Analyser</a></li>
+<li><a class="" href="exercice-analyse.html">Exercices</a></li>
+<li><a class="" href="techniques-avanc%C3%A9es-de-mod%C3%A9lisation.html"><span class="header-section-number">10</span> Techniques avancées de modélisation</a></li>
+<li><a class="" href="simulations.html"><span class="header-section-number">11</span> Simulations</a></li>
+<li><a class="" href="r%C3%A9gression.html"><span class="header-section-number">12</span> Régression</a></li>
+<li><a class="" href="la-r%C3%A9gression.html"><span class="header-section-number">13</span> La régression</a></li>
+<li><a class="active" href="lanalyse-de-r%C3%A9gression.html"><span class="header-section-number">14</span> L’analyse de régression</a></li>
+<li><a class="" href="r%C3%A9f%C3%A9rences.html"><span class="header-section-number">15</span> Références</a></li>
+<li><a class="" href="solutions.html">Solutions</a></li>
+<li><a class="" href="r%C3%A9f%C3%A9rences-1.html">Références</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/quantmeth/MQR">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="lanalyse-de-régression" class="section level1" number="14">
+<h1>
+<span class="header-section-number"> 14</span> L’analyse de régression<a class="anchor" aria-label="anchor" href="#lanalyse-de-r%C3%A9gression"><i class="fas fa-link"></i></a>
+</h1>
+<p>Lorsque le jeu de données est obtenu, il est temps de procéder à l’analyse de régression. Essentiellement, l’analyse de régression produit à peu près ceci (mais en algèbre matricielle).</p>
+<p>Pour aider la compréhension, voici une explication avec le modèle linéaire simple assumant des variables centrées. Le modèle correspond à</p>
+<p><span class="math display">\[
+y = \beta x
+\]</span></p>
+<p>où l’erreur, <span class="math inline">\(\epsilon_y\)</span> n’est pas explicitée. Il faut isoler <span class="math inline">\(\beta\)</span> afin de l’estimer, soit l’opération suivante,</p>
+<p><span class="math display">\[
+\beta = \EX(\frac{y}{x})
+\]</span></p>
+<p>où le symbole <span class="math inline">\(\EX\)</span> signifie l’espérance (la moyenne). En multipliant par <span class="math inline">\(\frac{x}{x}\)</span> de chaque côté de l’équation, cela produit l’équation suivante.</p>
+<p><span class="math display" id="eq:beta2">\[\begin{equation}
+\beta = \EX(\frac{xy}{xx}) = \frac{\sigma_{xy}}{\sigma^2_x}
+\tag{14.1}
+\end{equation}\]</span></p>
+<p>Dans l’équation <a href="lanalyse-de-r%C3%A9gression.html#eq:beta2">(14.1)</a>, le numérateur sera rapidement reconnu comme la covariance et au dénominateur la variance de <span class="math inline">\(X\)</span>. Comment généralisé pour <span class="math inline">\(k\)</span> variables? En algèbre matricielle et dans la mesure où les variables contenues dans <span class="math inline">\(X\)</span> sont centrées, cela revient au même que de calculer l’équation <a href="lanalyse-de-r%C3%A9gression.html#eq:beta">(14.2)</a>.</p>
+<p><span class="math display" id="eq:beta">\[\begin{equation}
+\hat{B} = (X^{\prime} X)^{-1} X^{\prime} y
+\tag{14.2}
+\end{equation}\]</span></p>
+<p>Comme pour l’équation <a href="lanalyse-de-r%C3%A9gression.html#eq:beta2">(14.1)</a>, la composante <span class="math inline">\((X^{\prime} X)^{-1}\)</span> agit en dénominateur (par l’exposant <span class="math inline">\(-1\)</span>) et correspond à la matrice de variance-covariance des variables de <span class="math inline">\(X\)</span> ensemble, alors que <span class="math inline">\(X^{\prime} y\)</span> agit comme le numérateur, soit la covariance entre les variables de <span class="math inline">\(X\)</span> avec <span class="math inline">\(y\)</span>.</p>
+<p>Pour l’erreur type, il s’agit de calculer ceci.</p>
+<p><span class="math display">\[\begin{equation}
+\text{var}(\hat{B}) = \sigma^2 \left(X^{\prime}X\right)^{-1}
+\end{equation}\]</span></p>
+<p>La racine carrée donne l’erreur type (<em>standard error</em>).</p>
+<p>Le ratio <span class="math inline">\(\frac{B}{\text{se}_B} \sim t_{n-p-1}\)</span>, soit le quotient d’un estimateur par son erreur type, suit une distribution-<span class="math inline">\(t\)</span> avec <span class="math inline">\(n-p-1\)</span> degrés de liberté.</p>
+<p>En syntaxe <strong>R</strong>, la régression s’écrit comme ceci.</p>
+<div class="sourceCode" id="cb163"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">regression</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">y</span>, <span class="va">X</span><span class="op">)</span><span class="op">{</span>
+  <span class="co"># Ajouter un intercepte</span>
+  <span class="va">X</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span>intercept <span class="op">=</span> <span class="fl">1</span>, <span class="va">X</span><span class="op">)</span>
+  <span class="va">B</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/solve.html">solve</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">X</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="va">X</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">X</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="va">y</span>
+  <span class="va">var.e</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">var</a></span><span class="op">(</span><span class="va">y</span> <span class="op">-</span> <span class="va">X</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="va">B</span><span class="op">)</span> 
+  <span class="va">se.B</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">var.e</span><span class="op">)</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/diag.html">diag</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/solve.html">solve</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">X</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="va">X</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+  <span class="va">n</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">X</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>
+  <span class="va">p</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">X</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>
+  <span class="va">vt</span> <span class="op">=</span> <span class="va">B</span> <span class="op">/</span> <span class="va">se.B</span>
+  <span class="va">vp</span> <span class="op">=</span> <span class="op">(</span><span class="fl">1</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">pt</a></span><span class="op">(</span><span class="va">tv</span>, df <span class="op">=</span> <span class="va">n</span> <span class="op">-</span> <span class="va">p</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">*</span> <span class="fl">2</span>
+  <span class="va">resultats</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>Estimate <span class="op">=</span> <span class="va">B</span>, 
+                         Std.Error <span class="op">=</span> <span class="va">se.B</span>, 
+                         t.value <span class="op">=</span> <span class="va">vt</span>, 
+                         p.value <span class="op">=</span> <span class="va">vp</span><span class="op">)</span> 
+  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">resultats</span><span class="op">)</span>
+<span class="op">}</span>  </code></pre></div>
+<p>Le modèle linéaire peut aussi contenir des variables nominales dans la mesure où celle-ci sont transformées en données factices (<em>dummy coding</em>). En fait, une analyse de variance n’est au fond qu’une régression dans laquelle les variables nominales sont transformées en données factices, puis utilisées en variable indépendante. Les <span class="math inline">\(\beta\)</span> de la régression correspondent aux moyennes <span class="math inline">\(\mu\)</span>, si le participant appartient (1) à tel ou tel autre groupe ou (0) autrement. Bien que les logiciels produisent souvent des sorties statistiques différentes en fonction de l’analyse demandée, les mathématiques sous-jacentes sont les mêmes.</p>
+<div id="conditions-dapplication-de-la-régression" class="section level2" number="14.1">
+<h2>
+<span class="header-section-number">14.1</span> Conditions d’application de la régression<a class="anchor" aria-label="anchor" href="#conditions-dapplication-de-la-r%C3%A9gression"><i class="fas fa-link"></i></a>
+</h2>
+<p>La régression possède quatre hypothèses sous-jacentes :</p>
+<ul>
+<li><p>La vraie relation est linéaire;</p></li>
+<li><p>Les observations sont indépendantes.</p></li>
+<li><p>Les résidus sont normalement distribués;</p></li>
+<li><p>La variance résiduelle est homoscédastique.</p></li>
+</ul>
+<p>Les deux premiers points sont davantage méthodologiques que statistiques bien que leurs conséquences soient réelles. La relation entre les variables doit être linéaire. La régression tient compte des relations en ligne droite, si la relation entre deux variables suit une courbe, elle ne pourra être adéquatement analysée. La figure <a href="lanalyse-de-r%C3%A9gression.html#fig:courbe">14.1</a> montre trois relations possibles entre deux variables. Bien que la relation soit très forte, peu importe la forme de la relation (les données suivent un parton très évident), seule celle au centre (relation linéaire) donnera un résultat indiquant un lien fort existant. Il existe des techniques de transformation de données lorsque ce sera <em>théoriquement</em> justifié. La relation quantitative entre l’âge et la quantité de rapport sexuel est un exemple de relation non linéaire : elle débute à l’adolescence, atteint son apogée à l’âge de jeune adulte, puis décroît progressivement. La seconde hypothèse est que les unités d’observation doivent être indépendantes. Techniquement, chaque unité devrait avoir une chance égale et indépendante d’être choisie. La régression est robuste à ce genre de violation, mais il faut toujours conserver cette idée en tête lorsque le devis d’étude est conceptualisé et lors des analyses. Les élèves dans une même salle de classe ne sont techniquement pas indépendants puisqu’ils sont tous corrélés. Ils ont le même enseignant, les mêmes pairs, les locaux, etc., des variables qui peuvent toutes à leur façon avoir des effets sur les comportements des enfants. Dans ce cas, recourir à des analyses multiniveaux sera la seule possibilité pour tenir compte de cette violation et bien représenter les modèles. Un autre exemple est la corrélation entre différents temps de mesure sur une même unité (qui est corrélée avec elle-même). Dans ce cas, ce sera des analyses pour des devis temporels (les analyses multiveaux peuvent également tenir compte du temps).</p>
+<p>Les deux autres considérations, qui sont elles d’ordre statistique, concernent les résidus (l’écart entre la prédiction et les valeurs réelles de <span class="math inline">\(y\)</span>). Comme il a été mentionné dans la création de données pour la régression, les distributions des variables n’a pas être normales; elles peuvent suivre différentes distributions de probabilités. Par contre, l’erreur, elle, doit être normales distribuées, car il s’agit d’une hypothèse assumée de l’estimation des moindres carrés. La dernière hypothèse concerne la variance résiduelle homoscédastique, c’est-à-dire que l’écart entre les résidus et les valeurs prédites restent <em>constantes,</em> peu importe le niveau sur la droite de régression. Si ce n’est pas le cas pour l’une ou l’autre, c’est qu’une variable a vraisemblablement été négligée ou qu’une des relations n’est pas linéaire avec une des variables indépendantes.</p>
+<pre><code>#&gt; `geom_smooth()` using formula 'y ~ x'</code></pre>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:courbe"></span>
+<img src="07-Regression_files/figure-html/courbe-1.png" alt="Différentes formes de relation" width="80%" height="80%"><p class="caption">
+Figure 14.1: Différentes formes de relation
+</p>
+</div>
+</div>
+<div id="lanalyse-de-régression-1" class="section level2" number="14.2">
+<h2>
+<span class="header-section-number">14.2</span> L’analyse de régression<a class="anchor" aria-label="anchor" href="#lanalyse-de-r%C3%A9gression-1"><i class="fas fa-link"></i></a>
+</h2>
+<p><strong>R</strong> de base offre la fonction <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> pour <em>linear model</em> (modèle linéaire) afin de réaliser une régression. Pour réaliser l’analyse, deux éléments sont primordiaux : le jeu de données et le modèle. Le jeu de données est assez explicite. Le modèle linéaire est quant à lui déjà représenté par l’équation <a href="la-r%C3%A9gression.html#eq:modling">(13.3)</a>.</p>
+<p>Pour écrire le modèle en syntaxe <strong>R</strong>, il faut remplacer les <span class="math inline">\(x\)</span> par le nom des variables dans le jeu de données, utiliser le <code>~</code> (tilde) pour délimiter les variables dépendantes à gauche des variables indépendantes à droite. Les variables indépendantes sont délimitées, comme dans l’équation <a href="la-r%C3%A9gression.html#eq:modling">(13.3)</a>, par des signes d’addition <code>+</code>. Il est aussi de définir des effets d’interaction (modération) avec le signe de multiplication <code>*</code>. Les symboles <code>-</code> (soustraction) et <code>/</code> (division) ne fonctionnent pas. L’intercepte (<span class="math inline">\(\beta_0\)</span>) est ajouté par défaut. Enfin, cette équation doit ensuite être mis entre guillemets, <code>formula = "y ~ x1 + x2 + x3"</code> pour indiquer qu’il s’agit de texte.</p>
+<div class="sourceCode" id="cb165"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Créer un jeu de données à partir des variables de la syntaxe précédente</span>
+<span class="va">res.lm</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">y</span> <span class="op">~</span> <span class="va">X.1</span> <span class="op">+</span> <span class="va">X.2</span> <span class="op">+</span> <span class="va">X.3</span>, data <span class="op">=</span> <span class="va">jd</span><span class="op">)</span>
+<span class="co"># Les résultats</span>
+<span class="va">res.lm</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Call:</span>
+<span class="co">#&gt; lm(formula = y ~ X.1 + X.2 + X.3, data = jd)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Coefficients:</span>
+<span class="co">#&gt; (Intercept)          X.1          X.2          X.3  </span>
+<span class="co">#&gt;     -0.0171       0.2139      -0.5520       0.3095</span>
+<span class="co"># Sommaire des résultats</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">res.lm</span><span class="op">)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Call:</span>
+<span class="co">#&gt; lm(formula = y ~ X.1 + X.2 + X.3, data = jd)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Residuals:</span>
+<span class="co">#&gt;     Min      1Q  Median      3Q     Max </span>
+<span class="co">#&gt; -2.5227 -0.5546 -0.0119  0.5513  2.5762 </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Coefficients:</span>
+<span class="co">#&gt;             Estimate Std. Error t value Pr(&gt;|t|)    </span>
+<span class="co">#&gt; (Intercept)  -0.0171     0.0253   -0.68      0.5    </span>
+<span class="co">#&gt; X.1           0.2139     0.0266    8.03  2.7e-15 ***</span>
+<span class="co">#&gt; X.2          -0.5520     0.0258  -21.42  &lt; 2e-16 ***</span>
+<span class="co">#&gt; X.3           0.3095     0.0263   11.76  &lt; 2e-16 ***</span>
+<span class="co">#&gt; ---</span>
+<span class="co">#&gt; Signif. codes:  </span>
+<span class="co">#&gt; 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Residual standard error: 0.8 on 996 degrees of freedom</span>
+<span class="co">#&gt; Multiple R-squared:  0.383,  Adjusted R-squared:  0.381 </span>
+<span class="co">#&gt; F-statistic:  206 on 3 and 996 DF,  p-value: &lt;2e-16</span></code></pre></div>
+<p>Pour ajouter une variable il suffit de <code>VD ~ VI1 + VI2</code>; pour ajouter un effet d’interaction, il est possible de faire <code>VD ~ VI1 * VI2</code>. Pour ajouter une variable nominale (catégorielle), il suffit d’ajouter la variable comme n’importe quelles autres <code>x</code>, mais en s’assurant bien qu’elle soit désignée comme un facteur dans le jeu de données. Si ce n’était pas le cas, la fonction <code><a href="https://rdrr.io/r/base/factor.html">as.factor()</a></code> devrait corriger la situation.</p>
+<p>La fonction <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> en elle-même n’imprime que peut de résultats. Pour obtenir l’information complète, il faut requérir le sommaire avec la fonction <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code>. Le sommaire des résultats contient toute l’information qu’un expérimentateur peut désirer. Il y a les coefficients de régression <code>Estimate</code>, leur erreur standard <code>Std. Error</code>, leur valeur-<span class="math inline">\(t\)</span> <code>t value</code> et leur valeur-<span class="math inline">\(p\)</span> <code>Pr(&gt;|t|)</code>. Tout cela peut être extrait avec <code>summary(res.lm)$...</code> en remplaçant <code>...</code> par les éléments désirés. Au-dessous de la sortie imprimée, il y a également le coefficient de détermination (<span class="math inline">\(R^2\)</span>, <code>R-squared</code>), les degrés de liberté et la valeur-<span class="math inline">\(p\)</span> associé au modèle.</p>
+<p>Un manuscrit pourrait rapport les résultats ainsi. Le modèle tester obtient un coefficient de détermination de <span class="math inline">\(R^2(996) = 0.383, p &lt; .001\)</span>. Les trois prédicteurs sont liés significativement à la variable dépendante, respectivement <span class="math inline">\(X_1: \beta_1 = 0.214, p = &lt; .001\)</span>, <span class="math inline">\(X_2: \beta_2 = 0.214, p = &lt; .001\)</span>, <span class="math inline">\(X_3: \beta_3 = 0.31, p = &lt; .001\)</span>. Évidemment, comme l’exemple est artificiel, il y a peu de chose à dire sans devoir fabriquer de toutes pièces des interprétations alambiquées bien que cela fût fort bénéfique pour la carrière de certains psychanalystes.</p>
+<p>Pour vérifier la qualité des résultats, il faut vérifier la distribution des résidus. Pour ce faire, il faut extraire les résidus et les valeurs prédites. Pour la création de graphiques, il est plus simple d’ajouter ces scores au jeu de données. Les fonctions <code><a href="https://rdrr.io/r/stats/residuals.html">resid()</a></code> et <code><a href="https://rdrr.io/r/stats/predict.html">predict()</a></code> permettront d’extraire les résidus et les prédictions en y insérant comme argument le sommaire de la fonction <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> obtenu avec les données.</p>
+<div class="sourceCode" id="cb166"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Ajouter les résidus et scores prédits à la base de données</span>
+<span class="co"># avec la fonction `resid()`</span>
+<span class="va">jd</span><span class="op">$</span><span class="va">residu</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/residuals.html">resid</a></span><span class="op">(</span><span class="va">res.lm</span><span class="op">)</span>
+<span class="va">jd</span><span class="op">$</span><span class="va">predit</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">res.lm</span><span class="op">)</span></code></pre></div>
+<p>Une fois, c’est valeur extraite, le package <code>ggplot2</code> permet de réaliser rapidement des graphiques, comme le diagramme de dispersion à la figure <a href="lanalyse-de-r%C3%A9gression.html#fig:respred">14.2</a> ou l’histogramme des résidus à la figure <a href="lanalyse-de-r%C3%A9gression.html#fig:reshist">14.3</a>. Dans les meilleures situations, les résidus seront distribués normalement dans l’histogramme et aucune tendance ne devrait être discernable dans le diagramme de dispersion. Si ce n’était pas le cas, il pourrait y avoir un problème à élucider, par exemple, une relation non linéaire imprévue. Les figures <a href="lanalyse-de-r%C3%A9gression.html#fig:respred">14.2</a> et <a href="lanalyse-de-r%C3%A9gression.html#fig:reshist">14.3</a> ne signale aucun problème, ce qui est attendu considérant la création des données employées.</p>
+<div class="sourceCode" id="cb167"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Diagramme de dispersion prédits par résidus</span>
+<span class="va">jd</span> <span class="op"><a href="https://rpkgs.datanovia.com/rstatix/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">predit</span>, y <span class="op">=</span> <span class="va">residu</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> </code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:respred"></span>
+<img src="07-Regression_files/figure-html/respred-1.png" alt="Relation entre prédicitons et résidus" width="75%" height="75%"><p class="caption">
+Figure 14.2: Relation entre prédicitons et résidus
+</p>
+</div>
+<div class="sourceCode" id="cb168"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Histogramme des résidus</span>
+<span class="va">jd</span> <span class="op"><a href="https://rpkgs.datanovia.com/rstatix/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">residu</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:reshist"></span>
+<img src="07-Regression_files/figure-html/reshist-1.png" alt="Histogramme des résidus" width="75%" height="75%"><p class="caption">
+Figure 14.3: Histogramme des résidus
+</p>
+</div>
+<!-- # L'analyse de régression en modélisation par équations structurelles -->
+<!-- # Exercices -->
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="la-r%C3%A9gression.html"><span class="header-section-number">13</span> La régression</a></div>
+<div class="next"><a href="r%C3%A9f%C3%A9rences.html"><span class="header-section-number">15</span> Références</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#lanalyse-de-r%C3%A9gression"><span class="header-section-number">14</span> L’analyse de régression</a></li>
+<li><a class="nav-link" href="#conditions-dapplication-de-la-r%C3%A9gression"><span class="header-section-number">14.1</span> Conditions d’application de la régression</a></li>
+<li><a class="nav-link" href="#lanalyse-de-r%C3%A9gression-1"><span class="header-section-number">14.2</span> L’analyse de régression</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/quantmeth/MQR/blob/master/07-Regression.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/quantmeth/MQR/edit/master/07-Regression.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Méthodes Quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-05-18.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

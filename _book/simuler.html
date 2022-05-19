@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title> 10 Simuler | Méthodes Quantitatives avec R</title>
+<meta name="author" content="P.-O. Caron">
+<meta name="description" content="Dans plusieurs contextes statistiques, les informations cruciales nécessaires pour réaliser une analyse statistique ou tirer des résultats spécifiques ne sont pas connues (par exemple le chapitre...">
+<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta property="og:title" content=" 10 Simuler | Méthodes Quantitatives avec R">
+<meta property="og:type" content="book">
+<meta property="og:url" content="mqr.teluq.ca/simuler.html">
+<meta property="og:description" content="Dans plusieurs contextes statistiques, les informations cruciales nécessaires pour réaliser une analyse statistique ou tirer des résultats spécifiques ne sont pas connues (par exemple le chapitre...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content=" 10 Simuler | Méthodes Quantitatives avec R">
+<meta name="twitter:description" content="Dans plusieurs contextes statistiques, les informations cruciales nécessaires pour réaliser une analyse statistique ou tirer des résultats spécifiques ne sont pas connues (par exemple le chapitre...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+</head>
+<body>
+<p>
+    \(
+    \newcommand{\EX}{\mathbb{E}}
+    \)
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css"></p>
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Méthodes Quantitatives avec R</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Bienvenue!</a></li>
+<li><a class="" href="pr%C3%A9face.html">Préface</a></li>
+<li class="book-part">Rudiments</li>
+<li><a class="" href="commencer.html"><span class="header-section-number">1</span> Commencer</a></li>
+<li><a class="" href="programmer.html"><span class="header-section-number">2</span> Programmer</a></li>
+<li><a class="" href="calculer.html"><span class="header-section-number">3</span> Calculer</a></li>
+<li><a class="" href="exercice-rudiments.html">Exercices</a></li>
+<li class="book-part">Jeux de données</li>
+<li><a class="" href="g%C3%A9rer.html"><span class="header-section-number">4</span> Gérer</a></li>
+<li><a class="" href="importer.html"><span class="header-section-number">5</span> Importer</a></li>
+<li><a class="" href="manipuler.html"><span class="header-section-number">6</span> Manipuler</a></li>
+<li><a class="" href="visualiser.html"><span class="header-section-number">7</span> Visualiser</a></li>
+<li><a class="" href="exercice-gestion.html">Exercices</a></li>
+<li class="book-part">La statistique</li>
+<li><a class="" href="inf%C3%A9rer.html"><span class="header-section-number">8</span> Inférer</a></li>
+<li><a class="" href="analyser.html"><span class="header-section-number">9</span> Analyser</a></li>
+<li><a class="active" href="simuler.html"><span class="header-section-number">10</span> Simuler</a></li>
+<li><a class="" href="exercice-analyse.html">Exercices</a></li>
+<li class="book-part">Analyses statistiques</li>
+<li><a class="" href="r%C3%A9gression.html"><span class="header-section-number">11</span> Régression</a></li>
+<li><a class="" href="cr%C3%A9er.html"><span class="header-section-number">12</span> Créer</a></li>
+<li><a class="" href="solutions.html">Solutions</a></li>
+<li><a class="" href="r%C3%A9f%C3%A9rences.html">Références</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/quantmeth/MQR">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="simuler" class="section level1" number="10">
+<h1>
+<span class="header-section-number"> 10</span> Simuler<a class="anchor" aria-label="anchor" href="#simuler"><i class="fas fa-link"></i></a>
+</h1>
+<p>Dans plusieurs contextes statistiques, les informations cruciales nécessaires pour réaliser une analyse statistique ou tirer des résultats spécifiques ne sont pas connues (par exemple le chapitre <a href="analyser.html#analyser">Analyser</a>. Pire, parfois certains postulats sont violés rendant les démarches usuelles caduques. Enfin, dans certains contextes, une analyse formelle pourrait s’avérer fort complexe, voire irrésoluble, alors qu’une analyse plus empirique usant des techniques de rééchantillonnage résoudra ces problèmes simplement et immédiatement.</p>
+<p>Jusqu’à présent, les situations connues des analyses statistiques ont été présentées. Maintenant, les techniques de rééchantillonnage, comme le bootstrap et de simulations Monte-Carlo seront présentés.</p>
+<div id="les-simulations-monte-carlo" class="section level2" number="10.1">
+<h2>
+<span class="header-section-number">10.1</span> Les simulations Monte-Carlo<a class="anchor" aria-label="anchor" href="#les-simulations-monte-carlo"><i class="fas fa-link"></i></a>
+</h2>
+<p>Les simulations Monte-Carlo sont une famille de méthode algorithmique qui permet de calculer une valeur numérique en utilisant des procédés aléatoires. Le nom provient du prestigieux casino de Monte-Carlo à Monaco sur la Côte d’Azur, où des jeux de hasard se jouent constamment, et ayant ainsi une connotation très forte avec le hasard et les nombres aléatoires.</p>
+<p>Une simulation de Monte-Carlo prédit une étendue de résultats possibles à partir d’un ensemble de valeurs d’entrée fixes et en tenant compte de l’incertitude inhérente de certaines variables. En d’autres termes, une simulation de Monte-Carlo produit les résultats possibles (sorties) d’un modèle à partir des entrées fixes et d’autres entrées variables. Ces sorties sont calculées encore et encore (des milliers de fois, parfois plus), en utilisant à chaque fois un ensemble différent de nombres aléatoires, générant des sorties probables, mais différentes à chaque fois. Les estimations (et leur tendance) obtenues peuvent alors être interprétées.</p>
+<p>Les simulations Monte-Carlo sont particulièrement utiles, car elles permettent, en mathématiques, de calculer des intégrales très complexes; en physique, d’estimer la forme d’un signal ou la sensibilité; en finance, simulent des conditions permettant de prévoir le marché; et en psychologie, simuler des processus comportementaux ou cognitifs.</p>
+<p>Les simulations Monte-Carlo possèdent trois caractéristiques ou étapes :</p>
+<ol style="list-style-type: decimal">
+<li><p>Construire un modèle ayant des variables indépendantes (entrées) et dépendantes (sorties);</p></li>
+<li><p>Spécifier les caractéristiques aléatoires des variables indépendantes et définir des valeurs crédibles;</p></li>
+<li><p>Rouler les simulations de façon répétitive jusqu’à ce que suffisamment d’itérations soient produites et que les résultats convergent vers une solution.</p></li>
+</ol>
+<p>Maintenant, ces étapes sont mises en contexte avec un problème.</p>
+<div id="le-problème-de-monty-hall" class="section level3" number="10.1.1">
+<h3>
+<span class="header-section-number">10.1.1</span> Le problème de Monty-Hall<a class="anchor" aria-label="anchor" href="#le-probl%C3%A8me-de-monty-hall"><i class="fas fa-link"></i></a>
+</h3>
+<p>Rien de mieux pour confronter le sens commun que d’être confronté à un problème contre-intuitif. Les simulations Monte-Carlo nous permettront de vérifier les résultats de façon empirique, parallèlement à ce qu’une analyse formelle fournit.</p>
+<p>Le problème de Monty Hall <span class="citation">(attribuables à <a href="r%C3%A9f%C3%A9rences.html#ref-Selvin75" role="doc-biblioref">Selvin, 1975</a>)</span> présente un joueur devant un présentateur (Monty Hall). Trois portes sont offertes au choix du joueur. Derrière l’une d’entre elles se retrouve un magnifique prix : une voiture <em>électrique</em> de luxe. Derrière chacune des deux autres portes se retrouvent un prix citron : une chèvre chacune. Le joueur ne sait pas ce qu’il y derrière les portes. Le joueur peut alors choisir une porte. Évidemment, à ce moment le joueur à une chance sur trois de choisir la voiture.</p>
+<div class="figure">
+<span style="display:block;" id="fig:MH"></span>
+<img src="05-Simuler_files/figure-html/MH-1.png" alt="Illustration du problème de Monty Hall" width="672"><p class="caption">
+Figure 10.1: Illustration du problème de Monty Hall
+</p>
+</div>
+<p>Par la suite, le présentateur, qui connaît le contenu derrière les portes, ouvre une porte qui (a) ne cache pas la voiture et (b) que le participant n’a pas choisie. Le joueur peut alors choisir (a) de conserver la porte choisie ou (b) de changer de porte. Quelle option, s’il y en a une, assurera le meilleur gain (choisir la voiture)? Rester ou changer? Par exemple, suivant l’illustration de la figure <a href="simuler.html#fig:MH">10.1</a>, le joueur choisit la porte 1, alors le présentateur doit ouvrir la porte 2 (non choisie et ne contient pas la voiture). Le joueur doit-il changer son choix? Ici, la réponse est évidente, car la réponse est connue. Qu’en est-il alors si le joueur avait choisi la porte 3 et le présentateur ouvert l’une des deux autres porte? <em>Le joueur doit-il changer ou rester?</em> La question sous-jacente est qu’elles sont les probabilités de rester et changer respectivement. Sont-elles différentes?</p>
+<p>Comme le résultat n’est pas des plus intuitif (et sans divulgâcher le résultat), une petite simulation s’impose (ou une analyse formelle pour les lecteurs enclins mathématiquement). La situation sera recréée un millier de fois pour vérifier l’option (rester ou changer) qui maximise de gagner la voiture.</p>
+<p>En se référant aux trois points caractérisant une simulation Monte-Carlo susmentionné :</p>
+<ol style="list-style-type: decimal">
+<li><p>Le problème de Monty Hall tel qu’imminemment décrit.</p></li>
+<li><p>Les variables indépendantes sont (a) le tirage aléatoire du contenu derrière les portes (distribution uniforme, chaque porte à la même probabilité d’avoir un prix ou non), (b) le choix du joueur (distribution uniforme, pourrait être différent), et (c) la porte ouverte par le présentateur. Deux variables indépendantes sont fixes (les deux options sont étudiées), l’action de rester ou de changer. Il y a deux variables dépendantes, le succès (choisir le prix) ou l’échec (choisir une autre porte) de rester ou de changer.</p></li>
+<li><p>La simulation est reprise 1000 fois.</p></li>
+</ol>
+<p>La simulation doit comporter une distribution aléatoire du contenu derrière les trois portes, identifier une porte gagnante et deux perdantes. Il est intéressant de note que, sur le plan de computationnelle, il est inutile d’attribuer aléatoirement la porte gagnante, toutefois le scénario sera plus acceptable pour un lecteur scrupuleux. Par la suite, le joueur fait son premier choix. Ici, plusieurs modèles peuvent être utilisés, comme constamment choisir la même porte (ce qui simplifie la situation et ne change pas les probabilités parce que le contenu des portes, lui, est aléatoire) ou, pour rester vrai à la situation, le joueur fera un choix aléatoire. Le comportement du présentateur s’enclenche, il doit “ouvrir” une porte non choisie et qui ne contient pas le prix. Les deux stratégies sont alors étudiées, <em>rester</em> versus <em>changer</em>. La simulation enregistre alors s’il y a eu gain ou non et l’additionne au total de chacun. La simulation est reprise un nombre important de fois, ici, 1000 suffira, mais des situations compliquées peuvent demander beaucoup plus d’itérations.</p>
+<div class="sourceCode" id="cb127"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Simulation du problème de Monty Hall</span>
+<span class="va">portes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Chèvre"</span>,<span class="st">"Chèvre"</span>,<span class="st">"Voiture"</span><span class="op">)</span>
+<span class="va">nreps</span> <span class="op">&lt;-</span> <span class="fl">1000</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">7896</span><span class="op">)</span>
+<span class="co"># Valeur initial des gains</span>
+<span class="va">gain.rester</span> <span class="op">&lt;-</span> <span class="fl">0</span>
+<span class="va">gain.changer</span> <span class="op">&lt;-</span> <span class="fl">0</span>
+
+<span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="va">nreps</span><span class="op">)</span><span class="op">{</span>
+  <span class="co"># Arrangement initial des portes</span>
+  <span class="va">tirage</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">portes</span><span class="op">)</span>
+  <span class="co"># Trouver le prix</span>
+  <span class="va">prix</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">tirage</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="st">"Voiture"</span><span class="op">)</span>
+  <span class="co"># Choix aléatoire</span>
+  <span class="va">choix1</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">portes</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
+  
+  <span class="co"># Sélectionner la porte avec la chèvre (pas un prix) et</span>
+  <span class="co"># qui n'est pas celle choisie (choix1)</span>
+  <span class="va">option</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">choix1</span>, <span class="va">prix</span><span class="op">)</span>
+  <span class="kw">if</span><span class="op">(</span><span class="va">choix1</span> <span class="op">!=</span> <span class="va">prix</span><span class="op">)</span><span class="op">{</span>
+    <span class="co"># Si une porte valide</span>
+    <span class="va">monty</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span><span class="op">[</span><span class="op">-</span><span class="va">option</span><span class="op">]</span>
+  <span class="op">}</span><span class="kw">else</span><span class="op">{</span>
+    <span class="co"># Si deux portes valides, en choisir une aléatoirement.</span>
+    <span class="va">monty</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span><span class="op">[</span><span class="op">-</span><span class="va">option</span><span class="op">]</span>, size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
+  <span class="op">}</span>
+  <span class="co"># Décision : Reste à choix1</span>
+  <span class="va">choix.rester</span> <span class="op">=</span> <span class="va">choix1</span>
+  
+  <span class="co"># Décision : Changer de choix changer</span>
+  <span class="co"># Changer = ne pas prendre la porte initial, ni la porte ouverte</span>
+  <span class="va">choix.changer</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span><span class="op">[</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">choix1</span>, <span class="va">monty</span><span class="op">)</span><span class="op">]</span>
+  
+  <span class="co"># Enregistrement des gains</span>
+  <span class="va">gain.rester</span> <span class="op">&lt;-</span> <span class="va">gain.rester</span> <span class="op">+</span> <span class="op">(</span><span class="va">tirage</span><span class="op">[</span><span class="va">choix.rester</span><span class="op">]</span> <span class="op">==</span> <span class="st">"Voiture"</span><span class="op">)</span>
+  <span class="va">gain.changer</span> <span class="op">=</span> <span class="va">gain.changer</span> <span class="op">+</span> <span class="op">(</span><span class="va">tirage</span><span class="op">[</span><span class="va">choix.changer</span><span class="op">]</span> <span class="op">==</span> <span class="st">"Voiture"</span><span class="op">)</span>
+<span class="op">}</span>
+
+<span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">gain.rester</span>,<span class="va">gain.changer</span><span class="op">)</span>  <span class="op">/</span> <span class="va">nreps</span>
+<span class="co">#&gt;      gain.rester gain.changer</span>
+<span class="co">#&gt; [1,]       0.316        0.684</span></code></pre></div>
+<p>Une petite digression avant de poursuivre. <em>Il ne faut jamais prendre pour acquis que le code fonctionne comme prévu</em>. À cause d’un inconvénient de la fonction <code><a href="https://rdrr.io/r/base/sample.html">sample()</a></code>, une approche conditionnelle doit être utilisée. En fait, la fonction échantillonne les éléments de <code>x</code> (premier argument) jusqu’à obtenir <code>size</code> objets. Par contre, si une seule valeur est donnée à <code>x</code> et si elle est numérique, alors la fonction utilise les éléments de <code>1:x</code> pour rééchantillonner. Ici, si le choix et le prix sont différents, il n’y a qu’une seule valeur retournée (l’autre chèvre), ce qui occasionne le problème, et par conséquent, de l’utilisation du conditionnel. En programmation, il faut toujours s’assurer que les fonctions s’accordent avec les attentes.</p>
+<p>Quelles sont les résultats de cette simulation? Le fait de <em>rester</em> sur le premier choix devrait obtenir 33% de chance de réussir, comme le joueur a initialement une chance sur trois d’avoir la bonne réponse. Qu’en est-il pour <em>changer</em>? Est-ce qu’ouvrir une porte <em>chèvre</em> modifie les probabilités? Les résultats de la simulation montre que <em>rester</em> gagne 31.6% et que de <em>changer</em> gagne 68.4%. À long terme, il est fort avantageux de changer.</p>
+<p>Une explication simple est de dénombrer les possibilités. Dans le cas où le joueur ne change pas d’idée, il a une chance sur trois, soit : choisir la chèvre 1, et garder la chèvre 1; choisir la chèvre 2, et garder la chèvre 2; et choisir la voiture, et garder la voiture. Si le joueur change d’idée après l’ouverture des portes, les chances sont maintenant de deux sur trois, soit choisir la chèvre 1, changer pour le prix; choisir la chèvre 2 et changer pour le prix; ou choisir le prix et changer pour une chèvre.</p>
+<p>Une autre façon de rendre se problème plus évident est de considérer le problème avec 100 portes au lieu de 3. Le présentateur ouvre alors les 98 portes qui ne sont pas un prix. Si le joueur choisit une porte et garde, il a effectivement 1% de chance de remporter le prix. Par contre, s’il choisit une porte et que le présentateur lui ouvre toutes les autres portes chèvres, il appert que le joueur gagne à tout coup s’il change, sauf s’il a choisi le prix au premier coup. Avec quelques modifications de la syntaxe précédente, le code suivant illustre le cas à 100 portes.</p>
+<div class="sourceCode" id="cb128"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Simulation du problème de Monty Hall</span>
+<span class="va">portes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Voiture"</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"Chèvre"</span>, <span class="fl">99</span><span class="op">)</span><span class="op">)</span>
+<span class="va">n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">portes</span><span class="op">)</span>
+<span class="va">nreps</span> <span class="op">&lt;-</span> <span class="fl">1000</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">7896</span><span class="op">)</span>
+
+<span class="co"># Valeur initial des gains</span>
+<span class="va">gain.rester</span> <span class="op">&lt;-</span> <span class="fl">0</span>
+<span class="va">gain.changer</span> <span class="op">&lt;-</span> <span class="fl">0</span>
+
+<span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="va">nreps</span><span class="op">)</span><span class="op">{</span>
+  <span class="co"># Arrangement initial des portes</span>
+  <span class="va">tirage</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">portes</span><span class="op">)</span>
+  
+  <span class="co"># Trouver le prix</span>
+  <span class="va">prix</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">tirage</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="st">"Voiture"</span><span class="op">)</span>
+  
+  <span class="co"># Choix aléatoire</span>
+  <span class="va">choix1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">n</span>, size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
+  
+  <span class="co"># Sélectionner la porte avec la chèvre (pas un prix) et</span>
+  <span class="co"># qui n'est pas celle choisie (choix1)</span>
+  <span class="va">option</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">choix1</span>, <span class="va">prix</span><span class="op">)</span>
+  
+  <span class="co"># Les autres portes</span>
+  <span class="va">monty</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="va">n</span><span class="op">)</span><span class="op">[</span><span class="op">-</span><span class="va">option</span><span class="op">]</span>, size <span class="op">=</span> <span class="va">n</span> <span class="op">-</span> <span class="fl">2</span><span class="op">)</span>
+  
+  <span class="co"># Décision : Reste à choix1</span>
+  <span class="va">choix.rester</span> <span class="op">&lt;-</span> <span class="va">choix1</span>
+  
+  <span class="co"># Décision : Changer de choix changer</span>
+  <span class="co"># Changer = ne pas prendre la porte initial, ni la porte ouverte</span>
+  <span class="va">choix.changer</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="va">n</span><span class="op">)</span><span class="op">[</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">choix1</span>, <span class="va">monty</span><span class="op">)</span><span class="op">]</span>
+  
+  <span class="co"># Enregistrement des gains</span>
+  <span class="va">gain.rester</span> <span class="op">&lt;-</span> <span class="va">gain.rester</span> <span class="op">+</span> <span class="op">(</span><span class="va">tirage</span><span class="op">[</span><span class="va">choix.rester</span><span class="op">]</span> <span class="op">==</span> <span class="st">"Voiture"</span><span class="op">)</span>
+  <span class="va">gain.changer</span> <span class="op">&lt;-</span> <span class="va">gain.changer</span> <span class="op">+</span> <span class="op">(</span><span class="va">tirage</span><span class="op">[</span><span class="va">choix.changer</span><span class="op">]</span> <span class="op">==</span> <span class="st">"Voiture"</span><span class="op">)</span>
+<span class="op">}</span>
+
+<span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">gain.rester</span>,<span class="va">gain.changer</span><span class="op">)</span>  <span class="op">/</span> <span class="va">nreps</span>
+<span class="co">#&gt;      gain.rester gain.changer</span>
+<span class="co">#&gt; [1,]       0.009        0.991</span></code></pre></div>
+<p>La simulation montre que rester gagne 0.9% et que de changer gagne 99.1%.</p>
+<p>Des situations fort plus compliquées pourraient être apportées en simulations Monte-Carlo. Le jeu de Black Jack en est un exemple, bien qu’il soit déjà résolu pour des résultats optimaux <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-Millman83" role="doc-biblioref">Millman, 1983</a>)</span>. Il suffit d’avoir la patience de programmer le tout pour confirmer les résutats analytiques.</p>
+<p>Sur le plan pratique pour l’expérimentateur, les simulations Monte-Carlo peuvent être utiles pour calculer des tailles d’échantillons pour des modèles complexes, comme des modèles par équations structurelles compliquées, mutliniveaux ou de classes latentes. Une sous-famille est d’une importance signficative pour l’expérimentateur, celle qui sera abordée maintenant, le bootstrap.</p>
+</div>
+</div>
+<div id="le-bootstrap" class="section level2" number="10.2">
+<h2>
+<span class="header-section-number">10.2</span> Le bootstrap<a class="anchor" aria-label="anchor" href="#le-bootstrap"><i class="fas fa-link"></i></a>
+</h2>
+<p>Le <em>bootstrap</em> (dont il n’y a pas d’excellente traduction en français) est une des techniques de rééchantillonnage astucieuses permettant des inférences statistiques <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-Efron79" role="doc-biblioref">Efron &amp; Tibshriani, 1979</a>)</span>. Il fait partie de la famille des simulations Monte-Carlo, car il se base sur la réitération multiple d’une statistique à partir d’un jeu de données. Sans vouloir entrer trop dans les détails, il existe plusieurs types de techniques de bootstrap, qui font elles-mêmes parties d’une plus grande famille, les simulations stochastiques. Y est inclus les simulations de Monte-Carlo (dont le bootstrap fait parti) ou les méthodes numériques bayésiennes.</p>
+<p>Cet ouvrage insiste sur le bootstrap non paramétrique, impliquant que les distributions sous-jacentes aux échantillons ne soient pas spécifiées, bien qu’il existe du bootstrap paramétrique. Ce type de bootstrap est certainement la plus utile pour l’expérimentateur.</p>
+<p>Dans le bootstrap, l’échantillon initial est considéré comme une pseudopopulation. Il ne nécessite pas d’autre information que celle fournie par l’échantillon. Il permet d’obtenir une distribution d’échantillonnage et tous ses bénéfices. Alors que dans le chapitre précédent, il fallait préciser et connaître quelle distribution d’échantillonnage correspond à quelle statistique (p. ex., le score-<span class="math inline">\(z\)</span> d’une unité à la distribution normale; la moyenne d’un échantillon à la distribution <span class="math inline">\(t\)</span> si la variance est inconnue), aucune de ces connaissances n’est nécessaire. L’étendue d’application du bootstrap appert immense, surtout pour les concepts statistiques qui offriront plus de défis, ce qui sera vu dans des chapitres ultérieurs.</p>
+<p>Obtenir la distribution d’échantillonnage permet ainsi :</p>
+<ul>
+<li><p>d’estimer l’indice désiré;</p></li>
+<li><p>d’estimer son erreur standard;</p></li>
+<li><p>d’estimer ses intervalles de confiance;</p></li>
+<li><p>de réaliser un test d’hypothèse;</p></li>
+</ul>
+<p>tout cela en ignorant les distributions et postulats sous-jacents qui pourraient empêcher ou limiter leurs usages. Elle n’a que deux hypothèses fondamentales :l’échantillon reflète la population et chaque unité est indépendante et identiquement distribuée. Autrement dit, chaque unité provienne bel et bien d’une même boîte (<em>population</em>, voir chapitre sur l’inférence statistique) et en sont un portrait juste en plus que le tirage d’une unité n’en influence celle d’une autre.</p>
+<p>Le fondement du bootstrap repose sur les étapes suivantes :</p>
+<ol style="list-style-type: decimal">
+<li><p>Sélectionner avec remise les unités d’un échantillon;</p></li>
+<li><p>Calculer et enregistrer l’indice statistique désiré auprès de ce nouvel échantillon;</p></li>
+<li><p>Réitérer les deux premières étapes un nombre élevé de fois.</p></li>
+</ol>
+<p>Ce processus hautement facilité par l’excellente performance des ordinateurs d’aujourd’hui, se réalise très facilement et rapidement. L’exemple suivant est basé sur le rééchantillonnage (1000 fois) de la moyenne à partir d’une variable aléatoire tirée d’une distribution uniforme avec un minimum de 5 et d’une maximum de 15.</p>
+<div class="sourceCode" id="cb129"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">158</span><span class="op">)</span>
+<span class="co"># Nombre d'unités</span>
+<span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">30</span>
+
+<span class="co"># Le nombre de rééchantillonnage</span>
+<span class="va">nreps</span> <span class="op">&lt;-</span> <span class="fl">10000</span>
+
+<span class="co"># Création de la variable</span>
+<span class="va">X</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span>n <span class="op">=</span> <span class="va">n</span>, min <span class="op">=</span> <span class="fl">5</span>, max <span class="op">=</span> <span class="fl">15</span><span class="op">)</span>
+
+<span class="co"># Création d'une variable vide pour l'enregistrement</span>
+<span class="va">moyenne.X</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">numeric</a></span><span class="op">(</span><span class="op">)</span>
+
+<span class="co"># L'utilisation d'une boucle permet de réitérer les étapes</span>
+<span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="va">nreps</span><span class="op">)</span><span class="op">{</span>
+  <span class="co"># Rééchantillonnage avec remise</span>
+  <span class="va">id</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">n</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+  
+  <span class="co"># Nouvel échantillon</span>
+  <span class="va">nouveau.X</span> <span class="op">&lt;-</span> <span class="va">X</span><span class="op">[</span><span class="va">id</span><span class="op">]</span>
+  
+  <span class="co"># Calculer et enregistrer la moyenne</span>
+  <span class="va">moyenne.X</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">nouveau.X</span><span class="op">)</span>
+<span class="op">}</span></code></pre></div>
+<p>La fonction <code>sample(, replace = TRUE)</code> rééchantillonne avec remplacement les identifiants des unités. Par simplicité, il est possible d’éliminer la ligne <code>nouveau.X = X[id]</code> en utilisant <code>mean(X[id])</code> ou plus simplement <code>mean(sample(X, replace = TRUE))</code>. Cette utilisation se limite seulement au cas d’un vecteur de données. S’il s’agit d’un jeu de données avec plus d’une variable, alors <code>mean(X[id, ])</code> sera utilisé. Noter l’usage de la <code>,</code> entre crochets. De cette façon, toutes les variables des unités identifiées par <code>id</code> sont extraites.</p>
+<p>À partir des informations obtenues, il est possible de faire des inférences statistiques. Toutes les estimations peuvent être présentées comme un histogramme tel que l’illustre la figure <a href="visualiser.html#fig:hist2">7.8</a>. Le code se retrouve ci-dessous. Ici, quelques formules pour améliorer la présentation se retrouvent dans la syntaxe. L’utilisation simple de <code><a href="https://rdrr.io/r/graphics/hist.html">hist()</a></code> pourra convenir.</p>
+<div class="sourceCode" id="cb130"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">moyenne.X</span>,              <span class="co"># Données</span>
+     ylab <span class="op">=</span> <span class="st">" Frequence"</span>,    <span class="co"># Changer l'axe y</span>
+     main <span class="op">=</span> <span class="st">""</span>,              <span class="co"># Retirer le titre</span>
+     breaks <span class="op">=</span> <span class="fl">50</span>,            <span class="co"># Nombre de colonnes</span>
+     xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">7</span>,<span class="fl">13</span><span class="op">)</span>          <span class="co"># Définir l'étendu de l'axe x</span>
+<span class="op">)</span></code></pre></div>
+<div class="figure">
+<span style="display:block;" id="fig:hist2"></span>
+<img src="05-Simuler_files/figure-html/hist2-1.png" alt="Historgamme des estimations des échantillons" width="672"><p class="caption">
+Figure 7.8: Historgamme des estimations des échantillons
+</p>
+</div>
+<p>La distribution de la figure <a href="visualiser.html#fig:hist2">7.8</a> peut être désignée comme la distribution de la <em>population</em>, comme c’était le cas dans le chapitre sur les inférences. Elle permet d’avoir une estimation plus robuste de l’erreur standard, qui se trouve à être l’écart type des indices rééchantillonnés. Elle est également utilisée pour construire des intervalles de confiance et permet ainsi de faire des tests d’hypothèse comme : l’intervalle de confiance à <span class="math inline">\((1-\alpha) \times 100\)</span> % contient-elle la valeur 0? Comme il est fait avec une hypothèse nulle traditionnelle.</p>
+<p>Ici, le cas illustré est trivial au sens où, par le théorème central limite, la réponse est déjà connue. Si l’exemple était plutôt sur la médiane, il faudrait obligatoirement procéder par bootstrap pour calculer son erreur type et ses intervalles de confiance, car aucune formule exacte ne permet sa dérivation (il existe bien des approximations cela dit). Le bootstrap est alors des plus appropriés pour calculer l’erreur type et en tirer des intervalles de confiances, voire même en faire des tests d’hypothèses. Plusieurs statistiques auront recours au bootstrap pour dériver ces informations, la plus utilisée étant le coefficient de détermination (voir le chapitre sur la régression).</p>
+<p>À partir des informations obtenues auprès du rééchantillonnage, il est possible d’obtenir les éléments désirés. Comme le cas est trivial, les indices statistiques seront très similaires. Cela confirmera au lecteur qu’aucun principe ésotérique ne s’est déroulé devant ses yeux en plus de confirmer que les statistiques attendues se produisent effectivement.</p>
+<div class="sourceCode" id="cb131"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Voici la moyenne et l'erreur standard originales</span>
+<span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">X</span><span class="op">)</span> ; <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">X</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span>
+<span class="co">#&gt; [1] 10.2</span>
+<span class="co">#&gt; [1] 0.485</span>
+
+<span class="co"># La moyenne et l'erreur standard à partir des rééchantillons</span>
+<span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">moyenne.X</span><span class="op">)</span>  ; <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">moyenne.X</span><span class="op">)</span>
+<span class="co">#&gt; [1] 10.2</span>
+<span class="co">#&gt; [1] 0.481</span></code></pre></div>
+<p>La moyenne et l’erreur standard sont très près de la moyenne de l’échantillon et celle de la population (qui est de 10) et de l’erreur type attendue. Il est possible de créer des intervalles de confiances avec la fonction <code>quantile</code> qui prend en argument un vecteur de données et les probabilités désirées. Dans le cas de 95% pour une erreur de type I de 5%, soit <span class="math inline">\(\alpha=.05\)</span>, il s’agit de <span class="math inline">\(.05/2 = .025\)</span> et <span class="math inline">\(1-.05/2= .975\)</span>, laissant au total 5% aux extrémités.</p>
+<div class="sourceCode" id="cb132"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Erreur de type I</span>
+<span class="va">alpha</span> <span class="op">=</span> <span class="fl">.05</span>
+
+<span class="co"># Valeurs critiques</span>
+<span class="va">crit</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">alpha</span><span class="op">/</span><span class="fl">2</span>, <span class="op">(</span><span class="fl">1</span><span class="op">-</span><span class="va">alpha</span><span class="op">/</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span>
+<span class="va">tv</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">qt</a></span><span class="op">(</span><span class="va">crit</span>, df <span class="op">=</span> <span class="va">n</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span>
+
+<span class="co"># Intervalles basés sur les indices de l'échantillon</span>
+<span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">X</span><span class="op">)</span> <span class="op">+</span> <span class="va">tv</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">X</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span>
+<span class="co">#&gt; [1]  9.2 11.2</span>
+
+<span class="co"># Intervalles basés sur les indices du rééchantillonnage</span>
+<span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">moyenne.X</span><span class="op">)</span> <span class="op">+</span> <span class="va">tv</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">moyenne.X</span><span class="op">)</span>
+<span class="co">#&gt; [1]  9.22 11.18</span>
+
+<span class="co"># Intervalles sur le rééchantillonnage</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">moyenne.X</span>, <span class="va">crit</span><span class="op">)</span>
+<span class="co">#&gt;  2.5% 97.5% </span>
+<span class="co">#&gt;  9.26 11.13</span></code></pre></div>
+<p>Pour réaliser le test d’hypothèse nulle, il suffit de constater si l’intervalle de confiance contient ou non zéro. Dans le cas où l’intervalle contient 0, le test n’est pas significatif, il est vraisemblable que l’absence d’effet soit vraie. S’il ne contient pas 0, l’hypothèse est rejetée, le test est significatif et il est vraisemblable qu’il y ait un effet. Dans cet exemple, la moyenne est clairement différente de 0, car elle ne contient pas cette valeur.</p>
+<div id="meilleures-pratiques" class="section level4" number="10.2.0.1">
+<h4>
+<span class="header-section-number">10.2.0.1</span> Meilleures pratiques<a class="anchor" aria-label="anchor" href="#meilleures-pratiques"><i class="fas fa-link"></i></a>
+</h4>
+<p><strong>R</strong> n’est pas particulièrement efficace pour réaliser des boucles. Il existe une famille de fonctions <code>apply</code> qui permettent d’appliquer une fonction sur une série de vecteurs (comme une liste, un jeu de données ou une matrice). L’appel à l’aide <code><a href="https://rdrr.io/r/base/apply.html">?apply</a></code> donne beaucoup d’informations. La fonction principale est <code><a href="https://rdrr.io/r/base/apply.html">apply()</a></code>. Elle nécessite le jeu de données (<code>X</code>) sur lequel appliqué la fonction (<code>FUN</code>) et un argument (<code>MARGIN</code>) pour identifier dimension selon laquelle il faut appliquer la fonction, comme <code>MARGIN = 1</code> produit l’opération par lignes; <code>MARGIN = 2</code> produit l’opération par colonnes.<a href="r%C3%A9f%C3%A9rences.html#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
+<div class="sourceCode" id="cb133"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Il faut un vecteur de données `vec`, un nombre de répétitions `nreps`</span>
+<span class="co"># et une fonction `theta` à calculer sur le vecteur</span>
+<span class="va">bootstrap</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">vec</span>, <span class="va">nreps</span>, <span class="va">theta</span><span class="op">)</span><span class="op">{</span>
+  <span class="va">btsp.vec</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">vec</span>, <span class="va">nreps</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">vec</span><span class="op">)</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,
+                     nrow <span class="op">=</span> <span class="va">nreps</span><span class="op">)</span>
+  <span class="va">btsp.res</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span>X <span class="op">=</span> <span class="va">btsp.vec</span>, MARGIN <span class="op">=</span> <span class="fl">1</span>, FUN <span class="op">=</span> <span class="va">theta</span><span class="op">)</span>
+  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">btsp.res</span><span class="op">)</span>
+<span class="op">}</span>
+
+<span class="co"># En utilisant les données de l'exemple précédent</span>
+<span class="va">btsp</span> <span class="op">&lt;-</span> <span class="fu">bootstrap</span><span class="op">(</span>vec <span class="op">=</span> <span class="va">X</span>, nreps <span class="op">=</span> <span class="va">nreps</span>, theta <span class="op">=</span> <span class="va">mean</span><span class="op">)</span>
+
+<span class="co"># Pour fin de comparaison :</span>
+<span class="co"># Voici la moyenne et l'erreur standard de ce bootstrap</span>
+<span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">btsp</span><span class="op">)</span>  ; <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">btsp</span><span class="op">)</span>
+<span class="co">#&gt; [1] 10.2</span>
+<span class="co">#&gt; [1] 0.484</span>
+
+<span class="co"># Voici la moyenne et l'erreur standard à partir du premier bootstrap</span>
+<span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">moyenne.X</span><span class="op">)</span>  ; <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">moyenne.X</span><span class="op">)</span>
+<span class="co">#&gt; [1] 10.2</span>
+<span class="co">#&gt; [1] 0.481</span>
+
+<span class="co"># Et voici la moyenne et l'erreur standard originales</span>
+<span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">X</span><span class="op">)</span> ; <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">X</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span>
+<span class="co">#&gt; [1] 10.2</span>
+<span class="co">#&gt; [1] 0.485</span></code></pre></div>
+</div>
+<div id="les-packages-1" class="section level3" number="10.2.1">
+<h3>
+<span class="header-section-number">10.2.1</span> Les packages<a class="anchor" aria-label="anchor" href="#les-packages-1"><i class="fas fa-link"></i></a>
+</h3>
+<p>Il existe plusieurs packages pour réaliser du bootstrap dans <strong>R</strong>. Il y a <code>bootstrap</code> <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-bootstrap" role="doc-biblioref">Tibshirani &amp; Leisch, 2019</a>)</span> et <code>boot</code> <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-Canty21" role="doc-biblioref">Canty &amp; Ripley, 2021</a>)</span>. Ajouter à cela que plusieurs fonctions <strong>R</strong> possèdent des options de bootstrap intégrées (qu’il faut commander dans les arguments). Plusieurs analyses statistiques qui recourent régulièrement aux bootstraps auront déjà des options implantées.</p>
+</div>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="analyser.html"><span class="header-section-number">9</span> Analyser</a></div>
+<div class="next"><a href="exercice-analyse.html">Exercices</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#simuler"><span class="header-section-number">10</span> Simuler</a></li>
+<li>
+<a class="nav-link" href="#les-simulations-monte-carlo"><span class="header-section-number">10.1</span> Les simulations Monte-Carlo</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#le-probl%C3%A8me-de-monty-hall"><span class="header-section-number">10.1.1</span> Le problème de Monty-Hall</a></li></ul>
+</li>
+<li>
+<a class="nav-link" href="#le-bootstrap"><span class="header-section-number">10.2</span> Le bootstrap</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#les-packages-1"><span class="header-section-number">10.2.1</span> Les packages</a></li></ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/quantmeth/MQR/blob/master/05-Simuler.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/quantmeth/MQR/edit/master/05-Simuler.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Méthodes Quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-05-19.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

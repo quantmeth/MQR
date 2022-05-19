@@ -1,4 +1,4 @@
-# (PART) Importation, gestion et visualisation de jeux de données {-}
+# (PART) Jeux de données {-}
 
 <!-- # Introduction {#gestions-intro .unnumbered} -->
 
@@ -6,7 +6,7 @@
 
 <!-- Dans cette section, la création, le téléchargement et la sauvegarde de jeux de données seront abordés. Ensuite, les manipulations rudimentaires d'un jeu de données seront expliquées. -->
 
-# Gestion rudimentaire des jeux de données
+# Gérer
 
 Réaliser des analyses statistiques et des représentations graphiques nécessitent un jeu de données sur lequel travailler. Après l'ouverture de **R**, l'usager remarquera aisément que le logiciel n'est pas un tableur (tableau de données), contrairement aux logiciels traditionnels. Cette caractéristique l'a peut-être même frappé à la première ouverture! Pour utiliser données, il faudra les conserver dans un fichier externe de la même façon qu'un script, à l'exception qu'il faudra importer les données pour son utilisation.
 
@@ -119,9 +119,7 @@ Par la suite, en s'assurant que nouveau fichier se trouve dans le répertoire ac
 **R**Studio offre une interface simple pour télécharger directement un jeu de de données IBM SPSS, Microsoft Excel, SAS, STATA, et des extensions ".txt" et ".readr". Il y a même un outil de visualisation pour s'assurer que le tout est en ordre.
 
 > File
-
 > Import dataset
-
 > From "format de fichier"
 
 où "format de fichier" remplace Text, SPSS, Excel et les autres. En indiquant le chemin du fichier, **R** importera le fichier et fournira une syntaxe afin de conserver l'importation pour de futurs usages.
@@ -255,7 +253,7 @@ knitr::include_graphics("image//editR.PNG")
 
 En général, l'utilisateur importera ces données dans l'environnement **R**. Il devra même le faire avec `data_edit()` à chaque ouverture d'un nouvelle séance, pour poursuivre l'entrée ou réaliser des manipulations.
 
-# Importation de jeux de données
+# Importer
 
 Dans la plupart des situations, les analyses et les graphiques seront réalisés à partir d'un jeu de données se trouvant dans un fichier. Ce devra être importé en **R** pour être manipulé. Les jeux de données peuvent se trouver dans un fichier dans l'ordinateur, mais aussi sur le web. Ils peuvent être en différents types de format.
 
@@ -424,7 +422,7 @@ et en sélectionnant le type de fichier. Il suffit alors de suivre les instructi
 
 Parfois des valeurs s'ajoutent lors de l'exportation ou l'importation des données. Des logiciels traditionnels font parfois ce mauvais tour. Une vérification de la base de données est par conséquent impérative, surtout lors de la première utilisation du jeu de données. Deux méthodes de vérification sont suggérées. D'abord ouvrir le fichier avec un éditeur de texte de base, comme bloc-notes, pour s'assurer qu'aucun caractère ne s'est indésirable ajouté à l'insu de l'utilisateur. Ensuite, voir avec la fonction `View()` dans **R** si la base de données s'affiche correctement et que les variables, et lignes semblent correspondre à ce qui est attendu.
 
-# Gestion avancée de jeux de données
+# Manipuler
 
 Avec **R**, il ne sera jamais nécessaire de manipuler directement le fichier contenant les données. Cette pratique est déconseillée. Préserver le fichier original intact évite de nombreuses complications, comme la compatibilité entre les versions, la reproductibilité des bases, la maintenance, etc. Toutes les manipulations seront conservées dans un script. Cela favorise le partage entre collègues, mais aussi le suivi des modifications apportées en comparant tout simplement les traces dans entre les syntaxes. Le jeu de données est importé dans la console et il ne sera plus touché par l'utilisateur. Le script consevera les manipulations réalisées qui pourront être refaites facilement en quelques cliques.
 
@@ -601,7 +599,7 @@ jd %>%
   cor_test() 
 ```
 
-# Visualisation des données
+# Visualiser
 
 La visualisation de données est l'un des deux objectifs fondamentaux de **R** (l'autre étant évidemment de faire des statistiques). Il existe plusieurs méthodes et packages pour produire rapidement et simplement des graphiques. Beaucoup de matériel se retrouve en ligne pour maîtriser les graphiques, mais surtout les personnaliser. L'objectif, bien modeste, de cette section n'est pas de rendre le lecteur maître de la production de figure, mais bien de lui faire faire ses premiers pas et de l'outiller pour qu'il puisse produire simplement et rapidement des graphiques de qualité.
 
@@ -790,3 +788,48 @@ Il existe une multitudes de livres, de sites web, de tutoriels en ligne et d'ate
 3. Prendre le jeu de données `msleep` et produire un diagramme à bâton pour observer la fréquence de différents type de régime (`vore`). **Attention** aux données manquantes.
 
 4. Prendre le jeu de données `msleep` et produire une boîte à moustache pour observer le temps total de sommeil (`sleep_total`) par rapport aux régimes (`vore`). **Attention** aux données manquantes.
+
+<!-- # Travail pratique cours 5 -->
+<!-- # Importer la base de données #### -->
+<!-- # donnees_tp4.csv (sur moodle) -->
+
+<!-- # Créer une variable d'IMC #### -->
+<!-- # IMC = poids / taille^2 -->
+
+<!-- # Extraire le sommaire des statistiques descriptives #### -->
+<!-- # moyenne, écart type, minimum, maximum, taille -->
+<!-- # pour taille, poids et IMC -->
+
+<!-- # Faire un test t #### -->
+<!-- # entre sexe et taille -->
+
+<!-- # Faire une anova  #### -->
+<!-- # entre scolarite et poids -->
+
+<!-- # Faire une corrélation #### -->
+<!-- # entre pas et IMC -->
+
+<!-- # Faire une boîte à moustache #### -->
+<!-- # avec taille pas rapport à sexe -->
+
+<!-- # Faire un histogramme #### -->
+<!-- # pour poids -->
+
+<!-- # Faire un diagramme de dispersion#### -->
+<!-- # avec pas et IMC -->
+
+<!-- # Travail pratique cours 5 -->
+<!-- # Importer la base de données #### -->
+<!-- # donnees_tp4.csv (sur moodle) -->
+
+<!-- # Créer une variable d'IMC #### -->
+<!-- # IMC = poids / taille^2 -->
+
+<!-- # Faire un test t #### -->
+<!-- # entre sexe et taille -->
+
+<!-- # Faire une anova  #### -->
+<!-- # entre scolarite et poids -->
+
+<!-- # Faire une corrélation #### -->
+<!-- # entre pas, taille, poids, et IMC -->

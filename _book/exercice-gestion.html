@@ -19,9 +19,13 @@
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
 </head>
-<body data-spy="scroll" data-target="#toc">
+<body>
+<p>
+    \(
+    \newcommand{\EX}{\mathbb{E}}
+    \)
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css"></p>
 
 <div class="container-fluid">
 <div class="row">
@@ -43,17 +47,25 @@
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Bienvenue!</a></li>
 <li><a class="" href="pr%C3%A9face.html">Préface</a></li>
-<li class="book-part">Les rudiments de R</li>
-<li><a class="" href="commencer-avec-r.html"><span class="header-section-number">1</span> Commencer avec R</a></li>
-<li><a class="" href="programmer-avec-r.html"><span class="header-section-number">2</span> Programmer avec R</a></li>
-<li><a class="" href="fonctions-statistiques-essentielles.html"><span class="header-section-number">3</span> Fonctions statistiques essentielles</a></li>
+<li class="book-part">Rudiments</li>
+<li><a class="" href="commencer.html"><span class="header-section-number">1</span> Commencer</a></li>
+<li><a class="" href="programmer.html"><span class="header-section-number">2</span> Programmer</a></li>
+<li><a class="" href="calculer.html"><span class="header-section-number">3</span> Calculer</a></li>
 <li><a class="" href="exercice-rudiments.html">Exercices</a></li>
-<li class="book-part">Importation, gestion et visualisation de jeux de données</li>
-<li><a class="" href="gestion-rudimentaire-des-jeux-de-donn%C3%A9es.html"><span class="header-section-number">4</span> Gestion rudimentaire des jeux de données</a></li>
-<li><a class="" href="importation-de-jeux-de-donn%C3%A9es.html"><span class="header-section-number">5</span> Importation de jeux de données</a></li>
-<li><a class="" href="gestion-avanc%C3%A9e-de-jeux-de-donn%C3%A9es.html"><span class="header-section-number">6</span> Gestion avancée de jeux de données</a></li>
-<li><a class="" href="visualisation-des-donn%C3%A9es.html"><span class="header-section-number">7</span> Visualisation des données</a></li>
+<li class="book-part">Jeux de données</li>
+<li><a class="" href="g%C3%A9rer.html"><span class="header-section-number">4</span> Gérer</a></li>
+<li><a class="" href="importer.html"><span class="header-section-number">5</span> Importer</a></li>
+<li><a class="" href="manipuler.html"><span class="header-section-number">6</span> Manipuler</a></li>
+<li><a class="" href="visualiser.html"><span class="header-section-number">7</span> Visualiser</a></li>
 <li><a class="active" href="exercice-gestion.html">Exercices</a></li>
+<li class="book-part">La statistique</li>
+<li><a class="" href="inf%C3%A9rer.html"><span class="header-section-number">8</span> Inférer</a></li>
+<li><a class="" href="analyser.html"><span class="header-section-number">9</span> Analyser</a></li>
+<li><a class="" href="simuler.html"><span class="header-section-number">10</span> Simuler</a></li>
+<li><a class="" href="exercice-analyse.html">Exercices</a></li>
+<li class="book-part">Analyses statistiques</li>
+<li><a class="" href="r%C3%A9gression.html"><span class="header-section-number">11</span> Régression</a></li>
+<li><a class="" href="cr%C3%A9er.html"><span class="header-section-number">12</span> Créer</a></li>
 <li><a class="" href="solutions.html">Solutions</a></li>
 <li><a class="" href="r%C3%A9f%C3%A9rences.html">Références</a></li>
 </ul>
@@ -72,10 +84,14 @@
 <li><p>Prendre le jeu de données <code>msleep</code> et produire un diagramme à bâton pour observer la fréquence de différents type de régime (<code>vore</code>). <strong>Attention</strong> aux données manquantes.</p></li>
 <li><p>Prendre le jeu de données <code>msleep</code> et produire une boîte à moustache pour observer le temps total de sommeil (<code>sleep_total</code>) par rapport aux régimes (<code>vore</code>). <strong>Attention</strong> aux données manquantes.</p></li>
 </ol>
+<!-- # Travail pratique cours 5 --><!-- # Importer la base de données #### --><!-- # donnees_tp4.csv (sur moodle) --><!-- # Créer une variable d'IMC #### --><!-- # IMC = poids / taille^2 --><!-- # Extraire le sommaire des statistiques descriptives #### --><!-- # moyenne, écart type, minimum, maximum, taille --><!-- # pour taille, poids et IMC --><!-- # Faire un test t #### --><!-- # entre sexe et taille --><!-- # Faire une anova  #### --><!-- # entre scolarite et poids --><!-- # Faire une corrélation #### --><!-- # entre pas et IMC --><!-- # Faire une boîte à moustache #### --><!-- # avec taille pas rapport à sexe --><!-- # Faire un histogramme #### --><!-- # pour poids --><!-- # Faire un diagramme de dispersion#### --><!-- # avec pas et IMC --><!-- # Travail pratique cours 5 --><!-- # Importer la base de données #### --><!-- # donnees_tp4.csv (sur moodle) --><!-- # Créer une variable d'IMC #### --><!-- # IMC = poids / taille^2 --><!-- # Faire un test t #### --><!-- # entre sexe et taille --><!-- # Faire une anova  #### --><!-- # entre scolarite et poids --><!-- # Faire une corrélation #### --><!-- # entre pas, taille, poids, et IMC -->
 </div>
+
+
+
   <div class="chapter-nav">
-<div class="prev"><a href="visualisation-des-donn%C3%A9es.html"><span class="header-section-number">7</span> Visualisation des données</a></div>
-<div class="next"><a href="solutions.html">Solutions</a></div>
+<div class="prev"><a href="visualiser.html"><span class="header-section-number">7</span> Visualiser</a></div>
+<div class="next"><a href="inf%C3%A9rer.html"><span class="header-section-number">8</span> Inférer</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav"><li><a class="nav-link" href="#exercice-gestion">Exercices</a></li></ul>
@@ -95,7 +111,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Méthodes Quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-05-16.</p>
+    <p>"<strong>Méthodes Quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-05-19.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

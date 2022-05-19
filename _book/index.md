@@ -1,7 +1,7 @@
 --- 
 title: "Méthodes Quantitatives avec R"
 author: "P.-O. Caron"
-date: "2022-05-16"
+date: "2022-05-19"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [ma.bib]
@@ -30,7 +30,7 @@ Les étudiants et étudiantes de la classe PSY7105 d'automne 2021.
 
 # Préface {-}
 
-> Il faut être naîf pour croire que le code fonctionne tel que prévu.
+> Il faut être naïf pour croire que le code fonctionne tel que prévu.
 
 La méthode scientifique impose aux expérimentateurs de tirer des conclusions avec scrutinie sur leur objet d'étude. Toutefois, ils font confiance à d'autres pour des tâches qui dépassent leur champs de compétence, et ce, avec raisons, car ces autres expertises peuvent être fort compliquées et nécessitées d'autres formations académiques complémentaires pour les acquérir. En sciences humaines et sociales, les statistiques font parties de ces expertises exterrieures qui se doivent d'être apprises. En comprendre les fondements et l'implantation logiciel est nécessaire pour ne pas fléchir son esprit critique, ne serait-ce qu'un instant. Trop souvent, les expérimentateurs ont une introduction aux statistiques et font confiance pour les calculs sophistiqués à des logiciels commerciaux. Bien souvent, le tout se déroule sans tracas. Une expérience plus substantielleavec ces logiciels montrera qu'ils ont eux-aussi leurs défauts, leurs bogues et leurs erreurs de calcul. Sans connaître le résultat attendu, comment distinguer le vrai du faux des sorties statistiques?
 

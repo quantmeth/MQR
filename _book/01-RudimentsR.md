@@ -1,6 +1,6 @@
-# (PART) Les rudiments de **R** {-}
+# (PART) Rudiments {-}
 
-# Commencer avec **R**
+# Commencer
 <!-- # Introduction {#rudiments-intro .unnumbered} -->
 
 **R** [@R-base] est un logiciel de programmation statistique libre-accès et un environnement pour la computation statistique et l'affichage graphique. Il s'agit d'un projet GNU qui est similaire au langage et à l'environnement S, développés aux Laboratoires Bell (anciennement AT\&T, aujourd'hui Lucent Technologies) par John Chambers. Créé par **R**oss Ihaka et **R**obert Gentleman, **R** fournit une grande variété de techniques statistiques (modélisation linéaire et non linéaire, analyses statistiques classiques, analyse de séries chronologiques, classification) et graphiques, et est hautement extensible. 
@@ -79,7 +79,7 @@ Ce qu'il importe le plus avec **R**, et ce qui fait resplendir **R**Studio, est 
 
 **R**Studio contient déjà un panneau contenant un script qu'il sera possible de sauvegarder et de rouler directement dans la console. Ce dernier est directement lié et il est possible de rouler la syntaxe ligne par ligne avec  **CTRL + Enter** (Windows) ou **CMD + Enter** (MacOS).
 
-# Programmer avec **R**
+# Programmer
 
 Dans les prochaines sections, les différents éléments de programmation permettant la création et la manipulation de données seront présentés.
 
@@ -137,7 +137,7 @@ La première utilisation qu'un nouvel usager fait de **R** est généralement d'
 2 + 2
 #> [1] 4
 1 / 3
-#> [1] 0.33
+#> [1] 0.333
 2 * 3 + 2 ^ 2
 #> [1] 10
 ```
@@ -168,7 +168,7 @@ sqrt(4)
 4^(1/2)
 #> [1] 2
 log(4)
-#> [1] 1.4
+#> [1] 1.39
 ```
 
 ## Les commentaires
@@ -334,7 +334,7 @@ for(i in k){
 }
 ```
 
-## Définir des clauses conditionnelles
+## Les clauses conditionnelles
 
 Pour réaliser des opérations sous certaines conditions ou opérer des décisions automatiques, il est possible d'utiliser des arguments conditionnels avec des opérateurs logiques. Par exemple, sélectionner des unités ayant certaines caractéristiques, comme les participants ayant 18 ans et moins, les personnes ayant un trouble du spectre de l'autiste, ou encore par sexe. Il est aussi possible d'utiliser les opérateurs pour définir à quelle condition telle ou telle autre fonction doit être utilisée. Il faudra alors utiliser les arguments logiques.
 
@@ -505,9 +505,9 @@ Il existe également la fonction `??nom` qui produit une liste de toutes fonctio
 
 Il arrive parfois que le code utilisé ne fonctionne pas, que des erreurs se produisent ou que des fonctions fort utiles demeurent inconnues. Même après plusieurs années d'utilisation, les utilisateurs font encore quotidiennement des erreurs (au moins une!). Un excellent outil est d'utiliser un moteur de recherche dans un fureteur de prédilection, de poser une question à l'aide de quelques mots clés bien choisis, préférablement en anglais, et en y inscrivant "with R" ou "in R" ou "R". La plupart du temps, les programmeurs de packages auront une solution sur leur site ou leurs instructions de packages. Il y a aussi des plateformes publiques et en ligne, comme [StackOverflow](https://stackoverflow.com/) qui collectent questions et réponses sur le codage. D'autres utilisateurs peuvent avoir posé la même question et des auteurs de programmes R et d'autres usagers y auront répondu aux bénéfices de tous. Dans le cas d'une solution introuvable, ces mêmes plateformes permettent de poser de nouvelles questions.  Il faudra toutefois attendre qu'un usager plus expérimenté prenne le temps d'y répondre.
 
-# Fonctions statistiques essentielles
+# Calculer
 
-Dans cette section, des fonctions utilisées couramment seront présentées. L'accent est mis sur la définition de la fonction (qu'est-ce qu'elle calcule?), le développement d'une fonction maison (rédigée par l'usager pour la mettre en pratique) et l'identification de la fonction déjà implantée en **R**.
+Dans cette section, les fonctions essentielles couramment utilisées sont présentées en rafale. L'accent est mis sur la définition de la fonction (qu'est-ce qu'elle fait?) et son utilité (à quoi sert-elle?). Pour les fonctions essentielles de nature statistiques (moyennes, médianes, etc.), cette section développe une fonction maison (rédigée par l'utilisateur pour la mettre en pratique) et identifie la fonction déjà implantée en **R**.
 
 ## La longueur
 
@@ -603,9 +603,9 @@ mediane <- function(x) {
 # Tester ensuite:
 x <- c(42, 23, 53, 77, 93, 20, 37, 24, 60, 62)
 median(x)
-#> [1] 48
+#> [1] 47.5
 mediane(x)
-#> [1] 48
+#> [1] 47.5
 ```
 
 L'expression `n%%2`, lue $n \bmod 2$, joue astucieusement le rôle de vérifier si `n` est impaire. La formule générale $x \bmod y$ représente une opération binaire associant à deux entiers naturels le reste de la division du premier par le second. Par exemple, $60 \bmod 7$, noter `60%%7` dans **R**, donne $4$ soit le reste de $7*8 + 4 = 60$. Le logiciel le confirme.
@@ -661,9 +661,9 @@ ecart.type <- function(x){
   return(et)
 }
 ecart.type(x)
-#> [1] 17
+#> [1] 17.3
 sd(x)
-#> [1] 17
+#> [1] 17.3
 ```
 
 
@@ -733,11 +733,11 @@ set.seed(9876)
 
 # Génère 5 nombres aléatoires en fonction des paramètres
 rnorm(n = 5, mean = 10, sd = .5)
-#> [1] 10.5  9.4  9.9 10.0 10.0
+#> [1] 10.51  9.42  9.90  9.95 10.01
 
 # Retourne les valeurs associés à ces probabilités
 qnorm(c(.025,.975))
-#> [1] -2  2
+#> [1] -1.96  1.96
 
 # Retourne la probabilité d'obtenir un score de 1.645 et moins
 pnorm(1.645)
@@ -745,10 +745,30 @@ pnorm(1.645)
 
 # La valeur de la densité de la distribution
 dnorm(0)
-#> [1] 0.4
+#> [1] 0.399
 ```
 
 Ces quatre lettres peuvent être associées à toutes les distributions énumérées et bien d'autres. Elles respectent toutes ce cadre.
+
+
+## Répéter des valeurs
+
+La fonction `rep()` sera utile pour répéter volontairement des valeurs. Il y deux possibilité de répétitions: l'argument `times` définit le nombre de fois que le vecteur est répété; l'arguement `each` définit le nombre de fois que chaque élément est répété.
+
+
+```r
+vec <- c(2, 4, "chat")
+
+# Répéter vec trois fois
+rep(vec, times = 3)
+#> [1] "2"    "4"    "chat" "2"    "4"    "chat" "2"    "4"   
+#> [9] "chat"
+
+# Répéter chaque éléments de vec trois fois
+rep(vec, each = 3)
+#> [1] "2"    "2"    "2"    "4"    "4"    "4"    "chat" "chat"
+#> [9] "chat"
+```
 
 ## Création d'une matrice
 
@@ -787,26 +807,71 @@ matrix(1:16, ncol = 4, nrow = 4)
 #> [4,]    4    8   12   16
 ```
 
-Les matrices sont une formes de jeu données (numérique seulement). Plus tard, les `data.frame` ou jeu de données seront présentés.
+Les matrices sont une formes de jeu données dans lequel tous les éléments partagent le même attribut (tous numériques, caractères, logiques, etc.). 
 
-## Répéter des valeurs
+## Création d'un jeu de données
 
-La fonction `rep()` sera utile pour répéter volontairement des valeurs. Il y deux possibilité de répétitions: l'argument `times` définit le nombre de fois que le vecteur est répété; l'arguement `each` définit le nombre de fois que chaque élément est répété.
+Un jeu de données (`data.frame`) est un peu comme l'extension de la matrice. La différence étant que les éléments entre les colonnes peuvent partager des attributs différents. Ainsi chaque ligne représente une unité (un participant, un objet) et chaque colonne représente une dimension (informations ou variable) différente de cette objectif. La fonction `data.frame()` permet de créer de tel objet. La fonction prend comme un argument une série de vecteurs. Si un nom
 
 
 ```r
-vec <- c(2, 4, "chat")
+# Quelques variables
+var1 <- c("Éloi", "Laurence")
+var2 <- c(6, 3)
+var3 <- c(TRUE, TRUE)
 
-# Répéter vec trois fois
-rep(vec, times = 3)
-#> [1] "2"    "4"    "chat" "2"    "4"    "chat" "2"    "4"   
-#> [9] "chat"
+# Entrer de trois vecteurs non identifiés
+jd1 <- data.frame(var1, var2, var3)
 
-# Répéter chaque éléments de vec trois fois
-rep(vec, each = 3)
-#> [1] "2"    "2"    "2"    "4"    "4"    "4"    "chat" "chat"
-#> [9] "chat"
+# Entrer de trois vecteurs identifiés
+jd2 <- data.frame(nom = var1, age = var2, enfant = var3)
+
+# Comparer
+jd1 ; jd2
+#>       var1 var2 var3
+#> 1     Éloi    6 TRUE
+#> 2 Laurence    3 TRUE
+#>        nom age enfant
+#> 1     Éloi   6   TRUE
+#> 2 Laurence   3   TRUE
 ```
+
+En utilisant `nom.de.variable = vecteur` à l'intérieur de `data.frame()`, les noms des colonnes deviennent `nom.de.variable`. Cela permettra une plus grande flexibilité lorsqu'il faudra [gèrer] et [manipuler] les données. 
+
+Comme les matrices, les jeux de données ont aussi une restriction. Alors que les jeux de données libérait l'utilisateur de la contrainte d'avoir des objets de même attributs, les jeux de données doivent être créés avec des vecteurs de même longueur. Autrement dit, chaque colonne doit avoir exactement le même nombre de lignes. Parfois, **R** procédera par recyclage pour combler les éléments. Il faudra donc porter une attention particulière, pour vérifier si c'est l'intention ou non.
+
+## Création d'une liste
+
+Une troisième option pour stocker de informations dans une seule variable est d'avoir recourt au liste. La liste libère à la fois l'utilisateur des objects de mêmes attributs et de même longueur. Pour créer une liste, il faut utiliser la fonction `list()`. Comme `data.frame()`, des noms d'éléments peuvent être donner pour chaque liste pour faciliter la manipulation ultérieure de la liste.
+
+
+```r
+#Quelques variables
+var1 <- c("chat","chien")
+var2 <- 1:10
+
+# Entrer de deux vecteurs non identifiés
+jd1 <- list(var1, var2)
+
+# Entrer de deux vecteurs identifiés
+jd2 <- list(animal = var1, nombre = var2)
+
+# Comparer
+jd1 ; jd2
+#> [[1]]
+#> [1] "chat"  "chien"
+#> 
+#> [[2]]
+#>  [1]  1  2  3  4  5  6  7  8  9 10
+#> $animal
+#> [1] "chat"  "chien"
+#> 
+#> $nombre
+#>  [1]  1  2  3  4  5  6  7  8  9 10
+```
+
+L'utilisation de listes est une caractéristique prédominante avec **R**. Par exemple, **R** ne peut sortir qu'une variable par fonction. Si la fonction doit retourner plusieurs éléments, ceux-ci devront se retrouver dans une liste. Ce qui sera plus nébuleux pour le lecteur, c'est que l'optimisation de **R** se fait par les listes. Cela sera noté aux moments appropriés.
+
 # Exercices {#exercice-rudiments .unnumbered}
 1. Quel est le résultat de `mean <- c(1, 2, 3)`? Pourquoi?
 2. Rédiger une fonction calculant l'hypoténuse d'un triangle rectangle. Rappel, le théorème de Pythagore est $c^2=a^2+b^2$.

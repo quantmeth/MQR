@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title> 7 Visualisation | Méthodes Quantitatives avec R</title>
+<meta name="author" content="P.-O. Caron">
+<meta name="description" content="La visualisation de données est l’un des deux objectifs fondamentaux de R (l’autre étant évidemment de faire des statistiques). Il existe plusieurs méthodes et packages pour produire rapidement et...">
+<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta property="og:title" content=" 7 Visualisation | Méthodes Quantitatives avec R">
+<meta property="og:type" content="book">
+<meta property="og:url" content="mqr.teluq.ca/visualisation.html">
+<meta property="og:description" content="La visualisation de données est l’un des deux objectifs fondamentaux de R (l’autre étant évidemment de faire des statistiques). Il existe plusieurs méthodes et packages pour produire rapidement et...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content=" 7 Visualisation | Méthodes Quantitatives avec R">
+<meta name="twitter:description" content="La visualisation de données est l’un des deux objectifs fondamentaux de R (l’autre étant évidemment de faire des statistiques). Il existe plusieurs méthodes et packages pour produire rapidement et...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Méthodes Quantitatives avec R</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Bienvenue!</a></li>
+<li><a class="" href="pr%C3%A9face.html">Préface</a></li>
+<li class="book-part">Les rudiments</li>
+<li><a class="" href="commencer.html"><span class="header-section-number">1</span> Commencer</a></li>
+<li><a class="" href="programmer.html"><span class="header-section-number">2</span> Programmer</a></li>
+<li><a class="" href="fonctions-statistiques-essentielles.html"><span class="header-section-number">3</span> Fonctions statistiques essentielles</a></li>
+<li><a class="" href="exercice-rudiments.html">Exercices</a></li>
+<li class="book-part">Importation, gestion et visualisation de jeux de données</li>
+<li><a class="" href="gestion-rudimentaire.html"><span class="header-section-number">4</span> Gestion rudimentaire</a></li>
+<li><a class="" href="importation.html"><span class="header-section-number">5</span> Importation</a></li>
+<li><a class="" href="manipulation-avanc%C3%A9e.html"><span class="header-section-number">6</span> Manipulation avancée</a></li>
+<li><a class="active" href="visualisation.html"><span class="header-section-number">7</span> Visualisation</a></li>
+<li><a class="" href="exercice-gestion.html">Exercices</a></li>
+<li class="book-part">Les tests d’hypothèses</li>
+<li><a class="" href="inf%C3%A9rences.html"><span class="header-section-number">8</span> Inférences</a></li>
+<li><a class="" href="exercice-inferences.html">Exercices</a></li>
+<li><a class="" href="solutions.html">Solutions</a></li>
+<li><a class="" href="r%C3%A9f%C3%A9rences.html">Références</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/quantmeth/MQR">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="visualisation" class="section level1" number="7">
+<h1>
+<span class="header-section-number"> 7</span> Visualisation<a class="anchor" aria-label="anchor" href="#visualisation"><i class="fas fa-link"></i></a>
+</h1>
+<p>La visualisation de données est l’un des deux objectifs fondamentaux de <strong>R</strong> (l’autre étant évidemment de faire des statistiques). Il existe plusieurs méthodes et packages pour produire rapidement et simplement des graphiques. Beaucoup de matériel se retrouve en ligne pour maîtriser les graphiques, mais surtout les personnaliser. L’objectif, bien modeste, de cette section n’est pas de rendre le lecteur maître de la production de figure, mais bien de lui faire faire ses premiers pas et de l’outiller pour qu’il puisse produire simplement et rapidement des graphiques de qualité.</p>
+<div id="ggplot2" class="section level2" number="7.1">
+<h2>
+<span class="header-section-number">7.1</span> ggplot2<a class="anchor" aria-label="anchor" href="#ggplot2"><i class="fas fa-link"></i></a>
+</h2>
+<p>Le package <code>ggplot2</code> est une extension du <code>tidyverse</code> avec lequel il est possible de créer simplement et rapidement des graphiques. Ces graphiques sont de qualité de publications, idéale pour les articles scientifiques. Le package fournit un langage graphique pour la création intuitive de graphiques compliqués. Il permet à l’utilisateur de créer des graphiques qui représentent des données numériques et catégorielles univariées et multivariées.</p>
+<p>La logique de <code>ggplot2</code> repose sur la grammaire des graphiques (<em>Grammar of Graphics</em>), c’est-à-dire, l’idée selon laquelle toutes les figures peuvent être construites à partir des mêmes composantes. Il s’agit de la deuxième version du package. Voilà pour l’appellation <em>ggplot2</em>.</p>
+<p>Dans la grammaire de graphique, une figure possède huit niveaux, dont les trois principaux sont les suivants :</p>
+<ul>
+<li><p><em>data</em>, les données utilisées;</p></li>
+<li><p><em>mapping (aesthetic)</em>, cartographier les variables, c’est-à-dire, établir la carte des variables (abscisses, ordonnées, coleur, forme, taille, etc.);</p></li>
+<li><p><em>geometric représentation</em>, la représentation géométrique ou le type de représentation graphique, par exemple, diagramme de dispersion, histogramme, boîte à moustache, etc.</p></li>
+</ul>
+<p>Les cinq autres son, <em>statistics</em>, <em>facet</em>, <em>coordinate space</em>, <em>labels</em>, <em>theme</em> permettent de personnaliser la figure.</p>
+<p>Les composantes les plus importantes sont les trois premières, soit les données, la cartographie et la représentation géométrique. Ce sont les éléments de base pour débuter le graphique. Les autres composantes viendront bonifier la figure tout en l’ajustant au besoin de l’utilisateur.</p>
+<p>La fonction <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code> met en place la figure. Le résultat d’utiliser la fonction <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code> seule est illustrée à la Figure <a href="visualisation.html#fig:ggplotseul">7.1</a></p>
+<div class="sourceCode" id="cb82"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">jd</span><span class="op">)</span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:ggplotseul"></span>
+<img src="02-Gestion_files/figure-html/ggplotseul-1.png" alt="La fonction ggplot() seule - Rien" width="75%" height="75%"><p class="caption">
+Figure 7.1: La fonction ggplot() seule - Rien
+</p>
+</div>
+<p>Il est aussi possible de <em>piper</em> (prononcé avec un fort accent anglophone) les données dans la fonction.</p>
+<div class="sourceCode" id="cb83"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">jd</span> <span class="op"><a href="https://rpkgs.datanovia.com/rstatix/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<p>Pour afficher des graphiques, il faut ajouter <code>+</code>, puis une représentation géométrique ainsi que la cartographie (<em>mapping</em>). La cartographie (<code>aes(mapping = )</code>- <em>aes</em> désigne l’esthétisme, <em>aesthetic</em>) peut se trouver dans <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code> ou dans la représentation géométrique. Si elle est dans <code>ggplot</code>, elle est passée aux autres niveaux.</p>
+<p>Voici une liste des représentations géométriques possibles.</p>
+<ul>
+<li><p><code><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line()</a></code> crée une ligne qui lie toutes les valeurs, très utiles pour une série temporelle (abscisse = temps, ordonnée = variable dépendante)</p></li>
+<li><p><code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point()</a></code> crée un diagramme de dispersion ou un nuage de point, très utile pour les corrélations</p></li>
+<li><p><code><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar()</a></code> crée un diagramme à bâton, idéal pour présenter des proportions, des fréquences ou des données comptées</p></li>
+<li><p><code><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram()</a></code> crée un histogramme des variables</p></li>
+<li><p><code>geom_box()</code> crée une boîte à moustache, idéal pour identifier des valeurs aberrantes et comparer la variabilité entre des groupes.</p></li>
+<li><p><code><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth()</a></code> crée la ligne de prédiction des données avec des intervalles de confiances, la plupart des utilisateurs voudront certainement ces arguments <code>geom_smooth(method = lm)</code> (par défaut) ou sans l’erreur standard (<code>se = FALSE</code>).</p></li>
+<li><p><code>geom_error()</code> crée de</p></li>
+</ul>
+<p>Certaines cartographies sont d’ailleurs compatibles, <code><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth()</a></code> et <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point()</a></code>, par exemple.</p>
+<p>La figure <a href="visualisation.html#fig:ggplotpoint">7.2</a> montre un diagramme dispersion construit à partir du jeu de données <code>jd</code> <em>piper</em> dans la fonction <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code> dans laquelle la cartographie est passée <code>mapping = aes(x = mass, y = height)</code>, un second niveau est ajouté <code>+</code> et la représentation.</p>
+<div class="sourceCode" id="cb84"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">jd</span> <span class="op"><a href="https://rpkgs.datanovia.com/rstatix/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">mass</span>, y <span class="op">=</span> <span class="va">height</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:ggplotpoint"></span>
+<img src="02-Gestion_files/figure-html/ggplotpoint-1.png" alt="Diagramme de dispersion" width="75%" height="75%"><p class="caption">
+Figure 7.2: Diagramme de dispersion
+</p>
+</div>
+<p>Voici une liste d’exemples de différentes représentations géométriques.</p>
+</div>
+<div id="diagramme-de-dispersion" class="section level2" number="7.2">
+<h2>
+<span class="header-section-number">7.2</span> Diagramme de dispersion<a class="anchor" aria-label="anchor" href="#diagramme-de-dispersion"><i class="fas fa-link"></i></a>
+</h2>
+<p>Pour réaliser un diagramme de dispersion, la fonction se nomme <code>geom_point</code>. La cartographie identifie la variable à l’axe des <span class="math inline">\(x\)</span> (horizontal) et des <span class="math inline">\(y\)</span> (vertical). Dans cet exemple, il s’agit du poids (<span class="math inline">\(x\)</span>) et de la taille (<span class="math inline">\(y\)</span>). La cartographie ne se limite pas aux axes par contre. Dans cet exemple, la forme <code>shape</code> est aussi un dimension manipulée. Il aurait pu s’agir de <code>color</code> et même de <code>size</code>. Dans le code ci-dessous, <code>size</code> est placé à l’extérieur de <em>mapping</em>, il s’agit alors d’une constante (elle change la taille des points), c’est-à-dire qu’elle ne varie pas avec les variables.</p>
+<div class="sourceCode" id="cb85"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">jd</span> <span class="op"><a href="https://rpkgs.datanovia.com/rstatix/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">mass</span>, y <span class="op">=</span> <span class="va">height</span>, shape <span class="op">=</span> <span class="va">sex</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> </code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:diagdisp"></span>
+<img src="02-Gestion_files/figure-html/diagdisp-1.png" alt="Le lien entre le poids et la taille en fonction du sexe" width="75%" height="75%"><p class="caption">
+Figure 7.3: Le lien entre le poids et la taille en fonction du sexe
+</p>
+</div>
+<p>La figure <a href="visualisation.html#fig:diagdisp2">7.4</a> montre le résultat si `size``est ajouté au <em>mapping</em> pour identifier l’IMC. Les unités avec un plus grand IMC obtiennent un plus gros pointeur.</p>
+<div class="sourceCode" id="cb86"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">jd</span> <span class="op"><a href="https://rpkgs.datanovia.com/rstatix/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">mass</span>, y <span class="op">=</span> <span class="va">height</span>, shape <span class="op">=</span> <span class="va">sex</span>, size <span class="op">=</span> <span class="va">IMC</span><span class="op">)</span><span class="op">)</span> </code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:diagdisp2"></span>
+<img src="02-Gestion_files/figure-html/diagdisp2-1.png" alt="Le lien entre le poids et la taille en fonction de l'IMC et du sexe" width="75%" height="75%"><p class="caption">
+Figure 7.4: Le lien entre le poids et la taille en fonction de l’IMC et du sexe
+</p>
+</div>
+<p>On peut y ajouter la droite de régression, comme la Figure <a href="visualisation.html#fig:diagdisp3">7.5</a> le montre. Ne pas ajouter <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point()</a></code> ne ferait que produire la droite. Les arguments de <code><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth()</a></code> indique que l’utilisation du modèle linéaire et l’absence des intervalles de confiance. Dans ce code, également comme le <em>mapping</em> est ajouté à <code>ggplot</code> directement, il se généralise directement à <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point()</a></code> et <code>geom_smoooth()</code></p>
+<div class="sourceCode" id="cb87"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">jd</span> <span class="op"><a href="https://rpkgs.datanovia.com/rstatix/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">mass</span>, y <span class="op">=</span> <span class="va">height</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method <span class="op">=</span> <span class="va">lm</span>, se <span class="op">=</span> <span class="cn">FALSE</span>, color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span>
+<span class="co">#&gt; `geom_smooth()` using formula 'y ~ x'</span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:diagdisp3"></span>
+<img src="02-Gestion_files/figure-html/diagdisp3-1.png" alt="Le lien entre le poids et la taille en fonction de l'IMC" width="75%" height="75%"><p class="caption">
+Figure 7.5: Le lien entre le poids et la taille en fonction de l’IMC
+</p>
+</div>
+</div>
+<div id="boîte-à-moustache" class="section level2" number="7.3">
+<h2>
+<span class="header-section-number">7.3</span> Boîte à moustache<a class="anchor" aria-label="anchor" href="#bo%C3%AEte-%C3%A0-moustache"><i class="fas fa-link"></i></a>
+</h2>
+<p>La boîte à moustaches (<em>box-and-whisker plot</em>) est une figure permettant de voir la variabilité des données. Elle résume seulement quelques indicateurs de position soit la médiane, les quartiles, le minimum, et le maximum. Ce diagramme est utilisé principalement pour détecter des valeurs aberrantes et comparer la variabilité entre les groupes. C’est la représentation géométrique <code><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot()</a></code> qui permettra de créer des boîtes à moustache. La cartographie prend en argument un variable nominale en <code>x</code> et une variable continue en <code>y</code>.</p>
+<div class="sourceCode" id="cb88"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">jd</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">sex</span>, y <span class="op">=</span> <span class="va">IMC</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:boxplot1"></span>
+<img src="02-Gestion_files/figure-html/boxplot1-1.png" alt="Boîte à moustache de l'IMC en fonction du sexe" width="75%" height="75%"><p class="caption">
+Figure 7.6: Boîte à moustache de l’IMC en fonction du sexe
+</p>
+</div>
+<p>Une fonction intéressante est la fonction <code><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip()</a></code> qui tourne (<em>flip</em>) les axes, les coordonnées. L’axe <span class="math inline">\(x\)</span> prend la place de <span class="math inline">\(y\)</span>; <span class="math inline">\(y\)</span> prend la place de <span class="math inline">\(x\)</span>. Elle peut être pratique pour améliorer la qualité visuelle de certains graphiques.</p>
+</div>
+<div id="histogramme" class="section level2" number="7.4">
+<h2>
+<span class="header-section-number">7.4</span> Histogramme<a class="anchor" aria-label="anchor" href="#histogramme"><i class="fas fa-link"></i></a>
+</h2>
+<p>Un histogramme permet de représenter la répartition empirique d’une variable. Il donne aperçu de la distribution sous-jacente, soit comment les données sont distribuées. Cette figure permet de voir la forme de la distribution et permet de voir si elle ne démontre pas d’anomalie. La représentation graphique <code><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram()</a></code> produit des histogrammes. S’il faut en produire pour différentes variables, une statégie simple est les produire en série.</p>
+<div class="sourceCode" id="cb89"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Trois histogrammes en trois figures</span>
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">jd</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">height</span><span class="op">)</span><span class="op">)</span>
+
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">jd</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">mass</span><span class="op">)</span><span class="op">)</span>
+
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">jd</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">IMC</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p>Des techniques plus avancées permettront de créer la Figure <a href="visualisation.html#fig:hist">7.7</a> d’un seul coup.</p>
+<div class="sourceCode" id="cb90"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Trois histogrammes en une seule figure</span>
+<span class="co"># en optimisant avec le tidyverse</span>
+<span class="va">jd</span> <span class="op"><a href="https://rpkgs.datanovia.com/rstatix/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://purrr.tidyverse.org/reference/keep.html">keep</a></span><span class="op">(</span><span class="va">is.numeric</span><span class="op">)</span> <span class="op"><a href="https://rpkgs.datanovia.com/rstatix/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/gather.html">gather</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://rpkgs.datanovia.com/rstatix/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">value</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span> <span class="va">key</span>, scales <span class="op">=</span> <span class="st">"free"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span><span class="op">)</span>
+<span class="co">#&gt; `stat_bin()` using `bins = 30`. Pick better value with</span>
+<span class="co">#&gt; `binwidth`.</span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:hist"></span>
+<img src="02-Gestion_files/figure-html/hist-1.png" alt="Histogrammes des variables continues" width="75%" height="75%"><p class="caption">
+Figure 7.7: Histogrammes des variables continues
+</p>
+</div>
+<p>Enfin, s’il est désiré de comparer deux distributions de groupes différents, l’argument <code>fill</code> dans la cartographie indiquera à la fonction de différencier les valeurs selon le <em>remplissage</em> des histogrammes.</p>
+<div class="sourceCode" id="cb91"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">jd</span> <span class="op"><a href="https://rpkgs.datanovia.com/rstatix/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">IMC</span>, fill <span class="op">=</span> <span class="va">sex</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>position <span class="op">=</span> <span class="st">"identity"</span>, alpha <span class="op">=</span> <span class="fl">.7</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_grey.html">scale_fill_grey</a></span><span class="op">(</span><span class="op">)</span>
+<span class="co">#&gt; `stat_bin()` using `bins = 30`. Pick better value with</span>
+<span class="co">#&gt; `binwidth`.</span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:hist2"></span>
+<img src="02-Gestion_files/figure-html/hist2-1.png" alt="Histogrammes de l'IMC par rapport au sexe" width="75%" height="75%"><p class="caption">
+Figure 7.8: Histogrammes de l’IMC par rapport au sexe
+</p>
+</div>
+<p>Dans la figure <a href="visualisation.html#fig:hist2">7.8</a>, l’argument <code>position = "identity"</code> indique de traiter les deux groupes comme différents, autrement les colonnes s’additionneraient dans le graphique. L’argument <code>alpha = .7</code> permet une transparence entre les couleurs, autrement, les valeurs <em>derrière</em> les autres ne paraîtraient pas. La valeur de <code>alpha</code> va de 0 (transparent) à 1 (opaque) et fonctionnera dans la plupart des contextes, surtout ceux liés à <code>ggplot2</code>.</p>
+</div>
+<div id="les-barres-derreurs" class="section level2" number="7.5">
+<h2>
+<span class="header-section-number">7.5</span> Les barres d’erreurs<a class="anchor" aria-label="anchor" href="#les-barres-derreurs"><i class="fas fa-link"></i></a>
+</h2>
+<p>Les barres d’erreur sont une représentation géométrique à part entière. C’est une composante que l’on peut ajouter. La fonction pour les commandées est <code><a href="https://ggplot2.tidyverse.org/reference/geom_linerange.html">geom_errorbar()</a></code>. Elle nécessite deux arguments, soit l’intervalle de confiance maximale et minimale autour des moyennes à afficher.</p>
+<p>La figure <a href="visualisation.html#fig:erreurbar">7.9</a> illustre les différences entre moyennes avec des barres d’erreur à partir de la base de données <code>ToothGrowth</code>, une étude de l’effet de la vitamine C (<code>dose</code>) selon leur administration (jus ou supplément <code>supp</code>) sur la longueur des dents des cochons d’inde. Il y a deux facteurs et une variable continue.</p>
+<p>La première étape est de tirer les statistiques sommaires, moyennes, écart type, tailles des groupes. La syntaxe tire profit de <code>groupe_by()</code> pour tirer les groupes et en faire le sommaire. Le sommaire <code>summarise</code> permet d’obtenir les statistiques, notamment la moyenne, l’erreur standard (<code>se</code>) pour en calculer l’intervalle autour de la moyenne <code>ci</code>.</p>
+<div class="sourceCode" id="cb92"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">jd</span> <span class="op">=</span> <span class="va">ToothGrowth</span> <span class="op"><a href="https://rpkgs.datanovia.com/rstatix/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">dose</span>, <span class="va">supp</span><span class="op">)</span> <span class="op"><a href="https://rpkgs.datanovia.com/rstatix/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>mlen <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">len</span><span class="op">)</span>,
+            sdlen <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">len</span><span class="op">)</span>,
+            nlen <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span>, 
+            se <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">len</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>, 
+            ci <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">qt</a></span><span class="op">(</span><span class="fl">.975</span>, df <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span> <span class="op">*</span> <span class="va">se</span>,
+            .groups <span class="op">=</span> <span class="st">"drop"</span><span class="op">)</span>
+
+<span class="va">jd</span> <span class="op"><a href="https://rpkgs.datanovia.com/rstatix/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">dose</span>,
+             y <span class="op">=</span> <span class="va">mlen</span>, 
+             shape <span class="op">=</span> <span class="va">supp</span><span class="op">)</span>,
+         size <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="op">+</span> 
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_linerange.html">geom_errorbar</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>ymin <span class="op">=</span> <span class="va">mlen</span> <span class="op">-</span> <span class="va">ci</span>,
+                      ymax <span class="op">=</span> <span class="va">mlen</span> <span class="op">+</span> <span class="va">ci</span><span class="op">)</span>, 
+                  width <span class="op">=</span> <span class="fl">.05</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:erreurbar"></span>
+<img src="02-Gestion_files/figure-html/erreurbar-1.png" alt="Les effets de la vitamine C sur les cochons d'inde" width="75%" height="75%"><p class="caption">
+Figure 7.9: Les effets de la vitamine C sur les cochons d’inde
+</p>
+</div>
+<p>Une fois ces statistiques calculées et enregistrées dans le nouveau jeu de données <code>jd</code>, il est possible de créer le graphique avec les représentations géométriques désirées. Remarquer comment spécifié la cartographie dans le niveau <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code> rend la syntaxe moins compliquée. Cette syntaxe produit un graphique avec <code>dose</code> à l’ axe des <span class="math inline">\(x\)</span>, <code>supp</code> comme pointeurs et les moyennes de <code>len</code> (longueur moyenne des dents). La fonction <code><a href="https://ggplot2.tidyverse.org/reference/geom_linerange.html">geom_errorbar()</a></code> indique où placer les limites inférieures et supérieures des intervalles. Les arguments <code>size = 5</code> et <code>width = .05</code> sont ajoutés par pur esthétisme. L’argument <code>.groups = "drop"</code> de <code>summarise</code> permet d’éviter une avertissement expliquant qu’une variable de groupement est utilisé pour regrouper les résultats à la fin. Ajouter ou retirer cet argument ne change pas les calculs.</p>
+</div>
+<div id="pour-aller-plus-loin" class="section level2" number="7.6">
+<h2>
+<span class="header-section-number">7.6</span> Pour aller plus loin<a class="anchor" aria-label="anchor" href="#pour-aller-plus-loin"><i class="fas fa-link"></i></a>
+</h2>
+<p>Il existe une multitudes de livres, de sites web, de tutoriels en ligne et d’atelier pour donner l’occasion au lecteur d’aller plus loin dans sa conception graphique. Voici quelques ouvrages de références : Le <em>R Graphics Cookbook</em> (Chang) repérable à <a href="https://r-graphics.org/" class="uri">https://r-graphics.org/</a>, <em>ggplot2: elegant graphics for data analysis</em> (Wickham) repérable à <a href="https://ggplot2-book.org/" class="uri">https://ggplot2-book.org/</a> ou <em>R Graphics</em> (Murrel) repérable à <a href="https://www.stat.auckland.ac.nz/~paul/RG2e/" class="uri">https://www.stat.auckland.ac.nz/~paul/RG2e/</a>.</p>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="manipulation-avanc%C3%A9e.html"><span class="header-section-number">6</span> Manipulation avancée</a></div>
+<div class="next"><a href="exercice-gestion.html">Exercices</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#visualisation"><span class="header-section-number">7</span> Visualisation</a></li>
+<li><a class="nav-link" href="#ggplot2"><span class="header-section-number">7.1</span> ggplot2</a></li>
+<li><a class="nav-link" href="#diagramme-de-dispersion"><span class="header-section-number">7.2</span> Diagramme de dispersion</a></li>
+<li><a class="nav-link" href="#bo%C3%AEte-%C3%A0-moustache"><span class="header-section-number">7.3</span> Boîte à moustache</a></li>
+<li><a class="nav-link" href="#histogramme"><span class="header-section-number">7.4</span> Histogramme</a></li>
+<li><a class="nav-link" href="#les-barres-derreurs"><span class="header-section-number">7.5</span> Les barres d’erreurs</a></li>
+<li><a class="nav-link" href="#pour-aller-plus-loin"><span class="header-section-number">7.6</span> Pour aller plus loin</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/quantmeth/MQR/blob/master/02-Gestion.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/quantmeth/MQR/edit/master/02-Gestion.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Méthodes Quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-05-17.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

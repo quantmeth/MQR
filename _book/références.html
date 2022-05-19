@@ -19,9 +19,13 @@
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
 </head>
-<body data-spy="scroll" data-target="#toc">
+<body>
+<p>
+    \(
+    \newcommand{\EX}{\mathbb{E}}
+    \)
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css"></p>
 
 <div class="container-fluid">
 <div class="row">
@@ -43,17 +47,25 @@
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Bienvenue!</a></li>
 <li><a class="" href="pr%C3%A9face.html">Préface</a></li>
-<li class="book-part">Les rudiments de R</li>
-<li><a class="" href="commencer-avec-r.html"><span class="header-section-number">1</span> Commencer avec R</a></li>
-<li><a class="" href="programmer-avec-r.html"><span class="header-section-number">2</span> Programmer avec R</a></li>
-<li><a class="" href="fonctions-statistiques-essentielles.html"><span class="header-section-number">3</span> Fonctions statistiques essentielles</a></li>
+<li class="book-part">Rudiments</li>
+<li><a class="" href="commencer.html"><span class="header-section-number">1</span> Commencer</a></li>
+<li><a class="" href="programmer.html"><span class="header-section-number">2</span> Programmer</a></li>
+<li><a class="" href="calculer.html"><span class="header-section-number">3</span> Calculer</a></li>
 <li><a class="" href="exercice-rudiments.html">Exercices</a></li>
-<li class="book-part">Importation, gestion et visualisation de jeux de données</li>
-<li><a class="" href="gestion-rudimentaire-des-jeux-de-donn%C3%A9es.html"><span class="header-section-number">4</span> Gestion rudimentaire des jeux de données</a></li>
-<li><a class="" href="importation-de-jeux-de-donn%C3%A9es.html"><span class="header-section-number">5</span> Importation de jeux de données</a></li>
-<li><a class="" href="gestion-avanc%C3%A9e-de-jeux-de-donn%C3%A9es.html"><span class="header-section-number">6</span> Gestion avancée de jeux de données</a></li>
-<li><a class="" href="visualisation-des-donn%C3%A9es.html"><span class="header-section-number">7</span> Visualisation des données</a></li>
+<li class="book-part">Jeux de données</li>
+<li><a class="" href="g%C3%A9rer.html"><span class="header-section-number">4</span> Gérer</a></li>
+<li><a class="" href="importer.html"><span class="header-section-number">5</span> Importer</a></li>
+<li><a class="" href="manipuler.html"><span class="header-section-number">6</span> Manipuler</a></li>
+<li><a class="" href="visualiser.html"><span class="header-section-number">7</span> Visualiser</a></li>
 <li><a class="" href="exercice-gestion.html">Exercices</a></li>
+<li class="book-part">La statistique</li>
+<li><a class="" href="inf%C3%A9rer.html"><span class="header-section-number">8</span> Inférer</a></li>
+<li><a class="" href="analyser.html"><span class="header-section-number">9</span> Analyser</a></li>
+<li><a class="" href="simuler.html"><span class="header-section-number">10</span> Simuler</a></li>
+<li><a class="" href="exercice-analyse.html">Exercices</a></li>
+<li class="book-part">Analyses statistiques</li>
+<li><a class="" href="r%C3%A9gression.html"><span class="header-section-number">11</span> Régression</a></li>
+<li><a class="" href="cr%C3%A9er.html"><span class="header-section-number">12</span> Créer</a></li>
 <li><a class="" href="solutions.html">Solutions</a></li>
 <li><a class="active" href="r%C3%A9f%C3%A9rences.html">Références</a></li>
 </ul>
@@ -72,7 +84,22 @@
 Bache, S. M., &amp; Wickham, H. (2020). <em>Magrittr: A forward-pipe operator for r</em>. <a href="https://CRAN.R-project.org/package=magrittr">https://CRAN.R-project.org/package=magrittr</a>
 </div>
 <div id="ref-Bennett10" class="csl-entry">
-Bennett, C. M., Baird, A. A., Miller, M. B., &amp; Wolford, G. L. (2010). Neural correlates of interspecies perspectives taking in the post-moterm atlantic salmon : An argument for proper multiple comparisons correction. <em>Journal of the Serendipitous and Unexpected Results (Jsur.org)</em>, <em>1</em>(1), 1–5.
+Bennett, C. M., Baird, A. A., Miller, M. B., &amp; Wolford, G. L. (2010). Neural correlates of interspecies perspectives taking in the post-moterm atlantic salmon : An argument for proper multiple comparisons correction. <em>Journal of the Serendipitous and Unexpected Results</em>, <em>1</em>(1), 1–5.
+</div>
+<div id="ref-Canty21" class="csl-entry">
+Canty, A., &amp; Ripley, B. D. (2021). <em>Boot: Bootstrap <span>R</span> (<span>S</span>-plus) functions</em>.
+</div>
+<div id="ref-Caron21" class="csl-entry">
+Caron, P.-O., &amp; Lemardelet, L. (2021). The variance sum law and its implication for modelling. <em>The Quantitative Methods for Psychology</em>, <em>17</em>(2), 80–85. <a href="https://doi.org/10.20982/tqmp.17.2.p080">https://doi.org/10.20982/tqmp.17.2.p080</a>
+</div>
+<div id="ref-casella2002" class="csl-entry">
+Casella, G., &amp; Berger, R. L. (2002). <em>Statistical inference</em>. Duxbury.
+</div>
+<div id="ref-Cohen03" class="csl-entry">
+Cohen, J., Cohen, P., West, S. G., &amp; Aiken, L. S. (2003). <em>Applied multiple regression/correlation analysis for the behavioral sciences</em> (III). Erlbaum.
+</div>
+<div id="ref-Efron79" class="csl-entry">
+Efron, B., &amp; Tibshriani, R. (1979). <em>An introduction to the bootstrap</em>. Chapman &amp; Hall.
 </div>
 <div id="ref-Eklund16" class="csl-entry">
 Eklund, A., Nichols, T. E., &amp; Knutsson, H. (2016). Cluster failure: Why fMRI inferences for spatial extent have inflated false-positive rates. <em>Proceedings of the National Academy of Sciences of the United States of America</em>, <em>113</em>(28), 7900–7905. <a href="https://doi.org/10.1073/pnas.1602413113">https://doi.org/10.1073/pnas.1602413113</a>
@@ -80,8 +107,20 @@ Eklund, A., Nichols, T. E., &amp; Knutsson, H. (2016). Cluster failure: Why fMRI
 <div id="ref-DataEditR" class="csl-entry">
 Hammill, D. (2021). <em>DataEditR: An interactive editor for viewing, entering, filtering &amp; editing data</em>. <a href="https://CRAN.R-project.org/package=DataEditR">https://CRAN.R-project.org/package=DataEditR</a>
 </div>
+<div id="ref-Millman83" class="csl-entry">
+Millman, M. H. (1983). A statistical analysis of casino blackjack. <em>The American Mathematical Monthly</em>, <em>90</em>(7), 431–436.
+</div>
 <div id="ref-R-base" class="csl-entry">
 R Core Team. (2022). <em>R: A language and environment for statistical computing</em>. R Foundation for Statistical Computing. <a href="https://www.R-project.org/">https://www.R-project.org/</a>
+</div>
+<div id="ref-Rodgers88" class="csl-entry">
+Rodgers, J. L., &amp; Nicewander, W. A. (1988). Thirteen ways to look at the correlation coefficient. <em>The American Statistician</em>, <em>42</em>(1), 59–66. <a href="https://doi.org/10.1080/00031305.1988.10475524">https://doi.org/10.1080/00031305.1988.10475524</a>
+</div>
+<div id="ref-Selvin75" class="csl-entry">
+Selvin, S. (1975). A problem in probability (letter to the editor). <em>The American Statistician</em>, <em>29</em>(1), 67.
+</div>
+<div id="ref-bootstrap" class="csl-entry">
+Tibshirani, R., &amp; Leisch, F. (2019). <em>Bootstrap: Functions for the book "an introduction to the bootstrap"</em>. <a href="https://CRAN.R-project.org/package=bootstrap">https://CRAN.R-project.org/package=bootstrap</a>
 </div>
 <div id="ref-Wickham14" class="csl-entry">
 Wickham, H. (2014). Tidy data. <em>Journal of Statistical Software, Articles</em>, <em>59</em>(10), 1–23. <a href="https://doi.org/10.18637/jss.v059.i10">https://doi.org/10.18637/jss.v059.i10</a>
@@ -90,6 +129,14 @@ Wickham, H. (2014). Tidy data. <em>Journal of Statistical Software, Articles</em
 Wickham, H., Averick, M., Bryan, J., Chang, W., McGowan, L. D., François, R., Grolemund, G., Hayes, A., Henry, L., Hester, J., Kuhn, M., Pedersen, T. L., Miller, E., Bache, S. M., Moller, K., Ooms, J., Robinson, D., Seidel, D. P., Spinu, V., … Yutani, H. (2019). Welcome to the <span class="nocase">tidyverse</span>. <em>Journal of Open Source Software</em>, <em>4</em>(43), 1686. <a href="https://doi.org/10.21105/joss.01686">https://doi.org/10.21105/joss.01686</a>
 </div>
 </div>
+</div>
+<div class="footnotes footnotes-end-of-document">
+<hr>
+<ol>
+<li id="fn1"><p>Ou encore la variance qui est la somme des écarts au carré. Les expérimentateurs s’intéressent aux sommes de variables en fait.<a href="inf%C3%A9rer.html#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>Il y a aussi des cas plus complexes lorsque le jeu possède plus de deux dimesions, comme <code>MARGIN = c(1,2)</code> produit l’opération sur une matrice (lignes par colonnes) ou <code>MARGIN = n</code> produit l’opération sur la n<sup>e</sup> dimension.<a href="simuler.html#fnref2" class="footnote-back">↩︎</a></p></li>
+<li id="fn3"><p>La section est partiellement basée sur <span class="citation">Caron &amp; Lemardelet (<a href="r%C3%A9f%C3%A9rences.html#ref-Caron21" role="doc-biblioref">2021</a>)</span>.<a href="cr%C3%A9er.html#fnref3" class="footnote-back">↩︎</a></p></li>
+</ol>
 </div>
   <div class="chapter-nav">
 <div class="prev"><a href="solutions.html">Solutions</a></div>
@@ -100,8 +147,8 @@ Wickham, H., Averick, M., Bryan, J., Chang, W., McGowan, L. D., François, R., G
 
       <div class="book-extra">
         <ul class="list-unstyled">
-<li><a id="book-source" href="https://github.com/quantmeth/MQR/blob/master/08-references.Rmd">View source <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="https://github.com/quantmeth/MQR/edit/master/08-references.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+<li><a id="book-source" href="https://github.com/quantmeth/MQR/blob/master/12-references.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/quantmeth/MQR/edit/master/12-references.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
         </ul>
 </div>
     </nav>
@@ -113,7 +160,7 @@ Wickham, H., Averick, M., Bryan, J., Chang, W., McGowan, L. D., François, R., G
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Méthodes Quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-05-16.</p>
+    <p>"<strong>Méthodes Quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-05-19.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -43,17 +43,21 @@
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Bienvenue!</a></li>
 <li><a class="" href="pr%C3%A9face.html">Préface</a></li>
-<li class="book-part">Les rudiments de R</li>
-<li><a class="" href="commencer-avec-r.html"><span class="header-section-number">1</span> Commencer avec R</a></li>
-<li><a class="" href="programmer-avec-r.html"><span class="header-section-number">2</span> Programmer avec R</a></li>
+<li class="book-part">Rudiments</li>
+<li><a class="" href="commencer.html"><span class="header-section-number">1</span> Commencer</a></li>
+<li><a class="" href="programmer.html"><span class="header-section-number">2</span> Programmer</a></li>
 <li><a class="active" href="fonctions-statistiques-essentielles.html"><span class="header-section-number">3</span> Fonctions statistiques essentielles</a></li>
 <li><a class="" href="exercice-rudiments.html">Exercices</a></li>
-<li class="book-part">Importation, gestion et visualisation de jeux de données</li>
-<li><a class="" href="gestion-rudimentaire-des-jeux-de-donn%C3%A9es.html"><span class="header-section-number">4</span> Gestion rudimentaire des jeux de données</a></li>
-<li><a class="" href="importation-de-jeux-de-donn%C3%A9es.html"><span class="header-section-number">5</span> Importation de jeux de données</a></li>
-<li><a class="" href="gestion-avanc%C3%A9e-de-jeux-de-donn%C3%A9es.html"><span class="header-section-number">6</span> Gestion avancée de jeux de données</a></li>
-<li><a class="" href="visualisation-des-donn%C3%A9es.html"><span class="header-section-number">7</span> Visualisation des données</a></li>
+<li class="book-part">Jeux de données</li>
+<li><a class="" href="g%C3%A8rer.html"><span class="header-section-number">4</span> Gèrer</a></li>
+<li><a class="" href="importer.html"><span class="header-section-number">5</span> Importer</a></li>
+<li><a class="" href="manipuler.html"><span class="header-section-number">6</span> Manipuler</a></li>
+<li><a class="" href="visualiser.html"><span class="header-section-number">7</span> Visualiser</a></li>
 <li><a class="" href="exercice-gestion.html">Exercices</a></li>
+<li class="book-part">Analyses statistiques</li>
+<li><a class="" href="inf%C3%A9rer.html"><span class="header-section-number">8</span> Inférer</a></li>
+<li><a class="" href="analyses-bivari%C3%A9es.html"><span class="header-section-number">9</span> Analyses bivariées</a></li>
+<li><a class="" href="exercice-analyse.html">Exercices</a></li>
 <li><a class="" href="solutions.html">Solutions</a></li>
 <li><a class="" href="r%C3%A9f%C3%A9rences.html">Références</a></li>
 </ul>
@@ -149,9 +153,9 @@
 <span class="co"># Tester ensuite:</span>
 <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">42</span>, <span class="fl">23</span>, <span class="fl">53</span>, <span class="fl">77</span>, <span class="fl">93</span>, <span class="fl">20</span>, <span class="fl">37</span>, <span class="fl">24</span>, <span class="fl">60</span>, <span class="fl">62</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
-<span class="co">#&gt; [1] 48</span>
+<span class="co">#&gt; [1] 47.5</span>
 <span class="fu">mediane</span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
-<span class="co">#&gt; [1] 48</span></code></pre></div>
+<span class="co">#&gt; [1] 47.5</span></code></pre></div>
 <p>L’expression <code>n%%2</code>, lue <span class="math inline">\(n \bmod 2\)</span>, joue astucieusement le rôle de vérifier si <code>n</code> est impaire. La formule générale <span class="math inline">\(x \bmod y\)</span> représente une opération binaire associant à deux entiers naturels le reste de la division du premier par le second. Par exemple, <span class="math inline">\(60 \bmod 7\)</span>, noter <code>60%%7</code> dans <strong>R</strong>, donne <span class="math inline">\(4\)</span> soit le reste de <span class="math inline">\(7*8 + 4 = 60\)</span>. Le logiciel le confirme.</p>
 <div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fl">60</span><span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span><span class="fl">7</span>
@@ -198,9 +202,9 @@ Avec <strong>R</strong>, la fonction de base est <code><a href="https://rdrr.io/
   <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">et</span><span class="op">)</span>
 <span class="op">}</span>
 <span class="fu">ecart.type</span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
-<span class="co">#&gt; [1] 17</span>
+<span class="co">#&gt; [1] 17.3</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
-<span class="co">#&gt; [1] 17</span></code></pre></div>
+<span class="co">#&gt; [1] 17.3</span></code></pre></div>
 </div>
 <div id="les-graines" class="section level2" number="3.7">
 <h2>
@@ -308,11 +312,11 @@ min, max
 
 <span class="co"># Génère 5 nombres aléatoires en fonction des paramètres</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">5</span>, mean <span class="op">=</span> <span class="fl">10</span>, sd <span class="op">=</span> <span class="fl">.5</span><span class="op">)</span>
-<span class="co">#&gt; [1] 10.5  9.4  9.9 10.0 10.0</span>
+<span class="co">#&gt; [1] 10.51  9.42  9.90  9.95 10.01</span>
 
 <span class="co"># Retourne les valeurs associés à ces probabilités</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">qnorm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.025</span>,<span class="fl">.975</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; [1] -2  2</span>
+<span class="co">#&gt; [1] -1.96  1.96</span>
 
 <span class="co"># Retourne la probabilité d'obtenir un score de 1.645 et moins</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">pnorm</a></span><span class="op">(</span><span class="fl">1.645</span><span class="op">)</span>
@@ -320,15 +324,33 @@ min, max
 
 <span class="co"># La valeur de la densité de la distribution</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">dnorm</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span>
-<span class="co">#&gt; [1] 0.4</span></code></pre></div>
+<span class="co">#&gt; [1] 0.399</span></code></pre></div>
 <p>Ces quatre lettres peuvent être associées à toutes les distributions énumérées et bien d’autres. Elles respectent toutes ce cadre.</p>
 </div>
-<div id="création-dune-matrice" class="section level2" number="3.9">
+<div id="répéter-des-valeurs" class="section level2" number="3.9">
 <h2>
-<span class="header-section-number">3.9</span> Création d’une matrice<a class="anchor" aria-label="anchor" href="#cr%C3%A9ation-dune-matrice"><i class="fas fa-link"></i></a>
+<span class="header-section-number">3.9</span> Répéter des valeurs<a class="anchor" aria-label="anchor" href="#r%C3%A9p%C3%A9ter-des-valeurs"><i class="fas fa-link"></i></a>
+</h2>
+<p>La fonction <code><a href="https://rdrr.io/r/base/rep.html">rep()</a></code> sera utile pour répéter volontairement des valeurs. Il y deux possibilité de répétitions: l’argument <code>times</code> définit le nombre de fois que le vecteur est répété; l’arguement <code>each</code> définit le nombre de fois que chaque élément est répété.</p>
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">vec</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">4</span>, <span class="st">"chat"</span><span class="op">)</span>
+
+<span class="co"># Répéter vec trois fois</span>
+<span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="va">vec</span>, times <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>
+<span class="co">#&gt; [1] "2"    "4"    "chat" "2"    "4"    "chat" "2"    "4"   </span>
+<span class="co">#&gt; [9] "chat"</span>
+
+<span class="co"># Répéter chaque éléments de vec trois fois</span>
+<span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="va">vec</span>, each <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>
+<span class="co">#&gt; [1] "2"    "2"    "2"    "4"    "4"    "4"    "chat" "chat"</span>
+<span class="co">#&gt; [9] "chat"</span></code></pre></div>
+</div>
+<div id="création-dune-matrice" class="section level2" number="3.10">
+<h2>
+<span class="header-section-number">3.10</span> Création d’une matrice<a class="anchor" aria-label="anchor" href="#cr%C3%A9ation-dune-matrice"><i class="fas fa-link"></i></a>
 </h2>
 <p>La fonction <code><a href="https://rdrr.io/r/base/matrix.html">matrix()</a></code> sera utile pour créer des matrices, commes des matrices de covariances, par exemple. La fonction utilise trois arguments, une matrice de nombre à entrer dans la matrice, un nombre de colonnes et un nombre de lignes. La fonction utilise le recyclage, ce qui pourra être utile à certaines occasions.</p>
-<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Une matrice de 0</span>
 <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">0</span>, ncol <span class="op">=</span> <span class="fl">3</span>, nrow <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>
 <span class="co">#&gt;      [,1] [,2] [,3]</span>
@@ -358,29 +380,75 @@ min, max
 <span class="co">#&gt; [2,]    2    6   10   14</span>
 <span class="co">#&gt; [3,]    3    7   11   15</span>
 <span class="co">#&gt; [4,]    4    8   12   16</span></code></pre></div>
-<p>Les matrices sont une formes de jeu données (numérique seulement). Plus tard, les <code>data.frame</code> ou jeu de données seront présentés.</p>
+<p>Les matrices sont une formes de jeu données dans lequel tous les éléments partagent le même attribut (tous numériques, caractères, logiques, etc.).</p>
 </div>
-<div id="répéter-des-valeurs" class="section level2" number="3.10">
+<div id="création-dun-jeu-de-données" class="section level2" number="3.11">
 <h2>
-<span class="header-section-number">3.10</span> Répéter des valeurs<a class="anchor" aria-label="anchor" href="#r%C3%A9p%C3%A9ter-des-valeurs"><i class="fas fa-link"></i></a>
+<span class="header-section-number">3.11</span> Création d’un jeu de données<a class="anchor" aria-label="anchor" href="#cr%C3%A9ation-dun-jeu-de-donn%C3%A9es"><i class="fas fa-link"></i></a>
 </h2>
-<p>La fonction <code><a href="https://rdrr.io/r/base/rep.html">rep()</a></code> sera utile pour répéter volontairement des valeurs. Il y deux possibilité de répétitions: l’argument <code>times</code> définit le nombre de fois que le vecteur est répété; l’arguement <code>each</code> définit le nombre de fois que chaque élément est répété.</p>
-<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">vec</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">4</span>, <span class="st">"chat"</span><span class="op">)</span>
+<p>Un jeu de données (<code>data.frame</code>) est un peu comme l’extension de la matrice. La différence étant que les éléments entre les colonnes peuvent partager des attributs différents. Ainsi chaque ligne représente une unité (un participant, un objet) et chaque colonne représente une dimension (informations ou variable) différente de cette objectif. La fonction <code><a href="https://rdrr.io/r/base/data.frame.html">data.frame()</a></code> permet de créer de tel objet. La fonction prend comme un argument une série de vecteurs. Si un nom</p>
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Quelques variables</span>
+<span class="va">var1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Éloi"</span>, <span class="st">"Laurence"</span><span class="op">)</span>
+<span class="va">var2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">6</span>, <span class="fl">3</span><span class="op">)</span>
+<span class="va">var3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">TRUE</span><span class="op">)</span>
 
-<span class="co"># Répéter vec trois fois</span>
-<span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="va">vec</span>, times <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>
-<span class="co">#&gt; [1] "2"    "4"    "chat" "2"    "4"    "chat" "2"    "4"   </span>
-<span class="co">#&gt; [9] "chat"</span>
+<span class="co"># Entrer de trois vecteurs non identifiés</span>
+<span class="va">jd1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">var1</span>, <span class="va">var2</span>, <span class="va">var3</span><span class="op">)</span>
 
-<span class="co"># Répéter chaque éléments de vec trois fois</span>
-<span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="va">vec</span>, each <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>
-<span class="co">#&gt; [1] "2"    "2"    "2"    "4"    "4"    "4"    "chat" "chat"</span>
-<span class="co">#&gt; [9] "chat"</span></code></pre></div>
+<span class="co"># Entrer de trois vecteurs identifiés</span>
+<span class="va">jd2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>nom <span class="op">=</span> <span class="va">var1</span>, age <span class="op">=</span> <span class="va">var2</span>, enfant <span class="op">=</span> <span class="va">var3</span><span class="op">)</span>
+
+<span class="co"># Comparer</span>
+<span class="va">jd1</span> ; <span class="va">jd2</span>
+<span class="co">#&gt;       var1 var2 var3</span>
+<span class="co">#&gt; 1     Éloi    6 TRUE</span>
+<span class="co">#&gt; 2 Laurence    3 TRUE</span>
+<span class="co">#&gt;        nom age enfant</span>
+<span class="co">#&gt; 1     Éloi   6   TRUE</span>
+<span class="co">#&gt; 2 Laurence   3   TRUE</span></code></pre></div>
+<p>En utilisant <code>nom.de.variable = vecteur</code> à l’intérieur de <code><a href="https://rdrr.io/r/base/data.frame.html">data.frame()</a></code>, les noms des colonnes deviennent <code>nom.de.variable</code>. Cela permettra une plus grande flexibilité lorsqu’il faudra <a href="g%C3%A8rer.html#g%C3%A8rer">gèrer</a> et <a href="manipuler.html#manipuler">manipuler</a> les données.</p>
+<p>Comme les matrices, les jeux de données ont aussi une restriction. Alors que les jeux de données libérait l’utilisateur de la contrainte d’avoir des objets de même attributs, les jeux de données doivent être créés avec des vecteurs de même longueur. Autrement dit, chaque colonne doit avoir exactement le même nombre de lignes. Parfois, <strong>R</strong> procédera par recyclage pour combler les éléments. Il faudra donc porter une attention particulière, pour vérifier si c’est l’intention ou non.</p>
+</div>
+<div id="création-de-liste" class="section level2" number="3.12">
+<h2>
+<span class="header-section-number">3.12</span> Création de liste<a class="anchor" aria-label="anchor" href="#cr%C3%A9ation-de-liste"><i class="fas fa-link"></i></a>
+</h2>
+<p>Une troisième option pour stocker de informations dans une seule variable est d’avoir recourt au liste. La liste libère à la fois l’utilisateur des objects de mêmes attributs et de même longueur. Pour créer une liste, il faut utiliser la fonction <code><a href="https://rdrr.io/r/base/list.html">list()</a></code>. Comme <code><a href="https://rdrr.io/r/base/data.frame.html">data.frame()</a></code>, des noms d’éléments peuvent être donner pour chaque liste pour faciliter la manipulation ultérieure de la liste.</p>
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#Quelques variables</span>
+<span class="va">var1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"chat"</span>,<span class="st">"chien"</span><span class="op">)</span>
+<span class="va">var2</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>
+
+<span class="co"># Entrer de deux vecteurs non identifiés</span>
+<span class="va">jd1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">var1</span>, <span class="va">var2</span><span class="op">)</span>
+
+<span class="co"># Entrer de deux vecteurs identifiés</span>
+<span class="va">jd2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>animal <span class="op">=</span> <span class="va">var1</span>, nombre <span class="op">=</span> <span class="va">var2</span><span class="op">)</span>
+
+<span class="co"># Comparer</span>
+<span class="va">jd1</span> ; <span class="va">jd2</span>
+<span class="co">#&gt; [[1]]</span>
+<span class="co">#&gt; [1] "chat"  "chien"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[2]]</span>
+<span class="co">#&gt;  [1]  1  2  3  4  5  6  7  8  9 10</span>
+<span class="co">#&gt;    animal nombre</span>
+<span class="co">#&gt; 1    chat      1</span>
+<span class="co">#&gt; 2   chien      2</span>
+<span class="co">#&gt; 3    chat      3</span>
+<span class="co">#&gt; 4   chien      4</span>
+<span class="co">#&gt; 5    chat      5</span>
+<span class="co">#&gt; 6   chien      6</span>
+<span class="co">#&gt; 7    chat      7</span>
+<span class="co">#&gt; 8   chien      8</span>
+<span class="co">#&gt; 9    chat      9</span>
+<span class="co">#&gt; 10  chien     10</span></code></pre></div>
+<p>L’utilisation de listes est une caractéristique prédominante avec <strong>R</strong>. Par exemple, <strong>R</strong> ne peut sortir qu’une variable par fonction. Si la fonction doit retourner plusieurs éléments, ceux-ci devront se retrouver dans une liste. Ce qui sera plus nébuleux pour le lecteur, c’est que l’optimisation de <strong>R</strong> se fait par les listes. Cela sera noté aux moments appropriés.</p>
 </div>
 </div>
   <div class="chapter-nav">
-<div class="prev"><a href="programmer-avec-r.html"><span class="header-section-number">2</span> Programmer avec R</a></div>
+<div class="prev"><a href="programmer.html"><span class="header-section-number">2</span> Programmer</a></div>
 <div class="next"><a href="exercice-rudiments.html">Exercices</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
@@ -394,8 +462,10 @@ min, max
 <li><a class="nav-link" href="#l%C3%A9cart-type"><span class="header-section-number">3.6</span> L’écart type</a></li>
 <li><a class="nav-link" href="#les-graines"><span class="header-section-number">3.7</span> Les graines</a></li>
 <li><a class="nav-link" href="#les-distributions"><span class="header-section-number">3.8</span> Les distributions</a></li>
-<li><a class="nav-link" href="#cr%C3%A9ation-dune-matrice"><span class="header-section-number">3.9</span> Création d’une matrice</a></li>
-<li><a class="nav-link" href="#r%C3%A9p%C3%A9ter-des-valeurs"><span class="header-section-number">3.10</span> Répéter des valeurs</a></li>
+<li><a class="nav-link" href="#r%C3%A9p%C3%A9ter-des-valeurs"><span class="header-section-number">3.9</span> Répéter des valeurs</a></li>
+<li><a class="nav-link" href="#cr%C3%A9ation-dune-matrice"><span class="header-section-number">3.10</span> Création d’une matrice</a></li>
+<li><a class="nav-link" href="#cr%C3%A9ation-dun-jeu-de-donn%C3%A9es"><span class="header-section-number">3.11</span> Création d’un jeu de données</a></li>
+<li><a class="nav-link" href="#cr%C3%A9ation-de-liste"><span class="header-section-number">3.12</span> Création de liste</a></li>
 </ul>
 
       <div class="book-extra">
@@ -413,7 +483,7 @@ min, max
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Méthodes Quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-05-16.</p>
+    <p>"<strong>Méthodes Quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-05-18.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
