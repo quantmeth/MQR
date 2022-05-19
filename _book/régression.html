@@ -58,12 +58,12 @@
 <li><a class="" href="manipuler.html"><span class="header-section-number">6</span> Manipuler</a></li>
 <li><a class="" href="visualiser.html"><span class="header-section-number">7</span> Visualiser</a></li>
 <li><a class="" href="exercice-gestion.html">Exercices</a></li>
-<li class="book-part">La statistique</li>
+<li class="book-part">Statistique</li>
 <li><a class="" href="inf%C3%A9rer.html"><span class="header-section-number">8</span> Inférer</a></li>
 <li><a class="" href="analyser.html"><span class="header-section-number">9</span> Analyser</a></li>
 <li><a class="" href="simuler.html"><span class="header-section-number">10</span> Simuler</a></li>
 <li><a class="" href="exercice-analyse.html">Exercices</a></li>
-<li class="book-part">Analyses statistiques</li>
+<li class="book-part">Modèle linéaire</li>
 <li><a class="active" href="r%C3%A9gression.html"><span class="header-section-number">11</span> Régression</a></li>
 <li><a class="" href="cr%C3%A9er.html"><span class="header-section-number">12</span> Créer</a></li>
 <li><a class="" href="solutions.html">Solutions</a></li>
@@ -161,7 +161,7 @@ x_{n,1} &amp; x_{n,2} &amp; ... &amp;x_{n,p}\\
 <p>Le symbole <span class="math inline">\(\Sigma\)</span> (sigma majuscule) représente la matrice de variance-covariance. La diagonale de cette matrice représente les variances des données et les éléments hors diagonales sont les covariances, soulignant le lien entre la variance et la covariance. Le symbole <span class="math inline">\(\prime\)</span> (prime) correspond à l’opération de transposer une matrice, soit d’échanger les lignes par ces colonnes. Cette procédure est nécessaire pour produire la multiplication d’une matrice par elle-même. Noter que l’expression <span class="math inline">\((n-1)^{-1}=\frac{1}{n-1}\)</span>.</p>
 <p>TODO</p>
 <p><span class="math display" id="eq:covmat2">\[\begin{equation}
-\begin{align}
+\begin{aligned}
 S &amp; = (n-1)^{-1}
 \left(\begin{array}{cccc}
 x_{1,1} &amp; x_{2,1} &amp; ... &amp; x_{n,1} \\
@@ -178,7 +178,7 @@ x_{n,1} &amp; x_{n,2} \\
 \sum_{i=1}^n(x_{i,1})(x_{i,1}) &amp; \sum_{i=1}^n(x_{i,1})(x_{i,2})\\
 \sum_{i=1}^n(x_{i,2})(x_{i,1}) &amp; \sum_{i=1}^n(x_{i,2})(x_{i,2})
 \end{array}\right)
-\end{align}
+\end{aligned}
 \tag{11.5}
 \end{equation}\]</span></p>
 <p>L’équation <a href="r%C3%A9gression.html#eq:covmat2">(11.5)</a> illustre l’équation <a href="r%C3%A9gression.html#eq:covmat1">(11.4)</a> qui sont toutes les deux équivalentes à <a href="r%C3%A9gression.html#eq:cov3">(11.3)</a>. En termes de syntaxe <strong>R</strong>, elles peuvent être traduites comme suit.</p>

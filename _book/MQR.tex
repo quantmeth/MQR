@@ -119,7 +119,7 @@
 
 \title{Méthodes Quantitatives avec R}
 \author{P.-O. Caron}
-\date{2022-05-18}
+\date{2022-05-19}
 
 \begin{document}
 \maketitle
@@ -1103,7 +1103,7 @@ Un jeu de données (\texttt{data.frame}) est un peu comme l'extension de la matr
 \end{Highlighting}
 \end{Shaded}
 
-En utilisant \texttt{nom.de.variable\ =\ vecteur} à l'intérieur de \texttt{data.frame()}, les noms des colonnes deviennent \texttt{nom.de.variable}. Cela permettra une plus grande flexibilité lorsqu'il faudra \protect\hyperlink{guxe8rer}{gèrer} et \protect\hyperlink{manipuler}{manipuler} les données.
+En utilisant \texttt{nom.de.variable\ =\ vecteur} à l'intérieur de \texttt{data.frame()}, les noms des colonnes deviennent \texttt{nom.de.variable}. Cela permettra une plus grande flexibilité lorsqu'il faudra {[}gèrer{]} et \protect\hyperlink{manipuler}{manipuler} les données.
 
 Comme les matrices, les jeux de données ont aussi une restriction. Alors que les jeux de données libérait l'utilisateur de la contrainte d'avoir des objets de même attributs, les jeux de données doivent être créés avec des vecteurs de même longueur. Autrement dit, chaque colonne doit avoir exactement le même nombre de lignes. Parfois, \textbf{R} procédera par recyclage pour combler les éléments. Il faudra donc porter une attention particulière, pour vérifier si c'est l'intention ou non.
 
@@ -1165,8 +1165,8 @@ L'utilisation de listes est une caractéristique prédominante avec \textbf{R}. 
 \hypertarget{part-jeux-de-donnuxe9es}{%
 \part{Jeux de données}\label{part-jeux-de-donnuxe9es}}
 
-\hypertarget{guxe8rer}{%
-\chapter{Gèrer}\label{guxe8rer}}
+\hypertarget{guxe9rer}{%
+\chapter{Gérer}\label{guxe9rer}}
 
 Réaliser des analyses statistiques et des représentations graphiques nécessitent un jeu de données sur lequel travailler. Après l'ouverture de \textbf{R}, l'usager remarquera aisément que le logiciel n'est pas un tableur (tableau de données), contrairement aux logiciels traditionnels. Cette caractéristique l'a peut-être même frappé à la première ouverture! Pour utiliser données, il faudra les conserver dans un fichier externe de la même façon qu'un script, à l'exception qu'il faudra importer les données pour son utilisation.
 
@@ -2317,8 +2317,8 @@ Il existe une multitudes de livres, de sites web, de tutoriels en ligne et d'ate
   Prendre le jeu de données \texttt{msleep} et produire une boîte à moustache pour observer le temps total de sommeil (\texttt{sleep\_total}) par rapport aux régimes (\texttt{vore}). \textbf{Attention} aux données manquantes.
 \end{enumerate}
 
-\hypertarget{part-analyses-statistiques}{%
-\part{Analyses statistiques}\label{part-analyses-statistiques}}
+\hypertarget{part-statistique}{%
+\part{Statistique}\label{part-statistique}}
 
 \hypertarget{infuxe9rer}{%
 \chapter{Inférer}\label{infuxe9rer}}
@@ -2337,7 +2337,7 @@ Les valeurs d'un échantillon sont, pour le statisticien, des variables aléatoi
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{runif}\NormalTok{(}\AttributeTok{n =} \DecValTok{1}\NormalTok{)}
-\CommentTok{\#\textgreater{} [1] 0.52}
+\CommentTok{\#\textgreater{} [1] 0.393}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3569,6 +3569,352 @@ Dans le présent exemple, bien que les fréquences attendues respectent les crit
 \end{Highlighting}
 \end{Shaded}
 
+\hypertarget{simuler}{%
+\chapter{Simuler}\label{simuler}}
+
+Dans plusieurs contextes statistiques, les informations cruciales nécessaires pour réaliser une analyse statistique ou tirer des résultats spécifiques ne sont pas connues (par exemple le chapitre \protect\hyperlink{analyser}{Analyser}. Pire, parfois certains postulats sont violés rendant les démarches usuelles caduques. Enfin, dans certains contextes, une analyse formelle pourrait s'avérer fort complexe, voire irrésoluble, alors qu'une analyse plus empirique usant des techniques de rééchantillonnage résoudra ces problèmes simplement et immédiatement.
+
+Jusqu'à présent, les situations connues des analyses statistiques ont été présentées. Maintenant, les techniques de rééchantillonnage, comme le bootstrap et de simulations Monte-Carlo seront présentés.
+
+\hypertarget{les-simulations-monte-carlo}{%
+\section{Les simulations Monte-Carlo}\label{les-simulations-monte-carlo}}
+
+Les simulations Monte-Carlo sont une famille de méthode algorithmique qui permet de calculer une valeur numérique en utilisant des procédés aléatoires. Le nom provient du prestigieux casino de Monte-Carlo à Monaco sur la Côte d'Azur, où des jeux de hasard se jouent constamment, et ayant ainsi une connotation très forte avec le hasard et les nombres aléatoires.
+
+Une simulation de Monte-Carlo prédit une étendue de résultats possibles à partir d'un ensemble de valeurs d'entrée fixes et en tenant compte de l'incertitude inhérente de certaines variables. En d'autres termes, une simulation de Monte-Carlo produit les résultats possibles (sorties) d'un modèle à partir des entrées fixes et d'autres entrées variables. Ces sorties sont calculées encore et encore (des milliers de fois, parfois plus), en utilisant à chaque fois un ensemble différent de nombres aléatoires, générant des sorties probables, mais différentes à chaque fois. Les estimations (et leur tendance) obtenues peuvent alors être interprétées.
+
+Les simulations Monte-Carlo sont particulièrement utiles, car elles permettent, en mathématiques, de calculer des intégrales très complexes; en physique, d'estimer la forme d'un signal ou la sensibilité; en finance, simulent des conditions permettant de prévoir le marché; et en psychologie, simuler des processus comportementaux ou cognitifs.
+
+Les simulations Monte-Carlo possèdent trois caractéristiques ou étapes :
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Construire un modèle ayant des variables indépendantes (entrées) et dépendantes (sorties);
+\item
+  Spécifier les caractéristiques aléatoires des variables indépendantes et définir des valeurs crédibles;
+\item
+  Rouler les simulations de façon répétitive jusqu'à ce que suffisamment d'itérations soient produites et que les résultats convergent vers une solution.
+\end{enumerate}
+
+Maintenant, ces étapes sont mises en contexte avec un problème.
+
+\hypertarget{le-probluxe8me-de-monty-hall}{%
+\subsection{Le problème de Monty-Hall}\label{le-probluxe8me-de-monty-hall}}
+
+Rien de mieux pour confronter le sens commun que d'être confronté à un problème contre-intuitif. Les simulations Monte-Carlo nous permettront de vérifier les résultats de façon empirique, parallèlement à ce qu'une analyse formelle fournit.
+
+Le problème de Monty Hall \autocite[attribuables à][]{Selvin75} présente un joueur devant un présentateur (Monty Hall). Trois portes sont offertes au choix du joueur. Derrière l'une d'entre elles se retrouve un magnifique prix : une voiture \emph{électrique} de luxe. Derrière chacune des deux autres portes se retrouvent un prix citron : une chèvre chacune. Le joueur ne sait pas ce qu'il y derrière les portes. Le joueur peut alors choisir une porte. Évidemment, à ce moment le joueur à une chance sur trois de choisir la voiture.
+
+\begin{figure}
+\centering
+\includegraphics{05-Simuler_files/figure-latex/MH-1.pdf}
+\caption{\label{fig:MH}Illustration du problème de Monty Hall}
+\end{figure}
+
+Par la suite, le présentateur, qui connaît le contenu derrière les portes, ouvre une porte qui (a) ne cache pas la voiture et (b) que le participant n'a pas choisie. Le joueur peut alors choisir (a) de conserver la porte choisie ou (b) de changer de porte. Quelle option, s'il y en a une, assurera le meilleur gain (choisir la voiture)? Rester ou changer? Par exemple, suivant l'illustration de la figure \ref{fig:MH}, le joueur choisit la porte 1, alors le présentateur doit ouvrir la porte 2 (non choisie et ne contient pas la voiture). Le joueur doit-il changer son choix? Ici, la réponse est évidente, car la réponse est connue. Qu'en est-il alors si le joueur avait choisi la porte 3 et le présentateur ouvert l'une des deux autres porte? \emph{Le joueur doit-il changer ou rester?} La question sous-jacente est qu'elles sont les probabilités de rester et changer respectivement. Sont-elles différentes?
+
+Comme le résultat n'est pas des plus intuitif (et sans divulgâcher le résultat), une petite simulation s'impose (ou une analyse formelle pour les lecteurs enclins mathématiquement). La situation sera recréée un millier de fois pour vérifier l'option (rester ou changer) qui maximise de gagner la voiture.
+
+En se référant aux trois points caractérisant une simulation Monte-Carlo susmentionné :
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Le problème de Monty Hall tel qu'imminemment décrit.
+\item
+  Les variables indépendantes sont (a) le tirage aléatoire du contenu derrière les portes (distribution uniforme, chaque porte à la même probabilité d'avoir un prix ou non), (b) le choix du joueur (distribution uniforme, pourrait être différent), et (c) la porte ouverte par le présentateur. Deux variables indépendantes sont fixes (les deux options sont étudiées), l'action de rester ou de changer. Il y a deux variables dépendantes, le succès (choisir le prix) ou l'échec (choisir une autre porte) de rester ou de changer.
+\item
+  La simulation est reprise 1000 fois.
+\end{enumerate}
+
+La simulation doit comporter une distribution aléatoire du contenu derrière les trois portes, identifier une porte gagnante et deux perdantes. Il est intéressant de note que, sur le plan de computationnelle, il est inutile d'attribuer aléatoirement la porte gagnante, toutefois le scénario sera plus acceptable pour un lecteur scrupuleux. Par la suite, le joueur fait son premier choix. Ici, plusieurs modèles peuvent être utilisés, comme constamment choisir la même porte (ce qui simplifie la situation et ne change pas les probabilités parce que le contenu des portes, lui, est aléatoire) ou, pour rester vrai à la situation, le joueur fera un choix aléatoire. Le comportement du présentateur s'enclenche, il doit ``ouvrir'' une porte non choisie et qui ne contient pas le prix. Les deux stratégies sont alors étudiées, \emph{rester} versus \emph{changer}. La simulation enregistre alors s'il y a eu gain ou non et l'additionne au total de chacun. La simulation est reprise un nombre important de fois, ici, 1000 suffira, mais des situations compliquées peuvent demander beaucoup plus d'itérations.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Simulation du problème de Monty Hall}
+\NormalTok{portes }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Chèvre"}\NormalTok{,}\StringTok{"Chèvre"}\NormalTok{,}\StringTok{"Voiture"}\NormalTok{)}
+\NormalTok{nreps }\OtherTok{\textless{}{-}} \DecValTok{1000}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{7896}\NormalTok{)}
+\CommentTok{\# Valeur initial des gains}
+\NormalTok{gain.rester }\OtherTok{\textless{}{-}} \DecValTok{0}
+\NormalTok{gain.changer }\OtherTok{\textless{}{-}} \DecValTok{0}
+
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{nreps)\{}
+  \CommentTok{\# Arrangement initial des portes}
+\NormalTok{  tirage }\OtherTok{=} \FunctionTok{sample}\NormalTok{(portes)}
+  \CommentTok{\# Trouver le prix}
+\NormalTok{  prix }\OtherTok{=} \FunctionTok{which}\NormalTok{(tirage }\SpecialCharTok{\%in\%} \StringTok{"Voiture"}\NormalTok{)}
+  \CommentTok{\# Choix aléatoire}
+\NormalTok{  choix1 }\OtherTok{=} \FunctionTok{sample}\NormalTok{(}\FunctionTok{length}\NormalTok{(portes), }\AttributeTok{size =} \DecValTok{1}\NormalTok{)}
+  
+  \CommentTok{\# Sélectionner la porte avec la chèvre (pas un prix) et}
+  \CommentTok{\# qui n\textquotesingle{}est pas celle choisie (choix1)}
+\NormalTok{  option }\OtherTok{=} \FunctionTok{c}\NormalTok{(choix1, prix)}
+  \ControlFlowTok{if}\NormalTok{(choix1 }\SpecialCharTok{!=}\NormalTok{ prix)\{}
+    \CommentTok{\# Si une porte valide}
+\NormalTok{    monty }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{3}\NormalTok{)[}\SpecialCharTok{{-}}\NormalTok{option]}
+\NormalTok{  \}}\ControlFlowTok{else}\NormalTok{\{}
+    \CommentTok{\# Si deux portes valides, en choisir une aléatoirement.}
+\NormalTok{    monty }\OtherTok{=} \FunctionTok{sample}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{3}\NormalTok{)[}\SpecialCharTok{{-}}\NormalTok{option], }\AttributeTok{size =} \DecValTok{1}\NormalTok{)}
+\NormalTok{  \}}
+  \CommentTok{\# Décision : Reste à choix1}
+\NormalTok{  choix.rester }\OtherTok{=}\NormalTok{ choix1}
+  
+  \CommentTok{\# Décision : Changer de choix changer}
+  \CommentTok{\# Changer = ne pas prendre la porte initial, ni la porte ouverte}
+\NormalTok{  choix.changer }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{3}\NormalTok{)[}\SpecialCharTok{{-}}\FunctionTok{c}\NormalTok{(choix1, monty)]}
+  
+  \CommentTok{\# Enregistrement des gains}
+\NormalTok{  gain.rester }\OtherTok{\textless{}{-}}\NormalTok{ gain.rester }\SpecialCharTok{+}\NormalTok{ (tirage[choix.rester] }\SpecialCharTok{==} \StringTok{"Voiture"}\NormalTok{)}
+\NormalTok{  gain.changer }\OtherTok{=}\NormalTok{ gain.changer }\SpecialCharTok{+}\NormalTok{ (tirage[choix.changer] }\SpecialCharTok{==} \StringTok{"Voiture"}\NormalTok{)}
+\NormalTok{\}}
+
+\FunctionTok{cbind}\NormalTok{(gain.rester,gain.changer)  }\SpecialCharTok{/}\NormalTok{ nreps}
+\CommentTok{\#\textgreater{}      gain.rester gain.changer}
+\CommentTok{\#\textgreater{} [1,]       0.316        0.684}
+\end{Highlighting}
+\end{Shaded}
+
+Une petite digression avant de poursuivre. \emph{Il ne faut jamais prendre pour acquis que le code fonctionne comme prévu}. À cause d'un inconvénient de la fonction \texttt{sample()}, une approche conditionnelle doit être utilisée. En fait, la fonction échantillonne les éléments de \texttt{x} (premier argument) jusqu'à obtenir \texttt{size} objets. Par contre, si une seule valeur est donnée à \texttt{x} et si elle est numérique, alors la fonction utilise les éléments de \texttt{1:x} pour rééchantillonner. Ici, si le choix et le prix sont différents, il n'y a qu'une seule valeur retournée (l'autre chèvre), ce qui occasionne le problème, et par conséquent, de l'utilisation du conditionnel. En programmation, il faut toujours s'assurer que les fonctions s'accordent avec les attentes.
+
+Quelles sont les résultats de cette simulation? Le fait de \emph{rester} sur le premier choix devrait obtenir 33\% de chance de réussir, comme le joueur a initialement une chance sur trois d'avoir la bonne réponse. Qu'en est-il pour \emph{changer}? Est-ce qu'ouvrir une porte \emph{chèvre} modifie les probabilités? Les résultats de la simulation montre que \emph{rester} gagne 31.6\% et que de \emph{changer} gagne 68.4\%. À long terme, il est fort avantageux de changer.
+
+Une explication simple est de dénombrer les possibilités. Dans le cas où le joueur ne change pas d'idée, il a une chance sur trois, soit : choisir la chèvre 1, et garder la chèvre 1; choisir la chèvre 2, et garder la chèvre 2; et choisir la voiture, et garder la voiture. Si le joueur change d'idée après l'ouverture des portes, les chances sont maintenant de deux sur trois, soit choisir la chèvre 1, changer pour le prix; choisir la chèvre 2 et changer pour le prix; ou choisir le prix et changer pour une chèvre.
+
+Une autre façon de rendre se problème plus évident est de considérer le problème avec 100 portes au lieu de 3. Le présentateur ouvre alors les 98 portes qui ne sont pas un prix. Si le joueur choisit une porte et garde, il a effectivement 1\% de chance de remporter le prix. Par contre, s'il choisit une porte et que le présentateur lui ouvre toutes les autres portes chèvres, il appert que le joueur gagne à tout coup s'il change, sauf s'il a choisi le prix au premier coup. Avec quelques modifications de la syntaxe précédente, le code suivant illustre le cas à 100 portes.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Simulation du problème de Monty Hall}
+\NormalTok{portes }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Voiture"}\NormalTok{, }\FunctionTok{rep}\NormalTok{(}\StringTok{"Chèvre"}\NormalTok{, }\DecValTok{99}\NormalTok{))}
+\NormalTok{n }\OtherTok{\textless{}{-}} \FunctionTok{length}\NormalTok{(portes)}
+\NormalTok{nreps }\OtherTok{\textless{}{-}} \DecValTok{1000}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{7896}\NormalTok{)}
+
+\CommentTok{\# Valeur initial des gains}
+\NormalTok{gain.rester }\OtherTok{\textless{}{-}} \DecValTok{0}
+\NormalTok{gain.changer }\OtherTok{\textless{}{-}} \DecValTok{0}
+
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{nreps)\{}
+  \CommentTok{\# Arrangement initial des portes}
+\NormalTok{  tirage }\OtherTok{\textless{}{-}} \FunctionTok{sample}\NormalTok{(portes)}
+  
+  \CommentTok{\# Trouver le prix}
+\NormalTok{  prix }\OtherTok{\textless{}{-}} \FunctionTok{which}\NormalTok{(tirage }\SpecialCharTok{\%in\%} \StringTok{"Voiture"}\NormalTok{)}
+  
+  \CommentTok{\# Choix aléatoire}
+\NormalTok{  choix1 }\OtherTok{\textless{}{-}} \FunctionTok{sample}\NormalTok{(n, }\AttributeTok{size =} \DecValTok{1}\NormalTok{)}
+  
+  \CommentTok{\# Sélectionner la porte avec la chèvre (pas un prix) et}
+  \CommentTok{\# qui n\textquotesingle{}est pas celle choisie (choix1)}
+\NormalTok{  option }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(choix1, prix)}
+  
+  \CommentTok{\# Les autres portes}
+\NormalTok{  monty }\OtherTok{\textless{}{-}} \FunctionTok{sample}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\NormalTok{n)[}\SpecialCharTok{{-}}\NormalTok{option], }\AttributeTok{size =}\NormalTok{ n }\SpecialCharTok{{-}} \DecValTok{2}\NormalTok{)}
+  
+  \CommentTok{\# Décision : Reste à choix1}
+\NormalTok{  choix.rester }\OtherTok{\textless{}{-}}\NormalTok{ choix1}
+  
+  \CommentTok{\# Décision : Changer de choix changer}
+  \CommentTok{\# Changer = ne pas prendre la porte initial, ni la porte ouverte}
+\NormalTok{  choix.changer }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\NormalTok{n)[}\SpecialCharTok{{-}}\FunctionTok{c}\NormalTok{(choix1, monty)]}
+  
+  \CommentTok{\# Enregistrement des gains}
+\NormalTok{  gain.rester }\OtherTok{\textless{}{-}}\NormalTok{ gain.rester }\SpecialCharTok{+}\NormalTok{ (tirage[choix.rester] }\SpecialCharTok{==} \StringTok{"Voiture"}\NormalTok{)}
+\NormalTok{  gain.changer }\OtherTok{\textless{}{-}}\NormalTok{ gain.changer }\SpecialCharTok{+}\NormalTok{ (tirage[choix.changer] }\SpecialCharTok{==} \StringTok{"Voiture"}\NormalTok{)}
+\NormalTok{\}}
+
+\FunctionTok{cbind}\NormalTok{(gain.rester,gain.changer)  }\SpecialCharTok{/}\NormalTok{ nreps}
+\CommentTok{\#\textgreater{}      gain.rester gain.changer}
+\CommentTok{\#\textgreater{} [1,]       0.009        0.991}
+\end{Highlighting}
+\end{Shaded}
+
+La simulation montre que rester gagne 0.9\% et que de changer gagne 99.1\%.
+
+Des situations fort plus compliquées pourraient être apportées en simulations Monte-Carlo. Le jeu de Black Jack en est un exemple, bien qu'il soit déjà résolu pour des résultats optimaux \autocite{Millman83}. Il suffit d'avoir la patience de programmer le tout pour confirmer les résutats analytiques.
+
+Sur le plan pratique pour l'expérimentateur, les simulations Monte-Carlo peuvent être utiles pour calculer des tailles d'échantillons pour des modèles complexes, comme des modèles par équations structurelles compliquées, mutliniveaux ou de classes latentes. Une sous-famille est d'une importance signficative pour l'expérimentateur, celle qui sera abordée maintenant, le bootstrap.
+
+\hypertarget{le-bootstrap}{%
+\section{Le bootstrap}\label{le-bootstrap}}
+
+Le \emph{bootstrap} (dont il n'y a pas d'excellente traduction en français) est une des techniques de rééchantillonnage astucieuses permettant des inférences statistiques \autocite{Efron79}. Il fait partie de la famille des simulations Monte-Carlo, car il se base sur la réitération multiple d'une statistique à partir d'un jeu de données. Sans vouloir entrer trop dans les détails, il existe plusieurs types de techniques de bootstrap, qui font elles-mêmes parties d'une plus grande famille, les simulations stochastiques. Y est inclus les simulations de Monte-Carlo (dont le bootstrap fait parti) ou les méthodes numériques bayésiennes.
+
+Cet ouvrage insiste sur le bootstrap non paramétrique, impliquant que les distributions sous-jacentes aux échantillons ne soient pas spécifiées, bien qu'il existe du bootstrap paramétrique. Ce type de bootstrap est certainement la plus utile pour l'expérimentateur.
+
+Dans le bootstrap, l'échantillon initial est considéré comme une pseudopopulation. Il ne nécessite pas d'autre information que celle fournie par l'échantillon. Il permet d'obtenir une distribution d'échantillonnage et tous ses bénéfices. Alors que dans le chapitre précédent, il fallait préciser et connaître quelle distribution d'échantillonnage correspond à quelle statistique (p.~ex., le score-\(z\) d'une unité à la distribution normale; la moyenne d'un échantillon à la distribution \(t\) si la variance est inconnue), aucune de ces connaissances n'est nécessaire. L'étendue d'application du bootstrap appert immense, surtout pour les concepts statistiques qui offriront plus de défis, ce qui sera vu dans des chapitres ultérieurs.
+
+Obtenir la distribution d'échantillonnage permet ainsi :
+
+\begin{itemize}
+\item
+  d'estimer l'indice désiré;
+\item
+  d'estimer son erreur standard;
+\item
+  d'estimer ses intervalles de confiance;
+\item
+  de réaliser un test d'hypothèse;
+\end{itemize}
+
+tout cela en ignorant les distributions et postulats sous-jacents qui pourraient empêcher ou limiter leurs usages. Elle n'a que deux hypothèses fondamentales :l'échantillon reflète la population et chaque unité est indépendante et identiquement distribuée. Autrement dit, chaque unité provienne bel et bien d'une même boîte (\emph{population}, voir chapitre sur l'inférence statistique) et en sont un portrait juste en plus que le tirage d'une unité n'en influence celle d'une autre.
+
+Le fondement du bootstrap repose sur les étapes suivantes :
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Sélectionner avec remise les unités d'un échantillon;
+\item
+  Calculer et enregistrer l'indice statistique désiré auprès de ce nouvel échantillon;
+\item
+  Réitérer les deux premières étapes un nombre élevé de fois.
+\end{enumerate}
+
+Ce processus hautement facilité par l'excellente performance des ordinateurs d'aujourd'hui, se réalise très facilement et rapidement. L'exemple suivant est basé sur le rééchantillonnage (1000 fois) de la moyenne à partir d'une variable aléatoire tirée d'une distribution uniforme avec un minimum de 5 et d'une maximum de 15.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{158}\NormalTok{)}
+\CommentTok{\# Nombre d\textquotesingle{}unités}
+\NormalTok{n }\OtherTok{\textless{}{-}} \DecValTok{30}
+
+\CommentTok{\# Le nombre de rééchantillonnage}
+\NormalTok{nreps }\OtherTok{\textless{}{-}} \DecValTok{10000}
+
+\CommentTok{\# Création de la variable}
+\NormalTok{X }\OtherTok{\textless{}{-}} \FunctionTok{runif}\NormalTok{(}\AttributeTok{n =}\NormalTok{ n, }\AttributeTok{min =} \DecValTok{5}\NormalTok{, }\AttributeTok{max =} \DecValTok{15}\NormalTok{)}
+
+\CommentTok{\# Création d\textquotesingle{}une variable vide pour l\textquotesingle{}enregistrement}
+\NormalTok{moyenne.X }\OtherTok{\textless{}{-}} \FunctionTok{numeric}\NormalTok{()}
+
+\CommentTok{\# L\textquotesingle{}utilisation d\textquotesingle{}une boucle permet de réitérer les étapes}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{nreps)\{}
+  \CommentTok{\# Rééchantillonnage avec remise}
+\NormalTok{  id }\OtherTok{\textless{}{-}} \FunctionTok{sample}\NormalTok{(n, }\AttributeTok{replace =} \ConstantTok{TRUE}\NormalTok{)}
+  
+  \CommentTok{\# Nouvel échantillon}
+\NormalTok{  nouveau.X }\OtherTok{\textless{}{-}}\NormalTok{ X[id]}
+  
+  \CommentTok{\# Calculer et enregistrer la moyenne}
+\NormalTok{  moyenne.X[i] }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(nouveau.X)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+La fonction \texttt{sample(,\ replace\ =\ TRUE)} rééchantillonne avec remplacement les identifiants des unités. Par simplicité, il est possible d'éliminer la ligne \texttt{nouveau.X\ =\ X{[}id{]}} en utilisant \texttt{mean(X{[}id{]})} ou plus simplement \texttt{mean(sample(X,\ replace\ =\ TRUE))}. Cette utilisation se limite seulement au cas d'un vecteur de données. S'il s'agit d'un jeu de données avec plus d'une variable, alors \texttt{mean(X{[}id,\ {]})} sera utilisé. Noter l'usage de la \texttt{,} entre crochets. De cette façon, toutes les variables des unités identifiées par \texttt{id} sont extraites.
+
+À partir des informations obtenues, il est possible de faire des inférences statistiques. Toutes les estimations peuvent être présentées comme un histogramme tel que l'illustre la figure \ref{fig:hist2}. Le code se retrouve ci-dessous. Ici, quelques formules pour améliorer la présentation se retrouvent dans la syntaxe. L'utilisation simple de \texttt{hist()} pourra convenir.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{hist}\NormalTok{(moyenne.X,              }\CommentTok{\# Données}
+     \AttributeTok{ylab =} \StringTok{" Frequence"}\NormalTok{,    }\CommentTok{\# Changer l\textquotesingle{}axe y}
+     \AttributeTok{main =} \StringTok{""}\NormalTok{,              }\CommentTok{\# Retirer le titre}
+     \AttributeTok{breaks =} \DecValTok{50}\NormalTok{,            }\CommentTok{\# Nombre de colonnes}
+     \AttributeTok{xlim =} \FunctionTok{c}\NormalTok{(}\DecValTok{7}\NormalTok{,}\DecValTok{13}\NormalTok{)          }\CommentTok{\# Définir l\textquotesingle{}étendu de l\textquotesingle{}axe x}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\centering
+\includegraphics{05-Simuler_files/figure-latex/hist2-1.pdf}
+\caption{\label{fig:hist2}Historgamme des estimations des échantillons}
+\end{figure}
+
+La distribution de la figure \ref{fig:hist2} peut être désignée comme la distribution de la \emph{population}, comme c'était le cas dans le chapitre sur les inférences. Elle permet d'avoir une estimation plus robuste de l'erreur standard, qui se trouve à être l'écart type des indices rééchantillonnés. Elle est également utilisée pour construire des intervalles de confiance et permet ainsi de faire des tests d'hypothèse comme : l'intervalle de confiance à \((1-\alpha) \times 100\) \% contient-elle la valeur 0? Comme il est fait avec une hypothèse nulle traditionnelle.
+
+Ici, le cas illustré est trivial au sens où, par le théorème central limite, la réponse est déjà connue. Si l'exemple était plutôt sur la médiane, il faudrait obligatoirement procéder par bootstrap pour calculer son erreur type et ses intervalles de confiance, car aucune formule exacte ne permet sa dérivation (il existe bien des approximations cela dit). Le bootstrap est alors des plus appropriés pour calculer l'erreur type et en tirer des intervalles de confiances, voire même en faire des tests d'hypothèses. Plusieurs statistiques auront recours au bootstrap pour dériver ces informations, la plus utilisée étant le coefficient de détermination (voir le chapitre sur la régression).
+
+À partir des informations obtenues auprès du rééchantillonnage, il est possible d'obtenir les éléments désirés. Comme le cas est trivial, les indices statistiques seront très similaires. Cela confirmera au lecteur qu'aucun principe ésotérique ne s'est déroulé devant ses yeux en plus de confirmer que les statistiques attendues se produisent effectivement.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Voici la moyenne et l\textquotesingle{}erreur standard originales}
+\FunctionTok{mean}\NormalTok{(X) ; }\FunctionTok{sd}\NormalTok{(X)}\SpecialCharTok{/}\FunctionTok{sqrt}\NormalTok{(n)}
+\CommentTok{\#\textgreater{} [1] 10.2}
+\CommentTok{\#\textgreater{} [1] 0.485}
+
+\CommentTok{\# La moyenne et l\textquotesingle{}erreur standard à partir des rééchantillons}
+\FunctionTok{mean}\NormalTok{(moyenne.X)  ; }\FunctionTok{sd}\NormalTok{(moyenne.X)}
+\CommentTok{\#\textgreater{} [1] 10.2}
+\CommentTok{\#\textgreater{} [1] 0.481}
+\end{Highlighting}
+\end{Shaded}
+
+La moyenne et l'erreur standard sont très près de la moyenne de l'échantillon et celle de la population (qui est de 10) et de l'erreur type attendue. Il est possible de créer des intervalles de confiances avec la fonction \texttt{quantile} qui prend en argument un vecteur de données et les probabilités désirées. Dans le cas de 95\% pour une erreur de type I de 5\%, soit \(\alpha=.05\), il s'agit de \(.05/2 = .025\) et \(1-.05/2= .975\), laissant au total 5\% aux extrémités.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Erreur de type I}
+\NormalTok{alpha }\OtherTok{=}\NormalTok{ .}\DecValTok{05}
+
+\CommentTok{\# Valeurs critiques}
+\NormalTok{crit }\OtherTok{=} \FunctionTok{c}\NormalTok{(alpha}\SpecialCharTok{/}\DecValTok{2}\NormalTok{, (}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{alpha}\SpecialCharTok{/}\DecValTok{2}\NormalTok{))}
+\NormalTok{tv }\OtherTok{=} \FunctionTok{qt}\NormalTok{(crit, }\AttributeTok{df =}\NormalTok{ n }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{)}
+
+\CommentTok{\# Intervalles basés sur les indices de l\textquotesingle{}échantillon}
+\FunctionTok{mean}\NormalTok{(X) }\SpecialCharTok{+}\NormalTok{ tv }\SpecialCharTok{*} \FunctionTok{sd}\NormalTok{(X)}\SpecialCharTok{/}\FunctionTok{sqrt}\NormalTok{(n)}
+\CommentTok{\#\textgreater{} [1]  9.2 11.2}
+
+\CommentTok{\# Intervalles basés sur les indices du rééchantillonnage}
+\FunctionTok{mean}\NormalTok{(moyenne.X) }\SpecialCharTok{+}\NormalTok{ tv }\SpecialCharTok{*} \FunctionTok{sd}\NormalTok{(moyenne.X)}
+\CommentTok{\#\textgreater{} [1]  9.22 11.18}
+
+\CommentTok{\# Intervalles sur le rééchantillonnage}
+\FunctionTok{quantile}\NormalTok{(moyenne.X, crit)}
+\CommentTok{\#\textgreater{}  2.5\% 97.5\% }
+\CommentTok{\#\textgreater{}  9.26 11.13}
+\end{Highlighting}
+\end{Shaded}
+
+Pour réaliser le test d'hypothèse nulle, il suffit de constater si l'intervalle de confiance contient ou non zéro. Dans le cas où l'intervalle contient 0, le test n'est pas significatif, il est vraisemblable que l'absence d'effet soit vraie. S'il ne contient pas 0, l'hypothèse est rejetée, le test est significatif et il est vraisemblable qu'il y ait un effet. Dans cet exemple, la moyenne est clairement différente de 0, car elle ne contient pas cette valeur.
+
+\hypertarget{meilleures-pratiques}{%
+\subsubsection{Meilleures pratiques}\label{meilleures-pratiques}}
+
+\textbf{R} n'est pas particulièrement efficace pour réaliser des boucles. Il existe une famille de fonctions \texttt{apply} qui permettent d'appliquer une fonction sur une série de vecteurs (comme une liste, un jeu de données ou une matrice). L'appel à l'aide \texttt{?apply} donne beaucoup d'informations. La fonction principale est \texttt{apply()}. Elle nécessite le jeu de données (\texttt{X}) sur lequel appliqué la fonction (\texttt{FUN}) et un argument (\texttt{MARGIN}) pour identifier dimension selon laquelle il faut appliquer la fonction, comme \texttt{MARGIN\ =\ 1} produit l'opération par lignes; \texttt{MARGIN\ =\ 2} produit l'opération par colonnes.\footnote{Il y a aussi des cas plus complexes lorsque le jeu possède plus de deux dimesions, comme \texttt{MARGIN\ =\ c(1,2)} produit l'opération sur une matrice (lignes par colonnes) ou \texttt{MARGIN\ =\ n} produit l'opération sur la n\textsuperscript{e} dimension.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Il faut un vecteur de données \textasciigrave{}vec\textasciigrave{}, un nombre de répétitions \textasciigrave{}nreps\textasciigrave{}}
+\CommentTok{\# et une fonction \textasciigrave{}theta\textasciigrave{} à calculer sur le vecteur}
+\NormalTok{bootstrap }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(vec, nreps, theta)\{}
+\NormalTok{  btsp.vec }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{sample}\NormalTok{(vec, nreps }\SpecialCharTok{*} \FunctionTok{length}\NormalTok{(vec), }\AttributeTok{replace =} \ConstantTok{TRUE}\NormalTok{),}
+                     \AttributeTok{nrow =}\NormalTok{ nreps)}
+\NormalTok{  btsp.res }\OtherTok{\textless{}{-}} \FunctionTok{apply}\NormalTok{(}\AttributeTok{X =}\NormalTok{ btsp.vec, }\AttributeTok{MARGIN =} \DecValTok{1}\NormalTok{, }\AttributeTok{FUN =}\NormalTok{ theta)}
+  \FunctionTok{return}\NormalTok{(btsp.res)}
+\NormalTok{\}}
+
+\CommentTok{\# En utilisant les données de l\textquotesingle{}exemple précédent}
+\NormalTok{btsp }\OtherTok{\textless{}{-}} \FunctionTok{bootstrap}\NormalTok{(}\AttributeTok{vec =}\NormalTok{ X, }\AttributeTok{nreps =}\NormalTok{ nreps, }\AttributeTok{theta =}\NormalTok{ mean)}
+
+\CommentTok{\# Pour fin de comparaison :}
+\CommentTok{\# Voici la moyenne et l\textquotesingle{}erreur standard de ce bootstrap}
+\FunctionTok{mean}\NormalTok{(btsp)  ; }\FunctionTok{sd}\NormalTok{(btsp)}
+\CommentTok{\#\textgreater{} [1] 10.2}
+\CommentTok{\#\textgreater{} [1] 0.484}
+
+\CommentTok{\# Voici la moyenne et l\textquotesingle{}erreur standard à partir du premier bootstrap}
+\FunctionTok{mean}\NormalTok{(moyenne.X)  ; }\FunctionTok{sd}\NormalTok{(moyenne.X)}
+\CommentTok{\#\textgreater{} [1] 10.2}
+\CommentTok{\#\textgreater{} [1] 0.481}
+
+\CommentTok{\# Et voici la moyenne et l\textquotesingle{}erreur standard originales}
+\FunctionTok{mean}\NormalTok{(X) ; }\FunctionTok{sd}\NormalTok{(X)}\SpecialCharTok{/}\FunctionTok{sqrt}\NormalTok{(n)}
+\CommentTok{\#\textgreater{} [1] 10.2}
+\CommentTok{\#\textgreater{} [1] 0.485}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{les-packages-1}{%
+\subsection{Les packages}\label{les-packages-1}}
+
+Il existe plusieurs packages pour réaliser du bootstrap dans \textbf{R}. Il y a \texttt{bootstrap} \autocite{bootstrap} et \texttt{boot} \autocite{Canty21}. Ajouter à cela que plusieurs fonctions \textbf{R} possèdent des options de bootstrap intégrées (qu'il faut commander dans les arguments). Plusieurs analyses statistiques qui recourent régulièrement aux bootstraps auront déjà des options implantées.
+
 \hypertarget{exercice-analyse}{%
 \chapter*{Exercices}\label{exercice-analyse}}
 \addcontentsline{toc}{chapter}{Exercices}
@@ -3589,18 +3935,609 @@ TODO
   Comparer l'erreur de type I du test-\(t\) indépendant avec équivalence versus non-équivalence des variances pour une différence de moyennes de 1 et des variances de \(.25\) pour le groupe 1 et \(1\) pour le groupe 2 pour une taille d'échantillon de 30 séparé également entre les groupes.
 \end{enumerate}
 
-\hypertarget{techniques-avancuxe9es-de-moduxe9lisation}{%
-\chapter{Techniques avancées de modélisation}\label{techniques-avancuxe9es-de-moduxe9lisation}}
+\hypertarget{part-moduxe8le-linuxe9aire}{%
+\part{Modèle linéaire}\label{part-moduxe8le-linuxe9aire}}
 
-Dans le chapitre sur la régression, les variables indépendantes sont créées simultanément à partir d'une matrice de corrélation. Dans un modèle plus élaboré, plutôt que d'ignorer ces corrélations, comme le fait l'analyse de régression, il est possible de modéliser explicitement les liens entre les variables prédictrices.
+\hypertarget{ruxe9gression}{%
+\chapter{Régression}\label{ruxe9gression}}
 
+L'objectif de la régression est de décrire la relation entre un variable dépendante et un ensemble de variables indépendantes. Une première méthode de mesure d'association est la covariance (vue dans le chapitre sur les analyses de base) qui est représentée par l'équation ci-dessous.
+
+\begin{equation}
+s_{xy}=\frac{1}{n-1}\sum_{i=1}^n(x_i-\bar{x})(y_i-\bar{y})
+\label{eq:cov1}
+\end{equation}
+
+L'équation \eqref{eq:cov1} représente la somme des produits des écarts à la moyenne de deux variables. Comment généraliser cette équation à un ensemble de plus de deux variables? Pour débuter, les variables sont mises sur un même pied d'égalité, plutôt que de recourir à des lettres différentes (\(x\) et \(y\)), elles sont toutes considérées comme des \(x_{i,j}\), où l'indice \(i\) identifie le \(i\)\textsuperscript{e} participant, comme pour l'équation \eqref{eq:cov1}, et l'indice \(j\) indique la \(j\)\textsuperscript{e} variable parmi \(p\). Le calcul pour chacune des paires de variables \(j\) et \(k\) est réalisé pour les \(p\) variables; l'équation de la covariance devient ainsi.
+
+\begin{equation}
+s_{x_j,x_k}=\frac{1}{n-1}\sum_{i=1}^n(x_{i,j}-\bar{x_j})(x_{i,k}-\bar{x_k})
+\label{eq:cov2}
+\end{equation}
+
+Si les variables sont centrées, l'équation \eqref{eq:cov2} devient, pour faciliter l'intuition, l'équation \eqref{eq:cov3}, soit la somme des produits entre deux variables.
+
+\begin{equation}
+s_{x_j,x_k}=\frac{1}{n-1}\sum_{i=1}^n(x_{i,j})(x_{i,k})
+\label{eq:cov3}
+\end{equation}
+
+Avantageusement, lorsque \(j=k\), les équations \eqref{eq:cov2} et \eqref{eq:cov3} calculent la variance de la variable correspondante. En syntaxe \textbf{R,} ces équations pourraient s'écrire dans une fonction comme la suivante. Pour rappel, la fonction \texttt{cov()} dans laquelle une matrice de données est passée comme argument fournira la matrice de covariance.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{covariance1 }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(X)\{\} }
+\CommentTok{\# X est un jeu de données}
+\NormalTok{Xc }\OtherTok{=}\NormalTok{ X }\SpecialCharTok{{-}} \FunctionTok{colMeans}\NormalTok{(X) }\CommentTok{\# Centrées les variables}
+\NormalTok{p }\OtherTok{=} \FunctionTok{dim}\NormalTok{(X)[}\DecValTok{2}\NormalTok{]    }\CommentTok{\# Nombre de variables }
+\NormalTok{n }\OtherTok{=} \FunctionTok{dim}\NormalTok{(X)[}\DecValTok{1}\NormalTok{]    }\CommentTok{\# Nombre de sujets}
+\NormalTok{S }\OtherTok{=} \FunctionTok{as.numeric}\NormalTok{() }\CommentTok{\# Matrice vide pour enregistrer résultats (Sigma)}
+\ControlFlowTok{for}\NormalTok{(j }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{p) \{}
+  \ControlFlowTok{for}\NormalTok{(k }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{p) \{}
+\NormalTok{    S }\OtherTok{=} \FunctionTok{sum}\NormalTok{(Xc[,j] }\SpecialCharTok{*}\NormalTok{ Xc[,k])}
+\NormalTok{  \}}
+\NormalTok{\}}
+\NormalTok{S }\OtherTok{=}\NormalTok{ S }\SpecialCharTok{/}\NormalTok{ (n}\DecValTok{{-}1}\NormalTok{)}
+\CommentTok{\# S est la matrice de covariance}
+\FunctionTok{return}\NormalTok{(}\AttributeTok{covariance =}\NormalTok{ S)}
+\ErrorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Dans le code \textbf{R} ci-joint, \texttt{dim()} extrait le nombre de dimensions de la base de données, soit le nombre d'unités et le nombre de variables. Les crochets dans l'expression \texttt{dim(X){[}1{]}} indiquent que seule la première valeur doit être enregistrée - le nombre d'unités et \texttt{dim(X){[}2{]}}, le nombre de variable. Il est possible d'utiliser cette astuce dans d'autres contextes. La fonction \texttt{colMeans()} (moyenne de chaque colonne) calcule toutes les moyennes des variables. La ligne soustrait de \texttt{X} ces moyennes.
+
+\hypertarget{illustration-de-la-covariance}{%
+\subsection{Illustration de la covariance}\label{illustration-de-la-covariance}}
+
+Il est relativement aisé d'exprimer graphiquement la covariance bivariée. Pour chaque paire \((x_i,y_i)\), il est possible de dessiner un rectangle à partir du centre \((0, 0)\). Lorsque la moyenne d'une variable est soustraite, les données deviennent centrées sur ce point. L'expression \(xy\) ou \(x_ix_j\) peut rappeler à certain le calcul de l'aire d'un rectangle. C'est effectivement ce qui se produit pour la covariance. L'équation calcule l'aire du rectangle formé par les points \((0,0)\) et \((x_i,y_i)\). En fait, la covariance calcule le rectangle \emph{moyen}, car le produit est ensuite divisé par le nombre de rectangles \((-1)\).
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{06-Regression_files/figure-latex/unnamed-chunk-2-1} 
+
+}
+
+\caption{Illustration de la covariance}\label{fig:unnamed-chunk-2}
+\end{figure}
+
+\begin{figure}
+
+{\centering \includegraphics{06-Regression_files/figure-latex/unnamed-chunk-3-1} 
+
+}
+
+\caption{Illustration des produits (rectangles) pour différentes valeurs de covariance}\label{fig:unnamed-chunk-3}
+\end{figure}
+
+À partir des images suivantes, quelques propriétés de la covariance peuvent être déduites.
+
+\begin{itemize}
+\item
+  Comme la quantité de surface blanche (ou de noire) dépend de la taille de la figure, la covariance est directement proportionnelle aux échelles à l'abscisse et l'ordonnée.
+\item
+  La covariance augmente lorsque les points s'approchent d'une ligne à pente ascendante et diminue lorsque les points s'approchent d'une ligne à pente descendante.
+\item
+  Comme les associations non linéaires peuvent créer des amalgames de rectangles positifs et négatifs, elles conduisent à des covariances imprévisibles et peu pertinentes.
+\item
+  La covariance (et la corrélation) est sensible aux valeurs aberrantes. Un point éloigné de la masse créera une aire rectangulaire bien plus grande que les autres points. À lui seul, il peut créer une quantité substantielle positive ou négative de surface blanche (ou noire) dans la figure.
+\item
+  Si une variable est multipliée par elle-même, il s'agit de l'aire d'un carré, ce qui équivaut au calcul d'une variance. Par extension, si le produit de deux variables se rapproche davantage d'un carré que d'un rectangle (en moyenne), alors les deux variables sont fortement liées.
+\item
+  Le paramètre de la corrélation de la population peut être conceptualisé comme un triangle déformé en rectangle à cause de l'erreur de mesure des axes.
+\end{itemize}
+
+\hypertarget{la-covariance-en-termes-dalguxe8bre-matricielle}{%
+\subsection{La covariance en termes d'algèbre matricielle}\label{la-covariance-en-termes-dalguxe8bre-matricielle}}
+
+Pour l'instant, seul l'aspect linéaire est présenté. L'équation de la covariance peut aussi se calculer en termes d'algèbre matricielle. En plus d'accélérer le calcul des résultats, il simplifie énormément les mathématiques sous-jante (pourvu que l'utilisateur connaisse l'algèbre matricielle).
+
+Dans le présent contexte, une matrice est un ensemble de variables représentées sous une seule variables. Dans les équations mathématiques, une matrice est désignée par une lettre majuscule : \(x\) devient \(X\) et \(\sigma\) devient \(Sigma\). Dans une matrice, chaque colonne est une variable, chaque ligne correspond à un sujet différent mesuré sur toutes les variables. Une matrice est définie en partie par son nombre de lignes (\(n\), nombre d'unités) et son nombre de colonnes (\(p\), nombre de variables), dont voici une illustration.
+
+\[
+X = \left(\begin{array}{cccc} 
+x_{1,1} & x_{1,2} & ...&x_{1,p}\\
+x_{2,1} & x_{2,2} & ...&x_{2,p}\\
+... & ...& ...& ... \\
+x_{n,1} & x_{n,2} & ... &x_{n,p}\\
+\end{array}\right)
+\]
+
+En syntaxe \textbf{R}, il ne s'agit rien de plus que de concaténer des variables (mesurant les mêmes individus) ensembles par des colonnes, comme il est fait avec des jeux de données \texttt{data.frame()} ou \texttt{cbind()}. Un jeu de données est, à peu de chose près, une matrice. Pour créer une matrice \texttt{X} à partir des variables \texttt{x}, \texttt{y}, et \texttt{z} avec \textbf{R}, par exemple, la ligne \texttt{X\ =\ cbind(x,\ y,\ z)} joindra les trois variables ensemble.
+
+Pour réaliser le calcul de la covariance, il faut multiplier la matrice des données centrées (les variables concaténées) par elle-même puis de diviser par \(n-1\). Le symbole \(X\) représente la concaténation des variables. Par simplicité, l'équation utilise des \textbf{variables centrées}.
+
+\begin{equation}
+\Sigma = (n-1)^{-1}X^\prime X
+\label{eq:covmat1}
+\end{equation}
+
+Le symbole \(\Sigma\) (sigma majuscule) représente la matrice de variance-covariance. La diagonale de cette matrice représente les variances des données et les éléments hors diagonales sont les covariances, soulignant le lien entre la variance et la covariance. Le symbole \(\prime\) (prime) correspond à l'opération de transposer une matrice, soit d'échanger les lignes par ces colonnes. Cette procédure est nécessaire pour produire la multiplication d'une matrice par elle-même. Noter que l'expression \((n-1)^{-1}=\frac{1}{n-1}\).
+
+TODO
+
+\begin{equation}
+\begin{aligned}
+S & = (n-1)^{-1}
+\left(\begin{array}{cccc} 
+x_{1,1} & x_{2,1} & ... & x_{n,1} \\
+x_{2,1} & x_{2,2} & ... & x_{n,2} \\
+\end{array}\right) 
+\left(\begin{array}{cc} 
+x_{1,1} & x_{1,2} \\
+x_{2,1} & x_{2,2}\\
+... & ...  \\
+x_{n,1} & x_{n,2} \\
+\end{array}\right) \\
+   & = (n-1)^{-1}
+\left(\begin{array}{cc}
+\sum_{i=1}^n(x_{i,1})(x_{i,1}) & \sum_{i=1}^n(x_{i,1})(x_{i,2})\\
+\sum_{i=1}^n(x_{i,2})(x_{i,1}) & \sum_{i=1}^n(x_{i,2})(x_{i,2})
+\end{array}\right)
+\end{aligned}
+\label{eq:covmat2}
+\end{equation}
+
+L'équation \eqref{eq:covmat2} illustre l'équation \eqref{eq:covmat1} qui sont toutes les deux équivalentes à \eqref{eq:cov3}. En termes de syntaxe \textbf{R}, elles peuvent être traduites comme suit.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{covariance2 }\OtherTok{=} \ControlFlowTok{function}\NormalTok{(X)\{}
+  \CommentTok{\# X est une data.frame ou matrice de n sujets par p variables}
+\NormalTok{  n }\OtherTok{=} \FunctionTok{dim}\NormalTok{(X)[}\DecValTok{1}\NormalTok{]}
+\NormalTok{  Xc }\OtherTok{=}\NormalTok{ X }\SpecialCharTok{{-}} \FunctionTok{colMeans}\NormalTok{(X)}
+  \CommentTok{\# Algèbre matriciel pour le produit qui permet de calculer}
+  \CommentTok{\# le produit d\textquotesingle{}une colonne avec les autres colonnes}
+\NormalTok{  cov.X }\OtherTok{=} \FunctionTok{t}\NormalTok{(Xc) }\SpecialCharTok{\%*\%}\NormalTok{ Xc }\SpecialCharTok{/}\NormalTok{ (n }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{)}
+  \FunctionTok{return}\NormalTok{(cov.X)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+La fonction \texttt{t()} opère la transpose (\(\prime\)) et le symbole \texttt{\%*\%} signifie le produit matriciel des variables. Si l'usuel symbole de multiplication \texttt{*} était utilisé, \textbf{R} opérerait une multiplication cellule par cellule (avec recyclage) plutôt que celle désirée ici.
+
+L'utilisation de l'algèbre matricielle est plus simple et efficace : Elle nécessite cinq lignes de code, élimine deux boucles, prend moins de temps à calculer en plus de produire toutes les variances et les covariances.
+
+Une matrice de covariance possède plusieurs propriétés qu'il faut connaître. Elle est toujours carrée soit \(p \times p\) pour \(p\) variables et contient \(p^2\) éléments. Parmi ces éléments, les \(p\) éléments de la diagonale sont des variances, ce pourquoi elle est parfois appelée matrice de variance-covariance. Les éléments triangulaires inférieurs hors diagonale sont un parfait reflet des éléments supérieurs, p.ex. \(\sigma_{1,2} = \sigma_{2,1}\). Il y a ainsi \(\frac{p(p-1)}{2}\) covariances uniques dans une matrice et \(p(p+1)/2\) éléments uniques (variances et covariances). En plus, de ces caractéristiques, la matrice doit être \emph{positive semi-définie}, ce qui est un terme mathématique impliquant, pour les fins de ce chapitre, que les variances ne peuvent être nulles. (C'est plus complexe que cela, mais il suffit d'accepter cette affirmation pour procéder.)
+
+\[
+\Sigma = \left( 
+\begin{array}{cccc}
+\sigma_{1,1} & \sigma_{1,2} & ... &  \sigma_{1,p}\\
+\sigma_{2,1} & \sigma_{2,2} & ... &  \sigma_{2,p}\\
+...& ...& ... &  \sigma_{3,p}\\
+\sigma_{p,1} & \sigma_{p,2} & ... &  \sigma_{p,p}\\
+\end{array}
+\right)
+\]
+
+\hypertarget{cruxe9ation-de-donnuxe9es}{%
+\subsection{Création de données}\label{cruxe9ation-de-donnuxe9es}}
+
+Une façon simple et efficace de créer des données à ce stade est la package \texttt{MASS} dont un aperçu a été donné dans le chapitre sur les analyses de base.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Création de la matrice de covariance pour p=3}
+\NormalTok{Sigma }\OtherTok{=} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(s11, s12, s13,}
+\NormalTok{                 s12, s22, s23,}
+\NormalTok{                 s13, s23, s33), }\AttributeTok{nrow =} \DecValTok{3}\NormalTok{, }\AttributeTok{ncol =} \DecValTok{3}\NormalTok{)}
+\CommentTok{\# Création des données }
+\NormalTok{donnees }\OtherTok{=} \FunctionTok{data.frame}\NormalTok{(MASS}\SpecialCharTok{::}\FunctionTok{mvrnorm}\NormalTok{(}\AttributeTok{n =}\NormalTok{ n, }\AttributeTok{mu =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{), }\AttributeTok{Sigma =}\NormalTok{ Sigma))}
+\end{Highlighting}
+\end{Shaded}
+
+La matrice de covariance pour \(p=3\) s'écrit comme suit.
+\[
+\Sigma = \left( 
+\begin{array}{ccc}
+\sigma_{1,1} & \sigma_{1,2} & \sigma_{1,3}\\
+\sigma_{2,1} & \sigma_{2,2} & \sigma_{2,3}\\
+\sigma_{3,1} & \sigma_{3,2} & \sigma_{2,3}
+\end{array}
+\right)
+\]
+Il convient d'écrire \(\Sigma\) (sigma majuscule) et \(\sigma\) (sigma minuscule) plutôt que \(S\), car il s'agit de la matrice de covariance de la population. Le résultat de \texttt{S\ =\ cov(donnees)} est empirique et la notation \(S\) est plus appropriée. Comme il y a \(p=3\) variables dans la syntaxe, il faudra préalablement spécifier \(3*4/2 = 6\) arguments :\(p = 3\) variances \(\sigma_{1,1},\sigma_{3,3},\sigma_{3,3}\) et \(3*2/2 =3\) covariances \(\sigma_{1,2},\sigma_{1,3},\sigma_{2,3}\).
+
+\hypertarget{la-matrice-de-corruxe9lation}{%
+\subsection{La matrice de corrélation}\label{la-matrice-de-corruxe9lation}}
+
+Pour rappel, une matrice de corrélation est une matrice de covariance dont les variables ont été standardisées. Cela implique de transformer la matrice afin que toute la diagonale soit à l'unité, que toutes les variances soient égalent à 1. Cela permet d'avoir une interprétation \emph{standardisée} des corrélations, car celles-ci sont indépendantes des métriques originales. Les autres éléments conceptuels de la matrice de covariance s'appliquent pour la matrice de corrélation.
+
+Pour transformer la matrice de covariance en matrice de corrélation, trois techniques sont possibles.
+
+La première est de standardise \(X\) préalablement au calcul de la covariance. Comme il n'y a pas d'équivalent à \texttt{colMeans()} pour l'écart type, l'utilisation de \texttt{apply(X,\ MARGIN\ =\ 2,\ FUN\ =\ sd)} fera le travail. Cette ligne de syntaxe reproduit la même logique, mais pour l'écart type \texttt{sd()}. Textuellement, elle applique (\texttt{apply()}) l'écart type (\texttt{sd()}) pour chaque colonne \texttt{MARGIN\ =\ 2} à la matrice de données \texttt{X}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{X }\OtherTok{=}\NormalTok{ (X }\SpecialCharTok{{-}} \FunctionTok{colMeans}\NormalTok{(X)) }\SpecialCharTok{/} \FunctionTok{apply}\NormalTok{(X, }\AttributeTok{MARGIN =} \DecValTok{2}\NormalTok{, }\AttributeTok{FUN =}\NormalTok{ sd)}
+\end{Highlighting}
+\end{Shaded}
+
+La deuxième méthode est de standardiser la matrice de covariance en termes d'algèbre matricielle, où \(S\) est la matrice de covariance. Il faut extraire de la matrice les variances de la diagonale (avec la fonction mathématique \(\text{diag()}\)), puis en faire la racine carrée pour obtenir des écarts types, puis en refaire une matrice carrée avec la fonction mathématique \(\text{diag()}\) qu'il faut finalement inversé pour en faire une division.
+
+\begin{equation}
+R = (\text{diag}(\sqrt{\text{diag}(S)})^{-1}) S (\text{diag}(\sqrt{\text{diag}(S)})^{-1})
+\label{eq:cov2cor}
+\end{equation}
+
+En code \textbf{R}, l'équation \eqref{eq:cov2cor} se traduit ainsi.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{R }\OtherTok{=} \FunctionTok{solve}\NormalTok{(}\FunctionTok{diag}\NormalTok{(}\FunctionTok{sqrt}\NormalTok{(}\FunctionTok{diag}\NormalTok{(S)))) }\SpecialCharTok{\%*\%}\NormalTok{ S }\SpecialCharTok{\%*\%} \FunctionTok{solve}\NormalTok{(}\FunctionTok{diag}\NormalTok{(}\FunctionTok{sqrt}\NormalTok{(}\FunctionTok{diag}\NormalTok{(S))))}
+\end{Highlighting}
+\end{Shaded}
+
+Lorsqu'une matrice est passée comme argument à \texttt{diag()}, elle extrait les éléments de la diagonale pour en faire un vecteur. Si un vecteur est passé en argument, alors \texttt{diag()} retourne une matrice avec les éléments du vecteur en diagonale. La fonction \texttt{solve()} calcule l'inverse d'une matrice, comme l'utilisateur pourrait attendre de \(X^{-1}\). Il s'agit certainement de l'aspect le plus biscornu de \textbf{R}. Enfin, l'opérateur \texttt{\%*\%} est le produit matriciel.
+
+La troisième est d'utiliser la fonction de base \texttt{cov2cor()} pour transformer la matrice de covariance en matrice de corrélation, ce qui est plus simple et plus rapide que la deuxième option, mais qui cache ce qui se réalise.
+
+\hypertarget{la-ruxe9gression}{%
+\section{La régression}\label{la-ruxe9gression}}
+
+Pour l'instant, des rudiments de la covariance et de la corrélation ont été présentés dans le but d'introduire graduellement l'algèbre matricielle. L'objectif étant atteint, le regard portera sur la régression en tant que moyen de prédire une variable \(y\) à partir d'un ensemble de variables \(X\).
+
+Quelle est la différence entre les analyses de covariance et corrélation comparativement à l'analyse de régression? Bien que la logique sous-jacente soit très similaire, il faut maintenant déterminer une variable \emph{différente} de l'autre, c'est-à-dire une variable dépendante. Les autres sont des variables indépendantes. Les variables indépendantes prédisent la variable dépendante un peu comme dans un modèle \emph{déterministe}, il faut décider de la cause (variables indépendantes) et l'effet (variable dépendante), ce dernier étant généré par les premiers.
+
+Plutôt que de traiter chaque paire de variable comme c'était le cas avec l'analyse de corrélation, la régression correspond à étudier la relation entre la variable dépendante et toutes les autres, et ce, simultanément. Ainsi, les variables indépendantes sont contrôlées entre elles pour évaluer leur effet sur la variable dépendante et un modèle de prédiction plus juste est obtenu (autant que faire ce peut avec modèle statistique).
+
+\hypertarget{le-moduxe8le-de-ruxe9gression-simple}{%
+\subsection{Le modèle de régression simple}\label{le-moduxe8le-de-ruxe9gression-simple}}
+
+L'équation pour un modèle de régression simple se résume en un cas bivarié, soit la prédiction de \(y\) par une seule variable \(x\).
+
+\begin{equation}
+y = \beta_0 + \beta_1 x + \epsilon_y
+\label{eq:modlin}
+\end{equation}
+
+Dans ce modèle, \(y\) est la variable prédite, \(x\) est le seul prédicteur, \(\beta_0\) est l'ordonnée à l'origine, \(\beta_1\) est le coefficient de régression et \(\epsilon_y\), l'erreur dans la variable \(y\) indépendante (non corrélée, ni fonctionnelement liée) de \(x\).
+
+\hypertarget{cruxe9ation-de-donnuxe9es-1}{%
+\subsection{Création de données}\label{cruxe9ation-de-donnuxe9es-1}}
+
+Une façon simple de créer des données en fonction d'un modèle linéaire plutôt qu'à partir de la matrice de corrélation (comme ce fut le case jusqu'à présent) est de reprendre l'équation \eqref{eq:modlin} et de spécifier les paramètres libre. D'abord, il faut remplacer les paramètres du modèle par des valeurs, \(beta_0\), \(beta_1\), et ensuite, créer deux variables aléatoires de taille \(n\) (la taille d'échantillon), une première pour \(x\) et une seconde pour \(\epsilon_y\). Les hypothèses sous-jacentes aux modèles linéaires assument généralement que la l'erreur (\(\epsilon\)) est distribuée normalement (avec implicitement une moyenne de 0), la fonction \texttt{rnorm()} pourra jouer le rôle. Pour \(x\), il n'y a pas de distribution à respecter, mais une distribution normale fait très bien l'affaire. Voici un exemple de code \textbf{R}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# En spécifiant une taille d\textquotesingle{}échantillon très grande,}
+\CommentTok{\# l\textquotesingle{}erreur échantillonnalle est considérablement réduite.}
+\CommentTok{\# Valeurs choisies par l\textquotesingle{}utilisateur}
+\NormalTok{n }\OtherTok{=} \DecValTok{10000} \CommentTok{\# Taille d\textquotesingle{}échantillon}
+\NormalTok{beta0 }\OtherTok{=} \DecValTok{5} \CommentTok{\# Les betas}
+\NormalTok{beta1 }\OtherTok{=} \DecValTok{1}
+\CommentTok{\# Deux variables aléatoires tirées de distributions normales.}
+\CommentTok{\# Les moyennes sont nulles et }
+\CommentTok{\# les écarts types sont spécifiés par l\textquotesingle{}utilisateur.}
+\NormalTok{x }\OtherTok{=} \FunctionTok{rnorm}\NormalTok{(}\AttributeTok{n =}\NormalTok{ n, }\AttributeTok{sd =} \DecValTok{1}\NormalTok{)}
+\NormalTok{e.y }\OtherTok{=} \FunctionTok{rnorm}\NormalTok{(}\AttributeTok{n =}\NormalTok{ n, }\AttributeTok{sd =} \DecValTok{3}\NormalTok{)}
+\CommentTok{\# Création de la variable dépendante}
+\NormalTok{y }\OtherTok{=}\NormalTok{ beta0 }\SpecialCharTok{+}\NormalTok{ beta1 }\SpecialCharTok{*}\NormalTok{ x }\SpecialCharTok{+}\NormalTok{ e.y}
+\end{Highlighting}
+\end{Shaded}
+
+Si l'utilisateur souhaite ajouter une autre variable, il lui suffit d'ajouter un \(\beta\) supplémentaire et de créer une autre variable aléatoire
+
+Cette méthode de création de données possède toutefois des limites. Principalement, elle ne spécifie pas les propriétés statistiques désirables, par exemple, la corrélation entre les variables est évacuée. Quelle est la corrélation entre \texttt{x}et \texttt{y} dans l'exemple précédent? Il est bien sûr possible de déterminer ces valeurs pour la population a posteriori. Il faut résoudre l'équation \eqref{eq:eqrho}.
+
+\begin{equation}
+\rho_{x,y} = \beta_1 \frac{\sigma_x}{\sigma_y} 
+\label{eq:eqrho}
+\end{equation}
+
+Certaines valeurs sont déjà connues, car spécifiées par l'utilisateur, \(\beta_1 = 1\) et \(\sigma_x = 1\). Qu'en est-il de \(\sigma_y\)? L'utilisateur n'a pas spécifié la valeur de la variance de \(y\), il a plutôt choisi la valeur de la variance de l'erreur résiduelle, \(\sigma^2_{\epsilon_y}\). La loi de la somme des variances permettra de calculer cette valeur. Pour le lecteur intéressé, les réponses sont \(\sigma^2_y = \beta_1^2\sigma^2_x+\sigma^2_{\epsilon_y} = 10\) et donc \(\rho_{x,y} = \frac{\beta_1 \sigma_x}{\sigma_y} = 0.316\).
+
+La limite liée à la méthode de création de données est maintenant flagrante. En plus de ne pas connaître la corrélation entre les variables, la variance de \(y\) n'est pas connue a priori. La stratégie de spécification est ainsi de choisir des valeurs et d'espérer qu'elles soient conformes aux attentes. Pire, s'il y avait plusieurs variables indépendantes, elles seraient toutes non corrélées entre elles, alors que l'utilisateur pourrait vouloir autrement, mais cette première technique ne le permet pas.
+
+Pour l'utilisateur qui crée son jeu de données, ces caractéristiques sont souvent plus essentielles que de spécifier à l'avance la variance résiduelle. Pour résoudre cette situation, la solution est de spécifier un modèle standardisé, puis de le \emph{déstandardiser} (ajouté des moyennes et des variances a posteriori).
+
+La philosophie de modélisation de cet ouvrage repose sur l'idée selon laquelle, un modèle doit être standardisé au départ puis \emph{déstandardisé}. Cette logique ne se prêtera pas à tous les contextes, pour certains la difficulté sera immense, pour d'autres, cela ne respectera pas les objectifs. En partant d'un modèle standardisé toutefois, la matrice de corrélation est connue à l'avance et la variance est spécifiée directement par l'utilisateur. Les tailles d'effets attendues sont également assurées. Il suffit de dériver la variance résiduelle du modèle plutôt que de la spécifier.
+
+En assumant un modèle linéaire,
+
+\begin{equation}
+y = \beta_0 + \beta_1 x_1 + ... +\beta_k x_k + \epsilon_y
+\label{eq:modling}
+\end{equation}
+
+où l'équation \eqref{eq:modling} correspond à la généralisation de l'équation \eqref{eq:modlin} pour \(k\) variables indépendantes, il est possible d'isoler \(\epsilon_y\). La variance se calcule alors comme l'équation \eqref{eq:emat}, pour le cas générale.
+
+\begin{equation}
+\sigma^2_{\epsilon_y} = \sigma^2_y - B^{\prime}RB
+\label{eq:emat}
+\end{equation}
+
+où \(R\) est la matrice de corrélation et \(B\) est le vecteur contenant tous les \(\beta\) standardisés. Pour assurer un scénario standardisé \(\sigma^2_y = 1\). La seule condition sous-jacente à l'équation \eqref{eq:emat} est de s'assurer que \(\sigma^2_{\epsilon_y} > 0\), c'est-à-dire en vérifiant que \(B^{\prime}RB < \sigma^2_y\), autrement la variance est négative, ce qui est impossible. En termes de syntaxe \textbf{R}, l'équation \eqref{eq:emat} correspond à ceci.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Cacluler la variance de epsilon}
+\NormalTok{var\_e }\OtherTok{=}\NormalTok{ var\_y }\SpecialCharTok{{-}} \FunctionTok{t}\NormalTok{(B) }\SpecialCharTok{\%*\%}\NormalTok{ R }\SpecialCharTok{\%*\%}\NormalTok{ B}
+\end{Highlighting}
+\end{Shaded}
+
+L'avantage de cette technique est (a) de pouvoir spécifier les corrélations entre les variables indépendantes avec la matrice \(R\); (b) de déterminer à l'avance la variance de \(y\) et (c) que le vecteur \(B\) contient les \(\beta\) standardisés qui sont dans ce contexte les corrélations partielles qui relient chacune des variables indépendantes à la variable dépendante (des tailles d'effet) en contrôlant pour chacune d'elles.
+
+L'utilisateur crée par la suite les données en spécifiant le vecteur \(B\) et en créant une variable basée sur la matrice de corrélation. Voici un exemple pour \(k=3\) variables centrées suivant une distribution normale multivariée avec la matrice de corrélation \(R\).
+
+\[
+R= \left( 
+\begin{array}{ccc}
+1 & .2 & .3\\
+.2 & 1 & .1\\
+.3 & .1 & 1
+\end{array}
+\right)
+\]
+Une fois les données de \(X\) créées, avec la fonction \texttt{MASS::mvrnorm()}, comme il a été fait précédemment, il suffit de multiplier \(X\) avec \(B\) et d'ajouter la variable aléatoire \(\epsilon_y\) avec la variance appropriée pour obtenir la variable dépendante \(y\).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{42}\NormalTok{)  }\CommentTok{\# Pour reproductibilité}
+\NormalTok{n }\OtherTok{=} \DecValTok{1000}      \CommentTok{\# Taille d\textquotesingle{}échantillon}
+\NormalTok{k }\OtherTok{=} \DecValTok{3}         \CommentTok{\# Nombre de variables indépendantes}
+
+\CommentTok{\# Matrice de corrélation}
+\NormalTok{R }\OtherTok{=} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, .}\DecValTok{2}\NormalTok{, .}\DecValTok{3}\NormalTok{,}
+\NormalTok{             .}\DecValTok{2}\NormalTok{, }\DecValTok{1}\NormalTok{, .}\DecValTok{1}\NormalTok{,}
+\NormalTok{             .}\DecValTok{3}\NormalTok{, .}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{), k, k)}
+\CommentTok{\# Moyennes}
+\NormalTok{mu }\OtherTok{=} \FunctionTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{, k)}
+
+\CommentTok{\# Choix des betas standardisés}
+\NormalTok{B }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\AttributeTok{beta1 =}\NormalTok{ .}\DecValTok{2}\NormalTok{, }\AttributeTok{beta2 =} \SpecialCharTok{{-}}\NormalTok{.}\DecValTok{5}\NormalTok{, }\AttributeTok{beta3 =}\NormalTok{ .}\DecValTok{3}\NormalTok{)}
+
+\CommentTok{\#variance de epsilon}
+\NormalTok{var\_e }\OtherTok{=} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{t}\NormalTok{(B) }\SpecialCharTok{\%*\%}\NormalTok{ R }\SpecialCharTok{\%*\%}\NormalTok{ B}
+
+\CommentTok{\# Créations des variables aléatoires}
+\NormalTok{X }\OtherTok{=}\NormalTok{ MASS}\SpecialCharTok{::}\FunctionTok{mvrnorm}\NormalTok{(}\AttributeTok{n =}\NormalTok{ n, }\AttributeTok{mu =}\NormalTok{ mu, }\AttributeTok{Sigma =}\NormalTok{ R)}
+\NormalTok{e }\OtherTok{=} \FunctionTok{rnorm}\NormalTok{(}\AttributeTok{n =}\NormalTok{ n, }\AttributeTok{sd =} \FunctionTok{sqrt}\NormalTok{(var\_e))}
+\CommentTok{\# Création de la variable dépendante}
+\NormalTok{y }\OtherTok{=}\NormalTok{ X }\SpecialCharTok{\%*\%}\NormalTok{ B }\SpecialCharTok{+}\NormalTok{ e}
+
+\CommentTok{\# Création du jeu de données}
+\NormalTok{jd }\OtherTok{=} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{y =}\NormalTok{ y, }\AttributeTok{X =}\NormalTok{ X)}
+
+\CommentTok{\# Quelques vérifications}
+\CommentTok{\# Les données}
+\FunctionTok{head}\NormalTok{(jd)}
+\CommentTok{\#\textgreater{}        y    X.1    X.2     X.3}
+\CommentTok{\#\textgreater{} 1  0.635 {-}0.956 {-}2.567  0.3239}
+\CommentTok{\#\textgreater{} 2 {-}0.264  0.672 {-}0.172  0.5200}
+\CommentTok{\#\textgreater{} 3  0.341  0.885 {-}1.369 {-}0.6387}
+\CommentTok{\#\textgreater{} 4 {-}0.602  0.778 {-}1.104 {-}1.2678}
+\CommentTok{\#\textgreater{} 5  0.401  0.360  0.286 {-}1.4336}
+\CommentTok{\#\textgreater{} 6 {-}1.076 {-}0.210  0.621 {-}0.0399}
+\CommentTok{\# La matrice de corrélation entre les variables indépendantes}
+\CommentTok{\# Très près des valeurs choisies à la troisième décimale}
+\FunctionTok{cor}\NormalTok{(X)}
+\CommentTok{\#\textgreater{}       [,1]  [,2]  [,3]}
+\CommentTok{\#\textgreater{} [1,] 1.000 0.188 0.279}
+\CommentTok{\#\textgreater{} [2,] 0.188 1.000 0.136}
+\CommentTok{\#\textgreater{} [3,] 0.279 0.136 1.000}
+\CommentTok{\# La variance de y (encore une fois très près)}
+\FunctionTok{var}\NormalTok{(y)}
+\CommentTok{\#\textgreater{}      [,1]}
+\CommentTok{\#\textgreater{} [1,] 1.03}
+\end{Highlighting}
+\end{Shaded}
+
+Maintenant, il est possible de \emph{déstandardisé} \texttt{X} et \texttt{y} en additionnant des moyennes ou multipliant par des écarts types à chaque variable.
+
+\hypertarget{lanalyse-de-ruxe9gression}{%
+\section{L'analyse de régression}\label{lanalyse-de-ruxe9gression}}
+
+Lorsque le jeu de données est obtenu, il est temps de procéder à l'analyse de régression. Essentiellement, l'analyse de régression produit à peu près ceci (mais en algèbre matricielle).
+
+Pour aider la compréhension, voici une explication avec le modèle linéaire simple assumant des variables centrées. Le modèle correspond à
+
+\[
+y = \beta x
+\]
+
+où l'erreur, \(\epsilon_y\) n'est pas explicitée. Il faut isoler \(\beta\) afin de l'estimer, soit l'opération suivante,
+
+\[
+\beta = \EX(\frac{y}{x})
+\]
+
+où le symbole \(\EX\) signifie l'espérance (la moyenne). En multipliant par \(\frac{x}{x}\) de chaque côté de l'équation, cela produit l'équation suivante.
+
+\begin{equation}
+\beta = \EX(\frac{xy}{xx}) = \frac{\sigma_{xy}}{\sigma^2_x}
+\label{eq:beta2}
+\end{equation}
+
+Dans l'équation \eqref{eq:beta2}, le numérateur sera rapidement reconnu comme la covariance et au dénominateur la variance de \(X\). Comment généralisé pour \(k\) variables? En algèbre matricielle et dans la mesure où les variables contenues dans \(X\) sont centrées, cela revient au même que de calculer l'équation \eqref{eq:beta}.
+
+\begin{equation}
+\hat{B} = (X^{\prime} X)^{-1} X^{\prime} y
+\label{eq:beta}
+\end{equation}
+
+Comme pour l'équation \eqref{eq:beta2}, la composante \((X^{\prime} X)^{-1}\) agit en dénominateur (par l'exposant \(-1\)) et correspond à la matrice de variance-covariance des variables de \(X\) ensemble, alors que \(X^{\prime} y\) agit comme le numérateur, soit la covariance entre les variables de \(X\) avec \(y\).
+
+Pour l'erreur type, il s'agit de calculer ceci.
+
+\begin{equation}
+\text{var}(\hat{B}) = \sigma^2 \left(X^{\prime}X\right)^{-1}
+\end{equation}
+
+La racine carrée donne l'erreur type (\emph{standard error}).
+
+Le ratio \(\frac{B}{\text{se}_B} \sim t_{n-p-1}\), soit le quotient d'un estimateur par son erreur type, suit une distribution-\(t\) avec \(n-p-1\) degrés de liberté.
+
+En syntaxe \textbf{R}, la régression s'écrit comme ceci.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{regression }\OtherTok{=} \ControlFlowTok{function}\NormalTok{(y, X)\{}
+  \CommentTok{\# Ajouter un intercepte}
+\NormalTok{  X }\OtherTok{=} \FunctionTok{cbind}\NormalTok{(}\AttributeTok{intercept =} \DecValTok{1}\NormalTok{, X)}
+\NormalTok{  B }\OtherTok{=} \FunctionTok{solve}\NormalTok{(}\FunctionTok{t}\NormalTok{(X) }\SpecialCharTok{\%*\%}\NormalTok{ X) }\SpecialCharTok{\%*\%} \FunctionTok{t}\NormalTok{(X) }\SpecialCharTok{\%*\%}\NormalTok{ y}
+\NormalTok{  var.e }\OtherTok{=} \FunctionTok{var}\NormalTok{(y }\SpecialCharTok{{-}}\NormalTok{ X }\SpecialCharTok{\%*\%}\NormalTok{ B) }
+\NormalTok{  se.B }\OtherTok{=} \FunctionTok{sqrt}\NormalTok{(}\FunctionTok{c}\NormalTok{(var.e) }\SpecialCharTok{*} \FunctionTok{diag}\NormalTok{(}\FunctionTok{solve}\NormalTok{(}\FunctionTok{t}\NormalTok{(X) }\SpecialCharTok{\%*\%}\NormalTok{ X)))}
+\NormalTok{  n }\OtherTok{=} \FunctionTok{dim}\NormalTok{(X)[}\DecValTok{1}\NormalTok{]}
+\NormalTok{  p }\OtherTok{=} \FunctionTok{dim}\NormalTok{(X)[}\DecValTok{2}\NormalTok{]}
+\NormalTok{  vt }\OtherTok{=}\NormalTok{ B }\SpecialCharTok{/}\NormalTok{ se.B}
+\NormalTok{  vp }\OtherTok{=}\NormalTok{ (}\DecValTok{1}\SpecialCharTok{{-}}\FunctionTok{pt}\NormalTok{(tv, }\AttributeTok{df =}\NormalTok{ n }\SpecialCharTok{{-}}\NormalTok{ p }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{)) }\SpecialCharTok{*} \DecValTok{2}
+\NormalTok{  resultats }\OtherTok{=} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{Estimate =}\NormalTok{ B, }
+                         \AttributeTok{Std.Error =}\NormalTok{ se.B, }
+                         \AttributeTok{t.value =}\NormalTok{ vt, }
+                         \AttributeTok{p.value =}\NormalTok{ vp) }
+  \FunctionTok{return}\NormalTok{(resultats)}
+\NormalTok{\}  }
+\end{Highlighting}
+\end{Shaded}
+
+Le modèle linéaire peut aussi contenir des variables nominales dans la mesure où celle-ci sont transformées en données factices (\emph{dummy coding}). En fait, une analyse de variance n'est au fond qu'une régression dans laquelle les variables nominales sont transformées en données factices, puis utilisées en variable indépendante. Les \(\beta\) de la régression correspondent aux moyennes \(\mu\), si le participant appartient (1) à tel ou tel autre groupe ou (0) autrement. Bien que les logiciels produisent souvent des sorties statistiques différentes en fonction de l'analyse demandée, les mathématiques sous-jacentes sont les mêmes.
+
+\hypertarget{conditions-dapplication-de-la-ruxe9gression}{%
+\subsection{Conditions d'application de la régression}\label{conditions-dapplication-de-la-ruxe9gression}}
+
+La régression possède quatre hypothèses sous-jacentes :
+
+\begin{itemize}
+\item
+  La vraie relation est linéaire;
+\item
+  Les observations sont indépendantes.
+\item
+  Les résidus sont normalement distribués;
+\item
+  La variance résiduelle est homoscédastique.
+\end{itemize}
+
+Les deux premiers points sont davantage méthodologiques que statistiques bien que leurs conséquences soient réelles. La relation entre les variables doit être linéaire. La régression tient compte des relations en ligne droite, si la relation entre deux variables suit une courbe, elle ne pourra être adéquatement analysée. La figure \ref{fig:courbe} montre trois relations possibles entre deux variables. Bien que la relation soit très forte, peu importe la forme de la relation (les données suivent un parton très évident), seule celle au centre (relation linéaire) donnera un résultat indiquant un lien fort existant. Il existe des techniques de transformation de données lorsque ce sera \emph{théoriquement} justifié. La relation quantitative entre l'âge et la quantité de rapport sexuel est un exemple de relation non linéaire : elle débute à l'adolescence, atteint son apogée à l'âge de jeune adulte, puis décroît progressivement. La seconde hypothèse est que les unités d'observation doivent être indépendantes. Techniquement, chaque unité devrait avoir une chance égale et indépendante d'être choisie. La régression est robuste à ce genre de violation, mais il faut toujours conserver cette idée en tête lorsque le devis d'étude est conceptualisé et lors des analyses. Les élèves dans une même salle de classe ne sont techniquement pas indépendants puisqu'ils sont tous corrélés. Ils ont le même enseignant, les mêmes pairs, les locaux, etc., des variables qui peuvent toutes à leur façon avoir des effets sur les comportements des enfants. Dans ce cas, recourir à des analyses multiniveaux sera la seule possibilité pour tenir compte de cette violation et bien représenter les modèles. Un autre exemple est la corrélation entre différents temps de mesure sur une même unité (qui est corrélée avec elle-même). Dans ce cas, ce sera des analyses pour des devis temporels (les analyses multiveaux peuvent également tenir compte du temps).
+
+Les deux autres considérations, qui sont elles d'ordre statistique, concernent les résidus (l'écart entre la prédiction et les valeurs réelles de \(y\)). Comme il a été mentionné dans la création de données pour la régression, les distributions des variables n'a pas être normales; elles peuvent suivre différentes distributions de probabilités. Par contre, l'erreur, elle, doit être normales distribuées, car il s'agit d'une hypothèse assumée de l'estimation des moindres carrés. La dernière hypothèse concerne la variance résiduelle homoscédastique, c'est-à-dire que l'écart entre les résidus et les valeurs prédites restent \emph{constantes,} peu importe le niveau sur la droite de régression. Si ce n'est pas le cas pour l'une ou l'autre, c'est qu'une variable a vraisemblablement été négligée ou qu'une des relations n'est pas linéaire avec une des variables indépendantes.
+
+\begin{verbatim}
+#> `geom_smooth()` using formula 'y ~ x'
+\end{verbatim}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth,height=0.8\textheight]{06-Regression_files/figure-latex/courbe-1} 
+
+}
+
+\caption{Différentes formes de relation}\label{fig:courbe}
+\end{figure}
+
+\hypertarget{lanalyse-de-ruxe9gression-1}{%
+\subsection{L'analyse de régression}\label{lanalyse-de-ruxe9gression-1}}
+
+\textbf{R} de base offre la fonction \texttt{lm()} pour \emph{linear model} (modèle linéaire) afin de réaliser une régression. Pour réaliser l'analyse, deux éléments sont primordiaux : le jeu de données et le modèle. Le jeu de données est assez explicite. Le modèle linéaire est quant à lui déjà représenté par l'équation \eqref{eq:modling}.
+
+Pour écrire le modèle en syntaxe \textbf{R}, il faut remplacer les \(x\) par le nom des variables dans le jeu de données, utiliser le \texttt{\textasciitilde{}} (tilde) pour délimiter les variables dépendantes à gauche des variables indépendantes à droite. Les variables indépendantes sont délimitées, comme dans l'équation \eqref{eq:modling}, par des signes d'addition \texttt{+}. Il est aussi de définir des effets d'interaction (modération) avec le signe de multiplication \texttt{*}. Les symboles \texttt{-} (soustraction) et \texttt{/} (division) ne fonctionnent pas. L'intercepte (\(\beta_0\)) est ajouté par défaut. Enfin, cette équation doit ensuite être mis entre guillemets, \texttt{formula\ =\ "y\ \textasciitilde{}\ x1\ +\ x2\ +\ x3"} pour indiquer qu'il s'agit de texte.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Créer un jeu de données à partir des variables de la syntaxe précédente}
+\NormalTok{res.lm }\OtherTok{=} \FunctionTok{lm}\NormalTok{(}\AttributeTok{formula =}\NormalTok{ y }\SpecialCharTok{\textasciitilde{}}\NormalTok{ X}\FloatTok{.1} \SpecialCharTok{+}\NormalTok{ X}\FloatTok{.2} \SpecialCharTok{+}\NormalTok{ X}\FloatTok{.3}\NormalTok{, }\AttributeTok{data =}\NormalTok{ jd)}
+\CommentTok{\# Les résultats}
+\NormalTok{res.lm}
+\CommentTok{\#\textgreater{} }
+\CommentTok{\#\textgreater{} Call:}
+\CommentTok{\#\textgreater{} lm(formula = y \textasciitilde{} X.1 + X.2 + X.3, data = jd)}
+\CommentTok{\#\textgreater{} }
+\CommentTok{\#\textgreater{} Coefficients:}
+\CommentTok{\#\textgreater{} (Intercept)          X.1          X.2          X.3  }
+\CommentTok{\#\textgreater{}     {-}0.0171       0.2139      {-}0.5520       0.3095}
+\CommentTok{\# Sommaire des résultats}
+\FunctionTok{summary}\NormalTok{(res.lm)}
+\CommentTok{\#\textgreater{} }
+\CommentTok{\#\textgreater{} Call:}
+\CommentTok{\#\textgreater{} lm(formula = y \textasciitilde{} X.1 + X.2 + X.3, data = jd)}
+\CommentTok{\#\textgreater{} }
+\CommentTok{\#\textgreater{} Residuals:}
+\CommentTok{\#\textgreater{}     Min      1Q  Median      3Q     Max }
+\CommentTok{\#\textgreater{} {-}2.5227 {-}0.5546 {-}0.0119  0.5513  2.5762 }
+\CommentTok{\#\textgreater{} }
+\CommentTok{\#\textgreater{} Coefficients:}
+\CommentTok{\#\textgreater{}             Estimate Std. Error t value Pr(\textgreater{}|t|)    }
+\CommentTok{\#\textgreater{} (Intercept)  {-}0.0171     0.0253   {-}0.68      0.5    }
+\CommentTok{\#\textgreater{} X.1           0.2139     0.0266    8.03  2.7e{-}15 ***}
+\CommentTok{\#\textgreater{} X.2          {-}0.5520     0.0258  {-}21.42  \textless{} 2e{-}16 ***}
+\CommentTok{\#\textgreater{} X.3           0.3095     0.0263   11.76  \textless{} 2e{-}16 ***}
+\CommentTok{\#\textgreater{} {-}{-}{-}}
+\CommentTok{\#\textgreater{} Signif. codes:  }
+\CommentTok{\#\textgreater{} 0 \textquotesingle{}***\textquotesingle{} 0.001 \textquotesingle{}**\textquotesingle{} 0.01 \textquotesingle{}*\textquotesingle{} 0.05 \textquotesingle{}.\textquotesingle{} 0.1 \textquotesingle{} \textquotesingle{} 1}
+\CommentTok{\#\textgreater{} }
+\CommentTok{\#\textgreater{} Residual standard error: 0.8 on 996 degrees of freedom}
+\CommentTok{\#\textgreater{} Multiple R{-}squared:  0.383,  Adjusted R{-}squared:  0.381 }
+\CommentTok{\#\textgreater{} F{-}statistic:  206 on 3 and 996 DF,  p{-}value: \textless{}2e{-}16}
+\end{Highlighting}
+\end{Shaded}
+
+Pour ajouter une variable il suffit de \texttt{VD\ \textasciitilde{}\ VI1\ +\ VI2}; pour ajouter un effet d'interaction, il est possible de faire \texttt{VD\ \textasciitilde{}\ VI1\ *\ VI2}. Pour ajouter une variable nominale (catégorielle), il suffit d'ajouter la variable comme n'importe quelles autres \texttt{x}, mais en s'assurant bien qu'elle soit désignée comme un facteur dans le jeu de données. Si ce n'était pas le cas, la fonction \texttt{as.factor()} devrait corriger la situation.
+
+La fonction \texttt{lm()} en elle-même n'imprime que peut de résultats. Pour obtenir l'information complète, il faut requérir le sommaire avec la fonction \texttt{summary()}. Le sommaire des résultats contient toute l'information qu'un expérimentateur peut désirer. Il y a les coefficients de régression \texttt{Estimate}, leur erreur standard \texttt{Std.\ Error}, leur valeur-\(t\) \texttt{t\ value} et leur valeur-\(p\) \texttt{Pr(\textgreater{}\textbar{}t\textbar{})}. Tout cela peut être extrait avec \texttt{summary(res.lm)\$...} en remplaçant \texttt{...} par les éléments désirés. Au-dessous de la sortie imprimée, il y a également le coefficient de détermination (\(R^2\), \texttt{R-squared}), les degrés de liberté et la valeur-\(p\) associé au modèle.
+
+Un manuscrit pourrait rapport les résultats ainsi. Le modèle tester obtient un coefficient de détermination de \(R^2(996) = 0.383, p < .001\). Les trois prédicteurs sont liés significativement à la variable dépendante, respectivement \(X_1: \beta_1 = 0.214, p = < .001\), \(X_2: \beta_2 = 0.214, p = < .001\), \(X_3: \beta_3 = 0.31, p = < .001\). Évidemment, comme l'exemple est artificiel, il y a peu de chose à dire sans devoir fabriquer de toutes pièces des interprétations alambiquées bien que cela fût fort bénéfique pour la carrière de certains psychanalystes.
+
+Pour vérifier la qualité des résultats, il faut vérifier la distribution des résidus. Pour ce faire, il faut extraire les résidus et les valeurs prédites. Pour la création de graphiques, il est plus simple d'ajouter ces scores au jeu de données. Les fonctions \texttt{resid()} et \texttt{predict()} permettront d'extraire les résidus et les prédictions en y insérant comme argument le sommaire de la fonction \texttt{lm()} obtenu avec les données.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Ajouter les résidus et scores prédits à la base de données}
+\CommentTok{\# avec la fonction \textasciigrave{}resid()\textasciigrave{}}
+\NormalTok{jd}\SpecialCharTok{$}\NormalTok{residu }\OtherTok{=} \FunctionTok{resid}\NormalTok{(res.lm)}
+\NormalTok{jd}\SpecialCharTok{$}\NormalTok{predit }\OtherTok{=} \FunctionTok{predict}\NormalTok{(res.lm)}
+\end{Highlighting}
+\end{Shaded}
+
+Une fois, c'est valeur extraite, le package \texttt{ggplot2} permet de réaliser rapidement des graphiques, comme le diagramme de dispersion à la figure \ref{fig:respred} ou l'histogramme des résidus à la figure \ref{fig:reshist}. Dans les meilleures situations, les résidus seront distribués normalement dans l'histogramme et aucune tendance ne devrait être discernable dans le diagramme de dispersion. Si ce n'était pas le cas, il pourrait y avoir un problème à élucider, par exemple, une relation non linéaire imprévue. Les figures \ref{fig:respred} et \ref{fig:reshist} ne signale aucun problème, ce qui est attendu considérant la création des données employées.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Diagramme de dispersion prédits par résidus}
+\NormalTok{jd }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ggplot}\NormalTok{(}\AttributeTok{mapping =} \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ predit, }\AttributeTok{y =}\NormalTok{ residu)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_point}\NormalTok{() }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{06-Regression_files/figure-latex/respred-1} 
+
+}
+
+\caption{Relation entre prédicitons et résidus}\label{fig:respred}
+\end{figure}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Histogramme des résidus}
+\NormalTok{jd }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ggplot}\NormalTok{(}\AttributeTok{mapping =} \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ residu)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_histogram}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{06-Regression_files/figure-latex/reshist-1} 
+
+}
+
+\caption{Histogramme des résidus}\label{fig:reshist}
+\end{figure}
+
+\hypertarget{cruxe9er}{%
+\chapter{Créer}\label{cruxe9er}}
+
+Dans le chapitre sur la \protect\hyperlink{ruxe9gression}{régression}, les variables indépendantes sont créées simultanément à partir d'une matrice de corrélation. Dans un modèle plus élaboré, plutôt que d'ignorer ces corrélations, comme le fait l'analyse de régression, il est possible de modéliser explicitement les liens entre les variables prédictrices.
 Cela revient à décrire un modèle de façon à ce qu'une première variable \emph{cause} la seconde; la première et la seconde \emph{causent} la troisième et ainsi de suite.
 
 La modélisation en système d'équations deviendra primordial dans les prochaines sections, notamment pour les analyses de trajectoires, de médiation, de modération, et plus. C'est le fondement de la modélisation par équations structurelles (SEM).
-Dans ce chapitre, des techniques de modélisation avancées sont présentées. Elles s'appliquent à des modèles de trajectoires récursifs, c'est-à-dire que la \emph{causation} s'enchaîne dans une direction, de la première variable vers la dernière.
+Dans ce chapitre\footnote{La section est partiellement basée sur \textcite{Caron21}.}, des techniques de modélisation avancées sont présentées. Elles s'appliquent à des modèles de trajectoires récursifs, c'est-à-dire que la \emph{causation} s'enchaîne dans une direction, de la première variable vers la dernière.
 
 \hypertarget{la-loi-de-la-somme-des-variances}{%
-\section[La loi de la somme des variances]{\texorpdfstring{La loi de la somme des variances\footnote{La section est partiellement basée sur \textcite{Caron21}.}}{La loi de la somme des variances}}\label{la-loi-de-la-somme-des-variances}}
+\section{La loi de la somme des variances}\label{la-loi-de-la-somme-des-variances}}
 
 La loi de la somme des variances explique comment additionner la variance de variables aléatoires, quelle que soit leur distribution \autocite{casella2002}. Le cas le plus simple est celui de deux variables aléatoires, comme \(x_1\) et \(x_2\), et la façon dont elles s'additionnent pour former une troisième variable, \(y\). Elles donnent un modèle simple représenté par l'équation \eqref{eq:eq1}.
 
@@ -4447,892 +5384,6 @@ Ce qui est le cas.
 Une seule contrainte s'impose lors de la du calcul de la covariance à partir des coefficients de régression. Il s'agit de s'assurer que la matrice de covariance demeure positive semi-définie à chaque étape. Cela se manifeste notamment lorsque les coefficients de régression pour une variable dépendante sont si élevés que le coefficient de détermination surpasse la variance de la variable en question. Autrement dit, la variance de la variable n'est pas assez élevée pour le potentiel explicatif. Mathématiquement le problème est que \(1-R^2_X < 0\) ou plus généralement que \(\sigma^2_y-\mathbf{B^\prime\Sigma B}<0\). Dans ces cas, la variance résiduelle négative, ce qui est impossible. L'une des corrections a apporté sont les suivantes, réduire les coefficients de régression \(\mathbf{B}\) pour cette variable ou encore d'augmenter sa variance \(\sigma^2_y\) de sorte que \(\sigma^2_y-\mathbf{B^\prime\Sigma B}>=0\) soit toujours vrai à chaque étape.
 
 Une dernière note, comme ces équations et syntaxes procèdent de \(i=2,...,p\), l'ordre des variables est primordiale et interchanger leur ordre a des conséquences substantielles sur les résultats. Lorsque la matrice \(\mathbf{B}\) est créées, il faut être sûr de l'ordre \emph{déterministe} des variables, c'est-à-dire, quelle variable \emph{cause} quelles autres variables, comme c'était spécifié à la Figure \ref{fig:mod3} par exemple. Changer ou retirer ne serait-ce qu'une variable changerait les coefficients de régression : les régressions ne seraient plus identiques, la matrice de coefficients de régression ne serait pas retrouvée. Il ne faut pas être surpris donc, si les résultats changent dans cette situation. Nonobstant, changer ou retirer une variable peut être pertinent dans certains contextes, surtout pour l'étude de la \textbf{misspécification} (en anglais) des modèles, c'est-à-dire lorsqu'un modèle erroné est utilisé plutôt que le vrai modèle, ce qui entraîne notamment des biais. Les études à ce sujet emprunteront une méthode statistique similaire.
-
-\hypertarget{simulations}{%
-\chapter{Simulations}\label{simulations}}
-
-Dans plusieurs contextes statistiques, les informations cruciales nécessaires pour réaliser une analyse statistique ou tirer des résultats spécifiques ne sont pas connues. Pire, parfois certains postulats sont violés rendant les démarches usuelles caduques. Enfin, dans certains contextes, une analyse formelle pourrait s'avérer fort complexe, voire irrésoluble, alors qu'une analyse plus empirique usant des techniques de rééchantillonnage résoudra ces problèmes simplement et immédiatement.
-
-Jusqu'à présent, les situations connues des analyses statistiques ont été présentées. Maintenant, les techniques de rééchantillonnage, comme le bootstrap et de simulations Monte-Carlo seront présentés.
-
-\hypertarget{les-simulations-monte-carlo}{%
-\section{Les simulations Monte-Carlo}\label{les-simulations-monte-carlo}}
-
-Les simulations Monte-Carlo sont une famille de méthode algorithmique qui permet de calculer une valeur numérique en utilisant des procédés aléatoires. Le nom provient du prestigieux casino de Monte-Carlo à Monaco sur la Côte d'Azur, où des jeux de hasard se jouent constamment, et ayant ainsi une connotation très forte avec le hasard et les nombres aléatoires.
-
-Une simulation de Monte-Carlo prédit une étendue de résultats possibles à partir d'un ensemble de valeurs d'entrée fixes et en tenant compte de l'incertitude inhérente de certaines variables. En d'autres termes, une simulation de Monte-Carlo produit les résultats possibles (sorties) d'un modèle à partir des entrées fixes et d'autres entrées variables. Ces sorties sont calculées encore et encore (des milliers de fois, parfois plus), en utilisant à chaque fois un ensemble différent de nombres aléatoires, générant des sorties probables, mais différentes à chaque fois. Les estimations (et leur tendance) obtenues peuvent alors être interprétées.
-
-Les simulations Monte-Carlo sont particulièrement utiles, car elles permettent, en mathématiques, de calculer des intégrales très complexes; en physique, d'estimer la forme d'un signal ou la sensibilité; en finance, simulent des conditions permettant de prévoir le marché; et en psychologie, simuler des processus comportementaux ou cognitifs.
-
-Les simulations Monte-Carlo possèdent trois caractéristiques ou étapes :
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\item
-  Construire un modèle ayant des variables indépendantes (entrées) et dépendantes (sorties);
-\item
-  Spécifier les caractéristiques aléatoires des variables indépendantes et définir des valeurs crédibles;
-\item
-  Rouler les simulations de façon répétitive jusqu'à ce que suffisamment d'itérations soient produites et que les résultats convergent vers une solution.
-\end{enumerate}
-
-Maintenant, ces étapes sont mises en contexte avec un problème.
-
-\hypertarget{le-probluxe8me-de-monty-hall}{%
-\subsection{Le problème de Monty-Hall}\label{le-probluxe8me-de-monty-hall}}
-
-Rien de mieux pour confronter le sens commun que d'être confronté à un problème contre-intuitif. Les simulations Monte-Carlo nous permettront de vérifier les résultats de façon empirique, parallèlement à ce qu'une analyse formelle fournit.
-
-Le problème de Monty Hall \autocite[attribuables à][]{Selvin75} présente un joueur devant un présentateur (Monty Hall). Trois portes sont offertes au choix du joueur. Derrière l'une d'entre elles se retrouve un magnifique prix : une voiture \emph{électrique} de luxe. Derrière chacune des deux autres portes se retrouvent un prix citron : une chèvre chacune. Le joueur ne sait pas ce qu'il y derrière les portes. Le joueur peut alors choisir une porte. Évidemment, à ce moment le joueur à une chance sur trois de choisir la voiture.
-
-\begin{figure}
-\centering
-\includegraphics{06-Simuler_files/figure-latex/MH-1.pdf}
-\caption{\label{fig:MH}Illustration du problème de Monty Hall}
-\end{figure}
-
-Par la suite, le présentateur, qui connaît le contenu derrière les portes, ouvre une porte qui (a) ne cache pas la voiture et (b) que le participant n'a pas choisie. Le joueur peut alors choisir (a) de conserver la porte choisie ou (b) de changer de porte. Quelle option, s'il y en a une, assurera le meilleur gain (choisir la voiture)? Rester ou changer? Par exemple, suivant l'illustration de la figure \ref{fig:MH}, le joueur choisit la porte 1, alors le présentateur doit ouvrir la porte 2 (non choisie et ne contient pas la voiture). Le joueur doit-il changer son choix? Ici, la réponse est évidente, car la réponse est connue. Qu'en est-il alors si le joueur avait choisi la porte 3 et le présentateur ouvert l'une des deux autres porte? \emph{Le joueur doit-il changer ou rester?} La question sous-jacente est qu'elles sont les probabilités de rester et changer respectivement. Sont-elles différentes?
-
-Comme le résultat n'est pas des plus intuitif (et sans divulgâcher le résultat), une petite simulation s'impose (ou une analyse formelle pour les lecteurs enclins mathématiquement). La situation sera recréée un millier de fois pour vérifier l'option (rester ou changer) qui maximise de gagner la voiture.
-
-En se référant aux trois points caractérisant une simulation Monte-Carlo susmentionné :
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\item
-  Le problème de Monty Hall tel qu'imminemment décrit.
-\item
-  Les variables indépendantes sont (a) le tirage aléatoire du contenu derrière les portes (distribution uniforme, chaque porte à la même probabilité d'avoir un prix ou non), (b) le choix du joueur (distribution uniforme, pourrait être différent), et (c) la porte ouverte par le présentateur. Deux variables indépendantes sont fixes (les deux options sont étudiées), l'action de rester ou de changer. Il y a deux variables dépendantes, le succès (choisir le prix) ou l'échec (choisir une autre porte) de rester ou de changer.
-\item
-  La simulation est reprise 1000 fois.
-\end{enumerate}
-
-La simulation doit comporter une distribution aléatoire du contenu derrière les trois portes, identifier une porte gagnante et deux perdantes. Il est intéressant de note que, sur le plan de computationnelle, il est inutile d'attribuer aléatoirement la porte gagnante, toutefois le scénario sera plus acceptable pour un lecteur scrupuleux. Par la suite, le joueur fait son premier choix. Ici, plusieurs modèles peuvent être utilisés, comme constamment choisir la même porte (ce qui simplifie la situation et ne change pas les probabilités parce que le contenu des portes, lui, est aléatoire) ou, pour rester vrai à la situation, le joueur fera un choix aléatoire. Le comportement du présentateur s'enclenche, il doit ``ouvrir'' une porte non choisie et qui ne contient pas le prix. Les deux stratégies sont alors étudiées, rester versus changer. La simulation enregistre alors s'il y a eu gain ou non et l'additionne au total de chacun. La simulation est reprise un nombre important de fois, ici, 1000 suffira, mais des situations compliquées peuvent demander beaucoup plus d'itérations.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Simulation du problème de Monty Hall}
-\NormalTok{portes }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\StringTok{"Chèvre"}\NormalTok{,}\StringTok{"Chèvre"}\NormalTok{,}\StringTok{"Voiture"}\NormalTok{)}
-\NormalTok{reps }\OtherTok{=} \DecValTok{1000}
-\FunctionTok{set.seed}\NormalTok{(}\DecValTok{7896}\NormalTok{)}
-\CommentTok{\# Valeur initial des gains}
-\NormalTok{gain.rester }\OtherTok{=} \DecValTok{0}
-\NormalTok{gain.changer }\OtherTok{=} \DecValTok{0}
-
-\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{reps)\{}
-  \CommentTok{\# Arrangement initial des portes}
-\NormalTok{  tirage }\OtherTok{=} \FunctionTok{sample}\NormalTok{(portes)}
-  \CommentTok{\# Trouver le prix}
-\NormalTok{  prix }\OtherTok{=} \FunctionTok{which}\NormalTok{(tirage }\SpecialCharTok{\%in\%} \StringTok{"Voiture"}\NormalTok{)}
-  \CommentTok{\# Choix aléatoire}
-\NormalTok{  choix1 }\OtherTok{=} \FunctionTok{sample}\NormalTok{(}\FunctionTok{length}\NormalTok{(portes), }\AttributeTok{size =} \DecValTok{1}\NormalTok{)}
-
-  \CommentTok{\# Sélectionner la porte avec la chèvre (pas un prix) et}
-  \CommentTok{\# qui n\textquotesingle{}est pas celle choisie (choix1)}
-\NormalTok{  option }\OtherTok{=} \FunctionTok{c}\NormalTok{(choix1, prix)}
-  \ControlFlowTok{if}\NormalTok{(choix1 }\SpecialCharTok{!=}\NormalTok{ prix)\{}
-    \CommentTok{\# Si une porte valide}
-\NormalTok{    monty }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{3}\NormalTok{)[}\SpecialCharTok{{-}}\NormalTok{option]}
-\NormalTok{  \}}\ControlFlowTok{else}\NormalTok{\{}
-    \CommentTok{\# Si deux portes valides, en choisir une aléatoirement.}
-\NormalTok{    monty }\OtherTok{=} \FunctionTok{sample}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{3}\NormalTok{)[}\SpecialCharTok{{-}}\NormalTok{option], }\AttributeTok{size =} \DecValTok{1}\NormalTok{)}
-\NormalTok{  \}}
-  \CommentTok{\# Décision : Reste à choix1}
-\NormalTok{  choix.rester }\OtherTok{=}\NormalTok{ choix1}
-
-  \CommentTok{\# Décision : Changer de choix changer}
-  \CommentTok{\# Changer = ne pas prendre la porte initial, ni la porte ouverte}
-\NormalTok{  choix.changer }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{3}\NormalTok{)[}\SpecialCharTok{{-}}\FunctionTok{c}\NormalTok{(choix1, monty)]}
-
-  \CommentTok{\# Enregistrement des gains}
-\NormalTok{  gain.rester }\OtherTok{=}\NormalTok{ gain.rester }\SpecialCharTok{+}\NormalTok{ (tirage[choix.rester] }\SpecialCharTok{==} \StringTok{"Voiture"}\NormalTok{)}
-\NormalTok{  gain.changer }\OtherTok{=}\NormalTok{ gain.changer }\SpecialCharTok{+}\NormalTok{ (tirage[choix.changer] }\SpecialCharTok{==} \StringTok{"Voiture"}\NormalTok{)}
-\NormalTok{\}}
-
-\FunctionTok{cbind}\NormalTok{(gain.rester,gain.changer)  }\SpecialCharTok{/}\NormalTok{ reps}
-\CommentTok{\#\textgreater{}      gain.rester gain.changer}
-\CommentTok{\#\textgreater{} [1,]       0.316        0.684}
-\end{Highlighting}
-\end{Shaded}
-
-Une petite digression avant de poursuivre. À cause d'un inconvénient de la fonction \texttt{sample()}, une approche conditionnelle est utilisée. En fait, la fonction échantillonne les éléments de \texttt{x} (premier argument) jusqu'à obtenir \texttt{size} objets. Par contre, si une seule valeur est donnée à \texttt{x} et si elle est numérique, alors la fonction utilise les éléments de \texttt{1:x} pour rééchantillonner. Ici, si le choix et le prix sont différents, il n'y a qu'une seule valeur retournée (l'autre chèvre), ce qui occasionne le problème, et par conséquent, de l'utilisation du conditionnel. En programmation, il faut toujours s'assurer que les fonctions produisent ce qui est attendu d'elles.
-
-Quelles sont les attentes par rapport à cette simulation? Le fait de rester sur le premier choix devrait obtenir 33\% de chance de réussir, comme le joueur a initialement une chance sur trois d'avoir la bonne réponse. Qu'en est-il pour changer? Est-ce qu'ouvrir une porte chèvre change les probabilités? Les résultats de la simulation montre que rester gagne 31.6\% et que de changer gagne 68.4\%. À long terme, il est fort avantageux de changer.
-
-Une explication simple est de dénombrer les possibilités. Dans le cas où le joueur ne change pas d'idée, il a une chance sur trois, soit : choisir la chèvre 1, et garder la chèvre 1; choisir la chèvre 2, et garder la chèvre 2; et choisir la voiture, et garder la voiture. Si le joueur change d'idée après l'ouverture des portes, les chances sont maintenant de deux sur trois, soit choisir la chèvre 1, changer pour le prix; choisir la chèvre 2 et changer pour le prix; ou choisir le prix et changer pour une chèvre.
-
-Une autre façon de rendre se problème plus évident est de considérer le problème avec 100 portes au lieu de 3. Le présentateur ouvre alors les 98 portes qui ne sont pas un prix. Si le joueur choisit une porte et garde, il a effectivement 1\% de chance de remporter le prix. Par contre, s'il choisit une porte et que le présentateur lui ouvre toutes les autres portes chèvres, il appert que le joueur gagne à tout coup s'il change, sauf s'il a choisi le prix au premier coup. Avec quelques modifications de la syntaxe précédente, le code suivant illustre le cas à 100 portes.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Simulation du problème de Monty Hall}
-\NormalTok{portes }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\StringTok{"Voiture"}\NormalTok{, }\FunctionTok{rep}\NormalTok{(}\StringTok{"Chèvre"}\NormalTok{, }\DecValTok{99}\NormalTok{))}
-\NormalTok{n }\OtherTok{=} \FunctionTok{length}\NormalTok{(portes)}
-\NormalTok{reps }\OtherTok{=} \DecValTok{1000}
-\FunctionTok{set.seed}\NormalTok{(}\DecValTok{7896}\NormalTok{)}
-\CommentTok{\# Valeur initial des gains}
-\NormalTok{gain.rester }\OtherTok{=} \DecValTok{0}
-\NormalTok{gain.changer }\OtherTok{=} \DecValTok{0}
-
-\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{reps)\{}
-  \CommentTok{\# Arrangement initial des portes}
-\NormalTok{  tirage }\OtherTok{=} \FunctionTok{sample}\NormalTok{(portes)}
-  \CommentTok{\# Trouver le prix}
-\NormalTok{  prix }\OtherTok{=} \FunctionTok{which}\NormalTok{(tirage }\SpecialCharTok{\%in\%} \StringTok{"Voiture"}\NormalTok{)}
-  \CommentTok{\# Choix aléatoire}
-\NormalTok{  choix1 }\OtherTok{=} \FunctionTok{sample}\NormalTok{(n, }\AttributeTok{size =} \DecValTok{1}\NormalTok{)}
-
-  \CommentTok{\# Sélectionner la porte avec la chèvre (pas un prix) et}
-  \CommentTok{\# qui n\textquotesingle{}est pas celle choisie (choix1)}
-\NormalTok{  option }\OtherTok{=} \FunctionTok{c}\NormalTok{(choix1, prix)}
-
-  \CommentTok{\# Les autres portes}
-\NormalTok{  monty }\OtherTok{=} \FunctionTok{sample}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\NormalTok{n)[}\SpecialCharTok{{-}}\NormalTok{option], }\AttributeTok{size =}\NormalTok{ n }\SpecialCharTok{{-}} \DecValTok{2}\NormalTok{)}
-
-  \CommentTok{\# Décision : Reste à choix1}
-\NormalTok{  choix.rester }\OtherTok{=}\NormalTok{ choix1}
-
-  \CommentTok{\# Décision : Changer de choix changer}
-  \CommentTok{\# Changer = ne pas prendre la porte initial, ni la porte ouverte}
-\NormalTok{  choix.changer }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\NormalTok{n)[}\SpecialCharTok{{-}}\FunctionTok{c}\NormalTok{(choix1, monty)]}
-
-  \CommentTok{\# Enregistrement des gains}
-\NormalTok{  gain.rester }\OtherTok{=}\NormalTok{ gain.rester }\SpecialCharTok{+}\NormalTok{ (tirage[choix.rester] }\SpecialCharTok{==} \StringTok{"Voiture"}\NormalTok{)}
-\NormalTok{  gain.changer }\OtherTok{=}\NormalTok{ gain.changer }\SpecialCharTok{+}\NormalTok{ (tirage[choix.changer] }\SpecialCharTok{==} \StringTok{"Voiture"}\NormalTok{)}
-\NormalTok{\}}
-
-\FunctionTok{cbind}\NormalTok{(gain.rester,gain.changer)  }\SpecialCharTok{/}\NormalTok{ reps}
-\CommentTok{\#\textgreater{}      gain.rester gain.changer}
-\CommentTok{\#\textgreater{} [1,]       0.009        0.991}
-\end{Highlighting}
-\end{Shaded}
-
-La simulation montre que rester gagne 0.9\% et que de changer gagne 99.1\%.
-
-Ds situations fort plus compliquées pourrait être apportées à des simulations Monte-Carlo, le jeu de Black Jack par exemple, bien qu'il soit déjà résolu pour des résultats optimaux \autocite{Millman83}. Il suffit d'avoir la patience de programmer le tout.
-
-Sur le plan pratique pour l'expérimentateur, les simulations Monte-Carlo peuvent être utiles pour calculer des tailles d'échantillons pour des modèles complexes, comme des modèles par équations structurelles compliquées, mutliniveaux ou de classes latentes. Une sous-famille est d'une importance signficative pour l'expérimentateur, celle qui sera abordée maintenant, le bootstrap.
-
-\hypertarget{le-bootstrap}{%
-\section{Le bootstrap}\label{le-bootstrap}}
-
-Le \emph{bootstrap} (dont il n'y a pas d'excellente traduction en français) est une des techniques de rééchantillonnage astucieuses permettant des inférences statistiques \autocite{Efron79}. Il fait partie de la famille des simulations Monte-Carlo, car il se base sur la réitération multiple d'une statistique à partir d'un jeu de données. Sans vouloir entrer trop dans les détails, il existe plusieurs types de techniques de bootstrap, qui font elles-mêmes parties d'une plus grande famille, les simulations stochastiques. Y est inclu les simulations de Monte-Carlo (dont le bootstrap fait parti) ou les méthodes numériques bayésiennes.
-
-Cet ouvrage insiste sur le bootstrap non paramétrique, impliquant que les distributions sous-jacentes aux échantillons ne soient pas spécifiées, bien qu'il existe du bootstrap paramétrique. Ce type de bootstrap est certainement la plus utile pour l'expérimentateur.
-
-Dans le bootstrap, l'échantillon initial est considéré comme une pseudopopulation. Il ne nécessite pas d'autre information que celle fournie par l'échantillon. Il permet d'obtenir une distribution d'échantillonnages et tous ses bénéfices. Alors que dans le chapitre précédent, il fallait préciser et connaître quelle distribution d'échantillonnage correspond à quelle statistique (p.~ex., le score-\(z\) d'une unité à la distribution normale; la moyenne d'un échantillon à la distribution \(t\) si la variance est inconnue), aucune de ces connaissances n'est nécessaire. L'étendue d'application du bootstrap appert immense, surtout pour les concepts statistiques qui offriront plus de défis, ce qui sera vu dans des chapitres ultérieurs.
-
-Obtenir la distribution d'échantillonnage permet ainsi :
-
-\begin{itemize}
-\item
-  d'estimer l'indice désiré;
-\item
-  d'estimer son erreur standard;
-\item
-  d'estimer ses intervalles de confiance;
-\item
-  de réaliser un test d'hypothèse;
-\end{itemize}
-
-tout cela en ignorant les distributions et postulats sous-jacents qui pourraient empêcher ou limiter leurs usages. Elle n'a que deux hypothèses fondamentales :l'échantillon reflète la population et chaque unité est indépendante et identiquement distribuée. Autrement dit, chaque unité provienne bel et bien d'une même boîte (\emph{population}, voir chapitre sur l'inférence statistique) et en sont un portrait juste en plus que le tirage d'une unité n'en influence celle d'une autre.
-
-Le fondement du bootstrap repose sur les étapes suivantes :
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\item
-  Sélectionner avec remise les unités d'un échantillon;
-\item
-  Calculer et enregistrer l'indice statistique désiré auprès de ce nouvel échantillon;
-\item
-  Réitérer les deux premières étapes un nombre élevé de fois.
-\end{enumerate}
-
-Ce processus hautement facilité par l'excellente performance des ordinateurs d'aujourd'hui, se réalise très facilement et rapidement. L'exemple suivant est basé sur le rééchantillonnage (1000 fois) de la moyenne à partir d'une variable aléatoire tirée d'une distribution uniforme avec un minimum de 5 et d'une maximum de 15.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Nombre d\textquotesingle{}unités}
-\NormalTok{n }\OtherTok{=} \DecValTok{30}
-\CommentTok{\# Le nombre de rééchantillonnage}
-\NormalTok{reps }\OtherTok{=} \DecValTok{10000}
-\CommentTok{\# Création de la variable}
-\FunctionTok{set.seed}\NormalTok{(}\DecValTok{158}\NormalTok{)}
-\NormalTok{X }\OtherTok{=} \FunctionTok{runif}\NormalTok{(}\AttributeTok{n =}\NormalTok{ n, }\AttributeTok{min =} \DecValTok{5}\NormalTok{, }\AttributeTok{max =} \DecValTok{15}\NormalTok{)}
-\NormalTok{N }\OtherTok{=} \FunctionTok{length}\NormalTok{(X)}
-\CommentTok{\# L\textquotesingle{}utilisation d\textquotesingle{}une boucle permet de réitérer les étapes}
-\CommentTok{\# Création d\textquotesingle{}une variable vide pour l\textquotesingle{}enregistrement}
-\NormalTok{moyenne.X }\OtherTok{=} \FunctionTok{numeric}\NormalTok{()}
-\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{reps)\{}
-  \CommentTok{\# Rééchantillonnage avec remise}
-\NormalTok{  id }\OtherTok{=} \FunctionTok{sample}\NormalTok{(N, }\AttributeTok{replace =} \ConstantTok{TRUE}\NormalTok{)}
-  \CommentTok{\# Nouvel échantillon}
-\NormalTok{  nouveau.X }\OtherTok{=}\NormalTok{ X[id]}
-  \CommentTok{\# Calculer et enregistrer la moyenne}
-\NormalTok{  moyenne.X[i] }\OtherTok{=} \FunctionTok{mean}\NormalTok{(nouveau.X)}
-\NormalTok{\}}
-\end{Highlighting}
-\end{Shaded}
-
-La fonction \texttt{sample(,\ replace\ =\ TRUE)} rééchantillonne avec remplacement les identifiants des unités. Par simplicité, il est possible d'éliminer la ligne \texttt{nouveau.X\ =\ X{[}id{]}} en utilisant tout simplement \texttt{mean(X{[}id{]})}. Cette utilisation se limite seulement au cas d'un vecteur de données. S'il s'agit d'un jeu de données avec plus d'une variable, alors \texttt{mean(X{[}id,\ {]})} sera utilisé. Noter l'usage de la \texttt{,} entre crochets. De cette façon, toutes les variables des unités identifiées par \texttt{id} sont extraites.
-
-À partir des informations obtenues, il est possible de faire des inférences statistiques. Toutes les estimations peuvent être présentées comme un histogramme tel que l'illustre la figure \ref{fig:hist2}. Le code se retrouve ci-dessous. Ici, quelques formules pour améliorer la présentation se retrouvent dans la syntaxe. L'utilisation simple de \texttt{hist()} pourra convenir.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{hist}\NormalTok{(moyenne.X,              }\CommentTok{\# Données}
-     \AttributeTok{ylab =} \StringTok{" Frequence"}\NormalTok{,    }\CommentTok{\# Changer l\textquotesingle{}axe y}
-     \AttributeTok{main =} \StringTok{""}\NormalTok{,              }\CommentTok{\# Retirer le titre}
-     \AttributeTok{breaks =} \DecValTok{50}\NormalTok{,            }\CommentTok{\# Nombre de colonnes}
-     \AttributeTok{xlim =} \FunctionTok{c}\NormalTok{(}\DecValTok{7}\NormalTok{,}\DecValTok{13}\NormalTok{)          }\CommentTok{\# Définir l\textquotesingle{}étendu de l\textquotesingle{}axe x}
-\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{figure}
-\centering
-\includegraphics{06-Simuler_files/figure-latex/hist2-1.pdf}
-\caption{\label{fig:hist2}Historgamme des estimations des échantillons}
-\end{figure}
-
-La distribution de la figure \ref{fig:hist2} peut être désignée comme la distribution de la \emph{population}, comme c'était le cas dans le chapitre sur les inférences. Elle permet d'avoir une estimation plus robuste de l'erreur standard, qui se trouve à être l'écart type des indices rééchantillonnés. Elle est également utilisée pour construire des intervalles de confiance et permet ainsi de faire des tests d'hypothèse comme : l'intervalle de confiance à \((1-\alpha) \times 100\) \% contient-elle la valeur 0? Comme il est fait avec une hypothèse nulle traditionnelle.
-
-Ici, le cas illustré est trivial au sens où, par le théorème central limite, la réponse est déjà connue. Si l'exemple était plutôt sur la médiane, il faudrait obligatoirement procéder par bootstrap pour calculer son erreur type et ses intervalles de confiance, car aucune formule exacte ne permet sa dérivation (il existe bien des approximations cela dit). Le bootstrap est alors des plus appropriés pour calculer l'erreur type et en tirer des intervalles de confiances, voire même en faire des tests d'hypothèses. Plusieurs statistiques auront recours au bootstrap pour dériver ces informations, la plus utilisée étant le coefficient de détermination (voir le chapitre sur la régression).
-
-À partir des informations obtenues auprès du rééchantillonnage, il est possible d'obtenir les éléments désirés. Comme le cas est trivial, les indices statistiques seront très similaires. Cela confirmera au lecteur qu'aucun principe ésotérique ne s'est déroulé devant ses yeux en plus de confirmer que les statistiques attendues se produisent effectivement.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Voici la moyenne et l\textquotesingle{}erreur standard originale}
-\FunctionTok{mean}\NormalTok{(X) ; }\FunctionTok{sd}\NormalTok{(X)}\SpecialCharTok{/}\FunctionTok{sqrt}\NormalTok{(n)}
-\CommentTok{\#\textgreater{} [1] 10.2}
-\CommentTok{\#\textgreater{} [1] 0.485}
-
-\CommentTok{\# La moyenne et l\textquotesingle{}erreur standard à  partir des rééchantillons}
-\FunctionTok{mean}\NormalTok{(moyenne.X)  ; }\FunctionTok{sd}\NormalTok{(moyenne.X)}
-\CommentTok{\#\textgreater{} [1] 10.2}
-\CommentTok{\#\textgreater{} [1] 0.481}
-\end{Highlighting}
-\end{Shaded}
-
-La moyenne et l'erreur standard sont très près de la moyenne de l'échantillon et celle de la population (qui est de 10) et de l'erreur type attendue. Il est possible de créer des intervalles de confiances avec la fonction \texttt{quantile} qui prend en argument un vecteur de données et les probabilités désirées. Dans le cas de 95\% pour une erreur de type I de 5\%, soit \(\alpha=.05\), il s'agit de \(.05/2 = .025\) et \(1-.05/2= .975\), laissant au total 5\% aux extrémités.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Erreur de type I}
-\NormalTok{alpha }\OtherTok{=}\NormalTok{ .}\DecValTok{05}
-\CommentTok{\# Valeurs critiques}
-\NormalTok{crit }\OtherTok{=} \FunctionTok{c}\NormalTok{(alpha}\SpecialCharTok{/}\DecValTok{2}\NormalTok{, (}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{alpha}\SpecialCharTok{/}\DecValTok{2}\NormalTok{))}
-\NormalTok{tv }\OtherTok{=} \FunctionTok{qt}\NormalTok{(crit, }\AttributeTok{df =}\NormalTok{ n }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{)}
-\CommentTok{\# Intervalles basés sur les indices de l\textquotesingle{}échantillon}
-\FunctionTok{mean}\NormalTok{(X) }\SpecialCharTok{+}\NormalTok{ tv }\SpecialCharTok{*} \FunctionTok{sd}\NormalTok{(X)}\SpecialCharTok{/}\FunctionTok{sqrt}\NormalTok{(n)}
-\CommentTok{\#\textgreater{} [1]  9.2 11.2}
-\CommentTok{\# Intervalles basés sur les indices du rééchantillonnage}
-\FunctionTok{mean}\NormalTok{(moyenne.X) }\SpecialCharTok{+}\NormalTok{ tv }\SpecialCharTok{*} \FunctionTok{sd}\NormalTok{(moyenne.X)}
-\CommentTok{\#\textgreater{} [1]  9.22 11.18}
-\CommentTok{\# Intervalles sur le rééchantillonnage}
-\FunctionTok{quantile}\NormalTok{(moyenne.X, crit)}
-\CommentTok{\#\textgreater{}  2.5\% 97.5\% }
-\CommentTok{\#\textgreater{}  9.26 11.13}
-\end{Highlighting}
-\end{Shaded}
-
-Pour réaliser le test d'hypothèse nulle, il suffit de constater si l'intervalle de confiance contient ou non zéro. Dans le cas où l'intervalle contient 0, le test n'est pas significatif, il est vraisemblable que l'absence d'effet soit vraie. S'il ne contient pas 0, l'hypothèse est rejetée, le test est significatif et il est vraisemblable qu'il y ait un effet. Dans cet exemple, la moyenne est clairement différente de 0, car elle ne contient pas cette valeur.
-
-\hypertarget{packages}{%
-\subsection{Packages}\label{packages}}
-
-Il existe plusieurs packages pour réaliser du bootstrap dans \textbf{R}. Il y a \texttt{bootstrap} \autocite{bootstrap} et \texttt{boot} \autocite{Canty21}. Ajouter à cela que plusieurs fonctions \textbf{R} possèdent des options de bootstrap intégrées (qu'il faut commander dans les arguments). Plusieurs analyses statistiques qui recourent régulièrement aux bootstraps auront déjà des options implantées.
-
-\hypertarget{ruxe9gression}{%
-\chapter{Régression}\label{ruxe9gression}}
-
-L'objectif de la régression est de décrire la relation entre un variable dépendante et un ensemble de variables indépendantes. Une première méthode de mesure d'association est la covariance (vue dans le chapitre sur les analyses de base) qui est représentée par l'équation ci-dessous.
-
-\begin{equation}
-s_{xy}=\frac{1}{n-1}\sum_{i=1}^n(x_i-\bar{x})(y_i-\bar{y})
-\label{eq:cov1}
-\end{equation}
-
-L'équation \eqref{eq:cov1} représente la somme des produits des écarts à la moyenne de deux variables. Comment généraliser cette équation à un ensemble de plus de deux variables? Pour débuter, les variables sont mises sur un même pied d'égalité, plutôt que de recourir à des lettres différentes (\(x\) et \(y\)), elles sont toutes considérées comme des \(x_{i,j}\), où l'indice \(i\) identifie le \(i\)\textsuperscript{e} participant, comme pour l'équation \eqref{eq:cov1}, et l'indice \(j\) indique la \(j\)\textsuperscript{e} variable parmi \(p\). Le calcul pour chacune des paires de variables \(j\) et \(k\) est réalisé pour les \(p\) variables; l'équation de la covariance devient ainsi.
-
-\begin{equation}
-s_{x_j,x_k}=\frac{1}{n-1}\sum_{i=1}^n(x_{i,j}-\bar{x_j})(x_{i,k}-\bar{x_k})
-\label{eq:cov2}
-\end{equation}
-
-Si les variables sont centrées, l'équation \eqref{eq:cov2} devient, pour faciliter l'intuition, l'équation \eqref{eq:cov3}, soit la somme des produits entre deux variables.
-
-\begin{equation}
-s_{x_j,x_k}=\frac{1}{n-1}\sum_{i=1}^n(x_{i,j})(x_{i,k})
-\label{eq:cov3}
-\end{equation}
-
-Avantageusement, lorsque \(j=k\), les équations \eqref{eq:cov2} et \eqref{eq:cov3} calculent la variance de la variable correspondante. En syntaxe \textbf{R,} ces équations pourraient s'écrire dans une fonction comme la suivante. Pour rappel, la fonction \texttt{cov()} dans laquelle une matrice de données est passée comme argument fournira la matrice de covariance.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{covariance1 }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(X)\{\} }
-\CommentTok{\# X est un jeu de données}
-\NormalTok{Xc }\OtherTok{=}\NormalTok{ X }\SpecialCharTok{{-}} \FunctionTok{colMeans}\NormalTok{(X) }\CommentTok{\# Centrées les variables}
-\NormalTok{p }\OtherTok{=} \FunctionTok{dim}\NormalTok{(X)[}\DecValTok{2}\NormalTok{]    }\CommentTok{\# Nombre de variables }
-\NormalTok{n }\OtherTok{=} \FunctionTok{dim}\NormalTok{(X)[}\DecValTok{1}\NormalTok{]    }\CommentTok{\# Nombre de sujets}
-\NormalTok{S }\OtherTok{=} \FunctionTok{as.numeric}\NormalTok{() }\CommentTok{\# Matrice vide pour enregistrer résultats (Sigma)}
-\ControlFlowTok{for}\NormalTok{(j }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{p) \{}
-  \ControlFlowTok{for}\NormalTok{(k }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{p) \{}
-\NormalTok{    S }\OtherTok{=} \FunctionTok{sum}\NormalTok{(Xc[,j] }\SpecialCharTok{*}\NormalTok{ Xc[,k])}
-\NormalTok{  \}}
-\NormalTok{\}}
-\NormalTok{S }\OtherTok{=}\NormalTok{ S }\SpecialCharTok{/}\NormalTok{ (n}\DecValTok{{-}1}\NormalTok{)}
-\CommentTok{\# S est la matrice de covariance}
-\FunctionTok{return}\NormalTok{(}\AttributeTok{covariance =}\NormalTok{ S)}
-\ErrorTok{\}}
-\end{Highlighting}
-\end{Shaded}
-
-Dans le code \textbf{R} ci-joint, \texttt{dim()} extrait le nombre de dimensions de la base de données, soit le nombre d'unités et le nombre de variables. Les crochets dans l'expression \texttt{dim(X){[}1{]}} indiquent que seule la première valeur doit être enregistrée - le nombre d'unités et \texttt{dim(X){[}2{]}}, le nombre de variable. Il est possible d'utiliser cette astuce dans d'autres contextes. La fonction \texttt{colMeans()} (moyenne de chaque colonne) calcule toutes les moyennes des variables. La ligne soustrait de \texttt{X} ces moyennes.
-
-\hypertarget{illustration-de-la-covariance}{%
-\subsection{Illustration de la covariance}\label{illustration-de-la-covariance}}
-
-Il est relativement aisé d'exprimer graphiquement la covariance bivariée. Pour chaque paire \((x_i,y_i)\), il est possible de dessiner un rectangle à partir du centre \((0, 0)\). Lorsque la moyenne d'une variable est soustraite, les données deviennent centrées sur ce point. L'expression \(xy\) ou \(x_ix_j\) peut rappeler à certain le calcul de l'aire d'un rectangle. C'est effectivement ce qui se produit pour la covariance. L'équation calcule l'aire du rectangle formé par les points \((0,0)\) et \((x_i,y_i)\). En fait, la covariance calcule le rectangle \emph{moyen}, car le produit est ensuite divisé par le nombre de rectangles \((-1)\).
-
-\begin{figure}
-
-{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{07-Regression_files/figure-latex/unnamed-chunk-2-1} 
-
-}
-
-\caption{Illustration de la covariance}\label{fig:unnamed-chunk-2}
-\end{figure}
-
-\begin{figure}
-
-{\centering \includegraphics{07-Regression_files/figure-latex/unnamed-chunk-3-1} 
-
-}
-
-\caption{Illustration des produits (rectangles) pour différentes valeurs de covariance}\label{fig:unnamed-chunk-3}
-\end{figure}
-
-À partir des images suivantes, quelques propriétés de la covariance peuvent être déduites.
-
-\begin{itemize}
-\item
-  Comme la quantité de surface blanche (ou de noire) dépend de la taille de la figure, la covariance est directement proportionnelle aux échelles à l'abscisse et l'ordonnée.
-\item
-  La covariance augmente lorsque les points s'approchent d'une ligne à pente ascendante et diminue lorsque les points s'approchent d'une ligne à pente descendante.
-\item
-  Comme les associations non linéaires peuvent créer des amalgames de rectangles positifs et négatifs, elles conduisent à des covariances imprévisibles et peu pertinentes.
-\item
-  La covariance (et la corrélation) est sensible aux valeurs aberrantes. Un point éloigné de la masse créera une aire rectangulaire bien plus grande que les autres points. À lui seul, il peut créer une quantité substantielle positive ou négative de surface blanche (ou noire) dans la figure.
-\item
-  Si une variable est multipliée par elle-même, il s'agit de l'aire d'un carré, ce qui équivaut au calcul d'une variance. Par extension, si le produit de deux variables se rapproche davantage d'un carré que d'un rectangle (en moyenne), alors les deux variables sont fortement liées.
-\item
-  Le paramètre de la corrélation de la population peut être conceptualisé comme un triangle déformé en rectangle à cause de l'erreur de mesure des axes.
-\end{itemize}
-
-\hypertarget{la-covariance-en-termes-dalguxe8bre-matricielle}{%
-\subsection{La covariance en termes d'algèbre matricielle}\label{la-covariance-en-termes-dalguxe8bre-matricielle}}
-
-Pour l'instant, seul l'aspect linéaire est présenté. L'équation de la covariance peut aussi se calculer en termes d'algèbre matricielle. En plus d'accélérer le calcul des résultats, il simplifie énormément les mathématiques sous-jante (pourvu que l'utilisateur connaisse l'algèbre matricielle).
-
-Dans le présent contexte, une matrice est un ensemble de variables représentées sous une seule variables. Dans les équations mathématiques, une matrice est désignée par une lettre majuscule : \(x\) devient \(X\) et \(\sigma\) devient \(Sigma\). Dans une matrice, chaque colonne est une variable, chaque ligne correspond à un sujet différent mesuré sur toutes les variables. Une matrice est définie en partie par son nombre de lignes (\(n\), nombre d'unités) et son nombre de colonnes (\(p\), nombre de variables), dont voici une illustration.
-
-\[
-X = \left(\begin{array}{cccc} 
-x_{1,1} & x_{1,2} & ...&x_{1,p}\\
-x_{2,1} & x_{2,2} & ...&x_{2,p}\\
-... & ...& ...& ... \\
-x_{n,1} & x_{n,2} & ... &x_{n,p}\\
-\end{array}\right)
-\]
-
-En syntaxe \textbf{R}, il ne s'agit rien de plus que de concaténer des variables (mesurant les mêmes individus) ensembles par des colonnes, comme il est fait avec des jeux de données \texttt{data.frame()} ou \texttt{cbind()}. Un jeu de données est, à peu de chose près, une matrice. Pour créer une matrice \texttt{X} à partir des variables \texttt{x}, \texttt{y}, et \texttt{z} avec \textbf{R}, par exemple, la ligne \texttt{X\ =\ cbind(x,\ y,\ z)} joindra les trois variables ensemble.
-
-Pour réaliser le calcul de la covariance, il faut multiplier la matrice des données centrées (les variables concaténées) par elle-même puis de diviser par \(n-1\). Le symbole \(X\) représente la concaténation des variables. Par simplicité, l'équation utilise des \textbf{variables centrées}.
-
-\begin{equation}
-\Sigma = (n-1)^{-1}X^\prime X
-\label{eq:covmat1}
-\end{equation}
-
-Le symbole \(\Sigma\) (sigma majuscule) représente la matrice de variance-covariance. La diagonale de cette matrice représente les variances des données et les éléments hors diagonales sont les covariances, soulignant le lien entre la variance et la covariance. Le symbole \(\prime\) (prime) correspond à l'opération de transposer une matrice, soit d'échanger les lignes par ces colonnes. Cette procédure est nécessaire pour produire la multiplication d'une matrice par elle-même. Noter que l'expression \((n-1)^{-1}=\frac{1}{n-1}\).
-
-TODO
-
-\begin{equation}
-\begin{aligned}
-S = (n-1)^{-1}
-\left(\begin{array}{cccc} 
-x_{1,1} & x_{2,1} & ...&x_{n,1}\\
-x_{2,1} & x_{2,2} & ...&x_{n,2}\\
-\end{array}\right) 
-\left(\begin{array}{cc} 
-x_{1,1} & x_{1,2} \\
-x_{2,1} & x_{2,2}\\
-... & ...  \\
-x_{n,1} & x_{n,2} \\
-\end{array}\right) \\
-= (n-1)^{-1}
-\left(\begin{array}{cc}
-\sum_{i=1}^n(x_{i,1})(x_{i,1}) & \sum_{i=1}^n(x_{i,1})(x_{i,2})\\
-\sum_{i=1}^n(x_{i,2})(x_{i,1}) & \sum_{i=1}^n(x_{i,2})(x_{i,2})
-\end{array}\right)
-\label{eq:covmat2}
-\end{aligned}
-\end{equation}
-
-L'équation \eqref{eq:covmat2} illustre l'équation \eqref{eq:covmat1} qui sont toutes les deux équivalentes à \eqref{eq:cov3}. En termes de syntaxe \textbf{R}, elles peuvent être traduites comme suit.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{covariance2 }\OtherTok{=} \ControlFlowTok{function}\NormalTok{(X)\{}
-  \CommentTok{\# X est une data.frame ou matrice de n sujets par p variables}
-\NormalTok{  n }\OtherTok{=} \FunctionTok{dim}\NormalTok{(X)[}\DecValTok{1}\NormalTok{]}
-\NormalTok{  Xc }\OtherTok{=}\NormalTok{ X }\SpecialCharTok{{-}} \FunctionTok{colMeans}\NormalTok{(X)}
-  \CommentTok{\# Algèbre matriciel pour le produit qui permet de calculer}
-  \CommentTok{\# le produit d\textquotesingle{}une colonne avec les autres colonnes}
-\NormalTok{  cov.X }\OtherTok{=} \FunctionTok{t}\NormalTok{(Xc) }\SpecialCharTok{\%*\%}\NormalTok{ Xc }\SpecialCharTok{/}\NormalTok{ (n }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{)}
-  \FunctionTok{return}\NormalTok{(cov.X)}
-\NormalTok{\}}
-\end{Highlighting}
-\end{Shaded}
-
-La fonction \texttt{t()} opère la transpose (\(\prime\)) et le symbole \texttt{\%*\%} signifie le produit matriciel des variables. Si l'usuel symbole de multiplication \texttt{*} était utilisé, \textbf{R} opérerait une multiplication cellule par cellule (avec recyclage) plutôt que celle désirée ici.
-
-L'utilisation de l'algèbre matricielle est plus simple et efficace : Elle nécessite cinq lignes de code, élimine deux boucles, prend moins de temps à calculer en plus de produire toutes les variances et les covariances.
-
-Une matrice de covariance possède plusieurs propriétés qu'il faut connaître. Elle est toujours carrée soit \(p \times p\) pour \(p\) variables et contient \(p^2\) éléments. Parmi ces éléments, les \(p\) éléments de la diagonale sont des variances, ce pourquoi elle est parfois appelée matrice de variance-covariance. Les éléments triangulaires inférieurs hors diagonale sont un parfait reflet des éléments supérieurs, p.ex. \(\sigma_{1,2} = \sigma_{2,1}\). Il y a ainsi \(\frac{p(p-1)}{2}\) covariances uniques dans une matrice et \(p(p+1)/2\) éléments uniques (variances et covariances). En plus, de ces caractéristiques, la matrice doit être \emph{positive semi-définie}, ce qui est un terme mathématique impliquant, pour les fins de ce chapitre, que les variances ne peuvent être nulles. (C'est plus complexe que cela, mais il suffit d'accepter cette affirmation pour procéder.)
-
-\[
-\Sigma = \left( 
-\begin{array}{cccc}
-\sigma_{1,1} & \sigma_{1,2} & ... &  \sigma_{1,p}\\
-\sigma_{2,1} & \sigma_{2,2} & ... &  \sigma_{2,p}\\
-...& ...& ... &  \sigma_{3,p}\\
-\sigma_{p,1} & \sigma_{p,2} & ... &  \sigma_{p,p}\\
-\end{array}
-\right)
-\]
-
-\hypertarget{cruxe9ation-de-donnuxe9es}{%
-\subsection{Création de données}\label{cruxe9ation-de-donnuxe9es}}
-
-Une façon simple et efficace de créer des données à ce stade est la package \texttt{MASS} dont un aperçu a été donné dans le chapitre sur les analyses de base.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Création de la matrice de covariance pour p=3}
-\NormalTok{Sigma }\OtherTok{=} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(s11, s12, s13,}
-\NormalTok{                 s12, s22, s23,}
-\NormalTok{                 s13, s23, s33), }\AttributeTok{nrow =} \DecValTok{3}\NormalTok{, }\AttributeTok{ncol =} \DecValTok{3}\NormalTok{)}
-\CommentTok{\# Création des données }
-\NormalTok{donnees }\OtherTok{=} \FunctionTok{data.frame}\NormalTok{(MASS}\SpecialCharTok{::}\FunctionTok{mvrnorm}\NormalTok{(}\AttributeTok{n =}\NormalTok{ n, }\AttributeTok{mu =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{), }\AttributeTok{Sigma =}\NormalTok{ Sigma))}
-\end{Highlighting}
-\end{Shaded}
-
-La matrice de covariance pour \(p=3\) s'écrit comme suit.
-\[
-\Sigma = \left( 
-\begin{array}{ccc}
-\sigma_{1,1} & \sigma_{1,2} & \sigma_{1,3}\\
-\sigma_{2,1} & \sigma_{2,2} & \sigma_{2,3}\\
-\sigma_{3,1} & \sigma_{3,2} & \sigma_{2,3}
-\end{array}
-\right)
-\]
-Il convient d'écrire \(\Sigma\) (sigma majuscule) et \(\sigma\) (sigma minuscule) plutôt que \(S\), car il s'agit de la matrice de covariance de la population. Le résultat de \texttt{S\ =\ cov(donnees)} est empirique et la notation \(S\) est plus appropriée. Comme il y a \(p=3\) variables dans la syntaxe, il faudra préalablement spécifier \(3*4/2 = 6\) arguments :\(p = 3\) variances \(\sigma_{1,1},\sigma_{3,3},\sigma_{3,3}\) et \(3*2/2 =3\) covariances \(\sigma_{1,2},\sigma_{1,3},\sigma_{2,3}\).
-
-\hypertarget{la-matrice-de-corruxe9lation}{%
-\subsection{La matrice de corrélation}\label{la-matrice-de-corruxe9lation}}
-
-Pour rappel, une matrice de corrélation est une matrice de covariance dont les variables ont été standardisées. Cela implique de transformer la matrice afin que toute la diagonale soit à l'unité, que toutes les variances soient égalent à 1. Cela permet d'avoir une interprétation \emph{standardisée} des corrélations, car celles-ci sont indépendantes des métriques originales. Les autres éléments conceptuels de la matrice de covariance s'appliquent pour la matrice de corrélation.
-
-Pour transformer la matrice de covariance en matrice de corrélation, trois techniques sont possibles.
-
-La première est de standardise \(X\) préalablement au calcul de la covariance. Comme il n'y a pas d'équivalent à \texttt{colMeans()} pour l'écart type, l'utilisation de \texttt{apply(X,\ MARGIN\ =\ 2,\ FUN\ =\ sd)} fera le travail. Cette ligne de syntaxe reproduit la même logique, mais pour l'écart type \texttt{sd()}. Textuellement, elle applique (\texttt{apply()}) l'écart type (\texttt{sd()}) pour chaque colonne \texttt{MARGIN\ =\ 2} à la matrice de données \texttt{X}.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{X }\OtherTok{=}\NormalTok{ (X }\SpecialCharTok{{-}} \FunctionTok{colMeans}\NormalTok{(X)) }\SpecialCharTok{/} \FunctionTok{apply}\NormalTok{(X, }\AttributeTok{MARGIN =} \DecValTok{2}\NormalTok{, }\AttributeTok{FUN =}\NormalTok{ sd)}
-\end{Highlighting}
-\end{Shaded}
-
-La deuxième méthode est de standardiser la matrice de covariance en termes d'algèbre matricielle, où \(S\) est la matrice de covariance. Il faut extraire de la matrice les variances de la diagonale (avec la fonction mathématique \(\text{diag()}\)), puis en faire la racine carrée pour obtenir des écarts types, puis en refaire une matrice carrée avec la fonction mathématique \(\text{diag()}\) qu'il faut finalement inversé pour en faire une division.
-
-\begin{equation}
-R = (\text{diag}(\sqrt{\text{diag}(S)})^{-1}) S (\text{diag}(\sqrt{\text{diag}(S)})^{-1})
-\label{eq:cov2cor}
-\end{equation}
-
-En code \textbf{R}, l'équation \eqref{eq:cov2cor} se traduit ainsi.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{R }\OtherTok{=} \FunctionTok{solve}\NormalTok{(}\FunctionTok{diag}\NormalTok{(}\FunctionTok{sqrt}\NormalTok{(}\FunctionTok{diag}\NormalTok{(S)))) }\SpecialCharTok{\%*\%}\NormalTok{ S }\SpecialCharTok{\%*\%} \FunctionTok{solve}\NormalTok{(}\FunctionTok{diag}\NormalTok{(}\FunctionTok{sqrt}\NormalTok{(}\FunctionTok{diag}\NormalTok{(S))))}
-\end{Highlighting}
-\end{Shaded}
-
-Lorsqu'une matrice est passée comme argument à \texttt{diag()}, elle extrait les éléments de la diagonale pour en faire un vecteur. Si un vecteur est passé en argument, alors \texttt{diag()} retourne une matrice avec les éléments du vecteur en diagonale. La fonction \texttt{solve()} calcule l'inverse d'une matrice, comme l'utilisateur pourrait attendre de \(X^{-1}\). Il s'agit certainement de l'aspect le plus biscornu de \textbf{R}. Enfin, l'opérateur \texttt{\%*\%} est le produit matriciel.
-
-La troisième est d'utiliser la fonction de base \texttt{cov2cor()} pour transformer la matrice de covariance en matrice de corrélation, ce qui est plus simple et plus rapide que la deuxième option, mais qui cache ce qui se réalise.
-
-\hypertarget{la-ruxe9gression}{%
-\section{La régression}\label{la-ruxe9gression}}
-
-Pour l'instant, des rudiments de la covariance et de la corrélation ont été présentés dans le but d'introduire graduellement l'algèbre matricielle. L'objectif étant atteint, le regard portera sur la régression en tant que moyen de prédire une variable \(y\) à partir d'un ensemble de variables \(X\).
-
-Quelle est la différence entre les analyses de covariance et corrélation comparativement à l'analyse de régression? Bien que la logique sous-jacente soit très similaire, il faut maintenant déterminer une variable \emph{différente} de l'autre, c'est-à-dire une variable dépendante. Les autres sont des variables indépendantes. Les variables indépendantes prédisent la variable dépendante un peu comme dans un modèle \emph{déterministe}, il faut décider de la cause (variables indépendantes) et l'effet (variable dépendante), ce dernier étant généré par les premiers.
-
-Plutôt que de traiter chaque paire de variable comme c'était le cas avec l'analyse de corrélation, la régression correspond à étudier la relation entre la variable dépendante et toutes les autres, et ce, simultanément. Ainsi, les variables indépendantes sont contrôlées entre elles pour évaluer leur effet sur la variable dépendante et un modèle de prédiction plus juste est obtenu (autant que faire ce peut avec modèle statistique).
-
-\hypertarget{le-moduxe8le-de-ruxe9gression-simple}{%
-\subsection{Le modèle de régression simple}\label{le-moduxe8le-de-ruxe9gression-simple}}
-
-L'équation pour un modèle de régression simple se résume en un cas bivarié, soit la prédiction de \(y\) par une seule variable \(x\).
-
-\begin{equation}
-y = \beta_0 + \beta_1 x + \epsilon_y
-\label{eq:modlin}
-\end{equation}
-
-Dans ce modèle, \(y\) est la variable prédite, \(x\) est le seul prédicteur, \(\beta_0\) est l'ordonnée à l'origine, \(\beta_1\) est le coefficient de régression et \(\epsilon_y\), l'erreur dans la variable \(y\) indépendante (non corrélée, ni fonctionnelement liée) de \(x\).
-
-\hypertarget{cruxe9ation-de-donnuxe9es-1}{%
-\subsection{Création de données}\label{cruxe9ation-de-donnuxe9es-1}}
-
-Une façon simple de créer des données en fonction d'un modèle linéaire plutôt qu'à partir de la matrice de corrélation (comme ce fut le case jusqu'à présent) est de reprendre l'équation \eqref{eq:modlin} et de spécifier les paramètres libre. D'abord, il faut remplacer les paramètres du modèle par des valeurs, \(beta_0\), \(beta_1\), et ensuite, créer deux variables aléatoires de taille \(n\) (la taille d'échantillon), une première pour \(x\) et une seconde pour \(\epsilon_y\). Les hypothèses sous-jacentes aux modèles linéaires assument généralement que la l'erreur (\(\epsilon\)) est distribuée normalement (avec implicitement une moyenne de 0), la fonction \texttt{rnorm()} pourra jouer le rôle. Pour \(x\), il n'y a pas de distribution à respecter, mais une distribution normale fait très bien l'affaire. Voici un exemple de code \textbf{R}.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# En spécifiant une taille d\textquotesingle{}échantillon très grande,}
-\CommentTok{\# l\textquotesingle{}erreur échantillonnalle est considérablement réduite.}
-\CommentTok{\# Valeurs choisies par l\textquotesingle{}utilisateur}
-\NormalTok{n }\OtherTok{=} \DecValTok{10000} \CommentTok{\# Taille d\textquotesingle{}échantillon}
-\NormalTok{beta0 }\OtherTok{=} \DecValTok{5} \CommentTok{\# Les betas}
-\NormalTok{beta1 }\OtherTok{=} \DecValTok{1}
-\CommentTok{\# Deux variables aléatoires tirées de distributions normales.}
-\CommentTok{\# Les moyennes sont nulles et }
-\CommentTok{\# les écarts types sont spécifiés par l\textquotesingle{}utilisateur.}
-\NormalTok{x }\OtherTok{=} \FunctionTok{rnorm}\NormalTok{(}\AttributeTok{n =}\NormalTok{ n, }\AttributeTok{sd =} \DecValTok{1}\NormalTok{)}
-\NormalTok{e.y }\OtherTok{=} \FunctionTok{rnorm}\NormalTok{(}\AttributeTok{n =}\NormalTok{ n, }\AttributeTok{sd =} \DecValTok{3}\NormalTok{)}
-\CommentTok{\# Création de la variable dépendante}
-\NormalTok{y }\OtherTok{=}\NormalTok{ beta0 }\SpecialCharTok{+}\NormalTok{ beta1 }\SpecialCharTok{*}\NormalTok{ x }\SpecialCharTok{+}\NormalTok{ e.y}
-\end{Highlighting}
-\end{Shaded}
-
-Si l'utilisateur souhaite ajouter une autre variable, il lui suffit d'ajouter un \(\beta\) supplémentaire et de créer une autre variable aléatoire
-
-Cette méthode de création de données possède toutefois des limites. Principalement, elle ne spécifie pas les propriétés statistiques désirables, par exemple, la corrélation entre les variables est évacuée. Quelle est la corrélation entre \texttt{x}et \texttt{y} dans l'exemple précédent? Il est bien sûr possible de déterminer ces valeurs pour la population a posteriori. Il faut résoudre l'équation \eqref{eq:eqrho}.
-
-\begin{equation}
-\rho_{x,y} = \beta_1 \frac{\sigma_x}{\sigma_y} 
-\label{eq:eqrho}
-\end{equation}
-
-Certaines valeurs sont déjà connues, car spécifiées par l'utilisateur, \(\beta_1 = 1\) et \(\sigma_x = 1\). Qu'en est-il de \(\sigma_y\)? L'utilisateur n'a pas spécifié la valeur de la variance de \(y\), il a plutôt choisi la valeur de la variance de l'erreur résiduelle, \(\sigma^2_{\epsilon_y}\). La loi de la somme des variances permettra de calculer cette valeur. Pour le lecteur intéressé, les réponses sont \(\sigma^2_y = \beta_1^2\sigma^2_x+\sigma^2_{\epsilon_y} = 10\) et donc \(\rho_{x,y} = \frac{\beta_1 \sigma_x}{\sigma_y} = 0.316\).
-
-La limite liée à la méthode de création de données est maintenant flagrante. En plus de ne pas connaître la corrélation entre les variables, la variance de \(y\) n'est pas connue a priori. La stratégie de spécification est ainsi de choisir des valeurs et d'espérer qu'elles soient conformes aux attentes. Pire, s'il y avait plusieurs variables indépendantes, elles seraient toutes non corrélées entre elles, alors que l'utilisateur pourrait vouloir autrement, mais cette première technique ne le permet pas.
-
-Pour l'utilisateur qui crée son jeu de données, ces caractéristiques sont souvent plus essentielles que de spécifier à l'avance la variance résiduelle. Pour résoudre cette situation, la solution est de spécifier un modèle standardisé, puis de le \emph{déstandardiser} (ajouté des moyennes et des variances a posteriori).
-
-La philosophie de modélisation de cet ouvrage repose sur l'idée selon laquelle, un modèle doit être standardisé au départ puis \emph{déstandardisé}. Cette logique ne se prêtera pas à tous les contextes, pour certains la difficulté sera immense, pour d'autres, cela ne respectera pas les objectifs. En partant d'un modèle standardisé toutefois, la matrice de corrélation est connue à l'avance et la variance est spécifiée directement par l'utilisateur. Les tailles d'effets attendues sont également assurées. Il suffit de dériver la variance résiduelle du modèle plutôt que de la spécifier.
-
-En assumant un modèle linéaire,
-
-\begin{equation}
-y = \beta_0 + \beta_1 x_1 + ... +\beta_k x_k + \epsilon_y
-\label{eq:modling}
-\end{equation}
-
-où l'équation \eqref{eq:modling} correspond à la généralisation de l'équation \eqref{eq:modlin} pour \(k\) variables indépendantes, il est possible d'isoler \(\epsilon_y\). La variance se calcule alors comme l'équation \eqref{eq:emat}, pour le cas générale.
-
-\begin{equation}
-\sigma^2_{\epsilon_y} = \sigma^2_y - B^{\prime}RB
-\label{eq:emat}
-\end{equation}
-
-où \(R\) est la matrice de corrélation et \(B\) est le vecteur contenant tous les \(\beta\) standardisés. Pour assurer un scénario standardisé \(\sigma^2_y = 1\). La seule condition sous-jacente à l'équation \eqref{eq:emat} est de s'assurer que \(\sigma^2_{\epsilon_y} > 0\), c'est-à-dire en vérifiant que \(B^{\prime}RB < \sigma^2_y\), autrement la variance est négative, ce qui est impossible. En termes de syntaxe \textbf{R}, l'équation \eqref{eq:emat} correspond à ceci.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Cacluler la variance de epsilon}
-\NormalTok{var\_e }\OtherTok{=}\NormalTok{ var\_y }\SpecialCharTok{{-}} \FunctionTok{t}\NormalTok{(B) }\SpecialCharTok{\%*\%}\NormalTok{ R }\SpecialCharTok{\%*\%}\NormalTok{ B}
-\end{Highlighting}
-\end{Shaded}
-
-L'avantage de cette technique est (a) de pouvoir spécifier les corrélations entre les variables indépendantes avec la matrice \(R\); (b) de déterminer à l'avance la variance de \(y\) et (c) que le vecteur \(B\) contient les \(\beta\) standardisés qui sont dans ce contexte les corrélations partielles qui relient chacune des variables indépendantes à la variable dépendante (des tailles d'effet) en contrôlant pour chacune d'elles.
-
-L'utilisateur crée par la suite les données en spécifiant le vecteur \(B\) et en créant une variable basée sur la matrice de corrélation. Voici un exemple pour \(k=3\) variables centrées suivant une distribution normale multivariée avec la matrice de corrélation \(R\).
-
-\[
-R= \left( 
-\begin{array}{ccc}
-1 & .2 & .3\\
-.2 & 1 & .1\\
-.3 & .1 & 1
-\end{array}
-\right)
-\]
-Une fois les données de \(X\) créées, avec la fonction \texttt{MASS::mvrnorm()}, comme il a été fait précédemment, il suffit de multiplier \(X\) avec \(B\) et d'ajouter la variable aléatoire \(\epsilon_y\) avec la variance appropriée pour obtenir la variable dépendante \(y\).
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{set.seed}\NormalTok{(}\DecValTok{42}\NormalTok{)  }\CommentTok{\# Pour reproductibilité}
-\NormalTok{n }\OtherTok{=} \DecValTok{1000}      \CommentTok{\# Taille d\textquotesingle{}échantillon}
-\NormalTok{k }\OtherTok{=} \DecValTok{3}         \CommentTok{\# Nombre de variables indépendantes}
-
-\CommentTok{\# Matrice de corrélation}
-\NormalTok{R }\OtherTok{=} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, .}\DecValTok{2}\NormalTok{, .}\DecValTok{3}\NormalTok{,}
-\NormalTok{             .}\DecValTok{2}\NormalTok{, }\DecValTok{1}\NormalTok{, .}\DecValTok{1}\NormalTok{,}
-\NormalTok{             .}\DecValTok{3}\NormalTok{, .}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{), k, k)}
-\CommentTok{\# Moyennes}
-\NormalTok{mu }\OtherTok{=} \FunctionTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{, k)}
-
-\CommentTok{\# Choix des betas standardisés}
-\NormalTok{B }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\AttributeTok{beta1 =}\NormalTok{ .}\DecValTok{2}\NormalTok{, }\AttributeTok{beta2 =} \SpecialCharTok{{-}}\NormalTok{.}\DecValTok{5}\NormalTok{, }\AttributeTok{beta3 =}\NormalTok{ .}\DecValTok{3}\NormalTok{)}
-
-\CommentTok{\#variance de epsilon}
-\NormalTok{var\_e }\OtherTok{=} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{t}\NormalTok{(B) }\SpecialCharTok{\%*\%}\NormalTok{ R }\SpecialCharTok{\%*\%}\NormalTok{ B}
-
-\CommentTok{\# Créations des variables aléatoires}
-\NormalTok{X }\OtherTok{=}\NormalTok{ MASS}\SpecialCharTok{::}\FunctionTok{mvrnorm}\NormalTok{(}\AttributeTok{n =}\NormalTok{ n, }\AttributeTok{mu =}\NormalTok{ mu, }\AttributeTok{Sigma =}\NormalTok{ R)}
-\NormalTok{e }\OtherTok{=} \FunctionTok{rnorm}\NormalTok{(}\AttributeTok{n =}\NormalTok{ n, }\AttributeTok{sd =} \FunctionTok{sqrt}\NormalTok{(var\_e))}
-\CommentTok{\# Création de la variable dépendante}
-\NormalTok{y }\OtherTok{=}\NormalTok{ X }\SpecialCharTok{\%*\%}\NormalTok{ B }\SpecialCharTok{+}\NormalTok{ e}
-
-\CommentTok{\# Création du jeu de données}
-\NormalTok{jd }\OtherTok{=} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{y =}\NormalTok{ y, }\AttributeTok{X =}\NormalTok{ X)}
-
-\CommentTok{\# Quelques vérifications}
-\CommentTok{\# Les données}
-\FunctionTok{head}\NormalTok{(jd)}
-\CommentTok{\#\textgreater{}        y    X.1    X.2     X.3}
-\CommentTok{\#\textgreater{} 1  0.635 {-}0.956 {-}2.567  0.3239}
-\CommentTok{\#\textgreater{} 2 {-}0.264  0.672 {-}0.172  0.5200}
-\CommentTok{\#\textgreater{} 3  0.341  0.885 {-}1.369 {-}0.6387}
-\CommentTok{\#\textgreater{} 4 {-}0.602  0.778 {-}1.104 {-}1.2678}
-\CommentTok{\#\textgreater{} 5  0.401  0.360  0.286 {-}1.4336}
-\CommentTok{\#\textgreater{} 6 {-}1.076 {-}0.210  0.621 {-}0.0399}
-\CommentTok{\# La matrice de corrélation entre les variables indépendantes}
-\CommentTok{\# Très près des valeurs choisies à la troisième décimale}
-\FunctionTok{cor}\NormalTok{(X)}
-\CommentTok{\#\textgreater{}       [,1]  [,2]  [,3]}
-\CommentTok{\#\textgreater{} [1,] 1.000 0.188 0.279}
-\CommentTok{\#\textgreater{} [2,] 0.188 1.000 0.136}
-\CommentTok{\#\textgreater{} [3,] 0.279 0.136 1.000}
-\CommentTok{\# La variance de y (encore une fois très près)}
-\FunctionTok{var}\NormalTok{(y)}
-\CommentTok{\#\textgreater{}      [,1]}
-\CommentTok{\#\textgreater{} [1,] 1.03}
-\end{Highlighting}
-\end{Shaded}
-
-Maintenant, il est possible de \emph{déstandardisé} \texttt{X} et \texttt{y} en additionnant des moyennes ou multipliant par des écarts types à chaque variable.
-
-\hypertarget{lanalyse-de-ruxe9gression}{%
-\section{L'analyse de régression}\label{lanalyse-de-ruxe9gression}}
-
-Lorsque le jeu de données est obtenu, il est temps de procéder à l'analyse de régression. Essentiellement, l'analyse de régression produit à peu près ceci (mais en algèbre matricielle).
-
-Pour aider la compréhension, voici une explication avec le modèle linéaire simple assumant des variables centrées. Le modèle correspond à
-
-\[
-y = \beta x
-\]
-
-où l'erreur, \(\epsilon_y\) n'est pas explicitée. Il faut isoler \(\beta\) afin de l'estimer, soit l'opération suivante,
-
-\[
-\beta = \EX(\frac{y}{x})
-\]
-
-où le symbole \(\EX\) signifie l'espérance (la moyenne). En multipliant par \(\frac{x}{x}\) de chaque côté de l'équation, cela produit l'équation suivante.
-
-\begin{equation}
-\beta = \EX(\frac{xy}{xx}) = \frac{\sigma_{xy}}{\sigma^2_x}
-\label{eq:beta2}
-\end{equation}
-
-Dans l'équation \eqref{eq:beta2}, le numérateur sera rapidement reconnu comme la covariance et au dénominateur la variance de \(X\). Comment généralisé pour \(k\) variables? En algèbre matricielle et dans la mesure où les variables contenues dans \(X\) sont centrées, cela revient au même que de calculer l'équation \eqref{eq:beta}.
-
-\begin{equation}
-\hat{B} = (X^{\prime} X)^{-1} X^{\prime} y
-\label{eq:beta}
-\end{equation}
-
-Comme pour l'équation \eqref{eq:beta2}, la composante \((X^{\prime} X)^{-1}\) agit en dénominateur (par l'exposant \(-1\)) et correspond à la matrice de variance-covariance des variables de \(X\) ensemble, alors que \(X^{\prime} y\) agit comme le numérateur, soit la covariance entre les variables de \(X\) avec \(y\).
-
-Pour l'erreur type, il s'agit de calculer ceci.
-
-\begin{equation}
-\text{var}(\hat{B}) = \sigma^2 \left(X^{\prime}X\right)^{-1}
-\end{equation}
-
-La racine carrée donne l'erreur type (\emph{standard error}).
-
-Le ratio \(\frac{B}{\text{se}_B} \sim t_{n-p-1}\), soit le quotient d'un estimateur par son erreur type, suit une distribution-\(t\) avec \(n-p-1\) degrés de liberté.
-
-En syntaxe \textbf{R}, la régression s'écrit comme ceci.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{regression }\OtherTok{=} \ControlFlowTok{function}\NormalTok{(y, X)\{}
-  \CommentTok{\# Ajouter un intercepte}
-\NormalTok{  X }\OtherTok{=} \FunctionTok{cbind}\NormalTok{(}\AttributeTok{intercept =} \DecValTok{1}\NormalTok{, X)}
-\NormalTok{  B }\OtherTok{=} \FunctionTok{solve}\NormalTok{(}\FunctionTok{t}\NormalTok{(X) }\SpecialCharTok{\%*\%}\NormalTok{ X) }\SpecialCharTok{\%*\%} \FunctionTok{t}\NormalTok{(X) }\SpecialCharTok{\%*\%}\NormalTok{ y}
-\NormalTok{  var.e }\OtherTok{=} \FunctionTok{var}\NormalTok{(y }\SpecialCharTok{{-}}\NormalTok{ X }\SpecialCharTok{\%*\%}\NormalTok{ B) }
-\NormalTok{  se.B }\OtherTok{=} \FunctionTok{sqrt}\NormalTok{(}\FunctionTok{c}\NormalTok{(var.e) }\SpecialCharTok{*} \FunctionTok{diag}\NormalTok{(}\FunctionTok{solve}\NormalTok{(}\FunctionTok{t}\NormalTok{(X) }\SpecialCharTok{\%*\%}\NormalTok{ X)))}
-\NormalTok{  n }\OtherTok{=} \FunctionTok{dim}\NormalTok{(X)[}\DecValTok{1}\NormalTok{]}
-\NormalTok{  p }\OtherTok{=} \FunctionTok{dim}\NormalTok{(X)[}\DecValTok{2}\NormalTok{]}
-\NormalTok{  vt }\OtherTok{=}\NormalTok{ B }\SpecialCharTok{/}\NormalTok{ se.B}
-\NormalTok{  vp }\OtherTok{=}\NormalTok{ (}\DecValTok{1}\SpecialCharTok{{-}}\FunctionTok{pt}\NormalTok{(tv, }\AttributeTok{df =}\NormalTok{ n }\SpecialCharTok{{-}}\NormalTok{ p }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{)) }\SpecialCharTok{*} \DecValTok{2}
-\NormalTok{  resultats }\OtherTok{=} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{Estimate =}\NormalTok{ B, }
-                         \AttributeTok{Std.Error =}\NormalTok{ se.B, }
-                         \AttributeTok{t.value =}\NormalTok{ vt, }
-                         \AttributeTok{p.value =}\NormalTok{ vp) }
-  \FunctionTok{return}\NormalTok{(resultats)}
-\NormalTok{\}  }
-\end{Highlighting}
-\end{Shaded}
-
-Le modèle linéaire peut aussi contenir des variables nominales dans la mesure où celle-ci sont transformées en données factices (\emph{dummy coding}). En fait, une analyse de variance n'est au fond qu'une régression dans laquelle les variables nominales sont transformées en données factices, puis utilisées en variable indépendante. Les \(\beta\) de la régression correspondent aux moyennes \(\mu\), si le participant appartient (1) à tel ou tel autre groupe ou (0) autrement. Bien que les logiciels produisent souvent des sorties statistiques différentes en fonction de l'analyse demandée, les mathématiques sous-jacentes sont les mêmes.
-
-\hypertarget{conditions-dapplication-de-la-ruxe9gression}{%
-\subsection{Conditions d'application de la régression}\label{conditions-dapplication-de-la-ruxe9gression}}
-
-La régression possède quatre hypothèses sous-jacentes :
-
-\begin{itemize}
-\item
-  La vraie relation est linéaire;
-\item
-  Les observations sont indépendantes.
-\item
-  Les résidus sont normalement distribués;
-\item
-  La variance résiduelle est homoscédastique.
-\end{itemize}
-
-Les deux premiers points sont davantage méthodologiques que statistiques bien que leurs conséquences soient réelles. La relation entre les variables doit être linéaire. La régression tient compte des relations en ligne droite, si la relation entre deux variables suit une courbe, elle ne pourra être adéquatement analysée. La figure \ref{fig:courbe} montre trois relations possibles entre deux variables. Bien que la relation soit très forte, peu importe la forme de la relation (les données suivent un parton très évident), seule celle au centre (relation linéaire) donnera un résultat indiquant un lien fort existant. Il existe des techniques de transformation de données lorsque ce sera \emph{théoriquement} justifié. La relation quantitative entre l'âge et la quantité de rapport sexuel est un exemple de relation non linéaire : elle débute à l'adolescence, atteint son apogée à l'âge de jeune adulte, puis décroît progressivement. La seconde hypothèse est que les unités d'observation doivent être indépendantes. Techniquement, chaque unité devrait avoir une chance égale et indépendante d'être choisie. La régression est robuste à ce genre de violation, mais il faut toujours conserver cette idée en tête lorsque le devis d'étude est conceptualisé et lors des analyses. Les élèves dans une même salle de classe ne sont techniquement pas indépendants puisqu'ils sont tous corrélés. Ils ont le même enseignant, les mêmes pairs, les locaux, etc., des variables qui peuvent toutes à leur façon avoir des effets sur les comportements des enfants. Dans ce cas, recourir à des analyses multiniveaux sera la seule possibilité pour tenir compte de cette violation et bien représenter les modèles. Un autre exemple est la corrélation entre différents temps de mesure sur une même unité (qui est corrélée avec elle-même). Dans ce cas, ce sera des analyses pour des devis temporels (les analyses multiveaux peuvent également tenir compte du temps).
-
-Les deux autres considérations, qui sont elles d'ordre statistique, concernent les résidus (l'écart entre la prédiction et les valeurs réelles de \(y\)). Comme il a été mentionné dans la création de données pour la régression, les distributions des variables n'a pas être normales; elles peuvent suivre différentes distributions de probabilités. Par contre, l'erreur, elle, doit être normales distribuées, car il s'agit d'une hypothèse assumée de l'estimation des moindres carrés. La dernière hypothèse concerne la variance résiduelle homoscédastique, c'est-à-dire que l'écart entre les résidus et les valeurs prédites restent \emph{constantes,} peu importe le niveau sur la droite de régression. Si ce n'est pas le cas pour l'une ou l'autre, c'est qu'une variable a vraisemblablement été négligée ou qu'une des relations n'est pas linéaire avec une des variables indépendantes.
-
-\begin{verbatim}
-#> `geom_smooth()` using formula 'y ~ x'
-\end{verbatim}
-
-\begin{figure}
-
-{\centering \includegraphics[width=0.8\linewidth,height=0.8\textheight]{07-Regression_files/figure-latex/courbe-1} 
-
-}
-
-\caption{Différentes formes de relation}\label{fig:courbe}
-\end{figure}
-
-\hypertarget{lanalyse-de-ruxe9gression-1}{%
-\subsection{L'analyse de régression}\label{lanalyse-de-ruxe9gression-1}}
-
-\textbf{R} de base offre la fonction \texttt{lm()} pour \emph{linear model} (modèle linéaire) afin de réaliser une régression. Pour réaliser l'analyse, deux éléments sont primordiaux : le jeu de données et le modèle. Le jeu de données est assez explicite. Le modèle linéaire est quant à lui déjà représenté par l'équation \eqref{eq:modling}.
-
-Pour écrire le modèle en syntaxe \textbf{R}, il faut remplacer les \(x\) par le nom des variables dans le jeu de données, utiliser le \texttt{\textasciitilde{}} (tilde) pour délimiter les variables dépendantes à gauche des variables indépendantes à droite. Les variables indépendantes sont délimitées, comme dans l'équation \eqref{eq:modling}, par des signes d'addition \texttt{+}. Il est aussi de définir des effets d'interaction (modération) avec le signe de multiplication \texttt{*}. Les symboles \texttt{-} (soustraction) et \texttt{/} (division) ne fonctionnent pas. L'intercepte (\(\beta_0\)) est ajouté par défaut. Enfin, cette équation doit ensuite être mis entre guillemets, \texttt{formula\ =\ "y\ \textasciitilde{}\ x1\ +\ x2\ +\ x3"} pour indiquer qu'il s'agit de texte.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Créer un jeu de données à partir des variables de la syntaxe précédente}
-\NormalTok{res.lm }\OtherTok{=} \FunctionTok{lm}\NormalTok{(}\AttributeTok{formula =}\NormalTok{ y }\SpecialCharTok{\textasciitilde{}}\NormalTok{ X}\FloatTok{.1} \SpecialCharTok{+}\NormalTok{ X}\FloatTok{.2} \SpecialCharTok{+}\NormalTok{ X}\FloatTok{.3}\NormalTok{, }\AttributeTok{data =}\NormalTok{ jd)}
-\CommentTok{\# Les résultats}
-\NormalTok{res.lm}
-\CommentTok{\#\textgreater{} }
-\CommentTok{\#\textgreater{} Call:}
-\CommentTok{\#\textgreater{} lm(formula = y \textasciitilde{} X.1 + X.2 + X.3, data = jd)}
-\CommentTok{\#\textgreater{} }
-\CommentTok{\#\textgreater{} Coefficients:}
-\CommentTok{\#\textgreater{} (Intercept)          X.1          X.2          X.3  }
-\CommentTok{\#\textgreater{}     {-}0.0171       0.2139      {-}0.5520       0.3095}
-\CommentTok{\# Sommaire des résultats}
-\FunctionTok{summary}\NormalTok{(res.lm)}
-\CommentTok{\#\textgreater{} }
-\CommentTok{\#\textgreater{} Call:}
-\CommentTok{\#\textgreater{} lm(formula = y \textasciitilde{} X.1 + X.2 + X.3, data = jd)}
-\CommentTok{\#\textgreater{} }
-\CommentTok{\#\textgreater{} Residuals:}
-\CommentTok{\#\textgreater{}     Min      1Q  Median      3Q     Max }
-\CommentTok{\#\textgreater{} {-}2.5227 {-}0.5546 {-}0.0119  0.5513  2.5762 }
-\CommentTok{\#\textgreater{} }
-\CommentTok{\#\textgreater{} Coefficients:}
-\CommentTok{\#\textgreater{}             Estimate Std. Error t value Pr(\textgreater{}|t|)    }
-\CommentTok{\#\textgreater{} (Intercept)  {-}0.0171     0.0253   {-}0.68      0.5    }
-\CommentTok{\#\textgreater{} X.1           0.2139     0.0266    8.03  2.7e{-}15 ***}
-\CommentTok{\#\textgreater{} X.2          {-}0.5520     0.0258  {-}21.42  \textless{} 2e{-}16 ***}
-\CommentTok{\#\textgreater{} X.3           0.3095     0.0263   11.76  \textless{} 2e{-}16 ***}
-\CommentTok{\#\textgreater{} {-}{-}{-}}
-\CommentTok{\#\textgreater{} Signif. codes:  }
-\CommentTok{\#\textgreater{} 0 \textquotesingle{}***\textquotesingle{} 0.001 \textquotesingle{}**\textquotesingle{} 0.01 \textquotesingle{}*\textquotesingle{} 0.05 \textquotesingle{}.\textquotesingle{} 0.1 \textquotesingle{} \textquotesingle{} 1}
-\CommentTok{\#\textgreater{} }
-\CommentTok{\#\textgreater{} Residual standard error: 0.8 on 996 degrees of freedom}
-\CommentTok{\#\textgreater{} Multiple R{-}squared:  0.383,  Adjusted R{-}squared:  0.381 }
-\CommentTok{\#\textgreater{} F{-}statistic:  206 on 3 and 996 DF,  p{-}value: \textless{}2e{-}16}
-\end{Highlighting}
-\end{Shaded}
-
-Pour ajouter une variable il suffit de \texttt{VD\ \textasciitilde{}\ VI1\ +\ VI2}; pour ajouter un effet d'interaction, il est possible de faire \texttt{VD\ \textasciitilde{}\ VI1\ *\ VI2}. Pour ajouter une variable nominale (catégorielle), il suffit d'ajouter la variable comme n'importe quelles autres \texttt{x}, mais en s'assurant bien qu'elle soit désignée comme un facteur dans le jeu de données. Si ce n'était pas le cas, la fonction \texttt{as.factor()} devrait corriger la situation.
-
-La fonction \texttt{lm()} en elle-même n'imprime que peut de résultats. Pour obtenir l'information complète, il faut requérir le sommaire avec la fonction \texttt{summary()}. Le sommaire des résultats contient toute l'information qu'un expérimentateur peut désirer. Il y a les coefficients de régression \texttt{Estimate}, leur erreur standard \texttt{Std.\ Error}, leur valeur-\(t\) \texttt{t\ value} et leur valeur-\(p\) \texttt{Pr(\textgreater{}\textbar{}t\textbar{})}. Tout cela peut être extrait avec \texttt{summary(res.lm)\$...} en remplaçant \texttt{...} par les éléments désirés. Au-dessous de la sortie imprimée, il y a également le coefficient de détermination (\(R^2\), \texttt{R-squared}), les degrés de liberté et la valeur-\(p\) associé au modèle.
-
-Un manuscrit pourrait rapport les résultats ainsi. Le modèle tester obtient un coefficient de détermination de \(R^2(996) = 0.383, p < .001\). Les trois prédicteurs sont liés significativement à la variable dépendante, respectivement \(X_1: \beta_1 = 0.214, p = < .001\), \(X_2: \beta_2 = 0.214, p = < .001\), \(X_3: \beta_3 = 0.31, p = < .001\). Évidemment, comme l'exemple est artificiel, il y a peu de chose à dire sans devoir fabriquer de toutes pièces des interprétations alambiquées bien que cela fût fort bénéfique pour la carrière de certains psychanalystes.
-
-Pour vérifier la qualité des résultats, il faut vérifier la distribution des résidus. Pour ce faire, il faut extraire les résidus et les valeurs prédites. Pour la création de graphiques, il est plus simple d'ajouter ces scores au jeu de données. Les fonctions \texttt{resid()} et \texttt{predict()} permettront d'extraire les résidus et les prédictions en y insérant comme argument le sommaire de la fonction \texttt{lm()} obtenu avec les données.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Ajouter les résidus et scores prédits à la base de données}
-\CommentTok{\# avec la fonction \textasciigrave{}resid()\textasciigrave{}}
-\NormalTok{jd}\SpecialCharTok{$}\NormalTok{residu }\OtherTok{=} \FunctionTok{resid}\NormalTok{(res.lm)}
-\NormalTok{jd}\SpecialCharTok{$}\NormalTok{predit }\OtherTok{=} \FunctionTok{predict}\NormalTok{(res.lm)}
-\end{Highlighting}
-\end{Shaded}
-
-Une fois, c'est valeur extraite, le package \texttt{ggplot2} permet de réaliser rapidement des graphiques, comme le diagramme de dispersion à la figure \ref{fig:respred} ou l'histogramme des résidus à la figure \ref{fig:reshist}. Dans les meilleures situations, les résidus seront distribués normalement dans l'histogramme et aucune tendance ne devrait être discernable dans le diagramme de dispersion. Si ce n'était pas le cas, il pourrait y avoir un problème à élucider, par exemple, une relation non linéaire imprévue. Les figures \ref{fig:respred} et \ref{fig:reshist} ne signale aucun problème, ce qui est attendu considérant la création des données employées.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Diagramme de dispersion prédits par résidus}
-\NormalTok{jd }\SpecialCharTok{\%\textgreater{}\%} 
-  \FunctionTok{ggplot}\NormalTok{(}\AttributeTok{mapping =} \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ predit, }\AttributeTok{y =}\NormalTok{ residu)) }\SpecialCharTok{+} 
-  \FunctionTok{geom\_point}\NormalTok{() }
-\end{Highlighting}
-\end{Shaded}
-
-\begin{figure}
-
-{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{07-Regression_files/figure-latex/respred-1} 
-
-}
-
-\caption{Relation entre prédicitons et résidus}\label{fig:respred}
-\end{figure}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Histogramme des résidus}
-\NormalTok{jd }\SpecialCharTok{\%\textgreater{}\%} 
-  \FunctionTok{ggplot}\NormalTok{(}\AttributeTok{mapping =} \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ residu)) }\SpecialCharTok{+} 
-  \FunctionTok{geom\_histogram}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{figure}
-
-{\centering \includegraphics[width=0.75\linewidth,height=0.75\textheight]{07-Regression_files/figure-latex/reshist-1} 
-
-}
-
-\caption{Histogramme des résidus}\label{fig:reshist}
-\end{figure}
 
 \hypertarget{solutions}{%
 \chapter*{Solutions}\label{solutions}}

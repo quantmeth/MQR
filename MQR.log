@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021/W32TeX) (preloaded format=xelatex 2022.3.30)  18 MAY 2022 11:57
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021/W32TeX) (preloaded format=xelatex 2022.3.30)  19 MAY 2022 15:12
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1255,60 +1255,60 @@ LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
 \tf@toc=\write6
 \openout6 = `MQR.toc'.
 
-[6] [7
+[6] [7] [8
 
-] [8
+] [9] [10
 
 ]
 File: image//saumon.png Graphic file (type bmp)
 <image//saumon.png>
-[9] [10] [11] [12
+[11] [12] [13] [14
 
-] [13] [14]
+] [15] [16]
 Chapter 1.
-[15
+[17
 
 ]
 Underfull \vbox (badness 2970) has occurred while \output is active []
 
-[16] [17]
+[18] [19]
 File: image//ConsoleR.png Graphic file (type bmp)
 <image//ConsoleR.png>
-[18]
+[20]
 File: image//ConsoleRStudio.png Graphic file (type bmp)
 <image//ConsoleRStudio.png>
-[19] [20]
+[21] [22]
 Chapter 2.
-[21
+[23
 
 ]
 LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10> not available
 (Font)              Font shape `TU/lmtt/b/n' tried instead on input line 349.
-[22] [23] [24] [25] [26] [27] [28] [29] [30] [31] [32]
+[24] [25] [26] [27] [28] [29] [30] [31] [32] [33] [34]
 Chapter 3.
-[33
+[35
 
 ]
 Underfull \vbox (badness 1394) has occurred while \output is active []
 
-[34] [35] [36] [37] [38]
+[36] [37] [38] [39] [40]
 Underfull \vbox (badness 2626) has occurred while \output is active []
 
-[39] [40] [41] [42] [43
+[41] [42] [43] [44] [45
 
-] [44
+] [46
 
-] [45] [46]
+] [47] [48]
 Chapter 4.
 
 Underfull \vbox (badness 7667) has occurred while \output is active []
 
-[47
+[49
 
-] [48] [49] [50] [51] [52] [53]
+] [50] [51] [52] [53] [54] [55]
 LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <12> not available
 (Font)              Font shape `TU/lmtt/b/n' tried instead on input line 1476.
-[54]
+[56]
 File: image//data_entry.png Graphic file (type bmp)
 <image//data_entry.png>
 
@@ -1317,21 +1317,21 @@ Underfull \hbox (badness 10000) in paragraph at lines 1492--1492
 /12 (package
  []
 
-[55]
+[57]
 File: image//editR.png Graphic file (type bmp)
 <image//editR.png>
-[56] [57] [58
+[58] [59] [60
 
 ]
 Chapter 5.
 
 Underfull \vbox (badness 3312) has occurred while \output is active []
 
-[59] [60] [61] [62] [63] [64]
+[61] [62] [63] [64] [65] [66]
 Chapter 6.
-[65
+[67
 
-] [66] [67] [68] [69] [70] [71] [72]
+] [68] [69] [70] [71] [72] [73] [74]
 Chapter 7.
 
 Underfull \hbox (badness 1546) in paragraph at lines 2023--2024
@@ -1339,7 +1339,7 @@ Underfull \hbox (badness 1546) in paragraph at lines 2023--2024
 ométrique ou le type
  []
 
-[73
+[75
 
 ]
 File: 02-Gestion_files/figure-latex/ggplotseul-1.pdf Graphic file (type pdf)
@@ -1350,7 +1350,7 @@ Underfull \hbox (badness 2837) in paragraph at lines 2056--2057
 +\TU/lmr/m/n/10 , puis une représenta-
  []
 
-[74]
+[76]
 Underfull \hbox (badness 4454) in paragraph at lines 2077--2078
 []\TU/lmr/m/n/10 Certaines cartographies sont d’ailleurs compatibles, \TU/lmtt/
 m/n/10 geom_smooth() \TU/lmr/m/n/10 et
@@ -1358,50 +1358,50 @@ m/n/10 geom_smooth() \TU/lmr/m/n/10 et
 
 File: 02-Gestion_files/figure-latex/ggplotpoint-1.pdf Graphic file (type pdf)
 <use 02-Gestion_files/figure-latex/ggplotpoint-1.pdf>
-[75]
+[77]
 File: 02-Gestion_files/figure-latex/diagdisp-1.pdf Graphic file (type pdf)
 <use 02-Gestion_files/figure-latex/diagdisp-1.pdf>
-[76]
+[78]
 File: 02-Gestion_files/figure-latex/diagdisp2-1.pdf Graphic file (type pdf)
 <use 02-Gestion_files/figure-latex/diagdisp2-1.pdf>
 File: 02-Gestion_files/figure-latex/diagdisp3-1.pdf Graphic file (type pdf)
 <use 02-Gestion_files/figure-latex/diagdisp3-1.pdf>
-[77]
+[79]
 File: 02-Gestion_files/figure-latex/boxplot1-1.pdf Graphic file (type pdf)
 <use 02-Gestion_files/figure-latex/boxplot1-1.pdf>
-[78]
+[80]
 File: 02-Gestion_files/figure-latex/hist-1.pdf Graphic file (type pdf)
 <use 02-Gestion_files/figure-latex/hist-1.pdf>
-[79]
+[81]
 File: 02-Gestion_files/figure-latex/hist2-1.pdf Graphic file (type pdf)
 <use 02-Gestion_files/figure-latex/hist2-1.pdf>
-[80]
+[82]
 File: 02-Gestion_files/figure-latex/erreurbar-1.pdf Graphic file (type pdf)
 <use 02-Gestion_files/figure-latex/erreurbar-1.pdf>
-[81] [82] [83
+[83] [84] [85
 
-] [84
+] [86
 
-] [85] [86]
+] [87] [88]
 Chapter 8.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[87
+[89
 
-] [88]
+] [90]
 File: 03-Inferences_files/figure-latex/lognormal-1.pdf Graphic file (type pdf)
 <use 03-Inferences_files/figure-latex/lognormal-1.pdf>
-[89]
+[91]
 File: 03-Inferences_files/figure-latex/testn-1.pdf Graphic file (type pdf)
 <use 03-Inferences_files/figure-latex/testn-1.pdf>
-[90]
+[92]
 Overfull \hbox (7.13232pt too wide) has occurred while \output is active
 \TU/lmr/m/sl/10 8.2.  INFÉRENCE AVEC LA DISTRIBUTION NORMALE SUR UNE UNITÉ \TU/
-lmr/m/n/10 91
+lmr/m/n/10 93
  []
 
-[91]
+[93]
 File: 03-Inferences_files/figure-latex/regle-1.pdf Graphic file (type pdf)
 <use 03-Inferences_files/figure-latex/regle-1.pdf>
 
@@ -1413,38 +1413,38 @@ pe
 File: 03-Inferences_files/figure-latex/unnamed-chunk-5-1.pdf Graphic file (type
  pdf)
 <use 03-Inferences_files/figure-latex/unnamed-chunk-5-1.pdf>
-[92]
+[94]
 Overfull \hbox (7.13232pt too wide) has occurred while \output is active
 \TU/lmr/m/sl/10 8.2.  INFÉRENCE AVEC LA DISTRIBUTION NORMALE SUR UNE UNITÉ \TU/
-lmr/m/n/10 93
+lmr/m/n/10 95
  []
 
-[93]
+[95]
 File: 03-Inferences_files/figure-latex/rept-1.pdf Graphic file (type pdf)
 <use 03-Inferences_files/figure-latex/rept-1.pdf>
-[94]
+[96]
 File: 03-Inferences_files/figure-latex/unnamed-chunk-10-1.pdf Graphic file (typ
 e pdf)
 <use 03-Inferences_files/figure-latex/unnamed-chunk-10-1.pdf>
 
 Overfull \hbox (42.82233pt too wide) has occurred while \output is active
 \TU/lmr/m/sl/10 8.3.  INFÉRENCE AVEC LA DISTRIBUTION NORMALE SUR UN ÉCHANTILLON
- \TU/lmr/m/n/10 95
- []
-
-[95]
-File: 03-Inferences_files/figure-latex/rh-1.pdf Graphic file (type pdf)
-<use 03-Inferences_files/figure-latex/rh-1.pdf>
-[96]
-Overfull \hbox (42.82233pt too wide) has occurred while \output is active
-\TU/lmr/m/sl/10 8.3.  INFÉRENCE AVEC LA DISTRIBUTION NORMALE SUR UN ÉCHANTILLON
  \TU/lmr/m/n/10 97
  []
 
 [97]
+File: 03-Inferences_files/figure-latex/rh-1.pdf Graphic file (type pdf)
+<use 03-Inferences_files/figure-latex/rh-1.pdf>
+[98]
+Overfull \hbox (42.82233pt too wide) has occurred while \output is active
+\TU/lmr/m/sl/10 8.3.  INFÉRENCE AVEC LA DISTRIBUTION NORMALE SUR UN ÉCHANTILLON
+ \TU/lmr/m/n/10 99
+ []
+
+[99]
 File: 03-Inferences_files/figure-latex/tt-1.pdf Graphic file (type pdf)
 <use 03-Inferences_files/figure-latex/tt-1.pdf>
-[98]
+[100]
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
 (Font)              scaled to size 14.4pt on input line 2581.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
@@ -1455,82 +1455,119 @@ File: 03-Inferences_files/figure-latex/illvar-1.pdf Graphic file (type pdf)
 <use 03-Inferences_files/figure-latex/illvar-1.pdf>
 File: 03-Inferences_files/figure-latex/tnorm-1.pdf Graphic file (type pdf)
 <use 03-Inferences_files/figure-latex/tnorm-1.pdf>
-[99] [100] [101]
+[101] [102] [103]
 File: 03-Inferences_files/figure-latex/sss-1.pdf Graphic file (type pdf)
 <use 03-Inferences_files/figure-latex/sss-1.pdf>
 
 Underfull \vbox (badness 1377) has occurred while \output is active []
 
-[102] [103] [104
+[104] [105] [106
 
 ]
 Chapter 9.
-[105] [106] [107] [108]
+[107] [108] [109] [110]
 File: 04-Analyses_files/figure-latex/disttt-1.pdf Graphic file (type pdf)
 <use 04-Analyses_files/figure-latex/disttt-1.pdf>
-[109] [110]
+[111] [112]
 File: 04-Analyses_files/figure-latex/testtttt-1.pdf Graphic file (type pdf)
 <use 04-Analyses_files/figure-latex/testtttt-1.pdf>
-[111] [112] [113] [114] [115] [116] [117]
+[113] [114] [115] [116] [117] [118] [119]
 File: 04-Analyses_files/figure-latex/ft-1.pdf Graphic file (type pdf)
 <use 04-Analyses_files/figure-latex/ft-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[118] [119]
+[120] [121]
 File: 04-Analyses_files/figure-latex/corimage-1.pdf Graphic file (type pdf)
 <use 04-Analyses_files/figure-latex/corimage-1.pdf>
-[120] [121] [122] [123]
+[122] [123] [124] [125]
 Underfull \vbox (badness 1348) has occurred while \output is active []
 
-[124] [125] [126] [127] [128] [129] [130
-
-] [131] [132
+[126] [127] [128] [129] [130] [131] [132
 
 ]
 Chapter 10.
+[133]
+File: 05-Simuler_files/figure-latex/MH-1.pdf Graphic file (type pdf)
+<use 05-Simuler_files/figure-latex/MH-1.pdf>
+[134] [135] [136] [137] [138] [139]
+Underfull \hbox (badness 5175) in paragraph at lines 3807--3808
+[]\TU/lmr/m/n/10 La fonction \TU/lmtt/m/n/10 sample(, replace = TRUE) \TU/lmr/m
+/n/10 rééchantillonne avec remplace-
+ []
 
-Underfull \hbox (badness 2376) in paragraph at lines 3599--3601
+[140]
+File: 05-Simuler_files/figure-latex/hist2-1.pdf Graphic file (type pdf)
+<use 05-Simuler_files/figure-latex/hist2-1.pdf>
+[141] [142] [143] [144] [145
+
+] [146
+
+] [147] [148]
+Chapter 11.
+[149
+
+]
+File: 06-Regression_files/figure-latex/unnamed-chunk-2-1.pdf Graphic file (type
+ pdf)
+<use 06-Regression_files/figure-latex/unnamed-chunk-2-1.pdf>
+File: 06-Regression_files/figure-latex/unnamed-chunk-3-1.pdf Graphic file (type
+ pdf)
+<use 06-Regression_files/figure-latex/unnamed-chunk-3-1.pdf>
+[150] [151] [152] [153] [154] [155] [156] [157] [158] [159] [160] [161]
+File: 06-Regression_files/figure-latex/courbe-1.pdf Graphic file (type pdf)
+<use 06-Regression_files/figure-latex/courbe-1.pdf>
+[162] [163] [164]
+File: 06-Regression_files/figure-latex/respred-1.pdf Graphic file (type pdf)
+<use 06-Regression_files/figure-latex/respred-1.pdf>
+File: 06-Regression_files/figure-latex/reshist-1.pdf Graphic file (type pdf)
+<use 06-Regression_files/figure-latex/reshist-1.pdf>
+[165] [166]
+Chapter 12.
+
+Underfull \hbox (badness 2376) in paragraph at lines 4536--4538
 []\TU/lmr/m/n/10 La modélisation en système d’équations deviendra primordial da
 ns les
  []
 
-[133] [134]
+[167
+
+] [168]
 File: image//tri.png Graphic file (type bmp)
 <image//tri.png>
 Missing character: There is no 𝛴 (U+1D6F4) in font [lmroman10-bold]:mapping=tex
 -text;!
-[135]
-Missing character: There is no 𝛴 (U+1D6F4) in font [lmroman10-bold]:mapping=tex
--text;!
-[136]
+[169]
 Missing character: There is no 𝛴 (U+1D6F4) in font [lmroman10-bold]:mapping=tex
 -text;!
 Missing character: There is no 𝛴 (U+1D6F4) in font [lmroman10-bold]:mapping=tex
 -text;!
-Missing character: There is no 𝛴 (U+1D6F4) in font [lmroman10-bold]:mapping=tex
--text;!
-[137] [138]
-Missing character: There is no 𝛴 (U+1D6F4) in font [lmroman10-bold]:mapping=tex
--text;!
-[139] [140] [141]
+[170]
 Missing character: There is no 𝛴 (U+1D6F4) in font [lmroman10-bold]:mapping=tex
 -text;!
 Missing character: There is no 𝛴 (U+1D6F4) in font [lmroman10-bold]:mapping=tex
 -text;!
-[142]
+[171] [172]
 Missing character: There is no 𝛴 (U+1D6F4) in font [lmroman10-bold]:mapping=tex
 -text;!
-[143]
+[173] [174] [175]
+Missing character: There is no 𝛴 (U+1D6F4) in font [lmroman10-bold]:mapping=tex
+-text;!
+Missing character: There is no 𝛴 (U+1D6F4) in font [lmroman10-bold]:mapping=tex
+-text;!
+[176]
+Missing character: There is no 𝛴 (U+1D6F4) in font [lmroman10-bold]:mapping=tex
+-text;!
+[177]
 File: image//mod3.png Graphic file (type bmp)
 <image//mod3.png>
-[144]
-Overfull \hbox (9.22112pt too wide) detected at line 4152
+[178]
+Overfull \hbox (9.22112pt too wide) detected at line 5089
 [][][] [] [][] [] [][][][][] [] [][][][] [] [][][][][][][][] [] [] [] [][][] []
  [][] [] [][][][][][][][]
  []
 
-[145] [146]
+[179] [180]
 Missing character: There is no 𝛴 (U+1D6F4) in font [lmroman10-bold]:mapping=tex
 -text;!
 Missing character: There is no 𝛴 (U+1D6F4) in font [lmroman10-bold]:mapping=tex
@@ -1539,7 +1576,7 @@ Missing character: There is no 𝛴 (U+1D6F4) in font [lmroman10-bold]:mapping=t
 -text;!
 Missing character: There is no 𝛴 (U+1D6F4) in font [lmroman10-bold]:mapping=tex
 -text;!
-[147]
+[181]
 Missing character: There is no 𝛴 (U+1D6F4) in font [lmroman10-bold]:mapping=tex
 -text;!
 Missing character: There is no 𝛴 (U+1D6F4) in font [lmroman10-bold]:mapping=tex
@@ -1552,66 +1589,37 @@ Missing character: There is no 𝛴 (U+1D6F4) in font [lmroman10-bold]:mapping=t
 -text;!
 Missing character: There is no 𝛴 (U+1D6F4) in font [lmroman10-bold]:mapping=tex
 -text;!
-[148] [149] [150]
+[182] [183] [184]
 Missing character: There is no 𝛴 (U+1D6F4) in font [lmroman10-bold]:mapping=tex
 -text;!
 Missing character: There is no 𝛴 (U+1D6F4) in font [lmroman10-bold]:mapping=tex
 -text;!
-[151]
+[185]
 Missing character: There is no 𝛴 (U+1D6F4) in font [lmroman10-bold]:mapping=tex
 -text;!
 Missing character: There is no 𝛴 (U+1D6F4) in font [lmroman10-bold]:mapping=tex
 -text;!
-[152]
-Chapter 11.
-[153
+[186] [187
 
-]
-File: 06-Simuler_files/figure-latex/MH-1.pdf Graphic file (type pdf)
-<use 06-Simuler_files/figure-latex/MH-1.pdf>
-[154] [155] [156] [157] [158] [159] [160]
-File: 06-Simuler_files/figure-latex/hist2-1.pdf Graphic file (type pdf)
-<use 06-Simuler_files/figure-latex/hist2-1.pdf>
-[161] [162] [163] [164
+] [188] [189] [190] [191
 
-]
-Chapter 12.
-[165]
-File: 07-Regression_files/figure-latex/unnamed-chunk-2-1.pdf Graphic file (type
- pdf)
-<use 07-Regression_files/figure-latex/unnamed-chunk-2-1.pdf>
-File: 07-Regression_files/figure-latex/unnamed-chunk-3-1.pdf Graphic file (type
- pdf)
-<use 07-Regression_files/figure-latex/unnamed-chunk-3-1.pdf>
-[166] [167] [168] [169] [170] [171] [172] [173] [174] [175] [176] [177]
-File: 07-Regression_files/figure-latex/courbe-1.pdf Graphic file (type pdf)
-<use 07-Regression_files/figure-latex/courbe-1.pdf>
-[178] [179] [180]
-File: 07-Regression_files/figure-latex/respred-1.pdf Graphic file (type pdf)
-<use 07-Regression_files/figure-latex/respred-1.pdf>
-File: 07-Regression_files/figure-latex/reshist-1.pdf Graphic file (type pdf)
-<use 07-Regression_files/figure-latex/reshist-1.pdf>
-[181] [182] [183
-
-] [184] [185] [186] [187
-
-] [188] (./MQR.aux)
+] [192] (./MQR.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `MQR.out' has not changed.
-(rerunfilecheck)             Checksum: CB406F35C5D820E293166EB0C49EDF31;15559.
+(rerunfilecheck)             Checksum: 1319BCEEEED70621C97A7F390DB6ABC2;15468.
 Package logreq Info: Writing requests to 'MQR.run.xml'.
 \openout1 = `MQR.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 27220 strings out of 478179
- 530593 string characters out of 5852894
+ 27227 strings out of 478179
+ 530681 string characters out of 5852894
  1506175 words of memory out of 5000000
- 47412 multiletter control sequences out of 15000+600000
- 476791 words of font info for 102 fonts, out of 8000000 for 9000
+ 47417 multiletter control sequences out of 15000+600000
+ 476799 words of font info for 103 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  86i,13n,121p,1976b,5344s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on MQR.pdf (188 pages).
+Output written on MQR.pdf (192 pages).

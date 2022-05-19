@@ -1,4 +1,4 @@
-# (PART) Analyses statistiques {-}
+# (PART) Modèle linéaire {-}
 # Régression
 
 L'objectif de la régression est de décrire la relation entre un variable dépendante et un ensemble de variables indépendantes. Une première méthode de mesure d'association est la covariance (vue dans le chapitre sur les analyses de base) qui est représentée par l'équation ci-dessous.
@@ -193,7 +193,7 @@ Le symbole $\Sigma$ (sigma majuscule) représente la matrice de variance-covaria
 TODO
 
 \begin{equation}
-\begin{align}
+\begin{aligned}
 S & = (n-1)^{-1}
 \left(\begin{array}{cccc} 
 x_{1,1} & x_{2,1} & ... & x_{n,1} \\
@@ -210,7 +210,7 @@ x_{n,1} & x_{n,2} \\
 \sum_{i=1}^n(x_{i,1})(x_{i,1}) & \sum_{i=1}^n(x_{i,1})(x_{i,2})\\
 \sum_{i=1}^n(x_{i,2})(x_{i,1}) & \sum_{i=1}^n(x_{i,2})(x_{i,2})
 \end{array}\right)
-\end{align}
+\end{aligned}
 (\#eq:covmat2)
 \end{equation}
 

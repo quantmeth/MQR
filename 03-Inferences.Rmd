@@ -1,4 +1,4 @@
-# (PART) La statistique {-}
+# (PART) Statistique {-}
 
 # Inférer
 
