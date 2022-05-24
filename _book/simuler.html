@@ -7,7 +7,7 @@
 <title> 10 Simuler | Méthodes Quantitatives avec R</title>
 <meta name="author" content="P.-O. Caron">
 <meta name="description" content="Dans plusieurs contextes statistiques, les informations cruciales nécessaires pour réaliser une analyse statistique ou tirer des résultats spécifiques ne sont pas connues (par exemple le chapitre...">
-<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta name="generator" content="bookdown 0.26 with bs4_book()">
 <meta property="og:title" content=" 10 Simuler | Méthodes Quantitatives avec R">
 <meta property="og:type" content="book">
 <meta property="og:url" content="mqr.teluq.ca/simuler.html">
@@ -15,7 +15,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content=" 10 Simuler | Méthodes Quantitatives avec R">
 <meta name="twitter:description" content="Dans plusieurs contextes statistiques, les informations cruciales nécessaires pour réaliser une analyse statistique ou tirer des résultats spécifiques ne sont pas connues (par exemple le chapitre...">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
@@ -25,7 +25,31 @@
     \(
     \newcommand{\EX}{\mathbb{E}}
     \)
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css"></p>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style><style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style><link rel="stylesheet" href="bs4_style.css"></p>
 
 <div class="container-fluid">
 <div class="row">
@@ -53,8 +77,8 @@
 <li><a class="" href="calculer.html"><span class="header-section-number">3</span> Calculer</a></li>
 <li><a class="" href="exercice-rudiments.html">Exercices</a></li>
 <li class="book-part">Jeux de données</li>
-<li><a class="" href="g%C3%A9rer.html"><span class="header-section-number">4</span> Gérer</a></li>
-<li><a class="" href="importer.html"><span class="header-section-number">5</span> Importer</a></li>
+<li><a class="" href="importer.html"><span class="header-section-number">4</span> Importer</a></li>
+<li><a class="" href="entr%C3%A9e-de-donn%C3%A9es.html"><span class="header-section-number">5</span> Entrée de données</a></li>
 <li><a class="" href="manipuler.html"><span class="header-section-number">6</span> Manipuler</a></li>
 <li><a class="" href="visualiser.html"><span class="header-section-number">7</span> Visualiser</a></li>
 <li><a class="" href="exercice-gestion.html">Exercices</a></li>
@@ -63,10 +87,6 @@
 <li><a class="" href="analyser.html"><span class="header-section-number">9</span> Analyser</a></li>
 <li><a class="active" href="simuler.html"><span class="header-section-number">10</span> Simuler</a></li>
 <li><a class="" href="exercice-analyse.html">Exercices</a></li>
-<li class="book-part">Modèle linéaire</li>
-<li><a class="" href="r%C3%A9gression.html"><span class="header-section-number">11</span> Régression</a></li>
-<li><a class="" href="cr%C3%A9er.html"><span class="header-section-number">12</span> Créer</a></li>
-<li><a class="" href="solutions.html">Solutions</a></li>
 <li><a class="" href="r%C3%A9f%C3%A9rences.html">Références</a></li>
 </ul>
 
@@ -103,7 +123,7 @@
 <p>Le problème de Monty Hall <span class="citation">(attribuables à <a href="r%C3%A9f%C3%A9rences.html#ref-Selvin75" role="doc-biblioref">Selvin, 1975</a>)</span> présente un joueur devant un présentateur (Monty Hall). Trois portes sont offertes au choix du joueur. Derrière l’une d’entre elles se retrouve un magnifique prix : une voiture <em>électrique</em> de luxe. Derrière chacune des deux autres portes se retrouvent un prix citron : une chèvre chacune. Le joueur ne sait pas ce qu’il y derrière les portes. Le joueur peut alors choisir une porte. Évidemment, à ce moment le joueur à une chance sur trois de choisir la voiture.</p>
 <div class="figure">
 <span style="display:block;" id="fig:MH"></span>
-<img src="05-Simuler_files/figure-html/MH-1.png" alt="Illustration du problème de Monty Hall" width="672"><p class="caption">
+<img src="10-Simuler_files/figure-html/MH-1.png" alt="Illustration du problème de Monty Hall" width="672"><p class="caption">
 Figure 10.1: Illustration du problème de Monty Hall
 </p>
 </div>
@@ -116,7 +136,7 @@ Figure 10.1: Illustration du problème de Monty Hall
 <li><p>La simulation est reprise 1000 fois.</p></li>
 </ol>
 <p>La simulation doit comporter une distribution aléatoire du contenu derrière les trois portes, identifier une porte gagnante et deux perdantes. Il est intéressant de note que, sur le plan de computationnelle, il est inutile d’attribuer aléatoirement la porte gagnante, toutefois le scénario sera plus acceptable pour un lecteur scrupuleux. Par la suite, le joueur fait son premier choix. Ici, plusieurs modèles peuvent être utilisés, comme constamment choisir la même porte (ce qui simplifie la situation et ne change pas les probabilités parce que le contenu des portes, lui, est aléatoire) ou, pour rester vrai à la situation, le joueur fera un choix aléatoire. Le comportement du présentateur s’enclenche, il doit “ouvrir” une porte non choisie et qui ne contient pas le prix. Les deux stratégies sont alors étudiées, <em>rester</em> versus <em>changer</em>. La simulation enregistre alors s’il y a eu gain ou non et l’additionne au total de chacun. La simulation est reprise un nombre important de fois, ici, 1000 suffira, mais des situations compliquées peuvent demander beaucoup plus d’itérations.</p>
-<div class="sourceCode" id="cb127"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb130"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Simulation du problème de Monty Hall</span>
 <span class="va">portes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Chèvre"</span>,<span class="st">"Chèvre"</span>,<span class="st">"Voiture"</span><span class="op">)</span>
 <span class="va">nreps</span> <span class="op">&lt;-</span> <span class="fl">1000</span>
@@ -162,7 +182,7 @@ Figure 10.1: Illustration du problème de Monty Hall
 <p>Quelles sont les résultats de cette simulation? Le fait de <em>rester</em> sur le premier choix devrait obtenir 33% de chance de réussir, comme le joueur a initialement une chance sur trois d’avoir la bonne réponse. Qu’en est-il pour <em>changer</em>? Est-ce qu’ouvrir une porte <em>chèvre</em> modifie les probabilités? Les résultats de la simulation montre que <em>rester</em> gagne 31.6% et que de <em>changer</em> gagne 68.4%. À long terme, il est fort avantageux de changer.</p>
 <p>Une explication simple est de dénombrer les possibilités. Dans le cas où le joueur ne change pas d’idée, il a une chance sur trois, soit : choisir la chèvre 1, et garder la chèvre 1; choisir la chèvre 2, et garder la chèvre 2; et choisir la voiture, et garder la voiture. Si le joueur change d’idée après l’ouverture des portes, les chances sont maintenant de deux sur trois, soit choisir la chèvre 1, changer pour le prix; choisir la chèvre 2 et changer pour le prix; ou choisir le prix et changer pour une chèvre.</p>
 <p>Une autre façon de rendre se problème plus évident est de considérer le problème avec 100 portes au lieu de 3. Le présentateur ouvre alors les 98 portes qui ne sont pas un prix. Si le joueur choisit une porte et garde, il a effectivement 1% de chance de remporter le prix. Par contre, s’il choisit une porte et que le présentateur lui ouvre toutes les autres portes chèvres, il appert que le joueur gagne à tout coup s’il change, sauf s’il a choisi le prix au premier coup. Avec quelques modifications de la syntaxe précédente, le code suivant illustre le cas à 100 portes.</p>
-<div class="sourceCode" id="cb128"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb131"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Simulation du problème de Monty Hall</span>
 <span class="va">portes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Voiture"</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"Chèvre"</span>, <span class="fl">99</span><span class="op">)</span><span class="op">)</span>
 <span class="va">n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">portes</span><span class="op">)</span>
@@ -232,7 +252,7 @@ Figure 10.1: Illustration du problème de Monty Hall
 <li><p>Réitérer les deux premières étapes un nombre élevé de fois.</p></li>
 </ol>
 <p>Ce processus hautement facilité par l’excellente performance des ordinateurs d’aujourd’hui, se réalise très facilement et rapidement. L’exemple suivant est basé sur le rééchantillonnage (1000 fois) de la moyenne à partir d’une variable aléatoire tirée d’une distribution uniforme avec un minimum de 5 et d’une maximum de 15.</p>
-<div class="sourceCode" id="cb129"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb132"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">158</span><span class="op">)</span>
 <span class="co"># Nombre d'unités</span>
 <span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">30</span>
@@ -259,7 +279,7 @@ Figure 10.1: Illustration du problème de Monty Hall
 <span class="op">}</span></code></pre></div>
 <p>La fonction <code>sample(, replace = TRUE)</code> rééchantillonne avec remplacement les identifiants des unités. Par simplicité, il est possible d’éliminer la ligne <code>nouveau.X = X[id]</code> en utilisant <code>mean(X[id])</code> ou plus simplement <code>mean(sample(X, replace = TRUE))</code>. Cette utilisation se limite seulement au cas d’un vecteur de données. S’il s’agit d’un jeu de données avec plus d’une variable, alors <code>mean(X[id, ])</code> sera utilisé. Noter l’usage de la <code>,</code> entre crochets. De cette façon, toutes les variables des unités identifiées par <code>id</code> sont extraites.</p>
 <p>À partir des informations obtenues, il est possible de faire des inférences statistiques. Toutes les estimations peuvent être présentées comme un histogramme tel que l’illustre la figure <a href="visualiser.html#fig:hist2">7.8</a>. Le code se retrouve ci-dessous. Ici, quelques formules pour améliorer la présentation se retrouvent dans la syntaxe. L’utilisation simple de <code><a href="https://rdrr.io/r/graphics/hist.html">hist()</a></code> pourra convenir.</p>
-<div class="sourceCode" id="cb130"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb133"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">moyenne.X</span>,              <span class="co"># Données</span>
      ylab <span class="op">=</span> <span class="st">" Frequence"</span>,    <span class="co"># Changer l'axe y</span>
      main <span class="op">=</span> <span class="st">""</span>,              <span class="co"># Retirer le titre</span>
@@ -268,14 +288,14 @@ Figure 10.1: Illustration du problème de Monty Hall
 <span class="op">)</span></code></pre></div>
 <div class="figure">
 <span style="display:block;" id="fig:hist2"></span>
-<img src="05-Simuler_files/figure-html/hist2-1.png" alt="Historgamme des estimations des échantillons" width="672"><p class="caption">
+<img src="10-Simuler_files/figure-html/hist2-1.png" alt="Historgamme des estimations des échantillons" width="672"><p class="caption">
 Figure 7.8: Historgamme des estimations des échantillons
 </p>
 </div>
 <p>La distribution de la figure <a href="visualiser.html#fig:hist2">7.8</a> peut être désignée comme la distribution de la <em>population</em>, comme c’était le cas dans le chapitre sur les inférences. Elle permet d’avoir une estimation plus robuste de l’erreur standard, qui se trouve à être l’écart type des indices rééchantillonnés. Elle est également utilisée pour construire des intervalles de confiance et permet ainsi de faire des tests d’hypothèse comme : l’intervalle de confiance à <span class="math inline">\((1-\alpha) \times 100\)</span> % contient-elle la valeur 0? Comme il est fait avec une hypothèse nulle traditionnelle.</p>
 <p>Ici, le cas illustré est trivial au sens où, par le théorème central limite, la réponse est déjà connue. Si l’exemple était plutôt sur la médiane, il faudrait obligatoirement procéder par bootstrap pour calculer son erreur type et ses intervalles de confiance, car aucune formule exacte ne permet sa dérivation (il existe bien des approximations cela dit). Le bootstrap est alors des plus appropriés pour calculer l’erreur type et en tirer des intervalles de confiances, voire même en faire des tests d’hypothèses. Plusieurs statistiques auront recours au bootstrap pour dériver ces informations, la plus utilisée étant le coefficient de détermination (voir le chapitre sur la régression).</p>
 <p>À partir des informations obtenues auprès du rééchantillonnage, il est possible d’obtenir les éléments désirés. Comme le cas est trivial, les indices statistiques seront très similaires. Cela confirmera au lecteur qu’aucun principe ésotérique ne s’est déroulé devant ses yeux en plus de confirmer que les statistiques attendues se produisent effectivement.</p>
-<div class="sourceCode" id="cb131"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb134"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Voici la moyenne et l'erreur standard originales</span>
 <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">X</span><span class="op">)</span> ; <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">X</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span>
 <span class="co">#&gt; [1] 10.2</span>
@@ -286,7 +306,7 @@ Figure 7.8: Historgamme des estimations des échantillons
 <span class="co">#&gt; [1] 10.2</span>
 <span class="co">#&gt; [1] 0.481</span></code></pre></div>
 <p>La moyenne et l’erreur standard sont très près de la moyenne de l’échantillon et celle de la population (qui est de 10) et de l’erreur type attendue. Il est possible de créer des intervalles de confiances avec la fonction <code>quantile</code> qui prend en argument un vecteur de données et les probabilités désirées. Dans le cas de 95% pour une erreur de type I de 5%, soit <span class="math inline">\(\alpha=.05\)</span>, il s’agit de <span class="math inline">\(.05/2 = .025\)</span> et <span class="math inline">\(1-.05/2= .975\)</span>, laissant au total 5% aux extrémités.</p>
-<div class="sourceCode" id="cb132"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb135"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Erreur de type I</span>
 <span class="va">alpha</span> <span class="op">=</span> <span class="fl">.05</span>
 
@@ -311,8 +331,8 @@ Figure 7.8: Historgamme des estimations des échantillons
 <h4>
 <span class="header-section-number">10.2.0.1</span> Meilleures pratiques<a class="anchor" aria-label="anchor" href="#meilleures-pratiques"><i class="fas fa-link"></i></a>
 </h4>
-<p><strong>R</strong> n’est pas particulièrement efficace pour réaliser des boucles. Il existe une famille de fonctions <code>apply</code> qui permettent d’appliquer une fonction sur une série de vecteurs (comme une liste, un jeu de données ou une matrice). L’appel à l’aide <code><a href="https://rdrr.io/r/base/apply.html">?apply</a></code> donne beaucoup d’informations. La fonction principale est <code><a href="https://rdrr.io/r/base/apply.html">apply()</a></code>. Elle nécessite le jeu de données (<code>X</code>) sur lequel appliqué la fonction (<code>FUN</code>) et un argument (<code>MARGIN</code>) pour identifier dimension selon laquelle il faut appliquer la fonction, comme <code>MARGIN = 1</code> produit l’opération par lignes; <code>MARGIN = 2</code> produit l’opération par colonnes.<a href="r%C3%A9f%C3%A9rences.html#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
-<div class="sourceCode" id="cb133"><pre class="downlit sourceCode r">
+<p><strong>R</strong> n’est pas particulièrement efficace pour réaliser des boucles. Il existe une famille de fonctions <code>apply</code> qui permettent d’appliquer une fonction sur une série de vecteurs (comme une liste, un jeu de données ou une matrice). L’appel à l’aide <code><a href="https://rdrr.io/r/base/apply.html">?apply</a></code> donne beaucoup d’informations. La fonction principale est <code><a href="https://rdrr.io/r/base/apply.html">apply()</a></code>. Elle nécessite le jeu de données (<code>X</code>) sur lequel appliqué la fonction (<code>FUN</code>) et un argument (<code>MARGIN</code>) pour identifier dimension selon laquelle il faut appliquer la fonction, comme <code>MARGIN = 1</code> produit l’opération par lignes; <code>MARGIN = 2</code> produit l’opération par colonnes.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Il y a aussi des cas plus complexes lorsque le jeu possède plus de deux dimesions, comme &lt;code&gt;MARGIN = c(1,2)&lt;/code&gt; produit l’opération sur une matrice (lignes par colonnes) ou &lt;code&gt;MARGIN = n&lt;/code&gt; produit l’opération sur la n&lt;sup&gt;e&lt;/sup&gt; dimension.&lt;/p&gt;"><sup>2</sup></a></p>
+<div class="sourceCode" id="cb136"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Il faut un vecteur de données `vec`, un nombre de répétitions `nreps`</span>
 <span class="co"># et une fonction `theta` à calculer sur le vecteur</span>
 <span class="va">bootstrap</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">vec</span>, <span class="va">nreps</span>, <span class="va">theta</span><span class="op">)</span><span class="op">{</span>
@@ -349,6 +369,7 @@ Figure 7.8: Historgamme des estimations des échantillons
 </div>
 </div>
 </div>
+
   <div class="chapter-nav">
 <div class="prev"><a href="analyser.html"><span class="header-section-number">9</span> Analyser</a></div>
 <div class="next"><a href="exercice-analyse.html">Exercices</a></div>
@@ -366,8 +387,8 @@ Figure 7.8: Historgamme des estimations des échantillons
 
       <div class="book-extra">
         <ul class="list-unstyled">
-<li><a id="book-source" href="https://github.com/quantmeth/MQR/blob/master/05-Simuler.Rmd">View source <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="https://github.com/quantmeth/MQR/edit/master/05-Simuler.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+<li><a id="book-source" href="https://github.com/quantmeth/MQR/blob/master/10-Simuler.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/quantmeth/MQR/edit/master/10-Simuler.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
         </ul>
 </div>
     </nav>
@@ -379,7 +400,7 @@ Figure 7.8: Historgamme des estimations des échantillons
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Méthodes Quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-05-19.</p>
+    <p>"<strong>Méthodes Quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-05-24.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

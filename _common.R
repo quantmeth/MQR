@@ -7,12 +7,17 @@ knitr::opts_chunk$set(
   collapse = TRUE
   )
 
+#tous
 library(tidyverse)
 library(kableExtra)
-library(tidyr)
 library(papaja)
-library(ggplot2)
-library(rstatix)
-library(lavaan)
-library(ggpubr)
-library(papaja)
+#library(ggpubr)
+
+# 
+#library(lavaan)
+
+# Multiniveau
+# library(lme4)     # pour lmer
+# library(arm)      # pour les S.E.
+# library(lmerTest) # pour les valeur-p
+# library(performance)  # pour ICC

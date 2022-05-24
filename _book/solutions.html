@@ -18,7 +18,7 @@
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script>
 </head>
 <body>
 <p>
@@ -47,25 +47,7 @@
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Bienvenue!</a></li>
 <li><a class="" href="pr%C3%A9face.html">Préface</a></li>
-<li class="book-part">Rudiments</li>
-<li><a class="" href="commencer.html"><span class="header-section-number">1</span> Commencer</a></li>
-<li><a class="" href="programmer.html"><span class="header-section-number">2</span> Programmer</a></li>
-<li><a class="" href="calculer.html"><span class="header-section-number">3</span> Calculer</a></li>
-<li><a class="" href="exercice-rudiments.html">Exercices</a></li>
-<li class="book-part">Jeux de données</li>
-<li><a class="" href="g%C3%A9rer.html"><span class="header-section-number">4</span> Gérer</a></li>
-<li><a class="" href="importer.html"><span class="header-section-number">5</span> Importer</a></li>
-<li><a class="" href="manipuler.html"><span class="header-section-number">6</span> Manipuler</a></li>
-<li><a class="" href="visualiser.html"><span class="header-section-number">7</span> Visualiser</a></li>
-<li><a class="" href="exercice-gestion.html">Exercices</a></li>
-<li class="book-part">Statistique</li>
-<li><a class="" href="inf%C3%A9rer.html"><span class="header-section-number">8</span> Inférer</a></li>
-<li><a class="" href="analyser.html"><span class="header-section-number">9</span> Analyser</a></li>
-<li><a class="" href="simuler.html"><span class="header-section-number">10</span> Simuler</a></li>
-<li><a class="" href="exercice-analyse.html">Exercices</a></li>
-<li class="book-part">Modèle linéaire</li>
-<li><a class="" href="r%C3%A9gression.html"><span class="header-section-number">11</span> Régression</a></li>
-<li><a class="" href="cr%C3%A9er.html"><span class="header-section-number">12</span> Créer</a></li>
+<li><a class="" href="cfa.html"><span class="header-section-number">1</span> CFA</a></li>
 <li><a class="active" href="solutions.html">Solutions</a></li>
 <li><a class="" href="r%C3%A9f%C3%A9rences.html">Références</a></li>
 </ul>
@@ -87,7 +69,7 @@
 </ol>
 </blockquote>
 <p>Le résultat est <span class="math inline">\(1, 2, 3\)</span>. Le fait d’assigner une valeur à une fonction (ou variable) écrase cette dernière.</p>
-<div class="sourceCode" id="cb170"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mean</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span>
 <span class="va">mean</span>
 <span class="co">#&gt; [1] 1 2 3</span></code></pre></div>
@@ -97,7 +79,7 @@
 </ol>
 </blockquote>
 <p>En prenant <code>a</code> et <code>b</code> comme arguments.</p>
-<div class="sourceCode" id="cb171"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">hypothenus</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">a</span>, <span class="va">b</span><span class="op">)</span><span class="op">{</span>
   <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">a</span><span class="op">^</span><span class="fl">2</span> <span class="op">+</span> <span class="va">b</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span>
 <span class="op">}</span>
@@ -109,7 +91,7 @@
 </ol>
 </blockquote>
 <p>Deux possibilités ici. Soit <code>x</code> est un vecteur contenant plusieurs nombres ou il est un nombre et il faut ajouter la moyenne (<span class="math inline">\(\mu\)</span>) et l’écart type (<span class="math inline">\(\sigma\)</span>).</p>
-<div class="sourceCode" id="cb172"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Premier cas</span>
 <span class="va">score.z</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span>
   <span class="op">(</span><span class="va">x</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
@@ -129,7 +111,7 @@
 </ol>
 </blockquote>
 <p>Voici une autre fonction calculant une médiane d’un vecteur.</p>
-<div class="sourceCode" id="cb173"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mediane</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span>
   <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
   <span class="va">longueur</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
@@ -150,7 +132,7 @@
 </ol>
 </blockquote>
 <p>Plusieurs solutions possibles dont en voici deux.</p>
-<div class="sourceCode" id="cb174"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">fibonnaci1</span> <span class="op">&lt;-</span>  <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">{</span>
   <span class="co"># n est le nombre d'éléments de la série demandée.</span>
   <span class="co"># Création d'un vecteur de taille n ne contenant que des 1.</span>
@@ -168,7 +150,7 @@
   <span class="va">serie</span>
 <span class="op">}</span></code></pre></div>
 <p>En voici une autre en utilisant la récursion (une fonction qui s’appelle elle-même).</p>
-<div class="sourceCode" id="cb175"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">fibonnaci2</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">{</span>
   <span class="kw">if</span><span class="op">(</span><span class="va">n</span> <span class="op">&lt;=</span> <span class="fl">2</span><span class="op">)</span><span class="op">{</span>
     <span class="co"># Si la n est plus petit que 2, alors retourne 1</span>
@@ -179,7 +161,7 @@
   <span class="op">}</span>
 <span class="op">}</span></code></pre></div>
 <p>Les voici comparées.</p>
-<div class="sourceCode" id="cb176"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">8</span>
 <span class="fu">fibonnaci1</span><span class="op">(</span><span class="va">n</span><span class="op">)</span>
 <span class="co">#&gt; [1]  1  1  2  3  5  8 13 21</span>
@@ -191,7 +173,7 @@
 </ol>
 </blockquote>
 <p>Plusieurs solutions possibles dont en voici une.</p>
-<div class="sourceCode" id="cb177"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pivot</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">k</span>, <span class="va">n</span><span class="op">)</span><span class="op">{</span>
   <span class="va">pivoter</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">(</span><span class="va">n</span><span class="op">+</span><span class="fl">1</span><span class="op">)</span><span class="op">:</span><span class="va">k</span>, <span class="fl">1</span><span class="op">:</span><span class="va">n</span><span class="op">)</span>
   <span class="va">pivoter</span>
@@ -212,7 +194,7 @@
 </div>
 </div>
   <div class="chapter-nav">
-<div class="prev"><a href="cr%C3%A9er.html"><span class="header-section-number">12</span> Créer</a></div>
+<div class="prev"><a href="cfa.html"><span class="header-section-number">1</span> CFA</a></div>
 <div class="next"><a href="r%C3%A9f%C3%A9rences.html">Références</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
@@ -224,8 +206,8 @@
 
       <div class="book-extra">
         <ul class="list-unstyled">
-<li><a id="book-source" href="https://github.com/quantmeth/MQR/blob/master/11-Solutions.Rmd">View source <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="https://github.com/quantmeth/MQR/edit/master/11-Solutions.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+<li><a id="book-source" href="https://github.com/quantmeth/MQR/blob/master/21-Solutions.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/quantmeth/MQR/edit/master/21-Solutions.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
         </ul>
 </div>
     </nav>
@@ -237,7 +219,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Méthodes Quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-05-19.</p>
+    <p>"<strong>Méthodes Quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-05-20.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

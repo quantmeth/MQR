@@ -7,7 +7,7 @@
 <title> 8 Inférer | Méthodes Quantitatives avec R</title>
 <meta name="author" content="P.-O. Caron">
 <meta name="description" content="Le but principal de toute inférence statistique est de tirer des conclusions sur une population à partir d’un échantillon (un fragment beaucoup plus petit de la population). Avant d’introduire...">
-<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta name="generator" content="bookdown 0.26 with bs4_book()">
 <meta property="og:title" content=" 8 Inférer | Méthodes Quantitatives avec R">
 <meta property="og:type" content="book">
 <meta property="og:url" content="mqr.teluq.ca/inférer.html">
@@ -15,7 +15,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content=" 8 Inférer | Méthodes Quantitatives avec R">
 <meta name="twitter:description" content="Le but principal de toute inférence statistique est de tirer des conclusions sur une population à partir d’un échantillon (un fragment beaucoup plus petit de la population). Avant d’introduire...">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
@@ -25,7 +25,31 @@
     \(
     \newcommand{\EX}{\mathbb{E}}
     \)
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css"></p>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style><style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style><link rel="stylesheet" href="bs4_style.css"></p>
 
 <div class="container-fluid">
 <div class="row">
@@ -53,8 +77,8 @@
 <li><a class="" href="calculer.html"><span class="header-section-number">3</span> Calculer</a></li>
 <li><a class="" href="exercice-rudiments.html">Exercices</a></li>
 <li class="book-part">Jeux de données</li>
-<li><a class="" href="g%C3%A9rer.html"><span class="header-section-number">4</span> Gérer</a></li>
-<li><a class="" href="importer.html"><span class="header-section-number">5</span> Importer</a></li>
+<li><a class="" href="importer.html"><span class="header-section-number">4</span> Importer</a></li>
+<li><a class="" href="entr%C3%A9e-de-donn%C3%A9es.html"><span class="header-section-number">5</span> Entrée de données</a></li>
 <li><a class="" href="manipuler.html"><span class="header-section-number">6</span> Manipuler</a></li>
 <li><a class="" href="visualiser.html"><span class="header-section-number">7</span> Visualiser</a></li>
 <li><a class="" href="exercice-gestion.html">Exercices</a></li>
@@ -63,10 +87,6 @@
 <li><a class="" href="analyser.html"><span class="header-section-number">9</span> Analyser</a></li>
 <li><a class="" href="simuler.html"><span class="header-section-number">10</span> Simuler</a></li>
 <li><a class="" href="exercice-analyse.html">Exercices</a></li>
-<li class="book-part">Modèle linéaire</li>
-<li><a class="" href="r%C3%A9gression.html"><span class="header-section-number">11</span> Régression</a></li>
-<li><a class="" href="cr%C3%A9er.html"><span class="header-section-number">12</span> Créer</a></li>
-<li><a class="" href="solutions.html">Solutions</a></li>
 <li><a class="" href="r%C3%A9f%C3%A9rences.html">Références</a></li>
 </ul>
 
@@ -87,12 +107,12 @@
 <span class="header-section-number">8.1</span> Le théorème central limite<a class="anchor" aria-label="anchor" href="#le-th%C3%A9or%C3%A8me-central-limite"><i class="fas fa-link"></i></a>
 </h2>
 <p>Les valeurs d’un échantillon sont, pour le statisticien, des variables aléatoires. Une variable aléatoire, c’est un peu comme piger dans une boîte à l’aveuglette pour obtenir une valeur. La boîte est impénétrable, personne ne sait par quel processus elle accorde telle ou telle autre valeur. Pour le statisticien, ce qui importe c’est que chaque valeur possède une chance égale aux autres d’être sélectionnée et qu’elles soient indépendantes entre elles (le fait d’en choisir une soit sans conséquence sur la probabilité des autres). Pour le non-initié aux fonctions permettant de créer des nombres pseudoaléatoires, une fonction <strong>R</strong> comme <code><a href="https://rdrr.io/r/stats/Normal.html">rnorm()</a></code> ou <code><a href="https://rdrr.io/r/stats/Uniform.html">runif()</a></code> (<em>r</em> suivi d’un nom de distribution, voir <a href="calculer.html#les-distributions">Les distributions</a>) joue parfaitement le rôle de cette boîte. Si l’usager demande une valeur, la fonction retourne une valeur aléatoire (imprévisible à chaque fois) sans connaître comment cette valeur est produite.</p>
-<div class="sourceCode" id="cb95"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb98"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
-<span class="co">#&gt; [1] 0.0698</span></code></pre></div>
+<span class="co">#&gt; [1] 0.18</span></code></pre></div>
 <p>Le statisticien s’intéresse à inférer comment ces valeurs sont générées. Il postule ainsi que les valeurs aléatoires suivent une distribution de probabilité. Connaître cette distribution est très important, car c’est elle qui permet de répondre à des questions comme : quelle est la probabilité d’obtenir un résultat aussi rare que <span class="math inline">\(x\)</span>? Ou quelle sont les valeurs attendues pour <span class="math inline">\(95\%\)</span> des tirages? Questions tout à fait pertinentes pour l’expérimentateur. Une des distributions les plus connues est certainement la distribution normale, celle qui est derrière la fonction <code><a href="https://rdrr.io/r/stats/Normal.html">rnorm()</a></code> d’ailleurs. Mais, il y en a beaucoup, beaucoup d’autres.</p>
 <p>Lorsque plus d’une variable sont issues d’une même boîte (distribution), elles sont <em>identiquement distribuées</em>. Si ces variables aléatoires sont combinées, que ce soit en termes de produit, de quotient, d’addition, de soustraction, le résultat est une nouvelle variable aléatoire qui possède sa propre distribution nommée <em>distribution d’échantillonnage</em>. Sur le plan de la syntaxe <strong>R</strong>, il s’agit de réaliser des opérations mathématiques avec des variables aléatoires identiquement distribuées.</p>
-<div class="sourceCode" id="cb96"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb99"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Pour répliquer</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>
 
@@ -109,12 +129,12 @@
 <p>Par exemple, la fonction <code><a href="https://rdrr.io/r/stats/Lognormal.html">rlnorm()</a></code> génère des variables issues d’une distribution log normale. Elle a la forme illustré à la Figure <a href="inf%C3%A9rer.html#fig:lognormal">8.1</a> (qui n’a rien de normal à première vue).</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:lognormal"></span>
-<img src="03-Inferences_files/figure-html/lognormal-1.png" alt="Distribution log normale" width="80%" height="80%"><p class="caption">
+<img src="08-Inferer_files/figure-html/lognormal-1.png" alt="Distribution log normale" width="80%" height="80%"><p class="caption">
 Figure 8.1: Distribution log normale
 </p>
 </div>
 <p>En calculant la somme de plusieurs variables aléatoires de cette distribution, pour diverses valeurs de tailles d’échantillons (nombre de variables échantillonnées), les résultats tendent de plus en plus vers une distribution normale. Le code ci-dessous présente la démarche utilisée et la figure <a href="inf%C3%A9rer.html#fig:testn">8.2</a> en fait la démonstration graphique en présentant les distributions d’échantillonnage obtenues.</p>
-<div class="sourceCode" id="cb97"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb100"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Cette fonction sort les nombres, mais pas les graphiques.</span>
 <span class="co"># Différentes tailles d'échantillons</span>
 <span class="va">N</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">90</span>, by <span class="op">=</span> <span class="fl">10</span><span class="op">)</span>
@@ -133,11 +153,11 @@ Figure 8.1: Distribution log normale
 <p>La Figure <a href="inf%C3%A9rer.html#fig:testn">8.2</a> montre que la distribution d’échantillonnage de la somme des variables converge vers une distribution normale à mesure que la taille d’échantillon <span class="math inline">\(n\)</span> augmente. Cela est vrai pour n’importe quelle distribution de probabilité de la population. Le théorème central en dit plus que simplement la forme de la distribution. Elle affirme également qu’une distribution de probabilité d’une population ayant une moyenne <span class="math inline">\(\mu\)</span> et un écart type <span class="math inline">\(\sigma\)</span> échantillonnées sur <span class="math inline">\(n\)</span> unités, générera une distribution d’échantillonnage des totaux (indicé <span class="math inline">\(t\)</span>) ayant une espérance (la moyenne) de <span class="math inline">\(n\mu_t\)</span> et un écart type de <span class="math inline">\(n\sigma_t^2\)</span>.</p>
 <div class="figure">
 <span style="display:block;" id="fig:testn"></span>
-<img src="03-Inferences_files/figure-html/testn-1.png" alt="Distributions des totaux de n variables log normales" width="672"><p class="caption">
+<img src="08-Inferer_files/figure-html/testn-1.png" alt="Distributions des totaux de n variables log normales" width="672"><p class="caption">
 Figure 8.2: Distributions des totaux de n variables log normales
 </p>
 </div>
-<p>Les expérimentateurs ne connaissent pas les distributions sous-jacentes aux valeurs des unités issues de la population. Par contre, à l’aide des statisticiens et du théorème central limite, ils savent comment se comportent les sommes des variables. Les expérimentateurs s’intéressent toutefois rarement aux sommes de variable… à l’exception de la moyenne qui est une somme de variable divisée par la constante <span class="math inline">\(n\)</span><a href="r%C3%A9f%C3%A9rences.html#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>. Dans le cas de la moyenne, le théorème central limite stipule qu’une distribution de probabilité ayant une moyenne <span class="math inline">\(\mu\)</span> et un écart type <span class="math inline">\(\sigma\)</span> dont l’échantillon est constitué de <span class="math inline">\(n\)</span> unités, générera une distribution d’échantillonnage des moyennes avec une espérance de <span class="math inline">\(\mu_{\bar{x}}\)</span> et un écart type de <span class="math inline">\(\sigma_{\bar{x}}/\sqrt{n}\)</span>.</p>
+<p>Les expérimentateurs ne connaissent pas les distributions sous-jacentes aux valeurs des unités issues de la population. Par contre, à l’aide des statisticiens et du théorème central limite, ils savent comment se comportent les sommes des variables. Les expérimentateurs s’intéressent toutefois rarement aux sommes de variable… à l’exception de la moyenne qui est une somme de variable divisée par la constante <span class="math inline">\(n\)</span><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Ou encore la variance qui est la somme des écarts au carré. Les expérimentateurs s’intéressent aux sommes de variables en fait.&lt;/p&gt;"><sup>1</sup></a>. Dans le cas de la moyenne, le théorème central limite stipule qu’une distribution de probabilité ayant une moyenne <span class="math inline">\(\mu\)</span> et un écart type <span class="math inline">\(\sigma\)</span> dont l’échantillon est constitué de <span class="math inline">\(n\)</span> unités, générera une distribution d’échantillonnage des moyennes avec une espérance de <span class="math inline">\(\mu_{\bar{x}}\)</span> et un écart type de <span class="math inline">\(\sigma_{\bar{x}}/\sqrt{n}\)</span>.</p>
 <p>Dans la mesure où l’expérimentateur connaît la distribution de la population (extrêmement rare, mais permet de mieux illustrer la théorie) ou qu’il peut recourir à une distribution d’échantillonnage connue, il pourra inférer la probabilité d’une variable aléatoire par rapport à ce qui est attendu simplement par hasard. Il pourra alors juger si cette variable est trop rare par rapport à l’hypothèse de base (nulle).</p>
 <p>La théorie traditionnelle des tests d’hypothèses repose sur l’idée selon laquelle on compare la vraisemblance d’une variable aléatoire estimée auprès d’un échantillon par rapport à une hypothèse nulle (l’absence d’effet). En épistémologie des sciences, il n’est pas possible de montrer l’exactitude d’une hypothèse, seulement son inexactitude. Cela rappelle le principe du falsificationnisme selon lequel on ne peut prouver une hypothèse, on ne peut que la falsifier. En statistiques, c’est la rareté d’une donnée qui agira comme indice d’<em>inexactitude</em>. Si la variable aléatoire est trop rare pour l’hypothèse nulle, celle-ci est rejetée : d’autres hypothèses doivent être considérées pour expliquer ce résultat. Autrement, l’hypothèse nulle n’est pas rejetée, les preuves sont insuffisantes pour informer l’expérimentateur sur l’hypothèse nulle.</p>
 </div>
@@ -149,7 +169,7 @@ Figure 8.2: Distributions des totaux de n variables log normales
 <p>Dans la population, bien que la moyenne et la variance peuvent être connues, sélectionner une unité au hasard génère une variable aléatoire. Chaque individu de la population a une probabilité très faible d’être sélectionné et est indépendant des autres individus de la population. Il est très difficile de prédire le score exact d’une personne. Toutefois, il est possible d’avoir un idée de la variabilité des scores. La Figure <a href="inf%C3%A9rer.html#fig:regle">8.3</a> montre la distribution normale par rapport à la moyenne, <span class="math inline">\(\mu\)</span> pour différentes valeurs d’écart type, <span class="math inline">\(\sigma\)</span>. Elle montre que 68.269% devrait se retrouvé entre plus ou moins un écart types ou encore que 95.45% devrait se retrouvé entre plus ou moins deux écarts types. Ajuster au QI, il s’agit de 85 à 115 et de 70 à 130 respectivement</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:regle"></span>
-<img src="03-Inferences_files/figure-html/regle-1.png" alt="La distribution normale du QI" width="90%" height="90%"><p class="caption">
+<img src="08-Inferer_files/figure-html/regle-1.png" alt="La distribution normale du QI" width="90%" height="90%"><p class="caption">
 Figure 8.3: La distribution normale du QI
 </p>
 </div>
@@ -157,18 +177,18 @@ Figure 8.3: La distribution normale du QI
 <p>Voici un exemple où ces informations sont pertinentes. Un groupe d’<em>expérimentateurs</em> mettent en place un outil d’évaluation qui teste si un individu donné est un humain ou un reptilien (une race d’extra-terrestre). Leur outil n’est pas si sophistiqué. En fait, il se base sur le QI, car les expérimentateurs ont remarqué que les reptiliens ont un QI beaucoup plus élevé que le QI humain.</p>
 <div class="figure">
 <span style="display:block;" id="fig:unnamed-chunk-5"></span>
-<img src="03-Inferences_files/figure-html/unnamed-chunk-5-1.png" alt="Score de Fanny sur la distribution normale" width="672"><p class="caption">
+<img src="08-Inferer_files/figure-html/unnamed-chunk-5-1.png" alt="Score de Fanny sur la distribution normale" width="672"><p class="caption">
 Figure 8.4: Score de Fanny sur la distribution normale
 </p>
 </div>
 <p>La distribution normale du QI humain joue le rôle d’hypothèse nulle, les personnes mesurées sont admises humaines jusqu’à preuve du contraire (une présomption d’innocence en quelque sorte), un QI <em>trop</em> élevé suggérant la culpabilité.</p>
 <p>Les expérimentateurs émettent l’hypothèse que les 5 % personnes ayant le plus haut QI sont vraisemblablement reptiliens. C’est le risque qu’ils sont prêts à prendre de sélectionner un humain et de le classer erronément comme reptilien.</p>
 <p>Le groupe d’expérimentateurs teste leur instrument sur Fanny. Elle a un QI de 120. Comment tester si elle est reptilienne? La première étape est d’obtenir un score-<span class="math inline">\(z\)</span>. Un score-<span class="math inline">\(z\)</span> est une échelle standardisée des distances d’une valeur par rapport à la moyenne. Lorsqu’une échelle de mesure est transformée en score-<span class="math inline">\(z\)</span>, la moyenne est de 0 et l’écart type est égal à 1. Cela permet de mieux apprécier les distances et leur probabilité. La Figure <a href="inf%C3%A9rer.html#fig:regle">8.3</a> est ainsi applicable pour toutes sortes de situations où la distribution est vraisemblablement normale.</p>
-<div class="sourceCode" id="cb98"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb101"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">fanny</span> <span class="op">&lt;-</span> <span class="fl">120</span>
 <span class="va">z.fanny</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="va">fanny</span> <span class="op">-</span> <span class="fl">100</span><span class="op">)</span> <span class="op">/</span> <span class="fl">15</span></code></pre></div>
 <p>Fanny a un score-<span class="math inline">\(z\)</span> de 1.333. Maintenant, il faut traduire cette valeur en probabilité.</p>
-<div class="sourceCode" id="cb99"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb102"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># La probabilité que Fanny ait un QI de -Inf à z.fanny</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">pnorm</a></span><span class="op">(</span><span class="va">z.fanny</span><span class="op">)</span>
 <span class="co">#&gt; [1] 0.909</span></code></pre></div>
@@ -182,7 +202,7 @@ Figure 8.4: Score de Fanny sur la distribution normale
 </h2>
 <p>Jusqu’à maintenant, seule une unité d’observation était traitée. L’indice et la distribution étaient également spécifiés. Dans cette section, l’exemple est étendu aux échantillons (plus d’une unité d’observation).</p>
 <p>Fanny a un QI de 120. Si une autre personne avait été sélectionnée, cette nouvelle personne aurait inévitablement un autre score. Cette logique s’applique également aux échantillons. L’exemple ci-dessous échantillonne 10 unités d’une population de QI distribuée normalement avec les paramètres usuels.</p>
-<div class="sourceCode" id="cb100"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb103"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Création d'un échantillon de 10 unités</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">824</span><span class="op">)</span>
 
@@ -192,7 +212,7 @@ Figure 8.4: Score de Fanny sur la distribution normale
 <span class="co">#&gt;  [1] 110 111 102  99 109 102  99 110 132 114</span></code></pre></div>
 <div class="figure">
 <span style="display:block;" id="fig:rept"></span>
-<img src="03-Inferences_files/figure-html/rept-1.png" alt="Scores des unités de l'échantillon" width="90%" height="90%"><p class="caption">
+<img src="08-Inferer_files/figure-html/rept-1.png" alt="Scores des unités de l'échantillon" width="90%" height="90%"><p class="caption">
 Figure 8.5: Scores des unités de l’échantillon
 </p>
 </div>
@@ -201,31 +221,31 @@ Figure 8.5: Scores des unités de l’échantillon
 z = \frac{\bar{x}-\mu_{\bar{x}}}{\sigma/\sqrt{n}}=\frac{108.8-100}{15/\sqrt{10}}=1.855
 \]</span>
 Cela donne le code suivant.</p>
-<div class="sourceCode" id="cb101"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb104"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">z</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">QI</span><span class="op">)</span> <span class="op">-</span> <span class="fl">100</span><span class="op">)</span><span class="op">/</span><span class="op">(</span><span class="fl">15</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span>
 <span class="va">z</span>
 <span class="co">#&gt; [1] 1.86</span></code></pre></div>
 <p>La fonction <code>(1 - pnorm(z)) * 100</code>, retourne la probabilité (en pourcentage) d’un résultat plus rare que l’indice obtenu auprès de l’échantillon par rapport à la population. Comme pour l’exemple de Fanny, ce chiffre est une valeur-<span class="math inline">\(p\)</span>, soit la probabilité de l’indice observé par rapport à l’hypothèse nulle. La probabilité de cet échantillon par rapport à l’hypothèse nulle est de 3.178%, juste en deçà du 5% fixé. La conclusion est par conséquent de rejeter l’hypothèse nulle, l’échantillon semble provenir d’une autre distribution (avec des paramètres différents) que celle postulée.</p>
 <div class="figure">
 <span style="display:block;" id="fig:unnamed-chunk-10"></span>
-<img src="03-Inferences_files/figure-html/unnamed-chunk-10-1.png" alt="Moyenne de l'échantillon sur la distribution normale" width="672"><p class="caption">
+<img src="08-Inferer_files/figure-html/unnamed-chunk-10-1.png" alt="Moyenne de l'échantillon sur la distribution normale" width="672"><p class="caption">
 Figure 8.6: Moyenne de l’échantillon sur la distribution normale
 </p>
 </div>
 <p><strong>Qu’en est-il vraiment de ce résultat?</strong> Pour l’expérimentateur, il ne peut aller plus loin, car il ne connaît pas la boîte noire selon laquelle les valeurs de l’échantillon sont générées. Il ne peut que constater que plusieurs (9/10) unités ont un score plus élevé que 100. Par contre, comme il s’agit d’un exemple simulé, la boîte noire est connue. C’est la fonction, <code>round(rnorm(n = 10, mean = 100, sd = 15))</code>, une distribution normale ayant <span class="math inline">\(\mu=100,\sigma=15\)</span> qui est utilisée pour générer les valeurs. L’utilisateur sait qu’il s’agit d’un faux positif (une erreur de Type I) : l’échantillon fait partie des 5% des échantillons qui risquent de se faire rejeter accidentellement. Si l’utilisateur utilise une autre graine (<code>seed()</code>), il verra que la plupart (95%) des moyennes ne seront pas rejetées.</p>
 <p>Pour l’instant, seule une boîte noire a été examinée - celle de l’hypothèse nulle. Qu’advient-il du vrai phénomène? Par exemple, si les reptiliens existaient vraiment. Comme l’utilisateur est le maître du modèle, il peut spécifier les paramètres à sa convenance. Le QI des reptiliens pourraient être distribué comme une distribution normale ayant <span class="math inline">\(\mu_{r}=130, \sigma_r = 15\)</span> où l’indice <span class="math inline">\(r\)</span> ne fait qu’indiquer qu’il s’agit des paramètres de la population reptilienne. Les paramètres humains seront désignés par <span class="math inline">\(h\)</span>, soit <span class="math inline">\(\mu_h = 100,\sigma_h = 15\)</span>.</p>
-<div class="sourceCode" id="cb102"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb105"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mu.h</span> <span class="op">&lt;-</span> <span class="fl">100</span> ; <span class="va">sd.h</span> <span class="op">&lt;-</span> <span class="fl">15</span>
 <span class="va">mu.r</span> <span class="op">&lt;-</span> <span class="fl">130</span> ; <span class="va">sd.r</span> <span class="op">&lt;-</span> <span class="fl">15</span></code></pre></div>
 <p>La Figure <a href="inf%C3%A9rer.html#fig:rh">8.7</a> présente les distributions de ces populations. Trois zones sont ajoutées pour illustrer les concepts statistiques d’erreur de type I, d’erreur de type II et de puissance statistique. Comme les populations sont connues, ces concepts statistiques sont calculables.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:rh"></span>
-<img src="03-Inferences_files/figure-html/rh-1.png" alt="Distribution du QI des humains et des reptiliens" width="90%" height="90%"><p class="caption">
+<img src="08-Inferer_files/figure-html/rh-1.png" alt="Distribution du QI des humains et des reptiliens" width="90%" height="90%"><p class="caption">
 Figure 8.7: Distribution du QI des humains et des reptiliens
 </p>
 </div>
 <p>L’erreur de type I (présentée auparavant) représente la probabilité d’émettre un faux positif, souvent représentée par <span class="math inline">\(\alpha\)</span> (alpha). Elle correspond à la probabilité de rejeter l’hypothèse lorsqu’elle est vraie. Dans la Figure <a href="inf%C3%A9rer.html#fig:rh">8.7</a>, il s’agit de la zone noire. Elle corresond à conclure qu’un vrai humain est un reptilien (ce qu’il n’est pas). Ce taux est fixé à l’avance par l’expérimentateur, ici, 5%. C’est le risque qu’il est prêt à prendre. Ainsi, 95% des humains seront correctement identifiés comme humains.</p>
-<div class="sourceCode" id="cb103"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb106"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Erreur de type I (fixé à l'avance)</span>
 <span class="va">alpha</span> <span class="op">&lt;-</span> <span class="fl">.05</span> 
 
@@ -249,7 +269,7 @@ Figure 8.7: Distribution du QI des humains et des reptiliens
 <p>Dans le cas d’un test bilatéral, l’erreur de type I est divisée par 2, <span class="math inline">\(\alpha/2\)</span> pour couvrir l’espace des deux côtés de la distribution. L’espace total est identique même s’il est divisé sur les deux extrêmes. Cela implique des valeurs critiques plus élevées que si le test n’était que d’un côté et par conséquent une puissance statistique un peu plus faible, car l’effet est directionnel. La probabilité de rejeter l’hypothèse dans une direction a été diminuée pour tenir compte de l’autre côté. La Figure <a href="inf%C3%A9rer.html#fig:tt">8.8</a> montre un exemple de chacun de ces types de tests pour <span class="math inline">\(\alpha = .05\)</span>.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:tt"></span>
-<img src="03-Inferences_files/figure-html/tt-1.png" alt="Illustration de l'erreur de type I" width="864"><p class="caption">
+<img src="08-Inferer_files/figure-html/tt-1.png" alt="Illustration de l'erreur de type I" width="864"><p class="caption">
 Figure 8.8: Illustration de l’erreur de type I
 </p>
 </div>
@@ -262,7 +282,7 @@ Figure 8.8: Illustration de l’erreur de type I
 <p>Dans la plupart des cas, l’expérimentateur ne connaît pas la variance de la population. Il recourt alors à la meilleure estimation qui lui est disponible, celle obtenue auprès de l’échantillon. De recourir à une estimation au lieu de la vraie valeur cause un réel problème: l’estimation est une variable aléatoire respectant une distribution d’échantillonnage. La distribution des variances montre une légère asymétrie positive plus flagrante pour les petites tailles d’échantillon, car les variances sont distribuées en distribution-<span class="math inline">\(\chi^2\)</span>.</p>
 <div class="figure">
 <span style="display:block;" id="fig:illvar"></span>
-<img src="03-Inferences_files/figure-html/illvar-1.png" alt="Distribution de la variance en fonction de la taille d'échantillon" width="672"><p class="caption">
+<img src="08-Inferer_files/figure-html/illvar-1.png" alt="Distribution de la variance en fonction de la taille d'échantillon" width="672"><p class="caption">
 Figure 8.9: Distribution de la variance en fonction de la taille d’échantillon
 </p>
 </div>
@@ -270,7 +290,7 @@ Figure 8.9: Distribution de la variance en fonction de la taille d’échantillo
 <p>La distribution-<span class="math inline">\(t\)</span> est symétrique, comme la distribution normale, mais a des queues plus larges pour tenir compte de la surestimation des valeurs dû à la sous-estimation de la variance. La distribution-<span class="math inline">\(t\)</span> tend vers une distribution normale lorsque <span class="math inline">\(n\)</span> augmente, ce qui est illustré à la Figure <a href="inf%C3%A9rer.html#fig:tnorm">8.10</a>. La ligne pleine noire montre la distribution pour 5 unités, les deux autres lignes, traits et pointillés, pour 30 et 1000 unités respectivement. Il est difficile de distinguer ces deux dernières.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:tnorm"></span>
-<img src="03-Inferences_files/figure-html/tnorm-1.png" alt="Comparaison d'une distribution normale à deux distributions-$t$" width="90%" height="90%"><p class="caption">
+<img src="08-Inferer_files/figure-html/tnorm-1.png" alt="Comparaison d'une distribution normale à deux distributions-$t$" width="90%" height="90%"><p class="caption">
 Figure 8.10: Comparaison d’une distribution normale à deux distributions-<span class="math inline">\(t\)</span>
 </p>
 </div>
@@ -283,7 +303,7 @@ Figure 8.10: Comparaison d’une distribution normale à deux distributions-<spa
 <p>Le test-<span class="math inline">\(t\)</span> à échantillon unique permet de tester la moyenne d’échantillon par rapport à une valeur arbitraire <span class="math inline">\(\mu_0\)</span> (généralement <span class="math inline">\(\mu_0 = 0\)</span>) qui joue le rôle d’hypothèse nulle.</p>
 <p><span class="math display">\[ t_{n-1} = \frac{\bar{x}-\mu_0}{(s/\sqrt{n})} \]</span></p>
 <p>La distribution-<span class="math inline">\(t\)</span> a un degré de liberté (l’indice de <span class="math inline">\(t\)</span> dans l’équation) qui lui est associé et qui est fixé à <span class="math inline">\(dl = n - 1\)</span>, la taille d’échantillon moins 1. Un degré est perdu à cause de l’estimation de l’écart type de l’échantillon. Qu’en est-il de la probabilité d’obtenir cette moyenne? En recourant à la distribution intégrée de <strong>R</strong>, <code><a href="https://rdrr.io/r/stats/TDist.html">pt()</a></code> il est possible d’obtenir la probabilité d’une valeur-<span class="math inline">\(t\)</span> par rapport à l’hypothèse nulle. La fonction nécessite une valeur-<span class="math inline">\(t\)</span> et le degré de liberté associé, p. ex., <code>pt(t = , df = n - 1)</code>. La valeur produite donne la probabilité d’obtenir un score plus petit jusqu’à la valeur-<span class="math inline">\(t\)</span>. Une astuce permet de calculer aisément la probabilité lorsque la distribution d’échantillonnage est symétrique. Utiliser une valeur absolue permet de considérer les deux côtés de la distribution simultanément. Les valeurs-<span class="math inline">\(t\)</span> négatives sont alors positives. Comme un côté est supprimé, l’espace positif est doublé, le code pour tenir compte de cet astuce est : <code>(1 - pt(abs(t), df = n - 1)) * 2</code> où <code>t</code> est la valeur-<span class="math inline">\(t\)</span> obtenue.</p>
-<div class="sourceCode" id="cb104"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb107"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">testt</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">mu</span> <span class="op">=</span> <span class="fl">0</span><span class="op">)</span><span class="op">{</span>
   <span class="co"># x est une variable continue</span>
   <span class="co"># mu est une moyenne à tester comme hypothèse nulle(H0)</span>
@@ -299,7 +319,7 @@ Figure 8.10: Comparaison d’une distribution normale à deux distributions-<spa
   <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">statistique</span><span class="op">)</span>
 <span class="op">}</span></code></pre></div>
 <p>Une fois la fonction créée, il est possible de la tester en la comparant avec la fonction <strong>R</strong> de base <code>test.t()</code>. Le code suivant crée un échantillon de 30 unités avec une moyenne de 1 et un écart type de 1.</p>
-<div class="sourceCode" id="cb105"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb108"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Un exemple de jeu de données</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span>
 <span class="va">x</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">30</span>, mean <span class="op">=</span> <span class="fl">1</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
@@ -328,7 +348,7 @@ Figure 8.10: Comparaison d’une distribution normale à deux distributions-<spa
 <span class="co">#&gt;     0.696</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:sss"></span>
-<img src="03-Inferences_files/figure-html/sss-1.png" alt="Valeur-$t$ de l'échantillon sur la distribution-$t$" width="75%" height="75%"><p class="caption">
+<img src="08-Inferer_files/figure-html/sss-1.png" alt="Valeur-$t$ de l'échantillon sur la distribution-$t$" width="75%" height="75%"><p class="caption">
 Figure 8.11: Valeur-<span class="math inline">\(t\)</span> de l’échantillon sur la distribution-<span class="math inline">\(t\)</span>
 </p>
 </div>
@@ -353,6 +373,7 @@ Figure 8.11: Valeur-<span class="math inline">\(t\)</span> de l’échantillon s
 <!-- # (PART) Les analyses bivariées {-} --><!-- # Introduction {#analyse-intro .unnumbered} -->
 </div>
 </div>
+
   <div class="chapter-nav">
 <div class="prev"><a href="exercice-gestion.html">Exercices</a></div>
 <div class="next"><a href="analyser.html"><span class="header-section-number">9</span> Analyser</a></div>
@@ -370,8 +391,8 @@ Figure 8.11: Valeur-<span class="math inline">\(t\)</span> de l’échantillon s
 
       <div class="book-extra">
         <ul class="list-unstyled">
-<li><a id="book-source" href="https://github.com/quantmeth/MQR/blob/master/03-Inferences.Rmd">View source <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="https://github.com/quantmeth/MQR/edit/master/03-Inferences.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+<li><a id="book-source" href="https://github.com/quantmeth/MQR/blob/master/08-Inferer.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/quantmeth/MQR/edit/master/08-Inferer.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
         </ul>
 </div>
     </nav>
@@ -383,7 +404,7 @@ Figure 8.11: Valeur-<span class="math inline">\(t\)</span> de l’échantillon s
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Méthodes Quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-05-19.</p>
+    <p>"<strong>Méthodes Quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-05-24.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

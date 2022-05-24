@@ -7,7 +7,7 @@
 <title> 9 Analyser | Méthodes Quantitatives avec R</title>
 <meta name="author" content="P.-O. Caron">
 <meta name="description" content="En continuation de l’introduction des théories des tests d’hypothèses (voir Inférer) et l’aperçu donnée par le test-\(t\) à échantillon unique, cette section poursuit la présentation en...">
-<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta name="generator" content="bookdown 0.26 with bs4_book()">
 <meta property="og:title" content=" 9 Analyser | Méthodes Quantitatives avec R">
 <meta property="og:type" content="book">
 <meta property="og:url" content="mqr.teluq.ca/analyser.html">
@@ -15,7 +15,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content=" 9 Analyser | Méthodes Quantitatives avec R">
 <meta name="twitter:description" content="En continuation de l’introduction des théories des tests d’hypothèses (voir Inférer) et l’aperçu donnée par le test-\(t\) à échantillon unique, cette section poursuit la présentation en...">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
@@ -25,7 +25,31 @@
     \(
     \newcommand{\EX}{\mathbb{E}}
     \)
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css"></p>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style><style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style><link rel="stylesheet" href="bs4_style.css"></p>
 
 <div class="container-fluid">
 <div class="row">
@@ -53,8 +77,8 @@
 <li><a class="" href="calculer.html"><span class="header-section-number">3</span> Calculer</a></li>
 <li><a class="" href="exercice-rudiments.html">Exercices</a></li>
 <li class="book-part">Jeux de données</li>
-<li><a class="" href="g%C3%A9rer.html"><span class="header-section-number">4</span> Gérer</a></li>
-<li><a class="" href="importer.html"><span class="header-section-number">5</span> Importer</a></li>
+<li><a class="" href="importer.html"><span class="header-section-number">4</span> Importer</a></li>
+<li><a class="" href="entr%C3%A9e-de-donn%C3%A9es.html"><span class="header-section-number">5</span> Entrée de données</a></li>
 <li><a class="" href="manipuler.html"><span class="header-section-number">6</span> Manipuler</a></li>
 <li><a class="" href="visualiser.html"><span class="header-section-number">7</span> Visualiser</a></li>
 <li><a class="" href="exercice-gestion.html">Exercices</a></li>
@@ -63,10 +87,6 @@
 <li><a class="active" href="analyser.html"><span class="header-section-number">9</span> Analyser</a></li>
 <li><a class="" href="simuler.html"><span class="header-section-number">10</span> Simuler</a></li>
 <li><a class="" href="exercice-analyse.html">Exercices</a></li>
-<li class="book-part">Modèle linéaire</li>
-<li><a class="" href="r%C3%A9gression.html"><span class="header-section-number">11</span> Régression</a></li>
-<li><a class="" href="cr%C3%A9er.html"><span class="header-section-number">12</span> Créer</a></li>
-<li><a class="" href="solutions.html">Solutions</a></li>
 <li><a class="" href="r%C3%A9f%C3%A9rences.html">Références</a></li>
 </ul>
 
@@ -98,7 +118,7 @@ t_{n-2} = \frac{\bar{x_1}-\bar{x_2}}{\sqrt{\frac{s^2_{1}}{n_1}+\frac{s^2_{2}}{n_
 <p>où l’indice de la valeur-<span class="math inline">\(t\)</span> est le nombre de degrés de liberté <span class="math inline">\(n-2\)</span>. Comme deux variances sont estimées, deux degrés de libertés sont imputés, ce qui octroi <span class="math inline">\(n-2\)</span> degrés. En plus de considéré <span class="math inline">\(\bar{x_2}\)</span> la valeur <em>arbitaire</em> de comparaison (l’ordre de <span class="math inline">\(\bar{x_2}\)</span> et <span class="math inline">\(\bar{x^1}\)</span> est arbitraire), les deux écart types sont également considérés au dénominateur.</p>
 <p>Une fois le calcul réalisé, la logique du test d’hypothèse est la même, à l’exception de l’hypothèse nulle qui correspond maintenant à l’absence de différence entre les deux moyennes.</p>
 <p>Voici un exemple de programmation du test-<span class="math inline">\(t\)</span> pour deux groupes indépendants.</p>
-<div class="sourceCode" id="cb106"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb109"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">testt.ind</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x1</span>, <span class="va">x2</span><span class="op">)</span><span class="op">{</span>
   <span class="co"># x1 est une variable continue associée au groupe 1</span>
   <span class="co"># x2 est une variable continue associée au groupe 2</span>
@@ -122,7 +142,7 @@ t_{n-2} = \frac{\bar{x_1}-\bar{x_2}}{\sqrt{\frac{s^2_{1}}{n_1}+\frac{s^2_{2}}{n_
 <p>Pour générer un exemple de données, le code ci-après crée un échantillon de 15 unités réparties en deux groupes, le premier groupe (<code>gr0</code>) est tiré d’une distribution normale ayant une moyenne de 1 et un écart type de 1, le deuxième groupe (<code>gr1</code>), une moyenne de 0 et un écart type de 1. La syntaxe illustre la création de deux variables pour créer les deux groupes. Il est aussi possible d’envisager la création sur en termes d’équation linéaire,</p>
 <p><span class="math display">\[y = \mu_0 + \mu_1x_1 + \epsilon\]</span>
 où <span class="math inline">\(y\)</span> est le score observé des unités et les autres variables construisent ce score, <span class="math inline">\(\mu_0\)</span> correspond à la moyenne du groupe référent de population (le groupe “contrôle” en quelque sorte.), <span class="math inline">\(\mu_1\)</span> réfère à la différence de moyenne entre les deux groupes identifiés par <span class="math inline">\(x_1\)</span> qui réfère à l’assignation au groupe, soit 0 pour le groupe “contrôle” et 1 pour le groupe “différent”. Pour ce même exemple, <span class="math inline">\(\mu_1 = -1\)</span>. Par le produit <span class="math inline">\(\mu_1x_1\)</span>, le groupe “contrôle” associé à la valeur 0 n’a pas de modification de la moyenne, <span class="math inline">\(-1*0=0\)</span> alors le groupe “différent” associé à la valeur 1, <span class="math inline">\(-1*1=-1\)</span>. Enfin, <span class="math inline">\(\epsilon\)</span> correspond à la variabilité entre les unités. Cette façon de programmer la création des variables illustre bien l’association linéaire qui existe même dans les différences de moyennes et sera très utile pour des modèles plus compliqués.</p>
-<div class="sourceCode" id="cb107"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb110"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Un exemple de jeu de données programmé de deux façons</span>
 <span class="co"># Méthode 1</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">2021</span><span class="op">)</span>
@@ -152,7 +172,7 @@ où <span class="math inline">\(y\)</span> est le score observé des unités et 
 <span class="co">#&gt; [11,]  1.5133  1.5133</span></code></pre></div>
 <p>Les données sont identiques.</p>
 <p>Une fois la fonction créée, il est possible de la tester et de la comparer avec la fonction <strong>R</strong> de base <code>test.t()</code>.</p>
-<div class="sourceCode" id="cb108"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb111"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Vérification de la fonction maison</span>
 <span class="fu">testt.ind</span><span class="op">(</span><span class="va">gr0</span>, <span class="va">gr1</span><span class="op">)</span>
 <span class="co">#&gt; $valeur.t</span>
@@ -181,7 +201,7 @@ où <span class="math inline">\(y\)</span> est le score observé des unités et 
 dl=\frac{\left(\frac{s^2_1}{n_1}+\frac{s^2_2}{n_2}\right)^2}{\frac{\left(\frac{s^2_1}{n_1}\right)^2}{n_1-1}+\frac{\left(\frac{s^2_2}{n_2}\right)^2}{n_2-1}}
 \]</span>
 En apportant cette correction au code initial.</p>
-<div class="sourceCode" id="cb109"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb112"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">testt.ind2</span> <span class="op">&lt;-</span><span class="kw">function</span><span class="op">(</span><span class="va">x1</span>, <span class="va">x2</span><span class="op">)</span><span class="op">{</span>
   <span class="co"># x1 est une variable continue associée au groupe 1</span>
   <span class="co"># x2 est une variable continue associée au groupe 2</span>
@@ -202,7 +222,7 @@ En apportant cette correction au code initial.</p>
   <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">statistique</span><span class="op">)</span>
 <span class="op">}</span></code></pre></div>
 <p>Le voici comparé la fonction <strong>R</strong> de base.</p>
-<div class="sourceCode" id="cb110"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb113"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="va">gr0</span>, <span class="va">gr1</span><span class="op">)</span> <span class="co"># Absence de l'argument var.equal = TRUE</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;  Welch Two Sample t-test</span>
@@ -227,7 +247,7 @@ En apportant cette correction au code initial.</p>
 <p>Les sorties sont identiques.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:disttt"></span>
-<img src="04-Analyses_files/figure-html/disttt-1.png" alt="Valeur-$t$ de la différence de moyenne sur la distribution-$t$" width="75%" height="75%"><p class="caption">
+<img src="09-Analyser_files/figure-html/disttt-1.png" alt="Valeur-$t$ de la différence de moyenne sur la distribution-$t$" width="75%" height="75%"><p class="caption">
 Figure 9.1: Valeur-<span class="math inline">\(t\)</span> de la différence de moyenne sur la distribution-<span class="math inline">\(t\)</span>
 </p>
 </div>
@@ -241,7 +261,7 @@ Figure 9.1: Valeur-<span class="math inline">\(t\)</span> de la différence de m
 <p>Ce test est utile lorsqu’il faut tester si les participants se sont améliorés ou détériorés entre deux temps de mesure. Pour calculer la valeur-<span class="math inline">\(t\)</span>,</p>
 <p><span class="math display">\[ t_{dl_1} = \frac{\bar{x_1}-\bar{x_2}}{\sigma_d/\sqrt{n}} \]</span></p>
 <p>avec <span class="math inline">\(n-1\)</span> degrés de liberté à cause de l’estimation de l’écart type. Les étapes subséquentes sont identiques au test-<span class="math inline">\(t\)</span> à groupe unique.</p>
-<div class="sourceCode" id="cb111"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb114"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">testt.dep</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">temps1</span>, <span class="va">temps2</span><span class="op">)</span><span class="op">{</span>
   <span class="co"># temps est une variable continue mesurée </span>
   <span class="co"># à deux occasion auprès des mêmes participants</span>
@@ -257,13 +277,13 @@ Figure 9.1: Valeur-<span class="math inline">\(t\)</span> de la différence de m
 <span class="op">}</span></code></pre></div>
 <p>Pour créer le jeu de données, les étapes sont similaires au test-<span class="math inline">\(t\)</span> indépendant pour des temps de mesure indépendants (sans corrélation) où seules les populations des temps de mesure sont définis. Il est possible de spécifier une corrélation entre les deux de mesures. Cela sera introduit ultérieurement.</p>
 <p>Dans ce jeu de données, 25 personnes sont mesurées à deux temps de reprises. Il n’y a pas de corrélation entre les temps de mesure. La variance des temps de mesure est de 1. La différence de moyenne est de 3.</p>
-<div class="sourceCode" id="cb112"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb115"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Un exemple de jeu de données</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">148</span><span class="op">)</span>
 <span class="va">temps1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">25</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
 <span class="va">temps2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">25</span>, mean <span class="op">=</span> <span class="fl">3</span>, sd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></code></pre></div>
 <p>La fonction base de <strong>R</strong> est encore <code><a href="https://rdrr.io/r/stats/t.test.html">t.test()</a></code>, mais il faudra spécifier l’argument <code>paired = TRUE</code> pour commander un test apparié (une autre appellation pour un test-<span class="math inline">\(t\)</span> dépendant).</p>
-<div class="sourceCode" id="cb113"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb116"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="va">temps1</span>, <span class="va">temps2</span>, paired <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;  Paired t-test</span>
@@ -288,7 +308,7 @@ Figure 9.1: Valeur-<span class="math inline">\(t\)</span> de la différence de m
 <p>Les sorties sont identiques.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:testtttt"></span>
-<img src="04-Analyses_files/figure-html/testtttt-1.png" alt="Valeur-$t$ de moyenne de différences sur la distribution-$t$" width="75%" height="75%"><p class="caption">
+<img src="09-Analyser_files/figure-html/testtttt-1.png" alt="Valeur-$t$ de moyenne de différences sur la distribution-$t$" width="75%" height="75%"><p class="caption">
 Figure 9.2: Valeur-<span class="math inline">\(t\)</span> de moyenne de différences sur la distribution-<span class="math inline">\(t\)</span>
 </p>
 </div>
@@ -333,7 +353,7 @@ où <span class="math inline">\(dl_1 = k-1\)</span>, et <span class="math inline
 <span class="header-section-number">9.1.3.2</span> La création de données<a class="anchor" aria-label="anchor" href="#la-cr%C3%A9ation-de-donn%C3%A9es"><i class="fas fa-link"></i></a>
 </h4>
 <p>Dans un jeu de données commun, une variable désignera les groupes, et une autre leur score sur une certaine mesure. La syntaxe suivante montre trois façons pour créer une variable facteur.</p>
-<div class="sourceCode" id="cb114"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb117"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">nk</span> <span class="op">&lt;-</span> <span class="fl">5</span> <span class="co"># nombre d'unités par groupe</span>
 <span class="va">k</span> <span class="op">&lt;-</span> <span class="fl">4</span>  <span class="co"># nombre de groupes</span>
 <span class="co"># En ordre</span>
@@ -366,7 +386,7 @@ où <span class="math inline">\(dl_1 = k-1\)</span>, et <span class="math inline
 <span class="co">#&gt; [19,]       4       3       1</span>
 <span class="co">#&gt; [20,]       4       4       1</span></code></pre></div>
 <p>Il est aussi possible de remplacer les arguments, <code>1:k</code> par des chaînes de caractères (des catégories au lieu de nombres).</p>
-<div class="sourceCode" id="cb115"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb118"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">categorie</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"char"</span>, <span class="st">"chat"</span>, <span class="st">"cheval"</span>, <span class="st">"chevalier"</span>, <span class="st">"chien"</span><span class="op">)</span>
 <span class="va">nk</span> <span class="op">&lt;-</span> <span class="fl">2</span>
 <span class="va">groupe</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="va">categorie</span>, each <span class="op">=</span> <span class="va">nk</span><span class="op">)</span><span class="op">)</span> <span class="co"># Déclarer comme facteur</span>
@@ -376,7 +396,7 @@ où <span class="math inline">\(dl_1 = k-1\)</span>, et <span class="math inline
 <span class="co">#&gt; Levels: char chat cheval chevalier chien</span></code></pre></div>
 <p>Une bonne pratique dans le contexte des comparaisons de moyenne est de déclarer les variables catégorielles comme facteur avec <code><a href="https://rdrr.io/r/base/factor.html">as.factor()</a></code>.</p>
 <p>Pour créer des valeurs à ces catégories, une stratégie simple est de créer des valeurs pour chacun des groupes et de les combiner.</p>
-<div class="sourceCode" id="cb116"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb119"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">2602</span><span class="op">)</span>
 <span class="va">char</span>      <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n <span class="op">=</span> <span class="va">nk</span>, mean <span class="op">=</span> <span class="fl">15</span>, sd <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> 
 <span class="va">chat</span>      <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n <span class="op">=</span> <span class="va">nk</span>, mean <span class="op">=</span> <span class="fl">20</span>, sd <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> <span class="co"># Différences ici</span>
@@ -401,7 +421,7 @@ où <span class="math inline">\(dl_1 = k-1\)</span>, et <span class="math inline
 <span class="header-section-number">9.1.3.3</span> Dummy coding<a class="anchor" aria-label="anchor" href="#dummy-coding"><i class="fas fa-link"></i></a>
 </h4>
 <p>La plupart du temps, les variables de regroupement, les variables identifiant l’appartenance aux groupes, sont construites avec une variable de type facteur, c’est-à-dire une colonne avec différentes valeurs ou libellés. C’est d’ailleurs ce qui a été fait dans l’exemple précédent. Cette méthode d’identification de groupement implique une programmation plus intensive, surtout pour la création de valeurs. En termes de programmation, il est plus élégant de recourir à une fonction de codage factice. Cela permettra de représenter fidèlement le modèle sous-jacent. Étrangement, il n’y a pas de fonction de base avec <strong>R</strong> pour du codage factice. Une fonction maison permettra d’automatiser la réassignation des groupes (en une seule variable) sur plusieurs variables désignant leur appartenance.</p>
-<div class="sourceCode" id="cb117"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb120"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">dummy.coding</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span>
   <span class="co"># Retourne un codage factice de x</span>
   <span class="co"># avec les facteurs en ordre alphabétique</span>
@@ -418,7 +438,7 @@ où <span class="math inline">\(dl_1 = k-1\)</span>, et <span class="math inline
   <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">X</span><span class="op">)</span>
 <span class="op">}</span></code></pre></div>
 <p>La fonction maison retourne un codage factice pour les <span class="math inline">\(k\)</span> groupes. <strong>Attention</strong>, le codage factice est fait en ordre alphabétique. Comme il est redondant d’avoir <span class="math inline">\(k\)</span> groupes (identifier <span class="math inline">\(k\)</span> groupes nécessite <span class="math inline">\(k-1\)</span> variables), un groupe référent est désigné. Ce dernier aura 0 sur tous les scores. Pour retirer un groupe, l’utilisation des crochets et une valeur négative associés à la colonne du groupe référent feront l’affaire, p. ex. <code>dummy.coding(x)[,-k]</code> déclarera le <span class="math inline">\(k\)</span><sup>e</sup> groupe comme le groupe référent.</p>
-<div class="sourceCode" id="cb118"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb121"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Facteur de groupe</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">2602</span><span class="op">)</span>
 <span class="va">k</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">categorie</span><span class="op">)</span>
@@ -452,7 +472,7 @@ où <span class="math inline">\(dl_1 = k-1\)</span>, et <span class="math inline
 <span class="header-section-number">9.1.3.4</span> Analyse<a class="anchor" aria-label="anchor" href="#analyse"><i class="fas fa-link"></i></a>
 </h4>
 <p>À toute fin pratique, un jeu de données est recréé avec les catégories et paramètres précédents, mais avec <span class="math inline">\(n_k=20\)</span> unités par groupe. La fonction <strong>R</strong> de base est <code><a href="https://rdrr.io/r/stats/aov.html">aov()</a></code>. Elle prend comme argument une formule, de forme <code>VD ~ VI</code> (variable dépendante prédite par variable indépendante) et un jeu de données duquel prendre les variables. Il existe également une fonction <code><a href="https://rdrr.io/r/stats/anova.html">anova()</a></code>, une fonction un peu plus complexe que <code><a href="https://rdrr.io/r/stats/aov.html">aov()</a></code>. Pour obtenir toute l’information désirée de la sortie de la fonction, il faut demander un sommaire de la sortie avec <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code>.</p>
-<div class="sourceCode" id="cb119"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb122"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Anova de base</span>
 <span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">score</span> <span class="op">~</span> <span class="va">groupe</span>, data <span class="op">=</span> <span class="va">donnees</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span>
@@ -493,7 +513,7 @@ où <span class="math inline">\(dl_1 = k-1\)</span>, et <span class="math inline
 <p>Les résultats sont identiques, les seules différences étant dues à l’arrondissement. Comme la valeur-<span class="math inline">\(p\)</span> est de 5.145^{-9}, ce qui est extrêmement plus petit que l’usuel .05 (ou un autre taux d’erreur de type I fixé à l’avance), l’hypothèse nulle est rejetée, il y a vraisemblablement une différence entre les groupes, ce qui est déjà connu. La Figure <a href="analyser.html#fig:ft">9.3</a> illustre très bien la rareté d’un tel jeu de données sous l’hypothèse nulle.</p>
 <div class="figure">
 <span style="display:block;" id="fig:ft"></span>
-<img src="04-Analyses_files/figure-html/ft-1.png" alt="Valeur-$F$ de la comparaison des moyennes" width="672"><p class="caption">
+<img src="09-Analyser_files/figure-html/ft-1.png" alt="Valeur-$F$ de la comparaison des moyennes" width="672"><p class="caption">
 Figure 9.3: Valeur-<span class="math inline">\(F\)</span> de la comparaison des moyennes
 </p>
 </div>
@@ -514,7 +534,7 @@ Figure 9.3: Valeur-<span class="math inline">\(F\)</span> de la comparaison des 
 <p>En transformant <span class="math inline">\(x\)</span> et <span class="math inline">\(y\)</span> pour qu’elles soient <strong>centrées</strong>, l’aspect de produit entre les deux variables devient évident dans l’expression de la covariance.
 <span class="math display">\[\text{cov}_{xy} = \frac{1}{n-1}\sum_{i=1}^nxy\]</span>
 La programmation de la covariance pourrait se traduire ainsi.</p>
-<div class="sourceCode" id="cb120"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb123"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">covariance</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span><span class="op">{</span>
   <span class="co"># X est une data.frame ou matrice de n sujets par p variables</span>
   <span class="va">n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
@@ -535,7 +555,7 @@ La covariance indique la direction de la covariation entre les deux variables, p
 <p>La corrélation représente le degré d’association linéaire entre deux variables. Une façon simple de considérer la corrélation est de la concevoir comme une covariance standardisée. Elle varie entre -1 et 1, ces deux dernières valeurs impliquant, respectivement, une relation parfaitement négative et positive entre les deux variables. En plus d’indiquer la direction de la relation, la corrélation suggère une force à ce lien. Lorsque la valeur de la corrélation est nulle, <span class="math inline">\(r=0\)</span>, un diagramme de dispersion ne montre qu’un nuage de point épars (sans structure), plus la corrélation augmente (en terme absolu) plus le nuage tends vers une ligne droite. La Figure <a href="analyser.html#fig:corimage">9.4</a> montre différentes valeurs de corrélation et un exemple de nuage de point qui lui est associé.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:corimage"></span>
-<img src="04-Analyses_files/figure-html/corimage-1.png" alt="Illustrations de diagrammes de dispersion associé en fonction de corrélations" width="50%" height="50%"><p class="caption">
+<img src="09-Analyser_files/figure-html/corimage-1.png" alt="Illustrations de diagrammes de dispersion associé en fonction de corrélations" width="50%" height="50%"><p class="caption">
 Figure 9.4: Illustrations de diagrammes de dispersion associé en fonction de corrélations
 </p>
 </div>
@@ -546,7 +566,7 @@ Figure 9.4: Illustrations de diagrammes de dispersion associé en fonction de co
 <p>Il est possible de calculer la directement la corrélation à partir de la covariance, soit en divisant par le produit des écarts types des variables.</p>
 <p><span class="math display">\[r_{xy} = \frac{\text{cov}_{xy}}{\sigma_x\sigma_y}\]</span></p>
 <p>Voici trois options de programmation de la corrélation. La première et la deuxième sont basées sur la covariance. Dans la première, la covariance est calculée de nouveau dans la fonction. La deuxième quant à elle profite avantageusement de l’existence d’une fonction maison qui calcule directement la covariance. La troisième recourt au produit de variables standardisées.</p>
-<div class="sourceCode" id="cb121"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb124"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Option 1 : Calcul complet</span>
 <span class="va">correlation1</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span><span class="op">{</span>
   <span class="va">n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
@@ -577,7 +597,7 @@ Figure 9.4: Illustrations de diagrammes de dispersion associé en fonction de co
 <p>Évidemment, <strong>R</strong> possède une fonction de base pour le calcul d’une corrélation entre deux variables ou d’une matrice de corrélation (à partir d’un jeu de données de deux variables ou plus). Il s’agit de <code><a href="https://rdrr.io/r/stats/cor.html">cor()</a></code>. Ces trois fonctions maison en plus de la fonction <strong>R</strong> sont comparées ci-dessous. Pour ce faire, un jeu de données est créé possédant les caractéristiques désirées. Dans ce cas-ci, la taille d’échantillon est fixée à <span class="math inline">\(n=10000\)</span> pour assurer une bonne précision dans l’échantillon et une corrélation <span class="math inline">\(r=.7\)</span>.</p>
 <p>Une façon simple de produire des données à partir d’une matrice de corrélation (ou de covariance) est d’utiliser la fonction <code>mvrnorm()</code> du package <code>MASS</code>. Elle évitera pour l’instant d’introduire les manipulations mathématiques nécessaires (ce sera donc pour l’instant l’une de ces boîtes noires ayant la confiance de l’utilisateur). La fonction <code>mvrnorm()</code> pour <em>MultiVariate Random NORMmal</em> nécessite trois arguments : La taille d’échantillon <code>n</code>, les moyennes <code>mu</code> des <span class="math inline">\(p\)</span> variables et la matrice de covariance <code>Sigma</code> (la corrélation est un cas particulier de la covariance où les variables sont standardisées). Le lecteur avisé aura noté la ressemblance de nomenclature entre <code>mvrnorm()</code> (multivariée) et
 <code><a href="https://rdrr.io/r/stats/Normal.html">rnorm()</a></code> (univariée). Enfin, la dernière étape est de produire une matrice de covariance <span class="math inline">\(p \times p\)</span>. La fonction <code><a href="https://rdrr.io/r/base/matrix.html">matrix()</a></code> prend une variable de données, dans cet exemple , <code>c(1, r, r, 1)</code> qu’elle répartit ligne par colonne. Comme <span class="math inline">\(p=2\)</span>, cela crée une matrice <span class="math inline">\(2 \times 2\)</span>.</p>
-<div class="sourceCode" id="cb122"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb125"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">820</span><span class="op">)</span>
 <span class="co"># Taille d'échantillon importante pour réduire l'erreur d'échantillonnage</span>
 <span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">10000</span>
@@ -622,7 +642,7 @@ Figure 9.4: Illustrations de diagrammes de dispersion associé en fonction de co
 <p>Pour tester la probabilité d’obtenir cette valeur, la corrélation <span class="math inline">\(r\)</span> peut se transformer monotonement en valeur-<span class="math inline">\(t\)</span>, ce qui permet de calculer des valeurs-<span class="math inline">\(p\)</span> par la suite.</p>
 <p><span class="math display">\[ t_{n-2} = \frac{r}{(\frac{\sqrt{1-r^2}}{\sqrt{n-2}})} \]</span>
 Cette formule se traduit simplement en code <strong>R</strong>.</p>
-<div class="sourceCode" id="cb123"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb126"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Création d'une matrice de corrélation, </span>
 <span class="co"># il pourrait également s'agir d'un vecteur ou d'un scalaire.</span>
 <span class="va">r</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">.5</span>,<span class="fl">.4</span>,<span class="fl">.5</span>,<span class="fl">1</span>,<span class="fl">.3</span>,<span class="fl">.4</span>,<span class="fl">.3</span>,<span class="fl">1</span><span class="op">)</span>,<span class="fl">3</span>,<span class="fl">3</span><span class="op">)</span>
@@ -796,7 +816,7 @@ Total
 où <span class="math inline">\(o\)</span> correspond aux valeurs observées, <span class="math inline">\(t\)</span> réfère aux valeurs théoriques, <span class="math inline">\(v\)</span> représente les degrés de liberté et <span class="math inline">\(i\)</span> et <span class="math inline">\(j\)</span> les lignes et colonnes respectivement. Le degré de liberté est
 <span class="math display">\[v = (n_{\text{ligne}}-1)(n_{\text{colonne}}-1)\]</span></p>
 <p>Si l’hypothèse nulle est vraie, les valeurs observées et théoriques devraient être très près. Le carré permet de calculer une distance euclidienne et le dénominateur pondère la distance. Comme l’analyse de variance, le test de <span class="math inline">\(\chi^2\)</span> pour table de contingence est global, il n’informe pas d’où provient la dépendance, mais bien s’il y a au moins une dépendance.</p>
-<div class="sourceCode" id="cb124"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb127"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">khicarre</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">obs</span><span class="op">)</span><span class="op">{</span>
   <span class="co"># Obs est une table de contingence</span>
   <span class="co"># Somme colonne</span>
@@ -816,7 +836,7 @@ où <span class="math inline">\(o\)</span> correspond aux valeurs observées, <s
   <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">statistiques</span><span class="op">)</span>
 <span class="op">}</span></code></pre></div>
 <p>Il y a plusieurs techniques pour créer une base de données, l’essentiel étant de lier les proportions désirées. Ici, une variable sexe est créée avec 50-50% de chance d’être l’un ou l’autre sexe. Par la suite, une proportion différente liée au sexe est utilisée pour générer la fréquence de consommation de tabac. La syntaxe sert principalement à identifier les valeurs <code>homme</code> et <code>femme</code> de la première variable pour en associer une valeur <code>tabac</code>.</p>
-<div class="sourceCode" id="cb125"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb128"><pre class="downlit sourceCode r">
 <code class="sourceCode R">  <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">54</span><span class="op">)</span>
   <span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">100</span>
   <span class="co"># Première variable</span>
@@ -844,7 +864,7 @@ où <span class="math inline">\(o\)</span> correspond aux valeurs observées, <s
 <p>La fonction <code><a href="https://rdrr.io/r/base/table.html">table()</a></code> de <strong>R</strong> génère une table de contingence. La fonction maison et deux méthodes de base <strong>R</strong> sont présentées et produisent les mêmes résultats pour le <span class="math inline">\(\chi^2\)</span>. Un autre, le test exact de Fisher est également présenté. Celui-ci est plus robuste, mais peut requérir plus intensive des ressources de l’ordianteur pour les grosses tables de contingences.</p>
 <p>Le test du <span class="math inline">\(\chi^2\)</span> est sujet à certains problèmes qu’il est important de considérer sans quoi l’interprétation pourra être faussée. Si la taille d’échantillon (le nombre d’unités d’observation observées est trop faible), alors le test est biaisé. Par exemple, trois lancers de pile ou face ne sont pas suffisants pour tester une hypothèse de khi-carré, le nombre de résultats différents est de 2, ce qui ne donne pas une approximation satisfaisante de la distribution d’échantillonnage. La convention est de dire qu’une fréquence théorique est trop petite si elle est plus petite que 5. Si ce n’est pas cas, des corrections ou d’autres options doivent être considérées.</p>
 <p>Dans le présent exemple, bien que les fréquences attendues respectent les critères usuels, il peut être utile d’envisager un test plus robuste comme le test exact de Fisher ou le <span class="math inline">\(\chi^2\)</span> avec correction de continuité. Le premier se commande avec la fonction <code><a href="https://rdrr.io/r/stats/fisher.test.html">fisher.test()</a></code> et le second est la fonction par défaut de <code><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.test()</a></code>. Pour montrer l’équivalent entre la fonction <code><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.test()</a></code> et la fonction maison, l’option de correction est désactivée avec l’argument <code>correct = FALSE</code>.</p>
-<div class="sourceCode" id="cb126"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb129"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Table de contingence</span>
 <span class="va">TC</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">donnees</span><span class="op">)</span>
 <span class="co"># Fonction maison</span>
@@ -928,8 +948,8 @@ où <span class="math inline">\(o\)</span> correspond aux valeurs observées, <s
 
       <div class="book-extra">
         <ul class="list-unstyled">
-<li><a id="book-source" href="https://github.com/quantmeth/MQR/blob/master/04-Analyses.Rmd">View source <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="https://github.com/quantmeth/MQR/edit/master/04-Analyses.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+<li><a id="book-source" href="https://github.com/quantmeth/MQR/blob/master/09-Analyser.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/quantmeth/MQR/edit/master/09-Analyser.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
         </ul>
 </div>
     </nav>
@@ -941,7 +961,7 @@ où <span class="math inline">\(o\)</span> correspond aux valeurs observées, <s
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Méthodes Quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-05-19.</p>
+    <p>"<strong>Méthodes Quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-05-24.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

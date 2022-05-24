@@ -53,8 +53,8 @@
 <li><a class="" href="calculer.html"><span class="header-section-number">3</span> Calculer</a></li>
 <li><a class="" href="exercice-rudiments.html">Exercices</a></li>
 <li class="book-part">Jeux de données</li>
-<li><a class="" href="g%C3%A9rer.html"><span class="header-section-number">4</span> Gérer</a></li>
-<li><a class="" href="importer.html"><span class="header-section-number">5</span> Importer</a></li>
+<li><a class="" href="importer.html"><span class="header-section-number">4</span> Importer</a></li>
+<li><a class="" href="entr%C3%A9e-de-donn%C3%A9es.html"><span class="header-section-number">5</span> Entrée de données</a></li>
 <li><a class="" href="manipuler.html"><span class="header-section-number">6</span> Manipuler</a></li>
 <li><a class="" href="visualiser.html"><span class="header-section-number">7</span> Visualiser</a></li>
 <li><a class="" href="exercice-gestion.html">Exercices</a></li>
@@ -66,6 +66,7 @@
 <li class="book-part">Modèle linéaire</li>
 <li><a class="" href="r%C3%A9gression.html"><span class="header-section-number">11</span> Régression</a></li>
 <li><a class="active" href="cr%C3%A9er.html"><span class="header-section-number">12</span> Créer</a></li>
+<li><a class="" href="lanalyse-en-composantes-principales.html"><span class="header-section-number">13</span> L’analyse en composantes principales</a></li>
 <li><a class="" href="solutions.html">Solutions</a></li>
 <li><a class="" href="r%C3%A9f%C3%A9rences.html">Références</a></li>
 </ul>
@@ -98,7 +99,7 @@ y=x_1+x_2
 \tag{12.2}
 \end{equation}\]</span></p>
 <p>où <span class="math inline">\(\sigma^2\)</span> est le symbole habituel de la variance. La variance de la somme (ou de la différence) de deux variables indépendantes (non-corrélées) aléatoires est leur somme. En fait, la somme de <span class="math inline">\(p\)</span> variables indépendantes est la somme de leurs variances. En syntaxe <strong>R</strong>, ces équations ressemblent à ceci.</p>
-<div class="sourceCode" id="cb148"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb150"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">1155</span><span class="op">)</span>                  <span class="co"># reproductibilité</span>
 <span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">100000</span>                      <span class="co"># taille élevée pour la précision</span>
 <span class="va">s.x1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span>                  <span class="co"># variance de 2 </span>
@@ -108,7 +109,7 @@ y=x_1+x_2
 <span class="va">x1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n <span class="op">=</span> <span class="va">n</span>, sd <span class="op">=</span> <span class="va">s.x1</span><span class="op">)</span> 
 <span class="va">x2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n <span class="op">=</span> <span class="va">n</span>, sd <span class="op">=</span> <span class="va">s.x2</span><span class="op">)</span>     </code></pre></div>
 <p>Dans cet exemple, les variances de <code>x1</code> et de <code>x3</code> sont égales à 2 et 3 respectivement. Si ces deux variables sont additionnées pour créer <code>y</code>, l’équation <a href="cr%C3%A9er.html#eq:eq2">(12.2)</a> implique que la variance est de <span class="math inline">\(\sigma^2_{x_{1}} + \sigma^2_{x_2} = 2 + 3= 5\)</span></p>
-<div class="sourceCode" id="cb149"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb151"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">y</span> <span class="op">&lt;-</span> <span class="va">x1</span> <span class="op">+</span> <span class="va">x2</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">var</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span>
 <span class="co">#&gt; [1] 5</span>
@@ -123,7 +124,7 @@ y=x_1+x_2
 \tag{12.3}
 \end{equation}\]</span></p>
 <p>L’équation <a href="cr%C3%A9er.html#eq:eq2">(12.2)</a> est un cas particulier lorsque <span class="math inline">\(\sigma_{x_1 x_2}=0\)</span>. En syntaxe <strong>R</strong>, pour <span class="math inline">\(\rho = .5\)</span>, cela revient à programmer ceci.</p>
-<div class="sourceCode" id="cb150"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb152"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Création de variables corrélées</span>
 <span class="va">rho</span> <span class="op">&lt;-</span> <span class="fl">.5</span>                          <span class="co"># corrélation de .5</span>
 <span class="va">s.x1x2</span> <span class="op">&lt;-</span> <span class="va">rho</span> <span class="op">*</span> <span class="va">s.x1</span> <span class="op">*</span> <span class="va">s.x2</span>        <span class="co"># covariance de x et y</span>
@@ -145,7 +146,7 @@ y=x_1+x_2
 <p>Pour rappel, la corrélation s’obtient avec <span class="math inline">\(\rho_{x_1,x_2}=\sigma_{x_1,x_2}/(\sigma_{x_1} \sigma_{x_2})\)</span> et inversement la covariance est obtenue par <span class="math inline">\(\rho_{x_1,x_2} \sigma_{x_1} \sigma_{x_2}=\sigma_{x_1,x_2}\)</span>. En calculant la covariance d’abord, soit</p>
 <p><span class="math display">\[\sigma_{x_1,x_2} = \rho_{x_1,x_2} \sigma_{x_1} \sigma_{x_2} = 0.5 \times 1.414 \times 1.732 = 1.225\]</span>
 et confirmé par <strong>R</strong>.</p>
-<div class="sourceCode" id="cb151"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb153"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">s.x1x2</span>
 <span class="co">#&gt; [1] 1.22</span></code></pre></div>
 <p>L’équation <a href="cr%C3%A9er.html#eq:eq3">(12.3)</a> pour la variance de <code>y</code> mène à</p>
@@ -168,7 +169,7 @@ Figure 12.1: Représentation des variables sous forme de triangles
 \tag{12.4}
 \end{equation}\]</span></p>
 <p>ce qui, en faisant la somme, conduit à l’équation <a href="cr%C3%A9er.html#eq:eq3">(12.3)</a>. Encore une fois, si <span class="math inline">\(\sigma_{x_1,x_2}=0\)</span>, alors l’équation <a href="cr%C3%A9er.html#eq:eq4">(12.4)</a> est égale à l’équation <a href="cr%C3%A9er.html#eq:eq2">(12.2)</a>. Cette formulation a l’avantage de montrer l’origine des deux covariances dans l’équation <a href="cr%C3%A9er.html#eq:eq3">(12.3)</a>. En code <strong>R</strong>, la syntaxe est dès plus rudimentaire.</p>
-<div class="sourceCode" id="cb152"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb154"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">S</span><span class="op">)</span>
 <span class="co">#&gt; [1] 7.45</span></code></pre></div>
 <p>Même si la notation matricielle peut sembler peu attrayante au départ, elle devient beaucoup plus intéressante lorsque le nombre de variables, <span class="math inline">\(p\)</span>, augmente, car il y a <span class="math inline">\(p(p-1)/2\)</span> éléments hors diagonale à ajouter aux <span class="math inline">\(p\)</span> variances. Elle deviendra même indispensable à la fin de ce chapitre.</p>
@@ -195,7 +196,7 @@ Figure 12.1: Représentation des variables sous forme de triangles
 \tag{12.7}
 \end{equation}\]</span></p>
 <p>où <span class="math inline">\(1\)</span> est un vecteur de longueur <span class="math inline">\(p\)</span> contenant seulement 1. Voici en syntaxe <strong>R</strong>.</p>
-<div class="sourceCode" id="cb153"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb155"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">Un</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span>        <span class="co"># Création du vecteur 1</span>
 <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">Un</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="va">S</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="va">Un</span>  <span class="co"># Grande somme</span>
 <span class="co">#&gt;      [,1]</span>
@@ -218,7 +219,7 @@ y=\beta x
 \tag{12.9}
 \end{equation}\]</span></p>
 <p>En termes de syntaxe <strong>R</strong>, cela se traduit (toujours avec le même exemple).</p>
-<div class="sourceCode" id="cb154"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb156"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">beta</span> <span class="op">=</span> <span class="fl">4</span>
 <span class="co"># La variance de x1 est toujours de 2</span>
 <span class="va">y</span> <span class="op">=</span> <span class="va">beta</span> <span class="op">*</span> <span class="va">x1</span>
@@ -247,7 +248,7 @@ y=\beta_1 x_1+\beta_2 x_2
 \tag{12.11}
 \end{equation}\]</span></p>
 <p>Dans ces équations, les <span class="math inline">\(\beta_i\)</span> mettent à l’échelle la variance et la covariance. Ces équations se vérifient avec <strong>R</strong> (toujours avec le même exemple).</p>
-<div class="sourceCode" id="cb155"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb157"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># En suivant, l'exemple précédent</span>
 <span class="va">beta1</span> <span class="op">=</span> <span class="fl">4</span>
 <span class="va">beta2</span> <span class="op">=</span> <span class="fl">5</span>
@@ -269,7 +270,7 @@ y=\beta_1 x_1+\beta_2 x_2
 \tag{12.12}
 \end{equation}\]</span></p>
 <p>où <span class="math inline">\(\mathbf{B}\)</span> (<span class="math inline">\(\beta\)</span> majuscule) est un vecteur contenant tous les coefficients de régression <span class="math inline">\(\beta_i\)</span> de longueur <span class="math inline">\(p\)</span> prédisant <span class="math inline">\(y\)</span> et s’appliquant à un nombre quelconque de prédicteurs <span class="math inline">\(x\)</span>. Le premier <span class="math inline">\(\prime\)</span> est le symbole de transposition, un opérateur qui pivote la matrice sur sa diagonale et, dans le cas d’un vecteur, retourne les colonnes en lignes et vice-versa (voir son implication dans l’équation <a href="cr%C3%A9er.html#eq:eq13">(12.13)</a> par exemple). Dans l’équation <a href="cr%C3%A9er.html#eq:eq12">(12.12)</a>, utiliser deux fois les deux vecteurs B revient à élever au carré <span class="math inline">\(\beta_i\)</span>. Si <span class="math inline">\(\mathbf{B}\)</span> sont tous égaux à 1, alors l’équation <a href="cr%C3%A9er.html#eq:eq12">(12.12)</a> est identique à la définition d’une grande somme, voir l’équation <a href="cr%C3%A9er.html#eq:GS">(12.7)</a>. En syntaxe <strong>R</strong>, l’équation <a href="cr%C3%A9er.html#eq:eq12">(12.12)</a> donne :</p>
-<div class="sourceCode" id="cb156"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb158"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">beta</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">beta1</span>, <span class="va">beta2</span><span class="op">)</span> <span class="co"># Joint beta1 et beta2 dans un vecteur</span>
 <span class="va">beta</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="va">S</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="va">beta</span> <span class="co"># S est la matrice de covariance calculée auparavant.</span>
 <span class="co">#&gt;      [,1]</span>
@@ -324,7 +325,7 @@ y=(\beta_1) x_1+(-\beta_2) x_2
 \tag{12.14}
 \end{equation}\]</span></p>
 <p>Ainsi, la variance de la différence de deux variables aléatoires est la somme de leurs variances en soustrayant deux fois leur échelle de covariance par <span class="math inline">\(\beta\)</span> comme prévu. Cela se vérifie avec <strong>R</strong>.</p>
-<div class="sourceCode" id="cb157"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb159"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">y</span> <span class="op">=</span> <span class="va">beta1</span> <span class="op">*</span> <span class="va">x1</span> <span class="op">-</span> <span class="va">beta2</span> <span class="op">*</span> <span class="va">x2</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">var</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span>
 <span class="co">#&gt; [1] 58</span>
@@ -480,7 +481,7 @@ Figure 12.2: Modèle à trois variables
 \tag{12.22}
 \end{equation}\]</span></p>
 <p>Afin de bâtir un exemple complet avec <strong>R</strong>, la syntaxe ci-dessous montre les paramètres arbitraires pour la création de données à parti du modèle de la figure <a href="cr%C3%A9er.html#fig:mod3">12.2</a>.</p>
-<div class="sourceCode" id="cb158"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb160"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Pour reproductibilité</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">1448</span><span class="op">)</span>            
 <span class="va">n</span> <span class="op">=</span> <span class="fl">100000</span>
@@ -489,7 +490,7 @@ Figure 12.2: Modèle à trois variables
 <span class="va">beta31</span> <span class="op">=</span> <span class="fl">.4</span>
 <span class="va">beta32</span> <span class="op">=</span> <span class="op">-</span><span class="fl">.5</span></code></pre></div>
 <p>La première variable <span class="math inline">\(x_1\)</span> est exogène, c’est-à-dire qu’elle n’est prédite par aucune autre variable, et n’obtient aucune information d’aucune autre variable. Cela paraît notamment dans la matrice <span class="math inline">\(\mathbf{B}\)</span> avec la première ligne ne contenant que des 0. Ainsi, pour créer <code>x1</code>, il suffit de connaître sa variance (1 dans un scénario standardisé). Il faudra en supplément un vecteur de variances (ici, toutes fixées à 1 par le scénario standardisé).</p>
-<div class="sourceCode" id="cb159"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb161"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Création de la première variable</span>
 <span class="va">x1</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n <span class="op">=</span> <span class="va">n</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="co"># Variance de 1</span></code></pre></div>
 <p>À l’aide de la loi de la somme des variances, la création de <span class="math inline">\(x_2\)</span> est assez simple puisqu’il n’y a qu’un seul prédicteur.</p>
@@ -501,7 +502,7 @@ x_2 = \beta_{2,1}x_1+\epsilon_{x_2}
 \sigma^2_{\epsilon_{x_2}} = 1-\beta_{2,1}^2\sigma^2_{x_1}=1-\beta_{21}^2
 \]</span></p>
 <p>En code <strong>R</strong>, il est possible de procéder ainsi.</p>
-<div class="sourceCode" id="cb160"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb162"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Variance résiduelle</span>
 <span class="va">e_x2</span> <span class="op">=</span> <span class="fl">1</span> <span class="op">-</span> <span class="va">beta21</span><span class="op">^</span><span class="fl">2</span>
 
@@ -516,7 +517,7 @@ x_3 = \beta_{3,1}x_1 + \beta_{3,2}x_2 + \epsilon_{x_3}
 \sigma^2{\epsilon_{x_3}} =\sigma^2_{x_3} -( \beta_{3,1}^2\sigma^2_{x_1} + \beta_{3,2}^2\sigma^2_{x_2}  +  2\beta_{3,1}\beta_{3,2}\sigma_{x_1,x_2}) = 1-(\beta_{3,1}^2+\beta_{3,2}^2  +  2\beta_{3,1}\beta_{3,2}\sigma_{x_1,x_2})
 \]</span></p>
 <p>Elle occasionne toutefois un défi, car la covariance entre <span class="math inline">\(x_1\)</span> et <span class="math inline">\(x_2\)</span> n’est pas explicitement connue. Dans le cas d’une variable prédite exclusivement par une autre variable qui elle est exogène (sans prédicteur), leur covariance est égale au coefficient de régression, soit <span class="math inline">\(\beta_{21}\)</span>. Ce cas ne survient que dans cette situation précise. Il sera impératif de dégager une solution générale pour des modèles ayant plus de trois variables, la complexité du calcul de la covariance augmentant avec la croissance de <span class="math inline">\(p\)</span>. En <strong>R</strong>, <span class="math inline">\(x_3\)</span> se génère ainsi.</p>
-<div class="sourceCode" id="cb161"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb163"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Variance résiduelle</span>
 <span class="va">e_x3</span> <span class="op">=</span> <span class="fl">1</span> <span class="op">-</span> <span class="op">(</span><span class="va">beta31</span><span class="op">^</span><span class="fl">2</span> <span class="op">+</span> <span class="va">beta32</span><span class="op">^</span><span class="fl">2</span> <span class="op">+</span> <span class="fl">2</span> <span class="op">*</span> <span class="va">beta31</span> <span class="op">*</span> <span class="va">beta32</span> <span class="op">*</span> <span class="va">beta21</span><span class="op">)</span>
 
@@ -524,7 +525,7 @@ x_3 = \beta_{3,1}x_1 + \beta_{3,2}x_2 + \epsilon_{x_3}
 <span class="va">x3</span> <span class="op">=</span> <span class="va">beta31</span> <span class="op">*</span> <span class="va">x1</span> <span class="op">+</span> <span class="va">beta32</span> <span class="op">*</span> <span class="va">x2</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n <span class="op">=</span> <span class="va">n</span>,
                                        sd <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">e_x3</span><span class="op">)</span><span class="op">)</span> <span class="co"># Variance = 1</span></code></pre></div>
 <p>Il est possible de vérifier les caractéristiques des trois modèles soit</p>
-<div class="sourceCode" id="cb162"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb164"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Création du jeu de données</span>
 <span class="va">X</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>x1 <span class="op">=</span> <span class="va">x1</span>,
                x2 <span class="op">=</span> <span class="va">x2</span>,
@@ -595,7 +596,7 @@ x_3 = \beta_{3,1}x_1 + \beta_{3,2}x_2 + \epsilon_{x_3}
 \tag{12.24}
 \end{equation}\]</span></p>
 <p>Il faut à chaque étape s’assurer de faire le remplacement des valeurs obtenues sur chaque côté de la diagonale, ce pourquoi deux équations sont reproduites à l’équaiton <a href="cr%C3%A9er.html#eq:buildS">(12.24)</a> avec des indices différents pour <span class="math inline">\(\mathbf{\Sigma}\)</span>.</p>
-<div class="sourceCode" id="cb163"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb165"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Matrice B</span>
 <span class="va">B</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>   <span class="fl">0</span>,     <span class="fl">0</span>,    <span class="fl">0</span>,
              <span class="va">beta21</span>,   <span class="fl">0</span>,    <span class="fl">0</span>,
@@ -612,7 +613,7 @@ x_3 = \beta_{3,1}x_1 + \beta_{3,2}x_2 + \epsilon_{x_3}
 <span class="co">#&gt; [2,]  0.2  0.0    0</span>
 <span class="co">#&gt; [3,]  0.4 -0.5    0</span></code></pre></div>
 <p>Voici pour l’exemple précédent les étapes de calcul décrites une à une de l’équation <a href="cr%C3%A9er.html#eq:buildS">(12.24)</a>. D’abord, il faut construire une matrice, <span class="math inline">\(\mathbf{\Sigma}\)</span> (<code>S</code> en code <strong>R</strong> ci-dessous) avec comme diagonale les variances. Puis, calculer l’équation <a href="cr%C3%A9er.html#eq:buildS">(12.24)</a>. Ensuite, il faut remplacer le résultat obtenu des deux côtés de la diagonale de façon à ce que <code>S</code> demeure symétrique. Ces étapes sont répétées pour <span class="math inline">\(i=2,...,p\)</span> (dans cet exemple, <span class="math inline">\(p=3\)</span>).</p>
-<div class="sourceCode" id="cb164"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb166"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Créer une matrice de covariance préliminaire</span>
 <span class="va">S</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/diag.html">diag</a></span><span class="op">(</span><span class="va">V</span><span class="op">)</span>
 
@@ -665,14 +666,14 @@ x_3 = \beta_{3,1}x_1 + \beta_{3,2}x_2 + \epsilon_{x_3}
 <span class="co">#&gt; x2 0.202  1.004 -0.418</span>
 <span class="co">#&gt; x3 0.303 -0.418  0.997</span></code></pre></div>
 <p>Avant de procéder, une courte digression sur une façon de réaliser en moins de lignes, mais avec une syntaxe plus complexe, la réassignation des valeurs dans <code>S</code>. Le code est présenté dans la syntaxe ci-dessous. Il appert qu’il n’est pas aussi intéressant à programmer pour sauver deux lignes.</p>
-<div class="sourceCode" id="cb165"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb167"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Une note pour indiquer que les valeurs à remplacer pourrait</span>
 <span class="co"># être fait en une seule ligne de syntaxe en bénéficiant du </span>
 <span class="co"># recycle vectoriel de R, mais la solution n'est ni simple, ni élégante.</span>
 <span class="va">remplacer</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="va">i</span>, <span class="va">i</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span>, <span class="fl">1</span><span class="op">:</span><span class="op">(</span><span class="va">i</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="op">(</span><span class="va">i</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="va">i</span>, <span class="va">i</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 <span class="va">S</span><span class="op">[</span><span class="va">remplacer</span><span class="op">]</span></code></pre></div>
 <p>Trêve de digression, une fois la matrice de covariance <code>S</code> calculée, la fonction <code><a href="https://rdrr.io/pkg/MASS/man/mvrnorm.html">MASS::mvrnorm()</a></code> peut être utilisée pour créer des données. Les résultats sont presque identiques pour les régressions.</p>
-<div class="sourceCode" id="cb166"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb168"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">1448</span><span class="op">)</span> <span class="co"># La même que l'exemple précédent</span>
 
 <span class="co"># Création de données</span>
@@ -702,7 +703,7 @@ x_3 = \beta_{3,1}x_1 + \beta_{3,2}x_2 + \epsilon_{x_3}
 <span class="co">#&gt; (Intercept)           x1           x2  </span>
 <span class="co">#&gt;    -0.00579      0.40295     -0.49899</span></code></pre></div>
 <p>Comme la formule est générale et qu’elle implique plusieurs itérations, il est envisageable de programmer ces calculs avec une boucle dans une fonction maison. La fonction maison <code>beta2cov()</code> permet à partir d’une matrice de coefficient de régression et de</p>
-<div class="sourceCode" id="cb167"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb169"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># De Beta vers covariance (beta 2 covariance)</span>
 <span class="va">beta2cov</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">B</span>, <span class="va">V</span> <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span><span class="op">{</span>
   
@@ -730,7 +731,7 @@ x_3 = \beta_{3,1}x_1 + \beta_{3,2}x_2 + \epsilon_{x_3}
 \tag{12.25}
 \end{equation}\]</span></p>
 <p>L’équation <a href="cr%C3%A9er.html#eq:buildB">(12.25)</a> se transforme (relativement) aisément en fonction maison. Par rapport à <code>beta2cov()</code>, la boucle n’inclut pas la <span class="math inline">\(p\)</span><sup>e</sup> variable, mais bien la première.</p>
-<div class="sourceCode" id="cb168"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb170"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># De la covariance à Beta (cov2beta)</span>
 <span class="va">cov2beta</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">S</span><span class="op">)</span><span class="op">{</span>
   
@@ -746,7 +747,7 @@ x_3 = \beta_{3,1}x_1 + \beta_{3,2}x_2 + \epsilon_{x_3}
   
 <span class="op">}</span></code></pre></div>
 <p>La fonction maison <code>cov2beta()</code> est maintenant testée sur <code>S</code> pour évaluer si elle retourne bien la matrice <code>B</code> originale.</p>
-<div class="sourceCode" id="cb169"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb171"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">cov2beta</span><span class="op">(</span><span class="va">S</span><span class="op">)</span>
 <span class="co">#&gt;      [,1] [,2] [,3]</span>
 <span class="co">#&gt; [1,]  0.0  0.0    0</span>
@@ -761,7 +762,7 @@ x_3 = \beta_{3,1}x_1 + \beta_{3,2}x_2 + \epsilon_{x_3}
 </div>
   <div class="chapter-nav">
 <div class="prev"><a href="r%C3%A9gression.html"><span class="header-section-number">11</span> Régression</a></div>
-<div class="next"><a href="solutions.html">Solutions</a></div>
+<div class="next"><a href="lanalyse-en-composantes-principales.html"><span class="header-section-number">13</span> L’analyse en composantes principales</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
@@ -787,8 +788,8 @@ x_3 = \beta_{3,1}x_1 + \beta_{3,2}x_2 + \epsilon_{x_3}
 
       <div class="book-extra">
         <ul class="list-unstyled">
-<li><a id="book-source" href="https://github.com/quantmeth/MQR/blob/master/07-Creer.Rmd">View source <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="https://github.com/quantmeth/MQR/edit/master/07-Creer.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+<li><a id="book-source" href="https://github.com/quantmeth/MQR/blob/master/12-Creer.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/quantmeth/MQR/edit/master/12-Creer.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
         </ul>
 </div>
     </nav>
@@ -800,7 +801,7 @@ x_3 = \beta_{3,1}x_1 + \beta_{3,2}x_2 + \epsilon_{x_3}
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Méthodes Quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-05-19.</p>
+    <p>"<strong>Méthodes Quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-05-20.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
