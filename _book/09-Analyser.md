@@ -74,18 +74,18 @@ mu0 <- 1 # moyenne du groupe référent
 y <- mu0 + mu1 * x1 + e
 # Présenter quelques participants; retirer les crochets pour voir tous
 (cbind(method1 = c(gr0, gr1), method2 = y))[10:20,]
-#>       method1 method2
-#>  [1,]  2.7300  2.7300
-#>  [2,] -0.0822 -0.0822
-#>  [3,]  0.7272  0.7272
-#>  [4,]  1.1820  1.1820
-#>  [5,]  2.5085  2.5085
-#>  [6,]  2.6045  2.6045
-#>  [7,] -1.8415 -1.8415
-#>  [8,]  1.6233  1.6233
-#>  [9,]  0.1314  0.1314
-#> [10,]  1.4811  1.4811
-#> [11,]  1.5133  1.5133
+>       method1 method2
+>  [1,]  2.7300  2.7300
+>  [2,] -0.0822 -0.0822
+>  [3,]  0.7272  0.7272
+>  [4,]  1.1820  1.1820
+>  [5,]  2.5085  2.5085
+>  [6,]  2.6045  2.6045
+>  [7,] -1.8415 -1.8415
+>  [8,]  1.6233  1.6233
+>  [9,]  0.1314  0.1314
+> [10,]  1.4811  1.4811
+> [11,]  1.5133  1.5133
 ```
 Les données sont identiques.
 
@@ -95,27 +95,27 @@ Une fois la fonction créée, il est possible de la tester et de la comparer ave
 ```r
 # Vérification de la fonction maison
 testt.ind(gr0, gr1)
-#> $valeur.t
-#> [1] 3.4
-#> 
-#> $dl
-#> [1] 28
-#> 
-#> $valeur.p
-#> [1] 0.00205
+> $valeur.t
+> [1] 3.4
+> 
+> $dl
+> [1] 28
+> 
+> $valeur.p
+> [1] 0.00205
 # Comparer avec la fonction R
 t.test(gr0, gr1, var.equal = TRUE)
-#> 
-#> 	Two Sample t-test
-#> 
-#> data:  gr0 and gr1
-#> t = 3, df = 28, p-value = 0.002
-#> alternative hypothesis: true difference in means is not equal to 0
-#> 95 percent confidence interval:
-#>  0.54 2.18
-#> sample estimates:
-#> mean of x mean of y 
-#>     1.332    -0.029
+> 
+> 	Two Sample t-test
+> 
+> data:  gr0 and gr1
+> t = 3, df = 28, p-value = 0.002
+> alternative hypothesis: true difference in means is not equal to 0
+> 95 percent confidence interval:
+>  0.54 2.18
+> sample estimates:
+> mean of x mean of y 
+>     1.332    -0.029
 ```
 Les équations et codes précédents ne sont adéquats que si les variances sont égales entre les deux groupes. Cette notion est quelque peu trahie par la spécification dans la fonction **R** de l'argument `var.equal = TRUE` qui par défaut est `FALSE`. Pour un test-$t$ indépendant suivant les règles de l'art, il faut appliquer une correction (approximation de Welsh) aux degrés de liberté. Les degrés de liberté deviennent moins élégants, le code devient ainsi.
 
@@ -152,26 +152,26 @@ Le voici comparé la fonction **R** de base.
 
 ```r
 t.test(gr0, gr1) # Absence de l'argument var.equal = TRUE
-#> 
-#> 	Welch Two Sample t-test
-#> 
-#> data:  gr0 and gr1
-#> t = 3, df = 27, p-value = 0.002
-#> alternative hypothesis: true difference in means is not equal to 0
-#> 95 percent confidence interval:
-#>  0.539 2.182
-#> sample estimates:
-#> mean of x mean of y 
-#>     1.332    -0.029
+> 
+> 	Welch Two Sample t-test
+> 
+> data:  gr0 and gr1
+> t = 3, df = 27, p-value = 0.002
+> alternative hypothesis: true difference in means is not equal to 0
+> 95 percent confidence interval:
+>  0.539 2.182
+> sample estimates:
+> mean of x mean of y 
+>     1.332    -0.029
 testt.ind2(gr0, gr1)
-#> $valeur.t
-#> [1] 3.4
-#> 
-#> $dl
-#> [1] 26.9
-#> 
-#> $valeur.p
-#> [1] 0.00213
+> $valeur.t
+> [1] 3.4
+> 
+> $dl
+> [1] 26.9
+> 
+> $valeur.p
+> [1] 0.00213
 ```
 
 Les sorties sont identiques.
@@ -227,26 +227,26 @@ La fonction base de **R** est encore `t.test()`, mais il faudra spécifier l'arg
 
 ```r
 t.test(temps1, temps2, paired = TRUE)
-#> 
-#> 	Paired t-test
-#> 
-#> data:  temps1 and temps2
-#> t = -3, df = 24, p-value = 0.008
-#> alternative hypothesis: true difference in means is not equal to 0
-#> 95 percent confidence interval:
-#>  -3.268 -0.552
-#> sample estimates:
-#> mean of the differences 
-#>                   -1.91
+> 
+> 	Paired t-test
+> 
+> data:  temps1 and temps2
+> t = -3, df = 24, p-value = 0.008
+> alternative hypothesis: true difference in means is not equal to 0
+> 95 percent confidence interval:
+>  -3.268 -0.552
+> sample estimates:
+> mean of the differences 
+>                   -1.91
 testt.dep(temps1, temps2)
-#> $valeur.t
-#> [1] -2.9
-#> 
-#> $dl
-#> [1] 24
-#> 
-#> $valeur.p
-#> [1] 0.0078
+> $valeur.t
+> [1] -2.9
+> 
+> $dl
+> [1] 24
+> 
+> $valeur.p
+> [1] 0.0078
 ```
 
 Les sorties sont identiques.
@@ -314,27 +314,27 @@ groupe2 <- rep(1:k, times = nk)
 set.seed(765)
 groupe3 <- sample(x = 1:k, size = (k * nk), replace = TRUE)
 cbind(groupe1, groupe2, groupe3)
-#>       groupe1 groupe2 groupe3
-#>  [1,]       1       1       4
-#>  [2,]       1       2       2
-#>  [3,]       1       3       4
-#>  [4,]       1       4       3
-#>  [5,]       1       1       3
-#>  [6,]       2       2       4
-#>  [7,]       2       3       3
-#>  [8,]       2       4       1
-#>  [9,]       2       1       4
-#> [10,]       2       2       3
-#> [11,]       3       3       3
-#> [12,]       3       4       2
-#> [13,]       3       1       3
-#> [14,]       3       2       3
-#> [15,]       3       3       2
-#> [16,]       4       4       4
-#> [17,]       4       1       4
-#> [18,]       4       2       2
-#> [19,]       4       3       1
-#> [20,]       4       4       1
+>       groupe1 groupe2 groupe3
+>  [1,]       1       1       4
+>  [2,]       1       2       2
+>  [3,]       1       3       4
+>  [4,]       1       4       3
+>  [5,]       1       1       3
+>  [6,]       2       2       4
+>  [7,]       2       3       3
+>  [8,]       2       4       1
+>  [9,]       2       1       4
+> [10,]       2       2       3
+> [11,]       3       3       3
+> [12,]       3       4       2
+> [13,]       3       1       3
+> [14,]       3       2       3
+> [15,]       3       3       2
+> [16,]       4       4       4
+> [17,]       4       1       4
+> [18,]       4       2       2
+> [19,]       4       3       1
+> [20,]       4       4       1
 ```
 
 Il est aussi possible de remplacer les arguments, `1:k` par des chaînes de caractères (des catégories au lieu de nombres).
@@ -345,9 +345,9 @@ categorie <- c("char", "chat", "cheval", "chevalier", "chien")
 nk <- 2
 groupe <- as.factor(rep(categorie, each = nk)) # Déclarer comme facteur
 groupe
-#>  [1] char      char      chat      chat      cheval   
-#>  [6] cheval    chevalier chevalier chien     chien    
-#> Levels: char chat cheval chevalier chien
+>  [1] char      char      chat      chat      cheval   
+>  [6] cheval    chevalier chevalier chien     chien    
+> Levels: char chat cheval chevalier chien
 ```
 Une bonne pratique dans le contexte des comparaisons de moyenne est de déclarer les variables catégorielles comme facteur avec `as.factor()`.
 
@@ -366,13 +366,13 @@ score <- round(c(char, chat, cheval, chevalier, chien))
 # Conserver toutes les informations en un jeu de données
 donnees <- data.frame(groupe, score)
 head(donnees)
-#>   groupe score
-#> 1   char    14
-#> 2   char    12
-#> 3   chat    17
-#> 4   chat    21
-#> 5 cheval    14
-#> 6 cheval    10
+>   groupe score
+> 1   char    14
+> 2   char    12
+> 3   chat    17
+> 4   chat    21
+> 5 cheval    14
+> 6 cheval    10
 ```
 
 #### Dummy coding
@@ -416,17 +416,17 @@ e <- rnorm(n = k * nk, sd = 4)
 # Création des scores
 score <- round(mu0 + X %*% mu + e)
 cbind(donnees, score)
-#>       groupe score score
-#> 1       char    14    14
-#> 2       char    12    12
-#> 3       chat    17    17
-#> 4       chat    21    21
-#> 5     cheval    14    14
-#> 6     cheval    10    10
-#> 7  chevalier    12    12
-#> 8  chevalier    17    17
-#> 9      chien    21    21
-#> 10     chien    18    18
+>       groupe score score
+> 1       char    14    14
+> 2       char    12    12
+> 3       chat    17    17
+> 4       chat    21    21
+> 5     cheval    14    14
+> 6     cheval    10    10
+> 7  chevalier    12    12
+> 8  chevalier    17    17
+> 9      chien    21    21
+> 10     chien    18    18
 ```
 
 L'expression `X %*% mu` est une multiplication d'algèbre matricielle qui multiplie la matrice $n \times p$ de codage factice $X$ à une matrice $p\times 1$ de moyennes $\mu$. L'opération multiple les $p$ éléments d'une ligne de $X$ à la colonne $p$ correspondante de $\mu$. En algèbre matricielle Le résultat est une matrice $n \times 1$ qui contient les différences de moyennes pour chaque unité. Dans la même ligne de syntaxe, la moyenne de la population (groupe référent), $\mu_0$ est ajoutée et la variation individuelle, $\epsilon$.
@@ -444,12 +444,12 @@ Les scores produits sont identiques. Dans cet exemple par contre, l'origine des 
 # Anova de base
 res <- aov(score ~ groupe, data = donnees)
 summary(res)
-#>             Df Sum Sq Mean Sq F value  Pr(>F)    
-#> groupe       4    834   208.4      14 5.1e-09 ***
-#> Residuals   95   1414    14.9                    
-#> ---
-#> Signif. codes:  
-#> 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+>             Df Sum Sq Mean Sq F value  Pr(>F)    
+> groupe       4    834   208.4      14 5.1e-09 ***
+> Residuals   95   1414    14.9                    
+> ---
+> Signif. codes:  
+> 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 # Fonction maison
 gr <- table(donnees$groupe)
@@ -475,9 +475,9 @@ row.names(resultats) <- c("groupe","residu")
 resultats[1,] <- c(dl1, CMI * dl1, CMI, vf, vp)
 resultats[2,] <- c(dl2, CMR * dl2, CMR, 0, 0)
 resultats
-#>        dl   SS    CM  F        p
-#> groupe  4  834 208.4 14 5.15e-09
-#> residu 95 1414  14.9  0 0.00e+00
+>        dl   SS    CM  F        p
+> groupe  4  834 208.4 14 5.15e-09
+> residu 95 1414  14.9  0 0.00e+00
 ```
 
 Les résultats sont identiques, les seules différences étant dues à l'arrondissement. Comme la valeur-$p$ est de 5.145\times 10^{-9}, ce qui est extrêmement plus petit que l'usuel .05 (ou un autre taux d'erreur de type I fixé à l'avance), l'hypothèse nulle est rejetée, il y a vraisemblablement une différence entre les groupes, ce qui est déjà connu. La Figure \@ref(fig:ft) illustre très bien la rareté d'un tel jeu de données sous l'hypothèse nulle.
@@ -590,34 +590,34 @@ donnees <- data.frame(MASS::mvrnorm(n = n, mu = c(0,0), Sigma = R))
 colnames(donnees) <- c("x", "y")
 # Voici la matrice de corrélation
 R
-#>      [,1] [,2]
-#> [1,]  1.0  0.7
-#> [2,]  0.7  1.0
+>      [,1] [,2]
+> [1,]  1.0  0.7
+> [2,]  0.7  1.0
 # Voici une visualisation partielle des données
 head(donnees)
-#>        x      y
-#> 1  0.635  0.914
-#> 2 -0.193  0.360
-#> 3 -0.602 -1.213
-#> 4 -0.841 -0.986
-#> 5 -0.105 -1.771
-#> 6 -2.147 -1.590
+>        x      y
+> 1  0.635  0.914
+> 2 -0.193  0.360
+> 3 -0.602 -1.213
+> 4 -0.841 -0.986
+> 5 -0.105 -1.771
+> 6 -2.147 -1.590
 # Vérifications des variables
 mean(donnees$x); mean(donnees$y); sd(donnees$x); sd(donnees$y)
-#> [1] -0.00578
-#> [1] -0.00531
-#> [1] 0.999
-#> [1] 1.01
+> [1] -0.00578
+> [1] -0.00531
+> [1] 0.999
+> [1] 1.01
 # Les résultats sont près des attentes
 # Vérifications de la corrélations
 cor(donnees$x, donnees$y)
-#> [1] 0.699
+> [1] 0.699
 correlation1(donnees$x, donnees$y)
-#> [1] 0.699
+> [1] 0.699
 correlation2(donnees$x, donnees$y)
-#> [1] 0.699
+> [1] 0.699
 correlation3(donnees$x, donnees$y)
-#> [1] 0.699
+> [1] 0.699
 # Les résultats sont près des attentes et identiques
 ```
 
@@ -637,14 +637,14 @@ vt <- r * sqrt(n - 2) / sqrt(1 - r ^ 2)
 # Valeurs-p
 vp <- (1 - pt(abs(vt), df = n - 2)) * 2
 vt ; vp
-#>      [,1]  [,2]  [,3]
-#> [1,]  Inf 1.633 1.234
-#> [2,] 1.63   Inf 0.889
-#> [3,] 1.23 0.889   Inf
-#>       [,1]  [,2]  [,3]
-#> [1,] 0.000 0.141 0.252
-#> [2,] 0.141 0.000 0.400
-#> [3,] 0.252 0.400 0.000
+>      [,1]  [,2]  [,3]
+> [1,]  Inf 1.633 1.234
+> [2,] 1.63   Inf 0.889
+> [3,] 1.23 0.889   Inf
+>       [,1]  [,2]  [,3]
+> [1,] 0.000 0.141 0.252
+> [2,] 0.141 0.000 0.400
+> [3,] 0.252 0.400 0.000
 ```
 Dans le code ci-dessous, l'équation précédente est subtilement réarrangée pour être plus simple et élégante quoiqu'équivalente. 
 $$ t_{n-2} = \frac{r}{(\frac{\sqrt{1-r^2}}{\sqrt{n-2}})} = \frac{r\sqrt{n-2}}{\sqrt{1-r^2}}$$
@@ -779,10 +779,10 @@ Il y a plusieurs techniques pour créer une base de données, l'essentiel étant
   #base données
   donnees <- data.frame(sexe, tabac)
   table(donnees)
-#>        tabac
-#> sexe    fumeur non-fumeur
-#>   femme      8         38
-#>   homme      4         50
+>        tabac
+> sexe    fumeur non-fumeur
+>   femme      8         38
+>   homme      4         50
 ```
 
 La fonction `table()` de **R** génère une table de contingence. La fonction maison et deux méthodes de base **R** sont présentées et produisent les mêmes résultats pour le $\chi^2$. Un autre, le test exact de Fisher est également présenté. Celui-ci est plus robuste, mais peut requérir plus intensive des ressources de l'ordianteur pour les grosses tables de contingences.
@@ -797,54 +797,54 @@ Dans le présent exemple, bien que les fréquences attendues respectent les crit
 TC <- table(donnees)
 # Fonction maison
 khicarre(TC)
-#> $khi2
-#> [1] 2.34
-#> 
-#> $dl
-#> [1] 1
-#> 
-#> $valeur.p
-#> [1] 0.126
+> $khi2
+> [1] 2.34
+> 
+> $dl
+> [1] 1
+> 
+> $valeur.p
+> [1] 0.126
 
 # Fonction de base
 summary(TC)
-#> Number of cases in table: 100 
-#> Number of factors: 2 
-#> Test for independence of all factors:
-#> 	Chisq = 2.3, df = 1, p-value = 0.1
+> Number of cases in table: 100 
+> Number of factors: 2 
+> Test for independence of all factors:
+> 	Chisq = 2.3, df = 1, p-value = 0.1
 
 # Autre fonction de base
 resultat <- chisq.test(TC, correct = FALSE)
 resultat
-#> 
-#> 	Pearson's Chi-squared test
-#> 
-#> data:  TC
-#> X-squared = 2, df = 1, p-value = 0.1
+> 
+> 	Pearson's Chi-squared test
+> 
+> data:  TC
+> X-squared = 2, df = 1, p-value = 0.1
 
 # Et pour plus de précision...
 resultat$statistic
-#> X-squared 
-#>      2.34
+> X-squared 
+>      2.34
 resultat$p.value
-#> [1] 0.126
+> [1] 0.126
 
 # Le test exact de Fisher
 resultat.fisher <- fisher.test(TC)
 resultat.fisher
-#> 
-#> 	Fisher's Exact Test for Count Data
-#> 
-#> data:  TC
-#> p-value = 0.2
-#> alternative hypothesis: true odds ratio is not equal to 1
-#> 95 percent confidence interval:
-#>   0.641 12.731
-#> sample estimates:
-#> odds ratio 
-#>       2.61
+> 
+> 	Fisher's Exact Test for Count Data
+> 
+> data:  TC
+> p-value = 0.2
+> alternative hypothesis: true odds ratio is not equal to 1
+> 95 percent confidence interval:
+>   0.641 12.731
+> sample estimates:
+> odds ratio 
+>       2.61
 resultat.fisher$p.value
-#> [1] 0.216
+> [1] 0.216
 ```
 
 

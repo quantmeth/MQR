@@ -17,13 +17,13 @@ Les tableaux ont généralement deux dimensions (lignes par colonnes). Différen
 
 ```r
 head(cars)
-#>   speed dist
-#> 1     4    2
-#> 2     4   10
-#> 3     7    4
-#> 4     7   22
-#> 5     8   16
-#> 6     9   10
+>   speed dist
+> 1     4    2
+> 2     4   10
+> 3     7    4
+> 4     7   22
+> 5     8   16
+> 6     9   10
 ```
 
 Elle contient 50 unités d'observation (lignes) et deux variables (colonnes), soit la vitesse (*speed*) et la distance (*dist*).
@@ -35,7 +35,7 @@ Il est possible de référer à une variable soit en utilisant l'emplacement de 
 ```r
 # Avec $
 head(cars$dist)
-#> [1]  2 10  4 22 16 10
+> [1]  2 10  4 22 16 10
 ```
 
 Précédemment utilisés pour extraire des valeurs dans une variable unidimensionnelle, les `[]` peuvent extraire des données sur un tableau en deux dimensions (ligne par colonne). Il faut spécifier la ou les lignes désirées, puis la ou les colonnes désirées entre crochets. Laissez une des dimensions en blanc (vide) indique au logiciel de rapporter toutes les valeurs. Par exemple, pour obtenir le même résultat, `dist` est la deuxième colonne. Il faut référer entre crochets à la colonne $2$ et comme toutes les lignes sont désirées, cette dimension reste vide.
@@ -44,7 +44,7 @@ Précédemment utilisés pour extraire des valeurs dans une variable unidimensio
 ```r
 # Entre crochets
 head(cars[,2])
-#> [1]  2 10  4 22 16 10
+> [1]  2 10  4 22 16 10
 ```
 
 Il est possible de faire la même chose avec les lignes.
@@ -53,8 +53,8 @@ Il est possible de faire la même chose avec les lignes.
 ```r
 # Entre crochets
 cars[4,]
-#>   speed dist
-#> 4     7   22
+>   speed dist
+> 4     7   22
 ```
 Ici, toutes les variables de la 4^e^ unité sont rapportée. Remarquer bien l'absence d'argument après la virgule. La fonction `head` n'est pas nécessaire ici, car il y a peu d'informations à extraire.
 
@@ -64,7 +64,7 @@ Si certaines valeurs spécifiques étaient désirées, comme la valeur de la 4^e
 ```r
 # Entre crochets
 cars[4, 2]
-#> [1] 22
+> [1] 22
 ```
 
 Enfin, à l'intérieur d'un jeu de données, les variables peuvent être commandées avec le signe de `$` placé après le nom de la variable suivi du nom de la variable ou encore en identifiant les noms de variables entre crochets.
@@ -73,17 +73,17 @@ Enfin, à l'intérieur d'un jeu de données, les variables peuvent être command
 ```r
 # Utilisation du signe $
 head(cars$speed)
-#> [1] 4 4 7 7 8 9
+> [1] 4 4 7 7 8 9
 
 # Nommer entre crochets
 head(cars["speed"])
-#>   speed
-#> 1     4
-#> 2     4
-#> 3     7
-#> 4     7
-#> 5     8
-#> 6     9
+>   speed
+> 1     4
+> 2     4
+> 3     7
+> 4     7
+> 5     8
+> 6     9
 ```
 
 
@@ -95,11 +95,11 @@ Pour référer à des unités ayant certaines caractéristiques, la fonction `su
 ```r
 # Extraire les données pour toutes les unités ayant une vitesse égale à 24
 subset(cars, speed == 24)
-#>    speed dist
-#> 46    24   70
-#> 47    24   92
-#> 48    24   93
-#> 49    24  120
+>    speed dist
+> 46    24   70
+> 47    24   92
+> 48    24   93
+> 49    24  120
 ```
 Cette fonction est utile s'il faut extraire les données d'un certain sexe, par exemple.
 
@@ -111,13 +111,13 @@ Il est possible d'attribuer ou de modifier des noms à des colonnes ou des ligne
 ```r
 colnames(cars) <-  c("vitesse", "distance")
 head(cars)
-#>   vitesse distance
-#> 1       4        2
-#> 2       4       10
-#> 3       7        4
-#> 4       7       22
-#> 5       8       16
-#> 6       9       10
+>   vitesse distance
+> 1       4        2
+> 2       4       10
+> 3       7        4
+> 4       7       22
+> 5       8       16
+> 6       9       10
 ```
 Il importe de fournir autant de noms qu'il y a de colonnes (ou lignes), et ce, en chaîne de caractères.
 
@@ -134,16 +134,16 @@ valeurs <-  c(10, 12, 14, NA, 18)
 
 # La présence de NA empêche la moyenne d'être calculée
 mean(valeurs)
-#> [1] NA
+> [1] NA
 
 # L'argument "na.rm = TRUE" gère les NA
 mean(valeurs, na.rm = TRUE)
-#> [1] 13.5
+> [1] 13.5
 
 # na.omit omet les valeurs NA dans la nouvelle variable.
 valeurs.nettoyees <-  na.omit(valeurs)
 mean(valeurs.nettoyees)
-#> [1] 13.5
+> [1] 13.5
 ```
 
 
@@ -211,20 +211,20 @@ Sans plus de préliminaire, la fonction `head()` donne un aperçu du jeu de donn
 
 ```r
 starwars[,1:6]
-#> # A tibble: 87 x 6
-#>    name         height  mass hair_color skin_color eye_color
-#>    <chr>         <int> <dbl> <chr>      <chr>      <chr>    
-#>  1 Luke Skywal~    172    77 blond      fair       blue     
-#>  2 C-3PO           167    75 <NA>       gold       yellow   
-#>  3 R2-D2            96    32 <NA>       white, bl~ red      
-#>  4 Darth Vader     202   136 none       white      yellow   
-#>  5 Leia Organa     150    49 brown      light      brown    
-#>  6 Owen Lars       178   120 brown, gr~ light      blue     
-#>  7 Beru Whites~    165    75 brown      light      blue     
-#>  8 R5-D4            97    32 <NA>       white, red red      
-#>  9 Biggs Darkl~    183    84 black      light      brown    
-#> 10 Obi-Wan Ken~    182    77 auburn, w~ fair       blue-gray
-#> # ... with 77 more rows
+> # A tibble: 87 x 6
+>    name         height  mass hair_color skin_color eye_color
+>    <chr>         <int> <dbl> <chr>      <chr>      <chr>    
+>  1 Luke Skywal~    172    77 blond      fair       blue     
+>  2 C-3PO           167    75 <NA>       gold       yellow   
+>  3 R2-D2            96    32 <NA>       white, bl~ red      
+>  4 Darth Vader     202   136 none       white      yellow   
+>  5 Leia Organa     150    49 brown      light      brown    
+>  6 Owen Lars       178   120 brown, gr~ light      blue     
+>  7 Beru Whites~    165    75 brown      light      blue     
+>  8 R5-D4            97    32 <NA>       white, red red      
+>  9 Biggs Darkl~    183    84 black      light      brown    
+> 10 Obi-Wan Ken~    182    77 auburn, w~ fair       blue-gray
+> # ... with 77 more rows
 ```
 
 Pour obtenir de l'information sur ce jeu de données.
@@ -284,20 +284,20 @@ jd <-  starwars %>%
   mutate(height = height  / 100) %>% 
   mutate(IMC = mass / height^2)  
 jd
-#> # A tibble: 22 x 5
-#>    sex     mass height species   IMC
-#>    <chr>  <dbl>  <dbl> <chr>   <dbl>
-#>  1 male      77   1.72 Human    26.0
-#>  2 male     136   2.02 Human    33.3
-#>  3 female    49   1.5  Human    21.8
-#>  4 male     120   1.78 Human    37.9
-#>  5 female    75   1.65 Human    27.5
-#>  6 male      84   1.83 Human    25.1
-#>  7 male      77   1.82 Human    23.2
-#>  8 male      84   1.88 Human    23.8
-#>  9 male      80   1.8  Human    24.7
-#> 10 male      77   1.7  Human    26.6
-#> # ... with 12 more rows
+> # A tibble: 22 x 5
+>    sex     mass height species   IMC
+>    <chr>  <dbl>  <dbl> <chr>   <dbl>
+>  1 male      77   1.72 Human    26.0
+>  2 male     136   2.02 Human    33.3
+>  3 female    49   1.5  Human    21.8
+>  4 male     120   1.78 Human    37.9
+>  5 female    75   1.65 Human    27.5
+>  6 male      84   1.83 Human    25.1
+>  7 male      77   1.82 Human    23.2
+>  8 male      84   1.88 Human    23.8
+>  9 male      80   1.8  Human    24.7
+> 10 male      77   1.7  Human    26.6
+> # ... with 12 more rows
 ```
 
 Les étapes de la syntaxe se lisent comme suit :
@@ -324,20 +324,20 @@ jd <- na.omit(jd)                                        # na.omit()
 jd[,"height"] <- jd[,"height"] / 100                     # mutate()
 jd[,"IMC"] <- jd[,"mass"] / jd[,"height"]^2              # mutate()
 jd
-#> # A tibble: 22 x 5
-#>    sex     mass height species   IMC
-#>    <chr>  <dbl>  <dbl> <chr>   <dbl>
-#>  1 male      77   1.72 Human    26.0
-#>  2 male     136   2.02 Human    33.3
-#>  3 female    49   1.5  Human    21.8
-#>  4 male     120   1.78 Human    37.9
-#>  5 female    75   1.65 Human    27.5
-#>  6 male      84   1.83 Human    25.1
-#>  7 male      77   1.82 Human    23.2
-#>  8 male      84   1.88 Human    23.8
-#>  9 male      80   1.8  Human    24.7
-#> 10 male      77   1.7  Human    26.6
-#> # ... with 12 more rows
+> # A tibble: 22 x 5
+>    sex     mass height species   IMC
+>    <chr>  <dbl>  <dbl> <chr>   <dbl>
+>  1 male      77   1.72 Human    26.0
+>  2 male     136   2.02 Human    33.3
+>  3 female    49   1.5  Human    21.8
+>  4 male     120   1.78 Human    37.9
+>  5 female    75   1.65 Human    27.5
+>  6 male      84   1.83 Human    25.1
+>  7 male      77   1.82 Human    23.2
+>  8 male      84   1.88 Human    23.8
+>  9 male      80   1.8  Human    24.7
+> 10 male      77   1.7  Human    26.6
+> # ... with 12 more rows
 ```
 
 Le jeu de données est créé en autant de ligne de syntaxe. Par contre, la lecture n'est pas aussi intuitive qu'avec l'utilisation de l'opérateur `%>%` et des fonctions associées `select()`, `filter()`, `mutate()`. Il ne faut pas trop penser à quoi ressemblerait ces manipulations en une seule ligne de syntaxe.
@@ -351,12 +351,12 @@ Une fois le jeu de données prêt, il est possible d'obtenir les informations so
 jd %>% 
   group_by(sex) %>% 
   summarise(mean(IMC), sd(IMC), min(IMC), max(IMC), length(IMC)) 
-#> # A tibble: 2 x 6
-#>   sex    `mean(IMC)` `sd(IMC)` `min(IMC)` `max(IMC)`
-#>   <chr>        <dbl>     <dbl>      <dbl>      <dbl>
-#> 1 female        22.0      5.51       16.5       27.5
-#> 2 male          26.0      4.29       21.5       37.9
-#> # ... with 1 more variable: `length(IMC)` <int>
+> # A tibble: 2 x 6
+>   sex    `mean(IMC)` `sd(IMC)` `min(IMC)` `max(IMC)`
+>   <chr>        <dbl>     <dbl>      <dbl>      <dbl>
+> 1 female        22.0      5.51       16.5       27.5
+> 2 male          26.0      4.29       21.5       37.9
+> # ... with 1 more variable: `length(IMC)` <int>
 ```
 
 La base de données issues de ces opérations pourra par la suite être utilisée normalement pour réaliser des analyses statistiques. Il existe des packages pour demeurer dans le `tidyverse` comme `rstatix` où il est possible de faire des test-$t$ avec `test_t()` ou des corrations avec `cor_test()`, par exemple. Voir la documentation complète du package pour une vue d'ensemble de ce qu'il est possible d'accomplier avec `rstatix`. Cela dit, l'utilisateur préférera probablement utiliser d'autres méthodes lorsque des analyses statistiques seront nécessaires.
@@ -367,26 +367,26 @@ library(rstatix)
 # Test-t sur l'IMC en fonction du sexe
 jd %>% 
   t_test(IMC ~ sex)
-#> # A tibble: 1 x 8
-#>   .y.   group1 group2    n1    n2 statistic    df     p
-#> * <chr> <chr>  <chr>  <int> <int>     <dbl> <dbl> <dbl>
-#> 1 IMC   female male       3    19     -1.23  2.40 0.326
+> # A tibble: 1 x 8
+>   .y.   group1 group2    n1    n2 statistic    df     p
+> * <chr> <chr>  <chr>  <int> <int>     <dbl> <dbl> <dbl>
+> 1 IMC   female male       3    19     -1.23  2.40 0.326
 
 # Analyse de corrélations
 jd %>% 
   select(IMC, mass, height) %>% 
   cor_test() 
-#> # A tibble: 9 x 8
-#>   var1   var2     cor statistic         p conf.low conf.high
-#>   <chr>  <chr>  <dbl>     <dbl>     <dbl>    <dbl>     <dbl>
-#> 1 IMC    IMC     1      2.12e+8 5.26e-155    1.00      1    
-#> 2 IMC    mass    0.85   7.32e+0 4.47e-  7    0.674     0.938
-#> 3 IMC    height  0.18   8.13e-1 4.26e-  1   -0.262     0.558
-#> 4 mass   IMC     0.85   7.32e+0 4.47e-  7    0.674     0.938
-#> 5 mass   mass    1      3.00e+8 5.13e-158    1         1    
-#> 6 mass   height  0.65   3.84e+0 1.02e-  3    0.317     0.842
-#> 7 height IMC     0.18   8.13e-1 4.26e-  1   -0.262     0.558
-#> 8 height mass    0.65   3.84e+0 1.02e-  3    0.317     0.842
-#> 9 height height  1    Inf       0            1         1    
-#> # ... with 1 more variable: method <chr>
+> # A tibble: 9 x 8
+>   var1   var2     cor statistic         p conf.low conf.high
+>   <chr>  <chr>  <dbl>     <dbl>     <dbl>    <dbl>     <dbl>
+> 1 IMC    IMC     1      2.12e+8 5.26e-155    1.00      1    
+> 2 IMC    mass    0.85   7.32e+0 4.47e-  7    0.674     0.938
+> 3 IMC    height  0.18   8.13e-1 4.26e-  1   -0.262     0.558
+> 4 mass   IMC     0.85   7.32e+0 4.47e-  7    0.674     0.938
+> 5 mass   mass    1      3.00e+8 5.13e-158    1         1    
+> 6 mass   height  0.65   3.84e+0 1.02e-  3    0.317     0.842
+> 7 height IMC     0.18   8.13e-1 4.26e-  1   -0.262     0.558
+> 8 height mass    0.65   3.84e+0 1.02e-  3    0.317     0.842
+> 9 height height  1    Inf       0            1         1    
+> # ... with 1 more variable: method <chr>
 ```

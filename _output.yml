@@ -9,7 +9,6 @@ bookdown::bs4_book:
 bookdown::pdf_book:
   includes:
     in_header: preamble.tex
-  latex_engine: xelatex
   citation_package: biblatex
   highlight: monochrome
   keep_tex: yes

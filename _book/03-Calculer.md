@@ -14,14 +14,14 @@ Une variable qui existe, mais qui ne contient pas de valeur aura une longueur é
 ```r
 x <- c(1, 2, 3)
 length(x)
-#> [1] 3
+> [1] 3
 
 y <- "Bonjour tout le monde!"
 length(y)
-#> [1] 1
+> [1] 1
 
 nchar(y)
-#> [1] 22
+> [1] 22
 ```
 
 ## La répétion
@@ -34,13 +34,13 @@ vec <- c(2, 4, "chat")
 
 # Répéter vec trois fois
 rep(vec, times = 3)
-#> [1] "2"    "4"    "chat" "2"    "4"    "chat" "2"    "4"   
-#> [9] "chat"
+> [1] "2"    "4"    "chat" "2"    "4"    "chat" "2"    "4"   
+> [9] "chat"
 
 # Répéter chaque éléments de vec trois fois
 rep(vec, each = 3)
-#> [1] "2"    "2"    "2"    "4"    "4"    "4"    "chat" "chat"
-#> [9] "chat"
+> [1] "2"    "2"    "2"    "4"    "4"    "4"    "chat" "chat"
+> [9] "chat"
 ```
 
 ## La séquence
@@ -51,23 +51,23 @@ La fonction `seq()` permet de générer une séquence régulière de valeurs. Le
 ```r
 # Une séquence de 1 (défaut, from = 1) à 10
 seq(10)
-#>  [1]  1  2  3  4  5  6  7  8  9 10
+>  [1]  1  2  3  4  5  6  7  8  9 10
 
 # Une séquence de 1 (défaut, from = 1) à -10
 seq(-10)
-#>  [1]   1   0  -1  -2  -3  -4  -5  -6  -7  -8  -9 -10
+>  [1]   1   0  -1  -2  -3  -4  -5  -6  -7  -8  -9 -10
 
 # Une séquence de -10 (défaut, from = 1) à 1
 seq(from = -10, to = 1)
-#>  [1] -10  -9  -8  -7  -6  -5  -4  -3  -2  -1   0   1
+>  [1] -10  -9  -8  -7  -6  -5  -4  -3  -2  -1   0   1
 
 # Une séquence de nombres paires (from = 2, to = 10, by = 2)
 seq(2, 10, 2)
-#> [1]  2  4  6  8 10
+> [1]  2  4  6  8 10
 
 # Une séquence de nombres paires 
 seq(from = 2, by = 2, length.out = 5)
-#> [1]  2  4  6  8 10
+> [1]  2  4  6  8 10
 ```
 
 ## La somme
@@ -88,9 +88,9 @@ somme <- function(x){
 }
 x <- c(1,2,3,4,5,-6)
 somme(x)
-#> [1] 9
+> [1] 9
 sum(x)
-#> [1] 9
+> [1] 9
 ```
 
 À noter que l'utilisation de la boucle est à des fins illustratives seulement. En termes de rendement computationnel, elle est bien peu efficace. Il faudra privilégier la fonction `sum()` pour calculer le total de son entrée.
@@ -117,11 +117,11 @@ x <- c(0, 1, 2, 3, 4, 5)
 
 # La moyenne
 mean(x)
-#> [1] 2.5
+> [1] 2.5
 
 # La moyenne
 sum(x)/length(x)
-#> [1] 2.5
+> [1] 2.5
 ```
 
 Comme pour `sum()`, les fonctions `rowMeans()` et `colMeans()` seront utiles lorsqu'il faudra calculer des moyennes sur des lignes (*row*) ou des colonnes (*col*).
@@ -142,9 +142,9 @@ mediane <- function(x) {
 # Tester ensuite:
 x <- c(42, 23, 53, 77, 93, 20, 37, 24, 60, 62)
 median(x)
-#> [1] 47.5
+> [1] 47.5
 mediane(x)
-#> [1] 47.5
+> [1] 47.5
 ```
 
 L'expression `n%%2`, lue $n \bmod 2$, joue astucieusement le rôle de vérifier si `n` est impaire. La formule générale $x \bmod y$ représente une opération binaire associant à deux entiers naturels le reste de la division du premier par le second. Par exemple, $60 \bmod 7$, noter `60%%7` dans **R**, donne $4$ soit le reste de $7*8 + 4 = 60$. Le logiciel le confirme.
@@ -152,7 +152,7 @@ L'expression `n%%2`, lue $n \bmod 2$, joue astucieusement le rôle de vérifier 
 
 ```r
 60%%7
-#> [1] 4
+> [1] 4
 ```
 
 Il s'agit d'une technique de programmation très pratique. Dans le cas de `n%%2`, la formule donne $1$ dans le cas d'un nombre impair ou $0$ dans le cas d'un nombre pair, puis teste ce résultat pour déterminer s'il réalise `s[(n+1)/2]` lorsque `n%%2==1`(`TRUE`) , ce qui correspond à choisir l'élément au centre d'un vecteur de taille impair, ou bien `mean(s[n/2+0:1]` lorsque `n%%2==0`(`FALSE`) , ce qui correspond à choisir les deux éléments au centre d'un vecteur pair et d'en faire la moyenne. Il s'agit de l'une des nombreuses façons selon lesquelles il est possible de programmer la médiane.
@@ -182,9 +182,9 @@ La variance peut aussi être calculée plus efficacement avec la fonction **R** 
 ```r
 x <- c(26, 6, 40, 36, 14, 3, 21, 48, 43, 2)
 variance(x)
-#> [1] 300
+> [1] 300
 var(x)
-#> [1] 300
+> [1] 300
 ```
 
 ## L'écart type
@@ -202,9 +202,9 @@ ecart.type <- function(x){
   return(et)
 }
 ecart.type(x)
-#> [1] 17.3
+> [1] 17.3
 sd(x)
-#> [1] 17.3
+> [1] 17.3
 ```
 
 
@@ -274,19 +274,19 @@ set.seed(9876)
 
 # Génère 5 nombres aléatoires en fonction des paramètres
 rnorm(n = 5, mean = 10, sd = .5)
-#> [1] 10.51  9.42  9.90  9.95 10.01
+> [1] 10.51  9.42  9.90  9.95 10.01
 
 # Retourne les valeurs associés à ces probabilités
 qnorm(c(.025,.975))
-#> [1] -1.96  1.96
+> [1] -1.96  1.96
 
 # Retourne la probabilité d'obtenir un score de 1.645 et moins
 pnorm(1.645)
-#> [1] 0.95
+> [1] 0.95
 
 # La valeur de la densité de la distribution
 dnorm(0)
-#> [1] 0.399
+> [1] 0.399
 ```
 
 Ces quatre lettres peuvent être associées à toutes les distributions énumérées et bien d'autres. Elles respectent toutes ce cadre.

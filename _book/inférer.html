@@ -19,16 +19,15 @@
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-</head>
-<body>
-<p>
+<!-- 
     \(
     \newcommand{\EX}{\mathbb{E}}
     \)
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    --><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
     
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-  </style><style type="text/css">
+  </style>
+<style type="text/css">
     /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
     div.csl-bib-body { }
     div.csl-entry {
@@ -49,7 +48,10 @@
     div.csl-indent {
       margin-left: 2em;
     }
-  </style><link rel="stylesheet" href="bs4_style.css"></p>
+  </style>
+<link rel="stylesheet" href="bs4_style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
 
 <div class="container-fluid">
 <div class="row">
@@ -78,11 +80,11 @@
 <li><a class="" href="exercice-rudiments.html">Exercices</a></li>
 <li class="book-part">Jeux de données</li>
 <li><a class="" href="importer.html"><span class="header-section-number">4</span> Importer</a></li>
-<li><a class="" href="entr%C3%A9e-de-donn%C3%A9es.html"><span class="header-section-number">5</span> Entrée de données</a></li>
+<li><a class="" href="entrer.html"><span class="header-section-number">5</span> Entrer</a></li>
 <li><a class="" href="manipuler.html"><span class="header-section-number">6</span> Manipuler</a></li>
 <li><a class="" href="visualiser.html"><span class="header-section-number">7</span> Visualiser</a></li>
 <li><a class="" href="exercice-gestion.html">Exercices</a></li>
-<li class="book-part">Statistique</li>
+<li class="book-part">Statistiques</li>
 <li><a class="active" href="inf%C3%A9rer.html"><span class="header-section-number">8</span> Inférer</a></li>
 <li><a class="" href="analyser.html"><span class="header-section-number">9</span> Analyser</a></li>
 <li><a class="" href="simuler.html"><span class="header-section-number">10</span> Simuler</a></li>
@@ -107,24 +109,22 @@
 <span class="header-section-number">8.1</span> Le théorème central limite<a class="anchor" aria-label="anchor" href="#le-th%C3%A9or%C3%A8me-central-limite"><i class="fas fa-link"></i></a>
 </h2>
 <p>Les valeurs d’un échantillon sont, pour le statisticien, des variables aléatoires. Une variable aléatoire, c’est un peu comme piger dans une boîte à l’aveuglette pour obtenir une valeur. La boîte est impénétrable, personne ne sait par quel processus elle accorde telle ou telle autre valeur. Pour le statisticien, ce qui importe c’est que chaque valeur possède une chance égale aux autres d’être sélectionnée et qu’elles soient indépendantes entre elles (le fait d’en choisir une soit sans conséquence sur la probabilité des autres). Pour le non-initié aux fonctions permettant de créer des nombres pseudoaléatoires, une fonction <strong>R</strong> comme <code><a href="https://rdrr.io/r/stats/Normal.html">rnorm()</a></code> ou <code><a href="https://rdrr.io/r/stats/Uniform.html">runif()</a></code> (<em>r</em> suivi d’un nom de distribution, voir <a href="calculer.html#les-distributions">Les distributions</a>) joue parfaitement le rôle de cette boîte. Si l’usager demande une valeur, la fonction retourne une valeur aléatoire (imprévisible à chaque fois) sans connaître comment cette valeur est produite.</p>
-<div class="sourceCode" id="cb98"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
-<span class="co">#&gt; [1] 0.18</span></code></pre></div>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="inf%C3%A9rer.html#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="fu">runif</span>(<span class="at">n =</span> <span class="dv">1</span>)</span>
+<span id="cb98-2"><a href="inf%C3%A9rer.html#cb98-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">0.231</span></span></code></pre></div>
 <p>Le statisticien s’intéresse à inférer comment ces valeurs sont générées. Il postule ainsi que les valeurs aléatoires suivent une distribution de probabilité. Connaître cette distribution est très important, car c’est elle qui permet de répondre à des questions comme : quelle est la probabilité d’obtenir un résultat aussi rare que <span class="math inline">\(x\)</span>? Ou quelle sont les valeurs attendues pour <span class="math inline">\(95\%\)</span> des tirages? Questions tout à fait pertinentes pour l’expérimentateur. Une des distributions les plus connues est certainement la distribution normale, celle qui est derrière la fonction <code><a href="https://rdrr.io/r/stats/Normal.html">rnorm()</a></code> d’ailleurs. Mais, il y en a beaucoup, beaucoup d’autres.</p>
 <p>Lorsque plus d’une variable sont issues d’une même boîte (distribution), elles sont <em>identiquement distribuées</em>. Si ces variables aléatoires sont combinées, que ce soit en termes de produit, de quotient, d’addition, de soustraction, le résultat est une nouvelle variable aléatoire qui possède sa propre distribution nommée <em>distribution d’échantillonnage</em>. Sur le plan de la syntaxe <strong>R</strong>, il s’agit de réaliser des opérations mathématiques avec des variables aléatoires identiquement distribuées.</p>
-<div class="sourceCode" id="cb99"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Pour répliquer</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>
-
-<span class="co"># Création de deux variables identiquement distribuées</span>
-<span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
-<span class="va">b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
-<span class="va">a</span> ; <span class="va">b</span>
-<span class="co">#&gt; [1] 0.266</span>
-<span class="co">#&gt; [1] 0.372</span>
-
-<span class="co"># Une nouvelle variable aléatoire</span>
-<span class="va">total</span> <span class="op">&lt;-</span> <span class="va">a</span> <span class="op">+</span> <span class="va">b</span></code></pre></div>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="inf%C3%A9rer.html#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pour répliquer</span></span>
+<span id="cb99-2"><a href="inf%C3%A9rer.html#cb99-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb99-3"><a href="inf%C3%A9rer.html#cb99-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb99-4"><a href="inf%C3%A9rer.html#cb99-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Création de deux variables identiquement distribuées</span></span>
+<span id="cb99-5"><a href="inf%C3%A9rer.html#cb99-5" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="at">n =</span> <span class="dv">1</span>)</span>
+<span id="cb99-6"><a href="inf%C3%A9rer.html#cb99-6" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="at">n =</span> <span class="dv">1</span>)</span>
+<span id="cb99-7"><a href="inf%C3%A9rer.html#cb99-7" aria-hidden="true" tabindex="-1"></a>a ; b</span>
+<span id="cb99-8"><a href="inf%C3%A9rer.html#cb99-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">0.266</span></span>
+<span id="cb99-9"><a href="inf%C3%A9rer.html#cb99-9" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">0.372</span></span>
+<span id="cb99-10"><a href="inf%C3%A9rer.html#cb99-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb99-11"><a href="inf%C3%A9rer.html#cb99-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Une nouvelle variable aléatoire</span></span>
+<span id="cb99-12"><a href="inf%C3%A9rer.html#cb99-12" aria-hidden="true" tabindex="-1"></a>total <span class="ot">&lt;-</span> a <span class="sc">+</span> b</span></code></pre></div>
 <p>Entre en jeu le <em>théorème central limite</em>: plus des variables aléatoires identiquement distribuées sont additionnées ensemble, plus la distribution de probabilité de cette somme se rapproche d’une distribution normale.</p>
 <p>Par exemple, la fonction <code><a href="https://rdrr.io/r/stats/Lognormal.html">rlnorm()</a></code> génère des variables issues d’une distribution log normale. Elle a la forme illustré à la Figure <a href="inf%C3%A9rer.html#fig:lognormal">8.1</a> (qui n’a rien de normal à première vue).</p>
 <div class="figure" style="text-align: center">
@@ -188,10 +188,9 @@ Figure 8.4: Score de Fanny sur la distribution normale
 <code class="sourceCode R"><span class="va">fanny</span> <span class="op">&lt;-</span> <span class="fl">120</span>
 <span class="va">z.fanny</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="va">fanny</span> <span class="op">-</span> <span class="fl">100</span><span class="op">)</span> <span class="op">/</span> <span class="fl">15</span></code></pre></div>
 <p>Fanny a un score-<span class="math inline">\(z\)</span> de 1.333. Maintenant, il faut traduire cette valeur en probabilité.</p>
-<div class="sourceCode" id="cb102"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># La probabilité que Fanny ait un QI de -Inf à z.fanny</span>
-<span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">pnorm</a></span><span class="op">(</span><span class="va">z.fanny</span><span class="op">)</span>
-<span class="co">#&gt; [1] 0.909</span></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="inf%C3%A9rer.html#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="co"># La probabilité que Fanny ait un QI de -Inf à z.fanny</span></span>
+<span id="cb102-2"><a href="inf%C3%A9rer.html#cb102-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(z.fanny)</span>
+<span id="cb102-3"><a href="inf%C3%A9rer.html#cb102-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">0.909</span></span></code></pre></div>
 <p>L’expectative sous l’hypothèse nulle est d’observer un score pareil ou supérieur à celui de Fanny 9.121 % du temps. Cette statistique correspond à la <em>valeur-<span class="math inline">\(p\)</span></em>, la probabilité de l’indice par rapport à sa distribution d’échantillonnage (hypothèse nulle). Comme elle ne dépasse pas le seuil de 5%, soit la limite selon laquelle le score est jugé invraisemblable, l’hypothèse nulle n’est pas rejetée (elle est humaine!).</p>
 <p>Avec le critère d’identifier erronément les 5% humains les plus intelligents, il s’agit, du même coup, du <strong>taux de faux positif</strong> <em>acceptable</em> de l’étude. Un faible sacrifice à réaliser afin identifier des reptiliens parmi les humains. La zone de rejet, c’est-à-dire la zone dans laquelle l’hypothèse nulle (humain) est rejetée, correspond à la zone ombragée à droite de la distribution.</p>
 <p>La logique des tests statistiques inférentiels repose sur cette série d’étapes : choisir un indice, connaître sa distribution sous-jacente, déterminer l’hypothèse nulle (généralement l’absence d’effet), calculer la probabilité de l’indice par rapport à cette hypothèse nulle.</p>
@@ -202,14 +201,13 @@ Figure 8.4: Score de Fanny sur la distribution normale
 </h2>
 <p>Jusqu’à maintenant, seule une unité d’observation était traitée. L’indice et la distribution étaient également spécifiés. Dans cette section, l’exemple est étendu aux échantillons (plus d’une unité d’observation).</p>
 <p>Fanny a un QI de 120. Si une autre personne avait été sélectionnée, cette nouvelle personne aurait inévitablement un autre score. Cette logique s’applique également aux échantillons. L’exemple ci-dessous échantillonne 10 unités d’une population de QI distribuée normalement avec les paramètres usuels.</p>
-<div class="sourceCode" id="cb103"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Création d'un échantillon de 10 unités</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">824</span><span class="op">)</span>
-
-<span class="co"># Dix valeurs arrondies avec une moyenne de 100 et un écart type de 10</span>
-<span class="va">QI</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span>, mean <span class="op">=</span> <span class="fl">100</span>, sd <span class="op">=</span> <span class="fl">15</span><span class="op">)</span><span class="op">)</span>
-<span class="va">QI</span>
-<span class="co">#&gt;  [1] 110 111 102  99 109 102  99 110 132 114</span></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="inf%C3%A9rer.html#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Création d'un échantillon de 10 unités</span></span>
+<span id="cb103-2"><a href="inf%C3%A9rer.html#cb103-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">824</span>)</span>
+<span id="cb103-3"><a href="inf%C3%A9rer.html#cb103-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb103-4"><a href="inf%C3%A9rer.html#cb103-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Dix valeurs arrondies avec une moyenne de 100 et un écart type de 10</span></span>
+<span id="cb103-5"><a href="inf%C3%A9rer.html#cb103-5" aria-hidden="true" tabindex="-1"></a>QI <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">10</span>, <span class="at">mean =</span> <span class="dv">100</span>, <span class="at">sd =</span> <span class="dv">15</span>))</span>
+<span id="cb103-6"><a href="inf%C3%A9rer.html#cb103-6" aria-hidden="true" tabindex="-1"></a>QI</span>
+<span id="cb103-7"><a href="inf%C3%A9rer.html#cb103-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>  [<span class="dv">1</span>] <span class="dv">110</span> <span class="dv">111</span> <span class="dv">102</span>  <span class="dv">99</span> <span class="dv">109</span> <span class="dv">102</span>  <span class="dv">99</span> <span class="dv">110</span> <span class="dv">132</span> <span class="dv">114</span></span></code></pre></div>
 <div class="figure">
 <span style="display:block;" id="fig:rept"></span>
 <img src="08-Inferer_files/figure-html/rept-1.png" alt="Scores des unités de l'échantillon" width="90%" height="90%"><p class="caption">
@@ -221,10 +219,9 @@ Figure 8.5: Scores des unités de l’échantillon
 z = \frac{\bar{x}-\mu_{\bar{x}}}{\sigma/\sqrt{n}}=\frac{108.8-100}{15/\sqrt{10}}=1.855
 \]</span>
 Cela donne le code suivant.</p>
-<div class="sourceCode" id="cb104"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">z</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">QI</span><span class="op">)</span> <span class="op">-</span> <span class="fl">100</span><span class="op">)</span><span class="op">/</span><span class="op">(</span><span class="fl">15</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span>
-<span class="va">z</span>
-<span class="co">#&gt; [1] 1.86</span></code></pre></div>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="inf%C3%A9rer.html#cb104-1" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> (<span class="fu">mean</span>(QI) <span class="sc">-</span> <span class="dv">100</span>)<span class="sc">/</span>(<span class="dv">15</span> <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="dv">10</span>))</span>
+<span id="cb104-2"><a href="inf%C3%A9rer.html#cb104-2" aria-hidden="true" tabindex="-1"></a>z</span>
+<span id="cb104-3"><a href="inf%C3%A9rer.html#cb104-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">1.86</span></span></code></pre></div>
 <p>La fonction <code>(1 - pnorm(z)) * 100</code>, retourne la probabilité (en pourcentage) d’un résultat plus rare que l’indice obtenu auprès de l’échantillon par rapport à la population. Comme pour l’exemple de Fanny, ce chiffre est une valeur-<span class="math inline">\(p\)</span>, soit la probabilité de l’indice observé par rapport à l’hypothèse nulle. La probabilité de cet échantillon par rapport à l’hypothèse nulle est de 3.178%, juste en deçà du 5% fixé. La conclusion est par conséquent de rejeter l’hypothèse nulle, l’échantillon semble provenir d’une autre distribution (avec des paramètres différents) que celle postulée.</p>
 <div class="figure">
 <span style="display:block;" id="fig:unnamed-chunk-10"></span>
@@ -245,24 +242,23 @@ Figure 8.7: Distribution du QI des humains et des reptiliens
 </p>
 </div>
 <p>L’erreur de type I (présentée auparavant) représente la probabilité d’émettre un faux positif, souvent représentée par <span class="math inline">\(\alpha\)</span> (alpha). Elle correspond à la probabilité de rejeter l’hypothèse lorsqu’elle est vraie. Dans la Figure <a href="inf%C3%A9rer.html#fig:rh">8.7</a>, il s’agit de la zone noire. Elle corresond à conclure qu’un vrai humain est un reptilien (ce qu’il n’est pas). Ce taux est fixé à l’avance par l’expérimentateur, ici, 5%. C’est le risque qu’il est prêt à prendre. Ainsi, 95% des humains seront correctement identifiés comme humains.</p>
-<div class="sourceCode" id="cb106"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Erreur de type I (fixé à l'avance)</span>
-<span class="va">alpha</span> <span class="op">&lt;-</span> <span class="fl">.05</span> 
-
-<span class="co"># Valeur critique à laquelle l'expérimentateur rejette H0</span>
-<span class="va">v.crit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">qnorm</a></span><span class="op">(</span><span class="fl">1</span> <span class="op">-</span> <span class="va">alpha</span>, mean <span class="op">=</span> <span class="va">mu.h</span>, sd <span class="op">=</span> <span class="va">sd.h</span><span class="op">)</span>
-<span class="va">v.crit</span>
-<span class="co">#&gt; [1] 125</span>
-
-<span class="co"># Erreur de type II</span>
-<span class="va">beta</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">pnorm</a></span><span class="op">(</span><span class="va">v.crit</span>, mean <span class="op">=</span> <span class="va">mu.r</span>, sd <span class="op">=</span> <span class="va">sd.r</span><span class="op">)</span>
-<span class="va">beta</span>
-<span class="co">#&gt; [1] 0.361</span>
-
-<span class="co"># Puissance statistique</span>
-<span class="va">puissance</span> <span class="op">&lt;-</span> <span class="fl">1</span> <span class="op">-</span> <span class="va">beta</span>
-<span class="va">puissance</span> 
-<span class="co">#&gt; [1] 0.639</span></code></pre></div>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="inf%C3%A9rer.html#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Erreur de type I (fixé à l'avance)</span></span>
+<span id="cb106-2"><a href="inf%C3%A9rer.html#cb106-2" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> .<span class="dv">05</span> </span>
+<span id="cb106-3"><a href="inf%C3%A9rer.html#cb106-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb106-4"><a href="inf%C3%A9rer.html#cb106-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Valeur critique à laquelle l'expérimentateur rejette H0</span></span>
+<span id="cb106-5"><a href="inf%C3%A9rer.html#cb106-5" aria-hidden="true" tabindex="-1"></a>v.crit <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="dv">1</span> <span class="sc">-</span> alpha, <span class="at">mean =</span> mu.h, <span class="at">sd =</span> sd.h)</span>
+<span id="cb106-6"><a href="inf%C3%A9rer.html#cb106-6" aria-hidden="true" tabindex="-1"></a>v.crit</span>
+<span id="cb106-7"><a href="inf%C3%A9rer.html#cb106-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">125</span></span>
+<span id="cb106-8"><a href="inf%C3%A9rer.html#cb106-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb106-9"><a href="inf%C3%A9rer.html#cb106-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Erreur de type II</span></span>
+<span id="cb106-10"><a href="inf%C3%A9rer.html#cb106-10" aria-hidden="true" tabindex="-1"></a>beta <span class="ot">&lt;-</span> <span class="fu">pnorm</span>(v.crit, <span class="at">mean =</span> mu.r, <span class="at">sd =</span> sd.r)</span>
+<span id="cb106-11"><a href="inf%C3%A9rer.html#cb106-11" aria-hidden="true" tabindex="-1"></a>beta</span>
+<span id="cb106-12"><a href="inf%C3%A9rer.html#cb106-12" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">0.361</span></span>
+<span id="cb106-13"><a href="inf%C3%A9rer.html#cb106-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb106-14"><a href="inf%C3%A9rer.html#cb106-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Puissance statistique</span></span>
+<span id="cb106-15"><a href="inf%C3%A9rer.html#cb106-15" aria-hidden="true" tabindex="-1"></a>puissance <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> beta</span>
+<span id="cb106-16"><a href="inf%C3%A9rer.html#cb106-16" aria-hidden="true" tabindex="-1"></a>puissance </span>
+<span id="cb106-17"><a href="inf%C3%A9rer.html#cb106-17" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">0.639</span></span></code></pre></div>
 <p>La zone hachurée de la Figure <a href="inf%C3%A9rer.html#fig:rh">8.7</a> correspond à l’<strong>erreur de type II</strong>, souvent représentée par <span class="math inline">\(\beta\)</span> (beta), soit la probabilité de <em>ne pas rejeter</em> l’hypothèse nulle. Autrement dit, c’est la probabilité de ne pas trouver l’effet lorsque celui-ci est vrai. Pour cet exemple, il s’agit d’un reptilien assez sournois (avec un QI suffisamment faible pour sa population) qu’il passe inaperçu auprès des humains, ou, en d’autres termes, de conclure qu’un vrai reptilien est un humain (ce qu’il n’est pas). Cette probabilité est estimée à 36.124%, donc 36.124% des reptiliens passeront inaperçus.</p>
 <p>La <strong>puissance</strong>, la zone grise de la Figure <a href="inf%C3%A9rer.html#fig:rh">8.7</a>, correspond à la probabilité de rejeter correctement l’hypothèse nulle. Il s’agit de rejeter l’hypothèse nulle lorsqu’elle est fausse. Cela signifie d’identifier un vrai reptilien correctement. C’est exactement ce que le groupe de chercheur désire réaliser. Elle est estimée à 63.876% en ne prenant qu’une mesure de QI. La puissance est l’une des statistiques qui intéressent le plus l’expérimentateur <em>avant</em> de réaliser son étude, car elle donne une approximation sur la probabilité de trouver un résultat significatif. Par contre, les expérimentateurs ne connaissent que rarement les paramètres de la vraie distribution de l’effet qu’il désire trouver. En langage statistique, il s’agit un paramètre de non-centralité (ou de décentralisation) ou <code>ncp</code> en syntaxe <strong>R</strong>. L’expérimentateur recourt alors à d’habiles approximations éclairées basées sur leurs connaissances du phénomène et en regard des études déjà publiées sur le sujet (ou un sujet similaire), s’il y en a. Ces estimations souffrent tout de même d’être des variables aléatoires (elles respectent elles aussi une distribution d’échantillonnage), et non les paramètres recherchés.</p>
 <p>Avant de procéder davantage, une dernière notion est importante à présenter : la direction du test. Dans tous les exemples précédents, l’hypothèse nulle était rejetée si une valeur plus rare était obtenue. Il s’agit d’un test d’hypothèse <strong>unilatérale</strong> (d’un seul côté). Cela facilite grandement la présentation de certains concepts et calculs. Un test peut être unilatérale inférieure, trouver un résultat plus faible qu’une valeur critique; ou unilatérale supérieure, trouver un résultat plus élevé qu’une valeur critique; ou encore <strong>bilatérale</strong>, soit trouver un résultat moins élevée ou plus élevée que des valeurs critiques.</p>
@@ -319,33 +315,32 @@ Figure 8.10: Comparaison d’une distribution normale à deux distributions-<spa
   <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">statistique</span><span class="op">)</span>
 <span class="op">}</span></code></pre></div>
 <p>Une fois la fonction créée, il est possible de la tester en la comparant avec la fonction <strong>R</strong> de base <code>test.t()</code>. Le code suivant crée un échantillon de 30 unités avec une moyenne de 1 et un écart type de 1.</p>
-<div class="sourceCode" id="cb108"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Un exemple de jeu de données</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span>
-<span class="va">x</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">30</span>, mean <span class="op">=</span> <span class="fl">1</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
-<span class="co"># Vérification de la fonction maison</span>
-<span class="fu">testt</span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
-<span class="co">#&gt; $valeur.t</span>
-<span class="co">#&gt; [1] 3.69</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $dl</span>
-<span class="co">#&gt; [1] 29</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $valeur.p</span>
-<span class="co">#&gt; [1] 0.000919</span>
-<span class="co"># Comparer avec la fonction R</span>
-<span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;  One Sample t-test</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; data:  x</span>
-<span class="co">#&gt; t = 4, df = 29, p-value = 9e-04</span>
-<span class="co">#&gt; alternative hypothesis: true mean is not equal to 0</span>
-<span class="co">#&gt; 95 percent confidence interval:</span>
-<span class="co">#&gt;  0.31 1.08</span>
-<span class="co">#&gt; sample estimates:</span>
-<span class="co">#&gt; mean of x </span>
-<span class="co">#&gt;     0.696</span></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="inf%C3%A9rer.html#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Un exemple de jeu de données</span></span>
+<span id="cb108-2"><a href="inf%C3%A9rer.html#cb108-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">20</span>)</span>
+<span id="cb108-3"><a href="inf%C3%A9rer.html#cb108-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">30</span>, <span class="at">mean =</span> <span class="dv">1</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
+<span id="cb108-4"><a href="inf%C3%A9rer.html#cb108-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Vérification de la fonction maison</span></span>
+<span id="cb108-5"><a href="inf%C3%A9rer.html#cb108-5" aria-hidden="true" tabindex="-1"></a><span class="fu">testt</span>(x)</span>
+<span id="cb108-6"><a href="inf%C3%A9rer.html#cb108-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="er">$</span>valeur.t</span>
+<span id="cb108-7"><a href="inf%C3%A9rer.html#cb108-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">3.69</span></span>
+<span id="cb108-8"><a href="inf%C3%A9rer.html#cb108-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb108-9"><a href="inf%C3%A9rer.html#cb108-9" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="er">$</span>dl</span>
+<span id="cb108-10"><a href="inf%C3%A9rer.html#cb108-10" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">29</span></span>
+<span id="cb108-11"><a href="inf%C3%A9rer.html#cb108-11" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb108-12"><a href="inf%C3%A9rer.html#cb108-12" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="er">$</span>valeur.p</span>
+<span id="cb108-13"><a href="inf%C3%A9rer.html#cb108-13" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">0.000919</span></span>
+<span id="cb108-14"><a href="inf%C3%A9rer.html#cb108-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Comparer avec la fonction R</span></span>
+<span id="cb108-15"><a href="inf%C3%A9rer.html#cb108-15" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(x)</span>
+<span id="cb108-16"><a href="inf%C3%A9rer.html#cb108-16" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb108-17"><a href="inf%C3%A9rer.html#cb108-17" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span>   One Sample t<span class="sc">-</span>test</span>
+<span id="cb108-18"><a href="inf%C3%A9rer.html#cb108-18" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb108-19"><a href="inf%C3%A9rer.html#cb108-19" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> data<span class="sc">:</span>  x</span>
+<span id="cb108-20"><a href="inf%C3%A9rer.html#cb108-20" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> t <span class="ot">=</span> <span class="dv">4</span>, df <span class="ot">=</span> <span class="dv">29</span>, p<span class="sc">-</span>value <span class="ot">=</span> <span class="fl">9e-04</span></span>
+<span id="cb108-21"><a href="inf%C3%A9rer.html#cb108-21" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> alternative hypothesis<span class="sc">:</span> true mean is not equal to <span class="dv">0</span></span>
+<span id="cb108-22"><a href="inf%C3%A9rer.html#cb108-22" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">95</span> percent confidence interval<span class="sc">:</span></span>
+<span id="cb108-23"><a href="inf%C3%A9rer.html#cb108-23" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span>  <span class="fl">0.31</span> <span class="fl">1.08</span></span>
+<span id="cb108-24"><a href="inf%C3%A9rer.html#cb108-24" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> sample estimates<span class="sc">:</span></span>
+<span id="cb108-25"><a href="inf%C3%A9rer.html#cb108-25" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> mean of x </span>
+<span id="cb108-26"><a href="inf%C3%A9rer.html#cb108-26" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>     <span class="fl">0.696</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:sss"></span>
 <img src="08-Inferer_files/figure-html/sss-1.png" alt="Valeur-$t$ de l'échantillon sur la distribution-$t$" width="75%" height="75%"><p class="caption">
@@ -404,7 +399,7 @@ Figure 8.11: Valeur-<span class="math inline">\(t\)</span> de l’échantillon s
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Méthodes Quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-05-24.</p>
+    <p>"<strong>Méthodes Quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-06-01.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -1,16 +1,14 @@
 --- 
 title: "Méthodes Quantitatives avec R"
 author: "P.-O. Caron"
-date: "2022-05-24"
+date: "2022-06-01"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [ma.bib]
 url: mqr.teluq.ca
 # cover-image: path to the social sharing image like images/cover.jpg
 description: |
-  This is a minimal example of using the bookdown package to write a book.
-  The HTML output format for this example is bookdown::bs4_book,
-  set in the _output.yml file.
+ Bienvenue dans la version préliminaire et en ligne du livre Méthodes Quantitatives avec R  de P.-O. Caron. Le livre vise démystifier les mécanismes ésotériques derrière les logiciels statistiques en démocratisant la programmation statistique avec R. 
 biblio-style: apa
 link-citations: true
 csl: apa.csl
@@ -18,7 +16,7 @@ csl: apa.csl
 
 # Bienvenue! {-}
 
-Bienvenue dans la version préliminaire et en ligne du livre *Méthodes Quantitatives avec ****R*** de [P.-O. Caron](https://www.teluq.ca/siteweb/univ/pcaron.html). Le livre porte sur la programmation statistique en **R** et vise démystifier les mécanismes ésotériques derrières les logiciels statistiques afin de les rendre accessibles au plus grand nombre de personnes. Son objectif est de faire le pont entre la statistique et la programmation afin que les expérimentateurs comprennent et autonomisent leur pratique. L'approche permet à la fois une meilleur compréhension des statistiques à l'aide du logiciel, mais aussi un objectif pour débuter la programmation.
+Bienvenue dans la version préliminaire et en ligne du livre *Méthodes Quantitatives avec ****R*** de [P.-O. Caron](https://www.teluq.ca/siteweb/univ/pcaron.html). Le livre porte sur la programmation statistique en **R** et vise démystifier les mécanismes ésotériques derrière les logiciels statistiques afin de les rendre accessibles au plus grand nombre de personnes. Son objectif est de faire le pont entre la statistique et la programmation afin que les expérimentateurs comprennent et autonomisent leur pratique. L'approche permet à la fois une meilleur compréhension des statistiques à l'aide du logiciel, mais aussi un objectif pour débuter la programmation.
 
 Il vise un public autant intéressé à s'initier à **R** qu'à en connaître davatange sur la statistique, mais surtout un lecteur qui souhaite maîtriser les deux.
 
@@ -39,7 +37,7 @@ Par exemple, que vaut l'expression $-9^{(.5)}$? Reconnaître qu'il s'agit de $\s
 
 ```r
 -9^(.5)
-#> [1] -3
+> [1] -3
 ```
 celui-ci  retourne la réponse $-3$ à cause de la priorité des opérations, $-(9)^{.5}$. Était-ce la réponse désirée? 
 

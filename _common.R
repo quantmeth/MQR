@@ -3,7 +3,7 @@ options(width = 60, digits = 3)
 
 # example chunk options set globally
 knitr::opts_chunk$set(
-  comment = "#>",
+  comment = ">",
   collapse = TRUE
   )
 

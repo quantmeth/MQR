@@ -9,7 +9,7 @@ Pour manipuler les données, il faut recourir à des variables. Afin de leur att
 ```r
 a <- 2
 a
-#> [1] 2
+> [1] 2
 ```
 
 où `a` est maintenant égale à `2`. La première ligne assigne la valeur à `a`. La deuxième ligne, indique à la console **R** d'imprimer le résultat pour le voir. Par la suite, `a` pourra être utilisée dans des fonctions, des calculs ou analyses plus complexes. De surcroît, `a` pourra devenir une fonction, une chaîne de caractère (*string*) ou un jeu de données.
@@ -28,7 +28,7 @@ Réassigner une valeur à une variable déjà existante écrase la valeur préc�
 a <- 2
 a <- 3
 a
-#> [1] 3
+> [1] 3
 ```
 
 La sortie produit `3` et non plus `2`.
@@ -54,11 +54,11 @@ La première utilisation qu'un nouvel usager fait de **R** est généralement d'
 
 ```r
 2 + 2
-#> [1] 4
+> [1] 4
 1 / 3
-#> [1] 0.333
+> [1] 0.333
 2 * 3 + 2 ^ 2
-#> [1] 10
+> [1] 10
 ```
 Évidemment, ces opérateurs fonctionnent sur des variables numériques.
 
@@ -66,7 +66,7 @@ La première utilisation qu'un nouvel usager fait de **R** est généralement d'
 a <- 1
 b <- 10
 a / b
-#> [1] 0.1
+> [1] 0.1
 ```
 Ici, les deux premières lignes assignent des valeurs à `a` et `b`, puis imprime la division. L'absence de marqueur `<-` ou `=` indique à **R** d'imprimer la réponse dans la console. Si le résultat `a/b` devait être assigné à une variable, alors aucun résultat ne serait affiché, bien que la variable contienne la réponse.
 
@@ -77,17 +77,17 @@ Il n'y a aucune réponse d'affichée. Maintenant, si `resultat` est demandé, R 
 
 ```r
 resultat
-#> [1] 0.1
+> [1] 0.1
 ```
 D'autres fonctions sont aussi très utiles. Par exemple, la racine carrée `sqrt()` (qui n'est rien d'autre que `^(1/2)`) et le logarithme naturel `log()`. Il suffit d'insérer une variable ou une valeur à l'intérieur d'une de ces fonctions pour en obtenir le résultat.
 
 ```r
 sqrt(4)
-#> [1] 2
+> [1] 2
 4^(1/2)
-#> [1] 2
+> [1] 2
 log(4)
-#> [1] 1.39
+> [1] 1.39
 ```
 
 ## Les commentaires
@@ -99,7 +99,7 @@ Les scripts **R** peuvent contenir des commentaires. Ceux-ci sont désignés par
 # La variable resultat est le quotient des variables a et b
 resultat <- a / b
 resultat
-#> [1] 0.1
+> [1] 0.1
 ```
 Dans cet exemple, la première ligne est ignorée. Autrement, la console **R** produirait une erreur, car cette ligne est pour le logiciel pur charabia!
 
@@ -110,7 +110,7 @@ La plupart du temps, les variables utilisées seront numériques, c'est-à-dire 
 ```r
 titre <- "Bonjour tout le monde!"
 titre
-#> [1] "Bonjour tout le monde!"
+> [1] "Bonjour tout le monde!"
 ```
 
 ## Concaténer
@@ -125,7 +125,7 @@ Une fonction fort utile permettra de joindre des valeurs dans une seule variable
 ```r
 valeurs <- c(-5, 5)
 valeurs
-#> [1] -5  5
+> [1] -5  5
 ```
 
 Elle fonctionne également avec les chaînes de caractères.
@@ -134,7 +134,7 @@ Elle fonctionne également avec les chaînes de caractères.
 ```r
 texte <- c("Bonjour", "tout", "le", "monde")
 texte
-#> [1] "Bonjour" "tout"    "le"      "monde"
+> [1] "Bonjour" "tout"    "le"      "monde"
 ```
 
 Et les deux.
@@ -143,7 +143,7 @@ Et les deux.
 ```r
 phrase <- c(1, "Chat", 2, "Souris")
 phrase
-#> [1] "1"      "Chat"   "2"      "Souris"
+> [1] "1"      "Chat"   "2"      "Souris"
 ```
 
 La fonction `c()` est strict sur les arguments, car elles leur accord le même attribut. Par exemple, `phrase` ne contient que des chaînes de caractères. Les valeurs `1` et `2` ont perdu leur classe de numérique (elles ne sont plus utilisables comme nombre - pour l'instant).
@@ -158,33 +158,33 @@ La fonction `matrix()` sera utile pour créer des matrices, commes des matrices 
 ```r
 # Une matrice de 0
 matrix(0, ncol = 3, nrow = 3)
-#>      [,1] [,2] [,3]
-#> [1,]    0    0    0
-#> [2,]    0    0    0
-#> [3,]    0    0    0
+>      [,1] [,2] [,3]
+> [1,]    0    0    0
+> [2,]    0    0    0
+> [3,]    0    0    0
 
 # Une matrice contenant les nombres 1:3 pour une matrice 3x3
 matrix(1:3, ncol = 3, nrow = 3)
-#>      [,1] [,2] [,3]
-#> [1,]    1    1    1
-#> [2,]    2    2    2
-#> [3,]    3    3    3
+>      [,1] [,2] [,3]
+> [1,]    1    1    1
+> [2,]    2    2    2
+> [3,]    3    3    3
 
 # Si la séquence préférée est de gauche à droite plutôt
 # que de bas en haut
 matrix(1:3, ncol = 3, nrow = 3, byrow = TRUE)
-#>      [,1] [,2] [,3]
-#> [1,]    1    2    3
-#> [2,]    1    2    3
-#> [3,]    1    2    3
+>      [,1] [,2] [,3]
+> [1,]    1    2    3
+> [2,]    1    2    3
+> [3,]    1    2    3
 
 # Une matrice avec un nombre d'entrées égale au nombre de cellules
 matrix(1:16, ncol = 4, nrow = 4)
-#>      [,1] [,2] [,3] [,4]
-#> [1,]    1    5    9   13
-#> [2,]    2    6   10   14
-#> [3,]    3    7   11   15
-#> [4,]    4    8   12   16
+>      [,1] [,2] [,3] [,4]
+> [1,]    1    5    9   13
+> [2,]    2    6   10   14
+> [3,]    3    7   11   15
+> [4,]    4    8   12   16
 ```
 
 Les matrices sont une formes de jeu données dans lequel tous les éléments partagent le même attribut (tous numériques, caractères, logiques, etc.). 
@@ -208,12 +208,12 @@ jd2 <- data.frame(nom = var1, age = var2, enfant = var3)
 
 # Comparer
 jd1 ; jd2
-#>       var1 var2 var3
-#> 1     Éloi    6 TRUE
-#> 2 Laurence    3 TRUE
-#>        nom age enfant
-#> 1     Éloi   6   TRUE
-#> 2 Laurence   3   TRUE
+>       var1 var2 var3
+> 1     Éloi    6 TRUE
+> 2 Laurence    3 TRUE
+>        nom age enfant
+> 1     Éloi   6   TRUE
+> 2 Laurence   3   TRUE
 ```
 
 En utilisant `nom.de.variable = vecteur` à l'intérieur de `data.frame()`, les noms des colonnes deviennent `nom.de.variable`. Cela permettra une plus grande flexibilité lorsqu'il faudra [gèrer] et [manipuler] les données. 
@@ -240,16 +240,16 @@ jd2 <- list(animal = var1, nombre = var2)
 
 # Comparer
 jd1 ; jd2
-#> [[1]]
-#> [1] "chat"  "chien"
-#> 
-#> [[2]]
-#>  [1]  1  2  3  4  5  6  7  8  9 10
-#> $animal
-#> [1] "chat"  "chien"
-#> 
-#> $nombre
-#>  [1]  1  2  3  4  5  6  7  8  9 10
+> [[1]]
+> [1] "chat"  "chien"
+> 
+> [[2]]
+>  [1]  1  2  3  4  5  6  7  8  9 10
+> $animal
+> [1] "chat"  "chien"
+> 
+> $nombre
+>  [1]  1  2  3  4  5  6  7  8  9 10
 ```
 
 L'utilisation de listes est une caractéristique prédominante avec **R**. Par exemple, **R** ne peut sortir qu'une variable par fonction. Si la fonction doit retourner plusieurs éléments, ceux-ci devront se retrouver dans une liste. Ce qui sera plus nébuleux pour le lecteur, c'est que l'optimisation de **R** se fait par les listes. Cela sera noté aux moments appropriés.
@@ -265,23 +265,23 @@ phrase <- c(1, "Chat", 2, "Souris")
 
 # Extraire le premier élément de la variable phrase
 phrase[1]
-#> [1] "1"
+> [1] "1"
 
 # Extraire les éléments 1, 2 et 3
 phrase[1:3]
-#> [1] "1"    "Chat" "2"
+> [1] "1"    "Chat" "2"
 
 # Extraire les éléments 2 et 4
 phrase[c(2,4)]
-#> [1] "Chat"   "Souris"
+> [1] "Chat"   "Souris"
 
 # Ne pas extraire l'élément 1
 phrase[-1]
-#> [1] "Chat"   "2"      "Souris"
+> [1] "Chat"   "2"      "Souris"
 
 # Ne pas extraire les éléments 1 et 3
 phrase[-c(1, 3)]
-#> [1] "Chat"   "Souris"
+> [1] "Chat"   "Souris"
 ```
 
 Dans le premier exemple, seul un élément est demandé. Dans le deuxième exemple, la commande `1:3` produit la série de $1,2,3$ et en extrait ces nombres. Dans le dernier exemple, la fonction `c()` est astucieusement utilisée pour extraire les éléments $2$ et $4$. Le quatrième exemple montre comment retirer un élément en utilisant des valeurs négatives et le cinquième exemple montre comment retirer des éléments.
@@ -311,7 +311,7 @@ addition <- function(a, b) {
   a + b
 }
 addition(2,3)
-#> [1] 5
+> [1] 5
 ```
 
 Par défaut, une fonction retourne la dernière ligne calculée si elle n'est pas assignée à une variable. Si le résultat d'une fonction est assigné, la fonction ne retourne pas le résultat dans la console, mais assigne bel et bien la variable.
@@ -331,7 +331,7 @@ total <- addition2(100, 241)
 
 # En roulant total, la sortie affiche bien la sortie de addition2()
 total
-#> [1] 341
+> [1] 341
 ```
 
 Afin d'éviter ces problèmes ou s'il fallait retourner plusieurs arguments (ce qui sera souvent le cas!), il faudrait utiliser la fonction `return()` à la fin de la fonction.
@@ -346,10 +346,10 @@ addition3 <- function(a, b) {
 
 # Les deux fonctions produisent une sortie
 addition3(4, 6)
-#> [1] 10
+> [1] 10
 total <- addition3(4, 6)
 total
-#> [1] 10
+> [1] 10
 ```
 
 ## Définir une boucle
@@ -428,7 +428,7 @@ Pour réaliser des opérations sous certaines conditions ou opérer des décisio
 valeurs <- 1:6
 # Toutes les valeurs plus grandes que 3.
 valeurs > 3
-#> [1] FALSE FALSE FALSE  TRUE  TRUE  TRUE
+> [1] FALSE FALSE FALSE  TRUE  TRUE  TRUE
 ```
 
 Cela peut être utilisé pour référer à des sous-éléments comme abordés précédemment.
@@ -437,7 +437,7 @@ Cela peut être utilisé pour référer à des sous-éléments comme abordés pr
 ```r
 # Toutes les valeurs plus grandes que 3.
 valeurs[valeurs > 3]
-#> [1] 4 5 6
+> [1] 4 5 6
 ```
 
 Ici, toutes les valeurs vraies de l'opérateur logique sont rapportées.
@@ -459,7 +459,7 @@ x <- -2
 if(x < 0){
   print("la valeur est négative")
 }
-#> [1] "la valeur est négative"
+> [1] "la valeur est négative"
 ```
 
 Il est possible d'élaborer cette logique avec la fonction `else` qui permet de spécifier une suite à la fonction si l'argument est faux (`FALSE`).
@@ -472,7 +472,7 @@ if(x < 0){
 }else{
   print("la valeur est positive")
 }
-#> [1] "la valeur est positive"
+> [1] "la valeur est positive"
 ```
 
 Enfin, il est possible d'élaborer un arbre de décision avec toute une échelle de conditionnels.
@@ -487,7 +487,7 @@ if(x < 0){
 }else{
   print("la valeur est égale à 0")
 }
-#> [1] "la valeur est égale à 0"
+> [1] "la valeur est égale à 0"
 ```
 
 L'arbre de décision peut devenir aussi compliqué que l'utilisateur le désire : chacune des branches peut contenir autant de ramifications que nécessaire.

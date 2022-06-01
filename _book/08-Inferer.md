@@ -1,4 +1,4 @@
-# (PART) Statistique {-}
+# (PART) Statistiques {-}
 
 # Inférer
 
@@ -15,7 +15,7 @@ Les valeurs d'un échantillon sont, pour le statisticien, des variables aléatoi
 
 ```r
 runif(n = 1)
-#> [1] 0.18
+> [1] 0.231
 ```
 
 Le statisticien s'intéresse à inférer comment ces valeurs sont générées. Il postule ainsi que les valeurs aléatoires suivent une distribution de probabilité. Connaître cette distribution est très important, car c'est elle qui permet de répondre à des questions comme : quelle est la probabilité d'obtenir un résultat aussi rare que $x$? Ou quelle sont les valeurs attendues pour $95\%$ des tirages? Questions tout à fait pertinentes pour l'expérimentateur. Une des distributions les plus connues est certainement la distribution normale, celle qui est derrière la fonction `rnorm()` d'ailleurs. Mais, il y en a beaucoup, beaucoup d'autres. 
@@ -31,8 +31,8 @@ set.seed(1)
 a <- runif(n = 1)
 b <- runif(n = 1)
 a ; b
-#> [1] 0.266
-#> [1] 0.372
+> [1] 0.266
+> [1] 0.372
 
 # Une nouvelle variable aléatoire
 total <- a + b
@@ -124,7 +124,7 @@ Fanny a un score-$z$ de 1.333. Maintenant, il faut traduire cette valeur en prob
 ```r
 # La probabilité que Fanny ait un QI de -Inf à z.fanny
 pnorm(z.fanny)
-#> [1] 0.909
+> [1] 0.909
 ```
 
 L'expectative sous l'hypothèse nulle est d'observer un score pareil ou supérieur à celui de Fanny 9.121 % du temps. Cette statistique correspond à la *valeur-$p$*, la probabilité de l'indice par rapport à sa distribution d'échantillonnage (hypothèse nulle). Comme elle ne dépasse pas le seuil de 5%, soit la limite selon laquelle le score est jugé invraisemblable, l'hypothèse nulle n'est pas rejetée (elle est humaine!).
@@ -147,7 +147,7 @@ set.seed(824)
 # Dix valeurs arrondies avec une moyenne de 100 et un écart type de 10
 QI <- round(rnorm(n = 10, mean = 100, sd = 15))
 QI
-#>  [1] 110 111 102  99 109 102  99 110 132 114
+>  [1] 110 111 102  99 109 102  99 110 132 114
 ```
 
 <div class="figure">
@@ -166,7 +166,7 @@ Cela donne le code suivant.
 ```r
 z <- (mean(QI) - 100)/(15 / sqrt(10))
 z
-#> [1] 1.86
+> [1] 1.86
 ```
 
 La fonction `(1 - pnorm(z)) * 100`, retourne la probabilité (en pourcentage) d'un résultat plus rare que l'indice obtenu auprès de l'échantillon par rapport à la population. Comme pour l'exemple de Fanny, ce chiffre est une valeur-$p$, soit la probabilité de l'indice observé par rapport à l'hypothèse nulle. La probabilité de cet échantillon par rapport à l'hypothèse nulle est de 3.178%, juste en deçà du 5% fixé. La conclusion est par conséquent de rejeter l'hypothèse nulle, l'échantillon semble provenir d'une autre distribution (avec des paramètres différents) que celle postulée.
@@ -203,17 +203,17 @@ alpha <- .05
 # Valeur critique à laquelle l'expérimentateur rejette H0
 v.crit <- qnorm(1 - alpha, mean = mu.h, sd = sd.h)
 v.crit
-#> [1] 125
+> [1] 125
 
 # Erreur de type II
 beta <- pnorm(v.crit, mean = mu.r, sd = sd.r)
 beta
-#> [1] 0.361
+> [1] 0.361
 
 # Puissance statistique
 puissance <- 1 - beta
 puissance 
-#> [1] 0.639
+> [1] 0.639
 ```
 
 La zone hachurée de la Figure \@ref(fig:rh) correspond à l'**erreur de type II**, souvent représentée par $\beta$ (beta), soit la probabilité de *ne pas rejeter* l'hypothèse nulle. Autrement dit, c'est la probabilité de ne pas trouver l'effet lorsque celui-ci est vrai. Pour cet exemple, il s'agit d'un reptilien assez sournois (avec un QI suffisamment faible pour sa population) qu'il passe inaperçu auprès des humains, ou, en d'autres termes, de conclure qu'un vrai reptilien est un humain (ce qu'il n'est pas). Cette probabilité est estimée à 36.124%, donc 36.124% des reptiliens passeront inaperçus.
@@ -286,27 +286,27 @@ set.seed(20)
 x = rnorm(n = 30, mean = 1, sd = 1)
 # Vérification de la fonction maison
 testt(x)
-#> $valeur.t
-#> [1] 3.69
-#> 
-#> $dl
-#> [1] 29
-#> 
-#> $valeur.p
-#> [1] 0.000919
+> $valeur.t
+> [1] 3.69
+> 
+> $dl
+> [1] 29
+> 
+> $valeur.p
+> [1] 0.000919
 # Comparer avec la fonction R
 t.test(x)
-#> 
-#> 	One Sample t-test
-#> 
-#> data:  x
-#> t = 4, df = 29, p-value = 9e-04
-#> alternative hypothesis: true mean is not equal to 0
-#> 95 percent confidence interval:
-#>  0.31 1.08
-#> sample estimates:
-#> mean of x 
-#>     0.696
+> 
+> 	One Sample t-test
+> 
+> data:  x
+> t = 4, df = 29, p-value = 9e-04
+> alternative hypothesis: true mean is not equal to 0
+> 95 percent confidence interval:
+>  0.31 1.08
+> sample estimates:
+> mean of x 
+>     0.696
 ```
 
 <div class="figure" style="text-align: center">

@@ -91,8 +91,8 @@ for(i in 1:nreps){
 }
 
 cbind(gain.rester,gain.changer)  / nreps
-#>      gain.rester gain.changer
-#> [1,]       0.316        0.684
+>      gain.rester gain.changer
+> [1,]       0.316        0.684
 ```
 
 Une petite digression avant de poursuivre. *Il ne faut jamais prendre pour acquis que le code fonctionne comme prévu*. À cause d'un inconvénient de la fonction `sample()`, une approche conditionnelle doit être utilisée. En fait, la fonction échantillonne les éléments de `x` (premier argument) jusqu'à obtenir `size` objets. Par contre, si une seule valeur est donnée à `x` et si elle est numérique, alors la fonction utilise les éléments de `1:x` pour rééchantillonner. Ici, si le choix et le prix sont différents, il n'y a qu'une seule valeur retournée (l'autre chèvre), ce qui occasionne le problème, et par conséquent, de l'utilisation du conditionnel. En programmation, il faut toujours s'assurer que les fonctions s'accordent avec les attentes.
@@ -145,8 +145,8 @@ for(i in 1:nreps){
 }
 
 cbind(gain.rester,gain.changer)  / nreps
-#>      gain.rester gain.changer
-#> [1,]       0.009        0.991
+>      gain.rester gain.changer
+> [1,]       0.009        0.991
 ```
 
 La simulation montre que rester gagne 0.9% et que de changer gagne 99.1%.
@@ -242,13 +242,13 @@ Ici, le cas illustré est trivial au sens où, par le théorème central limite,
 ```r
 # Voici la moyenne et l'erreur standard originales
 mean(X) ; sd(X)/sqrt(n)
-#> [1] 10.2
-#> [1] 0.485
+> [1] 10.2
+> [1] 0.485
 
 # La moyenne et l'erreur standard à partir des rééchantillons
 mean(moyenne.X)  ; sd(moyenne.X)
-#> [1] 10.2
-#> [1] 0.481
+> [1] 10.2
+> [1] 0.481
 ```
 
 La moyenne et l'erreur standard sont très près de la moyenne de l'échantillon et celle de la population (qui est de 10) et de l'erreur type attendue. Il est possible de créer des intervalles de confiances avec la fonction `quantile` qui prend en argument un vecteur de données et les probabilités désirées. Dans le cas de 95% pour une erreur de type I de 5%, soit $\alpha=.05$, il s'agit de $.05/2 = .025$ et $1-.05/2= .975$, laissant au total 5% aux extrémités.
@@ -264,16 +264,16 @@ tv = qt(crit, df = n - 1)
 
 # Intervalles basés sur les indices de l'échantillon
 mean(X) + tv * sd(X)/sqrt(n)
-#> [1]  9.2 11.2
+> [1]  9.2 11.2
 
 # Intervalles basés sur les indices du rééchantillonnage
 mean(moyenne.X) + tv * sd(moyenne.X)
-#> [1]  9.22 11.18
+> [1]  9.22 11.18
 
 # Intervalles sur le rééchantillonnage
 quantile(moyenne.X, crit)
-#>  2.5% 97.5% 
-#>  9.26 11.13
+>  2.5% 97.5% 
+>  9.26 11.13
 ```
 
 Pour réaliser le test d'hypothèse nulle, il suffit de constater si l'intervalle de confiance contient ou non zéro. Dans le cas où l'intervalle contient 0, le test n'est pas significatif, il est vraisemblable que l'absence d'effet soit vraie. S'il ne contient pas 0, l'hypothèse est rejetée, le test est significatif et il est vraisemblable qu'il y ait un effet. Dans cet exemple, la moyenne est clairement différente de 0, car elle ne contient pas cette valeur.
@@ -299,18 +299,18 @@ btsp <- bootstrap(vec = X, nreps = nreps, theta = mean)
 # Pour fin de comparaison :
 # Voici la moyenne et l'erreur standard de ce bootstrap
 mean(btsp)  ; sd(btsp)
-#> [1] 10.2
-#> [1] 0.484
+> [1] 10.2
+> [1] 0.484
 
 # Voici la moyenne et l'erreur standard à partir du premier bootstrap
 mean(moyenne.X)  ; sd(moyenne.X)
-#> [1] 10.2
-#> [1] 0.481
+> [1] 10.2
+> [1] 0.481
 
 # Et voici la moyenne et l'erreur standard originales
 mean(X) ; sd(X)/sqrt(n)
-#> [1] 10.2
-#> [1] 0.485
+> [1] 10.2
+> [1] 0.485
 ```
 
 

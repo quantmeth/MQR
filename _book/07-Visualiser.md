@@ -127,7 +127,7 @@ jd %>%
   ggplot(mapping = aes(x = mass, y = height)) + 
   geom_point(size = 2) +
   geom_smooth(method = lm, se = FALSE, color = "black")
-#> `geom_smooth()` using formula 'y ~ x'
+> `geom_smooth()` using formula 'y ~ x'
 ```
 
 <div class="figure" style="text-align: center">
@@ -182,8 +182,8 @@ jd %>%
   ggplot(aes(value)) +
   facet_wrap(~ key, scales = "free") +
   geom_histogram()
-#> `stat_bin()` using `bins = 30`. Pick better value with
-#> `binwidth`.
+> `stat_bin()` using `bins = 30`. Pick better value with
+> `binwidth`.
 ```
 
 <div class="figure" style="text-align: center">
@@ -199,8 +199,8 @@ jd %>%
   ggplot(mapping = aes(x = IMC, fill = sex)) + 
   geom_histogram(position = "identity", alpha = .7) + 
   scale_fill_grey()
-#> `stat_bin()` using `bins = 30`. Pick better value with
-#> `binwidth`.
+> `stat_bin()` using `bins = 30`. Pick better value with
+> `binwidth`.
 ```
 
 <div class="figure" style="text-align: center">

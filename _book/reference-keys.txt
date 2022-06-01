@@ -95,7 +95,7 @@ conseils-dimportation
 voir-la-base-de-données
 sauvegarder-un-jeu-de-données
 quelques-conseils-de-gestion
-entrée-de-données
+entrer
 entrée-de-données-avec-data.entry-r-de-base
 entrée-de-données-avec-data_edit-package-dataeditr
 manipuler

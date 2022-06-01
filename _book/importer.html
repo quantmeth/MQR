@@ -19,16 +19,15 @@
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-</head>
-<body>
-<p>
+<!-- 
     \(
     \newcommand{\EX}{\mathbb{E}}
     \)
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    --><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
     
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-  </style><style type="text/css">
+  </style>
+<style type="text/css">
     /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
     div.csl-bib-body { }
     div.csl-entry {
@@ -49,7 +48,10 @@
     div.csl-indent {
       margin-left: 2em;
     }
-  </style><link rel="stylesheet" href="bs4_style.css"></p>
+  </style>
+<link rel="stylesheet" href="bs4_style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
 
 <div class="container-fluid">
 <div class="row">
@@ -78,11 +80,11 @@
 <li><a class="" href="exercice-rudiments.html">Exercices</a></li>
 <li class="book-part">Jeux de données</li>
 <li><a class="active" href="importer.html"><span class="header-section-number">4</span> Importer</a></li>
-<li><a class="" href="entr%C3%A9e-de-donn%C3%A9es.html"><span class="header-section-number">5</span> Entrée de données</a></li>
+<li><a class="" href="entrer.html"><span class="header-section-number">5</span> Entrer</a></li>
 <li><a class="" href="manipuler.html"><span class="header-section-number">6</span> Manipuler</a></li>
 <li><a class="" href="visualiser.html"><span class="header-section-number">7</span> Visualiser</a></li>
 <li><a class="" href="exercice-gestion.html">Exercices</a></li>
-<li class="book-part">Statistique</li>
+<li class="book-part">Statistiques</li>
 <li><a class="" href="inf%C3%A9rer.html"><span class="header-section-number">8</span> Inférer</a></li>
 <li><a class="" href="analyser.html"><span class="header-section-number">9</span> Analyser</a></li>
 <li><a class="" href="simuler.html"><span class="header-section-number">10</span> Simuler</a></li>
@@ -107,15 +109,14 @@
 <span class="header-section-number">4.1</span> Jeux de données provenant de <strong>R</strong> et de packages<a class="anchor" aria-label="anchor" href="#jeux-de-donn%C3%A9es-provenant-de-r-et-de-packages"><i class="fas fa-link"></i></a>
 </h2>
 <p>Plusieurs packages offrent en plus des fonctions des jeux de données. Mieux encore! <strong>R</strong> offre des jeux de données inclus avec le logiciel. La fonction <code><a href="https://rdrr.io/r/utils/data.html">data()</a></code> permet de voir la liste des jeux de données disponibles. Taper simplement le nom du jeu de données permet de l’utiliser, comme s’il avait été déclaré auparavant.</p>
-<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">cars</span><span class="op">)</span>
-<span class="co">#&gt;   speed dist</span>
-<span class="co">#&gt; 1     4    2</span>
-<span class="co">#&gt; 2     4   10</span>
-<span class="co">#&gt; 3     7    4</span>
-<span class="co">#&gt; 4     7   22</span>
-<span class="co">#&gt; 5     8   16</span>
-<span class="co">#&gt; 6     9   10</span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="importer.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cars)</span>
+<span id="cb48-2"><a href="importer.html#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>   speed dist</span>
+<span id="cb48-3"><a href="importer.html#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">1</span>     <span class="dv">4</span>    <span class="dv">2</span></span>
+<span id="cb48-4"><a href="importer.html#cb48-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">2</span>     <span class="dv">4</span>   <span class="dv">10</span></span>
+<span id="cb48-5"><a href="importer.html#cb48-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">3</span>     <span class="dv">7</span>    <span class="dv">4</span></span>
+<span id="cb48-6"><a href="importer.html#cb48-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">4</span>     <span class="dv">7</span>   <span class="dv">22</span></span>
+<span id="cb48-7"><a href="importer.html#cb48-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">5</span>     <span class="dv">8</span>   <span class="dv">16</span></span>
+<span id="cb48-8"><a href="importer.html#cb48-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">6</span>     <span class="dv">9</span>   <span class="dv">10</span></span></code></pre></div>
 <p>La fonction <code><a href="https://rdrr.io/r/utils/head.html">head()</a></code> introduite ici donne simplement un aperçu des six premières lignes du jeu de données pour ne pas afficher le jeu de données complet (ce qui prendrait beaucoup d’espace inutilement.</p>
 <p>Pour consulter tous les jeux de données des packages importés, il est possible d’utiliser cette ligne de code.</p>
 <div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
@@ -356,7 +357,7 @@ Consulter la documentation du package pour plus d’informations sur les options
 </div>
   <div class="chapter-nav">
 <div class="prev"><a href="exercice-rudiments.html">Exercices</a></div>
-<div class="next"><a href="entr%C3%A9e-de-donn%C3%A9es.html"><span class="header-section-number">5</span> Entrée de données</a></div>
+<div class="next"><a href="entrer.html"><span class="header-section-number">5</span> Entrer</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
@@ -403,7 +404,7 @@ Consulter la documentation du package pour plus d’informations sur les options
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Méthodes Quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-05-24.</p>
+    <p>"<strong>Méthodes Quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-06-01.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

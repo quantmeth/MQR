@@ -15,13 +15,13 @@ Plusieurs packages offrent en plus des fonctions des jeux de données. Mieux enc
 
 ```r
 head(cars)
-#>   speed dist
-#> 1     4    2
-#> 2     4   10
-#> 3     7    4
-#> 4     7   22
-#> 5     8   16
-#> 6     9   10
+>   speed dist
+> 1     4    2
+> 2     4   10
+> 3     7    4
+> 4     7   22
+> 5     8   16
+> 6     9   10
 ```
 La fonction `head()` introduite ici donne simplement un aperçu des six premières lignes du jeu de données pour ne pas afficher le jeu de données complet (ce qui prendrait beaucoup d'espace inutilement.
 

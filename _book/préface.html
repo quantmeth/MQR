@@ -19,16 +19,15 @@
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-</head>
-<body>
-<p>
+<!-- 
     \(
     \newcommand{\EX}{\mathbb{E}}
     \)
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    --><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
     
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-  </style><style type="text/css">
+  </style>
+<style type="text/css">
     /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
     div.csl-bib-body { }
     div.csl-entry {
@@ -49,7 +48,10 @@
     div.csl-indent {
       margin-left: 2em;
     }
-  </style><link rel="stylesheet" href="bs4_style.css"></p>
+  </style>
+<link rel="stylesheet" href="bs4_style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
 
 <div class="container-fluid">
 <div class="row">
@@ -78,11 +80,11 @@
 <li><a class="" href="exercice-rudiments.html">Exercices</a></li>
 <li class="book-part">Jeux de données</li>
 <li><a class="" href="importer.html"><span class="header-section-number">4</span> Importer</a></li>
-<li><a class="" href="entr%C3%A9e-de-donn%C3%A9es.html"><span class="header-section-number">5</span> Entrée de données</a></li>
+<li><a class="" href="entrer.html"><span class="header-section-number">5</span> Entrer</a></li>
 <li><a class="" href="manipuler.html"><span class="header-section-number">6</span> Manipuler</a></li>
 <li><a class="" href="visualiser.html"><span class="header-section-number">7</span> Visualiser</a></li>
 <li><a class="" href="exercice-gestion.html">Exercices</a></li>
-<li class="book-part">Statistique</li>
+<li class="book-part">Statistiques</li>
 <li><a class="" href="inf%C3%A9rer.html"><span class="header-section-number">8</span> Inférer</a></li>
 <li><a class="" href="analyser.html"><span class="header-section-number">9</span> Analyser</a></li>
 <li><a class="" href="simuler.html"><span class="header-section-number">10</span> Simuler</a></li>
@@ -103,9 +105,8 @@
 </blockquote>
 <p>La méthode scientifique impose aux expérimentateurs de tirer des conclusions avec scrutinie sur leur objet d’étude. Toutefois, ils font confiance à d’autres pour des tâches qui dépassent leur champs de compétence, et ce, avec raisons, car ces autres expertises peuvent être fort compliquées et nécessitées d’autres formations académiques complémentaires pour les acquérir. En sciences humaines et sociales, les statistiques font parties de ces expertises exterrieures qui se doivent d’être apprises. En comprendre les fondements et l’implantation logiciel est nécessaire pour ne pas fléchir son esprit critique, ne serait-ce qu’un instant. Trop souvent, les expérimentateurs ont une introduction aux statistiques et font confiance pour les calculs sophistiqués à des logiciels commerciaux. Bien souvent, le tout se déroule sans tracas. Une expérience plus substantielleavec ces logiciels montrera qu’ils ont eux-aussi leurs défauts, leurs bogues et leurs erreurs de calcul. Sans connaître le résultat attendu, comment distinguer le vrai du faux des sorties statistiques?</p>
 <p>Par exemple, que vaut l’expression <span class="math inline">\(-9^{(.5)}\)</span>? Reconnaître qu’il s’agit de <span class="math inline">\(\sqrt(-9)\)</span> indique immédiatement que le résultat n’est pas réel (c’est un nombre complexe). Si ce calcul est demandé à <strong>R</strong>,</p>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="op">-</span><span class="fl">9</span><span class="op">^</span><span class="op">(</span><span class="fl">.5</span><span class="op">)</span>
-<span class="co">#&gt; [1] -3</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="pr%C3%A9face.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span><span class="dv">9</span><span class="sc">^</span>(.<span class="dv">5</span>)</span>
+<span id="cb1-2"><a href="pr%C3%A9face.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="sc">-</span><span class="dv">3</span></span></code></pre></div>
 <p>celui-ci retourne la réponse <span class="math inline">\(-3\)</span> à cause de la priorité des opérations, <span class="math inline">\(-(9)^{.5}\)</span>. Était-ce la réponse désirée?</p>
 <p>Des idiosyncrasies computationnelles se retrouvent dans tous les logiciels. En avoir conscience est important pour le programmeur et reste trivial pour les expérimentateurs…</p>
 <p><span class="citation">Bennett et al. (<a href="r%C3%A9f%C3%A9rences.html#ref-Bennett10" role="doc-biblioref">2010</a>)</span> montrent que les saumons de l’Atlantiques décédés ont des cognitions sociales. Ils placent sous imagerie par résonance magnétique fonctionnelle (IRMf) le saumon pendant une tâche de reconnaissance des émotions chez les humains. La Figure <a href="pr%C3%A9face.html#fig:saumon">0.1</a> montre le résultat de leur analyse. Soit ils sont tombés sur une découverte étonnante en termes de cognition ichtyologique post-mortem, soit quelque chose cloche en ce qui concerne l’approche statistique utilisée.</p>
@@ -151,7 +152,7 @@ Figure 0.1: Cognitions sociales d’un saumon atlantique décédés. Tirés de B
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Méthodes Quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-05-24.</p>
+    <p>"<strong>Méthodes Quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-06-01.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
