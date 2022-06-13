@@ -67,12 +67,16 @@ b <- 10
 a / b
 > [1] 0.1
 ```
+
 Les deux premières lignes assignent des valeurs à `a` et `b`, puis la troisième imprime la division. L'absence de marqueur `<-` ou `=` indique à **R** d'imprimer la réponse dans la console. Si le résultat `a / b` devait être assigné à une variable, alors aucun résultat ne serait affiché, bien que la variable contienne la réponse.
+
 
 ```r
 resultat <- a / b
 ```
+
 Il n'y a aucune réponse d'affichée. Maintenant, si `resultat` est demandé, R affiche le contenu de la variable.
+
 
 ```r
 resultat
