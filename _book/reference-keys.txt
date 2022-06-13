@@ -1,9 +1,10 @@
 fig:saumon
 fig:ConsoleR
 fig:ConsoleRStudio
-tab:unnamed-chunk-25
+tab:unnamed-chunk-28
 eq:var
 tab:unnamed-chunk-13
+fig:distex
 fig:dataentry
 fig:editr
 fig:ggplotseul
@@ -19,6 +20,7 @@ fig:lognormal
 fig:testn
 fig:regle
 fig:unnamed-chunk-5
+eq:zzz
 fig:rept
 fig:unnamed-chunk-10
 fig:rh
@@ -35,6 +37,7 @@ tab:TCCV
 tab:TCCV2
 fig:MH
 commencer
+r
 pourquoi-r
 installer-r
 rstudio
@@ -53,13 +56,13 @@ création-dune-matrice
 création-dun-jeu-de-données
 création-dune-liste
 référer-à-des-sous-éléments
-les-fonctions
-définir-une-boucle
-les-clauses-conditionnelles
 les-packages
 installer-des-packages
 appeler-un-package
 obtenir-de-laide
+les-fonctions
+définir-une-boucle
+les-clauses-conditionnelles
 en-cas-de-pépins
 calculer
 la-longueur
