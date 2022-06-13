@@ -1,9 +1,9 @@
 # Programmer
 
-Dans les prochaines sections, les différents éléments de programmation permettant la création et la manipulation de données seront présentés.
+Une fois **R** (ou **R**Studio) ouvert, qu'est-il possible de réaliser? Dans les prochaines sections, les différents éléments de programmation permettant la création et la manipulation de données seront présentés.
 
 ## Les variables
-Pour manipuler les données, il faut recourir à des variables. Afin de leur attribuer une valeur, il faut assigner cette valeur avec `<-` (**ALT + -**) ou `=`, par exemple,
+Pour manipuler les données, il faut recourir à des variables. Afin de leur attribuer une valeur, il faut assigner cette valeur avec `<-` (**ALT** + **-**) ou `=`, par exemple,
 
 
 ```r
@@ -14,7 +14,7 @@ a
 
 où `a` est maintenant égale à `2`. La première ligne assigne la valeur à `a`. La deuxième ligne, indique à la console **R** d'imprimer le résultat pour le voir. Par la suite, `a` pourra être utilisée dans des fonctions, des calculs ou analyses plus complexes. De surcroît, `a` pourra devenir une fonction, une chaîne de caractère (*string*) ou un jeu de données.
 
-Conventionnellement, les puristes de **R** recommanderont l'usage de `<-` plutôt que `=` pour l'assignation. Il y a quelques nuances computationnelles entre les deux, mais qui échapperont irrémédiablement aux néophytes et même aux usagers intermédiaires. 
+Conventionnellement, les puristes de **R** recommanderont l'usage de `<-` plutôt que `=` pour l'assignation. Il y a quelques nuances computationnelles entre les deux, mais qui échapperont irrémédiablement aux néophytes et même aux usagers intermédiaires. Par tradition, `<-` prévaudra.
 
 Pour nommer des variables, seuls les caractères alphanumériques peuvent être utilisés ainsi que le tiret bas `_` et le `.`. Les variables ne peuvent commencer par un nombre.
 
@@ -37,15 +37,14 @@ Cette remarque est importante, car elle signifie que l'on peut écraser des fonc
 
 
 ```r
-c; q; t; C; D; I; T; F; pi; mean; var; sd; length; diff; rep;
+c; q; t; C; D; I; T; F; pi; mean; var; sd; length; diff; rep
 ```
 
 Certains mots seront tout simplement interdits d'utilisation.
 
 
 ```r
-TRUE; FALSE; break; for; in; if; else; while; function; Inf; NA; NaN; NULL;
-
+TRUE; FALSE; break; for; in; if; else; while; function; Inf; NA; NaN; NULL
 ```
 
 ## Les opérateurs arithmétiques
@@ -68,7 +67,7 @@ b <- 10
 a / b
 > [1] 0.1
 ```
-Ici, les deux premières lignes assignent des valeurs à `a` et `b`, puis imprime la division. L'absence de marqueur `<-` ou `=` indique à **R** d'imprimer la réponse dans la console. Si le résultat `a/b` devait être assigné à une variable, alors aucun résultat ne serait affiché, bien que la variable contienne la réponse.
+Ici, les deux premières lignes assignent des valeurs à `a` et `b`, puis la troisième imprime la division. L'absence de marqueur `<-` ou `=` indique à **R** d'imprimer la réponse dans la console. Si le résultat `a / b` devait être assigné à une variable, alors aucun résultat ne serait affiché, bien que la variable contienne la réponse.
 
 ```r
 resultat <- a / b
@@ -115,7 +114,7 @@ titre
 
 ## Concaténer
 
-Par défaut, **R** ne peut qu'assigner qu'une valeur à une variable. Pour grouper des éléments ensembles, c'est-à-dire, pour créer des jeux de données, des vecteurs, des matrices, des listes, il faudra utiliser des fonction de concaténation, dont voici une liste des plus utiles avec quelques exemples, de la plus stricte (vecteur) à la plus flexible (liste).
+Par défaut, **R** ne peut assigner qu'une valeur à une variable. Pour grouper des éléments ensemble, c'est-à-dire, pour créer des jeux de données, des vecteurs, des matrices, des listes, il faudra utiliser des fonction de concaténation, dont voici une liste des plus utiles avec quelques exemples, de la plus stricte (vecteur) à la plus flexible (liste).
 
 ### Création d'un vecteur
 
@@ -146,24 +145,24 @@ phrase
 > [1] "1"      "Chat"   "2"      "Souris"
 ```
 
-La fonction `c()` est strict sur les arguments, car elles leur accord le même attribut. Par exemple, `phrase` ne contient que des chaînes de caractères. Les valeurs `1` et `2` ont perdu leur classe de numérique (elles ne sont plus utilisables comme nombre - pour l'instant).
+La fonction `c()` est strict sur les arguments, car elle leur accorde le même attribut. Par exemple, `phrase` ne contient que des chaînes de caractères. Les valeurs `1` et `2` ont perdu leur classe de numérique (elles ne sont plus utilisables comme nombre - pour l'instant). Cela se remarque par les guillemets anglophones autour des valeurs `"1"` et `"2"` imprimées.
 
 Il faudra également faire attention à ce qui est passé comme argument à la fonction `c()`, car elle vectorise les arguments. Autrement dit, elle crée des vecteurs (une ligne en quelque sorte) avec les entrées fournies, peu importe leur structure de départ. Par exemple, un jeu de données passant par `c()` devient une seule ligne de valeurs. Les fonctions `cbind()` et `rbind()` permettront de joindre des colonnes et des lignes, respectivement.
 
 ### Création d'une matrice
 
-La fonction `matrix()` sera utile pour créer des matrices, commes des matrices de covariances, par exemple. La fonction utilise trois arguments, une matrice de nombre à entrer dans la matrice, un nombre de colonnes et un nombre de lignes. La fonction utilise le recyclage, ce qui pourra être utile à certaines occasions.
+La fonction `matrix()` sera utile pour créer des matrices, comme des matrices de covariances, par exemple. La fonction utilise trois arguments, une matrice de nombre à entrer dans la matrice, un nombre de colonnes et un nombre de lignes. La fonction utilise le recyclage, ce qui pourra être utile à certaines occasions.
 
 
 ```r
-# Une matrice de 0
+# Une matrice de 0 de taille 3 x 3
 matrix(0, ncol = 3, nrow = 3)
 >      [,1] [,2] [,3]
 > [1,]    0    0    0
 > [2,]    0    0    0
 > [3,]    0    0    0
 
-# Une matrice contenant les nombres 1:3 pour une matrice 3x3
+# Une matrice contenant les nombres 1:3 pour une matrice 3 x 3
 matrix(1:3, ncol = 3, nrow = 3)
 >      [,1] [,2] [,3]
 > [1,]    1    1    1
@@ -187,11 +186,11 @@ matrix(1:16, ncol = 4, nrow = 4)
 > [4,]    4    8   12   16
 ```
 
-Les matrices sont une formes de jeu données dans lequel tous les éléments partagent le même attribut (tous numériques, caractères, logiques, etc.). 
+Les matrices sont une formes de jeu de données dans lequel tous les éléments partagent le même attribut (tous numériques, caractères, logiques, etc.). 
 
 ### Création d'un jeu de données
 
-Un jeu de données (`data.frame`) est un peu comme l'extension de la matrice. La différence étant que les éléments entre les colonnes peuvent partager des attributs différents. Ainsi chaque ligne représente une unité (un participant, un objet) et chaque colonne représente une dimension (informations ou variable) différente de cette objectif. La fonction `data.frame()` permet de créer de tel objet. La fonction prend comme un argument une série de vecteurs. Si un nom
+Un jeu de données (`data.frame`) est un peu comme l'extension de la matrice. La différence étant que les éléments entre les colonnes peuvent partager des attributs différents. Ainsi chaque ligne représente une unité (un participant, un objet) et chaque colonne représente une dimension (informations ou variable) différente de cette objectif. La fonction `data.frame()` permet de créer de tel objet. La fonction prend comme un argument une série de vecteurs. Des noms peuvent être attribués au colonnes qui correspondent à des variables.
 
 
 ```r
@@ -216,13 +215,13 @@ jd1 ; jd2
 > 2 Laurence   3   TRUE
 ```
 
-En utilisant `nom.de.variable = vecteur` à l'intérieur de `data.frame()`, les noms des colonnes deviennent `nom.de.variable`. Cela permettra une plus grande flexibilité lorsqu'il faudra [gèrer] et [manipuler] les données. 
+En utilisant `nom.de.variable = vecteur` à l'intérieur de `data.frame()`, les noms des colonnes deviennent `nom.de.variable`. Cela permettra une plus grande flexibilité lorsqu'il faudra [gérer] et [manipuler] les données. 
 
-Comme les matrices, les jeux de données ont aussi une restriction. Alors que les jeux de données libérait l'utilisateur de la contrainte d'avoir des objets de même attributs, les jeux de données doivent être créés avec des vecteurs de même longueur. Autrement dit, chaque colonne doit avoir exactement le même nombre de lignes. Parfois, **R** procédera par recyclage pour combler les éléments. Il faudra donc porter une attention particulière, pour vérifier si c'est l'intention ou non.
+Comme les matrices, les jeux de données ont aussi une restriction. Alors que les jeux de données libèrent la contrainte d'avoir des objets de même attributs entre les colonnes (variables), ils doivent être créés avec des vecteurs de même longueur. Autrement dit, chaque colonne doit avoir exactement le même nombre de lignes. Parfois, **R** procédera par recyclage pour combler les éléments. Il faudra donc porter une attention particulière, pour vérifier si c'est l'intention ou non.
 
 ### Création d'une liste
 
-Une troisième option pour stocker de informations dans une seule variable est d'avoir recourt au liste. La liste libère à la fois l'utilisateur des objets de mêmes attributs et de même longueur. Ainsi, une liste, peut contenir des vecteurs, des matrices, des jeux de données et même d'autres listes. 
+Une troisième option pour stocker de informations dans une seule variable est d'avoir recourt aux listes. La liste libère à la fois l'utilisateur des objets de mêmes attributs et de même longueur. Ainsi, une liste, peut contenir des vecteurs, des matrices, des jeux de données et même d'autres listes. 
 
 Pour créer une liste, il faut utiliser la fonction `list()`. Comme `data.frame()`, des noms d'éléments peuvent être donner pour chaque liste pour faciliter la manipulation ultérieure de la liste.
 
@@ -287,6 +286,54 @@ phrase[-c(1, 3)]
 Dans le premier exemple, seul un élément est demandé. Dans le deuxième exemple, la commande `1:3` produit la série de $1,2,3$ et en extrait ces nombres. Dans le dernier exemple, la fonction `c()` est astucieusement utilisée pour extraire les éléments $2$ et $4$. Le quatrième exemple montre comment retirer un élément en utilisant des valeurs négatives et le cinquième exemple montre comment retirer des éléments.
 
 La section [Manipulation de données] montrera davantage comment référer à des sous-éléments de jeux de données, de matrices et de listes.
+
+
+## Les packages
+
+L'utilisation de packages (souvent nommées bibliothèques, modules, paquets ou paquetage en français - ici, l'usage de *package* sera maintenu) est l'attrait principal de **R**. Pour éviter l'anglicisme, Antidote suggère *forfait*, *achat groupé* ou *progiciel* (ce dernier étant certainement le terme approprié). 
+
+Les packages sont de regroupement de fonctions. C'est certainement l'aspect qui a le plus contribué au succès et à sa dissémination de **R**. Il s'agit de la mise en commun d'un effort collaboratif afin de créer des fonctions et de les partager librement entre les usagers. Le téléchargement de base de **R** offre déjà quelques packages rudimentaires (comme `base` qui offre des fonctions comme `sum()` ou `stat`  qui offre des fonctions comme `mean()` et `var()`), mais qui suffisent rarement lorsque des analyses plus avancées ou plus spécialisées sont nécessaires.
+
+L'une des forces des packages est qu'ils sont fournis généralement avec un bon manuel d'utilisation. Plusieurs contributeurs leur sont associés (avec un responsable). Ils sont maintenus régulièrement. Le soutien des responsables est parfois aisé à obtenir et les auteurs de ces packages sont motivés à maintenir les packages opérationnels et aux bénéfices de tous. La faiblesse des packages est qu'il s'agit malheureusement de *généralement*. Il arrive que certains packages produisent des erreurs de calcul, soient laissé en désuétude par leurs auteurs, que le package ait migré sous une autre forme, que de meilleures options soient disponibles sans aucune notice à cet effet. Cela va sans dire, ce problème concerne les logiciels traditionnels également. Il s'agit toutefois d'un enjeu moindre, car les packages sont souvent recommandés par des collègues, des autorités dans leur domaine respectif ou des ouvrages de référence, ce qui aura comme tendance de promouvoir les meilleurs packages. Pas toujours. Il faut rester critique et ne pas de laisser tromper par une boîte noire.
+
+Une dernière faiblesse : les packages agissent parfois en boîte noire, c'est-à-dire qu'ils court-circuitent la réflexion de l'utilisateur qui leur fait confiance. Il peut être parfois difficile de savoir ce que les fonctions produisent exactement. Au contraire des logiciels traditionnels, ces boîtes noires peuvent dans la plupart des cas être accessibles directement, elles sont liés en plus à des articles scientifiques ou de la documentation qui permet dans comprendre les tenants et aboutissants.
+
+### Installer des packages
+Pour installer un package, il faut utiliser la fonction
+
+```r
+install.packages("...")
+```
+où les `"..."` doivent être remplacé par le nom du package. Il est important de bien inscrire le nom du package entre guillemet anglophone. Il est aussi possible de sélectionner
+
+> Tools;
+> Install Packages...
+
+puis de nommer le package sous l'onglet package. Avec **R** il faudra auparavant choisir un miroir (sélectionner un pays), ce qui ne sera pas nécessaire avec **R**Studio. Une fois téléchargé, il ne sera plus nécessaire de refaire cette étape à nouveau, à l'exception de potentielles et ultérieures mises à jour lorsqu'elles devront être réalisées.
+
+### Appeler un package
+Ce qui n'est pas des plus intuitif avec **R**, c'est qu'une fois le package téléchargé, il n'est pas directement utilisable. Il faut d'abord l'appeler avec la fonction `library()`.
+
+
+```r
+library("...")
+```
+
+Cette étape doit être faite à chaque ouverture de **R**. Cela permet de ne pas mettre en mémoire trop de package simultanément. Il sera ainsi important d'indiquer tous les packages utilisés en début de script sans quoi des erreurs comme l'absence de fonctions seront produites.
+
+Une technique à laquelle l'utilisateur peut avoir recourt lorsqu'il souhaite n'utiliser qu'une fonction spécifique d'un package est l'utilisation des `::` débutant par le nom du package suivi par le nom de la fonction, comme ` MASS::mvrnorm()`. La fonction s'utilise de façon usuelle. En utilisant `::`, il n'est pas nécessaire d'appeler le package avec la fonction `library()`. Il faut toute fois que le package soit bel et bien installer.
+
+## Obtenir de l'aide
+En utilisant `help(nom)` ou `?nom`, où il faut remplacer `nom` par le nom d'une fonction ou d'un package, **R** offre de la documentation. Les fonctions d'aide retournent une page de documentation contenant généralement de l'information sur les entrées et les sorties des fonctions. Certaines sont mieux détaillées que d'autres, tout dépendant de leurs créateurs et des personnes qui maintiennent ces fonctions.
+
+
+```r
+# Obtenir de l'aide pour la fonction help()
+?help
+```
+
+Il existe également la fonction `??nom` qui produit une liste de toutes fonctions **R** ayant partiellement l'inscription introduite à la place de `nom`. Aussi, `example(nom)` produit un exemple d'une fonction.
+
 
 ## Les fonctions
 
@@ -378,7 +425,7 @@ for(i in k){
 Pour réaliser des opérations sous certaines conditions ou opérer des décisions automatiques, il est possible d'utiliser des arguments conditionnels avec des opérateurs logiques. Par exemple, sélectionner des unités ayant certaines caractéristiques, comme les participants ayant 18 ans et moins, les personnes ayant un trouble du spectre de l'autiste, ou encore par sexe. Il est aussi possible d'utiliser les opérateurs pour définir à quelle condition telle ou telle autre fonction doit être utilisée. Il faudra alors utiliser les arguments logiques.
 
 <table class=" lightable-classic table" style='font-family: "Arial Narrow", "Source Sans Pro", sans-serif; width: auto !important; margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto;'>
-<caption>(\#tab:unnamed-chunk-25)Symboles logiques et leur signification</caption>
+<caption>(\#tab:unnamed-chunk-28)Symboles logiques et leur signification</caption>
  <thead>
   <tr>
    <th style="text-align:center;"> Symbole </th>
@@ -493,52 +540,6 @@ if(x < 0){
 L'arbre de décision peut devenir aussi compliqué que l'utilisateur le désire : chacune des branches peut contenir autant de ramifications que nécessaire.
 
 Il peut arriver pour certaines fonctions de devoir spécifier si certains paramètres sont vrais (`TRUE`) ou faux (`FALSE`) ou de définir des variables ayant ces valeurs. Lorsque c'est le cas, il est toujours recommandé d'écrire les valeurs logiques tout au long comme `TRUE` et `FALSE`, même si **R** reconnaît `T` et `F`, car ces dernières peuvent être réassignées, contrairement aux premières.
-
-## Les packages
-
-L'utilisation de packages (souvent nommées bibliothèques, modules, paquets ou paquetage en français - ici, l'usage de *package* sera maintenu) est l'attrait principal de **R**. Pour éviter l'anglicisme, Antidote suggère *forfait*, *achat groupé* ou *progiciel* (ce dernier étant certainement le terme approprié). 
-
-Les packages sont de regroupement de fonctions. C'est certainement l'aspect qui a le plus contribué au succès et à sa dissémination de **R**. Il s'agit de la mise en commun d'un effort collaboratif afin de créer des fonctions et de les partager librement entre les usagers. Le téléchargement de base de **R** offre déjà quelques packages rudimentaires (comme `base` qui offre des fonctions comme `sum()` ou `stat`  qui offre des fonctions comme `mean()` et `var()`), mais qui suffisent rarement lorsque des analyses plus avancées ou plus spécialisées sont nécessaires.
-
-L'une des forces des packages est qu'ils sont fournis généralement avec un bon manuel d'utilisation. Plusieurs contributeurs leur sont associés (avec un responsable). Ils sont maintenus régulièrement. Le soutien des responsables est parfois aisé à obtenir et les auteurs de ces packages sont motivés à maintenir les packages opérationnels et aux bénéfices de tous. La faiblesse des packages est qu'il s'agit malheureusement de *généralement*. Il arrive que certains packages produisent des erreurs de calcul, soient laissé en désuétude par leurs auteurs, que le package ait migré sous une autre forme, que de meilleures options soient disponibles sans aucune notice à cet effet. Cela va sans dire, ce problème concerne les logiciels traditionnels également. Il s'agit toutefois d'un enjeu moindre, car les packages sont souvent recommandés par des collègues, des autorités dans leur domaine respectif ou des ouvrages de référence, ce qui aura comme tendance de promouvoir les meilleurs packages. Pas toujours. Il faut rester critique et ne pas de laisser tromper par une boîte noire.
-
-Une dernière faiblesse : les packages agissent parfois en boîte noire, c'est-à-dire qu'ils court-circuitent la réflexion de l'utilisateur qui leur fait confiance. Il peut être parfois difficile de savoir ce que les fonctions produisent exactement. Au contraire des logiciels traditionnels, ces boîtes noires peuvent dans la plupart des cas être accessibles directement, elles sont liés en plus à des articles scientifiques ou de la documentation qui permet dans comprendre les tenants et aboutissants.
-
-### Installer des packages
-Pour installer un package, il faut utiliser la fonction
-
-```r
-install.packages("...")
-```
-où les `"..."` doivent être remplacé par le nom du package. Il est important de bien inscrire le nom du package entre guillemet anglophone. Il est aussi possible de sélectionner
-
-> Tools;
-> Install Packages...
-
-puis de nommer le package sous l'onglet package. Avec **R** il faudra auparavant choisir un miroir (sélectionner un pays), ce qui ne sera pas nécessaire avec **R**Studio. Une fois téléchargé, il ne sera plus nécessaire de refaire cette étape à nouveau, à l'exception de potentielles et ultérieures mises à jour lorsqu'elles devront être réalisées.
-
-### Appeler un package
-Ce qui n'est pas des plus intuitif avec **R**, c'est qu'une fois le package téléchargé, il n'est pas directement utilisable. Il faut d'abord l'appeler avec la fonction `library()`.
-
-
-```r
-library("...")
-```
-
-Cette étape doit être faite à chaque ouverture de **R**. Cela permet de ne pas mettre en mémoire trop de package simultanément. Il sera ainsi important d'indiquer tous les packages utilisés en début de script sans quoi des erreurs comme l'absence de fonctions seront produites.
-
-Une technique à laquelle l'utilisateur peut avoir recourt lorsqu'il souhaite n'utiliser qu'une fonction spécifique d'un package est l'utilisation des `::` débutant par le nom du package suivi par le nom de la fonction, comme ` MASS::mvrnorm()`. La fonction s'utilise de façon usuelle. En utilisant `::`, il n'est pas nécessaire d'appeler le package avec la fonction `library()`. Il faut toute fois que le package soit bel et bien installer.
-
-## Obtenir de l'aide
-En utilisant `help(nom)` ou `?nom`, où il faut remplacer `nom` par le nom d'une fonction ou d'un package, **R** offre de la documentation. Les fonctions d'aide retournent une page de documentation contenant généralement de l'information sur les entrées et les sorties des fonctions. Certaines sont mieux détaillées que d'autres, tout dépendant de leurs créateurs et des personnes qui maintiennent ces fonctions.
-
-
-```r
-# Obtenir de l'aide pour la fonction help()
-?help
-```
-
-Il existe également la fonction `??nom` qui produit une liste de toutes fonctions **R** ayant partiellement l'inscription introduite à la place de `nom`. Aussi, `example(nom)` produit un exemple d'une fonction.
 
 
 ## En cas de pépins

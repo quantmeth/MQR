@@ -106,82 +106,102 @@
 <h2>
 <span class="header-section-number">3.1</span> La longueur<a class="anchor" aria-label="anchor" href="#la-longueur"><i class="fas fa-link"></i></a>
 </h2>
-<p>La longueur d’une variable correspond au nombre d’éléments qu’elle contient. La fonction <code><a href="https://rdrr.io/r/base/length.html">length()</a></code> permettra d’obtenir ce résultat. Ce sera particulièrement utile lorsqu’il faudra calculer, par exemple, le nombre de boucle à réaliser à partir des éléments d’un vecteur ou la taille d’échantillon (le nombre d’unités d’observation d’une variable), bien que <code><a href="https://rdrr.io/r/base/nrow.html">ncol()</a></code> (nombre de colonnes) et <code><a href="https://rdrr.io/r/base/nrow.html">nrow()</a></code> (nombre de lignes) soient plus intuitives pour les matrices et les jeux de données.</p>
+<p>La longueur d’une variable correspond au nombre d’éléments qu’elle contient. La fonction <code><a href="https://rdrr.io/r/base/length.html">length()</a></code> permettra d’obtenir ce résultat. Ce sera particulièrement utile lorsqu’il faudra calculer, par exemple, le nombre de boucle à réaliser à partir des éléments d’un vecteur ou la taille d’échantillon (le nombre d’unités d’observation d’une variable).</p>
 <p>La somme d’une chaîne de caractères est toujours de <span class="math inline">\(1\)</span>, peu importe le nombre de caractères. La fonction <code><a href="https://rdrr.io/r/base/nchar.html">nchar()</a></code> produira le nombre de caractères.</p>
 <p>Une variable qui existe, mais qui ne contient pas de valeur aura une longueur égale <span class="math inline">\(0\)</span>. Ce type de variable est utile lorsqu’il faut créer une variable qui aura une taille changeant d’une situation à l’autre.</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="calculer.html#cb35-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
-<span id="cb35-2"><a href="calculer.html#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(x)</span>
-<span id="cb35-3"><a href="calculer.html#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">3</span></span>
-<span id="cb35-4"><a href="calculer.html#cb35-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-5"><a href="calculer.html#cb35-5" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="st">"Bonjour tout le monde!"</span></span>
-<span id="cb35-6"><a href="calculer.html#cb35-6" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(y)</span>
-<span id="cb35-7"><a href="calculer.html#cb35-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">1</span></span>
-<span id="cb35-8"><a href="calculer.html#cb35-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-9"><a href="calculer.html#cb35-9" aria-hidden="true" tabindex="-1"></a><span class="fu">nchar</span>(y)</span>
-<span id="cb35-10"><a href="calculer.html#cb35-10" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">22</span></span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="calculer.html#cb36-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb36-2"><a href="calculer.html#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(x)</span>
+<span id="cb36-3"><a href="calculer.html#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">3</span></span>
+<span id="cb36-4"><a href="calculer.html#cb36-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-5"><a href="calculer.html#cb36-5" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="st">"Bonjour tout le monde!"</span></span>
+<span id="cb36-6"><a href="calculer.html#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(y)</span>
+<span id="cb36-7"><a href="calculer.html#cb36-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">1</span></span>
+<span id="cb36-8"><a href="calculer.html#cb36-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-9"><a href="calculer.html#cb36-9" aria-hidden="true" tabindex="-1"></a><span class="fu">nchar</span>(y)</span>
+<span id="cb36-10"><a href="calculer.html#cb36-10" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">22</span></span></code></pre></div>
+<p>Pour les matrices et les jeux de données, <code><a href="https://rdrr.io/r/base/nrow.html">ncol()</a></code> (nombre de colonnes) et <code><a href="https://rdrr.io/r/base/nrow.html">nrow()</a></code> (nombre de lignes) sont plus efficaces et intuitives.</p>
 </div>
 <div id="la-répétion" class="section level2" number="3.2">
 <h2>
 <span class="header-section-number">3.2</span> La répétion<a class="anchor" aria-label="anchor" href="#la-r%C3%A9p%C3%A9tion"><i class="fas fa-link"></i></a>
 </h2>
-<p>La fonction <code><a href="https://rdrr.io/r/base/rep.html">rep()</a></code> sera utile pour répéter volontairement des valeurs. Il y deux possibilité de répétitions: l’argument <code>times</code> définit le nombre de fois que le vecteur est répété; l’argument <code>each</code> définit le nombre de fois que chaque élément est répété.</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="calculer.html#cb36-1" aria-hidden="true" tabindex="-1"></a>vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="st">"chat"</span>)</span>
-<span id="cb36-2"><a href="calculer.html#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-3"><a href="calculer.html#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Répéter vec trois fois</span></span>
-<span id="cb36-4"><a href="calculer.html#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="fu">rep</span>(vec, <span class="at">times =</span> <span class="dv">3</span>)</span>
-<span id="cb36-5"><a href="calculer.html#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="st">"2"</span>    <span class="st">"4"</span>    <span class="st">"chat"</span> <span class="st">"2"</span>    <span class="st">"4"</span>    <span class="st">"chat"</span> <span class="st">"2"</span>    <span class="st">"4"</span>   </span>
-<span id="cb36-6"><a href="calculer.html#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">9</span>] <span class="st">"chat"</span></span>
-<span id="cb36-7"><a href="calculer.html#cb36-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-8"><a href="calculer.html#cb36-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Répéter chaque éléments de vec trois fois</span></span>
-<span id="cb36-9"><a href="calculer.html#cb36-9" aria-hidden="true" tabindex="-1"></a><span class="fu">rep</span>(vec, <span class="at">each =</span> <span class="dv">3</span>)</span>
-<span id="cb36-10"><a href="calculer.html#cb36-10" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="st">"2"</span>    <span class="st">"2"</span>    <span class="st">"2"</span>    <span class="st">"4"</span>    <span class="st">"4"</span>    <span class="st">"4"</span>    <span class="st">"chat"</span> <span class="st">"chat"</span></span>
-<span id="cb36-11"><a href="calculer.html#cb36-11" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">9</span>] <span class="st">"chat"</span></span></code></pre></div>
+<p>La fonction <code><a href="https://rdrr.io/r/base/rep.html">rep()</a></code> est utile pour répéter volontairement des valeurs. Il y trois possibilités de répétitions: l’argument <code>times</code> définit le nombre de fois que le vecteur est répété; l’argument <code>each</code> définit le nombre de fois que chaque élément est répété; l’argument <code>length.out</code> précise le nombre d’éléments de la sortie. Plusieurs combinaisons de ces arguments sont possibles.</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="calculer.html#cb37-1" aria-hidden="true" tabindex="-1"></a>vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="st">"chat"</span>)</span>
+<span id="cb37-2"><a href="calculer.html#cb37-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-3"><a href="calculer.html#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Répéter `vec` trois fois</span></span>
+<span id="cb37-4"><a href="calculer.html#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="fu">rep</span>(vec, <span class="at">times =</span> <span class="dv">3</span>)</span>
+<span id="cb37-5"><a href="calculer.html#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="st">"2"</span>    <span class="st">"4"</span>    <span class="st">"chat"</span> <span class="st">"2"</span>    <span class="st">"4"</span>    <span class="st">"chat"</span> <span class="st">"2"</span>    <span class="st">"4"</span>   </span>
+<span id="cb37-6"><a href="calculer.html#cb37-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">9</span>] <span class="st">"chat"</span></span>
+<span id="cb37-7"><a href="calculer.html#cb37-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-8"><a href="calculer.html#cb37-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Répéter chaque élément de `vec` trois fois</span></span>
+<span id="cb37-9"><a href="calculer.html#cb37-9" aria-hidden="true" tabindex="-1"></a><span class="fu">rep</span>(vec, <span class="at">each =</span> <span class="dv">3</span>)</span>
+<span id="cb37-10"><a href="calculer.html#cb37-10" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="st">"2"</span>    <span class="st">"2"</span>    <span class="st">"2"</span>    <span class="st">"4"</span>    <span class="st">"4"</span>    <span class="st">"4"</span>    <span class="st">"chat"</span> <span class="st">"chat"</span></span>
+<span id="cb37-11"><a href="calculer.html#cb37-11" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">9</span>] <span class="st">"chat"</span></span>
+<span id="cb37-12"><a href="calculer.html#cb37-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-13"><a href="calculer.html#cb37-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Répéter chaque élément de `vec` d'une longueur de 8</span></span>
+<span id="cb37-14"><a href="calculer.html#cb37-14" aria-hidden="true" tabindex="-1"></a><span class="fu">rep</span>(vec, <span class="at">length.out =</span> <span class="dv">8</span>)</span>
+<span id="cb37-15"><a href="calculer.html#cb37-15" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="st">"2"</span>    <span class="st">"4"</span>    <span class="st">"chat"</span> <span class="st">"2"</span>    <span class="st">"4"</span>    <span class="st">"chat"</span> <span class="st">"2"</span>    <span class="st">"4"</span></span>
+<span id="cb37-16"><a href="calculer.html#cb37-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-17"><a href="calculer.html#cb37-17" aria-hidden="true" tabindex="-1"></a><span class="co">#  Répéter chaque élément 3 fois à 2 reprises</span></span>
+<span id="cb37-18"><a href="calculer.html#cb37-18" aria-hidden="true" tabindex="-1"></a><span class="fu">rep</span>(vec, <span class="at">times =</span> <span class="dv">2</span>, <span class="at">each =</span> <span class="dv">3</span>)</span>
+<span id="cb37-19"><a href="calculer.html#cb37-19" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>  [<span class="dv">1</span>] <span class="st">"2"</span>    <span class="st">"2"</span>    <span class="st">"2"</span>    <span class="st">"4"</span>    <span class="st">"4"</span>    <span class="st">"4"</span>    <span class="st">"chat"</span> <span class="st">"chat"</span></span>
+<span id="cb37-20"><a href="calculer.html#cb37-20" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>  [<span class="dv">9</span>] <span class="st">"chat"</span> <span class="st">"2"</span>    <span class="st">"2"</span>    <span class="st">"2"</span>    <span class="st">"4"</span>    <span class="st">"4"</span>    <span class="st">"4"</span>    <span class="st">"chat"</span></span>
+<span id="cb37-21"><a href="calculer.html#cb37-21" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">17</span>] <span class="st">"chat"</span> <span class="st">"chat"</span></span></code></pre></div>
 </div>
 <div id="la-séquence" class="section level2" number="3.3">
 <h2>
 <span class="header-section-number">3.3</span> La séquence<a class="anchor" aria-label="anchor" href="#la-s%C3%A9quence"><i class="fas fa-link"></i></a>
 </h2>
-<p>La fonction <code><a href="https://rdrr.io/r/base/seq.html">seq()</a></code> permet de générer une séquence régulière de valeurs. Les arguments sont <code>seq(from = , to = , by = )</code> traduisible par <code>de</code> , <code>à</code>, <code>par</code>. Les arguments par défaut seront très utiles pour simplifier l’écriture; La fonction commence ou termine la séquence par 1 et fera des bonds de 1 entre les valeurs. Un autre argument est la longueur de la sortie <code>length.out</code> qui spécifie le nombre d’éléments que devra comporter le vecteur de sortie.</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="calculer.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Une séquence de 1 (défaut, from = 1) à 10</span></span>
-<span id="cb37-2"><a href="calculer.html#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="dv">10</span>)</span>
-<span id="cb37-3"><a href="calculer.html#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>  [<span class="dv">1</span>]  <span class="dv">1</span>  <span class="dv">2</span>  <span class="dv">3</span>  <span class="dv">4</span>  <span class="dv">5</span>  <span class="dv">6</span>  <span class="dv">7</span>  <span class="dv">8</span>  <span class="dv">9</span> <span class="dv">10</span></span>
-<span id="cb37-4"><a href="calculer.html#cb37-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-5"><a href="calculer.html#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Une séquence de 1 (défaut, from = 1) à -10</span></span>
-<span id="cb37-6"><a href="calculer.html#cb37-6" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="sc">-</span><span class="dv">10</span>)</span>
-<span id="cb37-7"><a href="calculer.html#cb37-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>  [<span class="dv">1</span>]   <span class="dv">1</span>   <span class="dv">0</span>  <span class="sc">-</span><span class="dv">1</span>  <span class="sc">-</span><span class="dv">2</span>  <span class="sc">-</span><span class="dv">3</span>  <span class="sc">-</span><span class="dv">4</span>  <span class="sc">-</span><span class="dv">5</span>  <span class="sc">-</span><span class="dv">6</span>  <span class="sc">-</span><span class="dv">7</span>  <span class="sc">-</span><span class="dv">8</span>  <span class="sc">-</span><span class="dv">9</span> <span class="sc">-</span><span class="dv">10</span></span>
-<span id="cb37-8"><a href="calculer.html#cb37-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-9"><a href="calculer.html#cb37-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Une séquence de -10 (défaut, from = 1) à 1</span></span>
-<span id="cb37-10"><a href="calculer.html#cb37-10" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from =</span> <span class="sc">-</span><span class="dv">10</span>, <span class="at">to =</span> <span class="dv">1</span>)</span>
-<span id="cb37-11"><a href="calculer.html#cb37-11" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>  [<span class="dv">1</span>] <span class="sc">-</span><span class="dv">10</span>  <span class="sc">-</span><span class="dv">9</span>  <span class="sc">-</span><span class="dv">8</span>  <span class="sc">-</span><span class="dv">7</span>  <span class="sc">-</span><span class="dv">6</span>  <span class="sc">-</span><span class="dv">5</span>  <span class="sc">-</span><span class="dv">4</span>  <span class="sc">-</span><span class="dv">3</span>  <span class="sc">-</span><span class="dv">2</span>  <span class="sc">-</span><span class="dv">1</span>   <span class="dv">0</span>   <span class="dv">1</span></span>
-<span id="cb37-12"><a href="calculer.html#cb37-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-13"><a href="calculer.html#cb37-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Une séquence de nombres paires (from = 2, to = 10, by = 2)</span></span>
-<span id="cb37-14"><a href="calculer.html#cb37-14" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="dv">2</span>, <span class="dv">10</span>, <span class="dv">2</span>)</span>
-<span id="cb37-15"><a href="calculer.html#cb37-15" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>]  <span class="dv">2</span>  <span class="dv">4</span>  <span class="dv">6</span>  <span class="dv">8</span> <span class="dv">10</span></span>
-<span id="cb37-16"><a href="calculer.html#cb37-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-17"><a href="calculer.html#cb37-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Une séquence de nombres paires </span></span>
-<span id="cb37-18"><a href="calculer.html#cb37-18" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">2</span>, <span class="at">by =</span> <span class="dv">2</span>, <span class="at">length.out =</span> <span class="dv">5</span>)</span>
-<span id="cb37-19"><a href="calculer.html#cb37-19" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>]  <span class="dv">2</span>  <span class="dv">4</span>  <span class="dv">6</span>  <span class="dv">8</span> <span class="dv">10</span></span></code></pre></div>
+<p>La fonction <code><a href="https://rdrr.io/r/base/seq.html">seq()</a></code> permet de générer une séquence régulière de valeurs. Les arguments sont <code>seq(from = , to = , by = )</code> traduisibles par <code>de</code> , <code>à</code>, <code>par</code>. Les arguments par défaut seront très utiles pour simplifier l’écriture; La fonction commence ou termine la séquence par 1 et fera des bonds de 1 entre les valeurs. Un autre argument est la longueur de la sortie <code>length.out</code> qui spécifie le nombre d’éléments que devra comporter le vecteur de sortie.</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="calculer.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Une séquence de 1 (défaut, from = 1) à 10</span></span>
+<span id="cb38-2"><a href="calculer.html#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="dv">10</span>)</span>
+<span id="cb38-3"><a href="calculer.html#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>  [<span class="dv">1</span>]  <span class="dv">1</span>  <span class="dv">2</span>  <span class="dv">3</span>  <span class="dv">4</span>  <span class="dv">5</span>  <span class="dv">6</span>  <span class="dv">7</span>  <span class="dv">8</span>  <span class="dv">9</span> <span class="dv">10</span></span>
+<span id="cb38-4"><a href="calculer.html#cb38-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-5"><a href="calculer.html#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Une séquence de 1 (défaut, from = 1) à -10</span></span>
+<span id="cb38-6"><a href="calculer.html#cb38-6" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="sc">-</span><span class="dv">10</span>)</span>
+<span id="cb38-7"><a href="calculer.html#cb38-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>  [<span class="dv">1</span>]   <span class="dv">1</span>   <span class="dv">0</span>  <span class="sc">-</span><span class="dv">1</span>  <span class="sc">-</span><span class="dv">2</span>  <span class="sc">-</span><span class="dv">3</span>  <span class="sc">-</span><span class="dv">4</span>  <span class="sc">-</span><span class="dv">5</span>  <span class="sc">-</span><span class="dv">6</span>  <span class="sc">-</span><span class="dv">7</span>  <span class="sc">-</span><span class="dv">8</span>  <span class="sc">-</span><span class="dv">9</span> <span class="sc">-</span><span class="dv">10</span></span>
+<span id="cb38-8"><a href="calculer.html#cb38-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-9"><a href="calculer.html#cb38-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Une séquence de -10 (défaut, from = 1) à 1</span></span>
+<span id="cb38-10"><a href="calculer.html#cb38-10" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from =</span> <span class="sc">-</span><span class="dv">10</span>, <span class="at">to =</span> <span class="dv">1</span>)</span>
+<span id="cb38-11"><a href="calculer.html#cb38-11" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>  [<span class="dv">1</span>] <span class="sc">-</span><span class="dv">10</span>  <span class="sc">-</span><span class="dv">9</span>  <span class="sc">-</span><span class="dv">8</span>  <span class="sc">-</span><span class="dv">7</span>  <span class="sc">-</span><span class="dv">6</span>  <span class="sc">-</span><span class="dv">5</span>  <span class="sc">-</span><span class="dv">4</span>  <span class="sc">-</span><span class="dv">3</span>  <span class="sc">-</span><span class="dv">2</span>  <span class="sc">-</span><span class="dv">1</span>   <span class="dv">0</span>   <span class="dv">1</span></span>
+<span id="cb38-12"><a href="calculer.html#cb38-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-13"><a href="calculer.html#cb38-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Une séquence de nombres paires (from = 2, to = 10, by = 2)</span></span>
+<span id="cb38-14"><a href="calculer.html#cb38-14" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="dv">2</span>, <span class="dv">10</span>, <span class="dv">2</span>)</span>
+<span id="cb38-15"><a href="calculer.html#cb38-15" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>]  <span class="dv">2</span>  <span class="dv">4</span>  <span class="dv">6</span>  <span class="dv">8</span> <span class="dv">10</span></span>
+<span id="cb38-16"><a href="calculer.html#cb38-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-17"><a href="calculer.html#cb38-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Une séquence de nombres paires </span></span>
+<span id="cb38-18"><a href="calculer.html#cb38-18" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">2</span>, <span class="at">by =</span> <span class="dv">2</span>, <span class="at">length.out =</span> <span class="dv">5</span>)</span>
+<span id="cb38-19"><a href="calculer.html#cb38-19" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>]  <span class="dv">2</span>  <span class="dv">4</span>  <span class="dv">6</span>  <span class="dv">8</span> <span class="dv">10</span></span></code></pre></div>
 </div>
 <div id="la-somme" class="section level2" number="3.4">
 <h2>
 <span class="header-section-number">3.4</span> La somme<a class="anchor" aria-label="anchor" href="#la-somme"><i class="fas fa-link"></i></a>
 </h2>
 <p>Il est possible de calculer des sommes de variables pour en obtenir le total. En tant qu’humain, le calcul d’une série de nombre correspond à prendre chaque nombre et de les additionner un à un. La fonction suivante reproduit assez bien ce qu’un humain ferait (avec ses quelques caprices de programmation tel que devoir déclarer l’existence de la variable de <code>total</code> et spécifier le nombre d’éléments à calculer).</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="calculer.html#cb38-1" aria-hidden="true" tabindex="-1"></a>somme <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
-<span id="cb38-2"><a href="calculer.html#cb38-2" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">&lt;-</span> <span class="fu">length</span>(x)</span>
-<span id="cb38-3"><a href="calculer.html#cb38-3" aria-hidden="true" tabindex="-1"></a>  total <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb38-4"><a href="calculer.html#cb38-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n){</span>
-<span id="cb38-5"><a href="calculer.html#cb38-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Prendre le ie élément et l'additionner</span></span>
-<span id="cb38-6"><a href="calculer.html#cb38-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># au total des (i-1)e éléments précédents</span></span>
-<span id="cb38-7"><a href="calculer.html#cb38-7" aria-hidden="true" tabindex="-1"></a>    total <span class="ot">&lt;-</span> total <span class="sc">+</span> x[i]</span>
-<span id="cb38-8"><a href="calculer.html#cb38-8" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb38-9"><a href="calculer.html#cb38-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(total)</span>
-<span id="cb38-10"><a href="calculer.html#cb38-10" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb38-11"><a href="calculer.html#cb38-11" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="sc">-</span><span class="dv">6</span>)</span>
-<span id="cb38-12"><a href="calculer.html#cb38-12" aria-hidden="true" tabindex="-1"></a><span class="fu">somme</span>(x)</span>
-<span id="cb38-13"><a href="calculer.html#cb38-13" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">9</span></span>
-<span id="cb38-14"><a href="calculer.html#cb38-14" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(x)</span>
-<span id="cb38-15"><a href="calculer.html#cb38-15" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">9</span></span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="calculer.html#cb39-1" aria-hidden="true" tabindex="-1"></a>somme <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb39-2"><a href="calculer.html#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># La taille du vecteur `x`</span></span>
+<span id="cb39-3"><a href="calculer.html#cb39-3" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">&lt;-</span> <span class="fu">length</span>(x)</span>
+<span id="cb39-4"><a href="calculer.html#cb39-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb39-5"><a href="calculer.html#cb39-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Définir une variable nulle</span></span>
+<span id="cb39-6"><a href="calculer.html#cb39-6" aria-hidden="true" tabindex="-1"></a>  total <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb39-7"><a href="calculer.html#cb39-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb39-8"><a href="calculer.html#cb39-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Boucle pour additionner chaque élément</span></span>
+<span id="cb39-9"><a href="calculer.html#cb39-9" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n){</span>
+<span id="cb39-10"><a href="calculer.html#cb39-10" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb39-11"><a href="calculer.html#cb39-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Prendre le ie élément et l'additionner</span></span>
+<span id="cb39-12"><a href="calculer.html#cb39-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># au total des (i-1)e éléments précédents</span></span>
+<span id="cb39-13"><a href="calculer.html#cb39-13" aria-hidden="true" tabindex="-1"></a>    total <span class="ot">&lt;-</span> total <span class="sc">+</span> x[i]</span>
+<span id="cb39-14"><a href="calculer.html#cb39-14" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb39-15"><a href="calculer.html#cb39-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Retourner le total après la boucle</span></span>
+<span id="cb39-16"><a href="calculer.html#cb39-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(total)</span>
+<span id="cb39-17"><a href="calculer.html#cb39-17" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb39-18"><a href="calculer.html#cb39-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-19"><a href="calculer.html#cb39-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Pour tester</span></span>
+<span id="cb39-20"><a href="calculer.html#cb39-20" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="sc">-</span><span class="dv">6</span>)</span>
+<span id="cb39-21"><a href="calculer.html#cb39-21" aria-hidden="true" tabindex="-1"></a><span class="fu">somme</span>(x)</span>
+<span id="cb39-22"><a href="calculer.html#cb39-22" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">9</span></span>
+<span id="cb39-23"><a href="calculer.html#cb39-23" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(x)</span>
+<span id="cb39-24"><a href="calculer.html#cb39-24" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">9</span></span></code></pre></div>
 <p>À noter que l’utilisation de la boucle est à des fins illustratives seulement. En termes de rendement computationnel, elle est bien peu efficace. Il faudra privilégier la fonction <code><a href="https://rdrr.io/r/base/sum.html">sum()</a></code> pour calculer le total de son entrée.</p>
 <p>Il faut prendre garde : <strong>R</strong> calcule le total de tous les éléments de l’entrée sans égard aux lignes et aux colonnes. Autrement dit, il vectorise les entrées. Si deux variables étaient entrées par inadvertance, alors R calculerait la somme de ces deux variables plutôt que de retourner deux totaux. À cette fin, les fonctions <code><a href="https://rdrr.io/r/base/colSums.html">rowSums()</a></code> et <code><a href="https://rdrr.io/r/base/colSums.html">colSums()</a></code> seront utiles lorsqu’il faudra calculer des sommes sur des lignes (<em>row</em>) ou des colonnes (<em>col</em>).</p>
 </div>
@@ -189,22 +209,20 @@
 <h2>
 <span class="header-section-number">3.5</span> La moyenne<a class="anchor" aria-label="anchor" href="#la-moyenne"><i class="fas fa-link"></i></a>
 </h2>
-<p>La moyenne est une mesure de tendance centrale qui représente le centre d’équilibre d’une distribution (un centre de gravité en quelque sorte). Si le poids d’un des côtés d’une distribution de probabilité était altéré (plus lourde ou plus légère), alors la moyenne se déplacerait en conséquence.</p>
-<p>La moyenne d’un échantillon correspond à la somme de toutes les unités d’une variable divisée par le nombre de données de cette variable ou, mathématiquement, <span class="math display">\[\bar{x}=\frac{\Sigma_{i=1}^n x}{n} \]</span> où <span class="math inline">\(x\)</span> est la variable, <span class="math inline">\(n\)</span> est le nombre d’unité et <span class="math inline">\(\Sigma_i^n\)</span> représente la somme de toutes les unités de <span class="math inline">\(x\)</span>. <strong>R</strong> possède déjà une fonction permettant de calculer la moyenne sans effort, <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code> où l’argument est la variable. Il est possible de développer une fonction maison pour calculer la moyenne comme</p>
-<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<p>La moyenne est une mesure de tendance centrale qui représente le centre d’équilibre d’une distribution (un centre de gravité en quelque sorte). Si le poids d’un des côtés d’une distribution de probabilité était altéré (plus lourde ou plus légère), alors la moyenne se déplacerait relativement vers cette masse.</p>
+<p>La moyenne d’un échantillon correspond à la somme de toutes les unités d’une variable divisée par le nombre de données de cette variable ou, mathématiquement, <span class="math display">\[\bar{x}=\frac{\Sigma_{i=1}^n x}{n}\]</span> où <span class="math inline">\(x\)</span> est la variable, <span class="math inline">\(n\)</span> est le nombre d’unité et <span class="math inline">\(\Sigma_i^n\)</span> représente la somme de toutes les unités de <span class="math inline">\(x\)</span>. <strong>R</strong> possède déjà une fonction permettant de calculer la moyenne sans effort, <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code> où l’argument est la variable. Il est possible de développer une fonction maison pour calculer la moyenne comme</p>
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x_bar</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></code></pre></div>
 <p>où <code>sum(x)</code> calculer la somme de toutes les unités de <code>x</code>, <code>/</code> permet la division et <code>length(x)</code> calcule le nombre d’unités du vecteur <code>x</code>. Par exemple, à partir d’une variable <code>x</code>, les fonctions suivantes donnent le même résultat. Par contre la fonction <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code> est beaucoup plus robuste que cette dernière équation.</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="calculer.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Création de la variable</span></span>
-<span id="cb40-2"><a href="calculer.html#cb40-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
-<span id="cb40-3"><a href="calculer.html#cb40-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-4"><a href="calculer.html#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="co"># La moyenne</span></span>
-<span id="cb40-5"><a href="calculer.html#cb40-5" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x)</span>
-<span id="cb40-6"><a href="calculer.html#cb40-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">2.5</span></span>
-<span id="cb40-7"><a href="calculer.html#cb40-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-8"><a href="calculer.html#cb40-8" aria-hidden="true" tabindex="-1"></a><span class="co"># La moyenne</span></span>
-<span id="cb40-9"><a href="calculer.html#cb40-9" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(x)<span class="sc">/</span><span class="fu">length</span>(x)</span>
-<span id="cb40-10"><a href="calculer.html#cb40-10" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">2.5</span></span></code></pre></div>
-<p>Comme pour <code><a href="https://rdrr.io/r/base/sum.html">sum()</a></code>, les fonctions <code><a href="https://rdrr.io/r/base/colSums.html">rowMeans()</a></code> et <code><a href="https://rdrr.io/r/base/colSums.html">colMeans()</a></code> seront utiles lorsqu’il faudra calculer des moyennes sur des lignes (<em>row</em>) ou des colonnes (<em>col</em>).</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="calculer.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Un vecteur</span></span>
+<span id="cb41-2"><a href="calculer.html#cb41-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
+<span id="cb41-3"><a href="calculer.html#cb41-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-4"><a href="calculer.html#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Comparaison</span></span>
+<span id="cb41-5"><a href="calculer.html#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x)</span>
+<span id="cb41-6"><a href="calculer.html#cb41-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">2.5</span></span>
+<span id="cb41-7"><a href="calculer.html#cb41-7" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(x)<span class="sc">/</span><span class="fu">length</span>(x)</span>
+<span id="cb41-8"><a href="calculer.html#cb41-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">2.5</span></span></code></pre></div>
+<p>Comme pour <code><a href="https://rdrr.io/r/base/sum.html">sum()</a></code>, les fonctions <code><a href="https://rdrr.io/r/base/colSums.html">rowMeans()</a></code> et <code><a href="https://rdrr.io/r/base/colSums.html">colMeans()</a></code> seront utiles lorsqu’il faudra calculer des moyennes sur des lignes (<em>row</em>) ou des colonnes (<em>col</em>).<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Contrairement à &lt;code&gt;sum()&lt;/code&gt;, &lt;code&gt;mean()&lt;/code&gt; est une fonction générique, terme technique qui définit une fonction généralisée pour différents fonctions, une fonction mère en quelque sorte (une idiosyncrasie de &lt;strong&gt;R&lt;/strong&gt;). En conséquences, &lt;code&gt;sum(2, 4)&lt;/code&gt;, qui n’est pas générique, retourne 4 (comme prévu), mais &lt;code&gt;mean(2, 4)&lt;/code&gt; retourne 2 (au lieu de 3). La fonction reconnaît 2 comme premier argument vecteur et n’utilise pas 3, car il ne reconnaît pas qu’il fait parti du vecteur. Pour éviter ces soucis, il faut s’assurer de bien soumettre un vecteur à &lt;code&gt;mean()&lt;/code&gt;. Ce livre n’entre pas dans les détails de ce que sont ces fonctions, à ce sujet voir &lt;span class="citation"&gt;Wickham (&lt;a href="r%C3%A9f%C3%A9rences.html#ref-HW19" role="doc-biblioref"&gt;2019&lt;/a&gt;)&lt;/span&gt;.&lt;/p&gt;'><sup>1</sup></a></p>
 </div>
 <div id="la-médiane" class="section level2" number="3.6">
 <h2>
@@ -212,21 +230,28 @@
 </h2>
 <p>La médiane d’un échantillon correspond à la valeur où <span class="math inline">\(50\%\)</span> des données se situe au-dessous et au-dessus de cette valeur. C’est la valeur au centre des autres (lorsqu’elles sont ordonnées). Quand le nombre de données est impair, le <span class="math inline">\(\frac{(n+1)}{2}\)</span><sup>e</sup> élément est la médiane. Quand le nombre est pair, la moyenne des deux valeurs au centre correspond à la médiane. Cette statistique est intéressante comme mesure de tendance centrale, car elle est plus robuste aux valeurs aberrantes (moins sensibles) que la moyenne.</p>
 <p>Évidemment, <strong>R</strong> offre déjà une fonction <code><a href="https://rdrr.io/r/stats/median.html">median()</a></code> pour réaliser le calcul. Il est toutefois possible de programmer une fonction maison. Il faut utiliser la fonction <code><a href="https://rdrr.io/r/base/sort.html">sort()</a></code> pour ordonner les données (croissant par défaut).</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="calculer.html#cb41-1" aria-hidden="true" tabindex="-1"></a>mediane <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
-<span id="cb41-2"><a href="calculer.html#cb41-2" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">&lt;-</span> <span class="fu">length</span>(x)</span>
-<span id="cb41-3"><a href="calculer.html#cb41-3" aria-hidden="true" tabindex="-1"></a>  s <span class="ot">&lt;-</span> <span class="fu">sort</span>(x)</span>
-<span id="cb41-4"><a href="calculer.html#cb41-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ifelse</span>(n<span class="sc">%%</span><span class="dv">2</span> <span class="sc">==</span> <span class="dv">1</span>, s[(n <span class="sc">+</span> <span class="dv">1</span>) <span class="sc">/</span> <span class="dv">2</span>], <span class="fu">mean</span>(s[n <span class="sc">/</span> <span class="dv">2</span> <span class="sc">+</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">1</span>]))</span>
-<span id="cb41-5"><a href="calculer.html#cb41-5" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb41-6"><a href="calculer.html#cb41-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-7"><a href="calculer.html#cb41-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Tester ensuite:</span></span>
-<span id="cb41-8"><a href="calculer.html#cb41-8" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">42</span>, <span class="dv">23</span>, <span class="dv">53</span>, <span class="dv">77</span>, <span class="dv">93</span>, <span class="dv">20</span>, <span class="dv">37</span>, <span class="dv">24</span>, <span class="dv">60</span>, <span class="dv">62</span>)</span>
-<span id="cb41-9"><a href="calculer.html#cb41-9" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(x)</span>
-<span id="cb41-10"><a href="calculer.html#cb41-10" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">47.5</span></span>
-<span id="cb41-11"><a href="calculer.html#cb41-11" aria-hidden="true" tabindex="-1"></a><span class="fu">mediane</span>(x)</span>
-<span id="cb41-12"><a href="calculer.html#cb41-12" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">47.5</span></span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="calculer.html#cb42-1" aria-hidden="true" tabindex="-1"></a>mediane <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb42-2"><a href="calculer.html#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Longueur du vecteur</span></span>
+<span id="cb42-3"><a href="calculer.html#cb42-3" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">&lt;-</span> <span class="fu">length</span>(x)</span>
+<span id="cb42-4"><a href="calculer.html#cb42-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb42-5"><a href="calculer.html#cb42-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Ordonner le vecteur</span></span>
+<span id="cb42-6"><a href="calculer.html#cb42-6" aria-hidden="true" tabindex="-1"></a>  s <span class="ot">&lt;-</span> <span class="fu">sort</span>(x)</span>
+<span id="cb42-7"><a href="calculer.html#cb42-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Vérifier si la longueur est paire ou impaire et</span></span>
+<span id="cb42-8"><a href="calculer.html#cb42-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># alors calculer la valeur médiane correspondante</span></span>
+<span id="cb42-9"><a href="calculer.html#cb42-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ifelse</span>(n<span class="sc">%%</span><span class="dv">2</span> <span class="sc">==</span> <span class="dv">1</span>, s[(n <span class="sc">+</span> <span class="dv">1</span>) <span class="sc">/</span> <span class="dv">2</span>], <span class="fu">mean</span>(s[n <span class="sc">/</span> <span class="dv">2</span> <span class="sc">+</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">1</span>]))</span>
+<span id="cb42-10"><a href="calculer.html#cb42-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb42-11"><a href="calculer.html#cb42-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-12"><a href="calculer.html#cb42-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Un vecteur</span></span>
+<span id="cb42-13"><a href="calculer.html#cb42-13" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">42</span>, <span class="dv">23</span>, <span class="dv">53</span>, <span class="dv">77</span>, <span class="dv">93</span>, <span class="dv">20</span>, <span class="dv">37</span>, <span class="dv">24</span>, <span class="dv">60</span>, <span class="dv">62</span>)</span>
+<span id="cb42-14"><a href="calculer.html#cb42-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-15"><a href="calculer.html#cb42-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Comparaison</span></span>
+<span id="cb42-16"><a href="calculer.html#cb42-16" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(x)</span>
+<span id="cb42-17"><a href="calculer.html#cb42-17" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">47.5</span></span>
+<span id="cb42-18"><a href="calculer.html#cb42-18" aria-hidden="true" tabindex="-1"></a><span class="fu">mediane</span>(x)</span>
+<span id="cb42-19"><a href="calculer.html#cb42-19" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">47.5</span></span></code></pre></div>
 <p>L’expression <code>n%%2</code>, lue <span class="math inline">\(n \bmod 2\)</span>, joue astucieusement le rôle de vérifier si <code>n</code> est impaire. La formule générale <span class="math inline">\(x \bmod y\)</span> représente une opération binaire associant à deux entiers naturels le reste de la division du premier par le second. Par exemple, <span class="math inline">\(60 \bmod 7\)</span>, noter <code>60%%7</code> dans <strong>R</strong>, donne <span class="math inline">\(4\)</span> soit le reste de <span class="math inline">\(7*8 + 4 = 60\)</span>. Le logiciel le confirme.</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="calculer.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="dv">60</span><span class="sc">%%</span><span class="dv">7</span></span>
-<span id="cb42-2"><a href="calculer.html#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">4</span></span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="calculer.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="dv">60</span><span class="sc">%%</span><span class="dv">7</span></span>
+<span id="cb43-2"><a href="calculer.html#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">4</span></span></code></pre></div>
 <p>Il s’agit d’une technique de programmation très pratique. Dans le cas de <code>n%%2</code>, la formule donne <span class="math inline">\(1\)</span> dans le cas d’un nombre impair ou <span class="math inline">\(0\)</span> dans le cas d’un nombre pair, puis teste ce résultat pour déterminer s’il réalise <code>s[(n+1)/2]</code> lorsque <code>n%%2==1</code>(<code>TRUE</code>) , ce qui correspond à choisir l’élément au centre d’un vecteur de taille impair, ou bien <code>mean(s[n/2+0:1]</code> lorsque <code>n%%2==0</code>(<code>FALSE</code>) , ce qui correspond à choisir les deux éléments au centre d’un vecteur pair et d’en faire la moyenne. Il s’agit de l’une des nombreuses façons selon lesquelles il est possible de programmer la médiane.</p>
 </div>
 <div id="la-variance" class="section level2" number="3.7">
@@ -239,19 +264,27 @@ s^2 = \frac{1}{n-1}\sum_{i=1}^n(x_i-\bar{x})^2
 \tag{3.1}
 \]</span>
 Il est assez aisé d’élaborer une fonction pour réaliser se calculer avec les fonctions déjà abordées.</p>
-<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">variance</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span>
+  <span class="co"># Longueur du vecteur</span>
   <span class="va">n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
+  
+  <span class="co"># Moyenne du vecteur</span>
   <span class="va">xbar</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
+  
+  <span class="co"># La variance</span>
   <span class="va">variance</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="op">(</span><span class="va">x</span> <span class="op">-</span> <span class="va">xbar</span><span class="op">)</span> <span class="op">^</span> <span class="fl">2</span><span class="op">)</span><span class="op">/</span><span class="op">(</span><span class="va">n</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span>
   <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">variance</span><span class="op">)</span>
 <span class="op">}</span></code></pre></div>
 <p>La variance peut aussi être calculée plus efficacement avec la fonction <strong>R</strong> <code><a href="https://rdrr.io/r/stats/cor.html">var()</a></code>.</p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="calculer.html#cb44-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">26</span>, <span class="dv">6</span>, <span class="dv">40</span>, <span class="dv">36</span>, <span class="dv">14</span>, <span class="dv">3</span>, <span class="dv">21</span>, <span class="dv">48</span>, <span class="dv">43</span>, <span class="dv">2</span>)</span>
-<span id="cb44-2"><a href="calculer.html#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">variance</span>(x)</span>
-<span id="cb44-3"><a href="calculer.html#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">300</span></span>
-<span id="cb44-4"><a href="calculer.html#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(x)</span>
-<span id="cb44-5"><a href="calculer.html#cb44-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">300</span></span></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="calculer.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Un vecteur</span></span>
+<span id="cb45-2"><a href="calculer.html#cb45-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">26</span>, <span class="dv">6</span>, <span class="dv">40</span>, <span class="dv">36</span>, <span class="dv">14</span>, <span class="dv">3</span>, <span class="dv">21</span>, <span class="dv">48</span>, <span class="dv">43</span>, <span class="dv">2</span>)</span>
+<span id="cb45-3"><a href="calculer.html#cb45-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-4"><a href="calculer.html#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Comparaison</span></span>
+<span id="cb45-5"><a href="calculer.html#cb45-5" aria-hidden="true" tabindex="-1"></a><span class="fu">variance</span>(x)</span>
+<span id="cb45-6"><a href="calculer.html#cb45-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">300</span></span>
+<span id="cb45-7"><a href="calculer.html#cb45-7" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(x)</span>
+<span id="cb45-8"><a href="calculer.html#cb45-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">300</span></span></code></pre></div>
 </div>
 <div id="lécart-type" class="section level2" number="3.8">
 <h2>
@@ -262,21 +295,24 @@ Il est assez aisé d’élaborer une fonction pour réaliser se calculer avec le
 s =\sqrt{s^2}= \sqrt{\frac{1}{n-1}\sum_{i=1}^n(x_i-\bar{x})^2}
 \]</span>
 Avec <strong>R</strong>, la fonction de base est <code><a href="https://rdrr.io/r/stats/sd.html">sd()</a></code>. Il est possible de récupérer la fonction maison précédemment rédigée.</p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="calculer.html#cb45-1" aria-hidden="true" tabindex="-1"></a>ecart.type <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
-<span id="cb45-2"><a href="calculer.html#cb45-2" aria-hidden="true" tabindex="-1"></a>  et <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">variance</span>(x))</span>
-<span id="cb45-3"><a href="calculer.html#cb45-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(et)</span>
-<span id="cb45-4"><a href="calculer.html#cb45-4" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb45-5"><a href="calculer.html#cb45-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ecart.type</span>(x)</span>
-<span id="cb45-6"><a href="calculer.html#cb45-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">17.3</span></span>
-<span id="cb45-7"><a href="calculer.html#cb45-7" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(x)</span>
-<span id="cb45-8"><a href="calculer.html#cb45-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">17.3</span></span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="calculer.html#cb46-1" aria-hidden="true" tabindex="-1"></a>ecart.type <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb46-2"><a href="calculer.html#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># La racine carrée de la variance</span></span>
+<span id="cb46-3"><a href="calculer.html#cb46-3" aria-hidden="true" tabindex="-1"></a>  et <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">variance</span>(x))</span>
+<span id="cb46-4"><a href="calculer.html#cb46-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(et)</span>
+<span id="cb46-5"><a href="calculer.html#cb46-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb46-6"><a href="calculer.html#cb46-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-7"><a href="calculer.html#cb46-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Comparaison</span></span>
+<span id="cb46-8"><a href="calculer.html#cb46-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ecart.type</span>(x)</span>
+<span id="cb46-9"><a href="calculer.html#cb46-9" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">17.3</span></span>
+<span id="cb46-10"><a href="calculer.html#cb46-10" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(x)</span>
+<span id="cb46-11"><a href="calculer.html#cb46-11" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">17.3</span></span></code></pre></div>
 </div>
 <div id="les-graines" class="section level2" number="3.9">
 <h2>
 <span class="header-section-number">3.9</span> Les graines<a class="anchor" aria-label="anchor" href="#les-graines"><i class="fas fa-link"></i></a>
 </h2>
 <p>Par souci de reproductibilité, il est possible de déclarer une valeur de départ aux variables pseudoaléatoires, ce que l’on nomme une graine ou <em>seed</em> en anglais. Cela permet de toujours d’obtenir les mêmes valeurs à plusieurs reprises, ce qui est très utile lors d’élaboration de simulations complexes ou lorsque des étudiants essaient de répliquer résultat tiré d’un ouvrage pédagogique.</p>
-<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="st">"nombre"</span><span class="op">)</span></code></pre></div>
 <p>Il suffit de spécifier cette commande (en remplaçant <code>nombre</code> par un nombre) en début de syntaxe pour définir la séquence de nombre. Cette fonction sera utilisée à plusieurs reprises dans le but de reproduire les mêmes sorties.</p>
 <p>Cette fonction est présentée, car elle reviendra régulièrement dans ce livre pour qu’il soit possible de reproduire et obtenir exactement les mêmes résultats.</p>
@@ -372,26 +408,35 @@ min, max
 </table></div>
 <p>Les libellés ci-dessus ne commanderont pas de fonction. Il faut joindre en préfixe à ces distributions l’une des quatre lettres suivantes : <code>d</code>, <code>p</code>,<code>q</code>, ou <code>r</code>. La plus simple est certainement <code>r</code> (<em>random</em>) qui génère <code>n</code> valeurs aléatoires de la distribution demandée selon les paramètres spécifiés. Les fonctions <code>q</code> (quantile) prennent un argument de 0 à 1 (100%), soit un percentile et retourne la valeur de la distribution. La fonction <code>p</code> (probabilité) retourne la probabilité cumulative (du minimum jusqu’à la valeur) d’une valeur de cette distribution. Enfin, la lettre <code>d</code> (densité) permet, notamment, d’obtenir les valeurs de densité de la distribution.</p>
 <p>Voici un exemple avec la distribution normale.</p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="calculer.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">9876</span>)</span>
-<span id="cb47-2"><a href="calculer.html#cb47-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-3"><a href="calculer.html#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Génère 5 nombres aléatoires en fonction des paramètres</span></span>
-<span id="cb47-4"><a href="calculer.html#cb47-4" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">5</span>, <span class="at">mean =</span> <span class="dv">10</span>, <span class="at">sd =</span> .<span class="dv">5</span>)</span>
-<span id="cb47-5"><a href="calculer.html#cb47-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">10.51</span>  <span class="fl">9.42</span>  <span class="fl">9.90</span>  <span class="fl">9.95</span> <span class="fl">10.01</span></span>
-<span id="cb47-6"><a href="calculer.html#cb47-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-7"><a href="calculer.html#cb47-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Retourne les valeurs associés à ces probabilités</span></span>
-<span id="cb47-8"><a href="calculer.html#cb47-8" aria-hidden="true" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fu">c</span>(.<span class="dv">025</span>,.<span class="dv">975</span>))</span>
-<span id="cb47-9"><a href="calculer.html#cb47-9" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="sc">-</span><span class="fl">1.96</span>  <span class="fl">1.96</span></span>
-<span id="cb47-10"><a href="calculer.html#cb47-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-11"><a href="calculer.html#cb47-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Retourne la probabilité d'obtenir un score de 1.645 et moins</span></span>
-<span id="cb47-12"><a href="calculer.html#cb47-12" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="fl">1.645</span>)</span>
-<span id="cb47-13"><a href="calculer.html#cb47-13" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">0.95</span></span>
-<span id="cb47-14"><a href="calculer.html#cb47-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-15"><a href="calculer.html#cb47-15" aria-hidden="true" tabindex="-1"></a><span class="co"># La valeur de la densité de la distribution</span></span>
-<span id="cb47-16"><a href="calculer.html#cb47-16" aria-hidden="true" tabindex="-1"></a><span class="fu">dnorm</span>(<span class="dv">0</span>)</span>
-<span id="cb47-17"><a href="calculer.html#cb47-17" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">0.399</span></span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="calculer.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">9876</span>)</span>
+<span id="cb48-2"><a href="calculer.html#cb48-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-3"><a href="calculer.html#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Génère 5 valeurs aléatoires en fonction des paramètres</span></span>
+<span id="cb48-4"><a href="calculer.html#cb48-4" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">5</span>, <span class="at">mean =</span> <span class="dv">10</span>, <span class="at">sd =</span> .<span class="dv">5</span>)</span>
+<span id="cb48-5"><a href="calculer.html#cb48-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">10.51</span>  <span class="fl">9.42</span>  <span class="fl">9.90</span>  <span class="fl">9.95</span> <span class="fl">10.01</span></span>
+<span id="cb48-6"><a href="calculer.html#cb48-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-7"><a href="calculer.html#cb48-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Retourne les valeurs associés à ces probabilités</span></span>
+<span id="cb48-8"><a href="calculer.html#cb48-8" aria-hidden="true" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="at">p =</span> <span class="fu">c</span>(.<span class="dv">025</span>,.<span class="dv">975</span>))</span>
+<span id="cb48-9"><a href="calculer.html#cb48-9" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="sc">-</span><span class="fl">1.96</span>  <span class="fl">1.96</span></span>
+<span id="cb48-10"><a href="calculer.html#cb48-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-11"><a href="calculer.html#cb48-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Retourne la probabilité d'obtenir un score de 1.645 et moins</span></span>
+<span id="cb48-12"><a href="calculer.html#cb48-12" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="at">q =</span> <span class="fu">c</span>(.<span class="dv">5</span>, <span class="fl">1.645</span>, <span class="fl">1.96</span>))</span>
+<span id="cb48-13"><a href="calculer.html#cb48-13" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">0.691</span> <span class="fl">0.950</span> <span class="fl">0.975</span></span>
+<span id="cb48-14"><a href="calculer.html#cb48-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-15"><a href="calculer.html#cb48-15" aria-hidden="true" tabindex="-1"></a><span class="co"># La valeur de la densité de la distribution</span></span>
+<span id="cb48-16"><a href="calculer.html#cb48-16" aria-hidden="true" tabindex="-1"></a><span class="fu">dnorm</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>))</span>
+<span id="cb48-17"><a href="calculer.html#cb48-17" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">0.399</span> <span class="fl">0.242</span></span></code></pre></div>
 <p>Ces quatre lettres peuvent être associées à toutes les distributions énumérées et bien d’autres. Elles respectent toutes ce cadre.</p>
+<p>Afin d’illustrer ce que font ces variables, la Figure <a href="calculer.html#fig:distex">3.1</a> montre <code><a href="https://rdrr.io/r/stats/Normal.html">dnorm()</a></code>, <code><a href="https://rdrr.io/r/stats/Normal.html">pnorm()</a></code> et <code><a href="https://rdrr.io/r/stats/Normal.html">qnorm()</a></code>. La fonction <code><a href="https://rdrr.io/r/stats/Normal.html">rnorm()</a></code> n’est pas illustrée. Cette dernière retourne des valeurs de l’axe des <span class="math inline">\(x\)</span> en respectant les probabilités d’une courbe normale. La fonction <code><a href="https://rdrr.io/r/stats/Normal.html">dnorm()</a></code> prend en argument une valeur de l’axe des <span class="math inline">\(x\)</span> et retourne la valeur de la courbe normale (la densité) correspondante, soit la courbe illustrée. En d’autres termes, elle retourne la hauteur de la courbe (ligne pointillée). Les fonctions <code><a href="https://rdrr.io/r/stats/Normal.html">pnorm()</a></code> et <code><a href="https://rdrr.io/r/stats/Normal.html">qnorm()</a></code> sont interreliées. La fonction <code><a href="https://rdrr.io/r/stats/Normal.html">pnorm()</a></code> prend une valeur de l’axe des <span class="math inline">\(x\)</span> et retourne sa probabilité (de <span class="math inline">\(-\infty\)</span> à <span class="math inline">\(x\)</span>), soit la zone grise de la Figure <a href="calculer.html#fig:distex">3.1</a>. La fonction <code><a href="https://rdrr.io/r/stats/Normal.html">qnorm()</a></code>, quant à elle, prend une probabilité et retourne la valeur sur l’axe des <span class="math inline">\(x\)</span> correspondant.</p>
+<div class="figure">
+<span style="display:block;" id="fig:distex"></span>
+<img src="03-Calculer_files/figure-html/distex-1.png" alt="Illustration des fonctions liées à la distribution normale" width="90%" height="90%"><p class="caption">
+Figure 3.1: Illustration des fonctions liées à la distribution normale
+</p>
+</div>
+<p>Ces fonctions entreront en jeu dans le chapitre <a href="inf%C3%A9rer.html#inf%C3%A9rer">Inférer</a>.</p>
 </div>
 </div>
+
   <div class="chapter-nav">
 <div class="prev"><a href="programmer.html"><span class="header-section-number">2</span> Programmer</a></div>
 <div class="next"><a href="exercice-rudiments.html">Exercices</a></div>
@@ -426,7 +471,7 @@ min, max
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Méthodes Quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-06-09.</p>
+    <p>"<strong>Méthodes Quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-06-13.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

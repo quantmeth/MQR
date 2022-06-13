@@ -2,20 +2,22 @@
 
 # Inférer
 
-Le but principal de toute inférence statistique est de tirer des conclusions sur une population à partir d'un échantillon (un fragment beaucoup plus petit de la population). Avant d'introduire différents tests statistiques permettant de tirer ce genre de conclusions, le théorème central limite et la théorie des tests d'hypothèses seront présentés. La distribution centrale réduite (score-$z$) et la distribution-$t$ serviront d'appui à la présentation.
+<!-- Avant d'introduire différents tests statistiques permettant de tirer ce genre de conclusions, le théorème central limite et la théorie des tests d'hypothèses seront présentés. La distribution centrale réduite (score-$z$) et la distribution-$t$ serviront d'appui à la présentation. -->
 
-Comme il est rarement possible de collecter des données sur l'ensemble de la population, l'expérimentateur choisi, idéalement, un échantillon représentatif tiré aléatoirement. Une fois l'échantillon recruté et mesuré, l'expérimentateur dérive des indices statistiques. Un **indice** statistique synthétise par une estimation basée sur l'échantillon de l'information sur le **paramètre** de la population. Cet indice possède un comportement, une distribution d'échantillonnage qui détermine les différentes valeurs qu'il peut prendre. En obtenant ces indices, l'expérimentateur tente de connaître le paramètre de la population. S'il s'intéresse à la relation entre l'anxiété et un cours de méthodes quantitatives, l'expérimentateur voudra savoir d'une part si cette relation n'est pas nulle, mais aussi sa force, en termes de tailles d'effet. 
+Le but principal de toute inférence statistique est de tirer des conclusions sur une population à partir d'un échantillon (un fragment beaucoup plus petit de la population). Comme il est rarement possible de collecter des données sur l'ensemble de la population, l'expérimentateur choisi, idéalement, un échantillon représentatif tiré aléatoirement. Une fois l'échantillon recruté et mesuré, l'expérimentateur dérive des indices statistiques. Un **indice** statistique synthétise par une estimation basée sur l'échantillon de l'information sur le **paramètre** de la population. Cet indice possède un comportement, une distribution d'échantillonnage qui détermine les différentes valeurs qu'il peut prendre. En obtenant ces indices, l'expérimentateur tente de connaître le paramètre de la population. S'il s'intéresse à la relation entre l'anxiété et un cours de méthodes quantitatives, l'expérimentateur voudra savoir d'une part si cette relation n'est pas nulle, mais aussi sa force, en termes de tailles d'effet. 
 
 Cette tâche peut apparaître difficile considérant le peu d'informations sur la population, sa distribution de probabilité, les paramètres et la relative petite taille de l'échantillon par rapport à la population. Pour aider l'expérimentateur, les statisticiens ont  le théorème central limite. Pour eux, il est certainement l'équivalent de la théorie de l'évolution pour le biologiste ou la théorie de la relativité générale pour le physicien. Ce théorème permet de connaître comment et sous quelles conditions se comportent les variables aléatoires.
 
 ## Le théorème central limite
 
-Les valeurs d'un échantillon sont, pour le statisticien, des variables aléatoires. Une variable aléatoire, c'est un peu comme piger dans une boîte à l'aveuglette pour obtenir une valeur. La boîte est impénétrable, personne ne sait par quel processus elle accorde telle ou telle autre valeur. Pour le statisticien, ce qui importe c'est que chaque valeur possède une chance égale aux autres d'être sélectionnée et qu'elles soient indépendantes entre elles (le fait d'en choisir une soit sans conséquence sur la probabilité des autres). Pour le non-initié aux fonctions permettant de créer des nombres pseudoaléatoires, une fonction **R** comme `rnorm()` ou `runif()` (*r* suivi d'un nom de distribution, voir [Les distributions]) joue parfaitement le rôle de cette boîte. Si l'usager demande une valeur, la fonction retourne une valeur aléatoire (imprévisible à chaque fois) sans connaître comment cette valeur est produite.
+Les valeurs d'un échantillon sont, pour le statisticien, des variables aléatoires. Une variable aléatoire, c'est un peu comme piger dans une boîte à l'aveuglette pour obtenir une valeur. La boîte est impénétrable, personne ne sait par quel processus elle accorde telle ou telle autre valeur. Pour le statisticien, ce qui importe c'est que chaque valeur possède une chance égale aux autres d'être sélectionnée et qu'elles soient indépendantes entre elles (le fait d'en choisir une soit sans conséquence sur la probabilité des autres). 
+
+Pour le non-initié aux fonctions permettant de créer des nombres pseudoaléatoires, une fonction **R** comme `rnorm()` ou `runif()` (*r* suivi d'un nom de distribution, voir [Les distributions]) joue parfaitement le rôle de cette boîte. Si l'usager demande une valeur, la fonction retourne une valeur aléatoire (imprévisible à chaque fois) sans connaître comment cette valeur est produite.
 
 
 ```r
 runif(n = 1)
-> [1] 0.617
+> [1] 0.165
 ```
 
 Le statisticien s'intéresse à inférer comment ces valeurs sont générées. Il postule ainsi que les valeurs aléatoires suivent une distribution de probabilité. Connaître cette distribution est très important, car c'est elle qui permet de répondre à des questions comme : quelle est la probabilité d'obtenir un résultat aussi rare que $x$? Ou quelle sont les valeurs attendues pour $95\%$ des tirages? Questions tout à fait pertinentes pour l'expérimentateur. Une des distributions les plus connues est certainement la distribution normale, celle qui est derrière la fonction `rnorm()` d'ailleurs. Mais, il y en a beaucoup, beaucoup d'autres. 
@@ -47,7 +49,7 @@ Par exemple, la fonction `rlnorm()` génère des variables issues d'une distribu
 <p class="caption">(\#fig:lognormal)Distribution log normale</p>
 </div>
 
-En calculant la somme de plusieurs variables aléatoires de cette distribution, pour diverses valeurs de tailles d'échantillons (nombre de variables échantillonnées), les résultats tendent de plus en plus vers une distribution normale. Le code ci-dessous présente la démarche utilisée et la figure \@ref(fig:testn) en fait la démonstration graphique en présentant les distributions d'échantillonnage obtenues.
+En calculant la somme de plusieurs variables aléatoires de cette distribution, pour diverses valeurs de tailles d'échantillons (nombre de variables échantillonnées), les résultats tendent de plus en plus vers une distribution normale. Le code ci-dessous présente la démarche utilisée et la Figure \@ref(fig:testn) en fait la démonstration graphique en présentant les distributions d'échantillonnage obtenues.
 
 
 ```r
@@ -110,7 +112,16 @@ La distribution normale du QI humain joue le rôle d'hypothèse nulle, les perso
 
 Les expérimentateurs émettent l'hypothèse que les 5 % personnes ayant le plus haut QI sont vraisemblablement reptiliens. C'est le risque qu'ils sont prêts à prendre de sélectionner un humain et de le classer erronément comme reptilien.
 
-Le groupe d'expérimentateurs teste leur instrument sur Fanny. Elle a un QI de 120. Comment tester si elle est reptilienne? La première étape est d'obtenir un score-$z$. Un score-$z$ est une échelle standardisée des distances d'une valeur par rapport à la moyenne. Lorsqu'une échelle de mesure est transformée en score-$z$, la moyenne est de 0 et l'écart type est égal à 1. Cela permet de mieux apprécier les distances et leur probabilité. La Figure \@ref(fig:regle) est ainsi applicable pour toutes sortes de situations où la distribution est vraisemblablement normale.
+Le groupe d'expérimentateurs teste leur instrument sur Fanny. Elle a un QI de 120. Comment tester si elle est reptilienne? 
+
+La première étape est d'obtenir un **score-$z$**. Un score-$z$ est une échelle standardisée des distances d'une valeur par rapport à la moyenne. Lorsqu'une échelle de mesure est transformée en score-$z$, la moyenne est de 0 et l'écart type est égal à 1. Cela permet de mieux apprécier les distances et leur probabilité. Un score-$z$ s'obtient en prenant la différence entre une unité ($x$) par rapport à la moyenne ($\mu$) divisée par l'écart type ($\sigma$). L'Équation \@ref(eq:zzz) illustre ce calcul.
+
+\begin{equation}
+z = \frac{x-\mu}{\sigma}
+(\#eq:zzz)
+\end{equation}
+
+Comme un score-$z$ est standardisé, la Figure \@ref(fig:regle) est utilisable pour tirer des conclusions, car celle-ci applicable pour toutes sortes de situations où la distribution est vraisemblablement normale.
 
 
 ```r
@@ -125,11 +136,15 @@ Fanny a un score-$z$ de 1.333. Maintenant, il faut traduire cette valeur en prob
 # La probabilité que Fanny ait un QI de -Inf à z.fanny
 pnorm(z.fanny)
 > [1] 0.909
+
+# En pourcentage
+pnorm(z.fanny) * 100
+> [1] 90.9
 ```
 
 L'expectative sous l'hypothèse nulle est d'observer un score pareil ou supérieur à celui de Fanny 9.121 % du temps. Cette statistique correspond à la *valeur-$p$*, la probabilité de l'indice par rapport à sa distribution d'échantillonnage (hypothèse nulle). Comme elle ne dépasse pas le seuil de 5%, soit la limite selon laquelle le score est jugé invraisemblable, l'hypothèse nulle n'est pas rejetée (elle est humaine!).
 
-Avec le critère d'identifier erronément les 5% humains les plus intelligents, il s'agit, du même coup, du **taux de faux positif** *acceptable* de l'étude. Un faible sacrifice à réaliser afin identifier des reptiliens parmi les humains. La zone de rejet, c'est-à-dire la zone dans laquelle l'hypothèse nulle (humain) est rejetée, correspond à la zone ombragée à droite de la distribution.
+Avec le critère d'identifier erronément les 5 % humains les plus intelligents, il s'agit, du même coup, du **taux de faux positif** *acceptable* de l'étude. Un faible sacrifice à réaliser afin identifier des reptiliens parmi les humains. La zone de rejet, c'est-à-dire la zone dans laquelle l'hypothèse nulle (humain) est rejetée, correspond à la zone ombragée à droite de la distribution.
 
 La logique des tests statistiques inférentiels repose sur cette série d'étapes : choisir un indice, connaître sa distribution sous-jacente, déterminer l'hypothèse nulle (généralement l'absence d'effet), calculer la probabilité de l'indice par rapport à cette hypothèse nulle.
 
@@ -169,14 +184,14 @@ z
 > [1] 1.86
 ```
 
-La fonction `(1 - pnorm(z)) * 100`, retourne la probabilité (en pourcentage) d'un résultat plus rare que l'indice obtenu auprès de l'échantillon par rapport à la population. Comme pour l'exemple de Fanny, ce chiffre est une valeur-$p$, soit la probabilité de l'indice observé par rapport à l'hypothèse nulle. La probabilité de cet échantillon par rapport à l'hypothèse nulle est de 3.178%, juste en deçà du 5% fixé. La conclusion est par conséquent de rejeter l'hypothèse nulle, l'échantillon semble provenir d'une autre distribution (avec des paramètres différents) que celle postulée.
+La fonction `(1 - pnorm(z)) * 100`, retourne la probabilité (en pourcentage) d'un résultat plus rare que l'indice obtenu auprès de l'échantillon par rapport à la population. Comme pour l'exemple de Fanny, ce chiffre est une valeur-$p$, soit la probabilité de l'indice observé par rapport à l'hypothèse nulle. La probabilité de cet échantillon par rapport à l'hypothèse nulle est de 3.178 %, juste en deçà du 5 % fixé. La conclusion est par conséquent de rejeter l'hypothèse nulle, l'échantillon semble provenir d'une autre distribution (avec des paramètres différents) que celle postulée.
 
 <div class="figure">
 <img src="08-Inferer_files/figure-html/unnamed-chunk-10-1.png" alt="Moyenne de l'échantillon sur la distribution normale" width="672" />
 <p class="caption">(\#fig:unnamed-chunk-10)Moyenne de l'échantillon sur la distribution normale</p>
 </div>
 
-**Qu'en est-il vraiment de ce résultat?** Pour l'expérimentateur, il ne peut aller plus loin, car il ne connaît pas la boîte noire selon laquelle les valeurs de l'échantillon sont générées. Il ne peut que constater que plusieurs (9/10) unités ont un score plus élevé que 100. Par contre, comme il s'agit d'un exemple simulé, la boîte noire est connue. C'est la fonction, `round(rnorm(n = 10, mean = 100, sd = 15))`, une distribution normale ayant $\mu=100,\sigma=15$ qui est utilisée pour générer les valeurs. L'utilisateur sait qu'il s'agit d'un faux positif (une erreur de Type I) : l'échantillon fait partie des 5% des échantillons qui risquent de se faire rejeter accidentellement. Si l'utilisateur utilise une autre graine (`seed()`), il verra que la plupart (95%) des moyennes ne seront pas rejetées.
+**Qu'en est-il vraiment de ce résultat?** Pour l'expérimentateur, il ne peut aller plus loin, car il ne connaît pas la boîte noire selon laquelle les valeurs de l'échantillon sont générées. Il ne peut que constater que plusieurs (9/10) unités ont un score plus élevé que 100. Par contre, comme il s'agit d'un exemple simulé, la boîte noire est connue. C'est la fonction, `round(rnorm(n = 10, mean = 100, sd = 15))`, une distribution normale ayant $\mu=100,\sigma=15$ qui est utilisée pour générer les valeurs. L'utilisateur sait qu'il s'agit d'un faux positif (une erreur de Type I) : l'échantillon fait partie des 5 % des échantillons qui risquent de se faire rejeter accidentellement. Si l'utilisateur utilise une autre graine (`seed()`), il verra que la plupart (95%) des moyennes ne seront pas rejetées.
 
 Pour l'instant, seule une boîte noire a été examinée - celle de l'hypothèse nulle. Qu'advient-il du vrai phénomène? Par exemple, si les reptiliens existaient vraiment. Comme l'utilisateur est le maître du modèle, il peut spécifier les paramètres à sa convenance. Le QI des reptiliens pourraient être distribué comme une distribution normale ayant $\mu_{r}=130, \sigma_r = 15$ où l'indice $r$ ne fait qu'indiquer qu'il s'agit des paramètres de la population reptilienne. Les paramètres humains seront désignés par $h$, soit $\mu_h = 100,\sigma_h = 15$.
 
@@ -193,7 +208,7 @@ La Figure \@ref(fig:rh) présente les distributions de ces populations. Trois zo
 <p class="caption">(\#fig:rh)Distribution du QI des humains et des reptiliens</p>
 </div>
 
-L'erreur de type I (présentée auparavant) représente la probabilité d'émettre un faux positif, souvent représentée par $\alpha$ (alpha). Elle correspond à la probabilité de rejeter l'hypothèse lorsqu'elle est vraie. Dans la Figure \@ref(fig:rh), il s'agit de la zone noire. Elle corresond à conclure qu'un vrai humain est un reptilien (ce qu'il n'est pas). Ce taux est fixé à l'avance par l'expérimentateur, ici, 5%. C'est le risque qu'il est prêt à prendre. Ainsi, 95% des humains seront correctement identifiés comme humains.
+L'erreur de type I (présentée auparavant) représente la probabilité d'émettre un faux positif, souvent représentée par $\alpha$ (alpha). Elle correspond à la probabilité de rejeter l'hypothèse lorsqu'elle est vraie. Dans la Figure \@ref(fig:rh), il s'agit de la zone noire. Elle correspond à conclure qu'un vrai humain est un reptilien (ce qu'il n'est pas). Ce taux est fixé à l'avance par l'expérimentateur, ici, 5%. C'est le risque qu'il est prêt à prendre. Ainsi, 95% des humains seront correctement identifiés comme humains.
 
 
 ```r
@@ -318,7 +333,7 @@ Qu'est-ce que ces résultats signifient? La Figure \@ref(fig:sss) montre la dist
 
 ## Critiques des tests d'hypothèses
 
-*(Cette section est en construction.)*
+TODO
 
 Le présent ouvrage ne couvre que l'aspect traditionnel ou classique des tests d'hypothèse. Cette approche est remise en question depuis 1950 jusqu'à aujourd'hui. D'excellents ouvrages couvrent les failles et solutions des tests d'hypothèses classiques de façon plus approfondie qu'il ne l'est fait ici.
 

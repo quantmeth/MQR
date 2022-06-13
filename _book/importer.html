@@ -109,17 +109,17 @@
 <span class="header-section-number">4.1</span> Jeux de données provenant de <strong>R</strong> et de packages<a class="anchor" aria-label="anchor" href="#jeux-de-donn%C3%A9es-provenant-de-r-et-de-packages"><i class="fas fa-link"></i></a>
 </h2>
 <p>Plusieurs packages offrent en plus des fonctions des jeux de données. Mieux encore! <strong>R</strong> offre des jeux de données inclus avec le logiciel. La fonction <code><a href="https://rdrr.io/r/utils/data.html">data()</a></code> permet de voir la liste des jeux de données disponibles. Taper simplement le nom du jeu de données permet de l’utiliser, comme s’il avait été déclaré auparavant.</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="importer.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cars)</span>
-<span id="cb48-2"><a href="importer.html#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>   speed dist</span>
-<span id="cb48-3"><a href="importer.html#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">1</span>     <span class="dv">4</span>    <span class="dv">2</span></span>
-<span id="cb48-4"><a href="importer.html#cb48-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">2</span>     <span class="dv">4</span>   <span class="dv">10</span></span>
-<span id="cb48-5"><a href="importer.html#cb48-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">3</span>     <span class="dv">7</span>    <span class="dv">4</span></span>
-<span id="cb48-6"><a href="importer.html#cb48-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">4</span>     <span class="dv">7</span>   <span class="dv">22</span></span>
-<span id="cb48-7"><a href="importer.html#cb48-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">5</span>     <span class="dv">8</span>   <span class="dv">16</span></span>
-<span id="cb48-8"><a href="importer.html#cb48-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">6</span>     <span class="dv">9</span>   <span class="dv">10</span></span></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="importer.html#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cars)</span>
+<span id="cb49-2"><a href="importer.html#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>   speed dist</span>
+<span id="cb49-3"><a href="importer.html#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">1</span>     <span class="dv">4</span>    <span class="dv">2</span></span>
+<span id="cb49-4"><a href="importer.html#cb49-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">2</span>     <span class="dv">4</span>   <span class="dv">10</span></span>
+<span id="cb49-5"><a href="importer.html#cb49-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">3</span>     <span class="dv">7</span>    <span class="dv">4</span></span>
+<span id="cb49-6"><a href="importer.html#cb49-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">4</span>     <span class="dv">7</span>   <span class="dv">22</span></span>
+<span id="cb49-7"><a href="importer.html#cb49-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">5</span>     <span class="dv">8</span>   <span class="dv">16</span></span>
+<span id="cb49-8"><a href="importer.html#cb49-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">6</span>     <span class="dv">9</span>   <span class="dv">10</span></span></code></pre></div>
 <p>La fonction <code><a href="https://rdrr.io/r/utils/head.html">head()</a></code> introduite ici donne simplement un aperçu des six premières lignes du jeu de données pour ne pas afficher le jeu de données complet (ce qui prendrait beaucoup d’espace inutilement.</p>
 <p>Pour consulter tous les jeux de données des packages importés, il est possible d’utiliser cette ligne de code.</p>
-<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span>package <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/zpackages.html">.packages</a></span><span class="op">(</span><span class="op">(</span><span class="va">all.available</span> <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>Pour utiliser ces jeux, il faut rendre actif le package associé avec la fonction <code><a href="https://rdrr.io/r/base/library.html">library()</a></code>.</p>
 </div>
@@ -129,7 +129,7 @@
 </h2>
 <p>TODO</p>
 <p>Une façon rudimentaire et efficace d’obtenir des données avec <strong>R</strong> est de les créer à l’aide des fonctions génératrices de données pseudoaléatoires.</p>
-<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Pour la reproductibilité</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">142</span><span class="op">)</span>
 <span class="co"># Nombre d'unité</span>
@@ -160,7 +160,7 @@
 </h3>
 <p>Il est possible d’importer des données de IBM SPSS vers <strong>R</strong>. il faudra quelques manipulations préalables. En ayant le fichier de données IBM SPSS ouvert, il faut cliquer sur “Enregistrer sous” sous le menu déroulant “Fichier”. Par défaut, IBM SPSS choisira toutes les variables, mais il est possible de sélectionner seulement les variables d’intérêt en décochant les variables qu’il n’est pas nécessaire de conserver. Ensuite, sélectionner le type de fichier de sauvegarde doit être “Tabulé (*.dat)“. IBM SPSS offre également la possibilité d’enregistrer les noms de variables (première option à cocher) et les libellés de valeur. Il suffit maintenant de nommer le fichier et de cliquer sur l’onglet”Enregister”.</p>
 <p>En s’assurant que nouveau fichier se trouve dans le répertoire actif de <strong>R</strong>, il suffit de télécharger le fichier.</p>
-<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.table</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">"donnees.tab"</span>, header <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <p>L’option <code>header</code> devrait être <code>FALSE</code> si les noms de variables n’ont pas été conservés (première ligne du fichier) .</p>
 </div>
@@ -196,7 +196,7 @@
 <span class="header-section-number">4.6</span> Fichiers d’extension .txt<a class="anchor" aria-label="anchor" href="#fichiers-dextension-.txt"><i class="fas fa-link"></i></a>
 </h2>
 <p>Un fichier d’extension <code>.txt</code> est un fichier texte délimité par des tabulations (<em>tab-delimited text files</em>) et est importé à l’aide de la fonction <code><a href="https://rdrr.io/r/utils/read.table.html">read.table()</a></code>.</p>
-<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">jd</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.table</a></span><span class="op">(</span><span class="st">"fichier.txt"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="fichiers-dextension-.dat" class="section level2" number="4.7">
@@ -204,7 +204,7 @@
 <span class="header-section-number">4.7</span> Fichiers d’extension .dat<a class="anchor" aria-label="anchor" href="#fichiers-dextension-.dat"><i class="fas fa-link"></i></a>
 </h2>
 <p>Un fichier d’extension <code>.dat</code> est un fichier générique de données et est importé à l’aide de la fonction <code><a href="https://rdrr.io/r/utils/read.table.html">read.table()</a></code>.</p>
-<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">jd</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.table</a></span><span class="op">(</span><span class="st">"fichier.dat"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="fichiers-dextension-.csv" class="section level2" number="4.8">
@@ -212,7 +212,7 @@
 <span class="header-section-number">4.8</span> Fichiers d’extension .csv<a class="anchor" aria-label="anchor" href="#fichiers-dextension-.csv"><i class="fas fa-link"></i></a>
 </h2>
 <p>Un fichier d’extension .csv use généralement de séparateur comme <code>";"</code> (lorsque le système numérique de la langue d’origine utilise la virgule - comme le français par exemple) ou <code>","</code> (pour les autres langues qui n’utilise pas la virgule) et ont généralement les noms de variables en première ligne. Ainsi, la fonction <code><a href="https://rdrr.io/r/utils/read.table.html">read.table()</a></code> est utilisable pourvu que le séparateur soit précisé et la présence d’en-tête également.</p>
-<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">jd</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.table</a></span><span class="op">(</span><span class="st">"fichier.csv"</span>, sep <span class="op">=</span> <span class="st">";"</span>, header <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <p>Il existe aussi la fonction <code><a href="https://rdrr.io/r/utils/read.table.html">read.csv()</a></code> et <code><a href="https://rdrr.io/r/utils/read.table.html">read.csv2()</a></code> pour importer des fichiers d’extension <code>.csv</code>. Il s’agit exactement de <code><a href="https://rdrr.io/r/utils/read.table.html">read.table()</a></code> à l’exception des arguments par défaut, mais précisant par défaut <code>header = TRUE</code> et <code>fill = TRUE</code> et détecte s’il s’agit de <code>";"</code> ou <code>","</code>.</p>
 </div>
@@ -221,7 +221,7 @@
 <span class="header-section-number">4.9</span> Fichiers délimités<a class="anchor" aria-label="anchor" href="#fichiers-d%C3%A9limit%C3%A9s"><i class="fas fa-link"></i></a>
 </h2>
 <p>Pour les fichiers recourant à un autre caractère qu’une tabulation, qu’une <code>","</code>, ou un <code>";"</code> pour délimiter les valeurs, spécifier le caractère dans <code><a href="https://rdrr.io/r/utils/read.table.html">read.table()</a></code> importera le fichier.</p>
-<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">jd</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.table</a></span><span class="op">(</span><span class="st">"fichier.txt"</span>, sep <span class="op">=</span> <span class="st">"$"</span><span class="op">)</span></code></pre></div>
 <p>Comme pour <code><a href="https://rdrr.io/r/utils/read.table.html">read.csv()</a></code> et <code><a href="https://rdrr.io/r/utils/read.table.html">read.csv2()</a></code>, les fonctions <code><a href="https://rdrr.io/r/utils/read.table.html">read.delim()</a></code> et <code><a href="https://rdrr.io/r/utils/read.table.html">read.delim()</a></code> pourraient être utilisées.</p>
 </div>
@@ -231,7 +231,7 @@
 </h2>
 <p>Comme le lecteur s’en doute peut-être, <strong>R</strong> de base ne permet pas d’importer des fichiers spécifiques d’autres logiciels. Par contre, avec les années se sont développés des packages permettant de pallier la situation. Le package <code>foreign</code> permet d’importer des fichiers issus de IBM SPSS (<code>.sav</code>), Stata (<code>.dta</code>) et Systat (<code>.syd</code>) et Minitab (<code>mtp</code>) avec, respectivement les fonctions <code><a href="https://rdrr.io/pkg/foreign/man/read.spss.html">read.spss()</a></code>, <code>read.data()</code>, <code><a href="https://rdrr.io/pkg/foreign/man/read.systat.html">read.systat()</a></code> et <code><a href="https://rdrr.io/pkg/foreign/man/read.mtp.html">read.mtp()</a></code>. La logique d’importation est la même pour ces quatre fonctions.</p>
 <p>Pour <code><a href="https://rdrr.io/pkg/foreign/man/read.spss.html">read.spss()</a></code>, deux arguments sont importants à souligner. Par défaut, la fonctionne ne retourne pas un <em>data frame</em> et utilise les libellés de valeurs (<em>value labels</em>). Dans la plupart des cas, l’utilisateur désire probablement obtenir un jeu de données de type <em>data.frame</em> et les valeurs sous-jacentes au libellés de valeurs. L’utilisateur peut alors changer ces arguments <code>to.data.frame = TRUE</code> (par défaut <code>FALSE</code>) et <code>use.value.labels = FALSE</code>(par défaut <code>TRUE</code>).</p>
-<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://svn.r-project.org/R-packages/trunk/foreign/">foreign</a></span><span class="op">)</span>
 
 <span class="co"># SPSS</span>
@@ -252,7 +252,7 @@
 <span class="header-section-number">4.11</span> Fichiers d’extension .xls et xlsx<a class="anchor" aria-label="anchor" href="#fichiers-dextension-.xls-et-xlsx"><i class="fas fa-link"></i></a>
 </h2>
 <p>Il n’existe pas de fonction de base pour importer des fichiers Microsoft Excel (extensions <code>.xls</code> et <code>.xlsx</code>). Par contre, il existe plusieurs packages qui permettront de la faire, comme <code>readxl</code>. Le package <code>readlxl</code> permet d’utiliser la fonction <code><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel()</a></code> pour importer le fichier.</p>
-<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">#Excel</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readxl.tidyverse.org">readxl</a></span><span class="op">)</span>
 <span class="va">jd</span> <span class="op">=</span> <span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">(</span><span class="st">"fichier.xls"</span><span class="op">)</span></code></pre></div>
@@ -264,7 +264,7 @@ Consulter la documentation du package pour plus d’informations sur les options
 <span class="header-section-number">4.12</span> Fichiers d’extension .html<a class="anchor" aria-label="anchor" href="#fichiers-dextension-.html"><i class="fas fa-link"></i></a>
 </h2>
 <p>Il n’existe pas de fonction de base pour importer des fichiers d’extension .html, (HTML, <em>HyperText Markup Language</em>). Le package <code>XML</code> fournit une solution possible avec la fonction <code>readHMTLTable()</code>.</p>
-<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">#HTML</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://www.omegahat.net/RSXML/">XML</a></span><span class="op">)</span>
 <span class="va">jd</span> <span class="op">=</span> <span class="fu">readHMTLTable</span><span class="op">(</span><span class="st">"fichier.html"</span><span class="op">)</span></code></pre></div>
@@ -275,7 +275,7 @@ Consulter la documentation du package pour plus d’informations sur les options
 <span class="header-section-number">4.13</span> Fichiers d’extension .json<a class="anchor" aria-label="anchor" href="#fichiers-dextension-.json"><i class="fas fa-link"></i></a>
 </h2>
 <p>Il n’existe pas de fonction de base pour importer des fichiers d’extension .json, (<em>JavaScript Object Notation</em>). Comme le lecteur pourra s’y attendre, il existe un package pour rectifier la situation : le package <code>rjson</code> et sa fonction <code>fromJSON()</code>.</p>
-<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">#JSON</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/alexcb/rjson">rjson</a></span><span class="op">)</span>
 <span class="va">jd</span> <span class="op">=</span> <span class="fu">fromJSON</span><span class="op">(</span><span class="st">"fichier.json"</span><span class="op">)</span></code></pre></div>
@@ -286,7 +286,7 @@ Consulter la documentation du package pour plus d’informations sur les options
 <span class="header-section-number">4.14</span> Fichiers d’extension .sas7bdat<a class="anchor" aria-label="anchor" href="#fichiers-dextension-.sas7bdat"><i class="fas fa-link"></i></a>
 </h2>
 <p>Il n’existe pas de fonction de base pour importer des fichiers d’extension <code>.sas7bdat</code>, (<em>Statistical Analysis System</em>). Il existe le package <code>sas7bdat</code> pour importer des données de SAS vers <strong>R</strong> avec la fonction <code>read.sas7bdat()</code>.</p>
-<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># SAS</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">sas7bdat</span><span class="op">)</span>
 <span class="va">jd</span> <span class="op">=</span> <span class="fu">read.sas7bdat</span><span class="op">(</span><span class="st">"fichier.sas7dbat"</span><span class="op">)</span></code></pre></div>
@@ -297,16 +297,16 @@ Consulter la documentation du package pour plus d’informations sur les options
 <span class="header-section-number">4.15</span> Emplacement du jeu de données<a class="anchor" aria-label="anchor" href="#emplacement-du-jeu-de-donn%C3%A9es"><i class="fas fa-link"></i></a>
 </h2>
 <p>Idéalement, le fichier contenant le jeu de données sera déjà dans le directoire de travail (ou dan le projet R en cours). Dans ce contexte, référer seulement au nom du fichier suffira.</p>
-<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">jd</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.table</a></span><span class="op">(</span><span class="st">"fichier.txt"</span><span class="op">)</span></code></pre></div>
 <p>Si le jeu de données est sur le web, il peut être importé en précisant l’URL.</p>
-<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">jd</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.table</a></span><span class="op">(</span><span class="st">"https://site/ou/trouver/le/fichier.txt"</span><span class="op">)</span></code></pre></div>
 <p>S’il est plutôt dans un fichier sur l’ordinateur, mais pas dans le directoire de travail, ce sera essentiellement la même méthode.</p>
-<div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb64"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">jd</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.table</a></span><span class="op">(</span><span class="st">"C:/site/ou/trouver/le/fichier.txt"</span><span class="op">)</span></code></pre></div>
 <p>Si l’utilisateur ne connaît pas exactement la trajectoire, il peut se résoudre à passer par l’explorateur de fichiers (Windows ou Apple) pour déterminer l’emplacement du fichier de jeu de données. Il faut alors utiliser la fonction <code><a href="https://rdrr.io/r/base/file.choose.html">file.choose()</a></code> sans aucun argument à l’intérieur de la fonction d’importation.</p>
-<div class="sourceCode" id="cb64"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb65"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">jd</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.table</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.choose.html">file.choose</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>L’utilisateur devra alors identifier manuellement (pointer et cliquer) où se trouve le fichier. Il devra se promener de fichier en fichier jusqu’à ce qu’il arrive au bon jeu de données, un peu comme le font les logiciels traditionnels lorsque l’utilisateur souhaite sauvegarder un fichier à un certain endroit.</p>
 </div>
@@ -333,10 +333,10 @@ Consulter la documentation du package pour plus d’informations sur les options
 <span class="header-section-number">4.19</span> Sauvegarder un jeu de données<a class="anchor" aria-label="anchor" href="#sauvegarder-un-jeu-de-donn%C3%A9es"><i class="fas fa-link"></i></a>
 </h2>
 <p>Si un jeu de données est directement créé avec <strong>R</strong>, par exemple, les jeux de données artificiels, il est possible de les sauvegarder avec la fonction <code><a href="https://rdrr.io/r/base/save.html">save()</a></code> qui enregistre une variable dans un fichier.</p>
-<div class="sourceCode" id="cb65"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb66"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/save.html">save</a></span><span class="op">(</span><span class="st">"variable"</span>, file <span class="op">=</span> <span class="st">"fichier.Rdata"</span><span class="op">)</span></code></pre></div>
 <p>Il est possible à la fin d’une session de travail de sauvegarder l’environnement dans un fichier <code><a href="https://rdrr.io/r/base/save.html">save.image()</a></code>. Ainsi, toutes les variables et fonctions maison sont conservées pour une future utilisation.</p>
-<div class="sourceCode" id="cb66"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb67"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/save.html">save.image</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">"SessionTravail.Rdata"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="quelques-conseils-de-gestion" class="section level2" number="4.20">
@@ -404,7 +404,7 @@ Consulter la documentation du package pour plus d’informations sur les options
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Méthodes Quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-06-09.</p>
+    <p>"<strong>Méthodes Quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-06-13.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

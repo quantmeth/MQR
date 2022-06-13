@@ -4,7 +4,7 @@ Dans cette section, les fonctions essentielles couramment utilisées sont prése
 
 ## La longueur
 
-La longueur d'une variable correspond au nombre d'éléments qu'elle contient. La fonction `length()` permettra d'obtenir ce résultat. Ce sera particulièrement utile lorsqu'il faudra calculer, par exemple, le nombre de boucle à réaliser à partir des éléments d'un vecteur ou la taille d'échantillon (le nombre d'unités d'observation d'une variable), bien que `ncol()` (nombre de colonnes) et `nrow()` (nombre de lignes) soient plus intuitives pour les matrices et les jeux de données.
+La longueur d'une variable correspond au nombre d'éléments qu'elle contient. La fonction `length()` permettra d'obtenir ce résultat. Ce sera particulièrement utile lorsqu'il faudra calculer, par exemple, le nombre de boucle à réaliser à partir des éléments d'un vecteur ou la taille d'échantillon (le nombre d'unités d'observation d'une variable). 
 
 La somme d'une chaîne de caractères est toujours de $1$, peu importe le nombre de caractères. La fonction `nchar()` produira le nombre de caractères.
 
@@ -24,28 +24,40 @@ nchar(y)
 > [1] 22
 ```
 
+Pour les matrices et les jeux de données, `ncol()` (nombre de colonnes) et `nrow()` (nombre de lignes) sont plus efficaces et intuitives.
+
 ## La répétion
 
-La fonction `rep()` sera utile pour répéter volontairement des valeurs. Il y deux possibilité de répétitions: l'argument `times` définit le nombre de fois que le vecteur est répété; l'argument `each` définit le nombre de fois que chaque élément est répété.
+La fonction `rep()` est utile pour répéter volontairement des valeurs. Il y trois possibilités de répétitions: l'argument `times` définit le nombre de fois que le vecteur est répété; l'argument `each` définit le nombre de fois que chaque élément est répété; l'argument `length.out` précise le nombre d'éléments de la sortie. Plusieurs combinaisons de ces arguments sont possibles.
 
 
 ```r
 vec <- c(2, 4, "chat")
 
-# Répéter vec trois fois
+# Répéter `vec` trois fois
 rep(vec, times = 3)
 > [1] "2"    "4"    "chat" "2"    "4"    "chat" "2"    "4"   
 > [9] "chat"
 
-# Répéter chaque éléments de vec trois fois
+# Répéter chaque élément de `vec` trois fois
 rep(vec, each = 3)
 > [1] "2"    "2"    "2"    "4"    "4"    "4"    "chat" "chat"
 > [9] "chat"
+
+# Répéter chaque élément de `vec` d'une longueur de 8
+rep(vec, length.out = 8)
+> [1] "2"    "4"    "chat" "2"    "4"    "chat" "2"    "4"
+
+#  Répéter chaque élément 3 fois à 2 reprises
+rep(vec, times = 2, each = 3)
+>  [1] "2"    "2"    "2"    "4"    "4"    "4"    "chat" "chat"
+>  [9] "chat" "2"    "2"    "2"    "4"    "4"    "4"    "chat"
+> [17] "chat" "chat"
 ```
 
 ## La séquence
 
-La fonction `seq()` permet de générer une séquence régulière de valeurs. Les arguments sont `seq(from = , to = , by = )` traduisible par `de` , `à`, `par`. Les arguments par défaut seront très utiles pour simplifier l'écriture; La fonction commence ou termine la séquence par 1 et fera des bonds de 1 entre les valeurs. Un autre argument est la longueur de la sortie `length.out` qui spécifie le nombre d'éléments que devra comporter le vecteur de sortie.
+La fonction `seq()` permet de générer une séquence régulière de valeurs. Les arguments sont `seq(from = , to = , by = )` traduisibles par `de` , `à`, `par`. Les arguments par défaut seront très utiles pour simplifier l'écriture; La fonction commence ou termine la séquence par 1 et fera des bonds de 1 entre les valeurs. Un autre argument est la longueur de la sortie `length.out` qui spécifie le nombre d'éléments que devra comporter le vecteur de sortie.
 
 
 ```r
@@ -77,15 +89,24 @@ Il est possible de calculer des sommes de variables pour en obtenir le total. En
 
 ```r
 somme <- function(x){
+  # La taille du vecteur `x`
   n <- length(x)
+  
+  # Définir une variable nulle
   total <- 0
+  
+  # Boucle pour additionner chaque élément
   for(i in 1:n){
+    
     # Prendre le ie élément et l'additionner
     # au total des (i-1)e éléments précédents
     total <- total + x[i]
   }
+  # Retourner le total après la boucle
   return(total)
 }
+
+# Pour tester
 x <- c(1,2,3,4,5,-6)
 somme(x)
 > [1] 9
@@ -99,9 +120,9 @@ Il faut prendre garde : **R** calcule le total de tous les éléments de l'entr�
 
 ## La moyenne
 
-La moyenne est une mesure de tendance centrale qui représente le centre d'équilibre d'une distribution (un centre de gravité en quelque sorte). Si le poids d'un des côtés d'une distribution de probabilité était altéré (plus lourde ou plus légère), alors la moyenne se déplacerait en conséquence.
+La moyenne est une mesure de tendance centrale qui représente le centre d'équilibre d'une distribution (un centre de gravité en quelque sorte). Si le poids d'un des côtés d'une distribution de probabilité était altéré (plus lourde ou plus légère), alors la moyenne se déplacerait relativement vers cette masse.
 
-La moyenne d'un échantillon correspond à la somme de toutes les unités d'une variable divisée par le nombre de données de cette variable ou, mathématiquement, $$\bar{x}=\frac{\Sigma_{i=1}^n x}{n} $$ où $x$ est la variable, $n$ est le nombre d'unité et $\Sigma_i^n$ représente la somme de toutes les unités de $x$. **R** possède déjà une fonction permettant de calculer la moyenne sans effort, `mean()` où l'argument est la variable. Il est possible de développer une fonction maison pour calculer la moyenne comme
+La moyenne d'un échantillon correspond à la somme de toutes les unités d'une variable divisée par le nombre de données de cette variable ou, mathématiquement, $$\bar{x}=\frac{\Sigma_{i=1}^n x}{n}$$ où $x$ est la variable, $n$ est le nombre d'unité et $\Sigma_i^n$ représente la somme de toutes les unités de $x$. **R** possède déjà une fonction permettant de calculer la moyenne sans effort, `mean()` où l'argument est la variable. Il est possible de développer une fonction maison pour calculer la moyenne comme
 
 
 ```r
@@ -112,21 +133,20 @@ où `sum(x)` calculer la somme de toutes les unités de `x`, `/` permet la divis
 
 
 ```r
-# Création de la variable
+# Un vecteur
 x <- c(0, 1, 2, 3, 4, 5)
 
-# La moyenne
+# Comparaison
 mean(x)
 > [1] 2.5
-
-# La moyenne
 sum(x)/length(x)
 > [1] 2.5
 ```
 
-Comme pour `sum()`, les fonctions `rowMeans()` et `colMeans()` seront utiles lorsqu'il faudra calculer des moyennes sur des lignes (*row*) ou des colonnes (*col*).
+Comme pour `sum()`, les fonctions `rowMeans()` et `colMeans()` seront utiles lorsqu'il faudra calculer des moyennes sur des lignes (*row*) ou des colonnes (*col*).^[Contrairement à `sum()`, `mean()` est une fonction générique, terme technique qui définit une fonction généralisée pour différents fonctions, une fonction mère en quelque sorte (une idiosyncrasie de **R**). En conséquences, `sum(2, 4)`, qui n'est pas générique, retourne 4 (comme prévu), mais `mean(2, 4)` retourne 2 (au lieu de 3). La fonction reconnaît 2 comme premier argument vecteur et n'utilise pas 3, car il ne reconnaît pas qu'il fait parti du vecteur. Pour éviter ces soucis, il faut s'assurer de bien soumettre un vecteur à `mean()`. Ce livre n'entre pas dans les détails de ce que sont ces fonctions, à ce sujet voir @HW19.]
 
 ## La médiane
+
 La médiane d'un échantillon correspond à la valeur où $50\%$ des données se situe au-dessous et au-dessus de cette valeur. C'est la valeur au centre des autres (lorsqu'elles sont ordonnées). Quand le nombre de données est impair, le $\frac{(n+1)}{2}$^e^ élément est la médiane. Quand le nombre est pair, la moyenne des deux valeurs au centre correspond à la médiane. Cette statistique est intéressante comme mesure de tendance centrale, car elle est plus robuste aux valeurs aberrantes (moins sensibles) que la moyenne.
 
 Évidemment, **R** offre déjà une fonction `median()` pour réaliser le calcul. Il est toutefois possible de programmer une fonction maison. Il faut utiliser la fonction `sort()` pour ordonner les données (croissant par défaut).
@@ -134,13 +154,20 @@ La médiane d'un échantillon correspond à la valeur où $50\%$ des données se
 
 ```r
 mediane <- function(x) {
+  # Longueur du vecteur
   n <- length(x)
+  
+  # Ordonner le vecteur
   s <- sort(x)
+  # Vérifier si la longueur est paire ou impaire et
+  # alors calculer la valeur médiane correspondante
   ifelse(n%%2 == 1, s[(n + 1) / 2], mean(s[n / 2 + 0:1]))
 }
 
-# Tester ensuite:
+# Un vecteur
 x <- c(42, 23, 53, 77, 93, 20, 37, 24, 60, 62)
+
+# Comparaison
 median(x)
 > [1] 47.5
 mediane(x)
@@ -170,8 +197,13 @@ Il est assez aisé d'élaborer une fonction pour réaliser se calculer avec les 
 
 ```r
 variance <- function(x){
+  # Longueur du vecteur
   n <- length(x)
+  
+  # Moyenne du vecteur
   xbar <- mean(x)
+  
+  # La variance
   variance <- sum((x - xbar) ^ 2)/(n - 1)
   return(variance)
 }
@@ -180,7 +212,10 @@ variance <- function(x){
 La variance peut aussi être calculée plus efficacement avec la fonction **R** `var()`.
 
 ```r
+# Un vecteur
 x <- c(26, 6, 40, 36, 14, 3, 21, 48, 43, 2)
+
+# Comparaison
 variance(x)
 > [1] 300
 var(x)
@@ -198,9 +233,12 @@ Avec **R**, la fonction de base est `sd()`. Il est possible de récupérer la fo
 
 ```r
 ecart.type <- function(x){
+  # La racine carrée de la variance
   et <- sqrt(variance(x))
   return(et)
 }
+
+# Comparaison
 ecart.type(x)
 > [1] 17.3
 sd(x)
@@ -209,6 +247,7 @@ sd(x)
 
 
 ## Les graines
+
 Par souci de reproductibilité, il est possible de déclarer une valeur de départ aux variables pseudoaléatoires, ce que l'on nomme une graine ou *seed* en anglais. Cela permet de toujours d'obtenir les mêmes valeurs à plusieurs reprises, ce qui est très utile lors d'élaboration de simulations complexes ou lorsque des étudiants essaient de répliquer résultat tiré d'un ouvrage pédagogique.
 
 ```r
@@ -272,26 +311,33 @@ Voici un exemple avec la distribution normale.
 ```r
 set.seed(9876)
 
-# Génère 5 nombres aléatoires en fonction des paramètres
+# Génère 5 valeurs aléatoires en fonction des paramètres
 rnorm(n = 5, mean = 10, sd = .5)
 > [1] 10.51  9.42  9.90  9.95 10.01
 
 # Retourne les valeurs associés à ces probabilités
-qnorm(c(.025,.975))
+qnorm(p = c(.025,.975))
 > [1] -1.96  1.96
 
 # Retourne la probabilité d'obtenir un score de 1.645 et moins
-pnorm(1.645)
-> [1] 0.95
+pnorm(q = c(.5, 1.645, 1.96))
+> [1] 0.691 0.950 0.975
 
 # La valeur de la densité de la distribution
-dnorm(0)
-> [1] 0.399
+dnorm(x = c(0, 1))
+> [1] 0.399 0.242
 ```
 
 Ces quatre lettres peuvent être associées à toutes les distributions énumérées et bien d'autres. Elles respectent toutes ce cadre.
 
+Afin d'illustrer ce que font ces variables, la Figure \@ref(fig:distex) montre `dnorm()`, `pnorm()` et `qnorm()`. La fonction `rnorm()` n'est pas illustrée. Cette dernière retourne des valeurs de l'axe des $x$ en respectant les probabilités d'une courbe normale. La fonction `dnorm()` prend en argument une valeur de l'axe des $x$ et retourne la valeur de la courbe normale (la densité) correspondante, soit la courbe illustrée. En d'autres termes, elle retourne la hauteur de la courbe (ligne pointillée). Les fonctions `pnorm()` et `qnorm()` sont interreliées. La fonction `pnorm()` prend une valeur de l'axe des $x$ et retourne sa probabilité (de $-\infty$ à $x$), soit la zone grise de la Figure \@ref(fig:distex). La fonction `qnorm()`, quant à elle, prend une probabilité et retourne la valeur sur l'axe des $x$ correspondant.
 
+<div class="figure">
+<img src="03-Calculer_files/figure-html/distex-1.png" alt="Illustration des fonctions liées à la distribution normale" width="90%" height="90%" />
+<p class="caption">(\#fig:distex)Illustration des fonctions liées à la distribution normale</p>
+</div>
+
+Ces fonctions entreront en jeu dans le chapitre [Inférer].
 
 # Exercices {#exercice-rudiments .unnumbered}
 1. Quel est le résultat de `mean <- c(1, 2, 3)`? Pourquoi?
