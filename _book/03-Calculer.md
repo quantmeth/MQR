@@ -57,7 +57,16 @@ rep(vec, times = 2, each = 3)
 
 ## La séquence
 
-La fonction `seq()` permet de générer une séquence régulière de valeurs. Les arguments sont `seq(from = , to = , by = )` traduisibles par `de` , `à`, `par`. Les arguments par défaut seront très utiles pour simplifier l'écriture; La fonction commence ou termine la séquence par 1 et fera des bonds de 1 entre les valeurs. Un autre argument est la longueur de la sortie `length.out` qui spécifie le nombre d'éléments que devra comporter le vecteur de sortie.
+Une première fonction pour créer des séquences de nombres est l'utilisation de `:` avec un nombre avant et après la ponctuation. 
+
+
+```r
+# 1:3 équivaut à c(1, 2, 3)
+1:3
+> [1] 1 2 3
+```
+
+Pour plus de malléabilité, la fonction `seq()` génère une séquence régulière de valeurs. Les arguments sont `seq(from = , to = , by = )` traduisibles par `de` , `à`, `par`. Les arguments par défaut seront très utiles pour simplifier l'écriture; La fonction commence ou termine la séquence par 1 et fera des bonds de 1 entre les valeurs. Un autre argument est la longueur de la sortie `length.out` qui spécifie le nombre d'éléments que devra comporter le vecteur de sortie.
 
 
 ```r
@@ -262,7 +271,7 @@ Cette fonction est présentée, car elle reviendra régulièrement dans ce livre
 Il existe plusieurs distributions statistiques déjà programmées avec **R**. Voici les principales utilisées dans cet ouvrage.
 
 <table class=" lightable-classic table" style='font-family: "Arial Narrow", "Source Sans Pro", sans-serif; width: auto !important; margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto;'>
-<caption>(\#tab:unnamed-chunk-13)Noms des distributions, fonctions et leurs arguments</caption>
+<caption>(\#tab:unnamed-chunk-14)Noms des distributions, fonctions et leurs arguments</caption>
  <thead>
   <tr>
    <th style="text-align:center;"> Distribution </th>

@@ -1,9 +1,9 @@
 # Programmer
 
-Une fois **R** (ou **R**Studio) ouvert, qu'est-il possible de réaliser? Dans les prochaines sections, les différents éléments de programmation permettant la création et la manipulation de données seront présentés.
+Une fois **R** (ou **R**Studio) ouvert, qu'est-il possible de réaliser? Dans les prochaines sections, les différents éléments de programmation permettant la création et la manipulation de données seront présentés afin de dépasser le cadre de l'utilisation *calculatrice*.
 
 ## Les variables
-Pour manipuler les données, il faut recourir à des variables. Afin de leur attribuer une valeur, il faut assigner cette valeur avec `<-` (**ALT** + **-**) ou `=`, par exemple,
+Pour manipuler des données, il faut recourir à des variables. Pour attribuer une valeur à  une variable, il faut assigner cette valeur avec `<-` (**ALT** + **-**) ou `=`, par exemple,
 
 
 ```r
@@ -12,7 +12,7 @@ a
 > [1] 2
 ```
 
-où `a` est maintenant égale à `2`. La première ligne assigne la valeur à `a`. La deuxième ligne, indique à la console **R** d'imprimer le résultat pour le voir. Par la suite, `a` pourra être utilisée dans des fonctions, des calculs ou analyses plus complexes. De surcroît, `a` pourra devenir une fonction, une chaîne de caractère (*string*) ou un jeu de données.
+où `a` est maintenant égale à `2`. La première ligne assigne (*enregistre*) la valeur `2` à `a`. La deuxième ligne, indique à la console **R** d'imprimer le résultat pour le voir. Par la suite, `a` pourra être utilisée dans des fonctions, des calculs ou analyses plus complexes. De surcroît, `a` pourra devenir une fonction, une chaîne de caractère (*string*) ou un jeu de données.
 
 Conventionnellement, les puristes de **R** recommanderont l'usage de `<-` plutôt que `=` pour l'assignation. Il y a quelques nuances computationnelles entre les deux, mais qui échapperont irrémédiablement aux néophytes et même aux usagers intermédiaires. Par tradition, `<-` prévaudra.
 
@@ -75,7 +75,7 @@ Les deux premières lignes assignent des valeurs à `a` et `b`, puis la troisiè
 resultat <- a / b
 ```
 
-Il n'y a aucune réponse d'affichée. Maintenant, si `resultat` est demandé, R affiche le contenu de la variable.
+Il n'y a aucune réponse d'affichée. Maintenant, si la variable `resultat` est demandée, R affiche son contenu.
 
 
 ```r
@@ -193,6 +193,8 @@ matrix(1:16, ncol = 4, nrow = 4)
 
 Les matrices sont une formes de jeu de données dans lequel tous les éléments partagent le même attribut (tous numériques, caractères, logiques, etc.). 
 
+Une note devancée sur l'utilisation de `1:3` et `1:16` du code précédent qui permettent de générer des [séquences][La séquence] de nombre simplement. 
+
 ### Création d'un jeu de données
 
 Un jeu de données (`data.frame`) est un peu comme l'extension de la matrice. La différence étant que les éléments entre les colonnes peuvent partager des attributs différents. Ainsi chaque ligne représente une unité (un participant, un objet) et chaque colonne représente une dimension (informations ou variable) différente de cette objectif. La fonction `data.frame()` permet de créer de tel objet. La fonction prend comme un argument une série de vecteurs. Des noms peuvent être attribués au colonnes qui correspondent à des variables.
@@ -228,12 +230,12 @@ Comme les matrices, les jeux de données ont aussi une restriction. Alors que le
 
 Une troisième option pour stocker de informations dans une seule variable est d'avoir recourt aux listes. La liste libère à la fois l'utilisateur des objets de mêmes attributs et de même longueur. Ainsi, une liste, peut contenir des vecteurs, des matrices, des jeux de données et même d'autres listes. 
 
-Pour créer une liste, il faut utiliser la fonction `list()`. Comme `data.frame()`, des noms d'éléments peuvent être donner pour chaque liste pour faciliter la manipulation ultérieure de la liste.
+Pour créer une liste, il faut utiliser la fonction `list()`. Comme `data.frame()`, des noms de colonnes peuvent être donnés pour chaque liste pour faciliter la manipulation ultérieure de la liste.
 
 
 ```r
 #Quelques variables
-var1 <- c("chat","chien")
+var1 <- c("chat", "chien")
 var2 <- 1:10
 
 # Entrer de deux vecteurs non identifiés
@@ -290,12 +292,12 @@ phrase[-c(1, 3)]
 
 Dans le premier exemple, seul un élément est demandé. Dans le deuxième exemple, la commande `1:3` produit la série de $1,2,3$ et en extrait ces nombres. Dans le dernier exemple, la fonction `c()` est astucieusement utilisée pour extraire les éléments $2$ et $4$. Le quatrième exemple montre comment retirer un élément en utilisant des valeurs négatives et le cinquième exemple montre comment retirer des éléments.
 
-La section [Manipulation de données] montrera davantage comment référer à des sous-éléments de jeux de données, de matrices et de listes.
+La section [Manipulation de données] montrera comment référer à des sous-éléments de jeux de données, de matrices et de listes de façon plus avancées.
 
 
 ## Les packages
 
-L'utilisation de packages (souvent nommées bibliothèques, modules, paquets ou paquetage en français - ici, l'usage de *package* sera maintenu) est l'attrait principal de **R**. Pour éviter l'anglicisme, Antidote suggère *forfait*, *achat groupé* ou *progiciel* (ce dernier étant certainement le terme approprié). 
+L'utilisation de packages (souvent nommées bibliothèques, modules, paquets ou paquetage en français - ici, l'usage de *package* sera maintenu) est l'attrait principal de **R**. Pour éviter l'anglicisme, Antidote [@Antidote] suggère *forfait*, *achat groupé* ou *progiciel* (ce dernier étant certainement le terme approprié). 
 
 Les packages sont de regroupement de fonctions. C'est certainement l'aspect qui a le plus contribué au succès et à sa dissémination de **R**. Il s'agit de la mise en commun d'un effort collaboratif afin de créer des fonctions et de les partager librement entre les usagers. Le téléchargement de base de **R** offre déjà quelques packages rudimentaires (comme `base` qui offre des fonctions comme `sum()` ou `stat`  qui offre des fonctions comme `mean()` et `var()`), mais qui suffisent rarement lorsque des analyses plus avancées ou plus spécialisées sont nécessaires.
 
@@ -355,7 +357,7 @@ Ici, `nom` est le nom auquel la fonction sera référée par la suite, `function
 
 Il sera bien utile de créer ses propres fonctions bien que **R** possède une pléthore de fonctions et de packages en contenant encore plus. Toutes les fonctions, qu'elles soient maisons ou déjà intégrées, respectent le même fonctionnement, ce pour quoi il est utile de s'y pencher. Les fonctions maison permettront d'automatiser certains calculs qui seront propres à résoudre les problèmes de l'usager et d'être réutilisé ultérieurement.
 
-Voici un exemple trivial de fonction. Ici la somme de deux nombres.
+Voici un exemple trivial de fonction, soit la somme de deux nombres.
 
 
 ```r
@@ -386,7 +388,7 @@ total
 > [1] 341
 ```
 
-Afin d'éviter ces problèmes ou s'il fallait retourner plusieurs arguments (ce qui sera souvent le cas!), il faudrait utiliser la fonction `return()` à la fin de la fonction.
+Afin d'éviter ces problèmes, des ambiguïtés ou s'il faut retourner plusieurs arguments (ce qui sera souvent le cas!), il faut utiliser la fonction `return()` à la fin de la fonction.
 
 
 ```r
@@ -549,4 +551,4 @@ Il peut arriver pour certaines fonctions de devoir spécifier si certains param�
 
 ## En cas de pépins
 
-Il arrive parfois que le code utilisé ne fonctionne pas, que des erreurs se produisent ou que des fonctions fort utiles demeurent inconnues. Même après plusieurs années d'utilisation, les utilisateurs font encore quotidiennement des erreurs (au moins une!). Un excellent outil est d'utiliser un moteur de recherche dans un fureteur de prédilection, de poser une question à l'aide de quelques mots clés bien choisis, préférablement en anglais, et en y inscrivant "with R" ou "in R" ou "R". La plupart du temps, les programmeurs de packages auront une solution sur leur site ou leurs instructions de packages. Il y a aussi des plateformes publiques et en ligne, comme [StackOverflow](https://stackoverflow.com/) qui collectent questions et réponses sur le codage. D'autres utilisateurs peuvent avoir posé la même question et des auteurs de programmes R et d'autres usagers y auront répondu aux bénéfices de tous. Dans le cas d'une solution introuvable, ces mêmes plateformes permettent de poser de nouvelles questions.  Il faudra toutefois attendre qu'un usager plus expérimenté prenne le temps d'y répondre.
+Il arrive parfois que le code utilisé ne fonctionne pas, que des erreurs se produisent ou que des fonctions fort utiles demeurent inconnues. Même après plusieurs années d'utilisation, les utilisateurs font encore quotidiennement des erreurs (au moins une!). Un excellent outil est d'utiliser un moteur de recherche, de poser une question à l'aide de quelques mots clés bien choisis, préférablement en anglais, et en y inscrivant "with R" ou "in R" ou "R". La plupart du temps, les programmeurs de packages auront une solution sur leur site ou leurs instructions de packages. Il y a aussi des plateformes publiques et en ligne, comme [StackOverflow](https://stackoverflow.com/), qui collectent questions et réponses sur le codage. D'autres utilisateurs peuvent avoir posé la même question et des auteurs de programmes **R** et d'autres usagers y auront répondu aux bénéfices de tous. Dans le cas d'une solution introuvable, ces mêmes plateformes permettent de poser de nouvelles questions.  Il faudra toutefois attendre qu'un usager plus expérimenté prenne le temps d'y répondre.

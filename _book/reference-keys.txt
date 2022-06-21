@@ -3,7 +3,7 @@ fig:ConsoleR
 fig:ConsoleRStudio
 tab:unnamed-chunk-28
 eq:var
-tab:unnamed-chunk-13
+tab:unnamed-chunk-14
 fig:distex
 fig:dataentry
 fig:editr
@@ -94,7 +94,6 @@ fichiers-dextension-.json
 fichiers-dextension-.sas7bdat
 emplacement-du-jeu-de-données
 importation-avec-rstudio
-conseils-dimportation
 voir-la-base-de-données
 sauvegarder-un-jeu-de-données
 quelques-conseils-de-gestion
