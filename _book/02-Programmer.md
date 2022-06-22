@@ -106,7 +106,7 @@ resultat
 ```
 Dans cet exemple, la première ligne est ignorée. Autrement, la console **R** produirait une erreur, car cette ligne est pour le logiciel pur charabia!
 
-## Définir une chaîne de caractère
+## Les chaînes de caractère
 
 La plupart du temps, les variables utilisées seront numériques, c'est-à-dire qu'elles contiendront des nombres. Parfois en analyses de données, il pourra s'agir de chaîne de caractères (*string*), autrement dit, des mots. Les chaînes de caractères sont définis par le double apostrophe `"..."`, où on remplace les trois points par les mots désirés.^[Les simples apostrophes `'...'` fonctionnent également, mais les doubles sont préférés. En plus, R imprime toujours en double apostrophe. C'est un souci de cohérence.]
 

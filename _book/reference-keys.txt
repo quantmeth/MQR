@@ -49,7 +49,7 @@ programmer
 les-variables
 les-opérateurs-arithmétiques
 les-commentaires
-définir-une-chaîne-de-caractère
+les-chaînes-de-caractère
 concaténer
 création-dun-vecteur
 création-dune-matrice
@@ -75,6 +75,9 @@ la-variance
 lécart-type
 les-graines
 les-distributions
+entrer
+data.entry-r-base
+data_edit-dataeditr
 importer
 jeux-de-données-provenant-de-r-et-de-packages
 création-des-jeux-de-données-artificielles
@@ -97,9 +100,6 @@ importation-avec-rstudio
 voir-la-base-de-données
 sauvegarder-un-jeu-de-données
 quelques-conseils-de-gestion
-entrer
-entrée-de-données-avec-data.entry-r-de-base
-entrée-de-données-avec-data_edit-package-dataeditr
 manipuler
 manipulation-de-données
 référer-à-une-variable-dans-un-jeu-de-données

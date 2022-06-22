@@ -1,5 +1,3 @@
-# (PART) Jeux de données {-}
-
 # Importer
 
 Réaliser des analyses statistiques et des représentations graphiques nécessitent un jeu de données sur lequel travailler. Après l'ouverture de **R**, l'usager remarquera aisément que le logiciel n'est pas un tableur (tableau de données), contrairement aux logiciels traditionnels. Cette caractéristique l'a peut-être même frappé à la première ouverture! Pour utiliser données, il est d'usage de les conserver dans un fichier externe de la même façon qu'un script, à l'exception qu'il faudra importer les données pour son utilisation.
@@ -44,7 +42,9 @@ QI <-  round(rnorm(30, mean = 100, sd = 15) - 5 * sexe)
 # Arrondi avec round()
 
 # Création du jeu de données
-jd <-  data.frame(id = id, sexe = sexe, QI = QI)
+jd <- data.frame(id = id, 
+                 sexe = sexe,
+                 QI = QI)
 
 # Enregistrement
 save(jd, file = "donnees.Rdata")
@@ -61,10 +61,12 @@ Ici, deux nouvelles fonctions sont employées : `round()` arrondie les valeurs �
 Il est possible d'exporter des données de IBM SPSS pour une utilisation avec **R**. Il faut quelques manipulations préalables. En ayant le fichier de données IBM SPSS ouvert, il faut cliquer sur "Enregistrer sous" sous le menu déroulant "Fichier". Par défaut, IBM SPSS choisie toutes les variables, mais il est possible de sélectionner seulement les variables d'intérêt en décochant les variables qu'il n'est pas nécessaire de conserver. Ensuite, il faut sélectionner le type de fichier de sauvegarde, préférablement "Tabulé (*.dat)". IBM SPSS offre également la possibilité d'enregistrer les noms de variables (première option à cocher) et les libellés de valeur. Il suffit maintenant de nommer le fichier et de cliquer sur l'onglet "Enregister".
 
 En s'assurant que nouveau fichier se trouve dans le directoire actif de **R**, il suffit de télécharger le fichier.
+
 ```{r, eval=FALSE}
-read.table(file = "donnees.tab", header = TRUE)
+jd <- read.table(file = "donnees.tab", header = TRUE)
 ```
-L'option `header` est `FALSE` si les noms de variables n'ont pas été conservés (première ligne du fichier).
+
+L'option `header` est `FALSE` si les noms de variables n'ont pas été conservés (première ligne du fichier). La variable `jd` contient la base de données et est prête à être manipulée. 
 
 ### Exporter de Microsoft Excel
 
@@ -99,7 +101,7 @@ Si les lignes du fichier sont de tailles inégales, **R** assumera qu'il s'agit 
 Un fichier d'extension `.txt` est un fichier texte délimité par des tabulations (*tab-delimited text files*) et est importé à l'aide de la fonction `read.table()`.
 
 ```{r, eval=FALSE}
-jd = read.table("fichier.txt")
+jd <- read.table("fichier.txt")
 ```
 
 ## Fichiers d'extension .dat
@@ -107,14 +109,14 @@ jd = read.table("fichier.txt")
 Un fichier d'extension `.dat` est un fichier générique de données et est importé à l'aide de la fonction `read.table()`.
 
 ```{r, eval=FALSE}
-jd = read.table("fichier.dat")
+jd <- read.table("fichier.dat")
 ```
 
 ## Fichiers d'extension .csv
 
 Un fichier d'extension .csv use généralement de séparateur comme `";"` (lorsque le système numérique de la langue d'origine utilise la virgule - comme le français par exemple) ou `","` (pour les autres langues qui n'utilise pas la virgule) et ont généralement les noms de variables en première ligne. Ainsi, la fonction `read.table()` est utilisable pourvu que le séparateur soit précisé et la présence d'en-tête également.
 ```{r, eval=FALSE}
-jd = read.table("fichier.csv", sep = ";", header = TRUE)
+jd <- read.table("fichier.csv", sep = ";", header = TRUE)
 ```
 
 Il existe aussi la fonction `read.csv()` (nombres décimaux délimités par un point) et `read.csv2()` (nombres décimaux délimités par une virgule) pour importer des fichiers d'extension `.csv`. Il s'agit exactement de `read.table()` à l'exception des arguments par défaut, mais précisant par défaut `header = TRUE` et `fill = TRUE` et détecte s'il s'agit de `";"` ou `","`.
@@ -124,40 +126,42 @@ Il existe aussi la fonction `read.csv()` (nombres décimaux délimités par un p
 Pour les fichiers recourant à un autre caractère qu'une tabulation, qu'une `","`, ou un `";"` pour délimiter les valeurs, il faut spécifier le caractère dans `read.table()` importera le fichier.
 
 ```{r, eval = FALSE}
-jd = read.table("fichier.txt", sep = "$")
+jd <- read.table("fichier.txt", sep = "$")
 ```
 
 Comme pour `read.csv()` et `read.csv2()`, les fonctions `read.delim()` et `read.delim()` pourraient être utilisées.
 
 ## Fichiers d'extension .sav, .dta, .syd et .mtp
 
-Comme le lecteur s'en doute peut-être, **R** de base ne permet pas d'importer des fichiers spécifiques d'autres logiciels. Par contre, avec les années se sont développés des packages permettant de pallier la situation. Le package `foreign` [TODO, cite foreign] permet d'importer des fichiers issus de IBM SPSS (`.sav`), Stata (`.dta`) et Systat (`.syd`) et Minitab (`mtp`) avec, respectivement les fonctions `read.spss()`, `read.data()`, `read.systat()` et `read.mtp()`. La logique d'importation est la même pour ces quatre fonctions.
+Comme le lecteur s'en doute peut-être, **R** de base ne permet pas d'importer des fichiers spécifiques d'autres logiciels. Par contre, avec les années se sont développés des packages permettant de pallier la situation. Le package `foreign` [@foreign] permet d'importer des fichiers issus de IBM SPSS (`.sav`), Stata (`.dta`) et Systat (`.syd`) et Minitab (`mtp`) avec, respectivement les fonctions `read.spss()`, `read.data()`, `read.systat()` et `read.mtp()`. La logique d'importation est la même pour ces quatre fonctions.
 
 Pour `read.spss()`, il y a deux arguments qui sont importants à souligner. Par défaut, la fonctionne ne retourne pas un *data frame* et utilise les libellés de valeurs (*value labels*). Dans la plupart des cas, l'utilisateur désire probablement obtenir un jeu de données de type *data.frame* et les valeurs sous-jacentes aux libellés de valeurs. L'utilisateur  peut alors changer ces arguments `to.data.frame = TRUE` (par défaut, `FALSE`) et `use.value.labels = FALSE`(par défaut, `TRUE`).                                                                                                               
 ```{r, eval = FALSE}
 library(foreign)
 
 # SPSS
-jd = read.spss("fichier.sav",to.data.frame = TRUE,use.value.labels = FALSE)
+jd <- read.spss("fichier.sav", 
+                to.data.frame = TRUE,
+                use.value.labels = FALSE)
 
 # Stata
-jd = read.dta("fichier.dta")
+jd <- read.dta("fichier.dta")
 
 # Systat
-jd = read.systat("fichier.syd") 
+jd <- read.systat("fichier.syd") 
 
 # Minitab
-jd = read.mtp("fichier.mtp")
+jd <- read.mtp("fichier.mtp")
 ```
-  
+
 Consulter la documentation du package pour plus d'informations sur les options possibles.
 
 ## Fichiers d'extension .xls et xlsx
 
-Il n'existe pas de fonction de base pour importer des fichiers Microsoft Excel (extensions `.xls` et `.xlsx`). Par contre, il existe plusieurs packages qui permettront de la faire, comme `readxl`. Le package `readlxl` permet d'utiliser la fonction `read_excel()` pour importer le fichier.
+Il n'existe pas de fonction de base pour importer des fichiers Microsoft Excel (extensions `.xls` et `.xlsx`). Par contre, il existe plusieurs packages qui permettront de la faire, comme `readxl` [@readxl]. Le package `readlxl` permet d'utiliser la fonction `read_excel()` pour importer le fichier.
 
 ```{r, eval = FALSE}
-#Excel
+# Excel
 library(readxl)
 jd = read_excel("fichier.xls")
 ```
@@ -168,36 +172,36 @@ Consulter la documentation du package pour plus d'informations sur les options p
 
 ## Fichiers d'extension .html
 
-Il n'existe pas de fonction de base pour importer des fichiers d'extension .html, (HTML, *HyperText Markup Language*). Le package `XML` fournit une solution possible avec la fonction `readHMTLTable()`.
+Il n'existe pas de fonction de base pour importer des fichiers d'extension .html, (HTML, *HyperText Markup Language*). Le package `XML` fournit une solution possible avec la fonction `readHMTLTable()` [@XML].
 
 ```{r, eval = FALSE}
-#HTML
+# HTML
 library(XML)
-jd = readHMTLTable("fichier.html")
+jd <- readHMTLTable("fichier.html")
 ```
 
 Consulter la documentation du package pour plus d'informations sur les options possibles.
 
 ## Fichiers d'extension .json
 
-Il n'existe pas de fonction de base pour importer des fichiers d'extension .json, (*JavaScript Object Notation*). Comme le lecteur pourra s'y attendre, il existe un package pour rectifier la situation : le package `rjson` et sa fonction `fromJSON()`.
+Il n'existe pas de fonction de base pour importer des fichiers d'extension .json, (*JavaScript Object Notation*). Comme le lecteur pourra s'y attendre, il existe un package pour rectifier la situation : le package `rjson` et sa fonction `fromJSON()` [@rjson].
 
 ```{r, eval = FALSE}
 #JSON
 library(rjson)
-jd = fromJSON("fichier.json")
+jd <- fromJSON("fichier.json")
 ```
 
 Consulter la documentation du package pour plus d'informations sur les options possibles.
 
 ## Fichiers d'extension .sas7bdat
 
-Il n'existe pas de fonction de base pour importer des fichiers d'extension `.sas7bdat`, (*Statistical Analysis System*).  Il existe le package `sas7bdat` pour importer des données de SAS vers **R** avec la fonction `read.sas7bdat()`.
+Il n'existe pas de fonction de base pour importer des fichiers d'extension `.sas7bdat`, (*Statistical Analysis System*).  Il existe le package `sas7bdat` pour importer des données de SAS vers **R** avec la fonction `read.sas7bdat()` [@sas].
 
 ```{r, eval = FALSE}
 # SAS
 library(sas7bdat)
-jd = read.sas7bdat("fichier.sas7dbat")
+jd <- read.sas7bdat("fichier.sas7dbat")
 ```
 
 Consulter la documentation du package pour plus d'informations sur les options possibles.
@@ -207,19 +211,19 @@ Consulter la documentation du package pour plus d'informations sur les options p
 Idéalement, le fichier contenant le jeu de données sera déjà dans le directoire de travail (ou dan le projet **R** en cours). Dans ce contexte, il suffit de référer seulement au nom du fichier.
 
 ```{r, eval=FALSE}
-jd = read.table("fichier.txt")
+jd <- read.table("fichier.txt")
 ```
 
 Si le jeu de données est sur le web, il peut être importé en précisant l'URL.
 
 ```{r, eval=FALSE}
-jd = read.table("https://site/ou/trouver/le/fichier.txt")
+jd <- read.table("https://site/ou/trouver/le/fichier.txt")
 ```
 
 S'il est plutôt dans un fichier sur l'ordinateur, mais pas dans le directoire de travail, ce sera essentiellement la même méthode.
 
 ```{r eval=FALSE}
-jd = read.table("C://site//ou//trouver//le//fichier.txt")
+jd <- read.table("C://site//ou//trouver//le//fichier.txt")
 ```
 
 Pour ces deux derniers exemples d'importations, noter bien l'utilisation du `/` (barre oblique ou *slash*) ou du plus robuste `//` plutôt que le `\` (barre oblique inverse) généralement utilisée par les ordinateurs.

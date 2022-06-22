@@ -349,9 +349,25 @@ Afin d'illustrer ce que font ces variables, la Figure \@ref(fig:distex) montre `
 Ces fonctions entreront en jeu dans le chapitre [Inférer].
 
 # Exercices {#exercice-rudiments .unnumbered}
+
 1. Quel est le résultat de `mean <- c(1, 2, 3)`? Pourquoi?
-2. Rédiger une fonction calculant l'hypoténuse d'un triangle rectangle. Rappel, le théorème de Pythagore est $c^2=a^2+b^2$.
-3. Rédiger une fonction calculant un score-$z$ pour une variable. Rappel, un score-$z$, correspond à $z=\frac{x-\mu}{\sigma}$.
-4. Rédiger une fonction calculant la médiane d'une variable (ne recopier pas celle de ce livre).
-5. Rédiger une fonction pour générer une séquence de Fibonacci (chaque nombre est la somme des deux précédents) jusqu'à une certaine valeur, soit $1,1,2,3,5,8,...$.
-6. Rédiger une fonction qui pivote une liste de $k$ éléments par $n$. Par exemple, une liste de six ($k=6$ comme $[1,2,3,4,5,6]$) pivoté de deux ($n=2$) devient ($[3,4,5,6,1,2]$).
+
+2. Quelle est la différence entre `# Caractère` et `"Caractère"`?
+
+3. Créer un vecteur contenant les valeurs $4, 10, 32$. Calculer la moyenne et l'écart type de ce vecteur.
+
+4. Créer un vecteur contenant les valeurs de $4$ à $11$. Sélectionner la deuxième valeur de ce vecteur, puis additionner 100 à cette valeur et remplacer la dans le vecteur.
+
+5. Générer 10 valeurs aléatoires distribuées normalement avec une moyenne de 50 et un écart type de 4. Calculer la moyenne, la médiane et la variance.
+
+6. Créer un jeu de données contenant quatre sujets, avec leur nom de famille, leur age et chacun un score d'appréciation tiré d'une distribution uniforme allant de 0 à 100.
+
+7. Rédiger une fonction calculant l'hypoténuse d'un triangle rectangle. Rappel: le théorème de Pythagore est $c^2=a^2+b^2$.
+
+8. Rédiger une fonction calculant un score-$z$ pour une variable. Rappel: un score-$z$, correspond à $z=\frac{x-\mu}{\sigma}$.
+
+9. Rédiger une fonction calculant la médiane d'une variable (ne recopier pas celle de ce livre).
+
+10. Rédiger une fonction pour générer une séquence de Fibonacci (chaque nombre est la somme des deux précédents) jusqu'à une certaine valeur, soit $1, 1, 2, 3, 5, 8,...$.
+
+11. Rédiger une fonction qui pivote une liste de $k$ éléments par $n$. Par exemple, une liste de six ($k=6$ comme $[1,2,3,4,5,6]$) pivoté de deux ($n=2$) devient ($[3,4,5,6,1,2]$).
