@@ -6,15 +6,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title> 2 Programmer | Méthodes Quantitatives avec R</title>
 <meta name="author" content="P.-O. Caron">
-<meta name="description" content="Une fois R (ou RStudio) ouvert, qu’est-il possible de réaliser? Dans les prochaines sections, les différents éléments de programmation permettant la création et la manipulation de données seront...">
+<meta name="description" content="Une fois R (ou RStudio) ouvert, qu’est-il possible de réaliser? Dans les prochaines sections, les différents éléments de programmation permettant la création et la manipulation de données sont...">
 <meta name="generator" content="bookdown 0.27 with bs4_book()">
 <meta property="og:title" content=" 2 Programmer | Méthodes Quantitatives avec R">
 <meta property="og:type" content="book">
 <meta property="og:url" content="mqr.teluq.ca/programmer.html">
-<meta property="og:description" content="Une fois R (ou RStudio) ouvert, qu’est-il possible de réaliser? Dans les prochaines sections, les différents éléments de programmation permettant la création et la manipulation de données seront...">
+<meta property="og:description" content="Une fois R (ou RStudio) ouvert, qu’est-il possible de réaliser? Dans les prochaines sections, les différents éléments de programmation permettant la création et la manipulation de données sont...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content=" 2 Programmer | Méthodes Quantitatives avec R">
-<meta name="twitter:description" content="Une fois R (ou RStudio) ouvert, qu’est-il possible de réaliser? Dans les prochaines sections, les différents éléments de programmation permettant la création et la manipulation de données seront...">
+<meta name="twitter:description" content="Une fois R (ou RStudio) ouvert, qu’est-il possible de réaliser? Dans les prochaines sections, les différents éléments de programmation permettant la création et la manipulation de données sont...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
@@ -101,7 +101,7 @@
 <h1>
 <span class="header-section-number"> 2</span> Programmer<a class="anchor" aria-label="anchor" href="#programmer"><i class="fas fa-link"></i></a>
 </h1>
-<p>Une fois <strong>R</strong> (ou <strong>R</strong>Studio) ouvert, qu’est-il possible de réaliser? Dans les prochaines sections, les différents éléments de programmation permettant la création et la manipulation de données seront présentés afin de dépasser le cadre de l’utilisation <em>calculatrice</em>.</p>
+<p>Une fois <strong>R</strong> (ou <strong>R</strong>Studio) ouvert, qu’est-il possible de réaliser? Dans les prochaines sections, les différents éléments de programmation permettant la création et la manipulation de données sont présentés afin de dépasser le cadre de l’utilisation <em>calculatrice</em>.</p>
 <div id="les-variables" class="section level2" number="2.1">
 <h2>
 <span class="header-section-number">2.1</span> Les variables<a class="anchor" aria-label="anchor" href="#les-variables"><i class="fas fa-link"></i></a>
@@ -110,8 +110,8 @@
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="programmer.html#cb3-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">2</span></span>
 <span id="cb3-2"><a href="programmer.html#cb3-2" aria-hidden="true" tabindex="-1"></a>a</span>
 <span id="cb3-3"><a href="programmer.html#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">2</span></span></code></pre></div>
-<p>où <code>a</code> est maintenant égale à <code>2</code>. La première ligne assigne (<em>enregistre</em>) la valeur <code>2</code> à <code>a</code>. La deuxième ligne, indique à la console <strong>R</strong> d’imprimer le résultat pour le voir. Par la suite, <code>a</code> pourra être utilisée dans des fonctions, des calculs ou analyses plus complexes. De surcroît, <code>a</code> pourra devenir une fonction, une chaîne de caractère (<em>string</em>) ou un jeu de données.</p>
-<p>Conventionnellement, les puristes de <strong>R</strong> recommanderont l’usage de <code>&lt;-</code> plutôt que <code>=</code> pour l’assignation. Il y a quelques nuances computationnelles entre les deux, mais qui échapperont irrémédiablement aux néophytes et même aux usagers intermédiaires. Par tradition, <code>&lt;-</code> prévaudra.</p>
+<p>où <code>a</code> est maintenant égale à <code>2</code>. La première ligne assigne (<em>enregistre</em>) la valeur <code>2</code> à <code>a</code>. La deuxième ligne, indique à la console <strong>R</strong> d’imprimer le résultat pour le voir. Par la suite, <code>a</code> peut être utilisée dans des fonctions, des calculs ou analyses plus complexes. De surcroît, <code>a</code> peut devenir une fonction, une chaîne de caractère (<em>string</em>) ou un jeu de données.</p>
+<p>Conventionnellement, les puristes de <strong>R</strong> recommandent l’usage de <code>&lt;-</code> plutôt que <code>=</code> pour l’assignation. Il y a quelques nuances computationnelles entre les deux, mais qui échappent irrémédiablement aux néophytes et même aux usagers intermédiaires. Par tradition, <code>&lt;-</code> prévaudra dans ce livre.</p>
 <p>Pour nommer des variables, seuls les caractères alphanumériques peuvent être utilisés ainsi que le tiret bas <code>_</code> et le <code>.</code>. Les variables ne peuvent commencer par un nombre.</p>
 <!-- TODO -->
 <!-- L'utilisation de `=` sera utilisée dans cet ouvrage, par simplicité, mais aussi, car il semble plus intuitif pour le nouvel utilisateur ou la nouvelle utilisatrice. Il économise 1 clique de clavier. -->
@@ -121,10 +121,10 @@
 <span id="cb4-3"><a href="programmer.html#cb4-3" aria-hidden="true" tabindex="-1"></a>a</span>
 <span id="cb4-4"><a href="programmer.html#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">3</span></span></code></pre></div>
 <p>La sortie produit <code>3</code> et non plus <code>2</code>.</p>
-<p>Cette remarque est importante, car elle signifie que l’on peut écraser des fonctions en nommant des variables. Il faut ainsi éviter de nommer des variables avec des fonctions utilisées par <strong>R</strong>, on évitera notamment l’utilisation des noms suivants.</p>
+<p>Cette remarque est importante, car elle signifie que des fonctions sont écrasables en nommant des variables. Il faut ainsi éviter de nommer des variables avec des fonctions utilisées par <strong>R</strong>, notamment l’utilisation des noms suivants.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">c</span>; <span class="va">q</span>; <span class="va">t</span>; <span class="va">C</span>; <span class="va">D</span>; <span class="va">I</span>; <span class="cn">T</span>; <span class="cn">F</span>; <span class="va">pi</span>; <span class="va">mean</span>; <span class="va">var</span>; <span class="va">sd</span>; <span class="va">length</span>; <span class="va">diff</span>; <span class="va">rep</span></code></pre></div>
-<p>Certains mots seront tout simplement interdits d’utilisation.</p>
+<p>Certains mots sont tout simplement interdits d’utilisation.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="programmer.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="cn">TRUE</span>; <span class="cn">FALSE</span>; <span class="cf">break</span>; <span class="cf">for</span>; <span class="cf">in</span>; <span class="cf">if</span>; <span class="cf">else</span>; <span class="cf">while</span>; <span class="cf">function</span>; <span class="cn">Inf</span>; <span class="cn">NA</span>; <span class="cn">NaN</span>; <span class="cn">NULL</span></span></code></pre></div>
 </div>
 <div id="les-opérateurs-arithmétiques" class="section level2" number="2.2">
@@ -143,7 +143,7 @@
 <span id="cb8-2"><a href="programmer.html#cb8-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">10</span></span>
 <span id="cb8-3"><a href="programmer.html#cb8-3" aria-hidden="true" tabindex="-1"></a>a <span class="sc">/</span> b</span>
 <span id="cb8-4"><a href="programmer.html#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">0.1</span></span></code></pre></div>
-<p>Les deux premières lignes assignent des valeurs à <code>a</code> et <code>b</code>, puis la troisième imprime la division. L’absence de marqueur <code>&lt;-</code> ou <code>=</code> indique à <strong>R</strong> d’imprimer la réponse dans la console. Si le résultat <code>a / b</code> devait être assigné à une variable, alors aucun résultat ne serait affiché, bien que la variable contienne la réponse.</p>
+<p>Les deux premières lignes assignent des valeurs à <code>a</code> et <code>b</code>, puis la troisième imprime la division. L’absence de marqueur <code>&lt;-</code> ou <code>=</code> indique à <strong>R</strong> d’imprimer la réponse dans la console. Si le résultat <code>a / b</code> est assigné à une variable, alors aucun résultat n’est affiché, bien que la variable contienne la réponse.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">resultat</span> <span class="op">&lt;-</span> <span class="va">a</span> <span class="op">/</span> <span class="va">b</span></code></pre></div>
 <p>Il n’y a aucune réponse d’affichée. Maintenant, si la variable <code>resultat</code> est demandée, R affiche son contenu.</p>
@@ -161,18 +161,18 @@
 <h2>
 <span class="header-section-number">2.3</span> Les commentaires<a class="anchor" aria-label="anchor" href="#les-commentaires"><i class="fas fa-link"></i></a>
 </h2>
-<p>Les scripts <strong>R</strong> peuvent contenir des commentaires. Ceux-ci sont désignés par le désormais célèbre <code>#</code>. Une ligne de script commençant par ce symbole sera ignorée par la console. Ces commentaires permettent aussi bien de préciser différentes étapes d’un script, que d’expliquer la nomenclature des variables ou encore d’expliquer une fonction, ses entrées, ses sorties. Les commentaires sont extrêmement utiles, car les annotations peuvent souvent sauver énormément de temps et d’effort lors d’utilisations ultérieures.</p>
+<p>Les scripts <strong>R</strong> peuvent contenir des commentaires. Ceux-ci sont désignés par le désormais célèbre <code>#</code>. Une ligne de script commençant par ce symbole est ignorée par la console. Ces commentaires permettent aussi bien de préciser différentes étapes d’un script, que d’expliquer la nomenclature des variables ou encore d’expliquer une fonction, ses entrées, ses sorties. Les commentaires sont extrêmement utiles, car les annotations peuvent souvent sauver énormément de temps et d’effort lors d’utilisations ultérieures.</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="programmer.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># La variable resultat est le quotient des variables a et b</span></span>
 <span id="cb12-2"><a href="programmer.html#cb12-2" aria-hidden="true" tabindex="-1"></a>resultat <span class="ot">&lt;-</span> a <span class="sc">/</span> b</span>
 <span id="cb12-3"><a href="programmer.html#cb12-3" aria-hidden="true" tabindex="-1"></a>resultat</span>
 <span id="cb12-4"><a href="programmer.html#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">0.1</span></span></code></pre></div>
-<p>Dans cet exemple, la première ligne est ignorée. Autrement, la console <strong>R</strong> produirait une erreur, car cette ligne est pour le logiciel pur charabia!</p>
+<p>Dans cet exemple, la première ligne est ignorée. Autrement, la console <strong>R</strong> produit une erreur, car cette ligne est pour le logiciel pur charabia!</p>
 </div>
 <div id="les-chaînes-de-caractère" class="section level2" number="2.4">
 <h2>
 <span class="header-section-number">2.4</span> Les chaînes de caractère<a class="anchor" aria-label="anchor" href="#les-cha%C3%AEnes-de-caract%C3%A8re"><i class="fas fa-link"></i></a>
 </h2>
-<p>La plupart du temps, les variables utilisées seront numériques, c’est-à-dire qu’elles contiendront des nombres. Parfois en analyses de données, il pourra s’agir de chaîne de caractères (<em>string</em>), autrement dit, des mots. Les chaînes de caractères sont définis par le double apostrophe <code>"..."</code>, où on remplace les trois points par les mots désirés.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Les simples apostrophes &lt;code&gt;'...'&lt;/code&gt; fonctionnent également, mais les doubles sont préférés. En plus, R imprime toujours en double apostrophe. C’est un souci de cohérence.&lt;/p&gt;"><sup>1</sup></a></p>
+<p>La plupart du temps, les variables utilisées sont numériques, c’est-à-dire qu’elles contiennent des nombres. Parfois, les données sont des mots, c’est-à-dire, des chaînes de caractères (<em>string</em>). Les chaînes de caractères sont définis par le double apostrophe <code>"..."</code>, où on remplace les trois points par les mots désirés.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Les simples apostrophes &lt;code&gt;'...'&lt;/code&gt; fonctionnent également, mais les doubles sont préférés. En plus, R imprime toujours en double apostrophe. C’est un souci de cohérence.&lt;/p&gt;"><sup>1</sup></a></p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="programmer.html#cb13-1" aria-hidden="true" tabindex="-1"></a>titre <span class="ot">&lt;-</span> <span class="st">"Bonjour tout le monde!"</span></span>
 <span id="cb13-2"><a href="programmer.html#cb13-2" aria-hidden="true" tabindex="-1"></a>titre</span>
 <span id="cb13-3"><a href="programmer.html#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="st">"Bonjour tout le monde!"</span></span></code></pre></div>
@@ -182,9 +182,9 @@
 <span class="header-section-number">2.5</span> Concaténer<a class="anchor" aria-label="anchor" href="#concat%C3%A9ner"><i class="fas fa-link"></i></a>
 </h2>
 <p>Par défaut, <strong>R</strong> ne peut assigner qu’une valeur à une variable. Pour grouper des éléments ensemble, c’est-à-dire, pour créer des jeux de données, des vecteurs, des matrices, des listes, il faudra utiliser des fonction de concaténation, dont voici une liste des plus utiles avec quelques exemples, de la plus stricte (vecteur) à la plus flexible (liste).</p>
-<div id="création-dun-vecteur" class="section level3" number="2.5.1">
+<div id="créer-un-vecteur" class="section level3" number="2.5.1">
 <h3>
-<span class="header-section-number">2.5.1</span> Création d’un vecteur<a class="anchor" aria-label="anchor" href="#cr%C3%A9ation-dun-vecteur"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.5.1</span> Créer un vecteur<a class="anchor" aria-label="anchor" href="#cr%C3%A9er-un-vecteur"><i class="fas fa-link"></i></a>
 </h3>
 <p>Une fonction fort utile permet de joindre des valeurs dans une seule variable. Précédemment, l’assignation d’une valeur à des variables se limitait à une chaîne de caractères ou à une valeur numérique. La fonction <strong>c</strong>oncaténer <code><a href="https://rdrr.io/r/base/c.html">c()</a></code> (ou <strong>c</strong>ombiner, <strong>c</strong>réer) met plusieurs éléments (deux ou plus) dans une seule variable. Son but est de <em>vectoriser</em> les arguments. Chaque élément est délimité par une virgule <code>,</code>.</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="programmer.html#cb14-1" aria-hidden="true" tabindex="-1"></a>valeurs <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">5</span>)</span>
@@ -199,13 +199,13 @@
 <span id="cb16-2"><a href="programmer.html#cb16-2" aria-hidden="true" tabindex="-1"></a>phrase</span>
 <span id="cb16-3"><a href="programmer.html#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="st">"1"</span>      <span class="st">"Chat"</span>   <span class="st">"2"</span>      <span class="st">"Souris"</span></span></code></pre></div>
 <p>La fonction <code><a href="https://rdrr.io/r/base/c.html">c()</a></code> est strict sur les arguments, car elle leur accorde le même attribut. Par exemple, <code>phrase</code> ne contient que des chaînes de caractères. Les valeurs <code>1</code> et <code>2</code> ont perdu leur classe numérique (elles ne sont plus utilisables comme nombre<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Pour l’instant&lt;/p&gt;"><sup>2</sup></a>). Cela se remarque par les guillemets anglophones autour des valeurs <code>"1"</code> et <code>"2"</code> imprimées.</p>
-<p>Il faudra également faire attention aux arguments passés à la fonction <code><a href="https://rdrr.io/r/base/c.html">c()</a></code>, car celle-ci vectorise les arguments. Autrement dit, elle crée des vecteurs (une ligne en quelque sorte) avec les entrées fournies, peu importe leur structure de départ. Par exemple, un jeu de données passant par <code><a href="https://rdrr.io/r/base/c.html">c()</a></code> devient une seule ligne (un seul vecteur) de valeurs. Les fonctions <code><a href="https://rdrr.io/r/base/cbind.html">cbind()</a></code> et <code><a href="https://rdrr.io/r/base/cbind.html">rbind()</a></code> permettront de joindre des colonnes et des lignes, respectivement.</p>
+<p>Il faudra également faire attention aux arguments passés à la fonction <code><a href="https://rdrr.io/r/base/c.html">c()</a></code>, car celle-ci vectorise les arguments. Autrement dit, elle crée des vecteurs (une ligne en quelque sorte) avec les entrées fournies, peu importe leur structure de départ. Par exemple, un jeu de données passant par <code><a href="https://rdrr.io/r/base/c.html">c()</a></code> devient une seule ligne (un seul vecteur) de valeurs. Les fonctions <code><a href="https://rdrr.io/r/base/cbind.html">cbind()</a></code> et <code><a href="https://rdrr.io/r/base/cbind.html">rbind()</a></code> permettent de joindre des colonnes et des lignes, respectivement.</p>
 </div>
-<div id="création-dune-matrice" class="section level3" number="2.5.2">
+<div id="créer-une-matrice" class="section level3" number="2.5.2">
 <h3>
-<span class="header-section-number">2.5.2</span> Création d’une matrice<a class="anchor" aria-label="anchor" href="#cr%C3%A9ation-dune-matrice"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.5.2</span> Créer une matrice<a class="anchor" aria-label="anchor" href="#cr%C3%A9er-une-matrice"><i class="fas fa-link"></i></a>
 </h3>
-<p>La fonction <code><a href="https://rdrr.io/r/base/matrix.html">matrix()</a></code> sera utile pour créer des matrices, comme des matrices de covariances, par exemple. La fonction utilise trois arguments, une matrice de nombre à entrer dans la matrice, un nombre de colonnes et un nombre de lignes. La fonction utilise le recyclage, ce qui pourra être utile à certaines occasions.</p>
+<p>La fonction <code><a href="https://rdrr.io/r/base/matrix.html">matrix()</a></code> crée des matrices, comme des matrices de covariances, par exemple. La fonction utilise trois arguments, une matrice de nombre à entrer dans la matrice, un nombre de colonnes et un nombre de lignes. La fonction utilise le recyclage, ce qui est utile à certaines occasions.</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="programmer.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Une matrice de 0 de taille 3 x 3</span></span>
 <span id="cb17-2"><a href="programmer.html#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">matrix</span>(<span class="dv">0</span>, <span class="at">ncol =</span> <span class="dv">3</span>, <span class="at">nrow =</span> <span class="dv">3</span>)</span>
 <span id="cb17-3"><a href="programmer.html#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>      [,<span class="dv">1</span>] [,<span class="dv">2</span>] [,<span class="dv">3</span>]</span>
@@ -238,9 +238,9 @@
 <p>Les matrices sont une formes de jeu de données dans lequel tous les éléments partagent le même attribut (tous numériques, caractères, logiques, etc.).</p>
 <p>Une note devancée sur l’utilisation de <code>1:3</code> et <code>1:16</code> du code précédent qui permettent de générer des <a href="calculer.html#la-s%C3%A9quence">séquences</a> de nombre simplement.</p>
 </div>
-<div id="création-dun-jeu-de-données" class="section level3" number="2.5.3">
+<div id="créer-un-jeu-de-données" class="section level3" number="2.5.3">
 <h3>
-<span class="header-section-number">2.5.3</span> Création d’un jeu de données<a class="anchor" aria-label="anchor" href="#cr%C3%A9ation-dun-jeu-de-donn%C3%A9es"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.5.3</span> Créer un jeu de données<a class="anchor" aria-label="anchor" href="#cr%C3%A9er-un-jeu-de-donn%C3%A9es"><i class="fas fa-link"></i></a>
 </h3>
 <p>Un jeu de données (<code>data.frame</code>) est un peu comme l’extension de la matrice. La différence étant que les éléments entre les colonnes peuvent partager des attributs différents. Ainsi chaque ligne représente une unité (un participant, un objet) et chaque colonne représente une dimension (informations ou variable) différente de cette objectif. La fonction <code><a href="https://rdrr.io/r/base/data.frame.html">data.frame()</a></code> permet de créer de tel objet. La fonction prend comme un argument une série de vecteurs. Des noms peuvent être attribués au colonnes qui correspondent à des variables.</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="programmer.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Quelques variables</span></span>
@@ -263,11 +263,11 @@
 <span id="cb18-18"><a href="programmer.html#cb18-18" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">1</span>     Éloi   <span class="dv">6</span>   <span class="cn">TRUE</span></span>
 <span id="cb18-19"><a href="programmer.html#cb18-19" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">2</span> Laurence   <span class="dv">3</span>   <span class="cn">TRUE</span></span></code></pre></div>
 <p>En utilisant <code>nom.de.variable = vecteur</code> à l’intérieur de <code><a href="https://rdrr.io/r/base/data.frame.html">data.frame()</a></code>, les noms des colonnes deviennent <code>nom.de.variable</code>. Cela permettra une plus grande flexibilité lorsqu’il faudra [gérer] et <a href="manipuler.html#manipuler">manipuler</a> les données.</p>
-<p>Comme les matrices, les jeux de données ont aussi une restriction. Alors que les jeux de données libèrent la contrainte d’avoir des objets de même attributs entre les colonnes (variables), ils doivent être créés avec des vecteurs de même longueur. Autrement dit, chaque colonne doit avoir exactement le même nombre de lignes. Parfois, <strong>R</strong> procédera par recyclage pour combler les éléments. Il faudra donc porter une attention particulière, pour vérifier si c’est l’intention ou non.</p>
+<p>Comme les matrices, les jeux de données ont aussi une restriction. Alors que les jeux de données libèrent la contrainte d’avoir des objets de même attributs entre les colonnes (variables), ils doivent être créés avec des vecteurs de même longueur. Autrement dit, chaque colonne doit avoir exactement le même nombre de lignes. Parfois, <strong>R</strong> *recycle/ pour combler les éléments. Il faut donc porter une attention particulière afin de vérifier si c’est bien l’intention de l’utilisateur ou non.</p>
 </div>
-<div id="création-dune-liste" class="section level3" number="2.5.4">
+<div id="créer-une-liste" class="section level3" number="2.5.4">
 <h3>
-<span class="header-section-number">2.5.4</span> Création d’une liste<a class="anchor" aria-label="anchor" href="#cr%C3%A9ation-dune-liste"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.5.4</span> Créer une liste<a class="anchor" aria-label="anchor" href="#cr%C3%A9er-une-liste"><i class="fas fa-link"></i></a>
 </h3>
 <p>Une troisième option pour stocker de informations dans une seule variable est d’avoir recourt aux listes. La liste libère à la fois l’utilisateur des objets de mêmes attributs et de même longueur. Ainsi, une liste, peut contenir des vecteurs, des matrices, des jeux de données et même d’autres listes.</p>
 <p>Pour créer une liste, il faut utiliser la fonction <code><a href="https://rdrr.io/r/base/list.html">list()</a></code>. Comme <code><a href="https://rdrr.io/r/base/data.frame.html">data.frame()</a></code>, des noms de colonnes peuvent être donnés pour chaque liste pour faciliter la manipulation ultérieure de la liste.</p>
@@ -293,14 +293,14 @@
 <span id="cb19-20"><a href="programmer.html#cb19-20" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
 <span id="cb19-21"><a href="programmer.html#cb19-21" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="er">$</span>nombre</span>
 <span id="cb19-22"><a href="programmer.html#cb19-22" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>  [<span class="dv">1</span>]  <span class="dv">1</span>  <span class="dv">2</span>  <span class="dv">3</span>  <span class="dv">4</span>  <span class="dv">5</span>  <span class="dv">6</span>  <span class="dv">7</span>  <span class="dv">8</span>  <span class="dv">9</span> <span class="dv">10</span></span></code></pre></div>
-<p>L’utilisation de listes est une caractéristique prédominante avec <strong>R</strong>. Par exemple, <strong>R</strong> ne peut sortir qu’une variable par fonction. Si la fonction doit retourner plusieurs éléments, ceux-ci devront se retrouver dans une liste. Ce qui sera plus nébuleux pour le lecteur, c’est que l’optimisation de <strong>R</strong> se fait par les listes. Cela sera noté aux moments appropriés.</p>
+<p>L’utilisation de listes est une caractéristique prédominante avec <strong>R</strong>. Par exemple, <strong>R</strong> ne peut sortir qu’une variable par fonction. Si la fonction doit retourner plusieurs éléments, ceux-ci doivent se retrouver dans une liste. Ce qui restera plus nébuleux pour le lecteur, c’est que l’optimisation de <strong>R</strong> se fait par listes. Cela sera noté aux moments appropriés.</p>
 </div>
 </div>
 <div id="référer-à-des-sous-éléments" class="section level2" number="2.6">
 <h2>
 <span class="header-section-number">2.6</span> Référer à des sous-éléments<a class="anchor" aria-label="anchor" href="#r%C3%A9f%C3%A9rer-%C3%A0-des-sous-%C3%A9l%C3%A9ments"><i class="fas fa-link"></i></a>
 </h2>
-<p>Avec des variables contenant plusieurs valeurs, il peut être utile de référer à une seule valeur ou un ensemble de valeurs de la variable. Les crochets <code>[]</code> à la suite du nom d’une variable permettront d’en extraire les valeurs désirées sans tout sortir l’ensemble.</p>
+<p>Avec des variables contenant plusieurs valeurs, il peut être utile de référer à une seule valeur ou un ensemble de valeurs de la variable. Les crochets <code>[]</code> à la suite du nom d’une variable permettent d’en extraire les valeurs désirées sans tout sortir l’ensemble.</p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="programmer.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Un exemple de vecteur</span></span>
 <span id="cb20-2"><a href="programmer.html#cb20-2" aria-hidden="true" tabindex="-1"></a>phrase <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="st">"Chat"</span>, <span class="dv">2</span>, <span class="st">"Souris"</span>)</span>
 <span id="cb20-3"><a href="programmer.html#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -324,15 +324,15 @@
 <span id="cb20-21"><a href="programmer.html#cb20-21" aria-hidden="true" tabindex="-1"></a>phrase[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>)]</span>
 <span id="cb20-22"><a href="programmer.html#cb20-22" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="st">"Chat"</span>   <span class="st">"Souris"</span></span></code></pre></div>
 <p>Dans le premier exemple, seul un élément est demandé. Dans le deuxième exemple, la commande <code>1:3</code> produit la série de <span class="math inline">\(1,2,3\)</span> et en extrait ces nombres. Dans le dernier exemple, la fonction <code><a href="https://rdrr.io/r/base/c.html">c()</a></code> est astucieusement utilisée pour extraire les éléments <span class="math inline">\(2\)</span> et <span class="math inline">\(4\)</span>. Le quatrième exemple montre comment retirer un élément en utilisant des valeurs négatives et le cinquième exemple montre comment retirer des éléments.</p>
-<p>La section <a href="manipuler.html#manipulation-de-donn%C3%A9es">Manipulation de données</a> montrera comment référer à des sous-éléments de jeux de données, de matrices et de listes de façon plus avancées.</p>
+<p>La section <a href="manipuler.html#manipulation-de-donn%C3%A9es">Manipulation de données</a> montre comment référer à des sous-éléments de jeux de données, de matrices et de listes de façon plus avancées.</p>
 </div>
 <div id="les-packages" class="section level2" number="2.7">
 <h2>
 <span class="header-section-number">2.7</span> Les packages<a class="anchor" aria-label="anchor" href="#les-packages"><i class="fas fa-link"></i></a>
 </h2>
-<p>L’utilisation de packages (souvent nommées bibliothèques, modules, paquets ou paquetage en français - ici, l’usage de <em>package</em> sera maintenu) est l’attrait principal de <strong>R</strong>. Pour éviter l’anglicisme, Antidote <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-Antidote" role="doc-biblioref">Druide informatique INC., 2022</a>)</span> suggère <em>forfait</em>, <em>achat groupé</em> ou <em>progiciel</em> (ce dernier étant certainement le terme approprié).</p>
+<p>L’utilisation de packages (souvent nommées bibliothèques, modules, paquets ou paquetage en français - ici, l’usage de <em>package</em> est maintenu) est l’attrait principal de <strong>R</strong>. Pour éviter l’anglicisme, Antidote <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-Antidote" role="doc-biblioref">Druide informatique INC., 2022</a>)</span> suggère <em>forfait</em>, <em>achat groupé</em> ou <em>progiciel</em> (ce dernier étant certainement le terme approprié).</p>
 <p>Les packages sont de regroupement de fonctions. C’est certainement l’aspect qui a le plus contribué au succès et à sa dissémination de <strong>R</strong>. Il s’agit de la mise en commun d’un effort collaboratif afin de créer des fonctions et de les partager librement entre les usagers. Le téléchargement de base de <strong>R</strong> offre déjà quelques packages rudimentaires (comme <code>base</code> qui offre des fonctions comme <code><a href="https://rdrr.io/r/base/sum.html">sum()</a></code> ou <code>stat</code> qui offre des fonctions comme <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code> et <code><a href="https://rdrr.io/r/stats/cor.html">var()</a></code>), mais qui suffisent rarement lorsque des analyses plus avancées ou plus spécialisées sont nécessaires.</p>
-<p>L’une des forces des packages est qu’ils sont fournis généralement avec un bon manuel d’utilisation. Plusieurs contributeurs leur sont associés (avec un responsable). Ils sont maintenus régulièrement. Le soutien des responsables est parfois aisé à obtenir et les auteurs de ces packages sont motivés à maintenir les packages opérationnels et aux bénéfices de tous. La faiblesse des packages est qu’il s’agit malheureusement de <em>généralement</em>. Il arrive que certains packages produisent des erreurs de calcul, soient laissé en désuétude par leurs auteurs, que le package ait migré sous une autre forme, que de meilleures options soient disponibles sans aucune notice à cet effet. Cela va sans dire, ce problème concerne les logiciels traditionnels également. Il s’agit toutefois d’un enjeu moindre, car les packages sont souvent recommandés par des collègues, des autorités dans leur domaine respectif ou des ouvrages de référence, ce qui aura comme tendance de promouvoir les meilleurs packages. Pas toujours. Il faut rester critique et ne pas de laisser tromper par une boîte noire.</p>
+<p>L’une des forces des packages est qu’ils sont fournis généralement avec un bon manuel d’utilisation. Plusieurs contributeurs leur sont associés (avec un responsable). Ils sont maintenus régulièrement. Le soutien des responsables est parfois aisé à obtenir et les auteurs de ces packages sont motivés à maintenir les packages opérationnels et aux bénéfices de tous. La faiblesse des packages est qu’il s’agit malheureusement de <em>généralement</em>. Il arrive que certains packages produisent des erreurs de calcul, qu’ils soient laissés en désuétude par leurs auteurs, qu’ils aient migrés sous une autre forme, ou que de meilleures options soient disponibles sans aucune notice. Cela va sans dire, ce problème concerne les logiciels traditionnels également. Il s’agit toutefois d’un enjeu moindre, car les packages sont souvent recommandés par des collègues, des autorités dans leur domaine respectif ou des ouvrages de référence, ce qui aura comme tendance de promouvoir les meilleurs packages. Pas toujours. Il faut rester critique et ne pas de laisser tromper par une boîte noire.</p>
 <p>Une dernière faiblesse : les packages agissent parfois en boîte noire, c’est-à-dire qu’ils court-circuitent la réflexion de l’utilisateur qui leur fait confiance. Il peut être parfois difficile de savoir ce que les fonctions produisent exactement. Au contraire des logiciels traditionnels, ces boîtes noires peuvent dans la plupart des cas être accessibles directement, elles sont liés en plus à des articles scientifiques ou de la documentation qui permet dans comprendre les tenants et aboutissants.</p>
 <div id="installer-des-packages" class="section level3" number="2.7.1">
 <h3>
@@ -346,7 +346,7 @@
 <p>Tools;
 Install Packages…</p>
 </blockquote>
-<p>puis de nommer le package sous l’onglet package. Avec <strong>R</strong> il faudra auparavant choisir un miroir (sélectionner un pays), ce qui ne sera pas nécessaire avec <strong>R</strong>Studio. Une fois téléchargé, il ne sera plus nécessaire de refaire cette étape à nouveau, à l’exception de potentielles et ultérieures mises à jour lorsqu’elles devront être réalisées.</p>
+<p>puis de nommer le package sous l’onglet package. Avec <strong>R</strong> il faudra auparavant choisir un miroir (sélectionner un pays), ce qui n’est pas nécessaire avec <strong>R</strong>Studio. Une fois téléchargé, il n’est plus nécessaire de refaire cette étape à nouveau, à l’exception de potentielles et ultérieures mises à jour lorsqu’elles devront être effectuées.</p>
 </div>
 <div id="appeler-un-package" class="section level3" number="2.7.2">
 <h3>
@@ -355,7 +355,7 @@ Install Packages…</p>
 <p>Ce qui n’est pas des plus intuitif avec <strong>R</strong>, c’est qu’une fois le package téléchargé, il n’est pas directement utilisable. Il faut d’abord l’appeler avec la fonction <code><a href="https://rdrr.io/r/base/library.html">library()</a></code>.</p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st">"..."</span><span class="op">)</span></code></pre></div>
-<p>Cette étape doit être faite à chaque ouverture de <strong>R</strong>. Cela permet de ne pas mettre en mémoire trop de package simultanément. Il sera ainsi important d’indiquer tous les packages utilisés en début de script sans quoi des erreurs comme l’absence de fonctions seront produites.</p>
+<p>Cette étape doit être faite à chaque ouverture de <strong>R</strong>. Cela permet de ne pas mettre en mémoire trop de package simultanément. Il importe d’indiquer tous les packages utilisés en début de script sans quoi des erreurs, comme l’absence de fonctions, sont produites.</p>
 <p>Une technique à laquelle l’utilisateur peut avoir recourt lorsqu’il souhaite n’utiliser qu’une fonction spécifique d’un package est l’utilisation des <code>::</code> débutant par le nom du package suivi par le nom de la fonction, comme <code><a href="https://rdrr.io/pkg/MASS/man/mvrnorm.html">MASS::mvrnorm()</a></code>. La fonction s’utilise de façon usuelle. En utilisant <code>::</code>, il n’est pas nécessaire d’appeler le package avec la fonction <code><a href="https://rdrr.io/r/base/library.html">library()</a></code>. Il faut toute fois que le package soit bel et bien installer.</p>
 </div>
 </div>
@@ -373,19 +373,24 @@ Install Packages…</p>
 <h2>
 <span class="header-section-number">2.9</span> Les fonctions<a class="anchor" aria-label="anchor" href="#les-fonctions"><i class="fas fa-link"></i></a>
 </h2>
-<p><strong>R</strong> offre une multitude de fonctions et permet également à l’usager de bâtir ses propres fonctions (fonctions maison). Elles permettent d’automatiser des calculs (généralement, mais peut faire beaucoup plus!). Tout au long de cet ouvrage, les fonctions seront identifiées par l’ajout de parenthèse à leur fin, comme ceci : <code>function()</code>. Ces fonctions ont généralement la forme suivante.</p>
+<p><strong>R</strong> offre une multitude de fonctions et permet également à l’usager de bâtir ses propres fonctions (fonctions maison). Elles permettent d’automatiser des calculs (généralement, mais peut faire beaucoup plus!). Tout au long de cet ouvrage, les fonctions sont identifiées par l’ajout de parenthèse à leur fin, comme ceci : <code>function()</code>. Ces fonctions ont généralement la forme suivante.</p>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">nom</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">argument1</span>, <span class="va">argument2</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span>
+  
   <span class="co"># Calcul à réaliser</span>
+  
 <span class="op">}</span></code></pre></div>
-<p>Ici, <code>nom</code> est le nom auquel la fonction sera référée par la suite, <code>function</code> est la fonction <strong>R</strong> qui permet de créer la fonction maison, <code>argument1</code> et <code>argument2</code> sont les arguments (les entrées) fournis à la fonction et à partir desquels les calculs seront réalisés, et les accolades <code><a href="https://rdrr.io/r/base/Paren.html">{}</a></code> définissent le début et la fin de la fonction dans le script.</p>
-<p>Il sera bien utile de créer ses propres fonctions bien que <strong>R</strong> possède une pléthore de fonctions et de packages en contenant encore plus. Toutes les fonctions, qu’elles soient maisons ou déjà intégrées, respectent le même fonctionnement, ce pour quoi il est utile de s’y pencher. Les fonctions maison permettront d’automatiser certains calculs qui seront propres à résoudre les problèmes de l’usager et d’être réutilisé ultérieurement.</p>
+<p>Ici, <code>nom</code> est le nom auquel la fonction sera référée par la suite, <code>function</code> est la fonction <strong>R</strong> qui permet de créer la fonction maison, <code>argument1</code> et <code>argument2</code> sont les arguments (les entrées) fournis à la fonction et à partir desquels les calculs sont réalisés, et les accolades <code><a href="https://rdrr.io/r/base/Paren.html">{}</a></code> définissent le début et la fin de la fonction dans le script.</p>
+<p>Il est bien utile de créer ses propres fonctions bien que <strong>R</strong> possède une pléthore de fonctions et de packages en contenant encore plus. Toutes les fonctions, qu’elles soient maisons ou déjà intégrées, respectent le même fonctionnement, ce pour quoi il est utile de s’y pencher. Les fonctions maison permettent d’automatiser certains calculs qui sont propres à résoudre les problèmes spécifiques de l’utilisateur et d’être réutilisé ultérieurement.</p>
 <p>Voici un exemple trivial de fonction, soit la somme de deux nombres.</p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="programmer.html#cb25-1" aria-hidden="true" tabindex="-1"></a>addition <span class="ot">&lt;-</span> <span class="cf">function</span>(a, b) {</span>
-<span id="cb25-2"><a href="programmer.html#cb25-2" aria-hidden="true" tabindex="-1"></a>  a <span class="sc">+</span> b</span>
-<span id="cb25-3"><a href="programmer.html#cb25-3" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb25-4"><a href="programmer.html#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="fu">addition</span>(<span class="dv">2</span>,<span class="dv">3</span>)</span>
-<span id="cb25-5"><a href="programmer.html#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">5</span></span></code></pre></div>
+<span id="cb25-2"><a href="programmer.html#cb25-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb25-3"><a href="programmer.html#cb25-3" aria-hidden="true" tabindex="-1"></a>  a <span class="sc">+</span> b</span>
+<span id="cb25-4"><a href="programmer.html#cb25-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb25-5"><a href="programmer.html#cb25-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb25-6"><a href="programmer.html#cb25-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-7"><a href="programmer.html#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="fu">addition</span>(<span class="dv">2</span>,<span class="dv">3</span>)</span>
+<span id="cb25-8"><a href="programmer.html#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">5</span></span></code></pre></div>
 <p>Par défaut, une fonction retourne la dernière ligne calculée si elle n’est pas assignée à une variable. Si le résultat d’une fonction est assigné, la fonction ne retourne pas le résultat dans la console, mais assigne bel et bien la variable.</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="programmer.html#cb26-1" aria-hidden="true" tabindex="-1"></a>addition2 <span class="ot">&lt;-</span> <span class="cf">function</span>(a, b) {</span>
 <span id="cb26-2"><a href="programmer.html#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Le résultat est assigné à une variable</span></span>
@@ -401,30 +406,32 @@ Install Packages…</p>
 <span id="cb26-12"><a href="programmer.html#cb26-12" aria-hidden="true" tabindex="-1"></a><span class="co"># En roulant total, la sortie affiche bien la sortie de addition2()</span></span>
 <span id="cb26-13"><a href="programmer.html#cb26-13" aria-hidden="true" tabindex="-1"></a>total</span>
 <span id="cb26-14"><a href="programmer.html#cb26-14" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">341</span></span></code></pre></div>
-<p>Afin d’éviter ces problèmes, des ambiguïtés ou s’il faut retourner plusieurs arguments (ce qui sera souvent le cas!), il faut utiliser la fonction <code><a href="https://rdrr.io/r/base/function.html">return()</a></code> à la fin de la fonction.</p>
+<p>L’utilisation de <code><a href="https://rdrr.io/r/base/function.html">return()</a></code> à la fin de la fonction est une bonne pratique, car elle permet d’éviter des problèmes ou des ambiguïtés.</p>
 <div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="programmer.html#cb27-1" aria-hidden="true" tabindex="-1"></a>addition3 <span class="ot">&lt;-</span> <span class="cf">function</span>(a, b) {</span>
-<span id="cb27-2"><a href="programmer.html#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Le résultat est assigné à une variable</span></span>
-<span id="cb27-3"><a href="programmer.html#cb27-3" aria-hidden="true" tabindex="-1"></a>  somme <span class="ot">&lt;-</span> a <span class="sc">+</span> b</span>
-<span id="cb27-4"><a href="programmer.html#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(somme)</span>
-<span id="cb27-5"><a href="programmer.html#cb27-5" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb27-6"><a href="programmer.html#cb27-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-7"><a href="programmer.html#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Les deux fonctions produisent une sortie</span></span>
-<span id="cb27-8"><a href="programmer.html#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="fu">addition3</span>(<span class="dv">4</span>, <span class="dv">6</span>)</span>
-<span id="cb27-9"><a href="programmer.html#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">10</span></span>
-<span id="cb27-10"><a href="programmer.html#cb27-10" aria-hidden="true" tabindex="-1"></a>total <span class="ot">&lt;-</span> <span class="fu">addition3</span>(<span class="dv">4</span>, <span class="dv">6</span>)</span>
-<span id="cb27-11"><a href="programmer.html#cb27-11" aria-hidden="true" tabindex="-1"></a>total</span>
-<span id="cb27-12"><a href="programmer.html#cb27-12" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">10</span></span></code></pre></div>
+<span id="cb27-2"><a href="programmer.html#cb27-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb27-3"><a href="programmer.html#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Le résultat est assigné à une variable</span></span>
+<span id="cb27-4"><a href="programmer.html#cb27-4" aria-hidden="true" tabindex="-1"></a>  somme <span class="ot">&lt;-</span> a <span class="sc">+</span> b</span>
+<span id="cb27-5"><a href="programmer.html#cb27-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb27-6"><a href="programmer.html#cb27-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(somme)</span>
+<span id="cb27-7"><a href="programmer.html#cb27-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb27-8"><a href="programmer.html#cb27-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-9"><a href="programmer.html#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Les deux fonctions produisent une sortie</span></span>
+<span id="cb27-10"><a href="programmer.html#cb27-10" aria-hidden="true" tabindex="-1"></a><span class="fu">addition3</span>(<span class="dv">4</span>, <span class="dv">6</span>)</span>
+<span id="cb27-11"><a href="programmer.html#cb27-11" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">10</span></span>
+<span id="cb27-12"><a href="programmer.html#cb27-12" aria-hidden="true" tabindex="-1"></a>total <span class="ot">&lt;-</span> <span class="fu">addition3</span>(<span class="dv">4</span>, <span class="dv">6</span>)</span>
+<span id="cb27-13"><a href="programmer.html#cb27-13" aria-hidden="true" tabindex="-1"></a>total</span>
+<span id="cb27-14"><a href="programmer.html#cb27-14" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">10</span></span></code></pre></div>
 </div>
 <div id="définir-une-boucle" class="section level2" number="2.10">
 <h2>
 <span class="header-section-number">2.10</span> Définir une boucle<a class="anchor" aria-label="anchor" href="#d%C3%A9finir-une-boucle"><i class="fas fa-link"></i></a>
 </h2>
-<p>Pour automatiser certains calculer, il peut être utile de recourir à une boucle (<em>loop</em>) qui pourra répéter plusieurs fois une même opération. Voici l’anatomie d’une boucle.</p>
+<p>Pour automatiser certains calculs, il peut être utile de recourir à une boucle (<em>loop</em>) qui permet de répéter plusieurs fois une même opération. Voici l’anatomie d’une boucle.</p>
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="va">vec</span><span class="op">)</span><span class="op">{</span>
   <span class="co"># Calcul désiré</span>
 <span class="op">}</span></code></pre></div>
-<p>L’élément <code>for</code> est la fonction déclarant la boucle. Les renseignements sur les itérations se retrouvent entre les parenthèses. La variable <code>i</code> prendra successivement tous les éléments dans (<code>in</code>) le vecteur à gauche (<code>vec</code>). Tout le contenu de la boucle (ce qui sera répété) se retrouve entre les accolades <code><a href="https://rdrr.io/r/base/Paren.html">{}</a></code>, c’est ce qui sera produit à chaque boucle. Dans cet exemple, la boucle se répète <span class="math inline">\(k\)</span> fois, soit de <span class="math inline">\(1,2,3,...,k\)</span>, à cause de l’expression <code>1:k</code> qui correspond à générer un vecteur de <span class="math inline">\(1\)</span> à <span class="math inline">\(k\)</span>. La variable <code>i</code> quant à elle change de valeur à chaque itération. Elle prendra tour à tour ces valeurs chaque itération <span class="math inline">\(1,2,3,...,k\)</span>. La variable pourra judicieusement être utilisée dans la boucle afin de profiter ce comportement, notamment pour le classement des résultats. Lorsque la boucle atteint <span class="math inline">\(k\)</span>, elle se termine.</p>
+<p>L’élément <code>for</code> est la fonction déclarant la boucle. Les renseignements sur les itérations se retrouvent entre les parenthèses. La variable <code>i</code> prendra successivement tous les éléments dans (<code>in</code>) le vecteur à gauche (<code>vec</code>). Tout le contenu de la boucle (ce qui est répété) se retrouve entre les accolades <code><a href="https://rdrr.io/r/base/Paren.html">{}</a></code>, c’est ce qui est calculé à chaque boucle. Dans cet exemple, la boucle se répète <span class="math inline">\(k\)</span> fois, soit de <span class="math inline">\(1,2,3,...,k\)</span>, à cause de l’expression <code>1:k</code> qui correspond à générer un vecteur de <span class="math inline">\(1\)</span> à <span class="math inline">\(k\)</span> (voir la section <a href="calculer.html#la-s%C3%A9quence">La séquence</a>). La variable <code>i</code> quant à elle change de valeur à chaque itération. Elle prend tour à tour les valeurs <span class="math inline">\(1,2,3,...,k\)</span>. La variable peut judicieusement être utilisée dans la boucle afin de profiter ce comportement, notamment pour le classement des résultats. Lorsque la boucle atteint <span class="math inline">\(k\)</span>, elle se termine.</p>
 <p>Il est aussi possible de rédiger la boucle en utilisant uniquement <code>k</code>. Alors, <code>i</code> prendra toutes les valeurs contenues dans <code>k</code>. La longueur du vecteur <code>k</code> définit le nombre d’itérations.</p>
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="va">k</span><span class="op">)</span><span class="op">{</span>
@@ -525,7 +532,7 @@ ou
 <span id="cb31-2"><a href="programmer.html#cb31-2" aria-hidden="true" tabindex="-1"></a>valeurs[valeurs <span class="sc">&gt;</span> <span class="dv">3</span>]</span>
 <span id="cb31-3"><a href="programmer.html#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">4</span> <span class="dv">5</span> <span class="dv">6</span></span></code></pre></div>
 <p>Ici, toutes les valeurs vraies de l’opérateur logique sont rapportées.</p>
-<p>Les opérateurs logiques servent également à définir des opérations conditionnelles. La fonction <code>if</code> sera alors utilisée. Il y a trois principales formes : <code>if</code> (Si ceci, alors cela), le <code>if  else</code> (Si ceci, alors cela, sinon autre chose) et les échelles <code>if else if else</code>.</p>
+<p>Les opérateurs logiques servent également à définir des opérations conditionnelles. La fonction <code>if</code> est alors utilisée. Il y a trois principales formes : <code>if</code> (Si ceci, alors cela), le <code>if  else</code> (Si ceci, alors cela, sinon autre chose) et les échelles <code>if else if else</code>.</p>
 <div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw">if</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span>
   <span class="co"># Opération désirée</span>
@@ -561,7 +568,7 @@ ou
 <h2>
 <span class="header-section-number">2.12</span> En cas de pépins<a class="anchor" aria-label="anchor" href="#en-cas-de-p%C3%A9pins"><i class="fas fa-link"></i></a>
 </h2>
-<p>Il arrive parfois que le code utilisé ne fonctionne pas, que des erreurs se produisent ou que des fonctions fort utiles demeurent inconnues. Même après plusieurs années d’utilisation, les utilisateurs font encore quotidiennement des erreurs (au moins une!). Un excellent outil est d’utiliser un moteur de recherche, de poser une question à l’aide de quelques mots clés bien choisis, préférablement en anglais, et en y inscrivant “with R” ou “in R” ou “R”. La plupart du temps, les programmeurs de packages auront une solution sur leur site ou leurs instructions de packages. Il y a aussi des plateformes publiques et en ligne, comme <a href="https://stackoverflow.com/">StackOverflow</a>, qui collectent questions et réponses sur le codage. D’autres utilisateurs peuvent avoir posé la même question et des auteurs de programmes <strong>R</strong> et d’autres usagers y auront répondu aux bénéfices de tous. Dans le cas d’une solution introuvable, ces mêmes plateformes permettent de poser de nouvelles questions. Il faudra toutefois attendre qu’un usager plus expérimenté prenne le temps d’y répondre.</p>
+<p>Il arrive parfois que le code utilisé ne fonctionne pas, que des erreurs se produisent ou que des fonctions fort utiles demeurent inconnues. Même après plusieurs années d’utilisation, les utilisateurs font encore quotidiennement des erreurs (au moins une!). Un excellent outil est d’utiliser un moteur de recherche, de poser une question à l’aide de quelques mots clés bien choisis, préférablement en anglais, et en y inscrivant “with R” ou “in R” ou “R”. La plupart du temps, les programmeurs de packages ont une solution sur leur site ou leurs instructions de packages. Il y a aussi des plateformes publiques et en ligne, comme <a href="https://stackoverflow.com/">StackOverflow</a>, qui collectent questions et réponses sur le codage. D’autres utilisateurs peuvent avoir posé la même question et des auteurs de programmes <strong>R</strong> et d’autres usagers y ont répondu aux bénéfices de tous. Dans le cas d’une solution introuvable, ces mêmes plateformes permettent de poser de nouvelles questions. Il faudra toutefois attendre qu’un usager plus expérimenté prenne le temps d’y répondre.</p>
 
 </div>
 </div>
@@ -579,10 +586,10 @@ ou
 <li><a class="nav-link" href="#les-cha%C3%AEnes-de-caract%C3%A8re"><span class="header-section-number">2.4</span> Les chaînes de caractère</a></li>
 <li>
 <a class="nav-link" href="#concat%C3%A9ner"><span class="header-section-number">2.5</span> Concaténer</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#cr%C3%A9ation-dun-vecteur"><span class="header-section-number">2.5.1</span> Création d’un vecteur</a></li>
-<li><a class="nav-link" href="#cr%C3%A9ation-dune-matrice"><span class="header-section-number">2.5.2</span> Création d’une matrice</a></li>
-<li><a class="nav-link" href="#cr%C3%A9ation-dun-jeu-de-donn%C3%A9es"><span class="header-section-number">2.5.3</span> Création d’un jeu de données</a></li>
-<li><a class="nav-link" href="#cr%C3%A9ation-dune-liste"><span class="header-section-number">2.5.4</span> Création d’une liste</a></li>
+<li><a class="nav-link" href="#cr%C3%A9er-un-vecteur"><span class="header-section-number">2.5.1</span> Créer un vecteur</a></li>
+<li><a class="nav-link" href="#cr%C3%A9er-une-matrice"><span class="header-section-number">2.5.2</span> Créer une matrice</a></li>
+<li><a class="nav-link" href="#cr%C3%A9er-un-jeu-de-donn%C3%A9es"><span class="header-section-number">2.5.3</span> Créer un jeu de données</a></li>
+<li><a class="nav-link" href="#cr%C3%A9er-une-liste"><span class="header-section-number">2.5.4</span> Créer une liste</a></li>
 </ul>
 </li>
 <li><a class="nav-link" href="#r%C3%A9f%C3%A9rer-%C3%A0-des-sous-%C3%A9l%C3%A9ments"><span class="header-section-number">2.6</span> Référer à des sous-éléments</a></li>
@@ -614,7 +621,7 @@ ou
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Méthodes Quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-06-22.</p>
+    <p>"<strong>Méthodes Quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-07-21.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

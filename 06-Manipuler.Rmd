@@ -4,33 +4,35 @@ library(rstatix)
 
 # Manipuler
 
-Avec **R**, il ne sera jamais nécessaire de manipuler directement le fichier contenant les données. Cette pratique est déconseillée. Préserver le fichier original intact évite de nombreuses complications, comme la compatibilité entre les versions, la reproductibilité des bases, la maintenance, etc. Toutes les manipulations seront conservées dans un script. Cela favorise le partage entre collègues, mais aussi le suivi des modifications apportées en comparant tout simplement les traces dans entre les syntaxes. Le jeu de données est importé dans la console et il ne sera plus touché par l'utilisateur. Le script conserve les manipulations réalisées qui pourront être refaites facilement en quelques cliques.
+Avec **R**, il ne faut jamais manipuler directement le fichier contenant les données. **Cette pratique est déconseillée**. Il vaut mieux préserver le fichier original intact, ce qui évite de nombreuses complications, comme la compatibilité entre les versions, la reproductibilité des bases, la maintenance, etc. Toutes les manipulations doivent être conservées dans un fichier script. Cela favorise le suivi des modifications apportées en comparant tout simplement les traces dans entre les syntaxes, mais aussi le partage entre collègues. 
 
-En pratique, l'expérimentateur aura le jeu de données officielles (final) avec lequel travailler. Il pourra l'importer tel que précisé dans la section précédente. Par la suite, il ne lui reste qu'à mettre en place le nettoyage et la préparation du jeu de données. Il existe plusieurs méthodes pour réalise la gestion; il ne faut pas s'étonner de voir d'autres ouvrages aborder la gestion de données d'une autre façon. Au final, la meilleure méthode est celle qui m'est l'utilisateur à son aise.
 
-TODO
+En pratique, l'expérimentateur aura le jeu de données officiel (final) avec lequel travailler. Il doit l'importer à chaque début de séance, tel que précisé dans la section [Importer]. Par la suite, il ne lui reste qu'à mettre en place le nettoyage et la préparation du jeu de données ou bien, si cela est déjà fait, de rouler les scripts des séances précédentes, ce qui se fait facilement en quelques cliques. 
 
-Dans cette section les manipulations rudimentaires d'un jeu de données seront expliquées.
+Il existe plusieurs méthodes pour gèrer des données; il ne faut pas s'étonner de voir d'autres ouvrages aborder la gestion de données d'une autre façon. Au final, la meilleure méthode est celle qui m'est l'utilisateur à son aise.
+
+Dans la première section, les manipulations rudimentaires d'un jeu de données sont expliquées. Dans la seconde section, la philosophie `tidyverse` est présentée, car elle permet une manipulation assez intuitive des jeux de données^[Le présent ouvrage tente de montrer une approche intuitive et simple, mais il ne faut pas en faire un dogme. La manipulation *traditionnelle* ou d'autres philosophies existent également].
 
 ## Manipulation de données
 
-Les tableaux ont généralement deux dimensions (lignes par colonnes). Différents éléments ou groupes d'éléments peuvent être extraits des jeux de données. Plusieurs méthodes peuvent être utiliser en fonction des besoins. Le jeu de données `cars` sera utilisé à des fins illustratives.
+Les tableaux ont généralement deux dimensions (lignes par colonnes). Différents éléments ou groupes d'éléments peuvent être extraits des jeux de données. Plusieurs méthodes peuvent être utilisées en fonction des besoins. Le jeu de données `cars` (disponible avec **R**) sera utilisé à des fins illustratives.
 
 ```{r}
 head(cars)
 ```
 
-Elle contient 50 unités d'observation (lignes) et deux variables (colonnes), soit la vitesse (*speed*) et la distance (*dist*).
+Le jeu de données contient 50 unités d'observation (lignes) et deux variables (colonnes), soit la vitesse (*speed*) et la distance (*dist*).
 
 ### Référer à une variable dans un jeu de données
 
 Il est possible de référer à une variable soit en utilisant l'emplacement de la variable par rapport aux autres en utilisant les crochets ou en utilisant le signe `$` puis le nom de la variable après le libellé de le jeu de données. L'opération est fort simple avec le symbole `$`.
+
 ```{r}
 # Avec $
 head(cars$dist)
 ```
 
-Précédemment utilisés pour extraire des valeurs dans une variable unidimensionnelle, les `[]` peuvent extraire des données sur un tableau en deux dimensions (ligne par colonne). Il faut spécifier la ou les lignes désirées, puis la ou les colonnes désirées entre crochets. Laissez une des dimensions en blanc (vide) indique au logiciel de rapporter toutes les valeurs. Par exemple, pour obtenir le même résultat, `dist` est la deuxième colonne. Il faut référer entre crochets à la colonne $2$ et comme toutes les lignes sont désirées, cette dimension reste vide.
+Précédemment utilisés pour extraire des valeurs dans une variable unidimensionnelle (voir [Référer à des sous-éléments]), les `[]` peuvent extraire des données sur un tableau en deux dimensions (ligne par colonne). Il faut spécifier la ou les lignes désirées, puis la ou les colonnes désirées entre crochets. Laissez une des dimensions en blanc (vide) indique au logiciel de rapporter toutes les valeurs. Par exemple, pour obtenir le même résultat, `dist` est la deuxième colonne. Il faut référer entre crochets à la colonne $2$ et comme toutes les lignes sont désirées, cette dimension reste vide.
 
 ```{r}
 # Entre crochets
@@ -43,7 +45,7 @@ Il est possible de faire la même chose avec les lignes.
 # Entre crochets
 cars[4,]
 ```
-Ici, toutes les variables de la 4^e^ unité sont rapportée. Remarquer bien l'absence d'argument après la virgule. La fonction `head` n'est pas nécessaire ici, car il y a peu d'informations à extraire.
+Ici, toutes les variables de la 4^e^ unité sont rapportée. Remarquer bien l'absence d'argument après la virgule. La fonction `head()` n'est pas nécessaire ici, car il y a peu d'informations à extraire.
 
 Si certaines valeurs spécifiques étaient désirées, comme la valeur de la 4^e^ unité pour la 2^e^ variable.
 
@@ -65,17 +67,18 @@ head(cars["speed"])
 
 ### Référer à un sous-ensemble d'unité.
 
-Pour référer à des unités ayant certaines caractéristiques, la fonction `subset()` peut s'avérer utile. Les arguments sont un jeu de données, le deuxième est un opérateur logique en lien avec une variable du jeu de données.
+Pour référer à des unités ayant certaines caractéristiques, la fonction `subset()` peut s'avérer utile. Les arguments sont un jeu de données, le deuxième est un opérateur logique (voir [Les clauses conditionnelles]) en lien avec une variable du jeu de données.
 
 ```{r}
 # Extraire les données pour toutes les unités ayant une vitesse égale à 24
 subset(cars, speed == 24)
 ```
-Cette fonction est utile s'il faut extraire les données d'un certain sexe, par exemple.
+
+Cette fonction est utile s'il faut extraire les données d'un certain sexe ou les participants plus jeune ou plus vieux qu'un certain âge, par exemple.
 
 ### Nommer des variables dans un jeu de données
 
-Il est possible d'attribuer ou de modifier des noms à des colonnes ou des lignes d'un tableau de données. Les fonctions `colnames()` et `rownames()` seront alors utilisées. Contrairement aux autres fonctions, celles-ci se retrouvent à gauche de l'équation.
+Il est possible d'attribuer ou de modifier des noms à des colonnes ou des lignes d'un tableau de données. Les fonctions `colnames()` et `rownames()` sont alors utilisées. Contrairement aux autres fonctions, celles-ci se retrouvent à gauche de l'équation.
 
 ```{r}
 colnames(cars) <-  c("vitesse", "distance")
@@ -85,9 +88,7 @@ Il importe de fournir autant de noms qu'il y a de colonnes (ou lignes), et ce, e
 
 ### Données manquantes
 
-Les devis de recherche et les jeux de données empiriques sont rarement parfaits et peuvent souvent contenir des données manquantes. **R** reconnaît les données manquantes lorsqu'elles sont identifiées comme `NA` (*not available*). Plusieurs méthodes permettent de gérer les données manquantes. La méthode la plus simple est d'éliminer les unités ayant une donnée manquante, soit la suppression par liste (*listwise suppression*). Les fonctions natives de **R** recourront à l'argument `na.rm = TRUE`. Si cela est impossible, la fonction `na.omit()` permettra de créer des jeux de données sans les valeurs manquantes.
-
-
+Les devis de recherche et les jeux de données empiriques sont rarement parfaits et peuvent souvent contenir des données manquantes. **R** reconnaît les données manquantes lorsqu'elles sont identifiées comme `NA` (*not available*). Plusieurs méthodes permettent de gérer les données manquantes. La méthode la plus simple est d'éliminer les unités ayant une donnée manquante, soit la suppression par liste (*listwise suppression*). Les fonctions natives de **R** recourrent à l'argument `na.rm = TRUE`. Si cela est impossible, la fonction `na.omit()` permet de créer des jeux de données sans les valeurs manquantes. Certaines fonctions, comme `mean()` ont des arguments pour gérer les données manquantes.
 
 ```{r}
 # Un vecteur
@@ -104,14 +105,13 @@ valeurs.nettoyees <-  na.omit(valeurs)
 mean(valeurs.nettoyees)
 ```
 
-
 ## Le tidyverse
 
-<!-- Le présent ouvrage tente de monter une approche intuitive et simple, mais il ne faut pas en faire un dogme. -->
+Le nom *tidyverse* [@tidy] est une contraction de *tidy* (bien rangé) et de *universe*. Le *tidyverse* est fondé sur le concept de *tidy data*, développé par Hadley [@Wickham14]. Il repose sur une philosophie d'organisation des données facilitant la gestion, la préparation et le nettoyage préalable aux analyses quantitatives.
 
-Le nom *tidyverse* [@tidy] est une contraction de *tidy* (bien rangé) et de *universe*. Le package est fondé sur le concept de *tidy data*, développé par Hadley [@Wickham14]. Il repose sur une philosophie d’organisation des données facilitant la gestion, la préparation et le nettoyage préalable aux analyses quantitatives. Plusieurs packages respectent cette philosophie et font partie intégrante du *tidyverse*, comme `ggplot2` (présentation graphique), `dplyr` (manipulation de données), `readr` (importation de données), `tibble` (nouvelle catégorie de *data frame*), mais bien d'autres également. Ces packages font part intégrante de l'univers *tidy* et sont téléchargés simultanément avec le package.
+Plusieurs packages respectent cette philosophie et font partie intégrante du *tidyverse*, comme `ggplot2` (présentation graphique), `dplyr` (manipulation de données), `readr` (importation de données), `tibble` (nouvelle catégorie de *data frame*), mais bien d'autres également. Ces packages font partie intégrante de l'univers *tidy* et sont téléchargés simultanément avec le package `tidyverse`.
 
-Pour utiliser le package `tidyverse`, il faudra d'abord l'installer puis l'appeler.
+Pour utiliser le package `tidyverse`, il faut d'abord l'installer puis l'appeler.
 
 ```{r, eval = FALSE}
 # Installer le package
@@ -123,17 +123,18 @@ library(tidyverse)
 
 ## Les fonctions utiles
 
-Un des avantages et nouveautés d'utiliser le `tidyverse` est d'obtenir l'opérateur `%>%` (appelée *pipe* en anglais que l'on pourrait traduire par *tuyau*) qui provient originellement du package `magrittr` [@magri] et est importé par `dplyr`. L'opérateur favorise la lisibilité et la productivité, car il est plus facile de suivre le flux de plusieurs fonctions à travers ces *tuyaux* que de revenir en arrière lorsque plusieurs fonctions sont imbriquées. En fait, il favorise la lecture par verbes, soit par action (fonction), dans une séquence temporelle intuitive. Si les arguments sont placés en une seule ligne, non seulement la ligne est-elle longue et complexe, voire illisible, mais, en plus, les éléments les plus à gauche (les premiers à la lecture) sont les derniers opérés. Si chacune des fonctions était en ligne, alors il faudrait écraser ou créer des variables temporaires inutiles tout simplement pour arriver à réaliser les fonctions. La philosophie `tidyverse`, par l'usage de `%>%`, évite tous ses problèmes.
+Un des avantages et originalité d'utiliser le `tidyverse` est d'obtenir l'opérateur `%>%` (appelée *pipe* en anglais que l'on peut traduire par *tuyau*) qui provient originellement du package `magrittr` [@magri] et est importé par `dplyr`. L'opérateur favorise la lisibilité et la productivité, car il est plus facile de suivre le flux de plusieurs fonctions à travers ces *tuyaux* que de revenir en arrière lorsque plusieurs fonctions sont imbriquées. En fait, il favorise la lecture par verbes, soit par action (fonction), dans une séquence temporelle intuitive. Si les arguments sont placés en une seule ligne, non seulement la ligne est-elle longue et complexe, voire illisible, mais, en plus, les éléments les plus à gauche (les premiers à la lecture) sont les derniers opérés. Si chacune des fonctions était en ligne, alors il faudrait écraser ou créer des variables temporaires inutiles tout simplement pour arriver à réaliser les fonctions. La philosophie `tidyverse`, par l'usage de `%>%`, évite tous ses problèmes.
 
-L'opérateur `%>%` s'ajoute à la fin d'une ligne syntaxe. Son fonctionnement se traduit par l'argument de la ligne à gauche est introduit dans la fonction de droite, et ce, du haut vers le bas. Il peut être commandé plus rapidement avec le raccourci **Ctrl + Shift + M** sur Windows. En plus de l'opérateur `%>%` , `dplyr` offre de nouvelles fonctions pour gérer un jeu de données. Quelques-unes des plus importantes sont décrites ici. Par la suite, une mise en situation permettra de mieux comprendre leur fonctionnement.
+L'opérateur `%>%` s'ajoute à la fin d'une ligne syntaxe. Son fonctionnement se traduit par l'argument de la ligne à gauche est introduit dans la fonction de droite, et ce, du haut vers le bas. Il peut être commandé plus rapidement avec le raccourci **Ctrl + Shift + M** sur Windows. En plus de l'opérateur `%>%` , `dplyr` offre de nouvelles fonctions pour gérer un jeu de données. Quelques-unes des plus importantes sont décrites ici. Par la suite, une mise en situation permet de mieux comprendre leur fonctionnement.
 
 ### Sélectionner des variables
 
-Pour sélectionner des données d'un très grand jeu de données, la fonction `select()` permettra de choisir les variables à conserver. Pour utiliser la fonction, il suffit d'indiquer les variables par leur nom de colonne dans la fonction. Aucun besoin de guillemets.
+Pour sélectionner des données d'un très grand jeu de données, la fonction `select()` permet de choisir les variables à conserver. Pour utiliser la fonction, il suffit d'indiquer les variables par leur nom de colonne dans la fonction. Aucun besoin de guillemets anglophones. 
+
 
 ### Sélectionner des participants
 
-Pour filtrer les participants selon les caractéristiques désirées, la fonction `filter()` permettra de sélectionner les unités satisfaisant les conditions spécifiées. Pour utiliser la fonction, il faut indiquer le ou les arguments conditionnels à respecter et sur quelle variable.
+Pour filtrer les participants selon les caractéristiques désirées, la fonction `filter()` permet de sélectionner les unités satisfaisant les conditions spécifiées. Pour utiliser la fonction, il faut indiquer le ou les arguments conditionnels à respecter et sur quelle variable.
 
 Dans ce contexte la fonction `na.if()` peut être utile pour retirer une valeur aberrante.
 
@@ -153,14 +154,7 @@ Il existe plusieurs autres fonctions possibles. Notamment, `slice()` permet de c
 
 ## Mise en situation
 
-Pour mettre en pratique la philosophie `tidyverse`, voici un exemple tiré du jeu de données `starwars`. Ce jeu de données possède de nombreuses caractéristiques (diversité de variables, de mesures, données manquantes) qui en font un jeu de données similaires à ce qu'un expérimentateur pourrait obtenir. Le jeu de données est déjà disponible avec **R**.
-
-Avant de commencer, il faut rendre le package `tidyverse` disponible, car plusieurs fonctions seront utiles et le jeu de donnée s'y trouve.
-
-```{r, eval = FALSE}
-# Importer le tidyverse avant de commencer
-library(tidyverse)
-```
+Pour mettre en pratique la philosophie `tidyverse`, voici un exemple tiré du jeu de données `starwars` (disponible du `tidyverse`). Ce jeu de données possède de nombreuses caractéristiques (diversité de variables, de mesures, données manquantes) qui en font un jeu de données similaires à ce qu'un expérimentateur pourrait obtenir.
 
 Sans plus de préliminaire, la fonction `head()` donne un aperçu du jeu de données 
 
@@ -210,7 +204,7 @@ Le fichier contient, le nom de 87 personnages mesurés sur 14 variables, soit
 
 * une liste des vaisseaux que le personnage a piloté.
 
-L'objectif est de cette mise en situation est de comparer les hommes et les femmes humaines par rapport à leur indice de masse corporelle (IMC) ou *body mass index* (BMI). Le calcul de l'IMC consiste à diviser le poids par la taille au carré (kg/m^2^).
+À partir de ce jeu de données, l'objectif est de cette mise en situation est de comparer les hommes et les femmes humaines par rapport à leur indice de masse corporelle (IMC) ou *body mass index* (BMI). Le calcul de l'IMC consiste à diviser le poids par la taille au carré (kg/m^2^).
 
 Les étapes à considérer sont les suivantes : sélectionner les variables pertinentes, filtrer en retirant les unités d'espèces non humaines, tenir compte des données manquantes, corriger la taille des unités qui devrait être en mètre et non en centimètre (divisé par 100) et créer l'indice de masse corporelle.
 
@@ -268,10 +262,11 @@ jd %>%
   summarise(mean(IMC), sd(IMC), min(IMC), max(IMC), length(IMC)) 
 ```
 
-La base de données issues de ces opérations pourra par la suite être utilisée normalement pour réaliser des analyses statistiques. Il existe des packages pour demeurer dans le `tidyverse` comme `rstatix` où il est possible de faire des test-$t$ avec `test_t()` ou des corrations avec `cor_test()`, par exemple. Voir la documentation complète du package pour une vue d'ensemble de ce qu'il est possible d'accomplier avec `rstatix`. Cela dit, l'utilisateur préférera probablement utiliser d'autres méthodes lorsque des analyses statistiques seront nécessaires.
+Le jeu de données issu de ces opérations peut être utilisée normalement pour réaliser des analyses statistiques. Il existe des packages afin de demeurer dans le `tidyverse` comme `rstatix` où il est possible de faire des test-$t$ avec `test_t()` ou des corrélations avec `cor_test()`, par exemple. Voir la documentation complète du package pour une vue d'ensemble de ce qu'il est possible d'accomplir avec `rstatix`. Cela dit, l'utilisateur préférera probablement utiliser d'autres méthodes lorsque des analyses statistiques seront nécessaires.
 
 ```{r, warning = FALSE, message=FALSE}
 library(rstatix)
+
 # Test-t sur l'IMC en fonction du sexe
 jd %>% 
   t_test(IMC ~ sex)

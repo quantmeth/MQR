@@ -330,7 +330,7 @@ Figure 7.8: Historgamme des estimations des échantillons
 <span class="header-section-number">10.2.0.1</span> Meilleures pratiques<a class="anchor" aria-label="anchor" href="#meilleures-pratiques"><i class="fas fa-link"></i></a>
 </h4>
 <p><strong>R</strong> n’est pas particulièrement efficace pour réaliser des boucles. Il existe une famille de fonctions <code>apply</code> qui permet d’appliquer une fonction sur une série de vecteurs (comme une liste, un jeu de données ou une matrice). L’appel à l’aide <code><a href="https://rdrr.io/r/base/apply.html">?apply</a></code> donne beaucoup d’informations à ce sujet.</p>
-<p>La fonction principale est <code><a href="https://rdrr.io/r/base/apply.html">apply()</a></code>. Elle nécessite le jeu de données (<code>X</code>) sur lequel appliqué la fonction (<code>FUN</code>) et un argument (<code>MARGIN</code>) pour identifier la dimension selon laquelle il faut appliquer la fonction, comme <code>MARGIN = 1</code> produit l’opération par lignes; <code>MARGIN = 2</code> produit l’opération par colonnes.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Il y a aussi des cas plus complexes lorsque le jeu possède plus de deux dimensions, comme &lt;code&gt;MARGIN = c(1,2)&lt;/code&gt; produit l’opération sur une matrice (lignes par colonnes) ou &lt;code&gt;MARGIN = n&lt;/code&gt; produit l’opération sur la n&lt;sup&gt;e&lt;/sup&gt; dimension.&lt;/p&gt;"><sup>5</sup></a></p>
+<p>La fonction principale est <code><a href="https://rdrr.io/r/base/apply.html">apply()</a></code>. Elle nécessite le jeu de données (<code>X</code>) sur lequel appliqué la fonction (<code>FUN</code>) et un argument (<code>MARGIN</code>) pour identifier la dimension selon laquelle il faut appliquer la fonction, comme <code>MARGIN = 1</code> produit l’opération par lignes; <code>MARGIN = 2</code> produit l’opération par colonnes.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Il y a aussi des cas plus complexes lorsque le jeu possède plus de deux dimensions, comme &lt;code&gt;MARGIN = c(1,2)&lt;/code&gt; produit l’opération sur une matrice (lignes par colonnes) ou &lt;code&gt;MARGIN = n&lt;/code&gt; produit l’opération sur la n&lt;sup&gt;e&lt;/sup&gt; dimension.&lt;/p&gt;"><sup>6</sup></a></p>
 <div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="simuler.html#cb139-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Il faut un vecteur de données `vec`, un nombre de répétitions `nreps`</span></span>
 <span id="cb139-2"><a href="simuler.html#cb139-2" aria-hidden="true" tabindex="-1"></a><span class="co"># et une fonction `theta` à calculer sur le vecteur</span></span>
 <span id="cb139-3"><a href="simuler.html#cb139-3" aria-hidden="true" tabindex="-1"></a>bootstrap <span class="ot">&lt;-</span> <span class="cf">function</span>(vec, nreps, theta){</span>
@@ -398,7 +398,7 @@ Figure 7.8: Historgamme des estimations des échantillons
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Méthodes Quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-06-22.</p>
+    <p>"<strong>Méthodes Quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-07-21.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

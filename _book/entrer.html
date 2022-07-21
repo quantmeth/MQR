@@ -6,15 +6,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title> 4 Entrer | Méthodes Quantitatives avec R</title>
 <meta name="author" content="P.-O. Caron">
-<meta name="description" content="S’il y a bien une caractéristique de R qui rebute les nouveaux utilisateurs, c’est certainement que le logiciel ne soit pas prévu pour la saisie de données ou du moins que cela ne soit pas mis de...">
+<meta name="description" content="S’il y a bien une caractéristique de R qui rebute les nouveaux utilisateurs, c’est certainement que le logiciel ne soit pas conçu pour la saisie de données ou, du moins, que cela ne soit pas mis...">
 <meta name="generator" content="bookdown 0.27 with bs4_book()">
 <meta property="og:title" content=" 4 Entrer | Méthodes Quantitatives avec R">
 <meta property="og:type" content="book">
 <meta property="og:url" content="mqr.teluq.ca/entrer.html">
-<meta property="og:description" content="S’il y a bien une caractéristique de R qui rebute les nouveaux utilisateurs, c’est certainement que le logiciel ne soit pas prévu pour la saisie de données ou du moins que cela ne soit pas mis de...">
+<meta property="og:description" content="S’il y a bien une caractéristique de R qui rebute les nouveaux utilisateurs, c’est certainement que le logiciel ne soit pas conçu pour la saisie de données ou, du moins, que cela ne soit pas mis...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content=" 4 Entrer | Méthodes Quantitatives avec R">
-<meta name="twitter:description" content="S’il y a bien une caractéristique de R qui rebute les nouveaux utilisateurs, c’est certainement que le logiciel ne soit pas prévu pour la saisie de données ou du moins que cela ne soit pas mis de...">
+<meta name="twitter:description" content="S’il y a bien une caractéristique de R qui rebute les nouveaux utilisateurs, c’est certainement que le logiciel ne soit pas conçu pour la saisie de données ou, du moins, que cela ne soit pas mis...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
@@ -101,26 +101,27 @@
 <h1>
 <span class="header-section-number"> 4</span> Entrer<a class="anchor" aria-label="anchor" href="#entrer"><i class="fas fa-link"></i></a>
 </h1>
-<p>S’il y a bien une caractéristique de <strong>R</strong> qui rebute les nouveaux utilisateurs, c’est certainement que le logiciel ne soit pas prévu pour la saisie de données ou du moins que cela ne soit pas mis de l’avant-plan. Lorsque le logiciel s’ouvre, que ce soit <strong>R</strong> ou <strong>R</strong>Studio, l’aspect <em>table de données</em> n’existe pas. L’utilisateur dont il s’agit de la première utilisation (et habitué à des logiciels traditionnels) reste pantois : où les données sont-elles entrées?</p>
+<p>S’il y a bien une caractéristique de <strong>R</strong> qui rebute les nouveaux utilisateurs, c’est certainement que le logiciel ne soit pas conçu pour la saisie de données ou, du moins, que cela ne soit pas mis en avant-plan. Lorsque le logiciel s’ouvre, que ce soit <strong>R</strong> ou <strong>R</strong>Studio, l’aspect <em>table de données</em> n’existe pas. Un tout nouvel utilisateur habitué aux logiciels traditionnels reste pantois : où sont les données?</p>
+<p>Conceptuellement, <strong>R</strong> <a href="importer.html#importer">importe</a> des données pour les manipuler. Elles ne sont pas entrées dans le logiciel. Il existe toutefois quelques méthodes pour ce faire, dont en voici une courte liste. <strong>Ces méthodes sont présentées; elles ne sont pas recommandées</strong>.</p>
 <div id="data.entry-r-base" class="section level2" number="4.1">
 <h2>
 <span class="header-section-number">4.1</span> <code>data.entry()</code> (<code>R-base</code>)<a class="anchor" aria-label="anchor" href="#data.entry-r-base"><i class="fas fa-link"></i></a>
 </h2>
-<p>De base, <strong>R</strong> offre la possibilité d’entrer des données dans un tableur avec la commande <code>jd = data.entry()</code>. Si une base de données est demandée comme argument (p. ex., <code>data.entry(data = jd)</code>), alors le jeu de données est ouvert. Il est aussi possible d’ouvrir le fichier avec des variables déjà créées avec <strong>R</strong>. Si un tableur vierge est désiré, alors taper <code>data.entry(1)</code> dans la console ouvrira le tableur avec une seule valeur (<code>1</code>), L’utilisateur peut alors modifier les noms de colonnes et entrer les données comme il le ferait avec un logiciel traditionnel. Comme il est possible de le voir à la Figure <a href="entrer.html#fig:dataentry">4.1</a>, l’interface est bien moins attrayante que ses compétiteurs.</p>
+<p>De base, <strong>R</strong> offre la possibilité d’entrer des données dans un tableur avec la commande <code>jd = data.entry()</code>. Si une base de données est demandée comme argument (p. ex., <code>data.entry(data = jd)</code>), alors le jeu de données s’ouvre. Il est aussi possible d’ouvrir le fichier avec des variables déjà créées avec <strong>R</strong>. Si un tableur vierge est désiré, alors il faut taper <code>data.entry(1)</code> dans la console pour ouvrir le tableur avec une seule valeur (<code>1</code>), L’utilisateur peut alors modifier les noms de colonnes et entrer les données comme dans un logiciel traditionnel. La Figure <a href="entrer.html#fig:dataentry">4.1</a> montre l’interface bien moins attrayante que celles des compétiteurs.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:dataentry"></span>
 <img src="image/data_entry.png" alt="Ouverture du tableur R" width="75%"><p class="caption">
 Figure 4.1: Ouverture du tableur R
 </p>
 </div>
-<p>Lorsque l’entrée de données est terminée, l’utilisateur doit sauvegarder le jeu de données ou l’environnement de travail qui pourront être importés pour de futures utilisations ou entrées (voir la section <a href="importer.html#sauvegarder-un-jeu-de-donn%C3%A9es">Sauvegarder un jeu de données</a>). En général, l’utilisateur qui entre manuellement ces données préférera certainement un autre tableur, puis d’<a href="importer.html#importer">importer</a> ses données, mais <strong>R</strong> est certainement en mesure de faire ce travail.</p>
+<p>Lorsque l’entrée de données est terminée, l’utilisateur doit sauvegarder le jeu de données ou l’environnement de travail qui pourront être importés pour de futures utilisations ou entrées (voir la section <a href="importer.html#sauvegarder-un-jeu-de-donn%C3%A9es">Sauvegarder un jeu de données</a>). En général, l’utilisateur qui entre manuellement ces données préférera certainement un autre tableur, puis <a href="importer.html#importer">importer</a> ses données, mais <strong>R</strong> est certainement en mesure de faire ce travail.</p>
 </div>
 <div id="data_edit-dataeditr" class="section level2" number="4.2">
 <h2>
 <span class="header-section-number">4.2</span> <code>data_edit()</code> (<code>DataEditR</code>)<a class="anchor" aria-label="anchor" href="#data_edit-dataeditr"><i class="fas fa-link"></i></a>
 </h2>
-<p>Comme il arribe régulièrment, un problème avec <strong>R</strong> se résout avec un package. Il existe un package qui permet de faire l’entrée de données en tableur avec <strong>R</strong>. Il s’agit du package <code>DataEditR</code> <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-DataEditR" role="doc-biblioref">Hammill, 2021</a>)</span>, une interface utilisateur graphique. Il résout l’un de plus grands défis lorsqu’un utilisateur migre des tableurs traditionnels vers <strong>R</strong>, c’est-à-dire d’accomplir la transition d’une feuille de calcul interactive où il est possible de pointer et cliquer pour modifier, ajouter, supprimer des donnes vers un mode strict de syntaxe.</p>
-<p>Pour démarrer, il faut d’abord installer le package, puis l’appeler. Pour commencer à entrer des données, la syntaxe <code>data_edit()</code> est suffisante. Pour ouvrir un jeu de données, il suffit de l’ajouter en argument <code>data_edit(jd)</code>.</p>
+<p>Comme il arrive régulièrement, un problème avec <strong>R</strong> se résout avec un package. Il existe un package qui permet de faire l’entrée de données en tableur avec <strong>R</strong>. Il s’agit du package <code>DataEditR</code> <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-DataEditR" role="doc-biblioref">Hammill, 2021</a>)</span>, une interface utilisateur graphique. Il résout l’un de plus grands défis lorsqu’un utilisateur migre des tableurs traditionnels vers <strong>R</strong> : une feuille de calcul interactive où il est possible de pointer et cliquer pour modifier, ajouter, supprimer des donnes vers un mode strict de syntaxe.</p>
+<p>Pour démarrer, il faut d’abord installer le package, puis l’appeler. Pour commencer à entrer des données, la syntaxe <code><a href="https://rdrr.io/pkg/DataEditR/man/data_edit.html">data_edit()</a></code> est suffisante. Pour ouvrir un jeu de données, il suffit de l’ajouter en argument <code>data_edit(jd)</code>.</p>
 <p>Une fois l’interface ouvert, il est possible de manipuler le jeu de données avec les options affichés et avec le clic droit qui permettra notamment d’ajouter des lignes et des colonnes.</p>
 <div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Pour installer le package</span>
@@ -130,15 +131,15 @@ Figure 4.1: Ouverture du tableur R
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/DillonHammill/DataEditR">"DataEditR"</a></span><span class="op">)</span>
 
 <span class="co"># La fonction</span>
-<span class="fu">data_edit</span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<p>Il est recommandé de ne laisser que les données brutes, toutes les modifications et manipulations devraient rester en syntaxe <strong>R</strong> dans un script associé au jeu de données. Lorsque les entrées sont terminées, sauvegarder la base de données, préférablement en extension .csv. Il est aussi possible de sortir le tableur en tableau de données en assignant la fonction à une variable comme <code>jd = data_edit()</code>.</p>
+<span class="fu"><a href="https://rdrr.io/pkg/DataEditR/man/data_edit.html">data_edit</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<p>Il est recommandé de ne laisser que les données brutes, toutes les modifications et manipulations doivent rester en syntaxe <strong>R</strong> dans un script associé au jeu de données. Lorsque les entrées sont terminées, sauvegarder la base de données, préférablement en extension .csv. Il est aussi possible de sortir le tableur en tableau de données en assignant la fonction à une variable comme <code>jd = data_edit()</code>.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:editr"></span>
 <img src="image/editR.PNG" alt="Ouverture du tableur de DataEditR" width="75%"><p class="caption">
 Figure 4.2: Ouverture du tableur de DataEditR
 </p>
 </div>
-<p>En général, l’utilisateur importera ces données dans l’environnement <strong>R</strong>. Il devra même le faire avec <code>data_edit()</code> à chaque ouverture d’un nouvelle séance, pour poursuivre l’entrée ou réaliser des manipulations manuelles.</p>
+<p>En général, l’utilisateur doit <a href="importer.html#importer">importer</a> ces données dans l’environnement <strong>R</strong>. Il faut même le faire avec <code><a href="https://rdrr.io/pkg/DataEditR/man/data_edit.html">data_edit()</a></code> à chaque ouverture d’un nouvelle séance, pour poursuivre l’entrée ou réaliser des manipulations manuelles.</p>
 
 </div>
 </div>
@@ -168,7 +169,7 @@ Figure 4.2: Ouverture du tableur de DataEditR
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Méthodes Quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-06-22.</p>
+    <p>"<strong>Méthodes Quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-07-21.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

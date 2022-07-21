@@ -1,6 +1,6 @@
 # Programmer
 
-Une fois **R** (ou **R**Studio) ouvert, qu'est-il possible de réaliser? Dans les prochaines sections, les différents éléments de programmation permettant la création et la manipulation de données seront présentés afin de dépasser le cadre de l'utilisation *calculatrice*.
+Une fois **R** (ou **R**Studio) ouvert, qu'est-il possible de réaliser? Dans les prochaines sections, les différents éléments de programmation permettant la création et la manipulation de données sont présentés afin de dépasser le cadre de l'utilisation *calculatrice*.
 
 ## Les variables
 Pour manipuler des données, il faut recourir à des variables. Pour attribuer une valeur à  une variable, il faut assigner cette valeur avec `<-` (**ALT** + **-**) ou `=`, par exemple,
@@ -10,9 +10,9 @@ a <- 2
 a
 ```
 
-où `a` est maintenant égale à `2`. La première ligne assigne (*enregistre*) la valeur `2` à `a`. La deuxième ligne, indique à la console **R** d'imprimer le résultat pour le voir. Par la suite, `a` pourra être utilisée dans des fonctions, des calculs ou analyses plus complexes. De surcroît, `a` pourra devenir une fonction, une chaîne de caractère (*string*) ou un jeu de données.
+où `a` est maintenant égale à `2`. La première ligne assigne (*enregistre*) la valeur `2` à `a`. La deuxième ligne, indique à la console **R** d'imprimer le résultat pour le voir. Par la suite, `a` peut être utilisée dans des fonctions, des calculs ou analyses plus complexes. De surcroît, `a` peut devenir une fonction, une chaîne de caractère (*string*) ou un jeu de données.
 
-Conventionnellement, les puristes de **R** recommanderont l'usage de `<-` plutôt que `=` pour l'assignation. Il y a quelques nuances computationnelles entre les deux, mais qui échapperont irrémédiablement aux néophytes et même aux usagers intermédiaires. Par tradition, `<-` prévaudra.
+Conventionnellement, les puristes de **R** recommandent l'usage de `<-` plutôt que `=` pour l'assignation. Il y a quelques nuances computationnelles entre les deux, mais qui échappent irrémédiablement aux néophytes et même aux usagers intermédiaires. Par tradition, `<-` prévaudra dans ce livre.
 
 Pour nommer des variables, seuls les caractères alphanumériques peuvent être utilisés ainsi que le tiret bas `_` et le `.`. Les variables ne peuvent commencer par un nombre.
 
@@ -29,13 +29,13 @@ a
 
 La sortie produit `3` et non plus `2`.
 
-Cette remarque est importante, car elle signifie que l'on peut écraser des fonctions en nommant des variables. Il faut ainsi éviter de nommer des variables avec des fonctions utilisées par **R**, on évitera notamment l'utilisation des noms suivants.
+Cette remarque est importante, car elle signifie que des fonctions sont écrasables en nommant des variables. Il faut ainsi éviter de nommer des variables avec des fonctions utilisées par **R**, notamment l'utilisation des noms suivants.
 
 ```{r eval=FALSE}
 c; q; t; C; D; I; T; F; pi; mean; var; sd; length; diff; rep
 ```
 
-Certains mots seront tout simplement interdits d'utilisation.
+Certains mots sont tout simplement interdits d'utilisation.
 
 ```{r eval = FALSE}
 TRUE; FALSE; break; for; in; if; else; while; function; Inf; NA; NaN; NULL
@@ -56,7 +56,7 @@ b <- 10
 a / b
 ```
 
-Les deux premières lignes assignent des valeurs à `a` et `b`, puis la troisième imprime la division. L'absence de marqueur `<-` ou `=` indique à **R** d'imprimer la réponse dans la console. Si le résultat `a / b` devait être assigné à une variable, alors aucun résultat ne serait affiché, bien que la variable contienne la réponse.
+Les deux premières lignes assignent des valeurs à `a` et `b`, puis la troisième imprime la division. L'absence de marqueur `<-` ou `=` indique à **R** d'imprimer la réponse dans la console. Si le résultat `a / b` est assigné à une variable, alors aucun résultat n'est affiché, bien que la variable contienne la réponse.
 
 ```{r}
 resultat <- a / b
@@ -76,18 +76,18 @@ log(4)
 
 ## Les commentaires
 
-Les scripts **R** peuvent contenir des commentaires. Ceux-ci sont désignés par le désormais célèbre `#`. Une ligne de script commençant par ce symbole sera ignorée par la console. Ces commentaires permettent aussi bien de préciser différentes étapes d'un script, que d'expliquer la nomenclature des variables ou encore d'expliquer une fonction, ses entrées, ses sorties. Les commentaires sont extrêmement utiles, car les annotations peuvent souvent sauver énormément de temps et d'effort lors d'utilisations ultérieures.
+Les scripts **R** peuvent contenir des commentaires. Ceux-ci sont désignés par le désormais célèbre `#`. Une ligne de script commençant par ce symbole est ignorée par la console. Ces commentaires permettent aussi bien de préciser différentes étapes d'un script, que d'expliquer la nomenclature des variables ou encore d'expliquer une fonction, ses entrées, ses sorties. Les commentaires sont extrêmement utiles, car les annotations peuvent souvent sauver énormément de temps et d'effort lors d'utilisations ultérieures.
 
 ```{r}
 # La variable resultat est le quotient des variables a et b
 resultat <- a / b
 resultat
 ```
-Dans cet exemple, la première ligne est ignorée. Autrement, la console **R** produirait une erreur, car cette ligne est pour le logiciel pur charabia!
+Dans cet exemple, la première ligne est ignorée. Autrement, la console **R** produit une erreur, car cette ligne est pour le logiciel pur charabia!
 
 ## Les chaînes de caractère
 
-La plupart du temps, les variables utilisées seront numériques, c'est-à-dire qu'elles contiendront des nombres. Parfois en analyses de données, il pourra s'agir de chaîne de caractères (*string*), autrement dit, des mots. Les chaînes de caractères sont définis par le double apostrophe `"..."`, où on remplace les trois points par les mots désirés.^[Les simples apostrophes `'...'` fonctionnent également, mais les doubles sont préférés. En plus, R imprime toujours en double apostrophe. C'est un souci de cohérence.]
+La plupart du temps, les variables utilisées sont numériques, c'est-à-dire qu'elles contiennent des nombres. Parfois, les données sont des mots, c'est-à-dire, des chaînes de caractères (*string*). Les chaînes de caractères sont définis par le double apostrophe `"..."`, où on remplace les trois points par les mots désirés.^[Les simples apostrophes `'...'` fonctionnent également, mais les doubles sont préférés. En plus, R imprime toujours en double apostrophe. C'est un souci de cohérence.]
 
 ```{r}
 titre <- "Bonjour tout le monde!"
@@ -98,7 +98,7 @@ titre
 
 Par défaut, **R** ne peut assigner qu'une valeur à une variable. Pour grouper des éléments ensemble, c'est-à-dire, pour créer des jeux de données, des vecteurs, des matrices, des listes, il faudra utiliser des fonction de concaténation, dont voici une liste des plus utiles avec quelques exemples, de la plus stricte (vecteur) à la plus flexible (liste).
 
-### Création d'un vecteur
+### Créer un vecteur
 
 Une fonction fort utile permet de joindre des valeurs dans une seule variable. Précédemment, l'assignation d'une valeur à des variables se limitait à une chaîne de caractères ou à une valeur numérique. La fonction **c**oncaténer `c()` (ou **c**ombiner, **c**réer) met plusieurs éléments (deux ou plus) dans une seule variable. Son but est de *vectoriser* les arguments. Chaque élément est délimité par une virgule `,`.
 
@@ -123,11 +123,11 @@ phrase
 
 La fonction `c()` est strict sur les arguments, car elle leur accorde le même attribut. Par exemple, `phrase` ne contient que des chaînes de caractères. Les valeurs `1` et `2` ont perdu leur classe numérique (elles ne sont plus utilisables comme nombre^[Pour l'instant]). Cela se remarque par les guillemets anglophones autour des valeurs `"1"` et `"2"` imprimées.
 
-Il faudra également faire attention aux arguments passés à la fonction `c()`, car celle-ci vectorise les arguments. Autrement dit, elle crée des vecteurs (une ligne en quelque sorte) avec les entrées fournies, peu importe leur structure de départ. Par exemple, un jeu de données passant par `c()` devient une seule ligne (un seul vecteur) de valeurs. Les fonctions `cbind()` et `rbind()` permettront de joindre des colonnes et des lignes, respectivement.
+Il faudra également faire attention aux arguments passés à la fonction `c()`, car celle-ci vectorise les arguments. Autrement dit, elle crée des vecteurs (une ligne en quelque sorte) avec les entrées fournies, peu importe leur structure de départ. Par exemple, un jeu de données passant par `c()` devient une seule ligne (un seul vecteur) de valeurs. Les fonctions `cbind()` et `rbind()` permettent de joindre des colonnes et des lignes, respectivement.
 
-### Création d'une matrice
+### Créer une matrice
 
-La fonction `matrix()` sera utile pour créer des matrices, comme des matrices de covariances, par exemple. La fonction utilise trois arguments, une matrice de nombre à entrer dans la matrice, un nombre de colonnes et un nombre de lignes. La fonction utilise le recyclage, ce qui pourra être utile à certaines occasions.
+La fonction `matrix()` crée des matrices, comme des matrices de covariances, par exemple. La fonction utilise trois arguments, une matrice de nombre à entrer dans la matrice, un nombre de colonnes et un nombre de lignes. La fonction utilise le recyclage, ce qui est utile à certaines occasions.
 
 ```{r}
 # Une matrice de 0 de taille 3 x 3
@@ -148,7 +148,7 @@ Les matrices sont une formes de jeu de données dans lequel tous les éléments 
 
 Une note devancée sur l'utilisation de `1:3` et `1:16` du code précédent qui permettent de générer des [séquences][La séquence] de nombre simplement. 
 
-### Création d'un jeu de données
+### Créer un jeu de données
 
 Un jeu de données (`data.frame`) est un peu comme l'extension de la matrice. La différence étant que les éléments entre les colonnes peuvent partager des attributs différents. Ainsi chaque ligne représente une unité (un participant, un objet) et chaque colonne représente une dimension (informations ou variable) différente de cette objectif. La fonction `data.frame()` permet de créer de tel objet. La fonction prend comme un argument une série de vecteurs. Des noms peuvent être attribués au colonnes qui correspondent à des variables.
 
@@ -170,9 +170,9 @@ jd1 ; jd2
 
 En utilisant `nom.de.variable = vecteur` à l'intérieur de `data.frame()`, les noms des colonnes deviennent `nom.de.variable`. Cela permettra une plus grande flexibilité lorsqu'il faudra [gérer] et [manipuler] les données. 
 
-Comme les matrices, les jeux de données ont aussi une restriction. Alors que les jeux de données libèrent la contrainte d'avoir des objets de même attributs entre les colonnes (variables), ils doivent être créés avec des vecteurs de même longueur. Autrement dit, chaque colonne doit avoir exactement le même nombre de lignes. Parfois, **R** procédera par recyclage pour combler les éléments. Il faudra donc porter une attention particulière, pour vérifier si c'est l'intention ou non.
+Comme les matrices, les jeux de données ont aussi une restriction. Alors que les jeux de données libèrent la contrainte d'avoir des objets de même attributs entre les colonnes (variables), ils doivent être créés avec des vecteurs de même longueur. Autrement dit, chaque colonne doit avoir exactement le même nombre de lignes. Parfois, **R** *recycle/ pour combler les éléments. Il faut donc porter une attention particulière afin de vérifier si c'est bien l'intention de l'utilisateur ou non.
 
-### Création d'une liste
+### Créer une liste
 
 Une troisième option pour stocker de informations dans une seule variable est d'avoir recourt aux listes. La liste libère à la fois l'utilisateur des objets de mêmes attributs et de même longueur. Ainsi, une liste, peut contenir des vecteurs, des matrices, des jeux de données et même d'autres listes. 
 
@@ -193,11 +193,11 @@ jd2 <- list(animal = var1, nombre = var2)
 jd1 ; jd2
 ```
 
-L'utilisation de listes est une caractéristique prédominante avec **R**. Par exemple, **R** ne peut sortir qu'une variable par fonction. Si la fonction doit retourner plusieurs éléments, ceux-ci devront se retrouver dans une liste. Ce qui sera plus nébuleux pour le lecteur, c'est que l'optimisation de **R** se fait par les listes. Cela sera noté aux moments appropriés.
+L'utilisation de listes est une caractéristique prédominante avec **R**. Par exemple, **R** ne peut sortir qu'une variable par fonction. Si la fonction doit retourner plusieurs éléments, ceux-ci doivent se retrouver dans une liste. Ce qui restera plus nébuleux pour le lecteur, c'est que l'optimisation de **R** se fait par listes. Cela sera noté aux moments appropriés.
 
 ## Référer à des sous-éléments
 
-Avec des variables contenant plusieurs valeurs, il peut être utile de référer à une seule valeur ou un ensemble de valeurs de la variable. Les crochets `[]` à la suite du nom d'une variable permettront d'en extraire les valeurs désirées sans tout sortir l'ensemble.
+Avec des variables contenant plusieurs valeurs, il peut être utile de référer à une seule valeur ou un ensemble de valeurs de la variable. Les crochets `[]` à la suite du nom d'une variable permettent d'en extraire les valeurs désirées sans tout sortir l'ensemble.
 
 ```{r}
 # Un exemple de vecteur
@@ -221,16 +221,16 @@ phrase[-c(1, 3)]
 
 Dans le premier exemple, seul un élément est demandé. Dans le deuxième exemple, la commande `1:3` produit la série de $1,2,3$ et en extrait ces nombres. Dans le dernier exemple, la fonction `c()` est astucieusement utilisée pour extraire les éléments $2$ et $4$. Le quatrième exemple montre comment retirer un élément en utilisant des valeurs négatives et le cinquième exemple montre comment retirer des éléments.
 
-La section [Manipulation de données] montrera comment référer à des sous-éléments de jeux de données, de matrices et de listes de façon plus avancées.
+La section [Manipulation de données] montre comment référer à des sous-éléments de jeux de données, de matrices et de listes de façon plus avancées.
 
 
 ## Les packages
 
-L'utilisation de packages (souvent nommées bibliothèques, modules, paquets ou paquetage en français - ici, l'usage de *package* sera maintenu) est l'attrait principal de **R**. Pour éviter l'anglicisme, Antidote [@Antidote] suggère *forfait*, *achat groupé* ou *progiciel* (ce dernier étant certainement le terme approprié). 
+L'utilisation de packages (souvent nommées bibliothèques, modules, paquets ou paquetage en français - ici, l'usage de *package* est maintenu) est l'attrait principal de **R**. Pour éviter l'anglicisme, Antidote [@Antidote] suggère *forfait*, *achat groupé* ou *progiciel* (ce dernier étant certainement le terme approprié). 
 
 Les packages sont de regroupement de fonctions. C'est certainement l'aspect qui a le plus contribué au succès et à sa dissémination de **R**. Il s'agit de la mise en commun d'un effort collaboratif afin de créer des fonctions et de les partager librement entre les usagers. Le téléchargement de base de **R** offre déjà quelques packages rudimentaires (comme `base` qui offre des fonctions comme `sum()` ou `stat`  qui offre des fonctions comme `mean()` et `var()`), mais qui suffisent rarement lorsque des analyses plus avancées ou plus spécialisées sont nécessaires.
 
-L'une des forces des packages est qu'ils sont fournis généralement avec un bon manuel d'utilisation. Plusieurs contributeurs leur sont associés (avec un responsable). Ils sont maintenus régulièrement. Le soutien des responsables est parfois aisé à obtenir et les auteurs de ces packages sont motivés à maintenir les packages opérationnels et aux bénéfices de tous. La faiblesse des packages est qu'il s'agit malheureusement de *généralement*. Il arrive que certains packages produisent des erreurs de calcul, soient laissé en désuétude par leurs auteurs, que le package ait migré sous une autre forme, que de meilleures options soient disponibles sans aucune notice à cet effet. Cela va sans dire, ce problème concerne les logiciels traditionnels également. Il s'agit toutefois d'un enjeu moindre, car les packages sont souvent recommandés par des collègues, des autorités dans leur domaine respectif ou des ouvrages de référence, ce qui aura comme tendance de promouvoir les meilleurs packages. Pas toujours. Il faut rester critique et ne pas de laisser tromper par une boîte noire.
+L'une des forces des packages est qu'ils sont fournis généralement avec un bon manuel d'utilisation. Plusieurs contributeurs leur sont associés (avec un responsable). Ils sont maintenus régulièrement. Le soutien des responsables est parfois aisé à obtenir et les auteurs de ces packages sont motivés à maintenir les packages opérationnels et aux bénéfices de tous. La faiblesse des packages est qu'il s'agit malheureusement de *généralement*. Il arrive que certains packages produisent des erreurs de calcul, qu'ils soient laissés en désuétude par leurs auteurs, qu'ils aient migrés sous une autre forme, ou que de meilleures options soient disponibles sans aucune notice. Cela va sans dire, ce problème concerne les logiciels traditionnels également. Il s'agit toutefois d'un enjeu moindre, car les packages sont souvent recommandés par des collègues, des autorités dans leur domaine respectif ou des ouvrages de référence, ce qui aura comme tendance de promouvoir les meilleurs packages. Pas toujours. Il faut rester critique et ne pas de laisser tromper par une boîte noire.
 
 Une dernière faiblesse : les packages agissent parfois en boîte noire, c'est-à-dire qu'ils court-circuitent la réflexion de l'utilisateur qui leur fait confiance. Il peut être parfois difficile de savoir ce que les fonctions produisent exactement. Au contraire des logiciels traditionnels, ces boîtes noires peuvent dans la plupart des cas être accessibles directement, elles sont liés en plus à des articles scientifiques ou de la documentation qui permet dans comprendre les tenants et aboutissants.
 
@@ -244,7 +244,7 @@ où les `"..."` doivent être remplacé par le nom du package. Il est important 
 > Tools;
 > Install Packages...
 
-puis de nommer le package sous l'onglet package. Avec **R** il faudra auparavant choisir un miroir (sélectionner un pays), ce qui ne sera pas nécessaire avec **R**Studio. Une fois téléchargé, il ne sera plus nécessaire de refaire cette étape à nouveau, à l'exception de potentielles et ultérieures mises à jour lorsqu'elles devront être réalisées.
+puis de nommer le package sous l'onglet package. Avec **R** il faudra auparavant choisir un miroir (sélectionner un pays), ce qui n'est pas nécessaire avec **R**Studio. Une fois téléchargé, il n'est plus nécessaire de refaire cette étape à nouveau, à l'exception de potentielles et ultérieures mises à jour lorsqu'elles devront être effectuées.
 
 ### Appeler un package
 Ce qui n'est pas des plus intuitif avec **R**, c'est qu'une fois le package téléchargé, il n'est pas directement utilisable. Il faut d'abord l'appeler avec la fonction `library()`.
@@ -253,7 +253,7 @@ Ce qui n'est pas des plus intuitif avec **R**, c'est qu'une fois le package tél
 library("...")
 ```
 
-Cette étape doit être faite à chaque ouverture de **R**. Cela permet de ne pas mettre en mémoire trop de package simultanément. Il sera ainsi important d'indiquer tous les packages utilisés en début de script sans quoi des erreurs comme l'absence de fonctions seront produites.
+Cette étape doit être faite à chaque ouverture de **R**. Cela permet de ne pas mettre en mémoire trop de package simultanément. Il importe d'indiquer tous les packages utilisés en début de script sans quoi des erreurs, comme l'absence de fonctions, sont produites.
 
 Une technique à laquelle l'utilisateur peut avoir recourt lorsqu'il souhaite n'utiliser qu'une fonction spécifique d'un package est l'utilisation des `::` débutant par le nom du package suivi par le nom de la fonction, comme ` MASS::mvrnorm()`. La fonction s'utilise de façon usuelle. En utilisant `::`, il n'est pas nécessaire d'appeler le package avec la fonction `library()`. Il faut toute fois que le package soit bel et bien installer.
 
@@ -270,24 +270,29 @@ Il existe également la fonction `??nom` qui produit une liste de toutes fonctio
 
 ## Les fonctions
 
-**R** offre une multitude de fonctions et permet également à l'usager de bâtir ses propres fonctions (fonctions maison). Elles permettent d'automatiser des calculs (généralement, mais peut faire beaucoup plus!). Tout au long de cet ouvrage, les fonctions seront identifiées par l'ajout de parenthèse à leur fin, comme ceci : `function()`. Ces fonctions ont généralement la forme suivante.
+**R** offre une multitude de fonctions et permet également à l'usager de bâtir ses propres fonctions (fonctions maison). Elles permettent d'automatiser des calculs (généralement, mais peut faire beaucoup plus!). Tout au long de cet ouvrage, les fonctions sont identifiées par l'ajout de parenthèse à leur fin, comme ceci : `function()`. Ces fonctions ont généralement la forme suivante.
 
 ```{r, eval = FALSE}
 nom <- function(argument1, argument2, ...) {
+  
   # Calcul à réaliser
+  
 }
 ```
 
-Ici, `nom` est le nom auquel la fonction sera référée par la suite, `function` est la fonction **R** qui permet de créer la fonction maison, `argument1` et `argument2` sont les arguments (les entrées) fournis à la fonction et à partir desquels les calculs seront réalisés, et les accolades `{}` définissent le début et la fin de la fonction dans le script.
+Ici, `nom` est le nom auquel la fonction sera référée par la suite, `function` est la fonction **R** qui permet de créer la fonction maison, `argument1` et `argument2` sont les arguments (les entrées) fournis à la fonction et à partir desquels les calculs sont réalisés, et les accolades `{}` définissent le début et la fin de la fonction dans le script.
 
-Il sera bien utile de créer ses propres fonctions bien que **R** possède une pléthore de fonctions et de packages en contenant encore plus. Toutes les fonctions, qu'elles soient maisons ou déjà intégrées, respectent le même fonctionnement, ce pour quoi il est utile de s'y pencher. Les fonctions maison permettront d'automatiser certains calculs qui seront propres à résoudre les problèmes de l'usager et d'être réutilisé ultérieurement.
+Il est bien utile de créer ses propres fonctions bien que **R** possède une pléthore de fonctions et de packages en contenant encore plus. Toutes les fonctions, qu'elles soient maisons ou déjà intégrées, respectent le même fonctionnement, ce pour quoi il est utile de s'y pencher. Les fonctions maison permettent d'automatiser certains calculs qui sont propres à résoudre les problèmes spécifiques de l'utilisateur et d'être réutilisé ultérieurement.
 
 Voici un exemple trivial de fonction, soit la somme de deux nombres.
 
 ```{r}
 addition <- function(a, b) {
+  
   a + b
+  
 }
+
 addition(2,3)
 ```
 
@@ -309,12 +314,14 @@ total <- addition2(100, 241)
 total
 ```
 
-Afin d'éviter ces problèmes, des ambiguïtés ou s'il faut retourner plusieurs arguments (ce qui sera souvent le cas!), il faut utiliser la fonction `return()` à la fin de la fonction.
+L'utilisation de `return()` à la fin de la fonction est une bonne pratique, car elle permet d'éviter des problèmes ou des ambiguïtés.
 
 ```{r}
 addition3 <- function(a, b) {
+  
   # Le résultat est assigné à une variable
   somme <- a + b
+  
   return(somme)
 }
 
@@ -326,14 +333,14 @@ total
 
 ## Définir une boucle
 
-Pour automatiser certains calculer, il peut être utile de recourir à une boucle (*loop*) qui pourra répéter plusieurs fois une même opération. Voici l'anatomie d'une boucle.
+Pour automatiser certains calculs, il peut être utile de recourir à une boucle (*loop*) qui permet de répéter plusieurs fois une même opération. Voici l'anatomie d'une boucle.
 
 ```{r, eval=FALSE}
 for(i in vec){
   # Calcul désiré
 }
 ```
-L'élément `for` est la fonction déclarant la boucle. Les renseignements sur les itérations se retrouvent entre les parenthèses. La variable `i` prendra successivement tous les éléments dans (`in`) le vecteur à gauche (`vec`). Tout le contenu de la boucle (ce qui sera répété) se retrouve entre les accolades `{}`, c'est ce qui sera produit à chaque boucle. Dans cet exemple, la boucle se répète $k$ fois, soit de $1,2,3,...,k$, à cause de l'expression `1:k` qui correspond à générer un vecteur de $1$ à $k$. La variable `i` quant à elle change de valeur à chaque itération. Elle prendra tour à tour ces valeurs chaque itération $1,2,3,...,k$. La variable pourra judicieusement être utilisée dans la boucle afin de profiter ce comportement, notamment pour le classement des résultats. Lorsque la boucle atteint $k$, elle se termine.
+L'élément `for` est la fonction déclarant la boucle. Les renseignements sur les itérations se retrouvent entre les parenthèses. La variable `i` prendra successivement tous les éléments dans (`in`) le vecteur à gauche (`vec`). Tout le contenu de la boucle (ce qui est répété) se retrouve entre les accolades `{}`, c'est ce qui est calculé à chaque boucle. Dans cet exemple, la boucle se répète $k$ fois, soit de $1,2,3,...,k$, à cause de l'expression `1:k` qui correspond à générer un vecteur de $1$ à $k$ (voir la section [La séquence]). La variable `i` quant à elle change de valeur à chaque itération. Elle prend tour à tour les valeurs $1,2,3,...,k$. La variable peut judicieusement être utilisée dans la boucle afin de profiter ce comportement, notamment pour le classement des résultats. Lorsque la boucle atteint $k$, elle se termine.
 
 Il est aussi possible de rédiger la boucle en utilisant uniquement `k`. Alors, `i` prendra toutes les valeurs contenues dans `k`. La longueur du vecteur `k` définit le nombre d'itérations.
 
@@ -381,7 +388,7 @@ valeurs[valeurs > 3]
 
 Ici, toutes les valeurs vraies de l'opérateur logique sont rapportées.
 
-Les opérateurs logiques servent également à définir des opérations conditionnelles. La fonction `if` sera alors utilisée. Il y a trois principales formes : `if` (Si ceci, alors cela), le `if  else` (Si ceci, alors cela, sinon autre chose) et les échelles `if else if else`.
+Les opérateurs logiques servent également à définir des opérations conditionnelles. La fonction `if` est alors utilisée. Il y a trois principales formes : `if` (Si ceci, alors cela), le `if  else` (Si ceci, alors cela, sinon autre chose) et les échelles `if else if else`.
 
 ```{r, eval=FALSE}
 if(x){
@@ -429,4 +436,4 @@ Il peut arriver pour certaines fonctions de devoir spécifier si certains param�
 
 ## En cas de pépins
 
-Il arrive parfois que le code utilisé ne fonctionne pas, que des erreurs se produisent ou que des fonctions fort utiles demeurent inconnues. Même après plusieurs années d'utilisation, les utilisateurs font encore quotidiennement des erreurs (au moins une!). Un excellent outil est d'utiliser un moteur de recherche, de poser une question à l'aide de quelques mots clés bien choisis, préférablement en anglais, et en y inscrivant "with R" ou "in R" ou "R". La plupart du temps, les programmeurs de packages auront une solution sur leur site ou leurs instructions de packages. Il y a aussi des plateformes publiques et en ligne, comme [StackOverflow](https://stackoverflow.com/), qui collectent questions et réponses sur le codage. D'autres utilisateurs peuvent avoir posé la même question et des auteurs de programmes **R** et d'autres usagers y auront répondu aux bénéfices de tous. Dans le cas d'une solution introuvable, ces mêmes plateformes permettent de poser de nouvelles questions.  Il faudra toutefois attendre qu'un usager plus expérimenté prenne le temps d'y répondre.
+Il arrive parfois que le code utilisé ne fonctionne pas, que des erreurs se produisent ou que des fonctions fort utiles demeurent inconnues. Même après plusieurs années d'utilisation, les utilisateurs font encore quotidiennement des erreurs (au moins une!). Un excellent outil est d'utiliser un moteur de recherche, de poser une question à l'aide de quelques mots clés bien choisis, préférablement en anglais, et en y inscrivant "with R" ou "in R" ou "R". La plupart du temps, les programmeurs de packages ont une solution sur leur site ou leurs instructions de packages. Il y a aussi des plateformes publiques et en ligne, comme [StackOverflow](https://stackoverflow.com/), qui collectent questions et réponses sur le codage. D'autres utilisateurs peuvent avoir posé la même question et des auteurs de programmes **R** et d'autres usagers y ont répondu aux bénéfices de tous. Dans le cas d'une solution introuvable, ces mêmes plateformes permettent de poser de nouvelles questions.  Il faudra toutefois attendre qu'un usager plus expérimenté prenne le temps d'y répondre.

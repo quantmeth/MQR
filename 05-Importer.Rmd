@@ -1,19 +1,23 @@
 # Importer
 
-Réaliser des analyses statistiques et des représentations graphiques nécessitent un jeu de données sur lequel travailler. Après l'ouverture de **R**, l'usager remarquera aisément que le logiciel n'est pas un tableur (tableau de données), contrairement aux logiciels traditionnels. Cette caractéristique l'a peut-être même frappé à la première ouverture! Pour utiliser données, il est d'usage de les conserver dans un fichier externe de la même façon qu'un script, à l'exception qu'il faudra importer les données pour son utilisation.
+Un jeu de données est essentiel pour réaliser des analyses statistiques et des représentations graphiques. Après l'ouverture de **R**, l'usager remarque, stupéfait, que le logiciel n'est pas un tableur (tableau de données), contrairement aux logiciels traditionnels. Cette caractéristique l'a peut-être même frappé à la première ouverture! 
+
+Les jeux de données sont traités de la même façon que les scripts. Il est d'usage de les conserver dans un fichier externe et d'y recourir pendant la séance de travail.
 
 Un jeu de données porte généralement les extensions ".Rdata", lorsqu'elles proviennent de **R**, ou d'extensions ".dat" et ".txt". Évidemment, **R** permet une grande flexibilité, il est ainsi possible d'exporter et d'importer dans d'autres extensions. Les extensions ".Rdata" sont des environnements **R**, elles contiennent potentiellement plusieurs variables, comme une séance de travail complète. Elles ont aussi l'avantage que, si l'utilisateur double-clique sur un fichier d'extension ".Rdata", celui-ci s'ouvre automatiquement dans l'environnement **R**.
 
-Il est recommandé de ne jamais manipuler les fichiers de données une fois toutes les vérifications réalisées (absence d'erreur dans les données). Il ne sera jamais nécessaire de modifier ces fichiers avec **R**. Contrairement aux logiciels traditionnels dans lesquels les modifications sont apportées directement aux valeurs ou ajoutées aux fichiers, cela n'est pas nécessaire dans la mesure où les syntaxes décrivant ces manipulations sont conservées. Il devient impossible d'endommager, de corrompre ou d'altérer le fichier de données. Les données originales restent intactes. Il suffit de les importer puis de commander la syntaxe qui lui est associée pour obtenir de nouveau la version *propre* du jeu de données.
+Il faut importer le jeu de données à chaque nouvelle séance utilisation. Contrairement aux logiciels traditionnels, il n'est pas nécessaire, **ni même recommander!**, de modifier, d'altérer ou de manipuler un fichier contenant des données. Cela n'est pas nécessaire dans la mesure où **les syntaxes décrivant ces manipulations sont conservées**. Il devient alors impossible d'endommager, de corrompre, d'altérer ou d'archiver erronément le fichier de données. **Les données originales restent intactes**. Il suffit de les importer à chaque nouvelle séance, de commander la syntaxe qui lui est associée pour obtenir de nouveau la version *propre* du jeu de données.
+
+Il est recommandé de ne jamais manipuler les fichiers de données une fois toutes les vérifications réalisées (absence d'erreur dans les données). Il n'est jamais nécessaire de modifier ces fichiers avec **R**. Également, un même jeu de données peut être associé à plusieurs syntaxes de nettoyage, de manipulation et d'analyse, mais tous les collaborateurs partagent le même jeu de données, ce qui facilite les échanges entre eux.
 
 ## Jeux de données provenant de **R** et de packages
 
-Plusieurs packages offrent en plus des fonctions des jeux de données. Mieux encore! **R** offre des jeux de données inclus avec le logiciel. La fonction `data()` permet de voir la liste des jeux de données disponibles. Taper simplement le nom du jeu de données permet de l'utiliser, comme s'il avait été déclaré auparavant.
+Plusieurs packages offrent, en plus des fonctions, des jeux de données. Mieux encore! **R** offre des jeux de données inclus avec le logiciel. La fonction `data()` permet de voir la liste des jeux de données disponibles. Taper simplement le nom du jeu de données permet de l'utiliser comme s'il avait été déclaré auparavant.
 
 ```{r}
 head(cars)
 ```
-La fonction `head()` introduite ici donne simplement un aperçu des six premières lignes du jeu de données pour ne pas afficher le jeu de données complet (ce qui prendrait beaucoup d'espace inutilement dans la console).
+La fonction `head()` introduite ici donne simplement un aperçu des six premières lignes du jeu de données pour ne pas afficher le jeu de données complet (ce qui prend beaucoup d'espace inutilement dans la console).
 
 Pour consulter tous les jeux de données des packages importés, il est possible d'utiliser cette ligne de code.
 ```{r}
@@ -21,9 +25,9 @@ data(package = .packages((all.available = TRUE)))
 ```
 Pour utiliser ces jeux, il faut rendre actif le package associé avec la fonction `library()`.
 
-## Création des jeux de données artificielles
+## Créer un jeu de données artificielles
 
-Une façon rudimentaire et efficace d'obtenir des données avec **R** est de les créer à l'aide des fonctions génératrices de données pseudoaléatoires vue à la section [Les distributions] et les joindre ensemble (voir section [Création d'un jeu de données]). 
+Une façon rudimentaire et efficace d'obtenir des données avec **R** est de les créer à l'aide des fonctions génératrices de données pseudoaléatoires vue à la section [Les distributions] et les joindre ensemble (voir section [Créer un jeu de données]). 
 
 ```{r , eval= FALSE}
 # Pour la reproductibilité
@@ -50,39 +54,45 @@ jd <- data.frame(id = id,
 save(jd, file = "donnees.Rdata")
 ```
 
-Et voilà un jeu de données simple et sauvegardé dans le dossier de travail auquel il sera possible de se référer.
+Et voilà un jeu de données simple et sauvegardé dans le dossier de travail auquel il est possible de se référer.
 
 Ici, deux nouvelles fonctions sont employées : `round()` arrondie les valeurs à l'unité et `save()` permet de [sauvegarder un jeu de données] crée un le jeu de données.
 
-## Exporter
+## Sauvegarder un jeu de données
 
-### Exporter de IBM SPSS
-
-Il est possible d'exporter des données de IBM SPSS pour une utilisation avec **R**. Il faut quelques manipulations préalables. En ayant le fichier de données IBM SPSS ouvert, il faut cliquer sur "Enregistrer sous" sous le menu déroulant "Fichier". Par défaut, IBM SPSS choisie toutes les variables, mais il est possible de sélectionner seulement les variables d'intérêt en décochant les variables qu'il n'est pas nécessaire de conserver. Ensuite, il faut sélectionner le type de fichier de sauvegarde, préférablement "Tabulé (*.dat)". IBM SPSS offre également la possibilité d'enregistrer les noms de variables (première option à cocher) et les libellés de valeur. Il suffit maintenant de nommer le fichier et de cliquer sur l'onglet "Enregister".
-
-En s'assurant que nouveau fichier se trouve dans le directoire actif de **R**, il suffit de télécharger le fichier.
+Si un jeu de données est créé directement avec **R**, par exemple, les jeux de données artificiels, il est possible de les sauvegarder avec la fonction `save()` qui enregistre une variable dans un fichier.
 
 ```{r, eval=FALSE}
-jd <- read.table(file = "donnees.tab", header = TRUE)
+save("variable", file = "fichier.Rdata")
 ```
 
-L'option `header` est `FALSE` si les noms de variables n'ont pas été conservés (première ligne du fichier). La variable `jd` contient la base de données et est prête à être manipulée. 
+La fonction `save()` a deux arguments principaux : un nom de variable à enregistrer et un nom de fichier d'extension `.Rdata`, les deux entre guillemets anglophones.
 
-### Exporter de Microsoft Excel
+Il est possible à la fin d'une session de travail de sauvegarder l'environnement complet dans un fichier `save.image()`. Ainsi, toutes les variables et fonctions maison sont conservées pour une future utilisation.
 
-Il est possible d'exporter des données de Microsoft Excel pour une utilisation avec **R**. Il faut sélectionner l'onglet "Fichier", puis Enregistrer sous". Dans le menu déroulant, sélectionner comme type de fichier "Texte Unicode (*.txt)". Intituler le fichier, puis cliquer sur "Enregister".
+```{r, eval = FALSE}
+save.image(file = "SessionTravail.Rdata")
+```
 
-Microsoft Excel sauvegardera l'entièreté de la page active. Il est donc pertinent de créer une feuille Microsoft Excel ne contenant que les informations à conserver.
+Il y a aussi la famille de fonction `write()` pour enregistrer le jeu de données en différentes extension, comme, `write.csv()`, `write.csv2()`, `write.table()`. Celles-ci fonctionne comme la fonction `save()`.
 
-Par la suite, en s'assurant que nouveau fichier se trouve dans le directoire actif de **R**, il suffit de télécharger le fichier avec `read.table()` (voir la prochaine section) et les arguments convenant au jeu de données.
+## Voir la base de données
 
-## Importer de **R**
+Parfois des valeurs s'ajoutent lors de l'exportation ou l'importation des données. Des logiciels traditionnels font parfois ce mauvais tour. Une vérification de la base de données est par conséquent impérative, surtout lors de la première utilisation du jeu de données. Deux méthodes de vérification sont suggérées. D'abord, ouvrir le fichier avec un éditeur de texte de base, comme bloc-notes, pour s'assurer qu'aucun caractère indésirable ne s'est ajouté à l'insu de l'utilisateur. Ensuite, voir avec la fonction `View()` dans **R** si la base de données s'affiche correctement et que les colonnes et les lignes correspondent à ce qui est attendu.
 
-Dans la plupart des situations, les analyses et les graphiques seront réalisés à partir d'un jeu de données se trouvant dans un fichier. Ce lui-ci est importé en **R** pour être manipulé. Les jeux de données peuvent se trouver dans un fichier dans l'ordinateur, mais aussi sur le web. Ils peuvent être en différents types de format.
+```{r, eval = FALSE}
+View(jd)
+```
 
-Pour la description de l'importation, l'ouvrage tient pour acquis que le fichier de données se retrouve dans le directoire de travail (ce qui est l'idéal en général). Un peu plus loin, la création de trajectoires pour différents emplacements sera présentée.
+Il est possible de voir les données en utilisant la fonction `View()` et en y insérant le nom de la variable associée au jeu de données. Le logiciel affiche un tableur avec les données dont il est impossible de modifier les valeurs. Cette fonction est utile pour s'assurer que le jeu de données est en ordre, bien importé, ou le consulter.
 
-Les fonctions de base permettront d'importer la plupart des jeux de données, particulièrement s'ils ont été exportés dans un format compatible. Pour le cas où ces fichiers ne sont pas importables, des packages pallieront ce besoin. Dans cet ouvrage, seule une présentation sommaire de ces options est discutée, l'utilisateur est recommandé à la documentation de ces packages pour plus d'informations.
+## Importer avec **R**
+
+Dans la plupart des situations, les analyses et les graphiques sont réalisés à partir d'un jeu de données se trouvant dans un fichier. Ce lui-ci est importé en **R** pour être manipulé. Les jeux de données peuvent se trouver dans un fichier dans l'ordinateur, mais aussi sur le web. Ils peuvent être en différents types de format.
+
+Pour la description de l'importation, le présent ouvrage prend pour acquis que le fichier de données se retrouve dans le directoire de travail (ce qui est l'idéal en général). La création de trajectoires pour différents emplacements est présentée dans la section [Emplacement du jeu de données].
+
+Les fonctions de base permettent d'importer la plupart des jeux de données, particulièrement s'ils ont été exportés dans un format compatible. Pour le cas où ces fichiers ne sont pas importables, des packages pallient ce besoin. Dans cet ouvrage, seule une présentation sommaire de ces options est discutée, l'utilisateur est recommandé à la documentation de ces packages pour plus d'informations.
 
 La prochaine section décrit les fonctions pour importer les bases de données "manuellement". En plus de ces méthodes, **R**Studio possède une interface permettant l'importation des données.
 
@@ -90,11 +100,11 @@ La prochaine section décrit les fonctions pour importer les bases de données "
 
 La fonction de base `read.table()` permet d'importer la plupart des jeux de données. Ceux-ci ont certaines caractéristiques qu'il faudra préciser comme argument à la fonction `read.table()` pour assurer une importation adéquate. Ces caractéristiques sont `header = FALSE`, `sep = ""`, et `fill = !blank.lines.skip` (les éléments à droite sont les options par défaut).
 
-Parfois, certains fichiers sauvegardent le nom des variables en tête de colonne (première ligne). Par défaut, **R** assume qu'il s'agit de valeurs. L'argument `header = TRUE` ajouté à `read.table()` précisera à **R** lors de l'importation que ces libellés sont des noms de colonnes. 
+Parfois, certains fichiers sauvegardent le nom des variables en tête de colonne (première ligne). Par défaut, **R** assume qu'il s'agit de valeurs. L'argument `header = TRUE` ajouté à `read.table()` précise à **R** lors de l'importation que ces libellés sont des noms de colonnes. 
 
-Si un autre symbole est utilisé pour délimiter (séparer) des valeurs dans le fichier, comme `;`ou `,`, l'argument `sep = ";"` ou `sep = ","` précisera le séparateur. 
+Si un autre symbole est utilisé pour délimiter (séparer) des valeurs dans le fichier, comme `;`ou `,`, l'argument `sep = ";"` ou `sep = ","` précise le séparateur. 
 
-Si les lignes du fichier sont de tailles inégales, **R** assumera qu'il s'agit de valeur, et ces *blancs* de texte seront ajoutés comme valeurs (`""`). Pour gérer cette situation, l'argument `fill = FALSE` devrait régler la situation.
+Si les lignes du fichier sont de tailles inégales, **R** assume qu'il s'agit de valeur, et ces *blancs* de texte sont ajoutés comme valeurs (`""`). Pour gérer cette situation, l'argument `fill = FALSE` règle la situation.
 
 ## Fichiers d'extension .txt
 
@@ -123,7 +133,7 @@ Il existe aussi la fonction `read.csv()` (nombres décimaux délimités par un p
 
 ## Fichiers délimités
 
-Pour les fichiers recourant à un autre caractère qu'une tabulation, qu'une `","`, ou un `";"` pour délimiter les valeurs, il faut spécifier le caractère dans `read.table()` importera le fichier.
+Pour les fichiers recourant à un autre caractère qu'une tabulation, qu'une `","`, ou un `";"` pour délimiter les valeurs, il faut spécifier le caractère dans `read.table()` importe le fichier.
 
 ```{r, eval = FALSE}
 jd <- read.table("fichier.txt", sep = "$")
@@ -158,7 +168,7 @@ Consulter la documentation du package pour plus d'informations sur les options p
 
 ## Fichiers d'extension .xls et xlsx
 
-Il n'existe pas de fonction de base pour importer des fichiers Microsoft Excel (extensions `.xls` et `.xlsx`). Par contre, il existe plusieurs packages qui permettront de la faire, comme `readxl` [@readxl]. Le package `readlxl` permet d'utiliser la fonction `read_excel()` pour importer le fichier.
+Il n'existe pas de fonction de base pour importer des fichiers Microsoft Excel (extensions `.xls` et `.xlsx`). Par contre, il existe plusieurs packages qui permettent de la faire, comme `readxl` [@readxl]. Le package `readlxl` permet d'utiliser la fonction `read_excel()` pour importer le fichier.
 
 ```{r, eval = FALSE}
 # Excel
@@ -208,7 +218,7 @@ Consulter la documentation du package pour plus d'informations sur les options p
 
 ## Emplacement du jeu de données
 
-Idéalement, le fichier contenant le jeu de données sera déjà dans le directoire de travail (ou dan le projet **R** en cours). Dans ce contexte, il suffit de référer seulement au nom du fichier.
+Idéalement, le fichier contenant le jeu de données se retrouve déjà dans le directoire de travail (ou dan le projet **R** en cours). Dans ce contexte, il suffit de référer seulement au nom du fichier.
 
 ```{r, eval=FALSE}
 jd <- read.table("fichier.txt")
@@ -220,7 +230,7 @@ Si le jeu de données est sur le web, il peut être importé en précisant l'URL
 jd <- read.table("https://site/ou/trouver/le/fichier.txt")
 ```
 
-S'il est plutôt dans un fichier sur l'ordinateur, mais pas dans le directoire de travail, ce sera essentiellement la même méthode.
+S'il est dans un fichier sur l'ordinateur, mais pas dans le directoire de travail, il s'agit essentiellement la même méthode.
 
 ```{r eval=FALSE}
 jd <- read.table("C://site//ou//trouver//le//fichier.txt")
@@ -240,30 +250,27 @@ L'utilisateur doit identifier manuellement (pointer et cliquer) où se trouve le
 
 **R**Studio offre une interface simple pour télécharger directement un jeu de de données IBM SPSS, Microsoft Excel, SAS, STATA, et des extensions ".txt" et ".readr". Il y a même un outil de visualisation pour s'assurer que le tout est en ordre. Pour procéder, il faut faire *File > Import dataset > From "format de fichier* où "format de fichier" remplace Text, SPSS, Excel et les autres. Il faut suivre les instructions. En indiquant le chemin du fichier, **R** importe le fichier et fournie une syntaxe afin de reproduire l'importation pour de futurs usages.
 
-## Voir la base de données
+## Exporter d'autres logiciels
 
-Parfois des valeurs s'ajoutent lors de l'exportation ou l'importation des données. Des logiciels traditionnels font parfois ce mauvais tour. Une vérification de la base de données est par conséquent impérative, surtout lors de la première utilisation du jeu de données. Deux méthodes de vérification sont suggérées. D'abord, ouvrir le fichier avec un éditeur de texte de base, comme bloc-notes, pour s'assurer qu'aucun caractère indésirable ne s'est ajouté à l'insu de l'utilisateur. Ensuite, voir avec la fonction `View()` dans **R** si la base de données s'affiche correctement et que les colonnes et les lignes correspondent à ce qui est attendu.
+### Exporter de IBM SPSS
 
-```{r, eval = FALSE}
-View(jd)
-```
+Il est possible d'exporter des données de IBM SPSS pour une utilisation avec **R**. Il faut quelques manipulations préalables. En ayant le fichier de données IBM SPSS ouvert, il faut cliquer sur "Enregistrer sous" sous le menu déroulant "Fichier". Par défaut, IBM SPSS choisie toutes les variables, mais il est possible de sélectionner seulement les variables d'intérêt en décochant les variables qu'il n'est pas nécessaire de conserver. Ensuite, il faut sélectionner le type de fichier de sauvegarde, préférablement "Tabulé (*.dat)". IBM SPSS offre également la possibilité d'enregistrer les noms de variables (première option à cocher) et les libellés de valeur. Il suffit maintenant de nommer le fichier et de cliquer sur l'onglet "Enregister".
 
-
-Il est possible de voir les données en utilisant la fonction `View()` et en y insérant le nom de la variable. Le logiciel afficher un tableur avec les données, dont il sera impossible de modifier les valeurs. Cela peut être utile pour s'assurer que le jeu de données est en ordre, bien importé, ou le consulter.
-
-## Sauvegarder un jeu de données
-
-Si un jeu de données est directement créé avec **R**, par exemple, les jeux de données artificiels, il est possible de les sauvegarder avec la fonction `save()` qui enregistre une variable dans un fichier.
+En s'assurant que nouveau fichier se trouve dans le directoire actif de **R**, il suffit de télécharger le fichier.
 
 ```{r, eval=FALSE}
-save("variable", file = "fichier.Rdata")
+jd <- read.table(file = "donnees.tab", header = TRUE)
 ```
 
-Il est possible à la fin d'une session de travail de sauvegarder l'environnement complet dans un fichier `save.image()`. Ainsi, toutes les variables et fonctions maison sont conservées pour une future utilisation.
+L'option `header` est `FALSE` si les noms de variables n'ont pas été conservés (première ligne du fichier). La variable `jd` contient la base de données et est prête à être manipulée. 
 
-```{r, eval = FALSE}
-save.image(file = "SessionTravail.Rdata")
-```
+### Exporter de Microsoft Excel
+
+Il est possible d'exporter des données de Microsoft Excel pour une utilisation avec **R**. Il faut sélectionner l'onglet "Fichier", puis Enregistrer sous". Dans le menu déroulant, sélectionner comme type de fichier "Texte Unicode (*.txt)". Intituler le fichier, puis cliquer sur "Enregister".
+
+Microsoft Excel sauvegarde l'entièreté de la page active. Il est donc pertinent de créer une feuille Microsoft Excel ne contenant que les informations à conserver.
+
+Par la suite, en s'assurant que nouveau fichier se trouve dans le directoire actif de **R**, il suffit de télécharger le fichier avec `read.table()` (voir la prochaine section) et les arguments convenant au jeu de données.
 
 ## Quelques conseils de gestion
 

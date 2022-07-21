@@ -6,15 +6,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Exercices | Méthodes Quantitatives avec R</title>
 <meta name="author" content="P.-O. Caron">
-<meta name="description" content="Prendre le jeu de données mtcars et produire un diagramme de dispersion montrant la puissance brute (en chevaux) (hp) par rapport à consommation en km/l (basé sur mpg) tout en soulignant l’effet...">
+<meta name="description" content="TODO ENTRER À l’aide de data_edit() du package DataEditR, créez un jeu données contenant trois participants ayant les caractéristiques suivantes, nom = Alexandre, Samuel et Vincent et age = 20, 22...">
 <meta name="generator" content="bookdown 0.27 with bs4_book()">
 <meta property="og:title" content="Exercices | Méthodes Quantitatives avec R">
 <meta property="og:type" content="book">
 <meta property="og:url" content="mqr.teluq.ca/exercice-gestion.html">
-<meta property="og:description" content="Prendre le jeu de données mtcars et produire un diagramme de dispersion montrant la puissance brute (en chevaux) (hp) par rapport à consommation en km/l (basé sur mpg) tout en soulignant l’effet...">
+<meta property="og:description" content="TODO ENTRER À l’aide de data_edit() du package DataEditR, créez un jeu données contenant trois participants ayant les caractéristiques suivantes, nom = Alexandre, Samuel et Vincent et age = 20, 22...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Exercices | Méthodes Quantitatives avec R">
-<meta name="twitter:description" content="Prendre le jeu de données mtcars et produire un diagramme de dispersion montrant la puissance brute (en chevaux) (hp) par rapport à consommation en km/l (basé sur mpg) tout en soulignant l’effet...">
+<meta name="twitter:description" content="TODO ENTRER À l’aide de data_edit() du package DataEditR, créez un jeu données contenant trois participants ayant les caractéristiques suivantes, nom = Alexandre, Samuel et Vincent et age = 20, 22...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
@@ -100,11 +100,23 @@
   </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="exercice-gestion" class="section level1 unnumbered">
 <h1>Exercices<a class="anchor" aria-label="anchor" href="#exercice-gestion"><i class="fas fa-link"></i></a>
 </h1>
+<p>TODO</p>
+<p>ENTRER</p>
 <ol style="list-style-type: decimal">
-<li><p>Prendre le jeu de données <code>mtcars</code> et produire un diagramme de dispersion montrant la puissance brute (en chevaux) (<code>hp</code>) par rapport à consommation en km/l (basé sur <code>mpg</code>) tout en soulignant l’effet du nombre de cylindres (<code>cyl</code>). <strong>Attention</strong> la fonction <code>as_factor</code> permettra d’utiliser <code>cyl</code> en facteur.</p></li>
-<li><p>Prendre le jeu de données <code>mtcars</code> et produire un histogramme montrant la variabilité de la consommation <code>mpg</code> par rapport à la transmission (<code>am</code>). <strong>Attention</strong> la fonction <code>as_factor</code> permettra d’utiliser <code>am</code> en facteur.</p></li>
-<li><p>Prendre le jeu de données <code>msleep</code> et produire un diagramme à bâton pour observer la fréquence de différents type de régime (<code>vore</code>). <strong>Attention</strong> aux données manquantes.</p></li>
-<li><p>Prendre le jeu de données <code>msleep</code> et produire une boîte à moustache pour observer le temps total de sommeil (<code>sleep_total</code>) par rapport aux régimes (<code>vore</code>). <strong>Attention</strong> aux données manquantes.</p></li>
+<li>À l’aide de <code><a href="https://rdrr.io/pkg/DataEditR/man/data_edit.html">data_edit()</a></code> du package <code>DataEditR</code>, créez un jeu données contenant trois participants ayant les caractéristiques suivantes, <code>nom = Alexandre, Samuel et Vincent</code> et <code>age = 20, 22 et 31</code>.</li>
+</ol>
+<div class="sourceCode" id="cb100"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Installer et appeler le package DataEditR, si ce n'est fait</span>
+<span class="va">jd</span> <span class="op">&lt;-</span> <span class="fu">DataEditR</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/DataEditR/man/data_edit.html">data_edit</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<p>IMPORTER</p>
+<p>MANIPULER</p>
+<p>Prenez le jeu de données <code>cars</code>, sélectionner la variable <code>dist</code> et transformer la en mètre, plutôt qu’en pieds. Rappel: un mètre égale 3.2808 pieds.</p>
+<p>VISUALISER</p>
+<ol style="list-style-type: decimal">
+<li><p>Prenez le jeu de données <code>mtcars</code> et produisez un diagramme de dispersion montrant la puissance brute (en chevaux) (<code>hp</code>) par rapport à consommation en km/l (basé sur <code>mpg</code>) tout en soulignant l’effet du nombre de cylindres (<code>cyl</code>). <strong>Attention</strong> la fonction <code>as_factor</code> permettra d’utiliser <code>cyl</code> en facteur.</p></li>
+<li><p>Prenez le jeu de données <code>mtcars</code> et produisez un histogramme montrant la variabilité de la consommation <code>mpg</code> par rapport à la transmission (<code>am</code>). <strong>Attention</strong> la fonction <code>as_factor</code> permettra d’utiliser <code>am</code> en facteur.</p></li>
+<li><p>Prenez le jeu de données <code>msleep</code> et produisez un diagramme à bâton pour observer la fréquence de différents type de régime (<code>vore</code>). <strong>Attention</strong> aux données manquantes.</p></li>
+<li><p>Prendez le jeu de données <code>msleep</code> et produisez une boîte à moustache pour observer le temps total de sommeil (<code>sleep_total</code>) par rapport aux régimes (<code>vore</code>). <strong>Attention</strong> aux données manquantes.</p></li>
 </ol>
 <!-- # Travail pratique cours 5 --><!-- # Importer la base de données #### --><!-- # donnees_tp4.csv (sur moodle) --><!-- # Créer une variable d'IMC #### --><!-- # IMC = poids / taille^2 --><!-- # Extraire le sommaire des statistiques descriptives #### --><!-- # moyenne, écart type, minimum, maximum, taille --><!-- # pour taille, poids et IMC --><!-- # Faire un test t #### --><!-- # entre sexe et taille --><!-- # Faire une anova  #### --><!-- # entre scolarite et poids --><!-- # Faire une corrélation #### --><!-- # entre pas et IMC --><!-- # Faire une boîte à moustache #### --><!-- # avec taille pas rapport à sexe --><!-- # Faire un histogramme #### --><!-- # pour poids --><!-- # Faire un diagramme de dispersion#### --><!-- # avec pas et IMC --><!-- # Travail pratique cours 5 --><!-- # Importer la base de données #### --><!-- # donnees_tp4.csv (sur moodle) --><!-- # Créer une variable d'IMC #### --><!-- # IMC = poids / taille^2 --><!-- # Faire un test t #### --><!-- # entre sexe et taille --><!-- # Faire une anova  #### --><!-- # entre scolarite et poids --><!-- # Faire une corrélation #### --><!-- # entre pas, taille, poids, et IMC -->
 </div>
@@ -133,7 +145,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Méthodes Quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-06-22.</p>
+    <p>"<strong>Méthodes Quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-07-21.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
