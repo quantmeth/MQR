@@ -17,7 +17,7 @@ Pour le non-initié aux fonctions permettant de créer des nombres pseudoaléato
 
 ```r
 runif(n = 1)
-> [1] 0.018
+> [1] 0.764
 ```
 
 Le statisticien s'intéresse à inférer comment ces valeurs sont générées. Il postule ainsi que les valeurs aléatoires suivent une distribution de probabilité. Connaître cette distribution est très important, car c'est elle qui permet de répondre à des questions comme : quelle est la probabilité d'obtenir un résultat aussi rare que $x$? Ou quelle sont les valeurs attendues pour $95\%$ des tirages? Questions tout à fait pertinentes pour l'expérimentateur. Une des distributions les plus connues est certainement la distribution normale, celle qui est derrière la fonction `rnorm()` d'ailleurs. Mais, il y en a beaucoup, beaucoup d'autres. 
@@ -107,13 +107,11 @@ La distribution normale du QI humain joue le rôle d'hypothèse nulle, les perso
 
 Les expérimentateurs émettent l'hypothèse que les 5 % personnes ayant le plus haut QI sont vraisemblablement reptiliens. C'est le risque qu'ils sont prêts à prendre de sélectionner un humain et de le classer erronément comme reptilien.
 
-Le groupe d'expérimentateurs teste leur instrument sur Fanny. Elle a un QI de 120. La Figure \@ref(fig:fannyd) illustre la distribution de l'intelligence dans la population et où se situe Fanny parmi celle-ci. Comment tester si elle est reptilienne? 
-
-
+Le groupe d'expérimentateurs teste leur instrument sur Fanny. Elle a un QI de 120. La Figure\ \@ref(fig:fannyd) illustre la distribution de l'intelligence dans la population et où se situe Fanny parmi celle-ci. Comment tester si elle est reptilienne? 
 
 <div class="figure">
-<img src="08-Inferer_files/figure-html/fanny d-1.png" alt="Score de Fanny sur la distribution normale" width="672" />
-<p class="caption">(\#fig:fanny d)Score de Fanny sur la distribution normale</p>
+<img src="08-Inferer_files/figure-html/fannyd-1.png" alt="Score de Fanny sur la distribution normale" width="672" />
+<p class="caption">(\#fig:fannyd)Score de Fanny sur la distribution normale</p>
 </div>
 
 

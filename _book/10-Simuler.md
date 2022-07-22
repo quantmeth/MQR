@@ -14,7 +14,7 @@ Une simulation de Monte-Carlo prédit une étendue de résultats possibles à pa
 
 Les simulations Monte-Carlo sont particulièrement utiles, car elles permettent, en mathématiques, de calculer des intégrales très complexes; en physique, d'estimer la forme d'un signal ou la sensibilité; en finance, simulent des conditions permettant de prévoir le marché; et en psychologie, simuler des processus comportementaux ou cognitifs.
 
-Les simulations Monte-Carlo possèdent trois caractéristiques ou étapes :
+Les simulations Monte-Carlo possèdent trois caractéristiques :
 
 1. Construire un modèle ayant des variables indépendantes (entrées) et dépendantes (sorties);
 
@@ -35,7 +35,7 @@ Le problème de Monty Hall [attribuables à @Selvin75] présente un joueur devan
 <p class="caption">(\#fig:MH)Illustration du problème de Monty Hall</p>
 </div>
 
-Par la suite, le présentateur, qui connaît le contenu derrière les portes, ouvre une porte qui (a) ne cache pas la voiture et (b) que le participant n'a pas choisie. Le joueur peut alors choisir (a) de conserver la porte choisie ou (b) de changer de porte. Quelle option, s'il y en a une, assurera le meilleur gain (choisir la voiture)? Rester ou changer? Par exemple, suivant l'illustration de la figure \@ref(fig:MH), le joueur choisit la porte 1, alors le présentateur doit ouvrir la porte 2 (non choisie et ne contient pas la voiture). Le joueur doit-il changer son choix? Ici, la réponse est évidente, car la réponse est connue. Qu'en est-il alors si le joueur avait choisi la porte 3 et le présentateur ouvert l'une des deux autres porte? *Le joueur doit-il changer ou rester?* La question sous-jacente est qu’elles sont les probabilités de rester et changer respectivement. Sont-elles différentes?
+Par la suite, le présentateur, qui connaît le contenu derrière les portes, ouvre une porte qui (a) ne cache pas la voiture et (b) que le participant n'a pas choisie. Le joueur peut alors choisir (a) de conserver la porte choisie ou (b) de changer de porte. Quelle option, s'il y en a une, assurera le meilleur gain (choisir la voiture)? Rester ou changer? Par exemple, suivant l'illustration de la Figure\ \@ref(fig:MH), le joueur choisit la porte\ 1, alors le présentateur doit ouvrir la porte\ 2 (non choisie et ne contient pas la voiture). Le joueur doit-il changer son choix? Ici, la réponse est évidente, car la réponse est connue. Qu'en est-il alors si le joueur avait choisi la porte\ 3 et le présentateur ouvre l'une des deux autres porte? *Le joueur doit-il changer ou rester?* La question sous-jacente est qu’elles sont les probabilités de rester et changer respectivement. Sont-elles différentes?
 
 Comme le résultat n'est pas des plus intuitif (et sans divulgâcher le résultat), une petite simulation s'impose (ou une analyse formelle pour les lecteurs enclins mathématiquement). La situation sera recréée un millier de fois pour vérifier l'option (rester ou changer) qui maximise de gagner la voiture.
 
@@ -43,65 +43,110 @@ En se référant aux trois points caractérisant une simulation Monte-Carlo susm
 
 1. Le problème de Monty Hall tel qu'imminemment décrit.
 
-2. Les variables indépendantes sont (a) le tirage aléatoire du contenu derrière les portes (distribution uniforme, chaque porte à la même probabilité d'avoir un prix ou non), (b) le choix du joueur (distribution uniforme, pourrait être différent), et (c) la porte ouverte par le présentateur. Deux variables indépendantes sont fixes (les deux options sont étudiées), l'action de rester ou de changer. Il y a deux variables dépendantes, le succès (choisir le prix) ou l'échec (choisir une autre porte) de rester ou de changer.
+TODO
+
+2. Les variables indépendantes sont 
+
+  + le tirage aléatoire du contenu derrière les portes (distribution uniforme, chaque porte à la même probabilité d'avoir un prix ou non);
+    
+  + le choix du joueur (distribution uniforme, pourrait être différent), et;
+    
+  + la porte ouverte par le présentateur, 
+  
+  +  l'action de rester ou de changer (les deux options sont étudiées). 
+
+  Il y a une variable dépendante :
+  
+  +  le succès (gagner le prix) ou l'échec (choisir la mauvaise porte).
 
 3. La simulation est reprise 1000 fois.
 
-La simulation doit comporter une distribution aléatoire du contenu derrière les trois portes, identifier une porte gagnante et deux perdantes. Il est intéressant de note que, sur le plan de computationnelle, il est inutile d'attribuer aléatoirement la porte gagnante, toutefois le scénario sera plus acceptable pour un lecteur scrupuleux. Par la suite, le joueur fait son premier choix. Ici, plusieurs modèles peuvent être utilisés, comme constamment choisir la même porte (ce qui simplifie la situation et ne change pas les probabilités parce que le contenu des portes, lui, est aléatoire) ou, pour rester vrai à la situation, le joueur fera un choix aléatoire. Le comportement du présentateur s'enclenche, il doit "ouvrir" une porte non choisie et qui ne contient pas le prix. Les deux stratégies sont alors étudiées, *rester* versus *changer*. La simulation enregistre alors s'il y a eu gain ou non et l'additionne au total de chacun. La simulation est reprise un nombre important de fois, ici, 1000 suffira, mais des situations compliquées peuvent demander beaucoup plus d'itérations.
+
+Les étapes de la simulation se déroulent ainsi. 
+
+1. L'attribution des portes (une gagnante ou deux perdantes) est faite aléatoirement^[Il est intéressant de noter que, sur le plan de computationnelle, il est inutile de tirer aléatoirement la porte gagnante. Aussi longtemps que le *participant* agit comme si elle était tirée au hasard, il n'est pas nécessaire qu'elle le soit. Par contre, une stratégie systématique, comme toujours choisir la porte\ 1, oblige le recours au tirage aléatoire des portes. Le scénario sera toutefois plus acceptable pour le lecteur capricieux.].
+
+2. Le joueur fait son premier choix. 
+
+Plusieurs modèles peuvent être utilisés, comme systématiquement choisir la même porte, ce qui simplifie la situation et ne change pas les probabilités, car le contenu derrière les portes est aléatoire. Pour rester vrai à la situation, le joueur fait un choix aléatoire. 
+
+3. Le comportement du présentateur s'enclenche, il doit "ouvrir" une porte non choisie et qui ne contient pas le prix. 
+
+4. Les deux stratégies sont simulées, *rester* ou *changer*. 
+
+5. La simulation enregistre  s'il y a eu gain ou non et l'additionne au total de chacun. 
+
+6. La simulation est reprise un nombre important de fois, ici, 1000 suffit, mais des situations compliquées peuvent demander beaucoup plus d'itérations.
 
 
 
 ```r
 # Simulation du problème de Monty Hall
-portes <- c("Chèvre","Chèvre","Voiture")
+# Valeurs possibles des portes
+portes <- c("Chèvre", "Chèvre", "Voiture")
+# Nombre de répétitions
 nreps <- 1000
+# Pour la reproductibilité
 set.seed(7896)
+
 # Valeur initial des gains
 gain.rester <- 0
 gain.changer <- 0
 
+# Boucle pour répéter `nreps` fois le scénario
 for(i in 1:nreps){
+  
   # Arrangement initial des portes
-  tirage = sample(portes)
+  tirage <- sample(portes)
+  
   # Trouver le prix
-  prix = which(tirage %in% "Voiture")
+  prix <- which(tirage %in% "Voiture")
+  
   # Choix aléatoire
-  choix1 = sample(length(portes), size = 1)
+  choix1 <- sample(length(portes), size = 1)
   
   # Sélectionner la porte avec la chèvre (pas un prix) et
   # qui n'est pas celle choisie (choix1)
-  option = c(choix1, prix)
+  option <- c(choix1, prix)
+  
   if(choix1 != prix){
+    
     # Si une porte valide
-    monty = c(1:3)[-option]
+    monty <- c(1:3)[-option]
+    
   }else{
+    
     # Si deux portes valides, en choisir une aléatoirement.
-    monty = sample(c(1:3)[-option], size = 1)
+    monty <- sample(c(1:3)[-option], size = 1)
+    
   }
+  
   # Décision : Reste à choix1
-  choix.rester = choix1
+  choix.rester <- choix1
   
   # Décision : Changer de choix changer
   # Changer = ne pas prendre la porte initial, ni la porte ouverte
-  choix.changer = c(1:3)[-c(choix1, monty)]
+  choix.changer <- c(1:3)[-c(choix1, monty)]
   
   # Enregistrement des gains
-  gain.rester <- gain.rester + (tirage[choix.rester] == "Voiture")
-  gain.changer = gain.changer + (tirage[choix.changer] == "Voiture")
+  gain.rester  <- gain.rester  + (tirage[choix.rester]  == "Voiture")
+  gain.changer <- gain.changer + (tirage[choix.changer] == "Voiture")
 }
 
-cbind(gain.rester,gain.changer)  / nreps
+cbind(gain.rester, gain.changer) / nreps
 >      gain.rester gain.changer
 > [1,]       0.316        0.684
 ```
 
-Une petite digression avant de poursuivre. *Il ne faut jamais prendre pour acquis que le code fonctionne comme prévu*. À cause d'un inconvénient de la fonction `sample()`, une approche conditionnelle doit être utilisée. En fait, la fonction échantillonne les éléments de `x` (premier argument) jusqu'à obtenir `size` objets. Par contre, si une seule valeur est donnée à `x` et si elle est numérique, alors la fonction utilise les éléments de `1:x` pour rééchantillonner. Ici, si le choix et le prix sont différents, il n'y a qu'une seule valeur retournée (l'autre chèvre), ce qui occasionne le problème, et par conséquent, de l'utilisation du conditionnel. En programmation, il faut toujours s'assurer que les fonctions s'accordent avec les attentes.
+Une petite digression avant de poursuivre. *Il faut être naïf pour croire que le code fonctionne tel que prévu.*. À cause d'un inconvénient de la fonction `sample()`, une approche conditionnelle doit être utilisée. En fait, la fonction échantillonne les éléments de `x` (premier argument) jusqu'à obtenir `size` objets. Par contre, si une seule valeur est donnée à `x` et qu'elle est numérique, alors la fonction utilise les éléments de `1:x` pour rééchantillonner au lieu de retourner `x`. Ainsi, si le choix  et le prix (porte\ 2) sont derrière des portes différentes (porte\ 1\ et\ 2, par exemple), alors une seule valeur est retournée (3), et `sample()` retourne `1:3` au lieu de `3`. Ces particularités expliquent et justifient l'utilisation du conditionnel. En programmation, il faut toujours s'assurer que les fonctions s'accordent avec les attentes.
 
-Quelles sont les résultats de cette simulation? Le fait de *rester* sur le premier choix devrait obtenir 33% de chance de réussir, comme le joueur a initialement une chance sur trois d'avoir la bonne réponse. Qu'en est-il pour *changer*? Est-ce qu'ouvrir une porte *chèvre* modifie les probabilités? Les résultats de la simulation montre que *rester* gagne 31.6% et que de *changer* gagne 68.4%. À long terme, il est fort avantageux de changer.
+Quelles sont les résultats de cette simulation? Le fait de *rester* sur le premier choix devrait obtenir 33% de chance de réussir, comme le joueur a initialement une chance sur trois d'avoir la bonne réponse. Qu'en est-il pour *changer*? Est-ce qu'ouvrir une porte *chèvre* modifie les probabilités? Les résultats de la simulation montre que *rester* gagne 31.6% et que de *changer* gagne 68.4%. À long terme, il est plus avantageux de changer.
 
-Une explication simple est de dénombrer les possibilités. Dans le cas où le joueur ne change pas d'idée, il a une chance sur trois, soit : choisir la chèvre 1, et garder la chèvre 1; choisir la chèvre 2, et garder la chèvre 2; et choisir la voiture, et garder la voiture. Si le joueur change d'idée après l'ouverture des portes, les chances sont maintenant de deux sur trois, soit choisir la chèvre 1, changer pour le prix; choisir la chèvre 2 et changer pour le prix; ou choisir le prix et changer pour une chèvre.
+Une explication simple est de dénombrer les possibilités. Dans le cas où le joueur ne change pas d'idée, il a une chance sur trois, soit : choisir la chèvre\ 1, et garder la chèvre\ 1; choisir la chèvre\ 2, et garder la chèvre\ 2; et choisir la voiture, et garder la voiture. Si le joueur change d'idée après l'ouverture des portes, les chances sont maintenant de deux sur trois, soit choisir la chèvre\ 1, changer pour le prix; choisir la chèvre\ 2 et changer pour le prix; ou choisir le prix et changer pour une chèvre.
 
-Une autre façon de rendre se problème plus évident est de considérer le problème avec 100 portes au lieu de 3. Le présentateur ouvre alors les 98 portes qui ne sont pas un prix. Si le joueur choisit une porte et garde, il a effectivement 1% de chance de remporter le prix. Par contre, s'il choisit une porte et que le présentateur lui ouvre toutes les autres portes chèvres, il appert que le joueur gagne à tout coup s'il change, sauf s'il a choisi le prix au premier coup. Avec quelques modifications de la syntaxe précédente, le code suivant illustre le cas à 100 portes.
+Une autre façon de rendre se problème plus intuitif est de considérer le problème avec 100 portes au lieu de 3. Le présentateur ouvre les 98 portes qui ne sont pas un prix. Si le joueur choisit une porte et garde, il a effectivement 1% de chance de remporter le prix. Par contre, s'il choisit une porte et que le présentateur lui ouvre toutes les autres portes chèvres, le joueur gagne à tout les coups s'il change, sauf s'il a choisi le prix au premier coup. C'est un peu comme si le participant ouvrait les 99 portent, sauf celle qu'il a choisit au début.
+
+Avec quelques modifications de la syntaxe précédente, le code suivant illustre le cas à 100 portes. À noter que l'usage du conditionnelle n'est plus nécessaire au bon fonctionnement de `sample()`, car il y a maintenant plus de trois portes.
 
 
 ```r
@@ -151,19 +196,19 @@ cbind(gain.rester,gain.changer)  / nreps
 
 La simulation montre que rester gagne 0.9% et que de changer gagne 99.1%.
 
-Des situations fort plus compliquées pourraient être apportées en simulations  Monte-Carlo. Le jeu de Black Jack en est un exemple, bien qu'il soit déjà résolu pour des résultats optimaux [@Millman83]. Il suffit d'avoir la patience de programmer le tout pour confirmer les résutats analytiques.
+Des situations fort plus compliquées pourraient être apportées en simulations Monte-Carlo. Le jeu de Black Jack en est un exemple, bien qu'il soit déjà résolu pour des résultats optimaux [@Millman83]. Il suffit d'avoir la patience de programmer le tout pour confirmer les résultats analytiques.
 
-Sur le plan pratique pour l'expérimentateur, les simulations Monte-Carlo peuvent être utiles pour calculer des tailles d'échantillons pour des modèles complexes, comme des modèles par équations structurelles compliquées, mutliniveaux ou de classes latentes. Une sous-famille est d'une importance signficative pour l'expérimentateur, celle qui sera abordée maintenant, le bootstrap.
+Sur le plan pratique pour l'expérimentateur, les simulations Monte-Carlo peuvent être utiles pour calculer des tailles d'échantillons pour des modèles complexes, comme des modèles par équations structurelles compliquées, multiniveaux ou de classes latentes. Une sous-famille est d'une importance significative pour l'expérimentateur, celle qui sera abordée maintenant, le bootstrap.
 
 ## Le bootstrap
 
-Le *bootstrap* (dont il n'y a pas d'excellente traduction en français) est une des techniques de rééchantillonnage astucieuses permettant des inférences statistiques [@Efron79]. Il fait partie de la famille des simulations Monte-Carlo, car il se  base sur la réitération multiple d'une statistique à partir d'un jeu de données. Sans vouloir entrer trop dans les détails, il existe plusieurs types de techniques de bootstrap, qui font elles-mêmes parties d'une plus grande famille, les simulations stochastiques. Y est inclus les simulations de Monte-Carlo (dont le bootstrap fait parti) ou les méthodes numériques bayésiennes.
+Le *bootstrap* (dont il n'y a pas d'excellente traduction en français) est une des techniques de rééchantillonnage astucieuses permettant des inférences statistiques [@Efron79]. Il fait partie de la famille des simulations Monte-Carlo, car il se base sur la réitération multiple d'une statistique à partir d'un jeu de données. Sans vouloir entrer dans les détails, il existe plusieurs types de techniques de bootstrap, qui font elles-mêmes parties d'une plus grande famille, les simulations stochastiques. Y est inclus les simulations de Monte-Carlo (dont le bootstrap fait parti) ou les méthodes numériques bayésiennes.
 
 Cet ouvrage insiste sur le bootstrap non paramétrique, impliquant que les distributions sous-jacentes aux échantillons ne soient pas spécifiées, bien qu'il existe du bootstrap paramétrique. Ce type de bootstrap est certainement la plus utile pour l'expérimentateur.
 
-Dans le bootstrap, l'échantillon initial est considéré comme une pseudopopulation. Il ne nécessite pas d'autre information que celle fournie par l'échantillon. Il permet d'obtenir une distribution d’échantillonnage et tous ses bénéfices. Alors que dans le chapitre précédent, il fallait préciser et connaître quelle distribution d'échantillonnage correspond à quelle statistique (p. ex., le score-$z$ d'une unité à la distribution normale; la moyenne d'un échantillon à la distribution $t$ si la variance est inconnue), aucune de ces connaissances n'est nécessaire. L'étendue d'application du bootstrap appert immense, surtout pour les concepts statistiques qui offriront plus de défis, ce qui sera vu dans des chapitres ultérieurs.
+Dans le bootstrap, l'échantillon initial est considéré comme une pseudopopulation. Il ne nécessite pas d'autre information que celle fournie par l'échantillon. Il permet d'obtenir une distribution d’échantillonnage et tous ses bénéfices. Alors que dans les chapitres [Inférer] et [Analyser], il faut préciser et connaître quelle distribution d'échantillonnage correspond à quelle statistique (p. ex., le score-$z$ d'une unité à la distribution normale; la moyenne d'un échantillon à la distribution $t$ si la variance est inconnue), aucune de ces connaissances n'est nécessaire. L'étendue d'application du bootstrap est immense, surtout pour les concepts statistiques qui offriront plus de défis, ce qui sera vu dans des chapitres ultérieurs.
 
-Obtenir la distribution d'échantillonnage permet ainsi :
+Comme abordé dans le chapitre [Inférer], la distribution d'échantillonnage permet :
 
 * d'estimer l'indice désiré;
 
@@ -173,7 +218,7 @@ Obtenir la distribution d'échantillonnage permet ainsi :
 
 * de réaliser un test d'hypothèse;
 
-tout cela en ignorant les distributions et postulats sous-jacents qui pourraient empêcher ou limiter leurs usages. Elle n'a que deux hypothèses fondamentales :l'échantillon reflète la population et chaque unité est indépendante et identiquement distribuée. Autrement dit, chaque unité provienne bel et bien d'une même boîte (*population*, voir chapitre sur l'inférence statistique) et en sont un portrait juste en plus que le tirage d'une unité n'en influence celle d'une autre.
+tout cela en ignorant les distributions et postulats sous-jacents qui empêchent ou limitent leurs usages. Le bootstrap n'a que deux hypothèses fondamentales :l'échantillon reflète la population et chaque unité est indépendante et identiquement distribuée. Autrement dit, chaque unité provienne bel et bien d'une même boîte (*population*, voir [Inférer]) et en sont un portrait juste en plus que le tirage d'une unité n'en influence celle d'une autre.
 
 Le fondement du bootstrap repose sur les étapes suivantes :
 
@@ -183,7 +228,7 @@ Le fondement du bootstrap repose sur les étapes suivantes :
 
 3. Réitérer les deux premières étapes un nombre élevé de fois.
 
-Ce processus hautement facilité par l'excellente performance des ordinateurs d'aujourd'hui, se réalise très facilement et rapidement. L'exemple suivant est basé sur le rééchantillonnage (1000 fois) de la moyenne à partir d'une variable aléatoire tirée d'une distribution uniforme avec un minimum de 5 et d'une maximum de 15.
+Ce processus hautement facilité par l'excellente performance des ordinateurs d'aujourd'hui, se réalise très facilement et rapidement. L'exemple suivant se base sur le rééchantillonnage (1000 fois) de la moyenne à partir d'une variable aléatoire tirée d'une distribution uniforme avec un minimum de 5 et d'une maximum de 15.
 
 
 ```r
@@ -213,9 +258,9 @@ for (i in 1:nreps){
 }
 ```
 
-La fonction `sample(, replace = TRUE)` rééchantillonne avec remplacement les identifiants des unités. Par simplicité, il est possible d'éliminer la ligne `nouveau.X = X[id]` en utilisant `mean(X[id])` ou plus simplement `mean(sample(X, replace = TRUE))`. Cette utilisation se limite seulement au cas d'un vecteur de données. S'il s'agit d'un jeu de données avec plus d'une variable, alors `mean(X[id, ])` sera utilisé. Noter l'usage de la `,` entre crochets. De cette façon, toutes les variables des unités identifiées par `id` sont extraites.
+La fonction `sample(, replace = TRUE)` rééchantillonne avec remplacement les identifiants des unités. Par simplicité, il est possible d'éliminer la ligne `nouveau.X = X[id]` en utilisant `mean(X[id])` ou plus simplement `mean(sample(X, replace = TRUE))`. Cette utilisation se limite seulement au cas d'un vecteur de données. S'il s'agit d'un jeu de données avec plus d'une variable, alors `mean(X[id, ])` est utilisé. Noter l'usage de la `,` entre crochets. De cette façon, toutes les variables des unités identifiées par `id` sont extraites (voir [Référer à une variable dans un jeu de données]).
 
-À partir des informations obtenues, il est possible de faire des inférences statistiques. Toutes les estimations peuvent être présentées comme un histogramme tel que l'illustre la figure \@ref(fig:hist2). Le code se retrouve ci-dessous. Ici, quelques formules pour améliorer la présentation se retrouvent dans la syntaxe. L'utilisation simple de `hist()` pourra convenir.
+À partir des informations obtenues, des inférences statistiques sont possible. Toutes les estimations sont présentées comme un histogramme tel que l'illustre la Figure\ \@ref(fig:hist2). Le code se retrouve ci-dessous. Quelques formules pour améliorer la présentation se retrouvent dans la syntaxe. L'utilisation simple de `hist()` pourra convenir.
 
 
 ```r
@@ -232,9 +277,9 @@ hist(moyenne.X,              # Données
 <p class="caption">(\#fig:hist2)Historgamme des estimations des échantillons</p>
 </div>
 
-La distribution de la figure \@ref(fig:hist2) peut être désignée comme la distribution de la *population*, comme c'était le cas dans le chapitre sur les inférences. Elle permet d'avoir une estimation plus robuste de l'erreur standard, qui se trouve à être l'écart type des indices rééchantillonnés. Elle est également utilisée pour construire des intervalles de confiance et permet ainsi de faire des tests d'hypothèse comme : l'intervalle de confiance à $(1-\alpha) \times 100$ % contient-elle la valeur 0? Comme il est fait avec une hypothèse nulle traditionnelle.
+La distribution de la Figure\ \@ref(fig:hist2) se désigne comme la distribution de la *population*, comme cest le cas dans le chapitre [sur les inférences [Inférer]. Elle permet d'avoir une estimation plus robuste de l'erreur standard, qui se trouve à être l'écart type des indices rééchantillonnés. Elle est également utilisée pour construire des intervalles de confiance et permet ainsi de faire des tests d'hypothèse comme : l'intervalle de confiance à $(1-\alpha) \times 100$ % contient-elle la valeur 0? Comme il est fait avec une hypothèse nulle traditionnelle.
 
-Ici, le cas illustré est trivial au sens où, par le théorème central limite, la réponse est déjà connue. Si l'exemple était plutôt sur la médiane, il faudrait obligatoirement procéder par bootstrap pour calculer son erreur type et ses intervalles de confiance, car aucune formule exacte ne permet sa dérivation (il existe bien des approximations cela dit). Le bootstrap est alors des plus appropriés pour calculer l'erreur type et en tirer des intervalles de confiances, voire même en faire des tests d'hypothèses. Plusieurs statistiques auront recours au bootstrap pour dériver ces informations, la plus utilisée étant le coefficient de détermination (voir le chapitre sur la régression).
+Le cas illustré est trivial au sens où, par le théorème central limite, la distribution des moyennes est déjà connue. Si l'exemple était plutôt sur la médiane, il faudrait obligatoirement procéder par bootstrap pour calculer son erreur type et ses intervalles de confiance, car aucune formule exacte ne permet sa dérivation (il existe bien des approximations cela dit). Le bootstrap est alors des plus appropriés pour calculer l'erreur type et en tirer des intervalles de confiances, voire même en faire des tests d'hypothèses. Plusieurs statistiques auront recours au bootstrap pour dériver ces informations, la plus utilisée étant le coefficient de détermination (voir le chapitre [sur la régression [Prédire]).
 
 À partir des informations obtenues auprès du rééchantillonnage, il est possible d'obtenir les éléments désirés. Comme le cas est trivial, les indices statistiques seront très similaires. Cela confirmera au lecteur qu'aucun principe ésotérique ne s'est déroulé devant ses yeux en plus de confirmer que les statistiques attendues se produisent effectivement.
 
@@ -256,11 +301,11 @@ La moyenne et l'erreur standard sont très près de la moyenne de l'échantillon
 
 ```r
 # Erreur de type I
-alpha = .05
+alpha <- .05
 
 # Valeurs critiques
-crit = c(alpha/2, (1-alpha/2))
-tv = qt(crit, df = n - 1)
+crit <- c(alpha/2, (1-alpha/2))
+tv <- qt(crit, df = n - 1)
 
 # Intervalles basés sur les indices de l'échantillon
 mean(X) + tv * sd(X)/sqrt(n)
@@ -276,7 +321,7 @@ quantile(moyenne.X, crit)
 >  9.26 11.13
 ```
 
-Pour réaliser le test d'hypothèse nulle, il suffit de constater si l'intervalle de confiance contient ou non zéro. Dans le cas où l'intervalle contient 0, le test n'est pas significatif, il est vraisemblable que l'absence d'effet soit vraie. S'il ne contient pas 0, l'hypothèse est rejetée, le test est significatif et il est vraisemblable qu'il y ait un effet. Dans cet exemple, la moyenne est clairement différente de 0, car elle ne contient pas cette valeur.
+Pour réaliser le test d'hypothèse nulle, il suffit de constater si l'intervalle de confiance contient ou non 0. Dans le cas où l'intervalle contient 0, le test n'est pas significatif; l'hypotèse nulle n'est pas rejetée; il est vraisemblable que l'absence d'effet soit vraie. S'il ne contient pas 0, l'hypothèse nulle est rejetée, le test est significatif et il est vraisemblable qu'il y ait un effet. Dans cet exemple, la moyenne est clairement différente de 0, car elle ne contient pas cette valeur.
 
 #### Meilleures pratiques
 
@@ -315,14 +360,19 @@ mean(X) ; sd(X)/sqrt(n)
 > [1] 0.485
 ```
 
-
 ### Les packages
 
-Il existe plusieurs packages pour réaliser du bootstrap dans **R**. Il y a `bootstrap` [@bootstrap] et `boot` [@Canty21]. Ajouter à cela que plusieurs fonctions **R** possèdent des options de bootstrap intégrées (qu'il faut commander dans les arguments). Plusieurs analyses statistiques qui recourent régulièrement aux bootstraps auront déjà des options implantées.
+Il existe plusieurs packages pour réaliser du bootstrap dans **R**. Il y a `bootstrap` [@bootstrap] et `boot` [@Canty21]. Ajouter à cela que plusieurs fonctions **R** possèdent des options de bootstrap intégrées (qu'il faut commander dans les arguments). Plusieurs analyses statistiques recourant aux bootstraps sont déjà implantées. L'aperçu donné dans ce chapitre devrait convaincre le lecteur que, s'il a besoin de bootstrap, il est assez rudimentaire de l'implanter soi-même.
 
 # Exercices {#exercice-analyse .unnumbered}
+
 TODO
 
+Inférer
+
+
+Analyser
+Simuler
 1. Créer une table de valeur-$t$ critique pour $dl = 1,2,3 ,... ,30$ et $\alpha=.05$ unilatérale.
 
 2. Comparer la puissance de la distribution-$t$ par rapport à une distribution normale centrée réduite. La différence par rapport à l'hypothèse nulle est 2 et l'écart type est 1, l'$\alpha = .05$ bilatérale. Tester pour différentes valeurs de $n$.

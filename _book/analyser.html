@@ -108,16 +108,16 @@
 </h2>
 <div id="test-t-indépendant" class="section level3" number="9.1.1">
 <h3>
-<span class="header-section-number">9.1.1</span> Test-<em>t</em> indépendant<a class="anchor" aria-label="anchor" href="#test-t-ind%C3%A9pendant"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.1.1</span> Test-<span class="math inline">\(t\)</span> indépendant<a class="anchor" aria-label="anchor" href="#test-t-ind%C3%A9pendant"><i class="fas fa-link"></i></a>
 </h3>
-<p>En général, l’expérimentateur ne s’intéresse pas à comparer une moyenne à une valeur arbitraire, comme c’était le cas avec <a href="inf%C3%A9rer.html#le-test-t-%C3%A0-%C3%A9chantillon-unique">le test-<span class="math inline">\(t\)</span> à échantillon unique</a>. Cela peut lui être assez trivial. Il s’intéresse plutôt à comparer une moyenne à une autre moyenne, soit une différence entre deux groupes indépendants, par exemple, quel est la différence entre un groupe traitement et un groupe contrôle?</p>
+<p>En général, l’expérimentateur ne s’intéresse pas à comparer une moyenne à une valeur arbitraire, comme c’était le cas avec <a href="inf%C3%A9rer.html#le-test-t-%C3%A0-%C3%A9chantillon-unique">le test-<span class="math inline">\(t\)</span> à échantillon unique</a>. Cela peut lui être assez trivial. Il s’intéresse plutôt à comparer une moyenne à une autre moyenne, soit une différence entre deux groupes indépendants, par exemple, quelle est la différence entre un groupe traitement et un groupe contrôle?</p>
 <!-- , c'est-à-dire que les participants sont différents entre les deux groupes. ou encore pré et post traitement seront pour l'expérimentateur des analyses indispensables. -->
 <p>En se basant sur le test <span class="math inline">\(t\)</span> à échantillon unique, la valeur-<span class="math inline">\(t\)</span> pour deux moyennes se calcule selon l’équation <a href="analyser.html#eq:test2">(9.1)</a></p>
 <p><span class="math display" id="eq:test2">\[\begin{equation}
 t_{n-2} = \frac{\bar{x_1}-\bar{x_2}}{\sqrt{\frac{s^2_{1}}{n_1}+\frac{s^2_{2}}{n_2}}}
 \tag{9.1}
 \end{equation}\]</span></p>
-<p>où l’indice de la valeur-<span class="math inline">\(t\)</span> est le nombre de degrés de liberté <span class="math inline">\(n-2\)</span>. Comme deux variances sont estimées, deux degrés de libertés sont imputés, ce qui octroi <span class="math inline">\(n-2\)</span> degrés. En plus de considéré <span class="math inline">\(\bar{x_2}\)</span> la valeur <em>arbitaire</em> de comparaison (l’ordre de <span class="math inline">\(\bar{x_2}\)</span> et <span class="math inline">\(\bar{x^1}\)</span> est arbitraire), les deux écart types sont également considérés au dénominateur.</p>
+<p>où l’indice de la valeur-<span class="math inline">\(t\)</span> est le nombre de degrés de liberté <span class="math inline">\(n-2\)</span>. Comme deux variances sont estimées, deux degrés de libertés sont imputés, ce qui octroi <span class="math inline">\(n-2\)</span> degrés. En plus de considérer <span class="math inline">\(\bar{x_2}\)</span> la valeur <em>arbitaire</em> de comparaison (l’ordre de <span class="math inline">\(\bar{x_2}\)</span> et <span class="math inline">\(\bar{x^1}\)</span> est arbitraire), les deux écarts types sont également considérés au dénominateur.</p>
 <p>Une fois le calcul réalisé, la logique du test d’hypothèse est la même, à l’exception de l’hypothèse nulle qui correspond maintenant à l’absence de différence entre les deux moyennes.</p>
 <p>Voici un exemple de programmation du test-<span class="math inline">\(t\)</span> pour deux groupes indépendants.</p>
 <div class="sourceCode" id="cb112"><pre class="downlit sourceCode r">
@@ -141,9 +141,12 @@ t_{n-2} = \frac{\bar{x_1}-\bar{x_2}}{\sqrt{\frac{s^2_{1}}{n_1}+\frac{s^2_{2}}{n_
   <span class="va">statistique</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>valeur.t <span class="op">=</span> <span class="va">vt</span>, dl <span class="op">=</span> <span class="va">dl</span>, valeur.p <span class="op">=</span> <span class="va">vp</span><span class="op">)</span>
   <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">statistique</span><span class="op">)</span>
 <span class="op">}</span></code></pre></div>
-<p>Pour générer un exemple de données, le code ci-après crée un échantillon de 15 unités réparties en deux groupes, le premier groupe (<code>gr0</code>) est tiré d’une distribution normale ayant une moyenne de 1 et un écart type de 1, le deuxième groupe (<code>gr1</code>), une moyenne de 0 et un écart type de 1. La syntaxe illustre la création de deux variables pour créer les deux groupes. Il est aussi possible d’envisager la création sur en termes d’équation linéaire,</p>
-<p><span class="math display">\[y = \mu_0 + \mu_1x_1 + \epsilon\]</span>
-où <span class="math inline">\(y\)</span> est le score observé des unités et les autres variables construisent ce score, <span class="math inline">\(\mu_0\)</span> correspond à la moyenne du groupe référent de population (le groupe “contrôle” en quelque sorte.), <span class="math inline">\(\mu_1\)</span> réfère à la différence de moyenne entre les deux groupes identifiés par <span class="math inline">\(x_1\)</span> qui réfère à l’assignation au groupe, soit 0 pour le groupe “contrôle” et 1 pour le groupe “différent”. Pour ce même exemple, <span class="math inline">\(\mu_1 = -1\)</span>. Par le produit <span class="math inline">\(\mu_1x_1\)</span>, le groupe “contrôle” associé à la valeur 0 n’a pas de modification de la moyenne, <span class="math inline">\(-1*0=0\)</span> alors le groupe “différent” associé à la valeur 1, <span class="math inline">\(-1*1=-1\)</span>. Enfin, <span class="math inline">\(\epsilon\)</span> correspond à la variabilité entre les unités. Cette façon de programmer la création des variables illustre bien l’association linéaire qui existe même dans les différences de moyennes et sera très utile pour des modèles plus compliqués.</p>
+<p>Pour générer un exemple de données, le code ci-après crée un échantillon de 15 unités réparties en deux groupes, le premier groupe (<code>gr0</code>) est tiré d’une distribution normale ayant une moyenne de 1 et un écart type de 1, le deuxième groupe (<code>gr1</code>), une moyenne de 0 et un écart type de 1. La syntaxe illustre la création de deux variables pour créer les deux groupes. Il est aussi possible d’envisager la création sur en termes d’équation linéaire, comme l’équation <a href="analyser.html#eq:el1">(9.2)</a>,</p>
+<p><span class="math display" id="eq:el1">\[\begin{equation}
+y = \mu_0 + \mu_1x_1 + \epsilon
+\tag{9.2}
+\end{equation}\]</span></p>
+<p>où <span class="math inline">\(y\)</span> est le score observé des unités et les autres variables construisent ce score, <span class="math inline">\(\mu_0\)</span> correspond à la moyenne du groupe référent de population (le groupe <em>contrôle</em> en quelque sorte.), <span class="math inline">\(\mu_1\)</span> réfère à la différence de moyenne entre les deux groupes identifiés par <span class="math inline">\(x_1\)</span> qui réfère à l’assignation au groupe, soit 0 pour le groupe <em>contrôle</em> et 1 pour le groupe <em>différent</em>. Pour ce même exemple, <span class="math inline">\(\mu_1 = -1\)</span>. Par le produit <span class="math inline">\(\mu_1x_1\)</span>, le groupe <em>contrôle</em> associé à la valeur 0 n’a pas de modification de la moyenne, <span class="math inline">\(-1*0=0\)</span> alors le groupe <em>différent</em> associé à la valeur 1, <span class="math inline">\(-1*1=-1\)</span>. Enfin, <span class="math inline">\(\epsilon\)</span> correspond à la variabilité entre les unités. Cette façon de programmer la création des variables illustre bien l’association linéaire qui existe même dans les différences de moyennes et sera très utile pour des modèles plus compliqués.</p>
 <div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="analyser.html#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Un exemple de jeu de données programmé de deux façons</span></span>
 <span id="cb113-2"><a href="analyser.html#cb113-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Méthode 1</span></span>
 <span id="cb113-3"><a href="analyser.html#cb113-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2021</span>)</span>
@@ -152,25 +155,28 @@ où <span class="math inline">\(y\)</span> est le score observé des unités et 
 <span id="cb113-6"><a href="analyser.html#cb113-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb113-7"><a href="analyser.html#cb113-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Méthode 2</span></span>
 <span id="cb113-8"><a href="analyser.html#cb113-8" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2021</span>)</span>
-<span id="cb113-9"><a href="analyser.html#cb113-9" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">0</span>, <span class="dv">15</span>), <span class="fu">rep</span>(<span class="dv">1</span>, <span class="dv">15</span>)) <span class="co"># Appartenance au groupe (0 et 1)</span></span>
-<span id="cb113-10"><a href="analyser.html#cb113-10" aria-hidden="true" tabindex="-1"></a>e <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">30</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>) <span class="co"># Erreur interindividuel</span></span>
-<span id="cb113-11"><a href="analyser.html#cb113-11" aria-hidden="true" tabindex="-1"></a>mu1 <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span> <span class="co"># le deuxième groupe a une différence de moyenne de -1</span></span>
-<span id="cb113-12"><a href="analyser.html#cb113-12" aria-hidden="true" tabindex="-1"></a>mu0 <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="co"># moyenne du groupe référent</span></span>
-<span id="cb113-13"><a href="analyser.html#cb113-13" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> mu0 <span class="sc">+</span> mu1 <span class="sc">*</span> x1 <span class="sc">+</span> e</span>
-<span id="cb113-14"><a href="analyser.html#cb113-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Présenter quelques participants; retirer les crochets pour voir tous</span></span>
-<span id="cb113-15"><a href="analyser.html#cb113-15" aria-hidden="true" tabindex="-1"></a>(<span class="fu">cbind</span>(<span class="at">method1 =</span> <span class="fu">c</span>(gr0, gr1), <span class="at">method2 =</span> y))[<span class="dv">10</span><span class="sc">:</span><span class="dv">20</span>,]</span>
-<span id="cb113-16"><a href="analyser.html#cb113-16" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>       method1 method2</span>
-<span id="cb113-17"><a href="analyser.html#cb113-17" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>  [<span class="dv">1</span>,]  <span class="fl">2.7300</span>  <span class="fl">2.7300</span></span>
-<span id="cb113-18"><a href="analyser.html#cb113-18" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>  [<span class="dv">2</span>,] <span class="sc">-</span><span class="fl">0.0822</span> <span class="sc">-</span><span class="fl">0.0822</span></span>
-<span id="cb113-19"><a href="analyser.html#cb113-19" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>  [<span class="dv">3</span>,]  <span class="fl">0.7272</span>  <span class="fl">0.7272</span></span>
-<span id="cb113-20"><a href="analyser.html#cb113-20" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>  [<span class="dv">4</span>,]  <span class="fl">1.1820</span>  <span class="fl">1.1820</span></span>
-<span id="cb113-21"><a href="analyser.html#cb113-21" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>  [<span class="dv">5</span>,]  <span class="fl">2.5085</span>  <span class="fl">2.5085</span></span>
-<span id="cb113-22"><a href="analyser.html#cb113-22" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>  [<span class="dv">6</span>,]  <span class="fl">2.6045</span>  <span class="fl">2.6045</span></span>
-<span id="cb113-23"><a href="analyser.html#cb113-23" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>  [<span class="dv">7</span>,] <span class="sc">-</span><span class="fl">1.8415</span> <span class="sc">-</span><span class="fl">1.8415</span></span>
-<span id="cb113-24"><a href="analyser.html#cb113-24" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>  [<span class="dv">8</span>,]  <span class="fl">1.6233</span>  <span class="fl">1.6233</span></span>
-<span id="cb113-25"><a href="analyser.html#cb113-25" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>  [<span class="dv">9</span>,]  <span class="fl">0.1314</span>  <span class="fl">0.1314</span></span>
-<span id="cb113-26"><a href="analyser.html#cb113-26" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">10</span>,]  <span class="fl">1.4811</span>  <span class="fl">1.4811</span></span>
-<span id="cb113-27"><a href="analyser.html#cb113-27" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">11</span>,]  <span class="fl">1.5133</span>  <span class="fl">1.5133</span></span></code></pre></div>
+<span id="cb113-9"><a href="analyser.html#cb113-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb113-10"><a href="analyser.html#cb113-10" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">0</span>, <span class="dv">15</span>), <span class="fu">rep</span>(<span class="dv">1</span>, <span class="dv">15</span>)) <span class="co"># Appartenance au groupe (0 et 1)</span></span>
+<span id="cb113-11"><a href="analyser.html#cb113-11" aria-hidden="true" tabindex="-1"></a>e  <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">30</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>) <span class="co"># Erreur interindividuel</span></span>
+<span id="cb113-12"><a href="analyser.html#cb113-12" aria-hidden="true" tabindex="-1"></a>mu0 <span class="ot">&lt;-</span> <span class="dv">1</span>  <span class="co"># La moyenne du groupe référent</span></span>
+<span id="cb113-13"><a href="analyser.html#cb113-13" aria-hidden="true" tabindex="-1"></a>mu1 <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span> <span class="co"># Le deuxième groupe a une différence de moyenne de -1</span></span>
+<span id="cb113-14"><a href="analyser.html#cb113-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb113-15"><a href="analyser.html#cb113-15" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> mu0 <span class="sc">+</span> mu1 <span class="sc">*</span> x1 <span class="sc">+</span> e</span>
+<span id="cb113-16"><a href="analyser.html#cb113-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb113-17"><a href="analyser.html#cb113-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Présenter quelques participants; retirer les crochets pour voir tous</span></span>
+<span id="cb113-18"><a href="analyser.html#cb113-18" aria-hidden="true" tabindex="-1"></a>(<span class="fu">cbind</span>(<span class="at">method1 =</span> <span class="fu">c</span>(gr0, gr1), <span class="at">method2 =</span> y))[<span class="dv">10</span><span class="sc">:</span><span class="dv">20</span>,]</span>
+<span id="cb113-19"><a href="analyser.html#cb113-19" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>       method1 method2</span>
+<span id="cb113-20"><a href="analyser.html#cb113-20" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>  [<span class="dv">1</span>,]  <span class="fl">2.7300</span>  <span class="fl">2.7300</span></span>
+<span id="cb113-21"><a href="analyser.html#cb113-21" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>  [<span class="dv">2</span>,] <span class="sc">-</span><span class="fl">0.0822</span> <span class="sc">-</span><span class="fl">0.0822</span></span>
+<span id="cb113-22"><a href="analyser.html#cb113-22" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>  [<span class="dv">3</span>,]  <span class="fl">0.7272</span>  <span class="fl">0.7272</span></span>
+<span id="cb113-23"><a href="analyser.html#cb113-23" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>  [<span class="dv">4</span>,]  <span class="fl">1.1820</span>  <span class="fl">1.1820</span></span>
+<span id="cb113-24"><a href="analyser.html#cb113-24" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>  [<span class="dv">5</span>,]  <span class="fl">2.5085</span>  <span class="fl">2.5085</span></span>
+<span id="cb113-25"><a href="analyser.html#cb113-25" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>  [<span class="dv">6</span>,]  <span class="fl">2.6045</span>  <span class="fl">2.6045</span></span>
+<span id="cb113-26"><a href="analyser.html#cb113-26" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>  [<span class="dv">7</span>,] <span class="sc">-</span><span class="fl">1.8415</span> <span class="sc">-</span><span class="fl">1.8415</span></span>
+<span id="cb113-27"><a href="analyser.html#cb113-27" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>  [<span class="dv">8</span>,]  <span class="fl">1.6233</span>  <span class="fl">1.6233</span></span>
+<span id="cb113-28"><a href="analyser.html#cb113-28" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>  [<span class="dv">9</span>,]  <span class="fl">0.1314</span>  <span class="fl">0.1314</span></span>
+<span id="cb113-29"><a href="analyser.html#cb113-29" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">10</span>,]  <span class="fl">1.4811</span>  <span class="fl">1.4811</span></span>
+<span id="cb113-30"><a href="analyser.html#cb113-30" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">11</span>,]  <span class="fl">1.5133</span>  <span class="fl">1.5133</span></span></code></pre></div>
 <p>Les données sont identiques.</p>
 <p>Une fois la fonction créée, il est possible de la tester et de la comparer avec la fonction <strong>R</strong> de base <code>test.t()</code>.</p>
 <div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="analyser.html#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vérification de la fonction maison</span></span>
@@ -183,45 +189,52 @@ où <span class="math inline">\(y\)</span> est le score observé des unités et 
 <span id="cb114-8"><a href="analyser.html#cb114-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
 <span id="cb114-9"><a href="analyser.html#cb114-9" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="er">$</span>valeur.p</span>
 <span id="cb114-10"><a href="analyser.html#cb114-10" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">0.00205</span></span>
-<span id="cb114-11"><a href="analyser.html#cb114-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Comparer avec la fonction R</span></span>
-<span id="cb114-12"><a href="analyser.html#cb114-12" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(gr0, gr1, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb114-13"><a href="analyser.html#cb114-13" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
-<span id="cb114-14"><a href="analyser.html#cb114-14" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span>   Two Sample t<span class="sc">-</span>test</span>
-<span id="cb114-15"><a href="analyser.html#cb114-15" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
-<span id="cb114-16"><a href="analyser.html#cb114-16" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> data<span class="sc">:</span>  gr0 and gr1</span>
-<span id="cb114-17"><a href="analyser.html#cb114-17" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> t <span class="ot">=</span> <span class="dv">3</span>, df <span class="ot">=</span> <span class="dv">28</span>, p<span class="sc">-</span>value <span class="ot">=</span> <span class="fl">0.002</span></span>
-<span id="cb114-18"><a href="analyser.html#cb114-18" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> alternative hypothesis<span class="sc">:</span> true difference <span class="cf">in</span> means is not equal to <span class="dv">0</span></span>
-<span id="cb114-19"><a href="analyser.html#cb114-19" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">95</span> percent confidence interval<span class="sc">:</span></span>
-<span id="cb114-20"><a href="analyser.html#cb114-20" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span>  <span class="fl">0.54</span> <span class="fl">2.18</span></span>
-<span id="cb114-21"><a href="analyser.html#cb114-21" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> sample estimates<span class="sc">:</span></span>
-<span id="cb114-22"><a href="analyser.html#cb114-22" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> mean of x mean of y </span>
-<span id="cb114-23"><a href="analyser.html#cb114-23" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>     <span class="fl">1.332</span>    <span class="sc">-</span><span class="fl">0.029</span></span></code></pre></div>
-<p>Les équations et codes précédents ne sont adéquats que si les variances sont égales entre les deux groupes. Cette notion est quelque peu trahie par la spécification dans la fonction <strong>R</strong> de l’argument <code>var.equal = TRUE</code> qui par défaut est <code>FALSE</code>. Pour un test-<span class="math inline">\(t\)</span> indépendant suivant les règles de l’art, il faut appliquer une correction (approximation de Welsh) aux degrés de liberté. Les degrés de liberté deviennent moins élégants, le code devient ainsi.</p>
-<p><span class="math display">\[
+<span id="cb114-11"><a href="analyser.html#cb114-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb114-12"><a href="analyser.html#cb114-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Comparer avec la fonction R</span></span>
+<span id="cb114-13"><a href="analyser.html#cb114-13" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(gr0, gr1, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb114-14"><a href="analyser.html#cb114-14" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb114-15"><a href="analyser.html#cb114-15" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span>   Two Sample t<span class="sc">-</span>test</span>
+<span id="cb114-16"><a href="analyser.html#cb114-16" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb114-17"><a href="analyser.html#cb114-17" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> data<span class="sc">:</span>  gr0 and gr1</span>
+<span id="cb114-18"><a href="analyser.html#cb114-18" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> t <span class="ot">=</span> <span class="dv">3</span>, df <span class="ot">=</span> <span class="dv">28</span>, p<span class="sc">-</span>value <span class="ot">=</span> <span class="fl">0.002</span></span>
+<span id="cb114-19"><a href="analyser.html#cb114-19" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> alternative hypothesis<span class="sc">:</span> true difference <span class="cf">in</span> means is not equal to <span class="dv">0</span></span>
+<span id="cb114-20"><a href="analyser.html#cb114-20" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">95</span> percent confidence interval<span class="sc">:</span></span>
+<span id="cb114-21"><a href="analyser.html#cb114-21" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span>  <span class="fl">0.54</span> <span class="fl">2.18</span></span>
+<span id="cb114-22"><a href="analyser.html#cb114-22" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> sample estimates<span class="sc">:</span></span>
+<span id="cb114-23"><a href="analyser.html#cb114-23" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> mean of x mean of y </span>
+<span id="cb114-24"><a href="analyser.html#cb114-24" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>     <span class="fl">1.332</span>    <span class="sc">-</span><span class="fl">0.029</span></span></code></pre></div>
+<p>Les équations et codes précédents ne sont adéquats que si les variances sont égales entre les deux groupes. Cette notion est quelque peu trahie par la spécification dans la fonction <strong>R</strong> de l’argument <code>var.equal = TRUE</code> qui par défaut est <code>FALSE</code>. Pour un test-<span class="math inline">\(t\)</span> indépendant suivant les règles de l’art, il faut appliquer une correction (approximation de Welsh) aux degrés de liberté. Les degrés de liberté deviennent moins élégants et respectent l’équation <a href="analyser.html#eq:welsh">(9.3)</a>.</p>
+<p><span class="math display" id="eq:welsh">\[\begin{equation}
 dl=\frac{\left(\frac{s^2_1}{n_1}+\frac{s^2_2}{n_2}\right)^2}{\frac{\left(\frac{s^2_1}{n_1}\right)^2}{n_1-1}+\frac{\left(\frac{s^2_2}{n_2}\right)^2}{n_2-1}}
-\]</span>
-En apportant cette correction au code initial.</p>
+\tag{9.3}
+\end{equation}\]</span></p>
+<p>En apportant cette correction au code initial.</p>
 <div class="sourceCode" id="cb115"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">testt.ind2</span> <span class="op">&lt;-</span><span class="kw">function</span><span class="op">(</span><span class="va">x1</span>, <span class="va">x2</span><span class="op">)</span><span class="op">{</span>
   <span class="co"># x1 est une variable continue associée au groupe 1</span>
   <span class="co"># x2 est une variable continue associée au groupe 2</span>
-  <span class="va">x1bar</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">x1</span><span class="op">)</span> ; <span class="va">x2bar</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">x2</span><span class="op">)</span>
-  <span class="va">x1var</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">var</a></span><span class="op">(</span><span class="va">x1</span><span class="op">)</span> ; <span class="va">x2var</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">var</a></span><span class="op">(</span><span class="va">x2</span><span class="op">)</span>
-  <span class="va">nx1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">x1</span><span class="op">)</span> ; <span class="va">nx2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">x2</span><span class="op">)</span>
+  <span class="va">x1bar</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">x1</span><span class="op">)</span> ; <span class="va">x2bar</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">x2</span><span class="op">)</span>  <span class="co"># Les moyennes</span>
+  <span class="va">x1var</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">var</a></span><span class="op">(</span><span class="va">x1</span><span class="op">)</span> ; <span class="va">x2var</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">var</a></span><span class="op">(</span><span class="va">x2</span><span class="op">)</span>    <span class="co"># Les variances</span>
+  <span class="va">nx1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">x1</span><span class="op">)</span> ; <span class="va">nx2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">x2</span><span class="op">)</span>  <span class="co"># Les tailles</span>
   
-  <span class="co"># erreur type </span>
+  <span class="co"># L'erreur type </span>
   <span class="va">et</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">x1var</span> <span class="op">/</span> <span class="va">nx1</span> <span class="op">+</span> <span class="va">x2var</span> <span class="op">/</span> <span class="va">nx2</span><span class="op">)</span>
-  <span class="co"># valeur t</span>
+  
+  <span class="co"># Valeur-t</span>
   <span class="va">vt</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="va">x1bar</span> <span class="op">-</span> <span class="va">x2bar</span><span class="op">)</span> <span class="op">/</span> <span class="va">et</span>
-  <span class="co"># correction des degrés de liberté</span>
+  
+  <span class="co"># Correction des degrés de liberté</span>
   <span class="va">dl</span> <span class="op">&lt;-</span> <span class="va">et</span><span class="op">^</span><span class="fl">4</span> <span class="op">/</span> 
-    <span class="op">(</span><span class="op">(</span><span class="va">x1var</span><span class="op">^</span><span class="fl">2</span> <span class="op">/</span> <span class="op">(</span><span class="va">nx1</span><span class="op">^</span><span class="fl">2</span> <span class="op">*</span> <span class="op">(</span><span class="va">nx1</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="op">(</span><span class="va">x2var</span><span class="op">^</span><span class="fl">2</span> <span class="op">/</span> <span class="op">(</span><span class="va">nx2</span><span class="op">^</span><span class="fl">2</span> <span class="op">*</span> <span class="op">(</span><span class="va">nx2</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-  <span class="co"># valeur-p</span>
+    <span class="op">(</span><span class="op">(</span><span class="va">x1var</span><span class="op">^</span><span class="fl">2</span> <span class="op">/</span> <span class="op">(</span><span class="va">nx1</span><span class="op">^</span><span class="fl">2</span> <span class="op">*</span> <span class="op">(</span><span class="va">nx1</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+       <span class="op">(</span><span class="va">x2var</span><span class="op">^</span><span class="fl">2</span> <span class="op">/</span> <span class="op">(</span><span class="va">nx2</span><span class="op">^</span><span class="fl">2</span> <span class="op">*</span> <span class="op">(</span><span class="va">nx2</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+  
+  <span class="co"># Valeur-p</span>
   <span class="va">vp</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="fl">1</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">pt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">vt</span><span class="op">)</span>, df <span class="op">=</span> <span class="va">dl</span><span class="op">)</span><span class="op">)</span> <span class="op">*</span> <span class="fl">2</span> 
+  
   <span class="va">statistique</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>valeur.t <span class="op">=</span> <span class="va">vt</span>, dl <span class="op">=</span> <span class="va">dl</span>, valeur.p <span class="op">=</span> <span class="va">vp</span><span class="op">)</span>
   <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">statistique</span><span class="op">)</span>
 <span class="op">}</span></code></pre></div>
-<p>Le voici comparé la fonction <strong>R</strong> de base.</p>
+<p>Le voici comparé à la fonction <strong>R</strong> de base.</p>
 <div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="analyser.html#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(gr0, gr1) <span class="co"># Absence de l'argument var.equal = TRUE</span></span>
 <span id="cb116-2"><a href="analyser.html#cb116-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
 <span id="cb116-3"><a href="analyser.html#cb116-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span>   Welch Two Sample t<span class="sc">-</span>test</span>
@@ -250,59 +263,64 @@ En apportant cette correction au code initial.</p>
 Figure 9.1: Valeur-<span class="math inline">\(t\)</span> de la différence de moyenne sur la distribution-<span class="math inline">\(t\)</span>
 </p>
 </div>
-<p>La Figure <a href="analyser.html#fig:disttt">9.1</a> illustre où se situe la moyenne de l’échantillon par rapport à la distribution d’échantillonnage de l’hypothèse nulle. Comme la valeur se retrouve dans la zone de rejet ou, de façon équivalente, la valeur-<span class="math inline">\(p\)</span> est plus petite que la valeur <span class="math inline">\(\alpha\)</span> fixé (ici à 5%), on rejette l’hypothèse nulle, il y a vraisemblablement une différence entre les groupes, ce qui était l’intention derrière la création des données.</p>
+<p>La Figure <a href="analyser.html#fig:disttt">9.1</a> illustre où se situe la moyenne de l’échantillon par rapport à la distribution d’échantillonnage de l’hypothèse nulle. Comme la valeur se retrouve dans la zone de rejet ou, de façon équivalente, la valeur-<span class="math inline">\(p\)</span> est plus petite que la valeur <span class="math inline">\(\alpha\)</span> fixée à .05, on rejette l’hypothèse nulle, il y a vraisemblablement une différence entre les groupes. C’est bien l’intention derrière la création des données.</p>
 </div>
 <div id="test-t-dépendant" class="section level3" number="9.1.2">
 <h3>
-<span class="header-section-number">9.1.2</span> Test-<em>t</em> dépendant<a class="anchor" aria-label="anchor" href="#test-t-d%C3%A9pendant"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.1.2</span> Test-<span class="math inline">\(t\)</span> dépendant<a class="anchor" aria-label="anchor" href="#test-t-d%C3%A9pendant"><i class="fas fa-link"></i></a>
 </h3>
-<p>Un dernier test-<span class="math inline">\(t\)</span> a présenté est le test permettant de comparer deux de temps de mesure sur les mêmes participants. L’hypothèse désirée est de constater si <span class="math inline">\(\mu_1 = \mu_2\)</span>, soit la moyenne du temps 1 est égale à la moyenne du temps 2. Une habile manipulation mathématique permet de poser cette hypothèse en hypothèse nulle, <span class="math inline">\(\mu_1-\mu_2=0\)</span>. Il est intéressant de noter (ou de rappeler) que la différence entre deux variables est normalement distribuée si la variance est connue ou distribuée en <span class="math inline">\(t\)</span> si la variance est inconnue.</p>
+<p>Un autre test-<span class="math inline">\(t\)</span> est celui permettant de comparer deux de temps de mesure sur les mêmes participants. L’hypothèse est de vérifier si <span class="math inline">\(\mu_1 = \mu_2\)</span>, soit la moyenne du temps 1 est égale à la moyenne du temps 2. Une habile manipulation mathématique permet de poser cette hypothèse en hypothèse nulle, <span class="math inline">\(\mu_1-\mu_2=0\)</span>. Il est intéressant de noter que la différence entre deux variables est normalement distribuée si la variance est connue ou distribuée en <span class="math inline">\(t\)</span> si la variance est inconnue.</p>
 <p>Ce test est utile lorsqu’il faut tester si les participants se sont améliorés ou détériorés entre deux temps de mesure. Pour calculer la valeur-<span class="math inline">\(t\)</span>,</p>
 <p><span class="math display">\[ t_{dl_1} = \frac{\bar{x_1}-\bar{x_2}}{\sigma_d/\sqrt{n}} \]</span></p>
-<p>avec <span class="math inline">\(n-1\)</span> degrés de liberté à cause de l’estimation de l’écart type. Les étapes subséquentes sont identiques au test-<span class="math inline">\(t\)</span> à groupe unique.</p>
+<p>avec <span class="math inline">\(n-1\)</span> degrés de liberté à cause de l’estimation de l’écart type des différences. Les étapes subséquentes sont identiques au test-<span class="math inline">\(t\)</span> à groupe unique.</p>
 <div class="sourceCode" id="cb117"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">testt.dep</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">temps1</span>, <span class="va">temps2</span><span class="op">)</span><span class="op">{</span>
-  <span class="co"># temps est une variable continue mesurée </span>
-  <span class="co"># à deux occasion auprès des mêmes participants</span>
+  <span class="co"># Temps est une variable continue mesurée </span>
+  <span class="co"># à deux occasions auprès des mêmes participants</span>
+  
+  <span class="co"># Calculer la différence</span>
   <span class="va">difference</span> <span class="op">&lt;-</span> <span class="va">temps1</span> <span class="op">-</span> <span class="va">temps2</span>
-  <span class="va">dbar</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">difference</span><span class="op">)</span>
-  <span class="va">dvar</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">var</a></span><span class="op">(</span><span class="va">difference</span><span class="op">)</span>
-  <span class="va">n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">difference</span><span class="op">)</span>
+  <span class="va">dbar</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">difference</span><span class="op">)</span> <span class="co"># La moyenne des différences</span>
+  <span class="va">dvar</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">var</a></span><span class="op">(</span><span class="va">difference</span><span class="op">)</span>  <span class="co"># L'écart type des différences</span>
+  <span class="va">n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">difference</span><span class="op">)</span>  <span class="co"># Taille d'échantillon</span>
+  
+  <span class="co"># Valeur-t, degrés de liberté et valeur-p</span>
   <span class="va">vt</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="va">dbar</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">dvar</span> <span class="op">/</span> <span class="va">n</span><span class="op">)</span>
-  <span class="va">dl</span> <span class="op">&lt;-</span> <span class="va">n</span> <span class="op">-</span> <span class="fl">1</span>
-  <span class="va">vp</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="fl">1</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">pt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">vt</span><span class="op">)</span>, df <span class="op">=</span> <span class="va">dl</span><span class="op">)</span><span class="op">)</span> <span class="op">*</span> <span class="fl">2</span>
+  <span class="va">dl</span> <span class="op">&lt;-</span> <span class="va">n</span> <span class="op">-</span> <span class="fl">1</span>                   
+  <span class="va">vp</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="fl">1</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">pt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">vt</span><span class="op">)</span>, df <span class="op">=</span> <span class="va">dl</span><span class="op">)</span><span class="op">)</span> <span class="op">*</span> <span class="fl">2</span> 
   <span class="va">statistique</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>valeur.t <span class="op">=</span> <span class="va">vt</span>, dl <span class="op">=</span> <span class="va">dl</span>, valeur.p <span class="op">=</span> <span class="va">vp</span><span class="op">)</span>
   <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">statistique</span><span class="op">)</span>
 <span class="op">}</span></code></pre></div>
-<p>Pour créer le jeu de données, les étapes sont similaires au test-<span class="math inline">\(t\)</span> indépendant pour des temps de mesure indépendants (sans corrélation) où seules les populations des temps de mesure sont définis. Il est possible de spécifier une corrélation entre les deux de mesures. Cela sera introduit ultérieurement.</p>
-<p>Dans ce jeu de données, 25 personnes sont mesurées à deux temps de reprises. Il n’y a pas de corrélation entre les temps de mesure. La variance des temps de mesure est de 1. La différence de moyenne est de 3.</p>
+<p>Pour créer le jeu de données, les étapes sont similaires au test-<span class="math inline">\(t\)</span> indépendant pour des temps de mesure indépendants (sans corrélation) où seules les populations des temps de mesure sont définis. Il est possible de spécifier une corrélation entre les deux de mesures. Cela sera introduit dans la section <a href="analyser.html#la-corr%C3%A9lation">La corrélation</a>.</p>
+<p>Dans le jeu de données suivant, 25 personnes sont mesurées à deux temps de reprises. Il n’y a pas de corrélation entre les temps de mesure. La variance des temps de mesure est de 1. La différence de moyenne est de 2. La syntaxe simule la situation suivante, le <code>temps1</code> correspond à la mesure initiale et <code>difference</code> correspond à la différence entre les temps de mesure. La somme de ces deux scores donnent la mesure au <code>temps2</code>. Cela montre assez simplement que la différence entre <code>temps2 - temps1</code> permet de retrouver le vecteur de <code>difference</code>.</p>
 <div class="sourceCode" id="cb118"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Un exemple de jeu de données</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">148</span><span class="op">)</span>
 <span class="va">temps1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">25</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
-<span class="va">temps2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">25</span>, mean <span class="op">=</span> <span class="fl">3</span>, sd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></code></pre></div>
+<span class="va">difference</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">25</span>, mean <span class="op">=</span> <span class="fl">2</span>, sd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
+<span class="va">temps2</span> <span class="op">&lt;-</span> <span class="va">temps1</span> <span class="op">+</span> <span class="va">difference</span></code></pre></div>
 <p>La fonction base de <strong>R</strong> est encore <code><a href="https://rdrr.io/r/stats/t.test.html">t.test()</a></code>, mais il faudra spécifier l’argument <code>paired = TRUE</code> pour commander un test apparié (une autre appellation pour un test-<span class="math inline">\(t\)</span> dépendant).</p>
 <div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="analyser.html#cb119-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(temps1, temps2, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb119-2"><a href="analyser.html#cb119-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
 <span id="cb119-3"><a href="analyser.html#cb119-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span>   Paired t<span class="sc">-</span>test</span>
 <span id="cb119-4"><a href="analyser.html#cb119-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
 <span id="cb119-5"><a href="analyser.html#cb119-5" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> data<span class="sc">:</span>  temps1 and temps2</span>
-<span id="cb119-6"><a href="analyser.html#cb119-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> t <span class="ot">=</span> <span class="sc">-</span><span class="dv">3</span>, df <span class="ot">=</span> <span class="dv">24</span>, p<span class="sc">-</span>value <span class="ot">=</span> <span class="fl">0.008</span></span>
+<span id="cb119-6"><a href="analyser.html#cb119-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> t <span class="ot">=</span> <span class="sc">-</span><span class="dv">3</span>, df <span class="ot">=</span> <span class="dv">24</span>, p<span class="sc">-</span>value <span class="ot">=</span> <span class="fl">0.004</span></span>
 <span id="cb119-7"><a href="analyser.html#cb119-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> alternative hypothesis<span class="sc">:</span> true difference <span class="cf">in</span> means is not equal to <span class="dv">0</span></span>
 <span id="cb119-8"><a href="analyser.html#cb119-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">95</span> percent confidence interval<span class="sc">:</span></span>
-<span id="cb119-9"><a href="analyser.html#cb119-9" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span>  <span class="sc">-</span><span class="fl">3.268</span> <span class="sc">-</span><span class="fl">0.552</span></span>
+<span id="cb119-9"><a href="analyser.html#cb119-9" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span>  <span class="sc">-</span><span class="fl">2.172</span> <span class="sc">-</span><span class="fl">0.465</span></span>
 <span id="cb119-10"><a href="analyser.html#cb119-10" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> sample estimates<span class="sc">:</span></span>
 <span id="cb119-11"><a href="analyser.html#cb119-11" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> mean of the differences </span>
-<span id="cb119-12"><a href="analyser.html#cb119-12" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>                   <span class="sc">-</span><span class="fl">1.91</span></span>
+<span id="cb119-12"><a href="analyser.html#cb119-12" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>                   <span class="sc">-</span><span class="fl">1.32</span></span>
 <span id="cb119-13"><a href="analyser.html#cb119-13" aria-hidden="true" tabindex="-1"></a><span class="fu">testt.dep</span>(temps1, temps2)</span>
 <span id="cb119-14"><a href="analyser.html#cb119-14" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="er">$</span>valeur.t</span>
-<span id="cb119-15"><a href="analyser.html#cb119-15" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="sc">-</span><span class="fl">2.9</span></span>
+<span id="cb119-15"><a href="analyser.html#cb119-15" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="sc">-</span><span class="fl">3.19</span></span>
 <span id="cb119-16"><a href="analyser.html#cb119-16" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
 <span id="cb119-17"><a href="analyser.html#cb119-17" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="er">$</span>dl</span>
 <span id="cb119-18"><a href="analyser.html#cb119-18" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">24</span></span>
 <span id="cb119-19"><a href="analyser.html#cb119-19" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
 <span id="cb119-20"><a href="analyser.html#cb119-20" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="er">$</span>valeur.p</span>
-<span id="cb119-21"><a href="analyser.html#cb119-21" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">0.0078</span></span></code></pre></div>
+<span id="cb119-21"><a href="analyser.html#cb119-21" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">0.00395</span></span></code></pre></div>
 <p>Les sorties sont identiques.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:testtttt"></span>
@@ -310,18 +328,19 @@ Figure 9.1: Valeur-<span class="math inline">\(t\)</span> de la différence de m
 Figure 9.2: Valeur-<span class="math inline">\(t\)</span> de moyenne de différences sur la distribution-<span class="math inline">\(t\)</span>
 </p>
 </div>
-<p>La Figure <a href="analyser.html#fig:testtttt">9.2</a> montre où se situe la différence de moyenne par rapport à la distribution d’échantillonnage de l’hypothèse nulle. Comme la valeur se retrouve dans la valeur-<span class="math inline">\(p\)</span> est plus petite que la valeur <span class="math inline">\(\alpha\)</span> fixée (ici à 5%), on rejette l’hypothèse nulle, il y a vraisemblablement une différence entre les temps de mesure, ce qui était l’intention derrière la création des données.</p>
+<p>La Figure <a href="analyser.html#fig:testtttt">9.2</a> montre où se situe la différence de moyenne par rapport à la distribution d’échantillonnage de l’hypothèse nulle. Comme la valeur se retrouve dans la valeur-<span class="math inline">\(p\)</span> est plus petite que la valeur <span class="math inline">\(\alpha\)</span> fixée à .05, on rejette l’hypothèse nulle; il y a vraisemblablement une différence entre les temps de mesure, ce qui était l’intention derrière la création des données.</p>
 </div>
 <div id="lanalyse-de-variance-à-un-facteur" class="section level3" number="9.1.3">
 <h3>
 <span class="header-section-number">9.1.3</span> L’analyse de variance à un facteur<a class="anchor" aria-label="anchor" href="#lanalyse-de-variance-%C3%A0-un-facteur"><i class="fas fa-link"></i></a>
 </h3>
-<p>L’analyse de variance, souvent appelée ANOVA (<em>ANalysis Of VAriance</em>), permet de comparer une variable continue sur plusieurs groupes ou traitements. Il s’agit d’une extension du test-<span class="math inline">\(t\)</span> indépendant qui compare une variable continue auprès de deux groupes. À plus de deux groupes, l’analyse de variance entre en jeu. <strong>Attention!</strong> Cette section se limite au cas où les groupes sont de tailles identiques (même nombre de participants par groupe, le symbole <span class="math inline">\(n_k\)</span> pour référer à cette quantité) afin d’en simplifier la présentation.</p>
+<p>L’analyse de variance, souvent appelée ANOVA (<em>ANalysis Of VAriance</em>), permet de comparer une variable continue sur plusieurs groupes ou traitements. Il s’agit d’une extension du test-<span class="math inline">\(t\)</span> indépendant qui compare une variable continue auprès de deux groupes. À plus de deux groupes, l’analyse de variance entre en jeu.</p>
+<p><strong>Attention!</strong> Cette section se limite au cas où les groupes sont de tailles identiques (même nombre de participants par groupe, le symbole <span class="math inline">\(n_k\)</span> pour référer à cette quantité) afin d’en simplifier la présentation.</p>
 <div id="la-logique-de-lanalyse-de-variance" class="section level4" number="9.1.3.1">
 <h4>
 <span class="header-section-number">9.1.3.1</span> La logique de l’analyse de variance<a class="anchor" aria-label="anchor" href="#la-logique-de-lanalyse-de-variance"><i class="fas fa-link"></i></a>
 </h4>
-<p>Comme il a été présenté dans la section sur le test-<span class="math inline">\(t\)</span> indépendant, le modèle sous-jacent à l’analyse de variance à un facteur est une extension de ce modèle pour <span class="math inline">\(k\)</span> groupes. Chaque groupe est associé à une différence de moyennes <span class="math inline">\(\mu_i\)</span>, pour <span class="math inline">\(i = 1,2, ...k\)</span> par rapport à la moyenne groupe référent, <span class="math inline">\(\mu_0\)</span>. Les variables <span class="math inline">\(x_i\)</span> définissent l’appartenance au groupe <span class="math inline">\(i\)</span> par la valeur 1 et 0 pour les autres groupes (codage factice ou <em>dummy coding</em>).</p>
+<p>Comme il a été présenté dans la section sur [le test-<span class="math inline">\(t\)</span> indépendant], le modèle sous-jacent à l’analyse de variance à un facteur est une extension de ce modèle pour <span class="math inline">\(k\)</span> groupes. Chaque groupe est associé à une différence de moyennes <span class="math inline">\(\mu_i\)</span>, pour <span class="math inline">\(i = 1,2, ...k\)</span> par rapport à la moyenne groupe référent, <span class="math inline">\(\mu_0\)</span>. Les variables <span class="math inline">\(x_i\)</span> définissent l’appartenance au groupe <span class="math inline">\(i\)</span> par la valeur 1 et 0 pour les autres groupes (codage factice ou <em>dummy coding</em>).</p>
 <p><span class="math display">\[y = \mu_0 + \mu_1x_1 + \mu_2x_2+ ... +\mu_kx_k + \epsilon\]</span>
 L’hypothèse nulle est la suivante.
 <span class="math display">\[\sigma^2_1=\sigma^2_2=...=\sigma^2_k\]</span>
@@ -344,13 +363,13 @@ où <span class="math inline">\(dl_1 = k-1\)</span>, et <span class="math inline
 <li>si <span class="math inline">\(\text{CMI}=\text{CMR}\)</span>, alors <span class="math inline">\(\text{CMI}/\text{CMR}=1\)</span>;</li>
 <li>si <span class="math inline">\(\text{CMI}&lt;\text{CMR}\)</span>, alors <span class="math inline">\(\text{CMI}/\text{CMR}&lt;1\)</span>.</li>
 </ul>
-<p>Plus les moyennes sont variables, plus la valeur du CMI est élevée. Plus les unités sont variables, plus le CMR est élevé. S’il existe au moins une différence entre les groupes, le ratio sera en faveur du CMI. En fait, plus <span class="math inline">\(F\)</span> est élevée, toutes autres choses étant égales (les degrés de libertés, p. ex.), plus la probabilité de rejeter l’hypothèse nulle sera grande. Ainsi, lorsque, la valeur-<span class="math inline">\(F\)</span> est obtenue, il est possible de calculer une valeur-<span class="math inline">\(p\)</span>, et le test d’hypothèse revient au même qu’auparavant.</p>
+<p>Plus les moyennes sont variables, plus la valeur du CMI est élevée. Plus les unités sont variables, plus le CMR est élevé. S’il existe au moins une différence entre les groupes, le ratio est en faveur du CMI. En fait, plus <span class="math inline">\(F\)</span> est élevée, toutes autres choses étant égales (les degrés de libertés, p. ex.), plus la probabilité de rejeter l’hypothèse nulle est grande. Ainsi, lorsque, la valeur-<span class="math inline">\(F\)</span> est obtenue, il est possible de calculer une valeur-<span class="math inline">\(p\)</span>, et le test d’hypothèse se déroule tel qu’auparavant.</p>
 </div>
 <div id="la-création-de-données" class="section level4" number="9.1.3.2">
 <h4>
 <span class="header-section-number">9.1.3.2</span> La création de données<a class="anchor" aria-label="anchor" href="#la-cr%C3%A9ation-de-donn%C3%A9es"><i class="fas fa-link"></i></a>
 </h4>
-<p>Dans un jeu de données commun, une variable désignera les groupes, et une autre leur score sur une certaine mesure. La syntaxe suivante montre trois façons pour créer une variable facteur.</p>
+<p>Dans un jeu de données commun, une variable désigne les groupes et une autre leur score sur une certaine mesure. La syntaxe suivante montre trois façons pour créer une variable facteur.</p>
 <div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="analyser.html#cb120-1" aria-hidden="true" tabindex="-1"></a>nk <span class="ot">&lt;-</span> <span class="dv">5</span> <span class="co"># nombre d'unités par groupe</span></span>
 <span id="cb120-2"><a href="analyser.html#cb120-2" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="dv">4</span>  <span class="co"># nombre de groupes</span></span>
 <span id="cb120-3"><a href="analyser.html#cb120-3" aria-hidden="true" tabindex="-1"></a><span class="co"># En ordre</span></span>
@@ -432,7 +451,7 @@ où <span class="math inline">\(dl_1 = k-1\)</span>, et <span class="math inline
   <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">X</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">tab</span><span class="op">)</span>
   <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">X</span><span class="op">)</span>
 <span class="op">}</span></code></pre></div>
-<p>La fonction maison retourne un codage factice pour les <span class="math inline">\(k\)</span> groupes. <strong>Attention</strong>, le codage factice est fait en ordre alphabétique. Comme il est redondant d’avoir <span class="math inline">\(k\)</span> groupes (identifier <span class="math inline">\(k\)</span> groupes nécessite <span class="math inline">\(k-1\)</span> variables), un groupe référent est désigné. Ce dernier aura 0 sur tous les scores. Pour retirer un groupe, l’utilisation des crochets et une valeur négative associés à la colonne du groupe référent feront l’affaire, p. ex. <code>dummy.coding(x)[,-k]</code> déclarera le <span class="math inline">\(k\)</span><sup>e</sup> groupe comme le groupe référent.</p>
+<p>La fonction maison retourne un codage factice pour les <span class="math inline">\(k\)</span> groupes. <strong>Attention</strong>, le codage factice est fait en ordre alphabétique. Comme il est redondant d’avoir <span class="math inline">\(k\)</span> groupes (identifier <span class="math inline">\(k\)</span> groupes nécessite <span class="math inline">\(k-1\)</span> variables), un groupe référent est désigné. Ce dernier aura 0 sur tous les scores. Pour retirer un groupe, l’utilisation des crochets et une valeur négative associés à la colonne du groupe référent feront l’affaire, p. ex. <code>dummy.coding(x)[,-k]</code> déclare le <span class="math inline">\(k\)</span><sup>e</sup> groupe comme le groupe référent.</p>
 <div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="analyser.html#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Facteur de groupe</span></span>
 <span id="cb124-2"><a href="analyser.html#cb124-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2602</span>)</span>
 <span id="cb124-3"><a href="analyser.html#cb124-3" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="fu">length</span>(categorie)</span>
@@ -459,7 +478,7 @@ où <span class="math inline">\(dl_1 = k-1\)</span>, et <span class="math inline
 <span id="cb124-24"><a href="analyser.html#cb124-24" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">9</span>      chien    <span class="dv">21</span>    <span class="dv">21</span></span>
 <span id="cb124-25"><a href="analyser.html#cb124-25" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">10</span>     chien    <span class="dv">18</span>    <span class="dv">18</span></span></code></pre></div>
 <p>L’expression <code>X %*% mu</code> est une multiplication d’algèbre matricielle qui multiplie la matrice <span class="math inline">\(n \times p\)</span> de codage factice <span class="math inline">\(X\)</span> à une matrice <span class="math inline">\(p\times 1\)</span> de moyennes <span class="math inline">\(\mu\)</span>. L’opération multiple les <span class="math inline">\(p\)</span> éléments d’une ligne de <span class="math inline">\(X\)</span> à la colonne <span class="math inline">\(p\)</span> correspondante de <span class="math inline">\(\mu\)</span>. En algèbre matricielle Le résultat est une matrice <span class="math inline">\(n \times 1\)</span> qui contient les différences de moyennes pour chaque unité. Dans la même ligne de syntaxe, la moyenne de la population (groupe référent), <span class="math inline">\(\mu_0\)</span> est ajoutée et la variation individuelle, <span class="math inline">\(\epsilon\)</span>.</p>
-<p>Les scores produits sont identiques. Dans cet exemple par contre, l’origine des différences entre groupes est plus évidente, spécialement en comparant le modèle sous-jacent à l’analyse de variance. La source d’erreur est visible ainsi que les différences de moyennes. La force de cette deuxième méthode est qu’elle pourrait facilement être automatisée pour créer des jeux de données, alors que la première serait plus compliquée. La seconde méthode nécessite six arguments (<span class="math inline">\(n_k\)</span>, <span class="math inline">\(\mu_0\)</span>, <span class="math inline">\(\mu_{1:k}\)</span>, et <span class="math inline">\(\sigma_{e}\)</span> en plus de catégories et définir le groupe référent), la première aurait de la difficulté à spécifier tous les arrangements de différence de moyennes automatiquement, quoiqu’elles seraient plus personnalisables.</p>
+<p>Les scores produits sont identiques. Dans cet exemple par contre, l’origine des différences entre groupes est plus évidente, spécialement en comparant le modèle sous-jacent à l’analyse de variance. La source d’erreur est visible ainsi que les différences de moyennes. La force de cette deuxième méthode est qu’elle peut facilement être automatisée pour créer des jeux de données, alors que la première est plus compliquée. La seconde méthode nécessite six arguments (<span class="math inline">\(n_k\)</span>, <span class="math inline">\(\mu_0\)</span>, <span class="math inline">\(\mu_{1:k}\)</span>, et <span class="math inline">\(\sigma_{e}\)</span> en plus de catégories et définir le groupe référent), la première aurait de la difficulté à spécifier tous les arrangements de différence de moyennes automatiquement, quoiqu’elles sont plus personnalisables.</p>
 </div>
 <div id="analyse" class="section level4" number="9.1.3.4">
 <h4>
@@ -478,32 +497,36 @@ où <span class="math inline">\(dl_1 = k-1\)</span>, et <span class="math inline
 <span id="cb125-10"><a href="analyser.html#cb125-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb125-11"><a href="analyser.html#cb125-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Fonction maison</span></span>
 <span id="cb125-12"><a href="analyser.html#cb125-12" aria-hidden="true" tabindex="-1"></a>gr <span class="ot">&lt;-</span> <span class="fu">table</span>(donnees<span class="sc">$</span>groupe)</span>
-<span id="cb125-13"><a href="analyser.html#cb125-13" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="fu">length</span>(gr)</span>
-<span id="cb125-14"><a href="analyser.html#cb125-14" aria-hidden="true" tabindex="-1"></a>nk <span class="ot">&lt;-</span> <span class="fu">dim</span>(donnees)[<span class="dv">1</span>] <span class="sc">/</span> k</span>
+<span id="cb125-13"><a href="analyser.html#cb125-13" aria-hidden="true" tabindex="-1"></a>k  <span class="ot">&lt;-</span> <span class="fu">length</span>(gr)          <span class="co"># Nombre de groupes</span></span>
+<span id="cb125-14"><a href="analyser.html#cb125-14" aria-hidden="true" tabindex="-1"></a>nk <span class="ot">&lt;-</span> <span class="fu">dim</span>(donnees)[<span class="dv">1</span>] <span class="sc">/</span> k <span class="co"># Nombre de participants par groupe</span></span>
 <span id="cb125-15"><a href="analyser.html#cb125-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb125-16"><a href="analyser.html#cb125-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Moyennes et variance des groupes</span></span>
-<span id="cb125-17"><a href="analyser.html#cb125-17" aria-hidden="true" tabindex="-1"></a>moyenne <span class="ot">&lt;-</span> <span class="fu">by</span>(donnees<span class="sc">$</span>score, donnees<span class="sc">$</span>groupe, mean)</span>
+<span id="cb125-16"><a href="analyser.html#cb125-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Moyennes et variance par (`by()`) groupes</span></span>
+<span id="cb125-17"><a href="analyser.html#cb125-17" aria-hidden="true" tabindex="-1"></a>moyenne  <span class="ot">&lt;-</span> <span class="fu">by</span>(donnees<span class="sc">$</span>score, donnees<span class="sc">$</span>groupe, mean)</span>
 <span id="cb125-18"><a href="analyser.html#cb125-18" aria-hidden="true" tabindex="-1"></a>variance <span class="ot">&lt;-</span> <span class="fu">by</span>(donnees<span class="sc">$</span>score, donnees<span class="sc">$</span>groupe, var)</span>
 <span id="cb125-19"><a href="analyser.html#cb125-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb125-20"><a href="analyser.html#cb125-20" aria-hidden="true" tabindex="-1"></a>CMI <span class="ot">&lt;-</span> nk <span class="sc">*</span> <span class="fu">var</span>(moyenne)</span>
-<span id="cb125-21"><a href="analyser.html#cb125-21" aria-hidden="true" tabindex="-1"></a>CMR <span class="ot">&lt;-</span> <span class="fu">mean</span>(variance)</span>
-<span id="cb125-22"><a href="analyser.html#cb125-22" aria-hidden="true" tabindex="-1"></a>dl1 <span class="ot">&lt;-</span> k <span class="sc">-</span> <span class="dv">1</span></span>
-<span id="cb125-23"><a href="analyser.html#cb125-23" aria-hidden="true" tabindex="-1"></a>dl2 <span class="ot">&lt;-</span> k <span class="sc">*</span> (nk <span class="sc">-</span> <span class="dv">1</span>)</span>
-<span id="cb125-24"><a href="analyser.html#cb125-24" aria-hidden="true" tabindex="-1"></a>vf <span class="ot">&lt;-</span> CMI <span class="sc">/</span> CMR </span>
-<span id="cb125-25"><a href="analyser.html#cb125-25" aria-hidden="true" tabindex="-1"></a>vp <span class="ot">&lt;-</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">pf</span>(vf, <span class="at">df1 =</span> dl1, <span class="at">df2 =</span> dl2)) </span>
-<span id="cb125-26"><a href="analyser.html#cb125-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Création du tableau</span></span>
-<span id="cb125-27"><a href="analyser.html#cb125-27" aria-hidden="true" tabindex="-1"></a>resultats <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">5</span>) <span class="co"># Tableau vide</span></span>
-<span id="cb125-28"><a href="analyser.html#cb125-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Ajouter noms</span></span>
-<span id="cb125-29"><a href="analyser.html#cb125-29" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(resultats)  <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"dl"</span>, <span class="st">"SS"</span>, <span class="st">"CM"</span>, <span class="st">"F"</span>, <span class="st">"p"</span>)</span>
-<span id="cb125-30"><a href="analyser.html#cb125-30" aria-hidden="true" tabindex="-1"></a><span class="fu">row.names</span>(resultats) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"groupe"</span>,<span class="st">"residu"</span>)</span>
-<span id="cb125-31"><a href="analyser.html#cb125-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Ajouter valeurs</span></span>
-<span id="cb125-32"><a href="analyser.html#cb125-32" aria-hidden="true" tabindex="-1"></a>resultats[<span class="dv">1</span>,] <span class="ot">&lt;-</span> <span class="fu">c</span>(dl1, CMI <span class="sc">*</span> dl1, CMI, vf, vp)</span>
-<span id="cb125-33"><a href="analyser.html#cb125-33" aria-hidden="true" tabindex="-1"></a>resultats[<span class="dv">2</span>,] <span class="ot">&lt;-</span> <span class="fu">c</span>(dl2, CMR <span class="sc">*</span> dl2, CMR, <span class="dv">0</span>, <span class="dv">0</span>)</span>
-<span id="cb125-34"><a href="analyser.html#cb125-34" aria-hidden="true" tabindex="-1"></a>resultats</span>
-<span id="cb125-35"><a href="analyser.html#cb125-35" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>        dl   SS    CM  F        p</span>
-<span id="cb125-36"><a href="analyser.html#cb125-36" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> groupe  <span class="dv">4</span>  <span class="dv">834</span> <span class="fl">208.4</span> <span class="dv">14</span> <span class="fl">5.15e-09</span></span>
-<span id="cb125-37"><a href="analyser.html#cb125-37" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> residu <span class="dv">95</span> <span class="dv">1414</span>  <span class="fl">14.9</span>  <span class="dv">0</span> <span class="fl">0.00e+00</span></span></code></pre></div>
-<p>Les résultats sont identiques, les seules différences étant dues à l’arrondissement. Comme la valeur-<span class="math inline">\(p\)</span> est de 5.145^{-9}, ce qui est extrêmement plus petit que l’usuel .05 (ou un autre taux d’erreur de type I fixé à l’avance), l’hypothèse nulle est rejetée, il y a vraisemblablement une différence entre les groupes, ce qui est déjà connu. La Figure <a href="analyser.html#fig:ft">9.3</a> illustre très bien la rareté d’un tel jeu de données sous l’hypothèse nulle.</p>
+<span id="cb125-20"><a href="analyser.html#cb125-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Statistiques</span></span>
+<span id="cb125-21"><a href="analyser.html#cb125-21" aria-hidden="true" tabindex="-1"></a>CMI <span class="ot">&lt;-</span> nk <span class="sc">*</span> <span class="fu">var</span>(moyenne)</span>
+<span id="cb125-22"><a href="analyser.html#cb125-22" aria-hidden="true" tabindex="-1"></a>CMR <span class="ot">&lt;-</span> <span class="fu">mean</span>(variance)</span>
+<span id="cb125-23"><a href="analyser.html#cb125-23" aria-hidden="true" tabindex="-1"></a>dl1 <span class="ot">&lt;-</span> k <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb125-24"><a href="analyser.html#cb125-24" aria-hidden="true" tabindex="-1"></a>dl2 <span class="ot">&lt;-</span> k <span class="sc">*</span> (nk <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb125-25"><a href="analyser.html#cb125-25" aria-hidden="true" tabindex="-1"></a>vf <span class="ot">&lt;-</span> CMI <span class="sc">/</span> CMR </span>
+<span id="cb125-26"><a href="analyser.html#cb125-26" aria-hidden="true" tabindex="-1"></a>vp <span class="ot">&lt;-</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">pf</span>(vf, <span class="at">df1 =</span> dl1, <span class="at">df2 =</span> dl2)) </span>
+<span id="cb125-27"><a href="analyser.html#cb125-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb125-28"><a href="analyser.html#cb125-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Création du tableau</span></span>
+<span id="cb125-29"><a href="analyser.html#cb125-29" aria-hidden="true" tabindex="-1"></a>resultats <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">5</span>) <span class="co"># Tableau vide</span></span>
+<span id="cb125-30"><a href="analyser.html#cb125-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb125-31"><a href="analyser.html#cb125-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Ajouter noms</span></span>
+<span id="cb125-32"><a href="analyser.html#cb125-32" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(resultats)  <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"dl"</span>, <span class="st">"SS"</span>, <span class="st">"CM"</span>, <span class="st">"F"</span>, <span class="st">"p"</span>)</span>
+<span id="cb125-33"><a href="analyser.html#cb125-33" aria-hidden="true" tabindex="-1"></a><span class="fu">row.names</span>(resultats) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"groupe"</span>, <span class="st">"residu"</span>)</span>
+<span id="cb125-34"><a href="analyser.html#cb125-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb125-35"><a href="analyser.html#cb125-35" aria-hidden="true" tabindex="-1"></a><span class="co"># Ajouter valeurs</span></span>
+<span id="cb125-36"><a href="analyser.html#cb125-36" aria-hidden="true" tabindex="-1"></a>resultats[<span class="dv">1</span>,] <span class="ot">&lt;-</span> <span class="fu">c</span>(dl1, CMI <span class="sc">*</span> dl1, CMI, vf, vp)</span>
+<span id="cb125-37"><a href="analyser.html#cb125-37" aria-hidden="true" tabindex="-1"></a>resultats[<span class="dv">2</span>,] <span class="ot">&lt;-</span> <span class="fu">c</span>(dl2, CMR <span class="sc">*</span> dl2, CMR, <span class="dv">0</span>, <span class="dv">0</span>)</span>
+<span id="cb125-38"><a href="analyser.html#cb125-38" aria-hidden="true" tabindex="-1"></a>resultats</span>
+<span id="cb125-39"><a href="analyser.html#cb125-39" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>        dl   SS    CM  F        p</span>
+<span id="cb125-40"><a href="analyser.html#cb125-40" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> groupe  <span class="dv">4</span>  <span class="dv">834</span> <span class="fl">208.4</span> <span class="dv">14</span> <span class="fl">5.15e-09</span></span>
+<span id="cb125-41"><a href="analyser.html#cb125-41" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> residu <span class="dv">95</span> <span class="dv">1414</span>  <span class="fl">14.9</span>  <span class="dv">0</span> <span class="fl">0.00e+00</span></span></code></pre></div>
+<p>Les résultats sont identiques, les seules différences étant dues à l’arrondissement. Comme la valeur-<span class="math inline">\(p\)</span> est de 5.145^{-9}, ce qui est extrêmement plus petit que l’usuel .05 (ou un autre taux d’erreur de type I fixé à l’avance), l’hypothèse nulle est rejetée, il y a vraisemblablement une différence entre les groupes, ce qui est déjà connu. La Figure <a href="analyser.html#fig:ft">9.3</a> illustre très bien la rareté d’un tel jeu de données sous l’hypothèse nulle.</p>
 <div class="figure">
 <span style="display:block;" id="fig:ft"></span>
 <img src="09-Analyser_files/figure-html/ft-1.png" alt="Valeur-$F$ de la comparaison des moyennes" width="672"><p class="caption">
@@ -521,12 +544,15 @@ Figure 9.3: Valeur-<span class="math inline">\(F\)</span> de la comparaison des 
 <h3>
 <span class="header-section-number">9.2.1</span> La covariance<a class="anchor" aria-label="anchor" href="#la-covariance"><i class="fas fa-link"></i></a>
 </h3>
-<p>La covariance représente une mesure du degré auquel une variable augmente lorsque l’autre augmente. Elle correspond au produit moyen entre deux variables centrées (dont les moyennes sont soustraites). On retrouve l’équation sous la forme suivante.
-<span class="math display">\[\text{cov}_{xy} = \sigma_{xy}=\frac{1}{n-1}\sum_{i=1}^n(x_i-\bar{x})(y_i-\bar{y})\]</span></p>
+<p>La covariance représente une mesure du degré auquel une variable augmente lorsque l’autre augmente. Elle correspond au produit moyen entre deux variables centrées (dont les moyennes sont soustraites). On retrouve la covariance sous la forme de l’équation <a href="analyser.html#eq:cov101">(9.4)</a>.</p>
+<p><span class="math display" id="eq:cov101">\[\begin{equation}
+\text{cov}_{xy} = \sigma_{xy}=\frac{1}{n-1}\sum_{i=1}^n(x_i-\bar{x})(y_i-\bar{y})
+\tag{9.4}
+\end{equation}\]</span></p>
 <p>La covariance est une extension multivariée de la variance. La variance est le produit d’une variable <strong>centrée</strong> avec elle-même (le carré de la variable), <span class="math display">\[\sigma^2=\frac{1}{n-1}\sum_{i=1}^nx_ix_i\]</span>.</p>
 <p>En transformant <span class="math inline">\(x\)</span> et <span class="math inline">\(y\)</span> pour qu’elles soient <strong>centrées</strong>, l’aspect de produit entre les deux variables devient évident dans l’expression de la covariance.
 <span class="math display">\[\text{cov}_{xy} = \frac{1}{n-1}\sum_{i=1}^nxy\]</span>
-La programmation de la covariance pourrait se traduire ainsi.</p>
+La programmation de la covariance peut se traduire ainsi.</p>
 <div class="sourceCode" id="cb126"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">covariance</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span><span class="op">{</span>
   <span class="co"># X est une data.frame ou matrice de n sujets par p variables</span>
@@ -538,14 +564,14 @@ La programmation de la covariance pourrait se traduire ainsi.</p>
   <span class="va">cov.xy</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">prod.xy</span><span class="op">)</span> <span class="op">/</span> <span class="op">(</span><span class="va">n</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span>
   <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">cov.xy</span><span class="op">)</span>
 <span class="op">}</span></code></pre></div>
-<p>La fonction de base <code><a href="https://rdrr.io/r/stats/cor.html">cov()</a></code> sera plus efficace (plus robuste et plus simple) que la fonction maison précédente. La fonction <code><a href="https://rdrr.io/r/stats/cor.html">cov()</a></code> peut tenir compte de plus de deux variables.
+<p>La fonction de base <code><a href="https://rdrr.io/r/stats/cor.html">cov()</a></code> est plus efficace (plus robuste et plus simple) que la fonction maison précédente. La fonction <code><a href="https://rdrr.io/r/stats/cor.html">cov()</a></code> peut tenir compte de plus de deux variables.
 La covariance indique la direction de la covariation entre les deux variables, positives ou négatives, mais n’indique pas la force de la relation. Bien qu’une covariance de 0 indique l’absence de colinéarité, une covariance de 120 n’est pas nécessairement plus forte qu’une covariance de 1. La mesure est intrinsèquement influencée par les unités l’échelle de mesure. Il serait aberrant de considérer le système métrique comme moins efficace, car ces mesures sont moins variables que les mesures impériales. (Il y a plusieurs raisons de préférer le système métrique, mais ce n’en est pas une!)</p>
 </div>
 <div id="la-corrélation" class="section level3" number="9.2.2">
 <h3>
 <span class="header-section-number">9.2.2</span> La corrélation<a class="anchor" aria-label="anchor" href="#la-corr%C3%A9lation"><i class="fas fa-link"></i></a>
 </h3>
-<p>La corrélation représente le degré d’association linéaire entre deux variables. Une façon simple de considérer la corrélation est de la concevoir comme une covariance standardisée. Elle varie entre -1 et 1, ces deux dernières valeurs impliquant, respectivement, une relation parfaitement négative et positive entre les deux variables. En plus d’indiquer la direction de la relation, la corrélation suggère une force à ce lien. Lorsque la valeur de la corrélation est nulle, <span class="math inline">\(r=0\)</span>, un diagramme de dispersion ne montre qu’un nuage de point épars (sans structure), plus la corrélation augmente (en terme absolu) plus le nuage tends vers une ligne droite. La Figure <a href="analyser.html#fig:corimage">9.4</a> montre différentes valeurs de corrélation et un exemple de nuage de point qui lui est associé.</p>
+<p>La corrélation représente le degré d’association linéaire entre deux variables. Une façon simple de concevoir la corrélation est comme une covariance standardisée. Elle varie entre -1 et 1, ces deux dernières valeurs impliquant, respectivement, une relation parfaitement négative et positive entre les deux variables. En plus d’indiquer la direction de la relation, la corrélation suggère une force à ce lien. Lorsque la valeur de la corrélation est nulle, <span class="math inline">\(r=0\)</span>, un diagramme de dispersion ne montre qu’un nuage de point épars (sans structure). Plus la corrélation augmente (en terme absolu), plus le nuage tends vers une ligne droite. La Figure <a href="analyser.html#fig:corimage">9.4</a> montre différentes valeurs de corrélation et un exemple de nuage de points qui lui est associé.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:corimage"></span>
 <img src="09-Analyser_files/figure-html/corimage-1.png" alt="Illustrations de diagrammes de dispersion associé en fonction de corrélations" width="50%" height="50%"><p class="caption">
@@ -553,108 +579,159 @@ Figure 9.4: Illustrations de diagrammes de dispersion associé en fonction de co
 </p>
 </div>
 <p>En statistiques, la corrélation est souvent représentée par la lettre grecque <span class="math inline">\(\rho\)</span> (rho) ou l’usuel <span class="math inline">\(r\)</span> lorsqu’il s’agit d’une estimation à partir d’un échantillon.</p>
-<p>Il y a plusieurs méthodes pour calculer la corrélation. Une première est de considérer la corrélation comme le produit de variables standardisées (autrement dit, score-<span class="math inline">\(z\)</span>). Pour la covariance, la moyenne était soustraite de la variable, donc des variables centrées. Pour la corrélation, on divise l’écart type également pour obtenir des variables standardisées.</p>
+<p>Il y a plusieurs méthodes pour calculer la corrélation. Une première est de considérer la corrélation comme le produit de variables standardisées (autrement dit, score-<span class="math inline">\(z\)</span>). Pour la covariance, la moyenne était soustraite de la variable, c’est-à-dire des variables centrées. Pour la corrélation, on divise pas l’écart type également pour obtenir des variables standardisées.</p>
 <p>En admettant que <span class="math inline">\(x\)</span> et <span class="math inline">\(y\)</span> sont déjà <strong>standardisée</strong>, <span class="math inline">\(z_x,z_y\)</span>, comme c’était le cas pour la covariance, l’aspect de produit entre les deux variables est conservé.
 <span class="math display">\[\text{cor}_{xy} = r_{xy}= \frac{1}{n-1}\sum_{i=1}^nz_xz_y\]</span></p>
-<p>Il est possible de calculer la directement la corrélation à partir de la covariance, soit en divisant par le produit des écarts types des variables.</p>
+<p>Il est possible de calculer directement la corrélation à partir de la covariance, soit en divisant par le produit des écarts types des variables.</p>
 <p><span class="math display">\[r_{xy} = \frac{\text{cov}_{xy}}{\sigma_x\sigma_y}\]</span></p>
 <p>Voici trois options de programmation de la corrélation. La première et la deuxième sont basées sur la covariance. Dans la première, la covariance est calculée de nouveau dans la fonction. La deuxième quant à elle profite avantageusement de l’existence d’une fonction maison qui calcule directement la covariance. La troisième recourt au produit de variables standardisées.</p>
 <div class="sourceCode" id="cb127"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Option 1 : Calcul complet</span>
 <span class="va">correlation1</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span><span class="op">{</span>
+  
+  <span class="co"># La taille d'échantillon</span>
   <span class="va">n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
-  <span class="co"># centrer variables</span>
+  
+  <span class="co"># Centrer les variables</span>
   <span class="va">xc</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
   <span class="va">yc</span> <span class="op">&lt;-</span> <span class="va">y</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span>
+  
+  <span class="co"># Produit des variables</span>
   <span class="va">prod.xy</span> <span class="op">&lt;-</span> <span class="va">xc</span> <span class="op">*</span> <span class="va">yc</span>
-  <span class="va">cov.xy</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">prod.xy</span><span class="op">)</span> <span class="op">/</span> <span class="op">(</span><span class="va">n</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span>
+  
+  <span class="co"># La somme des produits divisée par n - 1</span>
+  <span class="va">cov.xy</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">prod.xy</span><span class="op">)</span> <span class="op">/</span> <span class="op">(</span><span class="va">n</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span>  <span class="co"># La covariance</span>
+  
+  <span class="co"># Diviser par les écarts types</span>
   <span class="va">cor.xy</span> <span class="op">&lt;-</span> <span class="va">cov.xy</span> <span class="op">/</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span><span class="op">)</span>
+  
   <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">cor.xy</span><span class="op">)</span>
 <span class="op">}</span>
 
 <span class="co"># Option 2 : Basé sur la covariance</span>
 <span class="va">correlation2</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span><span class="op">{</span>
-  <span class="va">cov.xy</span> <span class="op">&lt;-</span> <span class="fu">covariance</span><span class="op">(</span><span class="va">x</span>,<span class="va">y</span><span class="op">)</span> 
+  
+  <span class="co"># Calculer la covariance</span>
+  <span class="va">cov.xy</span> <span class="op">&lt;-</span> <span class="fu">covariance</span><span class="op">(</span><span class="va">x</span>,<span class="va">y</span><span class="op">)</span>
+  
+  <span class="co"># Diviser par les écarts types</span>
   <span class="va">cor.xy</span> <span class="op">&lt;-</span> <span class="va">cov.xy</span> <span class="op">/</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span><span class="op">)</span>
   <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">cor.xy</span><span class="op">)</span>
 <span class="op">}</span>
 
 <span class="co"># Option 3 : Basé sur des variables standardisées</span>
 <span class="va">correlation3</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span><span class="op">{</span>
+  
+  <span class="co"># La taille d'échantillon</span>
   <span class="va">n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
+  
+  <span class="co"># Centrer et réduire les variables</span>
   <span class="va">xs</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="va">x</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
   <span class="va">ys</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="va">y</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span>
-  <span class="va">cor.xy</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">xs</span><span class="op">*</span><span class="va">ys</span><span class="op">)</span><span class="op">/</span><span class="op">(</span><span class="va">n</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span>
+  
+  <span class="co"># La somme des produits divisé par n - 1</span>
+  <span class="va">cor.xy</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">xs</span> <span class="op">*</span> <span class="va">ys</span><span class="op">)</span><span class="op">/</span><span class="op">(</span><span class="va">n</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span>
+  
   <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">cor.xy</span><span class="op">)</span>
 <span class="op">}</span></code></pre></div>
 <p>Évidemment, <strong>R</strong> possède une fonction de base pour le calcul d’une corrélation entre deux variables ou d’une matrice de corrélation (à partir d’un jeu de données de deux variables ou plus). Il s’agit de <code><a href="https://rdrr.io/r/stats/cor.html">cor()</a></code>. Ces trois fonctions maison en plus de la fonction <strong>R</strong> sont comparées ci-dessous. Pour ce faire, un jeu de données est créé possédant les caractéristiques désirées. Dans ce cas-ci, la taille d’échantillon est fixée à <span class="math inline">\(n=10000\)</span> pour assurer une bonne précision dans l’échantillon et une corrélation <span class="math inline">\(r=.7\)</span>.</p>
-<p>Une façon simple de produire des données à partir d’une matrice de corrélation (ou de covariance) est d’utiliser la fonction <code>mvrnorm()</code> du package <code>MASS</code>. Elle évitera pour l’instant d’introduire les manipulations mathématiques nécessaires (ce sera donc pour l’instant l’une de ces boîtes noires ayant la confiance de l’utilisateur). La fonction <code>mvrnorm()</code> pour <em>MultiVariate Random NORMmal</em> nécessite trois arguments : La taille d’échantillon <code>n</code>, les moyennes <code>mu</code> des <span class="math inline">\(p\)</span> variables et la matrice de covariance <code>Sigma</code> (la corrélation est un cas particulier de la covariance où les variables sont standardisées). Le lecteur avisé aura noté la ressemblance de nomenclature entre <code>mvrnorm()</code> (multivariée) et
-<code><a href="https://rdrr.io/r/stats/Normal.html">rnorm()</a></code> (univariée). Enfin, la dernière étape est de produire une matrice de covariance <span class="math inline">\(p \times p\)</span>. La fonction <code><a href="https://rdrr.io/r/base/matrix.html">matrix()</a></code> prend une variable de données, dans cet exemple , <code>c(1, r, r, 1)</code> qu’elle répartit ligne par colonne. Comme <span class="math inline">\(p=2\)</span>, cela crée une matrice <span class="math inline">\(2 \times 2\)</span>.</p>
-<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="analyser.html#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">820</span>)</span>
-<span id="cb128-2"><a href="analyser.html#cb128-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Taille d'échantillon importante pour réduire l'erreur d'échantillonnage</span></span>
-<span id="cb128-3"><a href="analyser.html#cb128-3" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
-<span id="cb128-4"><a href="analyser.html#cb128-4" aria-hidden="true" tabindex="-1"></a><span class="co"># La corrélation désirée</span></span>
-<span id="cb128-5"><a href="analyser.html#cb128-5" aria-hidden="true" tabindex="-1"></a>r <span class="ot">&lt;-</span> .<span class="dv">70</span></span>
-<span id="cb128-6"><a href="analyser.html#cb128-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Création d'une matrice de corrélation</span></span>
-<span id="cb128-7"><a href="analyser.html#cb128-7" aria-hidden="true" tabindex="-1"></a>R <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>, r, r, <span class="dv">1</span>), <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">ncol =</span> <span class="dv">2</span>)</span>
-<span id="cb128-8"><a href="analyser.html#cb128-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Création des données </span></span>
-<span id="cb128-9"><a href="analyser.html#cb128-9" aria-hidden="true" tabindex="-1"></a>donnees <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(MASS<span class="sc">::</span><span class="fu">mvrnorm</span>(<span class="at">n =</span> n, <span class="at">mu =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>), <span class="at">Sigma =</span> R))</span>
-<span id="cb128-10"><a href="analyser.html#cb128-10" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(donnees) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"x"</span>, <span class="st">"y"</span>)</span>
-<span id="cb128-11"><a href="analyser.html#cb128-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Voici la matrice de corrélation</span></span>
-<span id="cb128-12"><a href="analyser.html#cb128-12" aria-hidden="true" tabindex="-1"></a>R</span>
-<span id="cb128-13"><a href="analyser.html#cb128-13" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>      [,<span class="dv">1</span>] [,<span class="dv">2</span>]</span>
-<span id="cb128-14"><a href="analyser.html#cb128-14" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>,]  <span class="fl">1.0</span>  <span class="fl">0.7</span></span>
-<span id="cb128-15"><a href="analyser.html#cb128-15" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">2</span>,]  <span class="fl">0.7</span>  <span class="fl">1.0</span></span>
-<span id="cb128-16"><a href="analyser.html#cb128-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Voici une visualisation partielle des données</span></span>
-<span id="cb128-17"><a href="analyser.html#cb128-17" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(donnees)</span>
-<span id="cb128-18"><a href="analyser.html#cb128-18" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>        x      y</span>
-<span id="cb128-19"><a href="analyser.html#cb128-19" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">1</span>  <span class="fl">0.635</span>  <span class="fl">0.914</span></span>
-<span id="cb128-20"><a href="analyser.html#cb128-20" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">2</span> <span class="sc">-</span><span class="fl">0.193</span>  <span class="fl">0.360</span></span>
-<span id="cb128-21"><a href="analyser.html#cb128-21" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">3</span> <span class="sc">-</span><span class="fl">0.602</span> <span class="sc">-</span><span class="fl">1.213</span></span>
-<span id="cb128-22"><a href="analyser.html#cb128-22" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">4</span> <span class="sc">-</span><span class="fl">0.841</span> <span class="sc">-</span><span class="fl">0.986</span></span>
-<span id="cb128-23"><a href="analyser.html#cb128-23" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">5</span> <span class="sc">-</span><span class="fl">0.105</span> <span class="sc">-</span><span class="fl">1.771</span></span>
-<span id="cb128-24"><a href="analyser.html#cb128-24" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">6</span> <span class="sc">-</span><span class="fl">2.147</span> <span class="sc">-</span><span class="fl">1.590</span></span>
-<span id="cb128-25"><a href="analyser.html#cb128-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Vérifications des variables</span></span>
-<span id="cb128-26"><a href="analyser.html#cb128-26" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(donnees<span class="sc">$</span>x); <span class="fu">mean</span>(donnees<span class="sc">$</span>y); <span class="fu">sd</span>(donnees<span class="sc">$</span>x); <span class="fu">sd</span>(donnees<span class="sc">$</span>y)</span>
-<span id="cb128-27"><a href="analyser.html#cb128-27" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="sc">-</span><span class="fl">0.00578</span></span>
-<span id="cb128-28"><a href="analyser.html#cb128-28" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="sc">-</span><span class="fl">0.00531</span></span>
-<span id="cb128-29"><a href="analyser.html#cb128-29" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">0.999</span></span>
-<span id="cb128-30"><a href="analyser.html#cb128-30" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">1.01</span></span>
-<span id="cb128-31"><a href="analyser.html#cb128-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Les résultats sont près des attentes</span></span>
-<span id="cb128-32"><a href="analyser.html#cb128-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Vérifications de la corrélations</span></span>
-<span id="cb128-33"><a href="analyser.html#cb128-33" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(donnees<span class="sc">$</span>x, donnees<span class="sc">$</span>y)</span>
-<span id="cb128-34"><a href="analyser.html#cb128-34" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">0.699</span></span>
-<span id="cb128-35"><a href="analyser.html#cb128-35" aria-hidden="true" tabindex="-1"></a><span class="fu">correlation1</span>(donnees<span class="sc">$</span>x, donnees<span class="sc">$</span>y)</span>
-<span id="cb128-36"><a href="analyser.html#cb128-36" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">0.699</span></span>
-<span id="cb128-37"><a href="analyser.html#cb128-37" aria-hidden="true" tabindex="-1"></a><span class="fu">correlation2</span>(donnees<span class="sc">$</span>x, donnees<span class="sc">$</span>y)</span>
-<span id="cb128-38"><a href="analyser.html#cb128-38" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">0.699</span></span>
-<span id="cb128-39"><a href="analyser.html#cb128-39" aria-hidden="true" tabindex="-1"></a><span class="fu">correlation3</span>(donnees<span class="sc">$</span>x, donnees<span class="sc">$</span>y)</span>
-<span id="cb128-40"><a href="analyser.html#cb128-40" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">0.699</span></span>
-<span id="cb128-41"><a href="analyser.html#cb128-41" aria-hidden="true" tabindex="-1"></a><span class="co"># Les résultats sont près des attentes et identiques</span></span></code></pre></div>
-<p>Pour tester la probabilité d’obtenir cette valeur, la corrélation <span class="math inline">\(r\)</span> peut se transformer monotonement en valeur-<span class="math inline">\(t\)</span>, ce qui permet de calculer des valeurs-<span class="math inline">\(p\)</span> par la suite.</p>
-<p><span class="math display">\[ t_{n-2} = \frac{r}{(\frac{\sqrt{1-r^2}}{\sqrt{n-2}})} \]</span>
-Cette formule se traduit simplement en code <strong>R</strong>.</p>
-<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="analyser.html#cb129-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Création d'une matrice de corrélation, </span></span>
-<span id="cb129-2"><a href="analyser.html#cb129-2" aria-hidden="true" tabindex="-1"></a><span class="co"># il pourrait également s'agir d'un vecteur ou d'un scalaire.</span></span>
-<span id="cb129-3"><a href="analyser.html#cb129-3" aria-hidden="true" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>,.<span class="dv">5</span>,.<span class="dv">4</span>,.<span class="dv">5</span>,<span class="dv">1</span>,.<span class="dv">3</span>,.<span class="dv">4</span>,.<span class="dv">3</span>,<span class="dv">1</span>),<span class="dv">3</span>,<span class="dv">3</span>)</span>
-<span id="cb129-4"><a href="analyser.html#cb129-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Nombre d'unités (valeur arbitraire ici)</span></span>
-<span id="cb129-5"><a href="analyser.html#cb129-5" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb129-6"><a href="analyser.html#cb129-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Valeurs t</span></span>
-<span id="cb129-7"><a href="analyser.html#cb129-7" aria-hidden="true" tabindex="-1"></a>vt <span class="ot">&lt;-</span> r <span class="sc">*</span> <span class="fu">sqrt</span>(n <span class="sc">-</span> <span class="dv">2</span>) <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="dv">1</span> <span class="sc">-</span> r <span class="sc">^</span> <span class="dv">2</span>)</span>
-<span id="cb129-8"><a href="analyser.html#cb129-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Valeurs-p</span></span>
-<span id="cb129-9"><a href="analyser.html#cb129-9" aria-hidden="true" tabindex="-1"></a>vp <span class="ot">&lt;-</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">pt</span>(<span class="fu">abs</span>(vt), <span class="at">df =</span> n <span class="sc">-</span> <span class="dv">2</span>)) <span class="sc">*</span> <span class="dv">2</span></span>
-<span id="cb129-10"><a href="analyser.html#cb129-10" aria-hidden="true" tabindex="-1"></a>vt ; vp</span>
-<span id="cb129-11"><a href="analyser.html#cb129-11" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>      [,<span class="dv">1</span>]  [,<span class="dv">2</span>]  [,<span class="dv">3</span>]</span>
-<span id="cb129-12"><a href="analyser.html#cb129-12" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>,]  <span class="cn">Inf</span> <span class="fl">1.633</span> <span class="fl">1.234</span></span>
-<span id="cb129-13"><a href="analyser.html#cb129-13" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">2</span>,] <span class="fl">1.63</span>   <span class="cn">Inf</span> <span class="fl">0.889</span></span>
-<span id="cb129-14"><a href="analyser.html#cb129-14" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">3</span>,] <span class="fl">1.23</span> <span class="fl">0.889</span>   <span class="cn">Inf</span></span>
-<span id="cb129-15"><a href="analyser.html#cb129-15" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>       [,<span class="dv">1</span>]  [,<span class="dv">2</span>]  [,<span class="dv">3</span>]</span>
-<span id="cb129-16"><a href="analyser.html#cb129-16" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>,] <span class="fl">0.000</span> <span class="fl">0.141</span> <span class="fl">0.252</span></span>
-<span id="cb129-17"><a href="analyser.html#cb129-17" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">2</span>,] <span class="fl">0.141</span> <span class="fl">0.000</span> <span class="fl">0.400</span></span>
-<span id="cb129-18"><a href="analyser.html#cb129-18" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">3</span>,] <span class="fl">0.252</span> <span class="fl">0.400</span> <span class="fl">0.000</span></span></code></pre></div>
-<p>Dans le code ci-dessous, l’équation précédente est subtilement réarrangée pour être plus simple et élégante quoiqu’équivalente.
-<span class="math display">\[ t_{n-2} = \frac{r}{(\frac{\sqrt{1-r^2}}{\sqrt{n-2}})} = \frac{r\sqrt{n-2}}{\sqrt{1-r^2}}\]</span>
-La première a l’avantage de montrer la relation entre l’estimateur et l’erreur type alors que la seconde est moins encombrante.</p>
+<p>Une façon simple de produire des données à partir d’une matrice de corrélation (ou de covariance) est d’utiliser la fonction <code>mvrnorm()</code> du package <code>MASS</code>. Elle évite pour l’instant d’introduire les manipulations mathématiques nécessaires (ce sera donc pour l’instant l’une de ces boîtes noires ayant la confiance de l’utilisateur, mais élucider dans le chapitre [Créer]).</p>
+<p>La fonction <code>mvrnorm()</code> pour <em>MultiVariate Random NORMmal</em> nécessite trois arguments :</p>
+<ul>
+<li><p>la taille d’échantillon <code>n</code>;</p></li>
+<li><p>les moyennes <code>mu</code> des <span class="math inline">\(p\)</span> variables, et;</p></li>
+<li><p>la matrice de covariance <code>Sigma</code> (la corrélation est un cas particulier de la covariance où les variables sont standardisées).</p></li>
+</ul>
+<p>Le lecteur avisé aura noté la ressemblance de nomenclature entre <code>mvrnorm()</code> (multivariée) et
+<code><a href="https://rdrr.io/r/stats/Normal.html">rnorm()</a></code> (univariée). Enfin, la dernière étape est de produire une matrice de covariance <span class="math inline">\(p \times p\)</span>. La fonction <code><a href="https://rdrr.io/r/base/matrix.html">matrix()</a></code> prend une variable de données, dans cet exemple , <code>c(1, r, r, 1)</code> qu’elle répartit ligne par colonne (voir <a href="programmer.html#cr%C3%A9er-une-matrice">Créer une matrice</a>. Comme <span class="math inline">\(p=2\)</span>, cela crée une matrice <span class="math inline">\(2 \times 2\)</span>.</p>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="analyser.html#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pour la reproductibilité</span></span>
+<span id="cb128-2"><a href="analyser.html#cb128-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">820</span>)</span>
+<span id="cb128-3"><a href="analyser.html#cb128-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb128-4"><a href="analyser.html#cb128-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Taille d'échantillon importante pour réduire l'erreur d'échantillonnage</span></span>
+<span id="cb128-5"><a href="analyser.html#cb128-5" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
+<span id="cb128-6"><a href="analyser.html#cb128-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb128-7"><a href="analyser.html#cb128-7" aria-hidden="true" tabindex="-1"></a><span class="co"># La corrélation désirée</span></span>
+<span id="cb128-8"><a href="analyser.html#cb128-8" aria-hidden="true" tabindex="-1"></a>r <span class="ot">&lt;-</span> .<span class="dv">70</span></span>
+<span id="cb128-9"><a href="analyser.html#cb128-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb128-10"><a href="analyser.html#cb128-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Création d'une matrice de corrélation</span></span>
+<span id="cb128-11"><a href="analyser.html#cb128-11" aria-hidden="true" tabindex="-1"></a>R <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>, r, r, <span class="dv">1</span>), <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">ncol =</span> <span class="dv">2</span>)</span>
+<span id="cb128-12"><a href="analyser.html#cb128-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb128-13"><a href="analyser.html#cb128-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Création des données </span></span>
+<span id="cb128-14"><a href="analyser.html#cb128-14" aria-hidden="true" tabindex="-1"></a>donnees <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(MASS<span class="sc">::</span><span class="fu">mvrnorm</span>(<span class="at">n =</span> n, </span>
+<span id="cb128-15"><a href="analyser.html#cb128-15" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">mu =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>), </span>
+<span id="cb128-16"><a href="analyser.html#cb128-16" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">Sigma =</span> R))</span>
+<span id="cb128-17"><a href="analyser.html#cb128-17" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(donnees) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"x"</span>, <span class="st">"y"</span>) <span class="co"># Ajouter des noms de colonnes</span></span>
+<span id="cb128-18"><a href="analyser.html#cb128-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb128-19"><a href="analyser.html#cb128-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Voici la matrice de corrélation</span></span>
+<span id="cb128-20"><a href="analyser.html#cb128-20" aria-hidden="true" tabindex="-1"></a>R</span>
+<span id="cb128-21"><a href="analyser.html#cb128-21" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>      [,<span class="dv">1</span>] [,<span class="dv">2</span>]</span>
+<span id="cb128-22"><a href="analyser.html#cb128-22" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>,]  <span class="fl">1.0</span>  <span class="fl">0.7</span></span>
+<span id="cb128-23"><a href="analyser.html#cb128-23" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">2</span>,]  <span class="fl">0.7</span>  <span class="fl">1.0</span></span>
+<span id="cb128-24"><a href="analyser.html#cb128-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb128-25"><a href="analyser.html#cb128-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Voici une visualisation partielle des données</span></span>
+<span id="cb128-26"><a href="analyser.html#cb128-26" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(donnees)</span>
+<span id="cb128-27"><a href="analyser.html#cb128-27" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>        x      y</span>
+<span id="cb128-28"><a href="analyser.html#cb128-28" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">1</span>  <span class="fl">0.635</span>  <span class="fl">0.914</span></span>
+<span id="cb128-29"><a href="analyser.html#cb128-29" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">2</span> <span class="sc">-</span><span class="fl">0.193</span>  <span class="fl">0.360</span></span>
+<span id="cb128-30"><a href="analyser.html#cb128-30" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">3</span> <span class="sc">-</span><span class="fl">0.602</span> <span class="sc">-</span><span class="fl">1.213</span></span>
+<span id="cb128-31"><a href="analyser.html#cb128-31" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">4</span> <span class="sc">-</span><span class="fl">0.841</span> <span class="sc">-</span><span class="fl">0.986</span></span>
+<span id="cb128-32"><a href="analyser.html#cb128-32" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">5</span> <span class="sc">-</span><span class="fl">0.105</span> <span class="sc">-</span><span class="fl">1.771</span></span>
+<span id="cb128-33"><a href="analyser.html#cb128-33" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">6</span> <span class="sc">-</span><span class="fl">2.147</span> <span class="sc">-</span><span class="fl">1.590</span></span>
+<span id="cb128-34"><a href="analyser.html#cb128-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb128-35"><a href="analyser.html#cb128-35" aria-hidden="true" tabindex="-1"></a><span class="co"># Vérifications des variables</span></span>
+<span id="cb128-36"><a href="analyser.html#cb128-36" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(donnees<span class="sc">$</span>x); <span class="fu">mean</span>(donnees<span class="sc">$</span>y); <span class="fu">sd</span>(donnees<span class="sc">$</span>x); <span class="fu">sd</span>(donnees<span class="sc">$</span>y)</span>
+<span id="cb128-37"><a href="analyser.html#cb128-37" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="sc">-</span><span class="fl">0.00578</span></span>
+<span id="cb128-38"><a href="analyser.html#cb128-38" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="sc">-</span><span class="fl">0.00531</span></span>
+<span id="cb128-39"><a href="analyser.html#cb128-39" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">0.999</span></span>
+<span id="cb128-40"><a href="analyser.html#cb128-40" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">1.01</span></span>
+<span id="cb128-41"><a href="analyser.html#cb128-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb128-42"><a href="analyser.html#cb128-42" aria-hidden="true" tabindex="-1"></a><span class="co"># Les résultats sont près des attentes</span></span>
+<span id="cb128-43"><a href="analyser.html#cb128-43" aria-hidden="true" tabindex="-1"></a><span class="co"># Vérifications de la corrélations</span></span>
+<span id="cb128-44"><a href="analyser.html#cb128-44" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(donnees<span class="sc">$</span>x, donnees<span class="sc">$</span>y)</span>
+<span id="cb128-45"><a href="analyser.html#cb128-45" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">0.699</span></span>
+<span id="cb128-46"><a href="analyser.html#cb128-46" aria-hidden="true" tabindex="-1"></a><span class="fu">correlation1</span>(donnees<span class="sc">$</span>x, donnees<span class="sc">$</span>y)</span>
+<span id="cb128-47"><a href="analyser.html#cb128-47" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">0.699</span></span>
+<span id="cb128-48"><a href="analyser.html#cb128-48" aria-hidden="true" tabindex="-1"></a><span class="fu">correlation2</span>(donnees<span class="sc">$</span>x, donnees<span class="sc">$</span>y)</span>
+<span id="cb128-49"><a href="analyser.html#cb128-49" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">0.699</span></span>
+<span id="cb128-50"><a href="analyser.html#cb128-50" aria-hidden="true" tabindex="-1"></a><span class="fu">correlation3</span>(donnees<span class="sc">$</span>x, donnees<span class="sc">$</span>y)</span>
+<span id="cb128-51"><a href="analyser.html#cb128-51" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">0.699</span></span></code></pre></div>
+<p>Les résultats sont près des attentes et identiques.</p>
+<p>Pour tester la probabilité d’obtenir cette valeur, la corrélation <span class="math inline">\(r\)</span> peut se transformer monotonement en valeur-<span class="math inline">\(t\)</span> avec l’équation <a href="analyser.html#eq:r2t">(9.5)</a>, ce qui permet de calculer des valeurs-<span class="math inline">\(p\)</span>.</p>
+<p><span class="math display" id="eq:r2t">\[\begin{equation}
+t_{n-2} = \frac{r}{(\frac{\sqrt{1-r^2}}{\sqrt{n-2}})}
+\tag{9.5}
+\end{equation}\]</span></p>
+<p>L’équation <a href="analyser.html#eq:r2t">(9.5)</a> se traduit simplement en code <strong>R</strong>.</p>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="analyser.html#cb129-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Création d'une matrice de corrélation </span></span>
+<span id="cb129-2"><a href="analyser.html#cb129-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Il pourrait également s'agir d'un vecteur ou d'un scalaire.</span></span>
+<span id="cb129-3"><a href="analyser.html#cb129-3" aria-hidden="true" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>( <span class="dv">1</span>, .<span class="dv">5</span>, .<span class="dv">4</span>,</span>
+<span id="cb129-4"><a href="analyser.html#cb129-4" aria-hidden="true" tabindex="-1"></a>              .<span class="dv">5</span>,  <span class="dv">1</span>, .<span class="dv">3</span>,</span>
+<span id="cb129-5"><a href="analyser.html#cb129-5" aria-hidden="true" tabindex="-1"></a>              .<span class="dv">4</span>, .<span class="dv">3</span>,  <span class="dv">1</span>), </span>
+<span id="cb129-6"><a href="analyser.html#cb129-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">ncol =</span> <span class="dv">3</span>)</span>
+<span id="cb129-7"><a href="analyser.html#cb129-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb129-8"><a href="analyser.html#cb129-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Nombre d'unités (valeur arbitraire ici)</span></span>
+<span id="cb129-9"><a href="analyser.html#cb129-9" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb129-10"><a href="analyser.html#cb129-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb129-11"><a href="analyser.html#cb129-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Valeurs-t</span></span>
+<span id="cb129-12"><a href="analyser.html#cb129-12" aria-hidden="true" tabindex="-1"></a>vt <span class="ot">&lt;-</span> r <span class="sc">*</span> <span class="fu">sqrt</span>(n <span class="sc">-</span> <span class="dv">2</span>) <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="dv">1</span> <span class="sc">-</span> r <span class="sc">^</span> <span class="dv">2</span>)</span>
+<span id="cb129-13"><a href="analyser.html#cb129-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb129-14"><a href="analyser.html#cb129-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Valeurs-p</span></span>
+<span id="cb129-15"><a href="analyser.html#cb129-15" aria-hidden="true" tabindex="-1"></a>vp <span class="ot">&lt;-</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">pt</span>(<span class="fu">abs</span>(vt), <span class="at">df =</span> n <span class="sc">-</span> <span class="dv">2</span>)) <span class="sc">*</span> <span class="dv">2</span></span>
+<span id="cb129-16"><a href="analyser.html#cb129-16" aria-hidden="true" tabindex="-1"></a>vt ; vp</span>
+<span id="cb129-17"><a href="analyser.html#cb129-17" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>      [,<span class="dv">1</span>]  [,<span class="dv">2</span>]  [,<span class="dv">3</span>]</span>
+<span id="cb129-18"><a href="analyser.html#cb129-18" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>,]  <span class="cn">Inf</span> <span class="fl">1.633</span> <span class="fl">1.234</span></span>
+<span id="cb129-19"><a href="analyser.html#cb129-19" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">2</span>,] <span class="fl">1.63</span>   <span class="cn">Inf</span> <span class="fl">0.889</span></span>
+<span id="cb129-20"><a href="analyser.html#cb129-20" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">3</span>,] <span class="fl">1.23</span> <span class="fl">0.889</span>   <span class="cn">Inf</span></span>
+<span id="cb129-21"><a href="analyser.html#cb129-21" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>       [,<span class="dv">1</span>]  [,<span class="dv">2</span>]  [,<span class="dv">3</span>]</span>
+<span id="cb129-22"><a href="analyser.html#cb129-22" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>,] <span class="fl">0.000</span> <span class="fl">0.141</span> <span class="fl">0.252</span></span>
+<span id="cb129-23"><a href="analyser.html#cb129-23" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">2</span>,] <span class="fl">0.141</span> <span class="fl">0.000</span> <span class="fl">0.400</span></span>
+<span id="cb129-24"><a href="analyser.html#cb129-24" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">3</span>,] <span class="fl">0.252</span> <span class="fl">0.400</span> <span class="fl">0.000</span></span></code></pre></div>
+<p>Dans le code ci-dessous, l’équation <a href="analyser.html#eq:r2t">(9.5)</a> précédente est subtilement réarrangée pour être plus simple et élégante quoiqu’équivalente.</p>
+<p><span class="math display" id="eq:r2t2">\[\begin{equation}
+t_{n-2} = \frac{r}{(\frac{\sqrt{1-r^2}}{\sqrt{n-2}})} = \frac{r\sqrt{n-2}}{\sqrt{1-r^2}}
+\tag{9.6}
+\end{equation}\]</span></p>
+<p>L’équation <a href="analyser.html#eq:r2t">(9.5)</a> a l’avantage de montrer la relation entre l’estimateur et l’erreur type alors que l’équation <a href="analyser.html#eq:r2t2">(9.6)</a> est moins encombrante.</p>
 </div>
 </div>
 <div id="les-données-nominales" class="section level2" number="9.3">
@@ -716,8 +793,11 @@ oui
 </tbody>
 </table></div>
 <p>Le tableau <a href="analyser.html#tab:TCCV">9.1</a> présente deux variables nominales (<code>climatosceptique</code>, à la verticale, et posséder une <code>voiture</code>, à l’horizontale) ayant chacune deux catégories (<code>oui</code> et <code>non</code>). Il montre les proportions <strong>observées</strong>. Ces variables sont-elles associées? Pour traiter cette question, les proportions attendues jouent un rôle crucial. En fait, l’hypothèse nulle sous la table de contingence postule que toutes les proportions du tableau de contingence sont indépendantes. Mathématiquement, il s’agit de postuler que les proportions d’une variable (en ligne ou en colonne) n’influencent pas celles de l’autre variable. Pour obtenir les proportions <strong>théoriques</strong>, les totaux des lignes et colonnes sont calculés ainsi que le grand total. La fréquence attendue d’une cellule est obtenue en calculant, pour chaque cellule, le produit de sa colonne et de sa ligne respective divisé par le grand total.</p>
-<p><span class="math display">\[t_{ij} = \frac{\text{total}_i \times \text{total}_j}{\sum \text{total}}\]</span></p>
-<p>L’équation ci-dessus illustre l’idée sous-jacente à la proportion attendue, <span class="math inline">\(t\)</span> d’une cellule de ligne, <span class="math inline">\(i\)</span>, et colonne <span class="math inline">\(j\)</span>.</p>
+<p><span class="math display" id="eq:chi1">\[\begin{equation}
+t_{ij} = \frac{\text{total}_i \times \text{total}_j}{\sum \text{total}}
+\tag{9.7}
+\end{equation}\]</span></p>
+<p>L’équation <a href="analyser.html#eq:chi1">(9.7)</a> ci-dessus illustre l’idée sous-jacente à la proportion attendue, <span class="math inline">\(t\)</span> d’une cellule de ligne, <span class="math inline">\(i\)</span>, et colonne <span class="math inline">\(j\)</span>.</p>
 <div class="inline-table"><table class=" lightable-classic table" style='font-family: "Arial Narrow", "Source Sans Pro", sans-serif; width: auto !important; margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto;'>
 <caption>
 <span id="tab:TCCV2">Table 9.2: </span>Tableau de contingence étendu avec les totaux
@@ -802,11 +882,11 @@ Total
 <h3>
 <span class="header-section-number">9.3.1</span> Le <span class="math inline">\(\chi^2\)</span> pour table de contingence<a class="anchor" aria-label="anchor" href="#le-chi2-pour-table-de-contingence"><i class="fas fa-link"></i></a>
 </h3>
-<p>Maintenant que la question statistique et que l’hypothèse nulle sont posées, comment mesurer le degré selon lequel les données s’écartent des attentes <em>théoriques</em>. Le <span class="math inline">\(\chi^2\)</span> (prononcé khi-carré) permet de calculer une telle mesure. Le <span class="math inline">\(\chi^2\)</span> correspond à la distance entre une valeur observée et théorique au carré, pondérée par la valeur théorique.
+<p>Maintenant que la question statistique et que l’hypothèse nulle sont posées, comment mesurer le degré selon lequel les données s’écartent des attentes <em>théoriques</em>. Le <span class="math inline">\(\chi^2\)</span> (khi-carré) permet de calculer une telle mesure. Le <span class="math inline">\(\chi^2\)</span> correspond à la distance entre une valeur observée et théorique au carré, pondérée par la valeur théorique.
 <span class="math display">\[ \chi^2_v = \sum_{i=1}^{l}\sum_{j=1}^c(\frac{(o_{ij}-t_{ij})^2}{t_{ij}})\]</span>
 où <span class="math inline">\(o\)</span> correspond aux valeurs observées, <span class="math inline">\(t\)</span> réfère aux valeurs théoriques, <span class="math inline">\(v\)</span> représente les degrés de liberté et <span class="math inline">\(i\)</span> et <span class="math inline">\(j\)</span> les lignes et colonnes respectivement. Le degré de liberté est
 <span class="math display">\[v = (n_{\text{ligne}}-1)(n_{\text{colonne}}-1)\]</span></p>
-<p>Si l’hypothèse nulle est vraie, les valeurs observées et théoriques devraient être très près. Le carré permet de calculer une distance euclidienne et le dénominateur pondère la distance. Comme l’analyse de variance, le test de <span class="math inline">\(\chi^2\)</span> pour table de contingence est global, il n’informe pas d’où provient la dépendance, mais bien s’il y a au moins une dépendance.</p>
+<p>Si l’hypothèse nulle est vraie, les valeurs observées et théoriques devraient être très près. Le carré permet de calculer une distance euclidienne et le dénominateur pondère la distance. Comme l’[analyse de variance][Analyse de variance à un facteur], le test de <span class="math inline">\(\chi^2\)</span> pour table de contingence est global, il n’informe pas d’où provient la dépendance, mais bien s’il y a au moins une dépendance.</p>
 <div class="sourceCode" id="cb130"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">khicarre</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">obs</span><span class="op">)</span><span class="op">{</span>
   <span class="co"># Obs est une table de contingence</span>
@@ -829,30 +909,33 @@ où <span class="math inline">\(o\)</span> correspond aux valeurs observées, <s
 <p>Il y a plusieurs techniques pour créer une base de données, l’essentiel étant de lier les proportions désirées. Ici, une variable sexe est créée avec 50-50% de chance d’être l’un ou l’autre sexe. Par la suite, une proportion différente liée au sexe est utilisée pour générer la fréquence de consommation de tabac. La syntaxe sert principalement à identifier les valeurs <code>homme</code> et <code>femme</code> de la première variable pour en associer une valeur <code>tabac</code>.</p>
 <div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="analyser.html#cb131-1" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set.seed</span>(<span class="dv">54</span>)</span>
 <span id="cb131-2"><a href="analyser.html#cb131-2" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">&lt;-</span> <span class="dv">100</span></span>
-<span id="cb131-3"><a href="analyser.html#cb131-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Première variable</span></span>
-<span id="cb131-4"><a href="analyser.html#cb131-4" aria-hidden="true" tabindex="-1"></a>  sexe <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"homme"</span>,<span class="st">"femme"</span>), </span>
-<span id="cb131-5"><a href="analyser.html#cb131-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">size =</span> n, </span>
-<span id="cb131-6"><a href="analyser.html#cb131-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">replace =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb131-7"><a href="analyser.html#cb131-7" aria-hidden="true" tabindex="-1"></a>                <span class="at">prob =</span> <span class="fu">c</span>(.<span class="dv">5</span>,.<span class="dv">5</span>))</span>
-<span id="cb131-8"><a href="analyser.html#cb131-8" aria-hidden="true" tabindex="-1"></a>  tabac <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">0</span>, <span class="dv">100</span>)</span>
-<span id="cb131-9"><a href="analyser.html#cb131-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Proportions conditionnelles</span></span>
-<span id="cb131-10"><a href="analyser.html#cb131-10" aria-hidden="true" tabindex="-1"></a>  tabac[sexe <span class="sc">==</span> <span class="st">"femme"</span>] <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"fumeur"</span>,<span class="st">"non-fumeur"</span>), </span>
-<span id="cb131-11"><a href="analyser.html#cb131-11" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">size =</span> <span class="fu">sum</span>(sexe <span class="sc">==</span> <span class="st">"femme"</span>), </span>
-<span id="cb131-12"><a href="analyser.html#cb131-12" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">replace =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb131-13"><a href="analyser.html#cb131-13" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">prob =</span> <span class="fu">c</span>(.<span class="dv">2</span>,.<span class="dv">8</span>))</span>
-<span id="cb131-14"><a href="analyser.html#cb131-14" aria-hidden="true" tabindex="-1"></a>  tabac[sexe <span class="sc">==</span> <span class="st">"homme"</span>] <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"fumeur"</span>,<span class="st">"non-fumeur"</span>), </span>
-<span id="cb131-15"><a href="analyser.html#cb131-15" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">size =</span> <span class="fu">sum</span>(sexe <span class="sc">==</span> <span class="st">"homme"</span>), </span>
-<span id="cb131-16"><a href="analyser.html#cb131-16" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">replace =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb131-17"><a href="analyser.html#cb131-17" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">prob =</span> <span class="fu">c</span>(.<span class="dv">1</span>,.<span class="dv">9</span>))</span>
-<span id="cb131-18"><a href="analyser.html#cb131-18" aria-hidden="true" tabindex="-1"></a>  <span class="co">#base données</span></span>
-<span id="cb131-19"><a href="analyser.html#cb131-19" aria-hidden="true" tabindex="-1"></a>  donnees <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(sexe, tabac)</span>
-<span id="cb131-20"><a href="analyser.html#cb131-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">table</span>(donnees)</span>
-<span id="cb131-21"><a href="analyser.html#cb131-21" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>        tabac</span>
-<span id="cb131-22"><a href="analyser.html#cb131-22" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> sexe    fumeur non<span class="sc">-</span>fumeur</span>
-<span id="cb131-23"><a href="analyser.html#cb131-23" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>   femme      <span class="dv">8</span>         <span class="dv">38</span></span>
-<span id="cb131-24"><a href="analyser.html#cb131-24" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>   homme      <span class="dv">4</span>         <span class="dv">50</span></span></code></pre></div>
-<p>La fonction <code><a href="https://rdrr.io/r/base/table.html">table()</a></code> de <strong>R</strong> génère une table de contingence. La fonction maison et deux méthodes de base <strong>R</strong> sont présentées et produisent les mêmes résultats pour le <span class="math inline">\(\chi^2\)</span>. Un autre, le test exact de Fisher est également présenté. Celui-ci est plus robuste, mais peut requérir plus intensive des ressources de l’ordianteur pour les grosses tables de contingences.</p>
-<p>Le test du <span class="math inline">\(\chi^2\)</span> est sujet à certains problèmes qu’il est important de considérer sans quoi l’interprétation pourra être faussée. Si la taille d’échantillon (le nombre d’unités d’observation observées est trop faible), alors le test est biaisé. Par exemple, trois lancers de pile ou face ne sont pas suffisants pour tester une hypothèse de khi-carré, le nombre de résultats différents est de 2, ce qui ne donne pas une approximation satisfaisante de la distribution d’échantillonnage. La convention est de dire qu’une fréquence théorique est trop petite si elle est plus petite que 5. Si ce n’est pas cas, des corrections ou d’autres options doivent être considérées.</p>
+<span id="cb131-3"><a href="analyser.html#cb131-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb131-4"><a href="analyser.html#cb131-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Première variable</span></span>
+<span id="cb131-5"><a href="analyser.html#cb131-5" aria-hidden="true" tabindex="-1"></a>  sexe <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"homme"</span>,<span class="st">"femme"</span>), </span>
+<span id="cb131-6"><a href="analyser.html#cb131-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">size =</span> n, </span>
+<span id="cb131-7"><a href="analyser.html#cb131-7" aria-hidden="true" tabindex="-1"></a>                <span class="at">replace =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb131-8"><a href="analyser.html#cb131-8" aria-hidden="true" tabindex="-1"></a>                <span class="at">prob =</span> <span class="fu">c</span>(.<span class="dv">5</span>,.<span class="dv">5</span>))</span>
+<span id="cb131-9"><a href="analyser.html#cb131-9" aria-hidden="true" tabindex="-1"></a>  tabac <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">0</span>, <span class="dv">100</span>)</span>
+<span id="cb131-10"><a href="analyser.html#cb131-10" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb131-11"><a href="analyser.html#cb131-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Proportions conditionnelles</span></span>
+<span id="cb131-12"><a href="analyser.html#cb131-12" aria-hidden="true" tabindex="-1"></a>  tabac[sexe <span class="sc">==</span> <span class="st">"femme"</span>] <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"fumeur"</span>,<span class="st">"non-fumeur"</span>), </span>
+<span id="cb131-13"><a href="analyser.html#cb131-13" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">size =</span> <span class="fu">sum</span>(sexe <span class="sc">==</span> <span class="st">"femme"</span>), </span>
+<span id="cb131-14"><a href="analyser.html#cb131-14" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">replace =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb131-15"><a href="analyser.html#cb131-15" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">prob =</span> <span class="fu">c</span>(.<span class="dv">2</span>,.<span class="dv">8</span>))</span>
+<span id="cb131-16"><a href="analyser.html#cb131-16" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb131-17"><a href="analyser.html#cb131-17" aria-hidden="true" tabindex="-1"></a>  tabac[sexe <span class="sc">==</span> <span class="st">"homme"</span>] <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"fumeur"</span>,<span class="st">"non-fumeur"</span>), </span>
+<span id="cb131-18"><a href="analyser.html#cb131-18" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">size =</span> <span class="fu">sum</span>(sexe <span class="sc">==</span> <span class="st">"homme"</span>), </span>
+<span id="cb131-19"><a href="analyser.html#cb131-19" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">replace =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb131-20"><a href="analyser.html#cb131-20" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">prob =</span> <span class="fu">c</span>(.<span class="dv">1</span>,.<span class="dv">9</span>))</span>
+<span id="cb131-21"><a href="analyser.html#cb131-21" aria-hidden="true" tabindex="-1"></a>  <span class="co">#base données</span></span>
+<span id="cb131-22"><a href="analyser.html#cb131-22" aria-hidden="true" tabindex="-1"></a>  donnees <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(sexe, tabac)</span>
+<span id="cb131-23"><a href="analyser.html#cb131-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">table</span>(donnees)</span>
+<span id="cb131-24"><a href="analyser.html#cb131-24" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>        tabac</span>
+<span id="cb131-25"><a href="analyser.html#cb131-25" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> sexe    fumeur non<span class="sc">-</span>fumeur</span>
+<span id="cb131-26"><a href="analyser.html#cb131-26" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>   femme      <span class="dv">8</span>         <span class="dv">38</span></span>
+<span id="cb131-27"><a href="analyser.html#cb131-27" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>   homme      <span class="dv">4</span>         <span class="dv">50</span></span></code></pre></div>
+<p>La fonction <code><a href="https://rdrr.io/r/base/table.html">table()</a></code> de <strong>R</strong> génère une table de contingence. La fonction maison et deux méthodes de base <strong>R</strong> sont présentées et produisent les mêmes résultats pour le <span class="math inline">\(\chi^2\)</span>. Un autre, le test exact de Fisher est également présenté. Celui-ci est plus robuste, mais peut requérir plus intensive des ressources de l’ordinateur pour les grosses tables de contingences.</p>
+<p>Le test du <span class="math inline">\(\chi^2\)</span> est sujet à certains problèmes qu’il est important de considérer sans quoi l’interprétation peut être faussée. Si la taille d’échantillon (le nombre d’unités d’observation observées est trop faible), alors le test est biaisé. Par exemple, trois lancers de pile ou face ne sont pas suffisants pour tester une hypothèse de khi-carré, le nombre de résultats différents est de 2, ce qui ne donne pas une approximation satisfaisante de la distribution d’échantillonnage. La convention est de dire qu’une fréquence théorique est trop petite si elle est plus petite que 5. Si ce n’est pas cas, des corrections ou d’autres options doivent être considérées.</p>
 <p>Dans le présent exemple, bien que les fréquences attendues respectent les critères usuels, il peut être utile d’envisager un test plus robuste comme le test exact de Fisher ou le <span class="math inline">\(\chi^2\)</span> avec correction de continuité. Le premier se commande avec la fonction <code><a href="https://rdrr.io/r/stats/fisher.test.html">fisher.test()</a></code> et le second est la fonction par défaut de <code><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.test()</a></code>. Pour montrer l’équivalent entre la fonction <code><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.test()</a></code> et la fonction maison, l’option de correction est désactivée avec l’argument <code>correct = FALSE</code>.</p>
 <div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="analyser.html#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Table de contingence</span></span>
 <span id="cb132-2"><a href="analyser.html#cb132-2" aria-hidden="true" tabindex="-1"></a>TC <span class="ot">&lt;-</span> <span class="fu">table</span>(donnees)</span>
@@ -919,8 +1002,8 @@ où <span class="math inline">\(o\)</span> correspond aux valeurs observées, <s
 <li><a class="nav-link" href="#analyser"><span class="header-section-number">9</span> Analyser</a></li>
 <li>
 <a class="nav-link" href="#les-diff%C3%A9rences-de-moyennes"><span class="header-section-number">9.1</span> Les différences de moyennes</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#test-t-ind%C3%A9pendant"><span class="header-section-number">9.1.1</span> Test-t indépendant</a></li>
-<li><a class="nav-link" href="#test-t-d%C3%A9pendant"><span class="header-section-number">9.1.2</span> Test-t dépendant</a></li>
+<li><a class="nav-link" href="#test-t-ind%C3%A9pendant"><span class="header-section-number">9.1.1</span> Test-\(t\) indépendant</a></li>
+<li><a class="nav-link" href="#test-t-d%C3%A9pendant"><span class="header-section-number">9.1.2</span> Test-\(t\) dépendant</a></li>
 <li><a class="nav-link" href="#lanalyse-de-variance-%C3%A0-un-facteur"><span class="header-section-number">9.1.3</span> L’analyse de variance à un facteur</a></li>
 </ul>
 </li>
@@ -950,7 +1033,7 @@ où <span class="math inline">\(o\)</span> correspond aux valeurs observées, <s
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Méthodes Quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-07-21.</p>
+    <p>"<strong>Méthodes Quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-07-22.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

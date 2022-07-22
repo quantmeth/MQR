@@ -359,22 +359,12 @@ Install Packages…</p>
 <p>Une technique à laquelle l’utilisateur peut avoir recourt lorsqu’il souhaite n’utiliser qu’une fonction spécifique d’un package est l’utilisation des <code>::</code> débutant par le nom du package suivi par le nom de la fonction, comme <code><a href="https://rdrr.io/pkg/MASS/man/mvrnorm.html">MASS::mvrnorm()</a></code>. La fonction s’utilise de façon usuelle. En utilisant <code>::</code>, il n’est pas nécessaire d’appeler le package avec la fonction <code><a href="https://rdrr.io/r/base/library.html">library()</a></code>. Il faut toute fois que le package soit bel et bien installer.</p>
 </div>
 </div>
-<div id="obtenir-de-laide" class="section level2" number="2.8">
+<div id="les-fonctions" class="section level2" number="2.8">
 <h2>
-<span class="header-section-number">2.8</span> Obtenir de l’aide<a class="anchor" aria-label="anchor" href="#obtenir-de-laide"><i class="fas fa-link"></i></a>
-</h2>
-<p>En utilisant <code>help(nom)</code> ou <code>?nom</code>, où il faut remplacer <code>nom</code> par le nom d’une fonction ou d’un package, <strong>R</strong> offre de la documentation. Les fonctions d’aide retournent une page de documentation contenant généralement de l’information sur les entrées et les sorties des fonctions. Certaines sont mieux détaillées que d’autres, tout dépendant de leurs créateurs et des personnes qui maintiennent ces fonctions.</p>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Obtenir de l'aide pour la fonction help()</span>
-<span class="op">?</span><span class="va">help</span></code></pre></div>
-<p>Il existe également la fonction <code>??nom</code> qui produit une liste de toutes fonctions <strong>R</strong> ayant partiellement l’inscription introduite à la place de <code>nom</code>. Aussi, <code>example(nom)</code> produit un exemple d’une fonction.</p>
-</div>
-<div id="les-fonctions" class="section level2" number="2.9">
-<h2>
-<span class="header-section-number">2.9</span> Les fonctions<a class="anchor" aria-label="anchor" href="#les-fonctions"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.8</span> Les fonctions<a class="anchor" aria-label="anchor" href="#les-fonctions"><i class="fas fa-link"></i></a>
 </h2>
 <p><strong>R</strong> offre une multitude de fonctions et permet également à l’usager de bâtir ses propres fonctions (fonctions maison). Elles permettent d’automatiser des calculs (généralement, mais peut faire beaucoup plus!). Tout au long de cet ouvrage, les fonctions sont identifiées par l’ajout de parenthèse à leur fin, comme ceci : <code>function()</code>. Ces fonctions ont généralement la forme suivante.</p>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">nom</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">argument1</span>, <span class="va">argument2</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span>
   
   <span class="co"># Calcul à réaliser</span>
@@ -383,69 +373,69 @@ Install Packages…</p>
 <p>Ici, <code>nom</code> est le nom auquel la fonction sera référée par la suite, <code>function</code> est la fonction <strong>R</strong> qui permet de créer la fonction maison, <code>argument1</code> et <code>argument2</code> sont les arguments (les entrées) fournis à la fonction et à partir desquels les calculs sont réalisés, et les accolades <code><a href="https://rdrr.io/r/base/Paren.html">{}</a></code> définissent le début et la fin de la fonction dans le script.</p>
 <p>Il est bien utile de créer ses propres fonctions bien que <strong>R</strong> possède une pléthore de fonctions et de packages en contenant encore plus. Toutes les fonctions, qu’elles soient maisons ou déjà intégrées, respectent le même fonctionnement, ce pour quoi il est utile de s’y pencher. Les fonctions maison permettent d’automatiser certains calculs qui sont propres à résoudre les problèmes spécifiques de l’utilisateur et d’être réutilisé ultérieurement.</p>
 <p>Voici un exemple trivial de fonction, soit la somme de deux nombres.</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="programmer.html#cb25-1" aria-hidden="true" tabindex="-1"></a>addition <span class="ot">&lt;-</span> <span class="cf">function</span>(a, b) {</span>
-<span id="cb25-2"><a href="programmer.html#cb25-2" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb25-3"><a href="programmer.html#cb25-3" aria-hidden="true" tabindex="-1"></a>  a <span class="sc">+</span> b</span>
-<span id="cb25-4"><a href="programmer.html#cb25-4" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb25-5"><a href="programmer.html#cb25-5" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb25-6"><a href="programmer.html#cb25-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-7"><a href="programmer.html#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="fu">addition</span>(<span class="dv">2</span>,<span class="dv">3</span>)</span>
-<span id="cb25-8"><a href="programmer.html#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">5</span></span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="programmer.html#cb24-1" aria-hidden="true" tabindex="-1"></a>addition <span class="ot">&lt;-</span> <span class="cf">function</span>(a, b) {</span>
+<span id="cb24-2"><a href="programmer.html#cb24-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb24-3"><a href="programmer.html#cb24-3" aria-hidden="true" tabindex="-1"></a>  a <span class="sc">+</span> b</span>
+<span id="cb24-4"><a href="programmer.html#cb24-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb24-5"><a href="programmer.html#cb24-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb24-6"><a href="programmer.html#cb24-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-7"><a href="programmer.html#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="fu">addition</span>(<span class="dv">2</span>,<span class="dv">3</span>)</span>
+<span id="cb24-8"><a href="programmer.html#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">5</span></span></code></pre></div>
 <p>Par défaut, une fonction retourne la dernière ligne calculée si elle n’est pas assignée à une variable. Si le résultat d’une fonction est assigné, la fonction ne retourne pas le résultat dans la console, mais assigne bel et bien la variable.</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="programmer.html#cb26-1" aria-hidden="true" tabindex="-1"></a>addition2 <span class="ot">&lt;-</span> <span class="cf">function</span>(a, b) {</span>
-<span id="cb26-2"><a href="programmer.html#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Le résultat est assigné à une variable</span></span>
-<span id="cb26-3"><a href="programmer.html#cb26-3" aria-hidden="true" tabindex="-1"></a>  somme <span class="ot">&lt;-</span> a <span class="sc">+</span> b</span>
-<span id="cb26-4"><a href="programmer.html#cb26-4" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb26-5"><a href="programmer.html#cb26-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-6"><a href="programmer.html#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Ne produit pas de sortie</span></span>
-<span id="cb26-7"><a href="programmer.html#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="fu">addition2</span>(<span class="dv">100</span>, <span class="dv">241</span>)</span>
-<span id="cb26-8"><a href="programmer.html#cb26-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-9"><a href="programmer.html#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Comme il y a assignation, total n'est pas affichée</span></span>
-<span id="cb26-10"><a href="programmer.html#cb26-10" aria-hidden="true" tabindex="-1"></a>total <span class="ot">&lt;-</span> <span class="fu">addition2</span>(<span class="dv">100</span>, <span class="dv">241</span>)</span>
-<span id="cb26-11"><a href="programmer.html#cb26-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-12"><a href="programmer.html#cb26-12" aria-hidden="true" tabindex="-1"></a><span class="co"># En roulant total, la sortie affiche bien la sortie de addition2()</span></span>
-<span id="cb26-13"><a href="programmer.html#cb26-13" aria-hidden="true" tabindex="-1"></a>total</span>
-<span id="cb26-14"><a href="programmer.html#cb26-14" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">341</span></span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="programmer.html#cb25-1" aria-hidden="true" tabindex="-1"></a>addition2 <span class="ot">&lt;-</span> <span class="cf">function</span>(a, b) {</span>
+<span id="cb25-2"><a href="programmer.html#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Le résultat est assigné à une variable</span></span>
+<span id="cb25-3"><a href="programmer.html#cb25-3" aria-hidden="true" tabindex="-1"></a>  somme <span class="ot">&lt;-</span> a <span class="sc">+</span> b</span>
+<span id="cb25-4"><a href="programmer.html#cb25-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb25-5"><a href="programmer.html#cb25-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-6"><a href="programmer.html#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Ne produit pas de sortie</span></span>
+<span id="cb25-7"><a href="programmer.html#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="fu">addition2</span>(<span class="dv">100</span>, <span class="dv">241</span>)</span>
+<span id="cb25-8"><a href="programmer.html#cb25-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-9"><a href="programmer.html#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Comme il y a assignation, total n'est pas affichée</span></span>
+<span id="cb25-10"><a href="programmer.html#cb25-10" aria-hidden="true" tabindex="-1"></a>total <span class="ot">&lt;-</span> <span class="fu">addition2</span>(<span class="dv">100</span>, <span class="dv">241</span>)</span>
+<span id="cb25-11"><a href="programmer.html#cb25-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-12"><a href="programmer.html#cb25-12" aria-hidden="true" tabindex="-1"></a><span class="co"># En roulant total, la sortie affiche bien la sortie de addition2()</span></span>
+<span id="cb25-13"><a href="programmer.html#cb25-13" aria-hidden="true" tabindex="-1"></a>total</span>
+<span id="cb25-14"><a href="programmer.html#cb25-14" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">341</span></span></code></pre></div>
 <p>L’utilisation de <code><a href="https://rdrr.io/r/base/function.html">return()</a></code> à la fin de la fonction est une bonne pratique, car elle permet d’éviter des problèmes ou des ambiguïtés.</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="programmer.html#cb27-1" aria-hidden="true" tabindex="-1"></a>addition3 <span class="ot">&lt;-</span> <span class="cf">function</span>(a, b) {</span>
-<span id="cb27-2"><a href="programmer.html#cb27-2" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb27-3"><a href="programmer.html#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Le résultat est assigné à une variable</span></span>
-<span id="cb27-4"><a href="programmer.html#cb27-4" aria-hidden="true" tabindex="-1"></a>  somme <span class="ot">&lt;-</span> a <span class="sc">+</span> b</span>
-<span id="cb27-5"><a href="programmer.html#cb27-5" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb27-6"><a href="programmer.html#cb27-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(somme)</span>
-<span id="cb27-7"><a href="programmer.html#cb27-7" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb27-8"><a href="programmer.html#cb27-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-9"><a href="programmer.html#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Les deux fonctions produisent une sortie</span></span>
-<span id="cb27-10"><a href="programmer.html#cb27-10" aria-hidden="true" tabindex="-1"></a><span class="fu">addition3</span>(<span class="dv">4</span>, <span class="dv">6</span>)</span>
-<span id="cb27-11"><a href="programmer.html#cb27-11" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">10</span></span>
-<span id="cb27-12"><a href="programmer.html#cb27-12" aria-hidden="true" tabindex="-1"></a>total <span class="ot">&lt;-</span> <span class="fu">addition3</span>(<span class="dv">4</span>, <span class="dv">6</span>)</span>
-<span id="cb27-13"><a href="programmer.html#cb27-13" aria-hidden="true" tabindex="-1"></a>total</span>
-<span id="cb27-14"><a href="programmer.html#cb27-14" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">10</span></span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="programmer.html#cb26-1" aria-hidden="true" tabindex="-1"></a>addition3 <span class="ot">&lt;-</span> <span class="cf">function</span>(a, b) {</span>
+<span id="cb26-2"><a href="programmer.html#cb26-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb26-3"><a href="programmer.html#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Le résultat est assigné à une variable</span></span>
+<span id="cb26-4"><a href="programmer.html#cb26-4" aria-hidden="true" tabindex="-1"></a>  somme <span class="ot">&lt;-</span> a <span class="sc">+</span> b</span>
+<span id="cb26-5"><a href="programmer.html#cb26-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb26-6"><a href="programmer.html#cb26-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(somme)</span>
+<span id="cb26-7"><a href="programmer.html#cb26-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb26-8"><a href="programmer.html#cb26-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-9"><a href="programmer.html#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Les deux fonctions produisent une sortie</span></span>
+<span id="cb26-10"><a href="programmer.html#cb26-10" aria-hidden="true" tabindex="-1"></a><span class="fu">addition3</span>(<span class="dv">4</span>, <span class="dv">6</span>)</span>
+<span id="cb26-11"><a href="programmer.html#cb26-11" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">10</span></span>
+<span id="cb26-12"><a href="programmer.html#cb26-12" aria-hidden="true" tabindex="-1"></a>total <span class="ot">&lt;-</span> <span class="fu">addition3</span>(<span class="dv">4</span>, <span class="dv">6</span>)</span>
+<span id="cb26-13"><a href="programmer.html#cb26-13" aria-hidden="true" tabindex="-1"></a>total</span>
+<span id="cb26-14"><a href="programmer.html#cb26-14" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">10</span></span></code></pre></div>
 </div>
-<div id="définir-une-boucle" class="section level2" number="2.10">
+<div id="définir-une-boucle" class="section level2" number="2.9">
 <h2>
-<span class="header-section-number">2.10</span> Définir une boucle<a class="anchor" aria-label="anchor" href="#d%C3%A9finir-une-boucle"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.9</span> Définir une boucle<a class="anchor" aria-label="anchor" href="#d%C3%A9finir-une-boucle"><i class="fas fa-link"></i></a>
 </h2>
 <p>Pour automatiser certains calculs, il peut être utile de recourir à une boucle (<em>loop</em>) qui permet de répéter plusieurs fois une même opération. Voici l’anatomie d’une boucle.</p>
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="va">vec</span><span class="op">)</span><span class="op">{</span>
   <span class="co"># Calcul désiré</span>
 <span class="op">}</span></code></pre></div>
 <p>L’élément <code>for</code> est la fonction déclarant la boucle. Les renseignements sur les itérations se retrouvent entre les parenthèses. La variable <code>i</code> prendra successivement tous les éléments dans (<code>in</code>) le vecteur à gauche (<code>vec</code>). Tout le contenu de la boucle (ce qui est répété) se retrouve entre les accolades <code><a href="https://rdrr.io/r/base/Paren.html">{}</a></code>, c’est ce qui est calculé à chaque boucle. Dans cet exemple, la boucle se répète <span class="math inline">\(k\)</span> fois, soit de <span class="math inline">\(1,2,3,...,k\)</span>, à cause de l’expression <code>1:k</code> qui correspond à générer un vecteur de <span class="math inline">\(1\)</span> à <span class="math inline">\(k\)</span> (voir la section <a href="calculer.html#la-s%C3%A9quence">La séquence</a>). La variable <code>i</code> quant à elle change de valeur à chaque itération. Elle prend tour à tour les valeurs <span class="math inline">\(1,2,3,...,k\)</span>. La variable peut judicieusement être utilisée dans la boucle afin de profiter ce comportement, notamment pour le classement des résultats. Lorsque la boucle atteint <span class="math inline">\(k\)</span>, elle se termine.</p>
 <p>Il est aussi possible de rédiger la boucle en utilisant uniquement <code>k</code>. Alors, <code>i</code> prendra toutes les valeurs contenues dans <code>k</code>. La longueur du vecteur <code>k</code> définit le nombre d’itérations.</p>
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="va">k</span><span class="op">)</span><span class="op">{</span>
   <span class="co"># Calcul désiré</span>
 <span class="op">}</span></code></pre></div>
 </div>
-<div id="les-clauses-conditionnelles" class="section level2" number="2.11">
+<div id="les-clauses-conditionnelles" class="section level2" number="2.10">
 <h2>
-<span class="header-section-number">2.11</span> Les clauses conditionnelles<a class="anchor" aria-label="anchor" href="#les-clauses-conditionnelles"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.10</span> Les clauses conditionnelles<a class="anchor" aria-label="anchor" href="#les-clauses-conditionnelles"><i class="fas fa-link"></i></a>
 </h2>
 <p>Pour réaliser des opérations sous certaines conditions ou opérer des décisions automatiques, il est possible d’utiliser des arguments conditionnels avec des opérateurs logiques. Par exemple, sélectionner des unités ayant certaines caractéristiques, comme les participants ayant 18 ans et moins, les personnes ayant un trouble du spectre de l’autiste, ou encore par sexe. Il est aussi possible d’utiliser les opérateurs pour définir à quelle condition telle ou telle autre fonction doit être utilisée. Il faudra alors utiliser les arguments logiques.</p>
 <div class="inline-table"><table class=" lightable-classic table" style='font-family: "Arial Narrow", "Source Sans Pro", sans-serif; width: auto !important; margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto;'>
 <caption>
-<span id="tab:unnamed-chunk-28">Table 2.1: </span>Symboles logiques et leur signification
+<span id="tab:unnamed-chunk-27">Table 2.1: </span>Symboles logiques et leur signification
 </caption>
 <thead><tr>
 <th style="text-align:center;">
@@ -523,46 +513,56 @@ ou
 </tbody>
 </table></div>
 <p><strong>R</strong> teste si les valeurs de la variable correspondent à l’opérateur logique en les déclarant comme vraies (<code>TRUE</code>) ou fausses (<code>FALSE</code>).</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="programmer.html#cb30-1" aria-hidden="true" tabindex="-1"></a>valeurs <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span></span>
-<span id="cb30-2"><a href="programmer.html#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Toutes les valeurs plus grandes que 3.</span></span>
-<span id="cb30-3"><a href="programmer.html#cb30-3" aria-hidden="true" tabindex="-1"></a>valeurs <span class="sc">&gt;</span> <span class="dv">3</span></span>
-<span id="cb30-4"><a href="programmer.html#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="cn">FALSE</span> <span class="cn">FALSE</span> <span class="cn">FALSE</span>  <span class="cn">TRUE</span>  <span class="cn">TRUE</span>  <span class="cn">TRUE</span></span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="programmer.html#cb29-1" aria-hidden="true" tabindex="-1"></a>valeurs <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span></span>
+<span id="cb29-2"><a href="programmer.html#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Toutes les valeurs plus grandes que 3.</span></span>
+<span id="cb29-3"><a href="programmer.html#cb29-3" aria-hidden="true" tabindex="-1"></a>valeurs <span class="sc">&gt;</span> <span class="dv">3</span></span>
+<span id="cb29-4"><a href="programmer.html#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="cn">FALSE</span> <span class="cn">FALSE</span> <span class="cn">FALSE</span>  <span class="cn">TRUE</span>  <span class="cn">TRUE</span>  <span class="cn">TRUE</span></span></code></pre></div>
 <p>Cela peut être utilisé pour référer à des sous-éléments comme abordés précédemment.</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="programmer.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Toutes les valeurs plus grandes que 3.</span></span>
-<span id="cb31-2"><a href="programmer.html#cb31-2" aria-hidden="true" tabindex="-1"></a>valeurs[valeurs <span class="sc">&gt;</span> <span class="dv">3</span>]</span>
-<span id="cb31-3"><a href="programmer.html#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">4</span> <span class="dv">5</span> <span class="dv">6</span></span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="programmer.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Toutes les valeurs plus grandes que 3.</span></span>
+<span id="cb30-2"><a href="programmer.html#cb30-2" aria-hidden="true" tabindex="-1"></a>valeurs[valeurs <span class="sc">&gt;</span> <span class="dv">3</span>]</span>
+<span id="cb30-3"><a href="programmer.html#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">4</span> <span class="dv">5</span> <span class="dv">6</span></span></code></pre></div>
 <p>Ici, toutes les valeurs vraies de l’opérateur logique sont rapportées.</p>
 <p>Les opérateurs logiques servent également à définir des opérations conditionnelles. La fonction <code>if</code> est alors utilisée. Il y a trois principales formes : <code>if</code> (Si ceci, alors cela), le <code>if  else</code> (Si ceci, alors cela, sinon autre chose) et les échelles <code>if else if else</code>.</p>
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw">if</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span>
   <span class="co"># Opération désirée</span>
 <span class="op">}</span></code></pre></div>
 <p>L’anatomie d’une fonction <code>if</code> comporte d’abord la fonction <code>if</code>. L’argument entre parenthèses à sa plus simple expression doit être vérifié par vrai (<code>TRUE</code>) ou faux (<code>FALSE</code>). Si l’argument est vrai, alors le calcul désiré est réalisé, autrement le logiciel ignore le calcul de la fonction entre accolades <code><a href="https://rdrr.io/r/base/Paren.html">{}</a></code>.</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="programmer.html#cb33-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">2</span></span>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="programmer.html#cb32-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">2</span></span>
+<span id="cb32-2"><a href="programmer.html#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(x <span class="sc">&lt;</span> <span class="dv">0</span>){</span>
+<span id="cb32-3"><a href="programmer.html#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"la valeur est négative"</span>)</span>
+<span id="cb32-4"><a href="programmer.html#cb32-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb32-5"><a href="programmer.html#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="st">"la valeur est négative"</span></span></code></pre></div>
+<p>Il est possible d’élaborer cette logique avec la fonction <code>else</code> qui permet de spécifier une suite à la fonction si l’argument est faux (<code>FALSE</code>).</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="programmer.html#cb33-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">2</span></span>
 <span id="cb33-2"><a href="programmer.html#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(x <span class="sc">&lt;</span> <span class="dv">0</span>){</span>
 <span id="cb33-3"><a href="programmer.html#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"la valeur est négative"</span>)</span>
-<span id="cb33-4"><a href="programmer.html#cb33-4" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb33-5"><a href="programmer.html#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="st">"la valeur est négative"</span></span></code></pre></div>
-<p>Il est possible d’élaborer cette logique avec la fonction <code>else</code> qui permet de spécifier une suite à la fonction si l’argument est faux (<code>FALSE</code>).</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="programmer.html#cb34-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb33-4"><a href="programmer.html#cb33-4" aria-hidden="true" tabindex="-1"></a>}<span class="cf">else</span>{</span>
+<span id="cb33-5"><a href="programmer.html#cb33-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"la valeur est positive"</span>)</span>
+<span id="cb33-6"><a href="programmer.html#cb33-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb33-7"><a href="programmer.html#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="st">"la valeur est positive"</span></span></code></pre></div>
+<p>Enfin, il est possible d’élaborer un arbre de décision avec toute une échelle de conditionnels.</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="programmer.html#cb34-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">0</span></span>
 <span id="cb34-2"><a href="programmer.html#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(x <span class="sc">&lt;</span> <span class="dv">0</span>){</span>
 <span id="cb34-3"><a href="programmer.html#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"la valeur est négative"</span>)</span>
-<span id="cb34-4"><a href="programmer.html#cb34-4" aria-hidden="true" tabindex="-1"></a>}<span class="cf">else</span>{</span>
+<span id="cb34-4"><a href="programmer.html#cb34-4" aria-hidden="true" tabindex="-1"></a>}<span class="cf">else</span> <span class="cf">if</span>(x <span class="sc">&gt;</span> <span class="dv">0</span>){</span>
 <span id="cb34-5"><a href="programmer.html#cb34-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"la valeur est positive"</span>)</span>
-<span id="cb34-6"><a href="programmer.html#cb34-6" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb34-7"><a href="programmer.html#cb34-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="st">"la valeur est positive"</span></span></code></pre></div>
-<p>Enfin, il est possible d’élaborer un arbre de décision avec toute une échelle de conditionnels.</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="programmer.html#cb35-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb35-2"><a href="programmer.html#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(x <span class="sc">&lt;</span> <span class="dv">0</span>){</span>
-<span id="cb35-3"><a href="programmer.html#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"la valeur est négative"</span>)</span>
-<span id="cb35-4"><a href="programmer.html#cb35-4" aria-hidden="true" tabindex="-1"></a>}<span class="cf">else</span> <span class="cf">if</span>(x <span class="sc">&gt;</span> <span class="dv">0</span>){</span>
-<span id="cb35-5"><a href="programmer.html#cb35-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"la valeur est positive"</span>)</span>
-<span id="cb35-6"><a href="programmer.html#cb35-6" aria-hidden="true" tabindex="-1"></a>}<span class="cf">else</span>{</span>
-<span id="cb35-7"><a href="programmer.html#cb35-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"la valeur est égale à 0"</span>)</span>
-<span id="cb35-8"><a href="programmer.html#cb35-8" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb35-9"><a href="programmer.html#cb35-9" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="st">"la valeur est égale à 0"</span></span></code></pre></div>
+<span id="cb34-6"><a href="programmer.html#cb34-6" aria-hidden="true" tabindex="-1"></a>}<span class="cf">else</span>{</span>
+<span id="cb34-7"><a href="programmer.html#cb34-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"la valeur est égale à 0"</span>)</span>
+<span id="cb34-8"><a href="programmer.html#cb34-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb34-9"><a href="programmer.html#cb34-9" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="st">"la valeur est égale à 0"</span></span></code></pre></div>
 <p>L’arbre de décision peut devenir aussi compliqué que l’utilisateur le désire : chacune des branches peut contenir autant de ramifications que nécessaire.</p>
 <p>Il peut arriver pour certaines fonctions de devoir spécifier si certains paramètres sont vrais (<code>TRUE</code>) ou faux (<code>FALSE</code>) ou de définir des variables ayant ces valeurs. Lorsque c’est le cas, il est toujours recommandé d’écrire les valeurs logiques tout au long comme <code>TRUE</code> et <code>FALSE</code>, même si <strong>R</strong> reconnaît <code>T</code> et <code>F</code>, car ces dernières peuvent être réassignées, contrairement aux premières.</p>
+</div>
+<div id="obtenir-de-laide" class="section level2" number="2.11">
+<h2>
+<span class="header-section-number">2.11</span> Obtenir de l’aide<a class="anchor" aria-label="anchor" href="#obtenir-de-laide"><i class="fas fa-link"></i></a>
+</h2>
+<p>En utilisant <code>help(nom)</code> ou <code>?nom</code>, où il faut remplacer <code>nom</code> par le nom d’une fonction ou d’un package, <strong>R</strong> offre de la documentation. Les fonctions d’aide retournent une page de documentation contenant généralement de l’information sur les entrées et les sorties des fonctions. Certaines sont mieux détaillées que d’autres, tout dépendant de leurs créateurs et des personnes qui maintiennent ces fonctions.</p>
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Obtenir de l'aide pour la fonction help()</span>
+<span class="op">?</span><span class="va">help</span></code></pre></div>
+<p>Il existe également la fonction <code>??nom</code> qui produit une liste de toutes fonctions <strong>R</strong> ayant partiellement l’inscription introduite à la place de <code>nom</code>. Aussi, <code>example(nom)</code> produit un exemple d’une fonction.</p>
 </div>
 <div id="en-cas-de-pépins" class="section level2" number="2.12">
 <h2>
@@ -599,10 +599,10 @@ ou
 <li><a class="nav-link" href="#appeler-un-package"><span class="header-section-number">2.7.2</span> Appeler un package</a></li>
 </ul>
 </li>
-<li><a class="nav-link" href="#obtenir-de-laide"><span class="header-section-number">2.8</span> Obtenir de l’aide</a></li>
-<li><a class="nav-link" href="#les-fonctions"><span class="header-section-number">2.9</span> Les fonctions</a></li>
-<li><a class="nav-link" href="#d%C3%A9finir-une-boucle"><span class="header-section-number">2.10</span> Définir une boucle</a></li>
-<li><a class="nav-link" href="#les-clauses-conditionnelles"><span class="header-section-number">2.11</span> Les clauses conditionnelles</a></li>
+<li><a class="nav-link" href="#les-fonctions"><span class="header-section-number">2.8</span> Les fonctions</a></li>
+<li><a class="nav-link" href="#d%C3%A9finir-une-boucle"><span class="header-section-number">2.9</span> Définir une boucle</a></li>
+<li><a class="nav-link" href="#les-clauses-conditionnelles"><span class="header-section-number">2.10</span> Les clauses conditionnelles</a></li>
+<li><a class="nav-link" href="#obtenir-de-laide"><span class="header-section-number">2.11</span> Obtenir de l’aide</a></li>
 <li><a class="nav-link" href="#en-cas-de-p%C3%A9pins"><span class="header-section-number">2.12</span> En cas de pépins</a></li>
 </ul>
 
@@ -621,7 +621,7 @@ ou
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Méthodes Quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-07-21.</p>
+    <p>"<strong>Méthodes Quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-07-22.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
