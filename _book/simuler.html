@@ -89,6 +89,8 @@
 <li><a class="" href="analyser.html"><span class="header-section-number">9</span> Analyser</a></li>
 <li><a class="active" href="simuler.html"><span class="header-section-number">10</span> Simuler</a></li>
 <li><a class="" href="exercice-analyse.html">Exercices</a></li>
+<li class="book-part">Modèle linéaire</li>
+<li><a class="" href="pr%C3%A9dire.html"><span class="header-section-number">11</span> Prédire</a></li>
 <li><a class="" href="r%C3%A9f%C3%A9rences.html">Références</a></li>
 </ul>
 
@@ -334,7 +336,7 @@ Figure 7.8: Historgamme des estimations des échantillons
 </p>
 </div>
 <p>La distribution de la Figure <a href="visualiser.html#fig:hist2">7.8</a> se désigne comme la distribution de la <em>population</em>, comme cest le cas dans le chapitre [sur les inférences <a href="inf%C3%A9rer.html#inf%C3%A9rer">Inférer</a>. Elle permet d’avoir une estimation plus robuste de l’erreur standard, qui se trouve à être l’écart type des indices rééchantillonnés. Elle est également utilisée pour construire des intervalles de confiance et permet ainsi de faire des tests d’hypothèse comme : l’intervalle de confiance à <span class="math inline">\((1-\alpha) \times 100\)</span> % contient-elle la valeur 0? Comme il est fait avec une hypothèse nulle traditionnelle.</p>
-<p>Le cas illustré est trivial au sens où, par le théorème central limite, la distribution des moyennes est déjà connue. Si l’exemple était plutôt sur la médiane, il faudrait obligatoirement procéder par bootstrap pour calculer son erreur type et ses intervalles de confiance, car aucune formule exacte ne permet sa dérivation (il existe bien des approximations cela dit). Le bootstrap est alors des plus appropriés pour calculer l’erreur type et en tirer des intervalles de confiances, voire même en faire des tests d’hypothèses. Plusieurs statistiques auront recours au bootstrap pour dériver ces informations, la plus utilisée étant le coefficient de détermination (voir le chapitre [sur la régression [Prédire]).</p>
+<p>Le cas illustré est trivial au sens où, par le théorème central limite, la distribution des moyennes est déjà connue. Si l’exemple était plutôt sur la médiane, il faudrait obligatoirement procéder par bootstrap pour calculer son erreur type et ses intervalles de confiance, car aucune formule exacte ne permet sa dérivation (il existe bien des approximations cela dit). Le bootstrap est alors des plus appropriés pour calculer l’erreur type et en tirer des intervalles de confiances, voire même en faire des tests d’hypothèses. Plusieurs statistiques auront recours au bootstrap pour dériver ces informations, la plus utilisée étant le coefficient de détermination (voir le chapitre [sur la régression <a href="pr%C3%A9dire.html#pr%C3%A9dire">Prédire</a>).</p>
 <p>À partir des informations obtenues auprès du rééchantillonnage, il est possible d’obtenir les éléments désirés. Comme le cas est trivial, les indices statistiques seront très similaires. Cela confirmera au lecteur qu’aucun principe ésotérique ne s’est déroulé devant ses yeux en plus de confirmer que les statistiques attendues se produisent effectivement.</p>
 <div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="simuler.html#cb137-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Voici la moyenne et l'erreur standard originales</span></span>
 <span id="cb137-2"><a href="simuler.html#cb137-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(X) ; <span class="fu">sd</span>(X)<span class="sc">/</span><span class="fu">sqrt</span>(n)</span>
@@ -439,7 +441,7 @@ Figure 7.8: Historgamme des estimations des échantillons
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Méthodes Quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-07-22.</p>
+    <p>"<strong>Méthodes Quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-07-27.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

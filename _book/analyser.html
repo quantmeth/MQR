@@ -89,6 +89,8 @@
 <li><a class="active" href="analyser.html"><span class="header-section-number">9</span> Analyser</a></li>
 <li><a class="" href="simuler.html"><span class="header-section-number">10</span> Simuler</a></li>
 <li><a class="" href="exercice-analyse.html">Exercices</a></li>
+<li class="book-part">Modèle linéaire</li>
+<li><a class="" href="pr%C3%A9dire.html"><span class="header-section-number">11</span> Prédire</a></li>
 <li><a class="" href="r%C3%A9f%C3%A9rences.html">Références</a></li>
 </ul>
 
@@ -106,9 +108,9 @@
 <h2>
 <span class="header-section-number">9.1</span> Les différences de moyennes<a class="anchor" aria-label="anchor" href="#les-diff%C3%A9rences-de-moyennes"><i class="fas fa-link"></i></a>
 </h2>
-<div id="test-t-indépendant" class="section level3" number="9.1.1">
+<div id="le-test-t-indépendant" class="section level3" number="9.1.1">
 <h3>
-<span class="header-section-number">9.1.1</span> Test-<span class="math inline">\(t\)</span> indépendant<a class="anchor" aria-label="anchor" href="#test-t-ind%C3%A9pendant"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.1.1</span> Le test-<span class="math inline">\(t\)</span> indépendant<a class="anchor" aria-label="anchor" href="#le-test-t-ind%C3%A9pendant"><i class="fas fa-link"></i></a>
 </h3>
 <p>En général, l’expérimentateur ne s’intéresse pas à comparer une moyenne à une valeur arbitraire, comme c’était le cas avec <a href="inf%C3%A9rer.html#le-test-t-%C3%A0-%C3%A9chantillon-unique">le test-<span class="math inline">\(t\)</span> à échantillon unique</a>. Cela peut lui être assez trivial. Il s’intéresse plutôt à comparer une moyenne à une autre moyenne, soit une différence entre deux groupes indépendants, par exemple, quelle est la différence entre un groupe traitement et un groupe contrôle?</p>
 <!-- , c'est-à-dire que les participants sont différents entre les deux groupes. ou encore pré et post traitement seront pour l'expérimentateur des analyses indispensables. -->
@@ -265,9 +267,9 @@ Figure 9.1: Valeur-<span class="math inline">\(t\)</span> de la différence de m
 </div>
 <p>La Figure <a href="analyser.html#fig:disttt">9.1</a> illustre où se situe la moyenne de l’échantillon par rapport à la distribution d’échantillonnage de l’hypothèse nulle. Comme la valeur se retrouve dans la zone de rejet ou, de façon équivalente, la valeur-<span class="math inline">\(p\)</span> est plus petite que la valeur <span class="math inline">\(\alpha\)</span> fixée à .05, on rejette l’hypothèse nulle, il y a vraisemblablement une différence entre les groupes. C’est bien l’intention derrière la création des données.</p>
 </div>
-<div id="test-t-dépendant" class="section level3" number="9.1.2">
+<div id="le-test-t-dépendant" class="section level3" number="9.1.2">
 <h3>
-<span class="header-section-number">9.1.2</span> Test-<span class="math inline">\(t\)</span> dépendant<a class="anchor" aria-label="anchor" href="#test-t-d%C3%A9pendant"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.1.2</span> Le test-<span class="math inline">\(t\)</span> dépendant<a class="anchor" aria-label="anchor" href="#le-test-t-d%C3%A9pendant"><i class="fas fa-link"></i></a>
 </h3>
 <p>Un autre test-<span class="math inline">\(t\)</span> est celui permettant de comparer deux de temps de mesure sur les mêmes participants. L’hypothèse est de vérifier si <span class="math inline">\(\mu_1 = \mu_2\)</span>, soit la moyenne du temps 1 est égale à la moyenne du temps 2. Une habile manipulation mathématique permet de poser cette hypothèse en hypothèse nulle, <span class="math inline">\(\mu_1-\mu_2=0\)</span>. Il est intéressant de noter que la différence entre deux variables est normalement distribuée si la variance est connue ou distribuée en <span class="math inline">\(t\)</span> si la variance est inconnue.</p>
 <p>Ce test est utile lorsqu’il faut tester si les participants se sont améliorés ou détériorés entre deux temps de mesure. Pour calculer la valeur-<span class="math inline">\(t\)</span>,</p>
@@ -340,7 +342,7 @@ Figure 9.2: Valeur-<span class="math inline">\(t\)</span> de moyenne de différe
 <h4>
 <span class="header-section-number">9.1.3.1</span> La logique de l’analyse de variance<a class="anchor" aria-label="anchor" href="#la-logique-de-lanalyse-de-variance"><i class="fas fa-link"></i></a>
 </h4>
-<p>Comme il a été présenté dans la section sur [le test-<span class="math inline">\(t\)</span> indépendant], le modèle sous-jacent à l’analyse de variance à un facteur est une extension de ce modèle pour <span class="math inline">\(k\)</span> groupes. Chaque groupe est associé à une différence de moyennes <span class="math inline">\(\mu_i\)</span>, pour <span class="math inline">\(i = 1,2, ...k\)</span> par rapport à la moyenne groupe référent, <span class="math inline">\(\mu_0\)</span>. Les variables <span class="math inline">\(x_i\)</span> définissent l’appartenance au groupe <span class="math inline">\(i\)</span> par la valeur 1 et 0 pour les autres groupes (codage factice ou <em>dummy coding</em>).</p>
+<p>Comme il a été présenté dans la section sur <a href="analyser.html#le-test-t-ind%C3%A9pendant">le test-<span class="math inline">\(t\)</span> indépendant</a>, le modèle sous-jacent à l’analyse de variance à un facteur est une extension de ce modèle pour <span class="math inline">\(k\)</span> groupes. Chaque groupe est associé à une différence de moyennes <span class="math inline">\(\mu_i\)</span>, pour <span class="math inline">\(i = 1,2, ...k\)</span> par rapport à la moyenne groupe référent, <span class="math inline">\(\mu_0\)</span>. Les variables <span class="math inline">\(x_i\)</span> définissent l’appartenance au groupe <span class="math inline">\(i\)</span> par la valeur 1 et 0 pour les autres groupes (codage factice ou <em>dummy coding</em>).</p>
 <p><span class="math display">\[y = \mu_0 + \mu_1x_1 + \mu_2x_2+ ... +\mu_kx_k + \epsilon\]</span>
 L’hypothèse nulle est la suivante.
 <span class="math display">\[\sigma^2_1=\sigma^2_2=...=\sigma^2_k\]</span>
@@ -1002,8 +1004,8 @@ où <span class="math inline">\(o\)</span> correspond aux valeurs observées, <s
 <li><a class="nav-link" href="#analyser"><span class="header-section-number">9</span> Analyser</a></li>
 <li>
 <a class="nav-link" href="#les-diff%C3%A9rences-de-moyennes"><span class="header-section-number">9.1</span> Les différences de moyennes</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#test-t-ind%C3%A9pendant"><span class="header-section-number">9.1.1</span> Test-\(t\) indépendant</a></li>
-<li><a class="nav-link" href="#test-t-d%C3%A9pendant"><span class="header-section-number">9.1.2</span> Test-\(t\) dépendant</a></li>
+<li><a class="nav-link" href="#le-test-t-ind%C3%A9pendant"><span class="header-section-number">9.1.1</span> Le test-\(t\) indépendant</a></li>
+<li><a class="nav-link" href="#le-test-t-d%C3%A9pendant"><span class="header-section-number">9.1.2</span> Le test-\(t\) dépendant</a></li>
 <li><a class="nav-link" href="#lanalyse-de-variance-%C3%A0-un-facteur"><span class="header-section-number">9.1.3</span> L’analyse de variance à un facteur</a></li>
 </ul>
 </li>
@@ -1033,7 +1035,7 @@ où <span class="math inline">\(o\)</span> correspond aux valeurs observées, <s
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Méthodes Quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-07-22.</p>
+    <p>"<strong>Méthodes Quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-07-27.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

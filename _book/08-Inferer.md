@@ -17,7 +17,7 @@ Pour le non-initié aux fonctions permettant de créer des nombres pseudoaléato
 
 ```r
 runif(n = 1)
-> [1] 0.764
+> [1] 0.214
 ```
 
 Le statisticien s'intéresse à inférer comment ces valeurs sont générées. Il postule ainsi que les valeurs aléatoires suivent une distribution de probabilité. Connaître cette distribution est très important, car c'est elle qui permet de répondre à des questions comme : quelle est la probabilité d'obtenir un résultat aussi rare que $x$? Ou quelle sont les valeurs attendues pour $95\%$ des tirages? Questions tout à fait pertinentes pour l'expérimentateur. Une des distributions les plus connues est certainement la distribution normale, celle qui est derrière la fonction `rnorm()` d'ailleurs. Mais, il y en a beaucoup, beaucoup d'autres. 
@@ -55,16 +55,16 @@ En calculant la somme de plusieurs variables aléatoires de cette distribution, 
 ```r
 # Cette fonction sort les nombres, mais pas les graphiques.
 # Différentes tailles d'échantillons
-N = seq(10, 90, by = 10)
+N <- seq(10, 90, by = 10)
 # Nombre de tirage pour chaque élément de N
-reps = 1000
+reps <- 1000
 
 # Une boucle pour tester toutes les possibilités
 for(n in N){
-  total = as.numeric()
+  total <- as.numeric()
   for(i in 1:reps){
     # Faire la somme de n valeurs tirés d'une distribution log normale
-    total[i] = sum(rlnorm(n))
+    total[i] <- sum(rlnorm(n))
   }
   # hist(total) 
 }
@@ -185,11 +185,11 @@ z
 > [1] 1.86
 ```
 
-La fonction `(1 - pnorm(z)) * 100`, retourne la probabilité (en pourcentage) d'un résultat plus rare que l'indice obtenu auprès de l'échantillon par rapport à la population. Comme pour l'exemple de Fanny, ce chiffre est une valeur-$p$, soit la probabilité de l'indice observé par rapport à l'hypothèse nulle. La probabilité de cet échantillon par rapport à l'hypothèse nulle est de 3.178 %, juste en deçà du 5 % fixé. La conclusion est par conséquent de rejeter l'hypothèse nulle, l'échantillon semble provenir d'une autre distribution (avec des paramètres différents) que celle postulée.
+La fonction `(1 - pnorm(z)) * 100`, retourne la probabilité (en pourcentage) d'un résultat plus rare que l'indice obtenu auprès de l'échantillon par rapport à la population. Comme pour l'exemple de Fanny, ce chiffre est une valeur-$p$, soit la probabilité de l'indice observé par rapport à l'hypothèse nulle. La Figure\ \@ref(fig:tye) montre l'emplacement de l'échantillon sur la distribution d'échantillonnage. La probabilité de cet échantillon par rapport à l'hypothèse nulle est de 3.178 %, juste en deçà du 5 % fixé. Dans la Figure\ \@ref(fig:tye), la moyenne de l'échantillon se retrouve à l'intérieur de la zone de rejet (la zone grise). La conclusion est par conséquent de rejeter l'hypothèse nulle, l'échantillon semble provenir d'une autre distribution (avec des paramètres différents) que celle postulée.
 
 <div class="figure">
-<img src="08-Inferer_files/figure-html/unnamed-chunk-9-1.png" alt="Moyenne de l'échantillon sur la distribution normale" width="672" />
-<p class="caption">(\#fig:unnamed-chunk-9)Moyenne de l'échantillon sur la distribution normale</p>
+<img src="08-Inferer_files/figure-html/tye-1.png" alt="Moyenne de l'échantillon sur la distribution normale" width="672" />
+<p class="caption">(\#fig:tye)Moyenne de l'échantillon sur la distribution normale</p>
 </div>
 
 **Qu'en est-il vraiment de ce résultat?** Pour l'expérimentateur, il ne peut aller plus loin, car il ne connaît pas la boîte noire selon laquelle les valeurs de l'échantillon sont générées. Il ne peut que constater que plusieurs (9/10) unités ont un score plus élevé que 100. Par contre, comme il s'agit d'un exemple simulé, la boîte noire est connue. C'est la fonction, `round(rnorm(n = 10, mean = 100, sd = 15))`, une distribution normale ayant $\mu=100,\sigma=15$ qui est utilisée pour générer les valeurs. L'utilisateur sait qu'il s'agit d'un faux positif (une erreur de Type I) : l'échantillon fait partie des 5 % des échantillons qui risquent de se faire rejeter accidentellement. Si l'utilisateur utilise une autre graine (`seed()`), la plupart (95%) des moyennes ne sont pas rejetées.

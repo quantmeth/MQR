@@ -8,7 +8,7 @@ En continuation de l'introduction des théories des tests d'hypothèses (voir [I
 
 ## Les différences de moyennes
 
-### Test-$t$ indépendant
+### Le test-$t$ indépendant
 
 En général, l'expérimentateur ne s'intéresse pas à comparer une moyenne à une valeur arbitraire, comme c'était le cas avec [le test-$t$ à échantillon unique]. Cela peut lui être assez trivial. Il s'intéresse plutôt à comparer une moyenne à une autre moyenne, soit une différence entre deux groupes indépendants, par exemple, quelle est la différence entre un groupe traitement et un groupe contrôle?
 
@@ -198,7 +198,7 @@ Les sorties sont identiques.
 
 La Figure \@ref(fig:disttt) illustre où se situe la moyenne de l'échantillon par rapport à la distribution d'échantillonnage de l'hypothèse nulle. Comme la valeur se retrouve dans la zone de rejet ou, de façon équivalente, la valeur-$p$ est plus petite que la valeur $\alpha$ fixée à .05, on rejette l'hypothèse nulle, il y a vraisemblablement une différence entre les groupes. C'est bien l'intention derrière la création des données.
 
-### Test-$t$ dépendant
+### Le test-$t$ dépendant
 
 Un autre test-$t$ est celui permettant de comparer deux de temps de mesure sur les mêmes participants. L'hypothèse est de vérifier si $\mu_1 = \mu_2$, soit la moyenne du temps\ 1 est égale à la moyenne du temps\ 2. Une habile manipulation mathématique permet de poser cette hypothèse en hypothèse nulle, $\mu_1-\mu_2=0$. Il est intéressant de noter que la différence entre deux variables est normalement distribuée si la variance est connue ou distribuée en $t$ si la variance est inconnue.
 

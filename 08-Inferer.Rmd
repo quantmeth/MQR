@@ -54,16 +54,16 @@ En calculant la somme de plusieurs variables aléatoires de cette distribution, 
 ```{r, eval = FALSE}
 # Cette fonction sort les nombres, mais pas les graphiques.
 # Différentes tailles d'échantillons
-N = seq(10, 90, by = 10)
+N <- seq(10, 90, by = 10)
 # Nombre de tirage pour chaque élément de N
-reps = 1000
+reps <- 1000
 
 # Une boucle pour tester toutes les possibilités
 for(n in N){
-  total = as.numeric()
+  total <- as.numeric()
   for(i in 1:reps){
     # Faire la somme de n valeurs tirés d'une distribution log normale
-    total[i] = sum(rlnorm(n))
+    total[i] <- sum(rlnorm(n))
   }
   # hist(total) 
 }
@@ -72,7 +72,7 @@ for(n in N){
 
 La Figure \@ref(fig:testn) montre que la distribution d'échantillonnage de la somme des variables converge vers une distribution normale à mesure que la taille d'échantillon $n$ augmente. Cela est vrai pour n'importe quelle distribution de probabilité de la population. Le théorème central en dit plus que simplement la forme de la distribution. Elle affirme également qu'une distribution de probabilité d'une population ayant une moyenne $\mu$ et un écart type $\sigma$ échantillonnées sur $n$ unités, génére une distribution d'échantillonnage des totaux (indicé $t$) ayant une espérance (la moyenne) de $n\mu_t$ et un écart type de $n\sigma_t^2$.
 
-```{r testn, echo=FALSE, fig.cap = "Distributions des totaux de n variables log normales"}
+```{r testn, echo=FALSE, fig.cap = "Distributions des totaux de n variables log normales", cache=TRUE}
 set.seed(123456)
 N = seq(10, 90, by = 10)
 reps = 1000
@@ -160,7 +160,6 @@ yax = c(0, dnorm(xx, mean = xbar, sd = sdx),0)
 polygon(xax, yax, border = NA, col = rgb(.5,.5,.5,.5))
 segments(x0 = 120, y0 = 0, y1 = 0.015, lwd = 2) #vertical line
 text((x = (fanny+5)), y = .015, labels = "Fanny")
-
 ```
 
 
@@ -240,9 +239,9 @@ z <- (mean(QI) - 100)/(15 / sqrt(10))
 z
 ```
 
-La fonction `(1 - pnorm(z)) * 100`, retourne la probabilité (en pourcentage) d'un résultat plus rare que l'indice obtenu auprès de l'échantillon par rapport à la population. Comme pour l'exemple de Fanny, ce chiffre est une valeur-$p$, soit la probabilité de l'indice observé par rapport à l'hypothèse nulle. La probabilité de cet échantillon par rapport à l'hypothèse nulle est de `r (1-pnorm(z))*100` %, juste en deçà du `r alpha*100` % fixé. La conclusion est par conséquent de rejeter l'hypothèse nulle, l'échantillon semble provenir d'une autre distribution (avec des paramètres différents) que celle postulée.
+La fonction `(1 - pnorm(z)) * 100`, retourne la probabilité (en pourcentage) d'un résultat plus rare que l'indice obtenu auprès de l'échantillon par rapport à la population. Comme pour l'exemple de Fanny, ce chiffre est une valeur-$p$, soit la probabilité de l'indice observé par rapport à l'hypothèse nulle. La Figure\ \@ref(fig:tye) montre l'emplacement de l'échantillon sur la distribution d'échantillonnage. La probabilité de cet échantillon par rapport à l'hypothèse nulle est de `r (1-pnorm(z))*100` %, juste en deçà du `r alpha*100` % fixé. Dans la Figure\ \@ref(fig:tye), la moyenne de l'échantillon se retrouve à l'intérieur de la zone de rejet (la zone grise). La conclusion est par conséquent de rejeter l'hypothèse nulle, l'échantillon semble provenir d'une autre distribution (avec des paramètres différents) que celle postulée.
 
-```{r, echo = FALSE, fig.cap = "Moyenne de l'échantillon sur la distribution normale"}
+```{r tye, echo = FALSE, fig.cap = "Moyenne de l'échantillon sur la distribution normale"}
 
 minx = -3; maxx = 3; xbar = 0 ; sdx = 1
 Moyenne.QI = seq(minx, maxx, by = .001)
@@ -386,7 +385,7 @@ N = c(5, 30, 50)
 par(mfcol = c(1, 3), mai = c(.25, 0.25, 0.25, 0.25), oma = c(4, 4, 1, 1))
 
 for(n in N){
-  x = as.numeric()
+  x = numeric()
   for(k in 1:reps){
     x[k] = var(rnorm(n))
   }
