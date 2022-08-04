@@ -1,15 +1,15 @@
 --- 
 title: "Méthodes Quantitatives avec R"
 author: "P.-O. Caron"
-date: "2022-07-27"
+date: "2022-08-04"
 site: bookdown::bookdown_site
 documentclass: book
-bibliography: [ma.bib]
+bibliography: "ma.bib"
 url: mqr.teluq.ca
 # cover-image: path to the social sharing image like images/cover.jpg
 description: |
  Bienvenue dans la version préliminaire et en ligne du livre Méthodes Quantitatives avec **R** de P.-O. Caron. Le livre démystifie les mécanismes ésotériques derrière les logiciels statistiques et démocratise la programmation statistique avec R. 
-biblio-style: apa
+biblio-style: "apa"
 link-citations: true
 csl: apa.csl
 ---
@@ -41,7 +41,7 @@ Par exemple, que vaut l'expression $-9^{(.5)}$? Reconnaître qu'il s'agit de $\s
 ```
 celui-ci retourne la réponse $-3$ à cause de la priorité des opérations, $-(9)^{.5}$. Était-ce la réponse désirée? 
 
-Des idiosyncrasies computationnelles se retrouvent dans tous les logiciels. En avoir conscience est important pour le programmeur. En pratique, ce type de problème devrait rester trivial...
+Des idiosyncrasies computationnelles se retrouvent dans tous les logiciels. En pratique, le programmeur doit en avoir conscience et ce type de problème devrait rester trivial...
  
 @Bennett10 montrent que les saumons de l’Atlantique décédés ont des cognitions sociales. Ils placent sous imagerie par résonance magnétique fonctionnelle (IRMf) le saumon pendant une tâche de reconnaissance des émotions chez les humains. La Figure \@ref(fig:saumon) montre le résultat de leur analyse. Soit ils sont tombés sur une découverte étonnante en termes de cognition ichtyologique post-mortem, soit quelque chose cloche en ce qui concerne l'approche statistique utilisée.
 

@@ -270,7 +270,7 @@ mu.r <- 130 ; sd.r <- 15
 
 La Figure \@ref(fig:rh) présente les distributions de ces populations. Trois zones sont ajoutées pour illustrer les concepts statistiques d'erreur de type I, d'erreur de type II et de puissance statistique. Comme les populations sont connues, ces concepts statistiques sont calculables. 
 
-```{r rh, echo = FALSE, fig.cap = "Distribution du QI des humains et des reptiliens",fig.align="center", out.height="90%", out.width="90%"}
+```{r rh, echo = FALSE, fig.cap = "Distribution du QI des humains et des reptiliens", fig.align="center", out.height="90%", out.width="90%"}
 minx = 60 ; maxx = 180
 QI = seq(minx, maxx, by = .001)
 Frequence = dnorm(QI, mean = mu.h, sd = sd.h)

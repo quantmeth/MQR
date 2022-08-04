@@ -181,8 +181,6 @@ jd %>%
   ggplot(aes(value)) +
   facet_wrap(~ key, scales = "free") +
   geom_histogram()
-> `stat_bin()` using `bins = 30`. Pick better value with
-> `binwidth`.
 ```
 
 <div class="figure" style="text-align: center">

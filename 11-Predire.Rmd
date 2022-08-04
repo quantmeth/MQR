@@ -3,9 +3,9 @@
 
 Un objectif des chercheurs est généralement de développer des modèles afin de faire des prédictions à partir d'un échantillon sur la population. Les statistiques sont un outils idéalement pour développer ces modèles. La régression est l'une des analyses fondamentales pour réaliser cette objectif et constitue en quelques sortes les fondements de biens des méthodes récentes (comme l'apprentissage machine). 
 
-L'objectif de la régression est de décrire la relation entre un variable dépendante et un ensemble de variables indépendantes. Un aperçu est donnée à la section sur [l'association linéaire] dans le chapitre [Analyser]. Ce présent chapitre début avec la notion de covariance et l'étend jusqu'à celle de régression. Des techniques rudimentaires de création de données sont présentées. Par la suite, les mathématiques et le code sous-jacent au modèle linéaire sont illustrée. 
+L'objectif de la régression est de décrire la relation entre un variable dépendante et un ensemble de variables indépendantes. Un aperçu est donnée à la section sur [l'association linéaire] dans le chapitre [Analyser]. Ce présent chapitre débute avec la notion de covariance et l'étend jusqu'à celle de régression. Des techniques rudimentaires de création de données sont présentées. Par la suite, les mathématiques et la programmation sous-jacente au modèle linéaire sont illustrées. 
 
-## Retour sur la covariance
+## Retours
 
 Une première méthode de mesure d'association est [la covariance] qui est représentée par l'équation \@ref(eq:cov1).
 
@@ -18,7 +18,7 @@ L'équation \@ref(eq:cov1) représente la somme des produits des écarts à la m
 
 Comment généraliser cette équation à un ensemble de plus de deux variables? 
 
-Pour débuter, les variables sont mises sur un même pied d'égalité. Plutôt que de recourir à des lettres différentes ($x$ et $y$), il faut toutes les considérées comme des $x_{i,j}$, où l'indice $i$ identifie le $i$^e^ participant, comme pour l'équation \@ref(eq:cov1), et l'indice $j$ indique la $j$^e^ variable parmi $p$. Le calcul pour chacune des paires de variables $j$ et $k$ est réalisé pour les $p$ variables; l'équation de la covariance devient ainsi \@ref(eq:cov2).
+Pour débuter, les variables sont mises sur un même pied d'égalité. Plutôt que de recourir à des lettres différentes ($x$ et $y$), il faut toutes les considérées comme des $x_{i,j}$, où l'indice $i$ identifie le $i$^e^ participant, comme pour l'équation \@ref(eq:cov1), et l'indice $j$ indique la $j$^e^ variable parmi $p$. Le calcul pour chacune des paires de variables $j$ et $k$ est réalisé pour les $p$ variables; l'équation de la covariance devient ainsi l'équation\ \@ref(eq:cov2).
 
 \begin{equation}
 s_{x_j,x_k}=\frac{1}{n-1}\sum_{i=1}^n(x_{i,j}-\bar{x_j})(x_{i,k}-\bar{x_k})
@@ -32,15 +32,15 @@ s_{x_j,x_k}=\frac{1}{n-1}\sum_{i=1}^n(x_{i,j})(x_{i,k})
 (\#eq:cov3)
 \end{equation}
 
-Avantageusement, lorsque $j=k$, les équations \@ref(eq:cov2) et \@ref(eq:cov3) calculent la variance de la variable correspondante. En syntaxe **R,** ces équations pourraient s'écrire dans une fonction comme la suivante. Pour rappel, la fonction `cov()` dans laquelle une matrice de données est passée comme argument fournit la matrice de covariance.
+Avantageusement, lorsque $j=k$, les équations \@ref(eq:cov2) et \@ref(eq:cov3) calculent la variance de la variable correspondante. En syntaxe **R,** ces équations s'écrirent dans une fonction comme la suivante. Pour rappel, la fonction `cov()` dans laquelle une matrice de données est passée comme argument fournit la matrice de covariance.
 
 ```{r, id = "covlin", eval = FALSE}
 covariance1 <- function(X){ 
   # X est un jeu de données
-  Xc = X - colMeans(X) # Centrées les variables
-  p = ncol(X)          # Nombre de variables 
-  n = nrow(X)          # Nombre de sujets
-  S = numeric()        # Matrice vide pour enregistrer résultats
+  Xc = scale(X, scale = FALSE) # Centrées les variables
+  p = ncol(X)                  # Nombre de variables 
+  n = nrow(X)                  # Nombre de sujets
+  S = numeric()                # Matrice vide pour enregistrer résultats
   
   for(j in 1:p) {
     for(k in 1:p) {
@@ -55,11 +55,11 @@ covariance1 <- function(X){
 }
 ```
 
-Dans le code **R** ci-dessus, les fonctions `ncol()` et `nrow()` extraient le nombre de dimensions de la base de données, soit le nombre de variables et le nombre d'unités. Il est possible d'utiliser cette astuce dans d'autres contextes. La fonction `colMeans()` (moyenne de chaque colonne) calcule toutes les moyennes des variables. La ligne soustrait de `X` ces moyennes. Une variable vide `S` est créé pour enregister les résultats. La boucle, quant à elle calcule, \@ref(eq:cov3) pour enfin diviser par $n-1$. Le résultat est `S`, la matrice de covariance.
+Dans le code **R** ci-dessus, les fonctions `ncol()` et `nrow()` extraient le nombre de dimensions de la base de données, soit le nombre de variables et le nombre d'unités. Il est possible d'utiliser cette astuce dans d'autres contextes. La fonction `scale()` permet de centrer les variables de `X` et de les retourner dans `Xc`, par défaut `center = TRUE`, ce pourquoi l'argument n'est pas explicité, mais ne les standardise pas, `scale = FALSE`. Une variable vide `S` est créé pour enregistrer les résultats. La boucle, quant à elle, calcule l'addition de l'équation\ \@ref(eq:cov3) pour enfin diviser la somme par $n-1$. Le résultat est `S`, la matrice de covariance.
 
 ### Illustration de la covariance
 
-Exprimer graphiquement la covariance bivariée est relativement aisé. Pour chaque paire $(x_i,y_i)$, un rectangle peut être dessiner à partir du centre $(0, 0)$ jusqu'au $(x_i,y_i)$. La Figure\ \@ref(fig:covfig) montre quatre exemples de ces rectangles. Lorsque la moyenne d'une variable est soustraite, les données deviennent centrées sur le point $(0, 0)$. L'expression $xy$ ou $x_ix_j$ rappelle le calcul de l'aire d'un rectangle. C'est effectivement ce qui se produit pour la covariance. L'équation calcule l'aire du rectangle formé par les points $(0,0)$ et $(x_i,y_i)$. En fait, la covariance calcule le rectangle *moyen* dont le produit est ensuite divisé par le nombre de rectangles moins 1, $(n-1)$.
+Il est relativement aisé d'exprimer graphiquement la covariance bivariée. L'équation\ \@ref(eq:cov3) rappelle l'aire d'un rectangle. Pour chaque paire $(x_i,y_i)$, un rectangle peut être dessiner à partir du centre $(0, 0)$ jusqu'au $(x_i,y_i)$. La Figure\ \@ref(fig:covfig) montre quatre exemples de ces rectangles. Lorsque la moyenne d'une variable est soustraite, les données deviennent centrées sur le point $(0, 0)$. L'expression $xy$ ou $x_ix_j$ rappelle le calcul de l'aire d'un rectangle. C'est effectivement ce qui se produit pour la covariance. L'équation calcule l'aire du rectangle formé par les points $(0,0)$ et $(x_i,y_i)$. En fait, la covariance calcule le rectangle *moyen* dont la somme des produits est divisé par le nombre de rectangles moins 1, $(n-1)$.
 
 
 ```{r covfig, echo = FALSE, fig.cap = "Illustration de la covariance", out.height="75%", out.width="75%", fig.align="center"}
@@ -131,7 +131,7 @@ Les Figures\ \@ref(fig:covfig)\ et\ \@ref(fig:covfig2) permettent d'inférer que
 
 * Si une variable est multipliée par elle-même, il s'agit de l'aire d'un carré, ce qui équivaut au calcul d'une variance. Par extension, si le produit de deux variables se rapproche davantage d'un carré que d'un rectangle (en moyenne), alors les deux variables sont fortement liées.
 
-* Le paramètre de la corrélation de la population peut être conceptualisé comme un triangle déformé en rectangle à cause de l'erreur de mesure des axes.
+* Le paramètre de la corrélation de la population peut être conceptualisé comme un carré déformé en rectangle à cause de l'erreur de mesure des axes.
 
 
 ```{r covfig3, eval = FALSE, echo = FALSE, fig.cap = "Illustration de l'information et du résidu", out.height="75%", out.width="75%", fig.align = "center"}
@@ -164,7 +164,7 @@ point %>%
 
 L'équation de la covariance peut aussi se calculer en termes d'algèbre matricielle. En plus d'accélérer le calcul des résultats, il simplifie énormément les mathématiques sous-jacente (pourvu que l'utilisateur connaisse l'algèbre matricielle).
 
-Une matrice est un ensemble de variables représentées sous une seule variable mathématique. Dans les équations mathématiques, une matrice est désignée par une lettre majuscule en gras: $x$ devient $\mathbf{X}$ et $\sigma$ devient $\mathbf{\Sigma}$. Dans une matrice, chaque colonne est une variable, chaque ligne correspond à un sujet différent mesuré sur toutes les variables. Une matrice est définie en partie par son nombre de lignes ($n$, nombre d'unités) et son nombre de colonnes ($p$, nombre de variables), dont voici une illustration à l'équation\ \@ref(eq:matex1).
+Une matrice est un ensemble de variables représenté sous une seule variable mathématique. Dans les équations mathématiques, une matrice est désignée par une lettre majuscule en gras: $x$ devient $\mathbf{X}$ et $\sigma$ devient $\mathbf{\Sigma}$. Dans une matrice, chaque colonne est une variable, chaque ligne correspond à un sujet différent mesuré sur toutes les variables. Une matrice est définie en partie par son nombre de lignes ($n$, nombre d'unités) et son nombre de colonnes ($p$, nombre de variables), dont voici une illustration à l'équation\ \@ref(eq:matex1).
 
 \begin{equation}
 \mathbf{X} = \left(\begin{array}{cccc} 
@@ -181,11 +181,11 @@ En syntaxe **R**, il ne s'agit rien de plus que de [concaténer] des variables (
 Pour réaliser le calcul de la covariance, il faut multiplier la matrice des données centrées (les variables concaténées) par elle-même puis diviser par $n-1$. Le symbole $X$ représente la concaténation des variables. Par simplicité, l'équation utilise des **variables centrées**.
 
 \begin{equation}
-\mathbf{\Sigma} = (n-1)^{-1}\mathbf{X}^\prime \mathbf{X}
+\mathbf{S} = (n-1)^{-1}\mathbf{X}^\prime \mathbf{X}
 (\#eq:covmat1)
 \end{equation}
 
-Le symbole $\mathbf{\Sigma}$ (sigma majuscule) représente la matrice de variance-covariance. La diagonale de cette matrice représente les variances des données et les éléments hors diagonales sont les covariances, soulignant le lien entre la variance et la covariance. Le symbole $\prime$ (prime) correspond à l'opération de transposer une matrice, soit d'échanger les lignes par ces colonnes. Cette procédure est nécessaire pour produire la multiplication d'une matrice par elle-même. Noter que l'expression $(n-1)^{-1}=\frac{1}{n-1}$.
+Le symbole $\mathbf{S}$ représente la matrice de variance-covariance. La diagonale de cette matrice représente les variances des données et les éléments hors diagonales sont les covariances, soulignant le lien entre la variance et la covariance. Le symbole $\prime$ (prime) correspond à l'opération de transposer une matrice, soit d'échanger les lignes par ces colonnes. Cette procédure est nécessaire pour produire la multiplication d'une matrice par elle-même. Noter que l'expression $(n-1)^{-1}=\frac{1}{n-1}$.
 
 \begin{equation}
 \begin{aligned}
@@ -200,7 +200,7 @@ x_{2,1} & x_{2,2}\\
 ... & ...  \\
 x_{n,1} & x_{n,2} \\
 \end{array}\right) \\
-& = (n-1)^{-1}
+& = (n-1)^{-1}\@ref(eq:cov3)
 \left(\begin{array}{cc}
 \sum_{i=1}^n(x_{i,1})(x_{i,1}) & \sum_{i=1}^n(x_{i,1})(x_{i,2})\\
 \sum_{i=1}^n(x_{i,2})(x_{i,1}) & \sum_{i=1}^n(x_{i,2})(x_{i,2})
@@ -214,12 +214,12 @@ L'équation \@ref(eq:covmat2) illustre l'équation \@ref(eq:covmat1) qui sont to
 ```{r, eval = FALSE, id = "covmat"}
 covariance2 = function(X){
   # X est une jeu de données ou matrice de n sujets par p variables
-  n = nrow(X)
-  Xc = X - colMeans(X)
+  n <- nrow(X)
+  Xc <- scale(x, scale = FALSE)
   
   # L'algèbre matriciel pour le produit permet de calculer
   # le produit d'une colonne avec les autres colonnes
-  cov.X = t(Xc) %*% Xc / (n - 1)
+  cov.X <- t(Xc) %*% Xc / (n - 1)
   return(cov.X)
 }
 ```
@@ -228,7 +228,7 @@ La fonction `t()` opère la transpose (représentée par $\prime$) et le symbole
 
 L'utilisation de l'algèbre matricielle est plus simple et efficace. Elle nécessite cinq lignes de code, élimine deux boucles, prend moins de temps à calculer, en plus de produire toutes les variances et covariances.
 
-Une matrice de covariance possède plusieurs propriétés importantes. Elle est toujours carrée soit $p \times p$ pour $p$ variables et contient $p^2$ éléments. Parmi ces éléments, les $p$ éléments de la diagonale sont des variances, ce pourquoi elle est parfois appelée matrice de variance-covariance. Les éléments triangulaires inférieurs hors diagonale sont un parfait reflet des éléments supérieurs, p.ex. $\sigma_{1,2} = \sigma_{2,1}$. Il y a ainsi $\frac{p(p-1)}{2}$ covariances uniques dans une matrice et $p(p+1)/2$ éléments uniques (variances et covariances). En plus, de ces caractéristiques, la matrice doit être *positive semi-définie*, ce qui est un terme mathématique impliquant, pour les fins de ce chapitre, que les variances ne peuvent être nulles`[C'est plus complexe que cela, mais il suffit d'accepter cette affirmation pour procéder.]. La Figure\ \@ref(eq:sigma123) illustre la matrice de covariance $\mathbf{\Sigma}$.
+Une matrice de covariance possède plusieurs propriétés importantes. Elle est toujours carrée soit $p \times p$ pour $p$ variables et contient $p^2$ éléments. Parmi ces éléments, les $p$ éléments de la diagonale sont des variances, ce pourquoi elle est parfois appelée matrice de variance-covariance. Les éléments triangulaires inférieurs hors diagonale sont un parfait reflet des éléments supérieurs, p.ex. $\sigma_{1,2} = \sigma_{2,1}$. Il y a ainsi $\frac{p(p-1)}{2}$ covariances uniques dans une matrice et $p(p+1)/2$ éléments uniques (variances et covariances). En plus, de ces caractéristiques, la matrice doit être *positive semi-définie*, ce qui est un terme mathématique impliquant, pour les fins de ce chapitre, que les variances ne peuvent être nulle^[C'est plus complexe que cela, mais il suffit d'accepter cette affirmation pour procéder.]. La Figure\ \@ref(eq:sigma123) illustre la matrice de covariance $\mathbf{\Sigma}$ de la population.
 
 \begin{equation}
 \mathbf{\Sigma} = \left( 
@@ -242,16 +242,18 @@ Une matrice de covariance possède plusieurs propriétés importantes. Elle est 
 (\#eq:sigma123)
 \end{equation}
 
-## Retour sur la matrice de corrélation
+### La matrice de corrélation en termes d'algèbre matricielle
 
 Une matrice de corrélation est une matrice de covariance dont les variables sont standardisées. Cela implique de transformer la matrice afin que toute la diagonale soit à l'unité, c'est-à-dire que toutes les variances soient égalent à 1. Cela permet d'avoir une interprétation *standardisée* des corrélations, car celles-ci sont indépendantes des métriques originales. Les autres éléments conceptuels de la matrice de covariance s'appliquent pour la matrice de corrélation.
 
 Pour transformer la matrice de covariance en matrice de corrélation, trois techniques sont possibles. 
 
-La première est de standardise $\mathbf{X}$ préalablement au calcul de la covariance. Comme il n'y a pas d'équivalent à `colMeans()` pour l'écart type, l'utilisation de `apply(X, MARGIN = 2, FUN = sd)` fera le travail. Cette ligne de syntaxe reproduit la même logique, mais pour l'écart type `sd()`. Textuellement, elle applique (`apply()`) l'écart type (`sd()`) pour chaque colonne `MARGIN = 2` à la matrice de données `X`. 
+La première est de standardiser $\mathbf{X}$ préalablement au calcul de la covariance.
 
 ```{r, eval=FALSE}
-X = (X - colMeans(X)) / apply(X, MARGIN = 2, FUN = sd)
+Xz <- scale(X)
+n <- nrow(x)
+cor.X <- t(Xz) %*% Xz / (n - 1)
 ```
 
 La deuxième méthode est de standardiser la matrice de covariance en termes d'algèbre matricielle, où $\mathbf{S}$ est la matrice de covariance. Pour ce faire, on pré et post multiplie $\mathbf{S}$ par $\mathbf{D}$, comme l'équation \@ref(eq:obtD1).
@@ -292,15 +294,15 @@ R = solve(diag(sqrt(diag(S)))) %*% S %*% solve(diag(sqrt(diag(S))))
 
 Lorsqu'une matrice est passée comme argument à `diag()`, elle extrait les éléments de la diagonale pour en faire un vecteur. Si un vecteur est passé en argument, alors `diag()` retourne une matrice avec les éléments du vecteur en diagonale. La fonction `solve()` calcule l'inverse d'une matrice, comme l'utilisateur pourrait attendre de $\mathbf{X}^{-1}$. Il s'agit certainement de l'aspect le plus biscornu de **R**.  Enfin, l'opérateur `%*%` est le produit matriciel. 
 
-La troisième méthode est d'utiliser la fonction de base `cov2cor()` pour transformer la matrice de covariance en matrice de corrélation, ce qui est plus simple et plus rapide que la deuxième option, mais qui cache ce qui se réalise.
+La troisième méthode est d'utiliser la fonction de base `cov2cor()` pour transformer la matrice de covariance en matrice de corrélation, ce qui est plus simple et plus rapide que la deuxième option, mais qui cache ce qui se réalise vraiment, soit l'équation\ \@ref(eq:cov2cor).
 
 ## La régression
 
 Jusqu'à présent, des rudiments de la covariance et de la corrélation ont été présentés dans le but d'introduire graduellement l'algèbre matricielle. L'objectif étant atteint, le regard porte maintenant sur la régression en tant que moyen de prédire une variable $y$ à partir d'un ensemble de variables $\mathbf{X}$.
 
-Quelle est la différence entre les analyses de covariance et corrélation comparativement à l'analyse de régression? Bien que la logique sous-jacente soit très similaire, il faut maintenant déterminer une variable *différente* de l'autre, c'est-à-dire une variable dépendante. Les autres sont des variables indépendantes. Les variables indépendantes prédisent la variable dépendante  un peu comme dans un modèle *déterministe*, il faut décider de la *cause* (variables indépendantes) et l'effet (variable dépendante), ce dernier étant généré par les premiers. 
+Quelle est la différence entre les analyses de covariance et corrélation comparativement à l'analyse de régression? Bien que la logique sous-jacente soit très similaire, il faut maintenant déterminer une variable *différente* de l'autre, c'est-à-dire distinguer une variable dépendante, des variables indépendantes. Les variables indépendantes prédisent la variable dépendante  un peu comme dans un modèle *déterministe*, il faut décider de la *cause* (variables indépendantes) et l'*effet* (variable dépendante), ce dernier étant généré par les premiers. 
 
-Plutôt que de traiter chaque paire de variable comme c'était le cas avec l'analyse de corrélation, la régression étudie la relation entre la variable dépendante et **toutes** les variables indépendantes, et ce, simultanément. Ainsi, les variables indépendantes sont contrôlées entre elles pour évaluer leur effet sur la variable dépendante et un modèle de prédiction plus juste est obtenu (autant que faire ce peut avec un modèle statistique).
+Plutôt que de traiter chaque paire de variable comme c'est le cas avec l'analyse de corrélation, la régression étudie la relation entre la variable dépendante et **toutes** les variables indépendantes, et ce, simultanément. Ainsi, les variables indépendantes sont contrôlées entre elles pour évaluer leur effet sur la variable dépendante et un modèle de prédiction plus juste est obtenu (autant que faire ce peut avec un modèle statistique).
 
 ### Le modèle de régression simple 
 
@@ -313,19 +315,27 @@ y = \beta_0 + \beta_1 x + \epsilon_y
 
 Dans ce modèle, $y$ est la variable prédite, $x$ est le seul prédicteur, $\beta_0$ est l'ordonnée à l'origine, $\beta_1$ est le coefficient de régression et $\epsilon_y$, l'erreur dans la variable $y$ indépendante (non corrélée, ni fonctionnellement liée) de $x$.
 
-```{r modlin, include=FALSE, fig.cap="Diagramme de dispersion", fig.align="center", out.height="80%",out.width="80%"}
+Il vaut la peine de se pencher un peu plus sur ces paramètres. L'ordonnée $\beta_0$ est la moyenne de $y$ lorsque $x=0$, autrement dit, contrôlée par la variable indépendante. Si $x$ est centrée, alors $\beta_0$ égale la moyenne de $y$; si $x$ et $y$ sont centrées, alors $\beta_0=0$. La pente $\beta_1$ est le coefficient de régression, le degré selon lequel $x$ prédit $y$. Ce paramètre dépend de la corrélation entre ces deux variables. En fait, si $x$ et $y$ sont standardisées, alors $\beta_1$ correspond à la corrélation entre les deux^[Uniquement dans le cas bivarié.]. Le paramètre $\epsilon_y$ est l'erreur du modèle. Par définition, l'erreur est normalement distribuée et sa moyenne est de $0$. Seule l'erreur standard (l'écart type de l'erreur) change.
+
+La Figure\ \@ref(fig:modlinf) illustre ces paramètres. L'ordonnée $\beta_0$ est représentée en pointillé du centre $(0,0)$ jusqu'à la valeur de $y$ lorsque $x = 0$. La pente $\beta_1$ correspond à l'inclinaison de la pente (droite oblique pointillé). Les courtes lignes verticales grises représentent les résidus des participants, soit $\epsilon_i$, la part de $y$ qui n'est pas prédite par $x$ pour la participant $i$. Les résidus se distribuent normalement avec une moyenne de $0$ et un écart type de $\sigma_{\epsilon}$.
+
+
+```{r modlinf, fig.cap="Diagramme de dispersion", fig.align="center", out.height="80%",out.width="80%", cache = TRUE, echo = FALSE}
 set.seed(2)
-R = matrix(c(1,.9,.9,1),2,2)
-X = data.frame((MASS::mvrnorm(n = 10, mu = c(0,0), Sigma = R)))
+R = matrix(c(1,.9,.9,1), 2, 2)
+X = data.frame((MASS::mvrnorm(n = 10, mu = c(0,2), Sigma = R)))
 colnames(X) = c("x","y")
-X %>% 
-  ggplot(aes(x,y)) + 
-  geom_point()+
-  geom_smooth(method="lm", se=FALSE, col = "black") + 
-  xlim(c(-1,1)) + 
-  ylim(c(-1,1))+
-  geom_vline(xintercept = 0) +
-  geom_hline(yintercept = 0)
+res.lm <- lm(y~x, X)
+res <- coef(res.lm)
+plot(X, pch = 19 , bty = "n",lwd = 2, xlim = c(-1, 2), ylim = c(-1,5), yaxs="i")
+segments(x0 = -3, y0 = 0, x1 = 3, y1 = 0, col = "grey")
+segments(x0 =  0, y0 = -1, x1 = 0, y1 = 5, col = "grey")
+segments(x0 = -4, y0 = res[1]+res[2]*-4, x1 = 3, y1 = res[1]+res[2]*3, lwd = 2, lty = "dashed")
+segments(x0 = 0, y0 = 0, x1 = 0, y1 = res[1],lwd = 2, lty = "dashed")
+segments(x0 = X$x, y0 = predict(res.lm), x1 = X$x, y1 = X$y, col = "grey", lwd = 1)
+text(x = 1, y = 3.6, labels = expression(beta[1]))
+text(x = .15, y = 1, labels = expression(beta[0]))
+text(x = .75, y = 2.15, labels = expression(epsilon[i]))
 ```
 
 
@@ -352,7 +362,7 @@ où le symbole $\mathbb{E}$ signifie l'espérance (la moyenne). En multipliant p
 (\#eq:beta2)
 \end{equation}
 
-Dans l'équation \@ref(eq:beta2), le numérateur rappelle la covariance et au dénominateur la variance de $\x$. Comment généraliser pour $k$ variables? En algèbre matricielle et dans la mesure où les variables contenues dans $\mathbf{X}$ sont centrées, cela revient au même que de calculer l'équation \@ref(eq:beta).
+Dans l'équation \@ref(eq:beta2), le numérateur rappelle la covariance et au dénominateur la variance de $x$. Comment généraliser pour $k$ variables? En algèbre matricielle et dans la mesure où les variables contenues dans $\mathbf{X}$ sont centrées, cela revient au même que de calculer l'équation \@ref(eq:beta).
 
 \begin{equation}
 \hat{\mathbf{B}} = (\mathbf{X}^{\prime} \mathbf{X})^{-1} \mathbf{X}^{\prime} y
@@ -372,16 +382,17 @@ La racine carrée de ce résultat donne l'erreur standard (*standard error*) ou 
 
 Le ratio $\frac{B}{\text{se}_B} \sim t_{n-p-1}$, soit le quotient d'un estimateur par son erreur type, suit une distribution-$t$ avec $n-p-1$ degrés de liberté.
 
-En syntaxe **R**, la régression s'écrit comme ceci.
+Quelques détails sont importants à considérer pour la programmation. Afin d'ajouter l'intercepte (pour estimer $\beta_0$), la solution la plus simple est d'ajouter un vecteur d'unité (un vecteur ne contenant que des $1$) à la matrice $\mathbf{X}$. En programmation **R**, l'inversion de matrice se fait par la fonction `solve()` et non pas avec un signe d'exposant. En syntaxe **R**, la régression s'écrit comme ceci.
 
 ```{r}
-regression = function(y, X){
+regression <- function(y, X){
   # Taille d'échantillon et nombre de variables
   n <- nrow(X)
   p <- ncol(X)
   
   # Joindre un intercepte
   X <- cbind(intercept = 1, X)
+  X <- as.matrix(X)
   
   # Calculer les coefficients de régression
   B <- solve(t(X) %*% X) %*% t(X) %*% y
@@ -408,7 +419,6 @@ regression = function(y, X){
 ```
 
 Le modèle linéaire peut aussi contenir des variables nominales dans la mesure où celle-ci sont transformées en données factices (*dummy coding*). En fait, une analyse de variance n'est au fond qu'une régression dans laquelle les variables nominales sont transformées en données factices, puis utilisées en variable indépendante. Les $\beta$ de la régression correspondent aux moyennes $\mu$, si le participant appartient (1) à tel ou tel autre groupe ou (0) autrement. Bien que les logiciels produisent souvent des sorties statistiques différentes en fonction de l'analyse demandée, les mathématiques sous-jacentes sont les mêmes.
-
 
 ### La création de données
 
@@ -637,6 +647,13 @@ Pour ajouter une variable, il suffit de `VD ~ VI1 + VI2`; pour ajouter un effet 
 
 La fonction `lm()` en elle-même n'imprime que peut de résultats. Pour obtenir l'information complète, il faut requérir le sommaire avec la fonction `summary()`. Le sommaire des résultats contient toute l'information qu'un expérimentateur peut désirer. Il y a les coefficients de régression `Estimate`, leur erreur standard `Std. Error`, leur valeur-$t$ `t value` et leur valeur-$p$ `Pr(>|t|)`. Tout cela peut être extrait avec `summary(res.lm)$...` en remplaçant `...` par les éléments désirés. Au-dessous de la sortie imprimée, il y a également le coefficient de détermination ($R^2$, `R-squared`), les degrés de liberté et la valeur-$p$ associé au modèle.
 
+Les résultats de `lm()` peuvent être comparés avec la fonction maison `regression()` expliquée auparavant à la section [L’analyse de régression].
+
+```{r}
+regression(y = jd$y, X = jd[ ,2:4])
+```
+
+
 ```{r, echo = FALSE}
 ss = summary(res.lm)
 ```
@@ -674,7 +691,7 @@ jd %>%
 
 ## La matrice de corrélation partielle et semi partielle
 
-En plus de la matrice de corrélation, deux autres types de corrélation peuvent intéressés le chercheur : les corrélations partielles et les corrélation semi partielles. La présentation est faite en terme d'algèbre matricielle, ce qui facilite substantiellement les calculs et la programmation.
+En plus de la matrice de corrélation, deux autres types de corrélation peuvent intéressés le chercheur : les corrélations partielles et les corrélations semi partielles. La présentation est faite en terme d'algèbre matricielle, ce qui facilite substantiellement les calculs et la programmation.
 
 ### Les corrélations partielles
 
@@ -715,9 +732,9 @@ Rsp <- -cov2cor(iS) /
           sqrt(abs(diag(iS) - t(t(iS^2) / diag(iS))))
 ```
 
-### Une comparaison entre partielle et 
+### Une comparaison entre partielle et semi partielle 
 
-Un exemple est produit afin de comparer la corrélation partielle et la corrélation semi partielle. L'équation\ \@ref(eq:covp3ex) présente un  exemple de matrice de corrélation.
+La section suivante développe un exemple afin de comparer la corrélation partielle et la corrélation semi partielle. L'équation\ \@ref(eq:covp3ex) présente un  exemple de matrice de corrélation.
 
 \begin{equation}
 \mathbf{\Sigma} = \left( 

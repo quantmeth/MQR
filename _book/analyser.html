@@ -91,6 +91,7 @@
 <li><a class="" href="exercice-analyse.html">Exercices</a></li>
 <li class="book-part">Modèle linéaire</li>
 <li><a class="" href="pr%C3%A9dire.html"><span class="header-section-number">11</span> Prédire</a></li>
+<li><a class="" href="cr%C3%A9er.html"><span class="header-section-number">12</span> Créer</a></li>
 <li><a class="" href="r%C3%A9f%C3%A9rences.html">Références</a></li>
 </ul>
 
@@ -637,7 +638,7 @@ Figure 9.4: Illustrations de diagrammes de dispersion associé en fonction de co
   <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">cor.xy</span><span class="op">)</span>
 <span class="op">}</span></code></pre></div>
 <p>Évidemment, <strong>R</strong> possède une fonction de base pour le calcul d’une corrélation entre deux variables ou d’une matrice de corrélation (à partir d’un jeu de données de deux variables ou plus). Il s’agit de <code><a href="https://rdrr.io/r/stats/cor.html">cor()</a></code>. Ces trois fonctions maison en plus de la fonction <strong>R</strong> sont comparées ci-dessous. Pour ce faire, un jeu de données est créé possédant les caractéristiques désirées. Dans ce cas-ci, la taille d’échantillon est fixée à <span class="math inline">\(n=10000\)</span> pour assurer une bonne précision dans l’échantillon et une corrélation <span class="math inline">\(r=.7\)</span>.</p>
-<p>Une façon simple de produire des données à partir d’une matrice de corrélation (ou de covariance) est d’utiliser la fonction <code>mvrnorm()</code> du package <code>MASS</code>. Elle évite pour l’instant d’introduire les manipulations mathématiques nécessaires (ce sera donc pour l’instant l’une de ces boîtes noires ayant la confiance de l’utilisateur, mais élucider dans le chapitre [Créer]).</p>
+<p>Une façon simple de produire des données à partir d’une matrice de corrélation (ou de covariance) est d’utiliser la fonction <code>mvrnorm()</code> du package <code>MASS</code>. Elle évite pour l’instant d’introduire les manipulations mathématiques nécessaires (ce sera donc pour l’instant l’une de ces boîtes noires ayant la confiance de l’utilisateur, mais élucider dans le chapitre <a href="cr%C3%A9er.html#cr%C3%A9er">Créer</a>).</p>
 <p>La fonction <code>mvrnorm()</code> pour <em>MultiVariate Random NORMmal</em> nécessite trois arguments :</p>
 <ul>
 <li><p>la taille d’échantillon <code>n</code>;</p></li>
@@ -1035,7 +1036,7 @@ où <span class="math inline">\(o\)</span> correspond aux valeurs observées, <s
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Méthodes Quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-07-27.</p>
+    <p>"<strong>Méthodes Quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-08-04.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

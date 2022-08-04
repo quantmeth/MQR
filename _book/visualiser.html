@@ -91,6 +91,7 @@
 <li><a class="" href="exercice-analyse.html">Exercices</a></li>
 <li class="book-part">Modèle linéaire</li>
 <li><a class="" href="pr%C3%A9dire.html"><span class="header-section-number">11</span> Prédire</a></li>
+<li><a class="" href="cr%C3%A9er.html"><span class="header-section-number">12</span> Créer</a></li>
 <li><a class="" href="r%C3%A9f%C3%A9rences.html">Références</a></li>
 </ul>
 
@@ -236,16 +237,15 @@ Figure 7.6: Boîte à moustache de l’IMC en fonction du sexe
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">jd</span><span class="op">)</span> <span class="op">+</span> 
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">IMC</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>Des techniques plus avancées permettent de créer la Figure <a href="visualiser.html#fig:hist">7.7</a> d’un seul coup.</p>
-<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="visualiser.html#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Trois histogrammes en une seule figure</span></span>
-<span id="cb97-2"><a href="visualiser.html#cb97-2" aria-hidden="true" tabindex="-1"></a><span class="co"># en optimisant avec le tidyverse</span></span>
-<span id="cb97-3"><a href="visualiser.html#cb97-3" aria-hidden="true" tabindex="-1"></a>jd <span class="sc">%&gt;%</span></span>
-<span id="cb97-4"><a href="visualiser.html#cb97-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">keep</span>(is.numeric) <span class="sc">%&gt;%</span> </span>
-<span id="cb97-5"><a href="visualiser.html#cb97-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb97-6"><a href="visualiser.html#cb97-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(value)) <span class="sc">+</span></span>
-<span id="cb97-7"><a href="visualiser.html#cb97-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> key, <span class="at">scales =</span> <span class="st">"free"</span>) <span class="sc">+</span></span>
-<span id="cb97-8"><a href="visualiser.html#cb97-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span>
-<span id="cb97-9"><a href="visualiser.html#cb97-9" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="st">`</span><span class="at">stat_bin()</span><span class="st">`</span> using <span class="st">`</span><span class="at">bins = 30</span><span class="st">`</span>. Pick better value with</span>
-<span id="cb97-10"><a href="visualiser.html#cb97-10" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="st">`</span><span class="at">binwidth</span><span class="st">`</span>.</span></code></pre></div>
+<div class="sourceCode" id="cb97"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Trois histogrammes en une seule figure</span>
+<span class="co"># en optimisant avec le tidyverse</span>
+<span class="va">jd</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://purrr.tidyverse.org/reference/keep.html">keep</a></span><span class="op">(</span><span class="va">is.numeric</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/gather.html">gather</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">value</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span> <span class="va">key</span>, scales <span class="op">=</span> <span class="st">"free"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:hist"></span>
 <img src="07-Visualiser_files/figure-html/hist-1.png" alt="Histogrammes des variables continues" width="75%" height="75%"><p class="caption">
@@ -339,7 +339,7 @@ Figure 7.9: Les effets de la vitamine C sur les cochons d’inde
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Méthodes Quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-07-27.</p>
+    <p>"<strong>Méthodes Quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-08-04.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title> 15 recycle vectoriel de R, mais la solution n’est ni simple, ni élégante. | Méthodes Quantitatives avec R</title>
+<meta name="author" content="P.-O. Caron">
+<meta name="description" content="Trêve de digression, une fois la matrice de covariance S calculée, la fonction MASS::mvrnorm() peut être utilisée pour créer des données. Les résultats sont presque identiques pour les...">
+<meta name="generator" content="bookdown 0.27 with bs4_book()">
+<meta property="og:title" content=" 15 recycle vectoriel de R, mais la solution n’est ni simple, ni élégante. | Méthodes Quantitatives avec R">
+<meta property="og:type" content="book">
+<meta property="og:url" content="mqr.teluq.ca/recycle-vectoriel-de-r-mais-la-solution-nest-ni-simple-ni-élégante..html">
+<meta property="og:description" content="Trêve de digression, une fois la matrice de covariance S calculée, la fonction MASS::mvrnorm() peut être utilisée pour créer des données. Les résultats sont presque identiques pour les...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content=" 15 recycle vectoriel de R, mais la solution n’est ni simple, ni élégante. | Méthodes Quantitatives avec R">
+<meta name="twitter:description" content="Trêve de digression, une fois la matrice de covariance S calculée, la fonction MASS::mvrnorm() peut être utilisée pour créer des données. Les résultats sont presque identiques pour les...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<!-- 
+    \(
+    \newcommand{\EX}{\mathbb{E}}
+    \)
+    --><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+<link rel="stylesheet" href="bs4_style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Méthodes Quantitatives avec R</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Bienvenue!</a></li>
+<li><a class="" href="pr%C3%A9face.html">Préface</a></li>
+<li class="book-part">Rudiments</li>
+<li><a class="" href="commencer.html"><span class="header-section-number">1</span> Commencer</a></li>
+<li><a class="" href="programmer.html"><span class="header-section-number">2</span> Programmer</a></li>
+<li><a class="" href="calculer.html"><span class="header-section-number">3</span> Calculer</a></li>
+<li><a class="" href="exercice-rudiments.html">Exercices</a></li>
+<li class="book-part">Jeux de données</li>
+<li><a class="" href="entrer.html"><span class="header-section-number">4</span> Entrer</a></li>
+<li><a class="" href="importer.html"><span class="header-section-number">5</span> Importer</a></li>
+<li><a class="" href="manipuler.html"><span class="header-section-number">6</span> Manipuler</a></li>
+<li><a class="" href="visualiser.html"><span class="header-section-number">7</span> Visualiser</a></li>
+<li><a class="" href="exercice-gestion.html">Exercices</a></li>
+<li class="book-part">Statistiques</li>
+<li><a class="" href="inf%C3%A9rer.html"><span class="header-section-number">8</span> Inférer</a></li>
+<li><a class="" href="analyser.html"><span class="header-section-number">9</span> Analyser</a></li>
+<li><a class="" href="simuler.html"><span class="header-section-number">10</span> Simuler</a></li>
+<li><a class="" href="exercice-analyse.html">Exercices</a></li>
+<li class="book-part">Modèle linéaire</li>
+<li><a class="" href="pr%C3%A9dire.html"><span class="header-section-number">11</span> Prédire</a></li>
+<li><a class="" href="cr%C3%A9er.html"><span class="header-section-number">12</span> Créer</a></li>
+<li><a class="" href="une-note-pour-indiquer-que-les-valeurs-%C3%A0-remplacer-pourrait.html"><span class="header-section-number">13</span> Une note pour indiquer que les valeurs à remplacer pourrait</a></li>
+<li><a class="" href="%C3%AAtre-fait-en-une-seule-ligne-de-syntaxe-en-b%C3%A9n%C3%A9ficiant-du.html"><span class="header-section-number">14</span> être fait en une seule ligne de syntaxe en bénéficiant du</a></li>
+<li><a class="active" href="recycle-vectoriel-de-r-mais-la-solution-nest-ni-simple-ni-%C3%A9l%C3%A9gante..html"><span class="header-section-number">15</span> recycle vectoriel de R, mais la solution n’est ni simple, ni élégante.</a></li>
+<li><a class="" href="r%C3%A9f%C3%A9rences.html">Références</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/quantmeth/MQR">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="recycle-vectoriel-de-r-mais-la-solution-nest-ni-simple-ni-élégante." class="section level1" number="15">
+<h1>
+<span class="header-section-number"> 15</span> recycle vectoriel de R, mais la solution n’est ni simple, ni élégante.<a class="anchor" aria-label="anchor" href="#recycle-vectoriel-de-r-mais-la-solution-nest-ni-simple-ni-%C3%A9l%C3%A9gante."><i class="fas fa-link"></i></a>
+</h1>
+<p>Trêve de digression, une fois la matrice de covariance <code>S</code> calculée, la fonction <code><a href="https://rdrr.io/pkg/MASS/man/mvrnorm.html">MASS::mvrnorm()</a></code> peut être utilisée pour créer des données. Les résultats sont presque identiques pour les régressions.</p>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="recycle-vectoriel-de-r-mais-la-solution-nest-ni-simple-ni-%C3%A9l%C3%A9gante..html#cb175-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1448</span>) <span class="co"># La même que l'exemple précédent</span></span>
+<span id="cb175-2"><a href="recycle-vectoriel-de-r-mais-la-solution-nest-ni-simple-ni-%C3%A9l%C3%A9gante..html#cb175-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb175-3"><a href="recycle-vectoriel-de-r-mais-la-solution-nest-ni-simple-ni-%C3%A9l%C3%A9gante..html#cb175-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Création de données</span></span>
+<span id="cb175-4"><a href="recycle-vectoriel-de-r-mais-la-solution-nest-ni-simple-ni-%C3%A9l%C3%A9gante..html#cb175-4" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> MASS<span class="sc">::</span><span class="fu">mvrnorm</span>(<span class="at">n =</span> n, <span class="at">mu =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>), <span class="at">Sigma =</span> S)</span>
+<span id="cb175-5"><a href="recycle-vectoriel-de-r-mais-la-solution-nest-ni-simple-ni-%C3%A9l%C3%A9gante..html#cb175-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb175-6"><a href="recycle-vectoriel-de-r-mais-la-solution-nest-ni-simple-ni-%C3%A9l%C3%A9gante..html#cb175-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Configurer en tableau de données (data.frame)</span></span>
+<span id="cb175-7"><a href="recycle-vectoriel-de-r-mais-la-solution-nest-ni-simple-ni-%C3%A9l%C3%A9gante..html#cb175-7" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(X)</span>
+<span id="cb175-8"><a href="recycle-vectoriel-de-r-mais-la-solution-nest-ni-simple-ni-%C3%A9l%C3%A9gante..html#cb175-8" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(X) <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"x1"</span>,<span class="st">"x2"</span>,<span class="st">"x3"</span>)</span>
+<span id="cb175-9"><a href="recycle-vectoriel-de-r-mais-la-solution-nest-ni-simple-ni-%C3%A9l%C3%A9gante..html#cb175-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb175-10"><a href="recycle-vectoriel-de-r-mais-la-solution-nest-ni-simple-ni-%C3%A9l%C3%A9gante..html#cb175-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Retrouver beta21</span></span>
+<span id="cb175-11"><a href="recycle-vectoriel-de-r-mais-la-solution-nest-ni-simple-ni-%C3%A9l%C3%A9gante..html#cb175-11" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(x2 <span class="sc">~</span> x1, <span class="at">data =</span> X)</span>
+<span id="cb175-12"><a href="recycle-vectoriel-de-r-mais-la-solution-nest-ni-simple-ni-%C3%A9l%C3%A9gante..html#cb175-12" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb175-13"><a href="recycle-vectoriel-de-r-mais-la-solution-nest-ni-simple-ni-%C3%A9l%C3%A9gante..html#cb175-13" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Call<span class="sc">:</span></span>
+<span id="cb175-14"><a href="recycle-vectoriel-de-r-mais-la-solution-nest-ni-simple-ni-%C3%A9l%C3%A9gante..html#cb175-14" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">lm</span>(<span class="at">formula =</span> x2 <span class="sc">~</span> x1, <span class="at">data =</span> X)</span>
+<span id="cb175-15"><a href="recycle-vectoriel-de-r-mais-la-solution-nest-ni-simple-ni-%C3%A9l%C3%A9gante..html#cb175-15" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb175-16"><a href="recycle-vectoriel-de-r-mais-la-solution-nest-ni-simple-ni-%C3%A9l%C3%A9gante..html#cb175-16" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Coefficients<span class="sc">:</span></span>
+<span id="cb175-17"><a href="recycle-vectoriel-de-r-mais-la-solution-nest-ni-simple-ni-%C3%A9l%C3%A9gante..html#cb175-17" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> (Intercept)           x1  </span>
+<span id="cb175-18"><a href="recycle-vectoriel-de-r-mais-la-solution-nest-ni-simple-ni-%C3%A9l%C3%A9gante..html#cb175-18" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>    <span class="sc">-</span><span class="fl">0.00219</span>      <span class="fl">0.20191</span></span>
+<span id="cb175-19"><a href="recycle-vectoriel-de-r-mais-la-solution-nest-ni-simple-ni-%C3%A9l%C3%A9gante..html#cb175-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb175-20"><a href="recycle-vectoriel-de-r-mais-la-solution-nest-ni-simple-ni-%C3%A9l%C3%A9gante..html#cb175-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Retrouver beta31 et beta32</span></span>
+<span id="cb175-21"><a href="recycle-vectoriel-de-r-mais-la-solution-nest-ni-simple-ni-%C3%A9l%C3%A9gante..html#cb175-21" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(x3 <span class="sc">~</span> x1 <span class="sc">+</span> x2, <span class="at">data =</span> X)</span>
+<span id="cb175-22"><a href="recycle-vectoriel-de-r-mais-la-solution-nest-ni-simple-ni-%C3%A9l%C3%A9gante..html#cb175-22" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb175-23"><a href="recycle-vectoriel-de-r-mais-la-solution-nest-ni-simple-ni-%C3%A9l%C3%A9gante..html#cb175-23" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Call<span class="sc">:</span></span>
+<span id="cb175-24"><a href="recycle-vectoriel-de-r-mais-la-solution-nest-ni-simple-ni-%C3%A9l%C3%A9gante..html#cb175-24" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">lm</span>(<span class="at">formula =</span> x3 <span class="sc">~</span> x1 <span class="sc">+</span> x2, <span class="at">data =</span> X)</span>
+<span id="cb175-25"><a href="recycle-vectoriel-de-r-mais-la-solution-nest-ni-simple-ni-%C3%A9l%C3%A9gante..html#cb175-25" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb175-26"><a href="recycle-vectoriel-de-r-mais-la-solution-nest-ni-simple-ni-%C3%A9l%C3%A9gante..html#cb175-26" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Coefficients<span class="sc">:</span></span>
+<span id="cb175-27"><a href="recycle-vectoriel-de-r-mais-la-solution-nest-ni-simple-ni-%C3%A9l%C3%A9gante..html#cb175-27" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> (Intercept)           x1           x2  </span>
+<span id="cb175-28"><a href="recycle-vectoriel-de-r-mais-la-solution-nest-ni-simple-ni-%C3%A9l%C3%A9gante..html#cb175-28" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>    <span class="sc">-</span><span class="fl">0.00579</span>      <span class="fl">0.40295</span>     <span class="sc">-</span><span class="fl">0.49899</span></span></code></pre></div>
+<p>Comme la formule est générale et qu’elle implique plusieurs itérations, il est envisageable de programmer ces calculs avec une boucle dans une fonction maison. La fonction maison <code>beta2cov()</code> permet, à partir d’une matrice de coefficient de régression et d’un vecteur de variance, d’obenir la matrice de covariance.</p>
+<div class="sourceCode" id="cb176"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># De Beta vers covariance (beta 2 covariance)</span>
+<span class="va">beta2cov</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">B</span>, <span class="va">V</span> <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span><span class="op">{</span>
+  
+  <span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">B</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>    <span class="co"># Nombre de variables</span>
+  
+  <span class="kw">if</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NULL.html">is.null</a></span><span class="op">(</span><span class="va">V</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>   <span class="co"># Si V est nulle, alors V est une</span>
+    <span class="va">S</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/diag.html">diag</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span>    <span class="co"># matrice diagonale d'identité,</span>
+  <span class="op">}</span><span class="kw">else</span><span class="op">{</span>            <span class="co"># autrement il s'agit d'une matrice</span>
+    <span class="va">S</span> <span class="op">&lt;-</span>  <span class="fu"><a href="https://rdrr.io/r/base/diag.html">diag</a></span><span class="op">(</span><span class="va">V</span><span class="op">)</span>   <span class="co"># avec les variances en diagonale</span>
+  <span class="op">}</span>  
+  
+  <span class="co"># Boucle de calcul pour la covariance</span>
+  <span class="co"># de la variable i (i = 2:p)</span>
+  <span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">2</span><span class="op">:</span><span class="va">p</span><span class="op">)</span><span class="op">{</span>
+    
+    <span class="va">COV</span> <span class="op">=</span> <span class="va">B</span><span class="op">[</span><span class="op">(</span><span class="va">i</span><span class="op">)</span>, <span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="op">(</span><span class="va">i</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">]</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="va">S</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="op">(</span><span class="va">i</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span>, <span class="fl">1</span><span class="op">:</span><span class="op">(</span><span class="va">i</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">]</span>
+    <span class="va">S</span><span class="op">[</span><span class="va">i</span>, <span class="fl">1</span><span class="op">:</span><span class="op">(</span><span class="va">i</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">]</span> <span class="op">=</span> <span class="va">COV</span>
+    <span class="va">S</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="op">(</span><span class="va">i</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span>, <span class="va">i</span><span class="op">]</span> <span class="op">=</span> <span class="va">COV</span>
+    
+  <span class="op">}</span>
+  
+  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">S</span><span class="op">)</span>
+  
+<span class="op">}</span></code></pre></div>
+<p>Évidemment, comme il est possible de passer de matrice de coefficient de régression à une matrice de covariance, l’inverse est envisageable. L’équation <a href="cr%C3%A9er.html#eq:buildS">(12.24)</a> est réarrangée pour isoler <span class="math inline">\(\mathbf{B}\)</span> de l’équation, ce qui donne l’équation <a href="recycle-vectoriel-de-r-mais-la-solution-nest-ni-simple-ni-%C3%A9l%C3%A9gante..html#eq:buildB">(15.1)</a>.</p>
+<p><span class="math display" id="eq:buildB">\[\begin{equation}
+\mathbf{B}_{i+1, 1:i} = \mathbf{\Sigma}^{-1}_{1:i,1:i}\mathbf{\Sigma}_{1+i,1:i}
+\tag{15.1}
+\end{equation}\]</span></p>
+<p>L’équation <a href="recycle-vectoriel-de-r-mais-la-solution-nest-ni-simple-ni-%C3%A9l%C3%A9gante..html#eq:buildB">(15.1)</a> se transforme (relativement) aisément en fonction maison. Par rapport à <code>beta2cov()</code>, la boucle n’inclut pas la <span class="math inline">\(p\)</span><sup>e</sup> variable, mais bien la première.</p>
+<div class="sourceCode" id="cb177"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># De la covariance à Beta (cov2beta)</span>
+<span class="va">cov2beta</span> <span class="op">&lt;-</span>  <span class="kw">function</span><span class="op">(</span><span class="va">S</span><span class="op">)</span><span class="op">{</span>
+  
+  <span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">S</span><span class="op">)</span>            <span class="co"># Nombre de variable</span>
+  <span class="va">BETA</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">0</span>, <span class="va">p</span>, <span class="va">p</span><span class="op">)</span> <span class="co"># Matrice vide</span>
+  
+  <span class="co"># Boucle de calcul pour la covariance </span>
+  <span class="co"># de la variable i (i = 1:(p-1))</span>
+  <span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="op">(</span><span class="va">p</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
+    
+    <span class="va">BETA</span><span class="op">[</span><span class="va">i</span><span class="op">+</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">:</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/solve.html">solve</a></span><span class="op">(</span><span class="va">S</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="va">i</span>, <span class="fl">1</span><span class="op">:</span><span class="va">i</span><span class="op">]</span>, <span class="va">S</span><span class="op">[</span><span class="fl">1</span><span class="op">+</span><span class="va">i</span>, <span class="fl">1</span><span class="op">:</span><span class="va">i</span><span class="op">]</span><span class="op">)</span>
+    
+  <span class="op">}</span>
+  
+  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">BETA</span><span class="op">)</span>
+  
+<span class="op">}</span></code></pre></div>
+<p>La fonction maison <code>cov2beta()</code> est maintenant testée sur <code>S</code> pour évaluer si elle retourne bien la matrice <code>B</code> originale.</p>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="recycle-vectoriel-de-r-mais-la-solution-nest-ni-simple-ni-%C3%A9l%C3%A9gante..html#cb178-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cov2beta</span>(S)</span>
+<span id="cb178-2"><a href="recycle-vectoriel-de-r-mais-la-solution-nest-ni-simple-ni-%C3%A9l%C3%A9gante..html#cb178-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>      [,<span class="dv">1</span>] [,<span class="dv">2</span>] [,<span class="dv">3</span>]</span>
+<span id="cb178-3"><a href="recycle-vectoriel-de-r-mais-la-solution-nest-ni-simple-ni-%C3%A9l%C3%A9gante..html#cb178-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>,]  <span class="fl">0.0</span>  <span class="fl">0.0</span>    <span class="dv">0</span></span>
+<span id="cb178-4"><a href="recycle-vectoriel-de-r-mais-la-solution-nest-ni-simple-ni-%C3%A9l%C3%A9gante..html#cb178-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">2</span>,]  <span class="fl">0.2</span>  <span class="fl">0.0</span>    <span class="dv">0</span></span>
+<span id="cb178-5"><a href="recycle-vectoriel-de-r-mais-la-solution-nest-ni-simple-ni-%C3%A9l%C3%A9gante..html#cb178-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">3</span>,]  <span class="fl">0.4</span> <span class="sc">-</span><span class="fl">0.5</span>    <span class="dv">0</span></span></code></pre></div>
+<p>Ce qui est le cas.</p>
+<p>Une seule contrainte s’impose lors de la du calcul de la covariance à partir des coefficients de régression. Il s’agit de s’assurer que la matrice de covariance demeure positive semi-définie à chaque étape. Cela se manifeste notamment lorsque les coefficients de régression pour une variable dépendante sont si élevés que le coefficient de détermination surpasse la variance de la variable en question. Autrement dit, la variance de la variable n’est pas assez élevée pour le potentiel explicatif. Mathématiquement le problème est que <span class="math inline">\(1-R^2_X &lt; 0\)</span> ou plus généralement que <span class="math inline">\(\sigma^2_y-\mathbf{B^\prime\Sigma B}&lt;0\)</span>. Dans ces cas, la variance résiduelle négative, ce qui est impossible. L’une des corrections a apporté sont les suivantes, réduire les coefficients de régression <span class="math inline">\(\mathbf{B}\)</span> pour cette variable ou encore d’augmenter sa variance <span class="math inline">\(\sigma^2_y\)</span> de sorte que <span class="math inline">\(\sigma^2_y-\mathbf{B^\prime\Sigma B}&gt;=0\)</span> soit toujours vrai à chaque étape.</p>
+<p>Une dernière note, comme ces équations et syntaxes procèdent de <span class="math inline">\(i=2,...,p\)</span>, l’ordre des variables est primordiale et interchanger leur ordre a des conséquences substantielles sur les résultats. Lorsque la matrice <span class="math inline">\(\mathbf{B}\)</span> est créées, il faut être sûr de l’ordre <em>déterministe</em> des variables, c’est-à-dire, quelle variable <em>cause</em> quelles autres variables, comme c’était spécifié à la Figure <a href="cr%C3%A9er.html#fig:mod3">12.2</a> par exemple. Changer ou retirer ne serait-ce qu’une variable changerait les coefficients de régression : les régressions ne seraient plus identiques, la matrice de coefficients de régression ne serait pas retrouvée. Il ne faut pas être surpris donc, si les résultats changent dans cette situation. Nonobstant, changer ou retirer une variable peut être pertinent dans certains contextes, surtout pour l’étude de la <strong>misspécification</strong> (en anglais) des modèles, c’est-à-dire lorsqu’un modèle erroné est utilisé plutôt que le vrai modèle, ce qui entraîne notamment des biais. Les études à ce sujet emprunteront une méthode statistique similaire.</p>
+
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="%C3%AAtre-fait-en-une-seule-ligne-de-syntaxe-en-b%C3%A9n%C3%A9ficiant-du.html"><span class="header-section-number">14</span> être fait en une seule ligne de syntaxe en bénéficiant du</a></div>
+<div class="next"><a href="r%C3%A9f%C3%A9rences.html">Références</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav"><li><a class="nav-link" href="#recycle-vectoriel-de-r-mais-la-solution-nest-ni-simple-ni-%C3%A9l%C3%A9gante."><span class="header-section-number">15</span> recycle vectoriel de R, mais la solution n’est ni simple, ni élégante.</a></li></ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/quantmeth/MQR/blob/master/12-Creer.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/quantmeth/MQR/edit/master/12-Creer.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Méthodes Quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-08-04.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

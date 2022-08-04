@@ -131,7 +131,7 @@ ggplot(data = jd) +
 
 Des techniques plus avancées permettent de créer la Figure \@ref(fig:hist) d'un seul coup.
 
-```{r hist, fig.cap="Histogrammes des variables continues", fig.align='center', out.height="75%", out.width="75%"}
+```{r hist, fig.cap="Histogrammes des variables continues", fig.align='center', out.height="75%", out.width="75%" ,message=FALSE, warning=FALSE}
 # Trois histogrammes en une seule figure
 # en optimisant avec le tidyverse
 jd %>%
