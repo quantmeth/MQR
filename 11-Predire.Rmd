@@ -5,7 +5,7 @@ Un objectif des chercheurs est généralement de développer des modèles afin d
 
 L'objectif de la régression est de décrire la relation entre un variable dépendante et un ensemble de variables indépendantes. Un aperçu est donnée à la section sur [l'association linéaire] dans le chapitre [Analyser]. Ce présent chapitre débute avec la notion de covariance et l'étend jusqu'à celle de régression. Des techniques rudimentaires de création de données sont présentées. Par la suite, les mathématiques et la programmation sous-jacente au modèle linéaire sont illustrées. 
 
-## Retours
+## Retour sur l'association linéaire
 
 Une première méthode de mesure d'association est [la covariance] qui est représentée par l'équation \@ref(eq:cov1).
 
@@ -32,7 +32,7 @@ s_{x_j,x_k}=\frac{1}{n-1}\sum_{i=1}^n(x_{i,j})(x_{i,k})
 (\#eq:cov3)
 \end{equation}
 
-Avantageusement, lorsque $j=k$, les équations \@ref(eq:cov2) et \@ref(eq:cov3) calculent la variance de la variable correspondante. En syntaxe **R,** ces équations s'écrirent dans une fonction comme la suivante. Pour rappel, la fonction `cov()` dans laquelle une matrice de données est passée comme argument fournit la matrice de covariance.
+Avantageusement, lorsque $j=k$, les équations \@ref(eq:cov2) et \@ref(eq:cov3) calculent la variance de la variable correspondante. En syntaxe **R,** ces équations s'écrivent dans une fonction comme la suivante. Pour rappel, la fonction `cov()` dans laquelle une matrice de données est passée comme argument fournit la matrice de covariance.
 
 ```{r, id = "covlin", eval = FALSE}
 covariance1 <- function(X){ 
@@ -55,11 +55,11 @@ covariance1 <- function(X){
 }
 ```
 
-Dans le code **R** ci-dessus, les fonctions `ncol()` et `nrow()` extraient le nombre de dimensions de la base de données, soit le nombre de variables et le nombre d'unités. Il est possible d'utiliser cette astuce dans d'autres contextes. La fonction `scale()` permet de centrer les variables de `X` et de les retourner dans `Xc`, par défaut `center = TRUE`, ce pourquoi l'argument n'est pas explicité, mais ne les standardise pas, `scale = FALSE`. Une variable vide `S` est créé pour enregistrer les résultats. La boucle, quant à elle, calcule l'addition de l'équation\ \@ref(eq:cov3) pour enfin diviser la somme par $n-1$. Le résultat est `S`, la matrice de covariance.
+Dans le code **R** ci-dessus, les fonctions `ncol()` et `nrow()` extraient le nombre de dimensions de la base de données, soit le nombre de variables et le nombre d'unités. La fonction `scale()` permet de centrer les variables de `X` et de les retourner dans `Xc`, par défaut `center = TRUE`, ce pourquoi l'argument n'est pas explicité, mais ne les standardise pas, `scale = FALSE`. Une variable vide `S` est créé pour enregistrer les résultats. La boucle, quant à elle, calcule l'addition de l'équation\ \@ref(eq:cov3) pour enfin diviser la somme par $n-1$. Le résultat est `S`, la matrice de covariance.
 
 ### Illustration de la covariance
 
-Il est relativement aisé d'exprimer graphiquement la covariance bivariée. L'équation\ \@ref(eq:cov3) rappelle l'aire d'un rectangle. Pour chaque paire $(x_i,y_i)$, un rectangle peut être dessiner à partir du centre $(0, 0)$ jusqu'au $(x_i,y_i)$. La Figure\ \@ref(fig:covfig) montre quatre exemples de ces rectangles. Lorsque la moyenne d'une variable est soustraite, les données deviennent centrées sur le point $(0, 0)$. L'expression $xy$ ou $x_ix_j$ rappelle le calcul de l'aire d'un rectangle. C'est effectivement ce qui se produit pour la covariance. L'équation calcule l'aire du rectangle formé par les points $(0,0)$ et $(x_i,y_i)$. En fait, la covariance calcule le rectangle *moyen* dont la somme des produits est divisé par le nombre de rectangles moins 1, $(n-1)$.
+Il est relativement aisé d'exprimer graphiquement la covariance bivariée. L'équation\ \@ref(eq:cov3) rappelle l'aire d'un rectangle. Pour chaque paire $(x_i,y_i)$, un rectangle peut être dessiner à partir du centre $(0, 0)$ jusqu'au $(x_i,y_i)$. La Figure\ \@ref(fig:covfig) montre quatre exemples de ces rectangles. Lorsque la moyenne d'une variable est soustraite, les données deviennent centrées sur le point $(0, 0)$. L'expression $xy$ ou $x_ix_j$ rappelle le calcul de l'aire d'un rectangle. C'est effectivement ce qui se produit pour la covariance. L'équation calcule l'aire du rectangle formé par les points $(0,0)$ et $(x_i,y_i)$. En fait, l'équation\ \@ref(eq:cov1) calcule le rectangle *moyen* dont la somme des produits est divisé par le nombre de rectangles moins 1, $(n-1)$.
 
 
 ```{r covfig, echo = FALSE, fig.cap = "Illustration de la covariance", out.height="75%", out.width="75%", fig.align="center"}
@@ -317,7 +317,25 @@ Dans ce modèle, $y$ est la variable prédite, $x$ est le seul prédicteur, $\be
 
 Il vaut la peine de se pencher un peu plus sur ces paramètres. L'ordonnée $\beta_0$ est la moyenne de $y$ lorsque $x=0$, autrement dit, contrôlée par la variable indépendante. Si $x$ est centrée, alors $\beta_0$ égale la moyenne de $y$; si $x$ et $y$ sont centrées, alors $\beta_0=0$. La pente $\beta_1$ est le coefficient de régression, le degré selon lequel $x$ prédit $y$. Ce paramètre dépend de la corrélation entre ces deux variables. En fait, si $x$ et $y$ sont standardisées, alors $\beta_1$ correspond à la corrélation entre les deux^[Uniquement dans le cas bivarié.]. Le paramètre $\epsilon$ est l'erreur du modèle. Par définition, l'erreur est normalement distribuée et sa moyenne est de $0$. Seule l'erreur standard (l'écart type de l'erreur) change.
 
-La Figure\ \@ref(fig:modlinf) illustre ces paramètres. L'ordonnée $\beta_0$ est représentée en pointillé du centre $(0,0)$ jusqu'à la valeur de $y$ lorsque $x = 0$. La pente $\beta_1$ correspond à l'inclinaison de la pente (droite oblique pointillé). Les courtes lignes verticales grises représentent les résidus des participants, soit $\epsilon_i$, la part de $y$ qui n'est pas prédite par $x$ pour la participant $i$. Les résidus se distribuent normalement avec une moyenne de $0$ et un écart type de $\sigma_{\epsilon}$.
+La Figure\ \@ref(fig:modlinf) illustre ces paramètres. L'ordonnée $\beta_0$ est représentée en pointillé du centre $(0,0)$ jusqu'à la valeur de $y$ lorsque $x = 0$. La pente $\beta_1$ correspond à l'inclinaison de la pente (droite oblique pointillé). La droite oblique pointillée représente la prédiction de $y$, soit $\hat{y}$ par $x$. qui correspond à l'équation\ \@ref(eq:modlin), mais en excluant $\epsilon$.
+
+\begin{equation}
+\hat{y_i} = \beta_0 + \beta_1 x_i
+(\#eq:modlin2)
+\end{equation}
+
+L'équation\ \@ref(eq:modlin2) exprime toute la ligne pointillée, soit la meilleure prédiction possible. Celle-ci n'est pas parfaite et contient des erreurs, des *résidus*, autrement dit, ce qui n'est pas prédit par $x$. Les courtes lignes verticales grises représentent les résidus des participants, soit $\epsilon_i$, la part de $y$ qui n'est pas prédite par $x$ pour la participant $i$. Les résidus se distribuent normalement avec une moyenne de $0$ et un écart type de $\sigma_{\epsilon}$. Plus $\sigma_{\epsilon}$ est petit (tend vers 0), plus les points seront près de la droite. 
+
+Une façon de connaître la qualité de la droite est le **coefficient de détermination**. Ce coefficient correspond à l'équation\ \@ref(eq:r2).
+
+\begin{equation}
+R^2 = 1-\frac{\sigma^2_{\epsilon}}{\sigma^2_y}
+(\#eq:r2)
+\end{equation}
+
+Le ratio $\frac{\sigma^2_{\epsilon}}{\sigma^2_y}$ représente la proportion de variance de $y$ non expliquée par les variables indépendantes. Cette proportion s'étend de 0 à 1. La différence $1-\frac{\sigma^2_{\epsilon}}{\sigma^2_y}$ donne l'inverse de cette proportion... **la variance expliquée**! Allant de 0 à 1, le coefficient de détermination indique la qualité de la prédiction, 1 étant une relation parfaite. 
+
+Pour aller un peu plus loin, dans un modèle bivarié, le coefficient de détermination correspond au coefficient de corrélation au carré, $r^2$, la force du lien entre $x$ et $y$. La valeur $1-r^2$ correspond donc la variance des résidus standardisés, $\sigma^2_{\epsilon}$.
 
 
 ```{r modlinf, fig.cap="Diagramme de dispersion", fig.align="center", out.height="80%",out.width="80%", cache = TRUE, echo = FALSE}
@@ -336,6 +354,7 @@ segments(x0 = X$x, y0 = predict(res.lm), x1 = X$x, y1 = X$y, col = "grey", lwd =
 text(x = 1, y = 3.6, labels = expression(beta[1]))
 text(x = .15, y = 1, labels = expression(beta[0]))
 text(x = .75, y = 2.15, labels = expression(epsilon[i]))
+text(x = .80, y = 1.6, labels = expression(paste("(",x[i],", ",y[i],")")))
 ```
 
 
@@ -437,7 +456,7 @@ donnees <- data.frame(MASS::mvrnorm(n = n,
                                     Sigma = Sigma))
 ```
 
-La matrice de covariance, $\mathbf{\Sigma}$, pour $p=3$ s'écrit comme l'équation \@ref(eq:covp3).
+La matrice de covariance, $\mathbf{\Sigma}$, pour $p=3$, s'écrit comme l'équation \@ref(eq:covp3).
 
 \begin{equation}
 \mathbf{\Sigma} = \left( 
@@ -456,13 +475,14 @@ Une autre façon de créer des données en fonction d'un modèle linéaire plut�
 
 ```{r}
 n <- 10000 # Taille d'échantillon
-beta0 <- 5 # Les betas
+# Les betas
+beta0 <- 5
 beta1 <- 1
 
 # Deux variables aléatoires tirées de distributions normales.
 # Les moyennes sont nulles et 
 # les écarts types sont spécifiés
-x   <- rnorm(n = n, sd = 1)
+x <- rnorm(n = n, sd = 1)
 e <- rnorm(n = n, sd = 3)
 
 # Création de la variable dépendante
@@ -480,7 +500,7 @@ Cette méthode de création de données possède toutefois des limites. Principa
 
 Certaines valeurs sont déjà connues, car préspécifiées par l'utilisateur, $\beta_1 = `r beta1`$ et $\sigma_x = 1$. Qu'en est-il de $\sigma_y$? L'utilisateur n'a pas spécifié la valeur de la variance de $y$, il a plutôt choisi la valeur de la variance de l'erreur résiduelle, $\sigma^2_{\epsilon}$. [La loi de la somme des variances] permet de calculer cette valeur. Pour le lecteur intéressé, les réponses sont $\sigma^2_y = \beta_1^2\sigma^2_x+\sigma^2_{\epsilon} = 10$ et donc $\rho_{x,y} = \frac{\beta_1 \sigma_x}{\sigma_y} = `r beta1/sqrt(10)`$ (les détails sont présentés dans le chapitre [Créer]).
 
-La limite liée à la méthode de création de données est maintenant flagrante. En plus de ne pas connaître la corrélation entre les variables, la variance de $y$ n'est pas connue a priori. La stratégie de spécification est ainsi de choisir des valeurs et d'espérer qu'elles soient conformes aux attentes. Pire, s'il y avait plusieurs variables indépendantes, elles seraient toutes non corrélées entre elles, alors que l'utilisateur pourrait vouloir autrement, mais cette première technique ne le permet pas.
+La limite liée à la méthode de création de données est maintenant flagrante. En plus de ne pas connaître la corrélation entre les variables, la variance de $y$ n'est pas connue a priori. La stratégie de spécification est ainsi de choisir des valeurs et d'espérer qu'elles soient conformes aux attentes. Pire, s'il y avait plusieurs variables indépendantes, elles seraient toutes non corrélées entre elles, alors que l'utilisateur pourrait le vouloir autrement, mais cette première technique ne le permet pas.
 
 Pour l'utilisateur qui crée son jeu de données, ces caractéristiques sont souvent plus essentielles que de spécifier à l'avance la variance résiduelle. Pour résoudre cette situation, la solution est de spécifier un modèle standardisé, puis de le *déstandardiser* (ajouté des moyennes et des variances a posteriori).
 
