@@ -200,7 +200,7 @@ x_{2,1} & x_{2,2}\\
 ... & ...  \\
 x_{n,1} & x_{n,2} \\
 \end{array}\right) \\
-& = (n-1)^{-1}\@ref(eq:cov3)
+& = (n-1)^{-1}
 \left(\begin{array}{cc}
 \sum_{i=1}^n(x_{i,1})(x_{i,1}) & \sum_{i=1}^n(x_{i,1})(x_{i,2})\\
 \sum_{i=1}^n(x_{i,2})(x_{i,1}) & \sum_{i=1}^n(x_{i,2})(x_{i,2})
@@ -309,13 +309,13 @@ Plutôt que de traiter chaque paire de variable comme c'est le cas avec l'analys
 L'équation pour un modèle de régression simple se résume au cas bivarié, soit la prédiction de $y$ par une seule variable $x$.
 
 \begin{equation}
-y = \beta_0 + \beta_1 x + \epsilon_y
+y_i = \beta_0 + \beta_1 x_i + \epsilon_i
 (\#eq:modlin)
 \end{equation}
 
-Dans ce modèle, $y$ est la variable prédite, $x$ est le seul prédicteur, $\beta_0$ est l'ordonnée à l'origine, $\beta_1$ est le coefficient de régression et $\epsilon_y$, l'erreur dans la variable $y$ indépendante (non corrélée, ni fonctionnellement liée) de $x$.
+Dans ce modèle, $y$ est la variable prédite, $x$ est le seul prédicteur, $\beta_0$ est l'ordonnée à l'origine, $\beta_1$ est le coefficient de régression et $\epsilon$, l'erreur dans la variable $y$ indépendante (non corrélée, ni fonctionnellement liée) de $x$.
 
-Il vaut la peine de se pencher un peu plus sur ces paramètres. L'ordonnée $\beta_0$ est la moyenne de $y$ lorsque $x=0$, autrement dit, contrôlée par la variable indépendante. Si $x$ est centrée, alors $\beta_0$ égale la moyenne de $y$; si $x$ et $y$ sont centrées, alors $\beta_0=0$. La pente $\beta_1$ est le coefficient de régression, le degré selon lequel $x$ prédit $y$. Ce paramètre dépend de la corrélation entre ces deux variables. En fait, si $x$ et $y$ sont standardisées, alors $\beta_1$ correspond à la corrélation entre les deux^[Uniquement dans le cas bivarié.]. Le paramètre $\epsilon_y$ est l'erreur du modèle. Par définition, l'erreur est normalement distribuée et sa moyenne est de $0$. Seule l'erreur standard (l'écart type de l'erreur) change.
+Il vaut la peine de se pencher un peu plus sur ces paramètres. L'ordonnée $\beta_0$ est la moyenne de $y$ lorsque $x=0$, autrement dit, contrôlée par la variable indépendante. Si $x$ est centrée, alors $\beta_0$ égale la moyenne de $y$; si $x$ et $y$ sont centrées, alors $\beta_0=0$. La pente $\beta_1$ est le coefficient de régression, le degré selon lequel $x$ prédit $y$. Ce paramètre dépend de la corrélation entre ces deux variables. En fait, si $x$ et $y$ sont standardisées, alors $\beta_1$ correspond à la corrélation entre les deux^[Uniquement dans le cas bivarié.]. Le paramètre $\epsilon$ est l'erreur du modèle. Par définition, l'erreur est normalement distribuée et sa moyenne est de $0$. Seule l'erreur standard (l'écart type de l'erreur) change.
 
 La Figure\ \@ref(fig:modlinf) illustre ces paramètres. L'ordonnée $\beta_0$ est représentée en pointillé du centre $(0,0)$ jusqu'à la valeur de $y$ lorsque $x = 0$. La pente $\beta_1$ correspond à l'inclinaison de la pente (droite oblique pointillé). Les courtes lignes verticales grises représentent les résidus des participants, soit $\epsilon_i$, la part de $y$ qui n'est pas prédite par $x$ pour la participant $i$. Les résidus se distribuent normalement avec une moyenne de $0$ et un écart type de $\sigma_{\epsilon}$.
 
@@ -349,7 +349,7 @@ $$
 y = \beta x
 $$
 
-où l'erreur, $\epsilon_y$ n'est pas explicitée. Il faut isoler $\beta$ afin de l'estimer, soit l'opération suivante,
+où l'erreur, $\epsilon$ n'est pas explicitée. Il faut isoler $\beta$ afin de l'estimer, soit l'opération suivante,
 
 $$
 \beta = \mathbb{E}(\frac{y}{x})
@@ -452,7 +452,7 @@ La matrice de covariance, $\mathbf{\Sigma}$, pour $p=3$ s'écrit comme l'équati
 
 Il convient d'écrire $\mathbf{\Sigma}$ (sigma majuscule) et $\sigma$ (sigma minuscule) plutôt que $\mathbf{S}$, car il s'agit de la matrice de covariance de la population. Le résultat de `S = cov(donnees)` est empirique et la notation $\mathbf{S}$ est plus appropriée. Comme il y a $p=3$ variables dans la syntaxe, il faudra préalablement spécifier $3*4/2 = 6$ arguments : $p = 3$ variances $\sigma_{1,1},\sigma_{2,2},\sigma_{3,3}$ et $\frac{p(p-1)}{2}=3(2)/2 = 3$ covariances $\sigma_{1,2},\sigma_{1,3},\sigma_{2,3}$.
 
-Une autre façon de créer des données en fonction d'un modèle linéaire plutôt qu'à partir de la matrice de corrélation (comme avec `MASS`) est de reprendre l'équation \@ref(eq:modlin) et de spécifier les paramètres libre. D'abord, il faut  remplacer les paramètres du modèle par des valeurs, $\beta_0$ et $\beta_1$, pour ensuite créer deux variables aléatoires de taille $n$ (la taille d'échantillon), une première pour $x$ et une seconde pour $\epsilon_y$. Les hypothèses sous-jacentes aux modèles linéaires assument que l'erreur ($\epsilon$) est distribuée normalement (avec implicitement une moyenne de 0), la fonction `rnorm()` pourra jouer le rôle. Pour $x$, il n'y a pas de distribution à respecter, mais une distribution normale fait très bien l'affaire. Voici un exemple de code **R**. En spécifiant une taille d'échantillon très grande `n = 10000`, l'erreur échantillonnalle est considérablement réduite.
+Une autre façon de créer des données en fonction d'un modèle linéaire plutôt qu'à partir de la matrice de corrélation (comme avec `MASS`) est de reprendre l'équation \@ref(eq:modlin) et de spécifier les paramètres libre. D'abord, il faut  remplacer les paramètres du modèle par des valeurs, $\beta_0$ et $\beta_1$, pour ensuite créer deux variables aléatoires de taille $n$ (la taille d'échantillon), une première pour $x$ et une seconde pour $\epsilon$. Les hypothèses sous-jacentes aux modèles linéaires assument que l'erreur ($\epsilon$) est distribuée normalement (avec implicitement une moyenne de 0), la fonction `rnorm()` pourra jouer le rôle. Pour $x$, il n'y a pas de distribution à respecter, mais une distribution normale fait très bien l'affaire. Voici un exemple de code **R**. En spécifiant une taille d'échantillon très grande `n = 10000`, l'erreur échantillonnalle est considérablement réduite.
 
 ```{r}
 n <- 10000 # Taille d'échantillon
@@ -463,10 +463,10 @@ beta1 <- 1
 # Les moyennes sont nulles et 
 # les écarts types sont spécifiés
 x   <- rnorm(n = n, sd = 1)
-e.y <- rnorm(n = n, sd = 3)
+e <- rnorm(n = n, sd = 3)
 
 # Création de la variable dépendante
-y <- beta0 + beta1 * x + e.y
+y <- beta0 + beta1 * x + e
 ```
 
 Si l'utilisateur souhaite ajouter une autre variable, il lui suffit d'ajouter un $\beta$ supplémentaire et de créer une autre variable aléatoire. 
@@ -478,7 +478,7 @@ Cette méthode de création de données possède toutefois des limites. Principa
 (\#eq:eqrho)
 \end{equation}
 
-Certaines valeurs sont déjà connues, car préspécifiées par l'utilisateur, $\beta_1 = `r beta1`$ et $\sigma_x = 1$. Qu'en est-il de $\sigma_y$? L'utilisateur n'a pas spécifié la valeur de la variance de $y$, il a plutôt choisi la valeur de la variance de l'erreur résiduelle, $\sigma^2_{\epsilon_y}$. [La loi de la somme des variances] permet de calculer cette valeur. Pour le lecteur intéressé, les réponses sont $\sigma^2_y = \beta_1^2\sigma^2_x+\sigma^2_{\epsilon_y} = 10$ et donc $\rho_{x,y} = \frac{\beta_1 \sigma_x}{\sigma_y} = `r beta1/sqrt(10)`$ (les détails sont présentés dans le chapitre [Créer]).
+Certaines valeurs sont déjà connues, car préspécifiées par l'utilisateur, $\beta_1 = `r beta1`$ et $\sigma_x = 1$. Qu'en est-il de $\sigma_y$? L'utilisateur n'a pas spécifié la valeur de la variance de $y$, il a plutôt choisi la valeur de la variance de l'erreur résiduelle, $\sigma^2_{\epsilon}$. [La loi de la somme des variances] permet de calculer cette valeur. Pour le lecteur intéressé, les réponses sont $\sigma^2_y = \beta_1^2\sigma^2_x+\sigma^2_{\epsilon} = 10$ et donc $\rho_{x,y} = \frac{\beta_1 \sigma_x}{\sigma_y} = `r beta1/sqrt(10)`$ (les détails sont présentés dans le chapitre [Créer]).
 
 La limite liée à la méthode de création de données est maintenant flagrante. En plus de ne pas connaître la corrélation entre les variables, la variance de $y$ n'est pas connue a priori. La stratégie de spécification est ainsi de choisir des valeurs et d'espérer qu'elles soient conformes aux attentes. Pire, s'il y avait plusieurs variables indépendantes, elles seraient toutes non corrélées entre elles, alors que l'utilisateur pourrait vouloir autrement, mais cette première technique ne le permet pas.
 
@@ -489,18 +489,18 @@ La philosophie de modélisation de cet ouvrage repose sur l'idée selon laquelle
 En assumant un modèle linéaire,
 
 \begin{equation}
-y = \beta_0 + \beta_1 x_1 + ... +\beta_k x_k + \epsilon_y
+y = \beta_0 + \beta_1 x_1 + ... +\beta_k x_k + \epsilon
 (\#eq:modling)
 \end{equation}
 
-où l'équation \@ref(eq:modling) correspond à la généralisation de l'équation \@ref(eq:modlin) pour $k$ variables indépendantes, il est possible d'isoler $\epsilon_y$. La variance se calcule alors comme l'équation \@ref(eq:emat), pour le cas générale. 
+où l'équation \@ref(eq:modling) correspond à la généralisation de l'équation \@ref(eq:modlin) pour $k$ variables indépendantes, il est possible d'isoler $\epsilon$. La variance se calcule alors comme l'équation \@ref(eq:emat), pour le cas générale. 
 
 \begin{equation}
-\sigma^2_{\epsilon_y} = \sigma^2_y - \mathbf{B}^{\prime}\mathbf{R}\mathbf{B}
+\sigma^2_{\epsilon} = \sigma^2_y - \mathbf{B}^{\prime}\mathbf{R}\mathbf{B}
 (\#eq:emat)
 \end{equation}
 
-où $\mathbf{R}$ est la matrice de corrélation et $\mathbf{B}$ est le vecteur contenant tous les $\beta$ standardisés. Pour assurer un scénario standardisé $\sigma^2_y = 1$. La seule condition sous-jacente à l'équation \@ref(eq:emat) est de s'assurer que $\sigma^2_{\epsilon_y} > 0$, c'est-à-dire en vérifiant que $\mathbf{B}^{\prime}\mathbf{R}\mathbf{B} < \sigma^2_y$, autrement la variance est négative, ce qui est impossible. En termes de syntaxe **R**, l'équation \@ref(eq:emat) correspond à ceci.
+où $\mathbf{R}$ est la matrice de corrélation et $\mathbf{B}$ est le vecteur contenant tous les $\beta$ standardisés. Pour assurer un scénario standardisé $\sigma^2_y = 1$. La seule condition sous-jacente à l'équation \@ref(eq:emat) est de s'assurer que $\sigma^2_{\epsilon} > 0$, c'est-à-dire en vérifiant que $\mathbf{B}^{\prime}\mathbf{R}\mathbf{B} < \sigma^2_y$, autrement la variance est négative, ce qui est impossible. En termes de syntaxe **R**, l'équation \@ref(eq:emat) correspond à ceci.
 
 ```{r , eval = FALSE}
 # Cacluler la variance de epsilon
@@ -520,7 +520,7 @@ $$
 \end{array}
 \right)
 $$
-Une fois les données de $\mathbf{X}$ créées, avec la fonction `MASS::mvrnorm()`, comme il a été fait précédemment, il suffit de multiplier $\mathbf{X}$ avec $\mathbf{B}$ et d'ajouter la variable aléatoire $\epsilon_y$ avec la variance appropriée pour obtenir la variable dépendante $y$.
+Une fois les données de $\mathbf{X}$ créées, avec la fonction `MASS::mvrnorm()`, comme il a été fait précédemment, il suffit de multiplier $\mathbf{X}$ avec $\mathbf{B}$ et d'ajouter la variable aléatoire $\epsilon$ avec la variance appropriée pour obtenir la variable dépendante $y$.
 
 ```{r}
 set.seed(42)  # Pour reproductibilité
@@ -623,7 +623,7 @@ courbe %>%
 **R** de base offre la fonction `lm()` pour *linear model* (modèle linéaire) afin de réaliser une régression. Pour réaliser l'analyse, deux éléments sont primordiaux : le jeu de données et le modèle. Le jeu de données est en soi assez évident. Le modèle linéaire est quant à lui représenté par l'équation \@ref(eq:modling). 
 
 \begin{equation}
-y = \beta_0 + \beta_1 x_1 + ... +\beta_k x_k + \epsilon_y
+y = \beta_0 + \beta_1 x_1 + ... +\beta_k x_k + \epsilon
 (\#eq:modling)
 \end{equation}
 
