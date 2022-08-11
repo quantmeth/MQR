@@ -1,8 +1,6 @@
 # Créer
 
-Dans le chapitre sur la [régression][Prédire], les variables indépendantes sont créées simultanément à partir d'une matrice de corrélation, puis des coefficients de régressions sont utilisés pour créer la variable dépendante. Dans un modèle plus élaboré, plutôt que d'ignorer ces corrélations, comme le fait l'analyse de régression, il est possible de modéliser explicitement les liens entre les variables prédictrices. 
-
-Cela revient à décrire un modèle de façon à ce qu'une première variable *cause* la seconde; la première et la seconde *causent* la troisième et ainsi de suite.
+Dans le chapitre sur la [régression][Prédire], les variables indépendantes sont créées simultanément à partir d'une matrice de corrélation, puis des coefficients de régressions sont utilisés pour créer la variable dépendante. Dans un modèle plus élaboré, plutôt que d'ignorer ces corrélations, les liens entre les variables prédictrices peuvent être explicitement modélisés. Cela revient à décrire un modèle de façon à ce qu'une première variable *cause* la seconde; la première et la seconde *causent* la troisième et ainsi de suite.
 
 La modélisation en système d'équations devient primordial dans les prochaines sections, notamment pour les analyses de trajectoires, de médiation, de modération, et plus. C'est le fondement de la modélisation par équations structurelles (SEM). 
 
@@ -26,10 +24,10 @@ La variance de leur somme prend la forme suivante
 où $\sigma^2$ est le symbole habituel de la variance. La variance de la somme (ou de la différence) de deux variables indépendantes (non-corrélées) aléatoires est leur somme. En fait, la somme de $p$ variables indépendantes est la somme de leurs variances. En syntaxe **R**, ces équations ressemblent à ceci.
 
 ```{r}
-set.seed(1155)                  # reproductibilité
-n <- 100000                      # taille élevée pour la précision
-s.x1 <- sqrt(2)                  # variance de 2 
-s.x2 <- sqrt(3)                  # variance de 3
+set.seed(1155)            # reproductibilité
+n <- 100000               # taille élevée pour la précision
+s.x1 <- sqrt(2)           # variance de 2 
+s.x2 <- sqrt(3)           # variance de 3
 
 # Création des variables
 x1 <- rnorm(n = n, sd = s.x1) 
@@ -48,14 +46,14 @@ s.x1^2 + s.x2^2
 
 Le résultat concorde.
 
-En pratique, il est rare que les variables prédictrices soient non corrélées. Ici, aucune corrélation n'a été précisée entre `x1` et `x2`. En développant le cas général où les variables sont corrélées, si la covariance entre $x_1$ et $x_2$ est $\sigma_{x_1,x_2}$, alors la loi de la somme des variances devient ceci.
+En pratique, il est rare que les variables prédictrices soient non corrélées. Ici, aucune corrélation n'a été précisée entre `x1` et `x2`. En développant le cas général où les variables sont corrélées, si la covariance entre $x_1$ et $x_2$ est représentée par $\sigma_{x_1,x_2}$, alors la loi de la somme des variances devient ceci.
 
 \begin{equation}
 \sigma_y^2=\sigma_{x_1}^2+\sigma_{x_2}^2+2\sigma_{x_1,x_2}
 (\#eq:eq3)
 \end{equation}
 
-L'équation \@ref(eq:eq2) est un cas particulier lorsque $\sigma_{x_1 x_2}=0$. En syntaxe **R**, pour $\rho = .5$, cela revient à programmer ceci.
+L'équation \@ref(eq:eq2) est un cas particulier lorsque $\sigma_{x_1 x_2}=0$. En syntaxe **R**, pour $\rho = .5$, cela revient à programmer la syntaxe suivante.
 
 ```{r}
 # Création de variables corrélées
@@ -87,7 +85,7 @@ s.x1x2
 L'équation \@ref(eq:eq3) pour la variance de `y` mène à 
 
 $$\sigma_y^2=\sigma_{x_1}^2+\sigma_{x_2}^2+2\sigma_{x_1,x_2}= `r s.x1^2`+`r s.x2^2` + 2 \times `r s.x1x2`  = `r s.x1^2 + s.x2^2 + 2*s.x1x2`$$
-très près du `r var(y)` simulé.
+très près du résultat simulé.
  
 La loi des sommes des variances est directement reliée au théorème de Pythagore tel qu'illustré par l'équation \@ref(eq:eq2). Deux variables non corrélées peuvent être envisagées comme formant un triangle rectangle. L'équation \@ref(eq:eq3) est la règle du cosinus, ou la généralisation du théorème de Pythagore pour les triangles non rectangulaires, de sorte que la corrélation représente géométriquement un angle [@Rodgers88].
 
@@ -97,7 +95,7 @@ La Figure \@ref(fig:tri1111) montre un triangle rectangle dont l'hypoténuse rep
 knitr::include_graphics("image//tri.PNG")
 ```
 
-Une autre façon plus mathématiquement simple est de calculer la loi de la somme des variances est de concevoir la variance de la somme de $p$ variables comme la *grande somme* de leur matrice de covariance. La grande somme est une fonction mathématique informelle qui fait référence à la somme de tous les éléments d'une matrice. Soit $\mathbf{\Sigma}$, la matrice de variance-covariance de deux variables aléatoires $x_1$ et $x_2$ (les éléments diagonaux sont des variances), alors
+Une autre façon mathématiquement plus simple de calculer la loi de la somme des variances est de concevoir la variance de la somme de $p$ variables comme la *grande somme* de leur matrice de covariance. La grande somme est une fonction mathématique informelle qui fait référence à la somme de tous les éléments d'une matrice. Soit $\mathbf{\Sigma}$, la matrice de variance-covariance de deux variables aléatoires $x_1$ et $x_2$ (les éléments diagonaux sont des variances), alors
 
 \begin{equation}
 \sigma_y^2 = \text{grande somme}(\mathbf{\Sigma}) = \text{grande somme}\left(\begin{array}{cc}
@@ -144,7 +142,7 @@ Une opération matricielle équivalente à la grande somme est
 (\#eq:GS)
 \end{equation}
 
-où $1$ est un vecteur de longueur $p$ contenant seulement 1. Voici en syntaxe **R**.
+où $1$ est un vecteur de longueur $p$ contenant seulement des 1. Voici en syntaxe **R**.
 
 ```{r}
 Un <- c(1, 1)       # Création du vecteur 1
@@ -155,7 +153,7 @@ Cette opération produit la somme de tous les éléments de $\mathbf{\Sigma}$ (`
 
 ### Ajout des constantes d'échelle $\beta$
 	
-Les équations \@ref(eq:eq3), \@ref(eq:eq4), \@ref(eq:eq5) et \@ref(eq:eq6) sont des cas particuliers d'une loi plus générale. Elles ne fonctionneraient pas si des constantes d'échelle (*scaling constant*) étaient ajoutées (qui seront plus tard des coefficients de régression) ou pour calculer la différence (un type d'échelle également).
+Les équations \@ref(eq:eq3), \@ref(eq:eq4), \@ref(eq:eq5) et \@ref(eq:eq6) sont des cas particuliers d'une loi plus générale. Elles ne fonctionnent pas si des constantes d'échelle (*scaling constant*) sont ajoutées (qui seront plus tard des coefficients de régression) ou pour calculer la différence (un type d'échelle également).
 
 La situation où la variable $y$ correspond au produit d'une constante $\beta$ et de la variable $x$ comme :
 
@@ -226,9 +224,13 @@ beta1^2 * s.x1^2 + beta2^2 * s.x2^2 +
 
 tel qu'attendue par l'équation \@ref(eq:eq12).
 
+<!-- check -->
+
 $$
-\sigma_y^2=\beta_1^2 \sigma_{x_1}^2+\beta_2^2 \sigma_{x_2}^2+2\beta_1 \beta_2 \sigma_{x_1,x_2} =
-`r beta1`^2 \times `r s.x1^2` + `r beta2`^2 \times `r s.x2^2` + 2 \times `r beta1` \times `r beta2` \times `r s.x1x2` = `r beta1^2 * s.x1^2 + beta2^2 * s.x2^2 + 2 * beta1 * beta2 * s.x1x2`
+\begin{aligned}
+\sigma_y^2 &= \beta_1^2 \sigma_{x_1}^2+\beta_2^2 \sigma_{x_2}^2+2\beta_1 \beta_2 \sigma_{x_1,x_2} &=
+`r beta1`^2 \times `r s.x1^2` + `r beta2`^2 \times `r s.x2^2` + 2 \times `r beta1` \times `r beta2` \times `r s.x1x2` &= `r beta1^2 * s.x1^2 + beta2^2 * s.x2^2 + 2 * beta1 * beta2 * s.x1x2`
+\end{aligned}
 $$
 
 Comme précédemment, la formule en termes d'algèbre matricielle est plus simple et plus élégante, soit
@@ -238,7 +240,7 @@ Comme précédemment, la formule en termes d'algèbre matricielle est plus simpl
 (\#eq:eq12)
 \end{equation}
 
-où $\mathbf{B}$ ($\beta$ majuscule) est un vecteur contenant tous les coefficients de régression $\beta_i$ de longueur $p$ prédisant $y$ et s'appliquant à un nombre quelconque de prédicteurs $x$. Le premier $\prime$ est le symbole de transposition, un opérateur qui pivote la matrice sur sa diagonale et, dans le cas d'un vecteur, retourne les colonnes en lignes et vice-versa (voir son implication dans l'équation \@ref(eq:eq13) par exemple). Dans l'équation \@ref(eq:eq12), utiliser deux fois les deux vecteurs B revient à élever au carré $\beta_i$. Si $\mathbf{B}$ sont tous égaux à 1, alors l'équation \@ref(eq:eq12) est identique à la définition d'une grande somme, voir l’équation \@ref(eq:GS). En syntaxe **R**, l'équation \@ref(eq:eq12) donne :
+où $\mathbf{B}$ ($\beta$ majuscule) est un vecteur contenant tous les coefficients de régression $\beta_i$ de longueur $p$ prédisant $y$ et s'appliquant à un nombre quelconque de prédicteurs $x$. Le premier $\prime$ est le symbole de transposition, un opérateur qui pivote la matrice sur sa diagonale et, dans le cas d'un vecteur, retourne les colonnes en lignes et vice-versa (voir son implication dans l'équation \@ref(eq:eq13) par exemple). Dans l'équation \@ref(eq:eq12), les deux vecteurs $\mathbf{B}$ revient à élever au carré $\beta_i$. Si tous les éléments de $\mathbf{B}$ égalent 1, alors l'équation \@ref(eq:eq12) est identique à la définition d'une grande somme, voir l'équation \@ref(eq:GS). En syntaxe **R**, l'équation \@ref(eq:eq12) donne :
 
 ```{r}
 # Joint beta1 et beta2 dans un vecteur
@@ -250,7 +252,7 @@ beta %*% S %*% beta
 
 un code plus général et qui s'appliquera à toutes les situations (peu importe la valeur de $p$, le nombre de variables). 
 
-Enfin, il est intéressant de noter que l'équation \@ref(eq:eq12) est la même que les coefficients de détermination, $R^2$ [@Cohen03], lorsque toutes les variables et les coefficients de régression sont normalisés.
+Il est intéressant de noter que l'équation \@ref(eq:eq12) est la même que les coefficients de détermination, $R^2$ [@Cohen03], lorsque toutes les variables et les coefficients de régression sont normalisés.
 
 Dans le modèle linéaire simple décrit dans l'équation \@ref(eq:eq9), l'équation \@ref(eq:eq11) devient :
 
@@ -270,7 +272,7 @@ Dans le modèle linéaire simple décrit dans l'équation \@ref(eq:eq9), l'équa
 
 ce qui est équivalent à l'équation \@ref(eq:eq11). À ce stade, le lecteur peut avoir l'intuition que les équations \@ref(eq:eq1) à \@ref(eq:eq6) n'étaient qu'un cas particulier où tous les $\beta=1$.
 
-La variance de la différence de deux variables revient à affirmer que le $\beta$ des variables soustraites est de signe inverse(s'il est négatif, il devient positif ou s'il est positif, il devient négatif), c'est-à-dire $-\beta$, ce qui pour le modèle conduit à
+La variance de la différence de deux variables revient à affirmer que le $\beta$ des variables soustraites est de signe inverse (s'il est négatif, il devient positif ou s'il est positif, il devient négatif), c'est-à-dire $-\beta$, ce qui pour le modèle conduit à
 
 <!-- \begin{equation} -->
 $$
@@ -308,7 +310,7 @@ donnent
 (\#eq:eq16) 
 \end{equation}     
       
-Ainsi, la variance de la différence de deux variables aléatoires est la somme de leurs variances en soustrayant deux fois leur échelle de covariance par $\beta$ comme prévu. Cela se vérifie avec **R**.
+Comme prévu, la variance de la différence de deux variables aléatoires est la somme de leurs variances en soustrayant deux fois leur échelle de covariance par $\beta$. Cela se vérifie avec **R**.
 
 ```{r}
 y = beta1 * x1 - beta2 * x2
@@ -333,14 +335,14 @@ en omettant la constante $\beta_0$, qui ne joue aucun rôle dans la variance de 
 
 ### Calcul de la variance de l'erreur
 
-En prenant le modèle linéaire le plus simple, soit à deux variables :
+Le modèle linéaire le plus simple, soit à deux variables est représentée par l'équation suivante
 
 \begin{equation}
 y=x+\epsilon
 (\#eq:eq18)
 \end{equation}
 
-où $\epsilon$ est le terme d'erreur résiduel. C'est le minimum pour construire un modèle bivarié. Il s'agit de la même somme bivariée que l'équation \@ref(eq:eq1), mais $x_2$ est remplacé $\epsilon$ et défini comme indépendant de $x_1$ (non corrélé). Sur la base de ce modèle, l'équation \@ref(eq:eq2) conduit à l'équation suivante.
+où $\epsilon$ est le terme d'erreur résiduel. C'est le minimum pour construire un modèle bivarié. Il s'agit de la même somme bivariée que l'équation \@ref(eq:eq1), mais où $x_2$ est remplacé $\epsilon$ et défini comme indépendant de $x_1$ (non corrélé). Sur la base de ce modèle, l'équation \@ref(eq:eq2) conduit à l'équation suivante.
 
 <!-- \begin{equation} -->
 $$
@@ -349,7 +351,7 @@ $$
 <!-- (\#eq:eq19) -->
 <!-- \end{equation} -->
 
-Dans la plupart des cas de modélisation de données, les variances $\sigma_x^2$ et $\sigma_y^2$ sont généralement spécifiées à l'avance plutôt que $\sigma_\epsilon^2$ de sorte que le calcul a priori de la variance de l'erreur au lieu de faire varier les paramètres d'intérêt est plus pertinent. En réarrangeant l'équation \@ref(eq:eq18) pour isoler $\epsilon$, 
+Dans la plupart des cas de modélisation de données, les variances $\sigma_x^2$ et $\sigma_y^2$ sont généralement spécifiées à l'avance plutôt que $\sigma_\epsilon^2$. Le calcul a priori de la variance de l'erreur est plus pertinent que d'ajuster les paramètres d'intérêt. En réarrangeant l'équation \@ref(eq:eq18) pour isoler $\epsilon$, 
 
 <!-- \begin{equation} -->
 $$
@@ -429,7 +431,7 @@ $$
 
 ### Le scénario standardisé
 
-Pour conclure cette section, le scénario standardisé, c'est-à-dire lorsque les variances des variables sont égales à $1$. Plus précisément, la variance de chaque variable est fixe ; seules les erreurs résiduelles doivent être ajustées pour maintenir ces propriétés. Dans ce scénario, la matrice de variance-covariance, $\Sigma$, est une matrice de corrélation, qui définit les variances des erreurs résiduelles. Pour calculer la variance des erreurs des variables, l'équation \@ref(eq:eq26) est utilisée en remplaçant la variance des variables par $1$ comme suit
+Pour conclure cette section, le scénario standardisé, c'est-à-dire lorsque les variances des variables sont égales à $1$. Plus précisément, la variance de chaque variable est fixe ; seules les erreurs résiduelles doivent être ajustées pour maintenir ces propriétés. Dans ce scénario, la matrice de variance-covariance, $\Sigma$, est une matrice de corrélation, qui définit les variances des erreurs résiduelles. Pour calculer la variance des résidus, l'équation \@ref(eq:eq26) est utilisée en remplaçant la variance des variables par $1$ comme suit
 
 \begin{equation}
 \sigma_\epsilon^2=1 - \mathbf{B}^{\prime} \mathbf{\Sigma} \mathbf{B}
@@ -443,11 +445,11 @@ ou, pour un seul prédicteur.
 (\#eq:eq29)
 \end{equation}
 
-Comme mentionner précédemment à propos de l'équation \@ref(eq:eq12), ces deux dernières équations rappellent le coefficient de détermination. La valeur $1$ correspond au potentiel explicatif d'une variable, $\sigma_\epsilon^2$ est la variance résiduelle et, par conséquent, $1-\sigma_\epsilon^2$ est la variance expliquée par le modèle.
+Comme mentionner pour l'équation \@ref(eq:eq12), ces deux dernières équations rappellent le coefficient de détermination. La valeur $1$ correspond au potentiel explicatif d'une variable, $\sigma_\epsilon^2$ est la variance résiduelle et, par conséquent, $1-\sigma_\epsilon^2$ est la variance expliquée par le modèle.
 
 ### Le scénario non standardisé
 
-Dans la pratique, les scénarios sont rarement standardisés. Les variables n'ont pas toutes des variances de $1$ et des moyennes de $0$. Pour ajouter une touche de naturelle aux jeux de données, il est possible, une fois que le système d'équations est complètement obtenu, d'ajouter des variances différentes en multipliant une variable par l'écart-type souhaité et d'additionner  un moyenne. Cela modifiera la matrice de covariance et les coefficients de régression, mais la force relative des liens et la matrice de corrélation resteront identiques. En d'autres termes, la *déstandardisation* est l'inverse d'un score $z$. Les données créées jusqu'ici sont des scores $z$ et pour les déstandardisés, il faut procéder ainsi $x = s(z + \bar{x})$, où $s$ est l'écart-type et $\bar{x}$ est la moyenne de la variable déstandardisée.
+Dans la pratique, les scénarios sont rarement standardisés. Les variables n'ont pas toutes des variances de $1$ et des moyennes de $0$. Pour ajouter une touche de naturelle aux jeux de données, il est possible, une fois que le système d'équations est complètement obtenu, d'ajouter des variances différentes en multipliant une variable par l'écart-type souhaité et d'additionner une moyenne. Cela modifiera la matrice de covariance et les coefficients de régression, mais la force relative des liens et la matrice de corrélation resteront identiques. En d'autres termes, la *déstandardisation* est l'inverse d'un score $z$. Les données créées jusqu'ici sont des scores $z$ et pour les déstandardisés, il faut procéder ainsi $x = s(z + \bar{x})$, où $s$ est l'écart-type et $\bar{x}$ est la moyenne de la variable déstandardisée.
 
 ## Création de variables en série
 
@@ -457,7 +459,9 @@ Puisque le sujet peut devenir compliqué rapidement, cette section est basée su
 
 ### Cas spécifique
 
-Le défi comment lorsqu'il y a trois ou plus variables à générer. Le cas à trois variables est tout de même abordable. La *causalité* est unidirectionnelle, c'est-à-dire d'une variable vers une autre, sans retour en arrière. Cela se nomme un modèle récursif, impliquant du même coup l'existence de modèles non-récursifs, mais qui ne sont pas abordés. Pour un modèle à trois variables, une seule configuration récursive complète est possible. Elle est présentée à la Figure \@ref(fig:mod3).
+Le défi commence lorsqu'il y a trois ou plus variables à générer. Le cas à trois variables est tout de même abordable. La *causalité* est unidirectionnelle, c'est-à-dire d'une variable vers une autre, sans retour en arrière. Cela se nomme un modèle **récursif**, impliquant du même coup l'existence de modèles **non-récursifs**. Les modèles non-récursifs ont la caractéristique d'avoir une ou des boucles de *causalité* bidirectionnelle, comme $x \leftrightarrow y$, alors que les modèles récursif n'ont que des *causalité* directionnel comme $x \rightarrow y$. Les modèles non-récursifs dépassent la portée de cet chapitre.
+
+Pour un modèle à trois variables, une seule configuration récursive complète est possible. Elle est présentée à la Figure\ \@ref(fig:mod3).
 
 ```{r mod3, fig.cap="Modèle à trois variables",echo=FALSE, fig.align="center",out.height="50%" , out.width="50%"}
 knitr::include_graphics("image//mod3.PNG")
@@ -480,17 +484,17 @@ La Figure \@ref(fig:mod3) montre un modèle à trois variables. La première var
 Afin de bâtir un exemple complet avec **R**, la syntaxe ci-dessous montre les paramètres arbitraires pour la création de données à parti du modèle de la figure \@ref(fig:mod3).
 
 ```{r}
-# Pour reproductibilité
+# Pour la reproductibilité
 set.seed(1448)            
 n <- 100000
 
-# Paramètres arbitraire
+# Paramètres arbitraires
 beta21 <- .2 
 beta31 <- .4
 beta32 <- -.5
 ```
 
-La première variable $x_1$ est exogène, c'est-à-dire qu'elle n'est prédite par aucune autre variable, et n'obtient aucune information d'aucune autre variable. Cela paraît notamment dans la matrice $\mathbf{B}$ avec la première ligne ne contenant que des 0. Ainsi, pour créer `x1`, il suffit de connaître sa variance (1 dans un scénario standardisé). Il faudra en supplément un vecteur de variances (ici, toutes fixées à 1 par le scénario standardisé).
+La première variable $x_1$ est **exogène**, c'est-à-dire qu'elle n'est prédite par aucune autre variable, et n'obtient aucune information d'aucune autre variable. Cela se perçoit notamment dans la matrice $\mathbf{B}$ avec la première ligne ne contenant que des 0. Pour créer `x1`, il suffit de connaître sa variance (1 dans un scénario standardisé). Il faudra en supplément un vecteur de variances (ici, toutes fixées à 1 par le scénario standardisé).
 
 ```{r}
 # Création de la première variable
@@ -528,7 +532,10 @@ $$
 La variance résiduelle suit l'équation \@ref(eq:eq28). En équation linéaire, elle s'écrit comme suit.
 
 $$
-\sigma^2{\epsilon_{x_3}} =\sigma^2_{x_3} -( \beta_{3,1}^2\sigma^2_{x_1} + \beta_{3,2}^2\sigma^2_{x_2}  +  2\beta_{3,1}\beta_{3,2}\sigma_{x_1,x_2}) = 1-(\beta_{3,1}^2+\beta_{3,2}^2  +  2\beta_{3,1}\beta_{3,2}\sigma_{x_1,x_2})
+\begin{aligned}
+\sigma^2{\epsilon_{x_3}} &  =\sigma^2_{x_3} -( \beta_{3,1}^2\sigma^2_{x_1} + \beta_{3,2}^2\sigma^2_{x_2}  +  2\beta_{3,1}\beta_{3,2}\sigma_{x_1,x_2}) 
+& = 1-(\beta_{3,1}^2+\beta_{3,2}^2  +  2\beta_{3,1}\beta_{3,2}\sigma_{x_1,x_2})
+\end{aligned}
 $$
 
 Elle occasionne toutefois un défi, car la covariance entre $x_1$ et $x_2$ n'est pas explicitement connue. Dans le cas d'une variable prédite exclusivement par une autre variable qui elle est exogène (sans prédicteur), leur covariance est égale au coefficient de régression, soit $\beta_{21}$. Ce cas ne survient que dans cette situation précise. Il sera impératif de dégager une solution générale pour des modèles ayant plus de trois variables, la complexité du calcul de la covariance augmentant avec la croissance de $p$. En **R**, $x_3$ se génère ainsi.
@@ -543,7 +550,7 @@ x3 = beta31 * x1 + beta32 *
   x2 + rnorm(n = n, sd = sqrt(e_x3))
 ```
 
-Il est possible de vérifier les caractéristiques des trois modèles soit
+Il est possible de vérifier les caractéristiques des trois modèles.
 
 ```{r}
 # Création du jeu de données
@@ -561,7 +568,6 @@ lm(x2 ~ x1, data = X)
 
 # Retrouver beta31 et beta32
 lm(x3 ~ x1 + x2, data = X)
-
 ```
 
 Comme il s'agit d'un scénario standardisé, la matrice de corrélation est similaire à la matrice de covariance. Notamment, les variances sont près de $1$. Aussi, les résultats confirment que la covariance entre $x_1$ et $x_2$ est bel et bien le coefficient de régression, mais surtout, comme il était mentionné, qu'il s'agit du seul cas où cela est vrai. Les régressions effectuées par `lm()` retrouvent également les $\beta$ choisis pour l'exemple.
@@ -615,11 +621,11 @@ B <- matrix(c(  0,     0,    0,
 # Vecteur de variances
 V = c(1, 1, 1)
 
-# Montrer
+# Montrer la matrice B
 B
 ```
 
-Voici pour l'exemple précédent les étapes de calcul décrites une à une de l'équation \@ref(eq:buildS). D'abord, il faut construire une matrice, $\mathbf{\Sigma}$ (`S` en code **R** ci-dessous) avec comme diagonale les variances. Puis, calculer l'équation \@ref(eq:buildS). Ensuite, il faut remplacer le résultat obtenu des deux côtés de la diagonale de façon à ce que `S` demeure symétrique. Ces étapes sont répétées pour $i=2,...,p$ (dans cet exemple, $p=3$).
+Voici pour l'exemple précédent les étapes de calcul de l'équation \@ref(eq:buildS) décrites une à une. D'abord, il faut construire une matrice, $\mathbf{\Sigma}$ (`S` en code **R**) avec comme diagonale les variances. Puis, calculer l'équation \@ref(eq:buildS). Ensuite, il faut remplacer le résultat obtenu des deux côtés de la diagonale de façon à ce que `S` demeure symétrique. Ces étapes sont répétées pour $i=2,...,p$ (dans cet exemple, $p=3$).
 
 ```{r}
 # Créer une matrice de covariance préliminaire
@@ -628,7 +634,7 @@ S <- diag(V)
 # Aucune covariance n'est inscrite dans S
 S
 
-# Première variable
+# Première étape
 i <- 2
 
 # Calcul de la covariance entre x1 et x2
@@ -644,8 +650,9 @@ S[1:(i-1),i] <- COV
 # La matrice est mise à jour pour i = 2
 S
 
-# Pour i = 3, l'équation est reprise
+# Pour la seconde étape, l'équation est reprise pour i = 3
 i <- 3
+
 # Calcul de la covariance entre x1 et x2 assignée à COV
 COV <- B[i, 1:(i-1)] %*% S[1:(i-1), 1:(i-1)]
 S[i, 1:(i-1)] = COV
@@ -654,7 +661,8 @@ S[1:(i-1), i] = COV
 # La matrice est mise à jour pour i = 3
 S
 
-# Elle est approximativement identique aux données de l'exemple précédent
+# Elle est approximativement identique 
+# aux données de l'exemple précédent
 cov(X)
 ```
 
@@ -672,7 +680,8 @@ S[remplacer]
 Trêve de digression, une fois la matrice de covariance `S` calculée, la fonction `MASS::mvrnorm()` peut être utilisée pour créer des données. Les résultats sont presque identiques pour les régressions.
 
 ```{r}
-set.seed(1448) # La même que l'exemple précédent
+# La même que l'exemple précédent
+set.seed(1448) 
 
 # Création de données
 X <- MASS::mvrnorm(n = n, mu = c(0, 0, 0), Sigma = S)
@@ -719,7 +728,7 @@ beta2cov <- function(B, V = NULL){
 }
 ```
 
-Évidemment, comme il est possible de passer de matrice de coefficient de régression à une matrice de covariance, l'inverse est envisageable. L'équation \@ref(eq:buildS) est réarrangée pour isoler $\mathbf{B}$ de l'équation, ce qui donne l'équation \@ref(eq:buildB).
+Évidemment, comme il est possible de passer d'une matrice de coefficient de régression à une matrice de covariance, l'inverse est envisageable. L'équation \@ref(eq:buildS) est réarrangée pour isoler $\mathbf{B}$ de l'équation, ce qui donne l'équation \@ref(eq:buildB).
 
 \begin{equation}
 \mathbf{B}_{i+1, 1:i} = \mathbf{\Sigma}^{-1}_{1:i,1:i}\mathbf{\Sigma}_{1+i,1:i}
@@ -756,6 +765,6 @@ cov2beta(S)
 
 Ce qui est le cas.
 
-Une seule contrainte s'impose lors de la du calcul de la covariance à partir des coefficients de régression. Il s'agit de s'assurer que la matrice de covariance demeure positive semi-définie à chaque étape. Cela se manifeste notamment lorsque les coefficients de régression pour une variable dépendante sont si élevés que le coefficient de détermination surpasse la variance de la variable en question. Autrement dit, la variance de la variable n'est pas assez élevée pour le potentiel explicatif. Mathématiquement le problème est que $1-R^2_X < 0$ ou plus généralement que $\sigma^2_y-\mathbf{B^\prime\Sigma B}<0$. Dans ces cas, la variance résiduelle négative, ce qui est impossible. L'une des corrections a apporté sont les suivantes, réduire les coefficients de régression $\mathbf{B}$ pour cette variable ou encore d'augmenter sa variance $\sigma^2_y$ de sorte que $\sigma^2_y-\mathbf{B^\prime\Sigma B}>=0$ soit toujours vrai à chaque étape.
+Une seule contrainte s'impose lors de la du calcul de la covariance à partir des coefficients de régression. Il s'agit de s'assurer que la matrice de covariance demeure **positive semi-définie** à chaque étape. Cela se manifeste notamment lorsque les coefficients de régression pour une variable dépendante sont si élevés que le coefficient de détermination surpasse la variance de la variable en question. Autrement dit, la variance de la variable n'est pas assez élevée pour le potentiel explicatif. Mathématiquement le problème est que $1-R^2_X < 0$ ou plus généralement que $\sigma^2_y-\mathbf{B^\prime\Sigma B}<0$. Dans ces cas, la variance résiduelle négative, ce qui est impossible. L'une des corrections a apporté sont les suivantes, réduire les coefficients de régression $\mathbf{B}$ pour cette variable ou encore d'augmenter sa variance $\sigma^2_y$ de sorte que $\sigma^2_y-\mathbf{B^\prime\Sigma B}>=0$ soit toujours vrai à chaque étape.
 
-Une dernière note, comme ces équations et syntaxes procèdent de $i=2,...,p$, l'ordre des variables est primordiale et interchanger leur ordre a des conséquences substantielles sur les résultats. Lorsque la matrice $\mathbf{B}$ est créées, il faut être sûr de l'ordre *déterministe* des variables, c'est-à-dire, quelle variable *cause* quelles autres variables, comme c'était spécifié à la Figure \@ref(fig:mod3) par exemple. Changer ou retirer ne serait-ce qu'une variable changerait les coefficients de régression : les régressions ne seraient plus identiques, la matrice de coefficients de régression ne serait pas retrouvée. Il ne faut pas être surpris donc, si les résultats changent dans cette situation. Nonobstant, changer ou retirer une variable peut être pertinent dans certains contextes, surtout pour l'étude de la **misspécification** (en anglais) des modèles, c'est-à-dire lorsqu'un modèle erroné est utilisé plutôt que le vrai modèle, ce qui entraîne notamment des biais. Les études à ce sujet emprunteront  une méthode statistique similaire.
+Une dernière note, comme ces équations et syntaxes procèdent de $i=2,...,p$, l'ordre des variables est primordiale et altérer leur ordre a des conséquences substantielles sur les résultats. Lorsque la matrice $\mathbf{B}$ est créées, il faut être sûr de l'ordre *déterministe* des variables, c'est-à-dire, quelle variable *cause* quelles autres variables, comme illustre à la Figure \@ref(fig:mod3) par exemple. Changer ou retirer ne serait-ce qu'une variable change les coefficients de régression : les régressions ne sont plus identiques, la matrice de coefficients de régression ne sera pas retrouvée. Il ne faut pas être surpris donc, si les résultats changent dans cette situation. Nonobstant, changer ou retirer une variable peut être pertinent dans certains contextes, surtout pour l'étude de la **misspécification** (en anglais) des modèles, c'est-à-dire lorsqu'un modèle erroné est utilisé plutôt que le vrai modèle, ce qui entraîne notamment des biais. Les études à ce sujet emprunteront  une méthode statistique similaire.

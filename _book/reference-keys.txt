@@ -55,6 +55,8 @@ eq:obtD1
 eq:obtD2
 eq:cov2cor
 eq:modlin
+eq:modlin2
+eq:r2
 fig:modlinf
 eq:beta2
 eq:beta
@@ -69,6 +71,7 @@ fig:reshist
 eq:partielle
 eq:semipartielle
 eq:covp3ex
+fig:venn
 eq:eq1
 eq:eq2
 eq:eq3
@@ -96,6 +99,13 @@ eq:B
 eq:B2
 eq:buildS
 eq:buildB
+fig:simplemed
+eq:etot
+eq:sobel
+fig:sobelhist
+eq:Bex
+fig:resmed
+tab:res
 commencer
 r
 pourquoi-r
@@ -209,7 +219,7 @@ le-bootstrap
 meilleures-pratiques
 les-packages-1
 prédire
-retours
+retour-sur-lassociation-linéaire
 illustration-de-la-covariance
 la-covariance-en-termes-dalgèbre-matricielle
 la-matrice-de-corrélation-en-termes-dalgèbre-matricielle
@@ -234,3 +244,12 @@ le-scénario-non-standardisé
 création-de-variables-en-série
 cas-spécifique
 cas-général
+médier
+analyse-de-médiation-simple
+tester-leffet-indirect
+la-méthode-détape-causale
+la-méthode-delta-multivarié
+la-technique-du-bootstrap
+la-création-de-données-2
+analyse-complète
+les-packages-2

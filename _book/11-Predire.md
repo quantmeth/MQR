@@ -5,7 +5,7 @@ Un objectif des chercheurs est généralement de développer des modèles afin d
 
 L'objectif de la régression est de décrire la relation entre un variable dépendante et un ensemble de variables indépendantes. Un aperçu est donnée à la section sur [l'association linéaire] dans le chapitre [Analyser]. Ce présent chapitre débute avec la notion de covariance et l'étend jusqu'à celle de régression. Des techniques rudimentaires de création de données sont présentées. Par la suite, les mathématiques et la programmation sous-jacente au modèle linéaire sont illustrées. 
 
-## Retours
+## Retour sur l'association linéaire
 
 Une première méthode de mesure d'association est [la covariance] qui est représentée par l'équation \@ref(eq:cov1).
 
@@ -32,7 +32,7 @@ s_{x_j,x_k}=\frac{1}{n-1}\sum_{i=1}^n(x_{i,j})(x_{i,k})
 (\#eq:cov3)
 \end{equation}
 
-Avantageusement, lorsque $j=k$, les équations \@ref(eq:cov2) et \@ref(eq:cov3) calculent la variance de la variable correspondante. En syntaxe **R,** ces équations s'écrirent dans une fonction comme la suivante. Pour rappel, la fonction `cov()` dans laquelle une matrice de données est passée comme argument fournit la matrice de covariance.
+Avantageusement, lorsque $j=k$, les équations \@ref(eq:cov2) et \@ref(eq:cov3) calculent la variance de la variable correspondante. En syntaxe **R,** ces équations s'écrivent dans une fonction comme la suivante. Pour rappel, la fonction `cov()` dans laquelle une matrice de données est passée comme argument fournit la matrice de covariance.
 
 
 ```r
@@ -56,11 +56,11 @@ covariance1 <- function(X){
 }
 ```
 
-Dans le code **R** ci-dessus, les fonctions `ncol()` et `nrow()` extraient le nombre de dimensions de la base de données, soit le nombre de variables et le nombre d'unités. Il est possible d'utiliser cette astuce dans d'autres contextes. La fonction `scale()` permet de centrer les variables de `X` et de les retourner dans `Xc`, par défaut `center = TRUE`, ce pourquoi l'argument n'est pas explicité, mais ne les standardise pas, `scale = FALSE`. Une variable vide `S` est créé pour enregistrer les résultats. La boucle, quant à elle, calcule l'addition de l'équation\ \@ref(eq:cov3) pour enfin diviser la somme par $n-1$. Le résultat est `S`, la matrice de covariance.
+Dans le code **R** ci-dessus, les fonctions `ncol()` et `nrow()` extraient le nombre de dimensions de la base de données, soit le nombre de variables et le nombre d'unités. La fonction `scale()` permet de centrer les variables de `X` et de les retourner dans `Xc`, par défaut `center = TRUE`, ce pourquoi l'argument n'est pas explicité, mais ne les standardise pas, `scale = FALSE`. Une variable vide `S` est créé pour enregistrer les résultats. La boucle, quant à elle, calcule l'addition de l'équation\ \@ref(eq:cov3) pour enfin diviser la somme par $n-1$. Le résultat est `S`, la matrice de covariance.
 
 ### Illustration de la covariance
 
-Il est relativement aisé d'exprimer graphiquement la covariance bivariée. L'équation\ \@ref(eq:cov3) rappelle l'aire d'un rectangle. Pour chaque paire $(x_i,y_i)$, un rectangle peut être dessiner à partir du centre $(0, 0)$ jusqu'au $(x_i,y_i)$. La Figure\ \@ref(fig:covfig) montre quatre exemples de ces rectangles. Lorsque la moyenne d'une variable est soustraite, les données deviennent centrées sur le point $(0, 0)$. L'expression $xy$ ou $x_ix_j$ rappelle le calcul de l'aire d'un rectangle. C'est effectivement ce qui se produit pour la covariance. L'équation calcule l'aire du rectangle formé par les points $(0,0)$ et $(x_i,y_i)$. En fait, la covariance calcule le rectangle *moyen* dont la somme des produits est divisé par le nombre de rectangles moins 1, $(n-1)$.
+Il est relativement aisé d'exprimer graphiquement la covariance bivariée. L'équation\ \@ref(eq:cov3) rappelle l'aire d'un rectangle. Pour chaque paire $(x_i,y_i)$, un rectangle peut être dessiner à partir du centre $(0, 0)$ jusqu'au $(x_i,y_i)$. La Figure\ \@ref(fig:covfig) montre quatre exemples de ces rectangles. Lorsque la moyenne d'une variable est soustraite, les données deviennent centrées sur le point $(0, 0)$. L'expression $xy$ ou $x_ix_j$ rappelle le calcul de l'aire d'un rectangle. C'est effectivement ce qui se produit pour la covariance. L'équation calcule l'aire du rectangle formé par les points $(0,0)$ et $(x_i,y_i)$. En fait, l'équation\ \@ref(eq:cov1) calcule le rectangle *moyen* dont la somme des produits est divisé par le nombre de rectangles moins 1, $(n-1)$.
 
 
 <div class="figure" style="text-align: center">
@@ -132,7 +132,7 @@ x_{2,1} & x_{2,2}\\
 ... & ...  \\
 x_{n,1} & x_{n,2} \\
 \end{array}\right) \\
-& = (n-1)^{-1}\@ref(eq:cov3)
+& = (n-1)^{-1}
 \left(\begin{array}{cc}
 \sum_{i=1}^n(x_{i,1})(x_{i,1}) & \sum_{i=1}^n(x_{i,1})(x_{i,2})\\
 \sum_{i=1}^n(x_{i,2})(x_{i,1}) & \sum_{i=1}^n(x_{i,2})(x_{i,2})
@@ -244,15 +244,33 @@ Plutôt que de traiter chaque paire de variable comme c'est le cas avec l'analys
 L'équation pour un modèle de régression simple se résume au cas bivarié, soit la prédiction de $y$ par une seule variable $x$.
 
 \begin{equation}
-y = \beta_0 + \beta_1 x + \epsilon_y
+y_i = \beta_0 + \beta_1 x_i + \epsilon_i
 (\#eq:modlin)
 \end{equation}
 
-Dans ce modèle, $y$ est la variable prédite, $x$ est le seul prédicteur, $\beta_0$ est l'ordonnée à l'origine, $\beta_1$ est le coefficient de régression et $\epsilon_y$, l'erreur dans la variable $y$ indépendante (non corrélée, ni fonctionnellement liée) de $x$.
+Dans ce modèle, $y$ est la variable prédite, $x$ est le seul prédicteur, $\beta_0$ est l'ordonnée à l'origine, $\beta_1$ est le coefficient de régression et $\epsilon$, l'erreur dans la variable $y$ indépendante (non corrélée, ni fonctionnellement liée) de $x$.
 
-Il vaut la peine de se pencher un peu plus sur ces paramètres. L'ordonnée $\beta_0$ est la moyenne de $y$ lorsque $x=0$, autrement dit, contrôlée par la variable indépendante. Si $x$ est centrée, alors $\beta_0$ égale la moyenne de $y$; si $x$ et $y$ sont centrées, alors $\beta_0=0$. La pente $\beta_1$ est le coefficient de régression, le degré selon lequel $x$ prédit $y$. Ce paramètre dépend de la corrélation entre ces deux variables. En fait, si $x$ et $y$ sont standardisées, alors $\beta_1$ correspond à la corrélation entre les deux^[Uniquement dans le cas bivarié.]. Le paramètre $\epsilon_y$ est l'erreur du modèle. Par définition, l'erreur est normalement distribuée et sa moyenne est de $0$. Seule l'erreur standard (l'écart type de l'erreur) change.
+Il vaut la peine de se pencher un peu plus sur ces paramètres. L'ordonnée $\beta_0$ est la moyenne de $y$ lorsque $x=0$, autrement dit, contrôlée par la variable indépendante. Si $x$ est centrée, alors $\beta_0$ égale la moyenne de $y$; si $x$ et $y$ sont centrées, alors $\beta_0=0$. La pente $\beta_1$ est le coefficient de régression, le degré selon lequel $x$ prédit $y$. Ce paramètre dépend de la corrélation entre ces deux variables. En fait, si $x$ et $y$ sont standardisées, alors $\beta_1$ correspond à la corrélation entre les deux^[Uniquement dans le cas bivarié.]. Le paramètre $\epsilon$ est l'erreur du modèle. Par définition, l'erreur est normalement distribuée et sa moyenne est de $0$. Seule l'erreur standard (l'écart type de l'erreur) change.
 
-La Figure\ \@ref(fig:modlinf) illustre ces paramètres. L'ordonnée $\beta_0$ est représentée en pointillé du centre $(0,0)$ jusqu'à la valeur de $y$ lorsque $x = 0$. La pente $\beta_1$ correspond à l'inclinaison de la pente (droite oblique pointillé). Les courtes lignes verticales grises représentent les résidus des participants, soit $\epsilon_i$, la part de $y$ qui n'est pas prédite par $x$ pour la participant $i$. Les résidus se distribuent normalement avec une moyenne de $0$ et un écart type de $\sigma_{\epsilon}$.
+La Figure\ \@ref(fig:modlinf) illustre ces paramètres. L'ordonnée $\beta_0$ est représentée en pointillé du centre $(0,0)$ jusqu'à la valeur de $y$ lorsque $x = 0$. La pente $\beta_1$ correspond à l'inclinaison de la pente (droite oblique pointillé). La droite oblique pointillée représente la prédiction de $y$, soit $\hat{y}$ par $x$. qui correspond à l'équation\ \@ref(eq:modlin), mais en excluant $\epsilon$.
+
+\begin{equation}
+\hat{y_i} = \beta_0 + \beta_1 x_i
+(\#eq:modlin2)
+\end{equation}
+
+L'équation\ \@ref(eq:modlin2) exprime toute la ligne pointillée, soit la meilleure prédiction possible. Celle-ci n'est pas parfaite et contient des erreurs, des *résidus*, autrement dit, ce qui n'est pas prédit par $x$. Les courtes lignes verticales grises représentent les résidus des participants, soit $\epsilon_i$, la part de $y$ qui n'est pas prédite par $x$ pour la participant $i$. Les résidus se distribuent normalement avec une moyenne de $0$ et un écart type de $\sigma_{\epsilon}$. Plus $\sigma_{\epsilon}$ est petit (tend vers 0), plus les points seront près de la droite. 
+
+Une façon de connaître la qualité de la droite est le **coefficient de détermination**. Ce coefficient correspond à l'équation\ \@ref(eq:r2).
+
+\begin{equation}
+R^2 = 1-\frac{\sigma^2_{\epsilon}}{\sigma^2_y}
+(\#eq:r2)
+\end{equation}
+
+Le ratio $\frac{\sigma^2_{\epsilon}}{\sigma^2_y}$ représente la proportion de variance de $y$ non expliquée par les variables indépendantes. Cette proportion s'étend de 0 à 1. La différence $1-\frac{\sigma^2_{\epsilon}}{\sigma^2_y}$ donne l'inverse de cette proportion... **la variance expliquée**! Allant de 0 à 1, le coefficient de détermination indique la qualité de la prédiction, 1 étant une relation parfaite. 
+
+Pour aller un peu plus loin, dans un modèle bivarié, le coefficient de détermination correspond au coefficient de corrélation au carré, $r^2$, la force du lien entre $x$ et $y$. La valeur $1-r^2$ correspond donc la variance des résidus standardisés, $\sigma^2_{\epsilon}$.
 
 
 <div class="figure" style="text-align: center">
@@ -271,7 +289,7 @@ $$
 y = \beta x
 $$
 
-où l'erreur, $\epsilon_y$ n'est pas explicitée. Il faut isoler $\beta$ afin de l'estimer, soit l'opération suivante,
+où l'erreur, $\epsilon$ n'est pas explicitée. Il faut isoler $\beta$ afin de l'estimer, soit l'opération suivante,
 
 $$
 \beta = \mathbb{E}(\frac{y}{x})
@@ -361,7 +379,7 @@ donnees <- data.frame(MASS::mvrnorm(n = n,
                                     Sigma = Sigma))
 ```
 
-La matrice de covariance, $\mathbf{\Sigma}$, pour $p=3$ s'écrit comme l'équation \@ref(eq:covp3).
+La matrice de covariance, $\mathbf{\Sigma}$, pour $p=3$, s'écrit comme l'équation \@ref(eq:covp3).
 
 \begin{equation}
 \mathbf{\Sigma} = \left( 
@@ -376,22 +394,23 @@ La matrice de covariance, $\mathbf{\Sigma}$, pour $p=3$ s'écrit comme l'équati
 
 Il convient d'écrire $\mathbf{\Sigma}$ (sigma majuscule) et $\sigma$ (sigma minuscule) plutôt que $\mathbf{S}$, car il s'agit de la matrice de covariance de la population. Le résultat de `S = cov(donnees)` est empirique et la notation $\mathbf{S}$ est plus appropriée. Comme il y a $p=3$ variables dans la syntaxe, il faudra préalablement spécifier $3*4/2 = 6$ arguments : $p = 3$ variances $\sigma_{1,1},\sigma_{2,2},\sigma_{3,3}$ et $\frac{p(p-1)}{2}=3(2)/2 = 3$ covariances $\sigma_{1,2},\sigma_{1,3},\sigma_{2,3}$.
 
-Une autre façon de créer des données en fonction d'un modèle linéaire plutôt qu'à partir de la matrice de corrélation (comme avec `MASS`) est de reprendre l'équation \@ref(eq:modlin) et de spécifier les paramètres libre. D'abord, il faut  remplacer les paramètres du modèle par des valeurs, $\beta_0$ et $\beta_1$, pour ensuite créer deux variables aléatoires de taille $n$ (la taille d'échantillon), une première pour $x$ et une seconde pour $\epsilon_y$. Les hypothèses sous-jacentes aux modèles linéaires assument que l'erreur ($\epsilon$) est distribuée normalement (avec implicitement une moyenne de 0), la fonction `rnorm()` pourra jouer le rôle. Pour $x$, il n'y a pas de distribution à respecter, mais une distribution normale fait très bien l'affaire. Voici un exemple de code **R**. En spécifiant une taille d'échantillon très grande `n = 10000`, l'erreur échantillonnalle est considérablement réduite.
+Une autre façon de créer des données en fonction d'un modèle linéaire plutôt qu'à partir de la matrice de corrélation (comme avec `MASS`) est de reprendre l'équation \@ref(eq:modlin) et de spécifier les paramètres libre. D'abord, il faut  remplacer les paramètres du modèle par des valeurs, $\beta_0$ et $\beta_1$, pour ensuite créer deux variables aléatoires de taille $n$ (la taille d'échantillon), une première pour $x$ et une seconde pour $\epsilon$. Les hypothèses sous-jacentes aux modèles linéaires assument que l'erreur ($\epsilon$) est distribuée normalement (avec implicitement une moyenne de 0), la fonction `rnorm()` pourra jouer le rôle. Pour $x$, il n'y a pas de distribution à respecter, mais une distribution normale fait très bien l'affaire. Voici un exemple de code **R**. En spécifiant une taille d'échantillon très grande `n = 10000`, l'erreur échantillonnalle est considérablement réduite.
 
 
 ```r
 n <- 10000 # Taille d'échantillon
-beta0 <- 5 # Les betas
+# Les betas
+beta0 <- 5
 beta1 <- 1
 
 # Deux variables aléatoires tirées de distributions normales.
 # Les moyennes sont nulles et 
 # les écarts types sont spécifiés
-x   <- rnorm(n = n, sd = 1)
-e.y <- rnorm(n = n, sd = 3)
+x <- rnorm(n = n, sd = 1)
+e <- rnorm(n = n, sd = 3)
 
 # Création de la variable dépendante
-y <- beta0 + beta1 * x + e.y
+y <- beta0 + beta1 * x + e
 ```
 
 Si l'utilisateur souhaite ajouter une autre variable, il lui suffit d'ajouter un $\beta$ supplémentaire et de créer une autre variable aléatoire. 
@@ -403,9 +422,9 @@ Cette méthode de création de données possède toutefois des limites. Principa
 (\#eq:eqrho)
 \end{equation}
 
-Certaines valeurs sont déjà connues, car préspécifiées par l'utilisateur, $\beta_1 = 1$ et $\sigma_x = 1$. Qu'en est-il de $\sigma_y$? L'utilisateur n'a pas spécifié la valeur de la variance de $y$, il a plutôt choisi la valeur de la variance de l'erreur résiduelle, $\sigma^2_{\epsilon_y}$. [La loi de la somme des variances] permet de calculer cette valeur. Pour le lecteur intéressé, les réponses sont $\sigma^2_y = \beta_1^2\sigma^2_x+\sigma^2_{\epsilon_y} = 10$ et donc $\rho_{x,y} = \frac{\beta_1 \sigma_x}{\sigma_y} = 0.316$ (les détails sont présentés dans le chapitre [Créer]).
+Certaines valeurs sont déjà connues, car préspécifiées par l'utilisateur, $\beta_1 = 1$ et $\sigma_x = 1$. Qu'en est-il de $\sigma_y$? L'utilisateur n'a pas spécifié la valeur de la variance de $y$, il a plutôt choisi la valeur de la variance de l'erreur résiduelle, $\sigma^2_{\epsilon}$. [La loi de la somme des variances] permet de calculer cette valeur. Pour le lecteur intéressé, les réponses sont $\sigma^2_y = \beta_1^2\sigma^2_x+\sigma^2_{\epsilon} = 10$ et donc $\rho_{x,y} = \frac{\beta_1 \sigma_x}{\sigma_y} = 0.316$ (les détails sont présentés dans le chapitre [Créer]).
 
-La limite liée à la méthode de création de données est maintenant flagrante. En plus de ne pas connaître la corrélation entre les variables, la variance de $y$ n'est pas connue a priori. La stratégie de spécification est ainsi de choisir des valeurs et d'espérer qu'elles soient conformes aux attentes. Pire, s'il y avait plusieurs variables indépendantes, elles seraient toutes non corrélées entre elles, alors que l'utilisateur pourrait vouloir autrement, mais cette première technique ne le permet pas.
+La limite liée à la méthode de création de données est maintenant flagrante. En plus de ne pas connaître la corrélation entre les variables, la variance de $y$ n'est pas connue a priori. La stratégie de spécification est ainsi de choisir des valeurs et d'espérer qu'elles soient conformes aux attentes. Pire, s'il y avait plusieurs variables indépendantes, elles seraient toutes non corrélées entre elles, alors que l'utilisateur pourrait le vouloir autrement, mais cette première technique ne le permet pas.
 
 Pour l'utilisateur qui crée son jeu de données, ces caractéristiques sont souvent plus essentielles que de spécifier à l'avance la variance résiduelle. Pour résoudre cette situation, la solution est de spécifier un modèle standardisé, puis de le *déstandardiser* (ajouté des moyennes et des variances a posteriori).
 
@@ -414,18 +433,18 @@ La philosophie de modélisation de cet ouvrage repose sur l'idée selon laquelle
 En assumant un modèle linéaire,
 
 \begin{equation}
-y = \beta_0 + \beta_1 x_1 + ... +\beta_k x_k + \epsilon_y
+y = \beta_0 + \beta_1 x_1 + ... +\beta_k x_k + \epsilon
 (\#eq:modling)
 \end{equation}
 
-où l'équation \@ref(eq:modling) correspond à la généralisation de l'équation \@ref(eq:modlin) pour $k$ variables indépendantes, il est possible d'isoler $\epsilon_y$. La variance se calcule alors comme l'équation \@ref(eq:emat), pour le cas générale. 
+où l'équation \@ref(eq:modling) correspond à la généralisation de l'équation \@ref(eq:modlin) pour $k$ variables indépendantes, il est possible d'isoler $\epsilon$. La variance se calcule alors comme l'équation \@ref(eq:emat), pour le cas générale. 
 
 \begin{equation}
-\sigma^2_{\epsilon_y} = \sigma^2_y - \mathbf{B}^{\prime}\mathbf{R}\mathbf{B}
+\sigma^2_{\epsilon} = \sigma^2_y - \mathbf{B}^{\prime}\mathbf{R}\mathbf{B}
 (\#eq:emat)
 \end{equation}
 
-où $\mathbf{R}$ est la matrice de corrélation et $\mathbf{B}$ est le vecteur contenant tous les $\beta$ standardisés. Pour assurer un scénario standardisé $\sigma^2_y = 1$. La seule condition sous-jacente à l'équation \@ref(eq:emat) est de s'assurer que $\sigma^2_{\epsilon_y} > 0$, c'est-à-dire en vérifiant que $\mathbf{B}^{\prime}\mathbf{R}\mathbf{B} < \sigma^2_y$, autrement la variance est négative, ce qui est impossible. En termes de syntaxe **R**, l'équation \@ref(eq:emat) correspond à ceci.
+où $\mathbf{R}$ est la matrice de corrélation et $\mathbf{B}$ est le vecteur contenant tous les $\beta$ standardisés. Pour assurer un scénario standardisé $\sigma^2_y = 1$. La seule condition sous-jacente à l'équation \@ref(eq:emat) est de s'assurer que $\sigma^2_{\epsilon} > 0$, c'est-à-dire en vérifiant que $\mathbf{B}^{\prime}\mathbf{R}\mathbf{B} < \sigma^2_y$, autrement la variance est négative, ce qui est impossible. En termes de syntaxe **R**, l'équation \@ref(eq:emat) correspond à ceci.
 
 
 ```r
@@ -446,7 +465,7 @@ $$
 \end{array}
 \right)
 $$
-Une fois les données de $\mathbf{X}$ créées, avec la fonction `MASS::mvrnorm()`, comme il a été fait précédemment, il suffit de multiplier $\mathbf{X}$ avec $\mathbf{B}$ et d'ajouter la variable aléatoire $\epsilon_y$ avec la variance appropriée pour obtenir la variable dépendante $y$.
+Une fois les données de $\mathbf{X}$ créées, avec la fonction `MASS::mvrnorm()`, comme il a été fait précédemment, il suffit de multiplier $\mathbf{X}$ avec $\mathbf{B}$ et d'ajouter la variable aléatoire $\epsilon$ avec la variance appropriée pour obtenir la variable dépendante $y$.
 
 
 ```r
@@ -531,7 +550,7 @@ Les deux autres considérations, qui sont elles d'ordre statistique, concernent 
 **R** de base offre la fonction `lm()` pour *linear model* (modèle linéaire) afin de réaliser une régression. Pour réaliser l'analyse, deux éléments sont primordiaux : le jeu de données et le modèle. Le jeu de données est en soi assez évident. Le modèle linéaire est quant à lui représenté par l'équation \@ref(eq:modling). 
 
 \begin{equation}
-y = \beta_0 + \beta_1 x_1 + ... +\beta_k x_k + \epsilon_y
+y = \beta_0 + \beta_1 x_1 + ... +\beta_k x_k + \epsilon
 (\#eq:modling)
 \end{equation}
 
@@ -739,18 +758,26 @@ Rsp
 > z -0.163 0.816  1.000
 ```
 
-
+Les matrices `Rp` et `Rsp` se lisent comme suit : La ligne (variable indépendante) prédit la colonne (variable dépendante). Cette distinction n'est pas important pour la matrice `Rp` (corrélations partielles), car les variables sont symétriques, mais est très importantes pour la matrice `Rsp` (corrélations semi partielles), car la relation est asymétrique. Par exemple, la corrélation semi partielle de $x$ prédit $y$ est de 0.333, mais l'inverse est de 0.2.
 
 Plusieurs observations sont possibles.
 
-Pour une même paire de variable, une même corrélation partielle et semi partielle sont de même signe et de magnitude comparable. En particulier, en absence de colinéarité extrême.
+Pour une même paire de variable, une même corrélation partielle et semi partielle sont de même signe et de magnitude comparable. 
 
-Pour une même paire de variable, la corrélation partielle est toujours plus grande que la corrélation semi partielle.
+Pour une même paire de variable, la corrélation partielle est toujours plus grande ou égale que la corrélation semi partielle.
 
 La matrice de corrélation partielle est symétrique alors que la matrice de corrélation semi partielle ne l'est pas. Cela s'explique du fait que la corrélation semi partielle attribue un rôle (indépendant et dépendant) pour une paire de variable. La contribution des autres variables est retirée de la variable dépendante, puis c'est l'ajout de la variable indépendante qui est d'intérêt. Par exemple, l'effet de la variable `x` prédite par `y` en contrôlant par `x` est de 0.2. Ce lien est limité à cause de l'effet de `z` sur `x`. 
 
-Une dernière observation : ignorer les explications des corrélations partielles et semi partielles en termes de diagramme de Venn, elle cause plus de confusion qu'elle n'apporte d'éclaircissement
+Une dernière observation : Les explications basées sur les diagrammes de Venn pour distinguer les corrélations partielles et semi partielles portent plus souvent à confusion (à long terme) qu'elle n'apporte d'éclaircissement (à court terme), bien qu'elle se retrouve abondamment dans les manuels. 
 
+<div class="figure" style="text-align: center">
+<img src="image//venn.png" alt="Diagramme représentant l'agencement des variables" width="75%" height="75%" />
+<p class="caption">(\#fig:venn)Diagramme représentant l'agencement des variables</p>
+</div>
+
+Dans la Figure\ \@ref(fig:venn), tiré de l'exemple avec `Sigma` ci-haut, la zone $a$ illustre la covariance entre $x$ et $y$ au carré^[Il faut mettre les corrélations partielles, semi partielles et les covariances au carré pour expliquer en termes d'aire.], soit $\sigma_{xy}^2 = a$, et de façon équivalente, $sigma^2_{yz} = .8^2$ $sigma^2_{xz} = 0$. Chaque cercle a un aire de 1, par exemple, l'aire du cercle en bas à gauche est $a+x=.2^2+.96 =1$. Par simplicité, les autres aires sont précalculés. Un ouvrage indique souvent que la corrélation partielle au carré entre $x$ vers $y$ est égale à $a/(a+y)=.2^2/(.2^2+.32)=.111$ dont la racine carré donne $.333$, comme prévu. L'inverse, la corrélation partielle au carré entre $y$ vers $x$, devrait être $a/(a+x)$? mais cela donne $a/(a+x)=.2^2/(.2^2+.96)=.04$. La racine carré donne $.2$... la corrélation semi partielle!? L'équation donne donc plutôt la corrélation semi partielle et non la partielle. En plus, des zones comme la corrélation semi partielles entre $x$ vers $z$, qui est de -0.267 qui au carré donne 0.071, ne sont étrangement pas illustrées. Où est la zone d'aire correspondante? Le pire est certainement que les ouvrages utilisent souvent des agencement de variables plus compliquées que celui-ci, un modèle simple avec deux variables non-corrélées, qui cache davantage ces ambiguïtés.
+
+Qu'est-ce qui explique ces divergences? Il revient au fait que les corrélations partielles et semi partielles se basent sur l'inverse de la matrice de covariance, `solve(Sigma)`, la matrice de précisions. Elles se retrouvent ainsi dans un espace différent de celle de la matrice de covariance qui, elle, est bien illustrée  dans le diagramme de Venn.
 
 <!-- # L'analyse de régression en modélisation par équations structurelles -->
 
