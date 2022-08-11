@@ -1,5 +1,5 @@
 --- 
-title: "Méthodes Quantitatives avec R"
+title: "Méthodes quantitatives avec R"
 author: "P.-O. Caron"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
@@ -8,7 +8,7 @@ bibliography: "ma.bib"
 url: mqr.teluq.ca
 # cover-image: path to the social sharing image like images/cover.jpg
 description: |
- Bienvenue dans la version préliminaire et en ligne du livre Méthodes Quantitatives avec **R** de P.-O. Caron. Le livre démystifie les mécanismes ésotériques derrière les logiciels statistiques et démocratise la programmation statistique avec R. 
+ Bienvenue dans la version préliminaire et en ligne du livre *Méthodes quantitatives avec ****R*** de [P.-O. Caron](https://www.teluq.ca/siteweb/univ/pcaron.html). Le livre démystifie les mécanismes ésotériques derrière les logiciels statistiques et démocratise la programmation statistique avec R. 
 biblio-style: "apa"
 link-citations: true
 csl: apa.csl
@@ -16,7 +16,7 @@ csl: apa.csl
 
 # Bienvenue! {-}
 
-Bienvenue dans la version préliminaire et en ligne du livre *Méthodes Quantitatives avec ****R*** de [P.-O. Caron](https://www.teluq.ca/siteweb/univ/pcaron.html). Le livre porte sur la programmation statistique en **R** et vise à démystifier les mécanismes ésotériques derrière les logiciels statistiques afin de les rendre plus accessibles. Son objectif est de faire le pont entre la statistique et la programmation afin que les lecteurs comprennent et autonomisent leur pratique. L'approche permet à la fois une meilleure compréhension des statistiques à l'aide du logiciel, mais constitue également un motif pour débuter la programmation.
+Bienvenue dans la version préliminaire et en ligne du livre *Méthodes quantitatives avec ****R*** de [P.-O. Caron](https://www.teluq.ca/siteweb/univ/pcaron.html). Le livre porte sur la programmation statistique en **R** et vise à démystifier les mécanismes ésotériques derrière les logiciels statistiques afin de les rendre plus accessibles. Son objectif est de faire le pont entre la statistique et la programmation afin que les lecteurs comprennent et autonomisent leur pratique. L'approche permet à la fois une meilleure compréhension des statistiques à l'aide du logiciel, mais constitue également un motif pour débuter la programmation.
 
 Il vise un public autant intéressé à s'initier à **R** qu'à en connaître davantage sur la statistique, mais surtout un lecteur qui souhaite maîtriser les deux à la fois.
 

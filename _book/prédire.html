@@ -4,16 +4,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title> 11 Prédire | Méthodes Quantitatives avec R</title>
+<title> 11 Prédire | Méthodes quantitatives avec R</title>
 <meta name="author" content="P.-O. Caron">
 <meta name="description" content="Un objectif des chercheurs est généralement de développer des modèles afin de faire des prédictions à partir d’un échantillon sur la population. Les statistiques sont un outils idéalement pour...">
 <meta name="generator" content="bookdown 0.27 with bs4_book()">
-<meta property="og:title" content=" 11 Prédire | Méthodes Quantitatives avec R">
+<meta property="og:title" content=" 11 Prédire | Méthodes quantitatives avec R">
 <meta property="og:type" content="book">
 <meta property="og:url" content="mqr.teluq.ca/prédire.html">
 <meta property="og:description" content="Un objectif des chercheurs est généralement de développer des modèles afin de faire des prédictions à partir d’un échantillon sur la population. Les statistiques sont un outils idéalement pour...">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content=" 11 Prédire | Méthodes Quantitatives avec R">
+<meta name="twitter:title" content=" 11 Prédire | Méthodes quantitatives avec R">
 <meta name="twitter:description" content="Un objectif des chercheurs est généralement de développer des modèles afin de faire des prédictions à partir d’un échantillon sur la population. Les statistiques sont un outils idéalement pour...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -59,7 +59,7 @@
 
     <div class="d-flex align-items-start justify-content-between">
       <h1>
-        <a href="index.html" title="">Méthodes Quantitatives avec R</a>
+        <a href="index.html" title="">Méthodes quantitatives avec R</a>
       </h1>
       <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
     </div>
@@ -93,6 +93,8 @@
 <li><a class="active" href="pr%C3%A9dire.html"><span class="header-section-number">11</span> Prédire</a></li>
 <li><a class="" href="cr%C3%A9er.html"><span class="header-section-number">12</span> Créer</a></li>
 <li><a class="" href="m%C3%A9dier.html"><span class="header-section-number">13</span> Médier</a></li>
+<li><a class="" href="mod%C3%A9rer.html"><span class="header-section-number">14</span> Modérer</a></li>
+<li><a class="" href="exercice-lineaire.html">Exercices</a></li>
 <li><a class="" href="r%C3%A9f%C3%A9rences.html">Références</a></li>
 </ul>
 
@@ -551,7 +553,7 @@ y = \beta_0 + \beta_1 x_1 + ... +\beta_k x_k + \epsilon
 \tag{11.19}
 \end{equation}\]</span></p>
 <p>où l’équation <a href="pr%C3%A9dire.html#eq:modling">(11.19)</a> correspond à la généralisation de l’équation <a href="pr%C3%A9dire.html#eq:modlin">(11.11)</a> pour <span class="math inline">\(k\)</span> variables indépendantes.</p>
-<p>Pour écrire le modèle en syntaxe <strong>R</strong>, il faut remplacer les <span class="math inline">\(x\)</span> par le nom des variables dans le jeu de données, utiliser le <code>~</code> (tilde) pour délimiter les variables dépendantes à gauche des variables indépendantes à droite. Les variables indépendantes sont délimitées, comme dans l’équation <a href="pr%C3%A9dire.html#eq:modling">(11.19)</a>, par des signes d’addition <code>+</code>. Il est aussi de définir des effets d’interaction (modération) avec le signe de multiplication <code>*</code> (la section [Modérer] approfondie davantage ce sujet). Les symboles <code>-</code> (soustraction) et <code>/</code> (division) ne fonctionnent pas. L’intercepte (<span class="math inline">\(\beta_0\)</span>) est ajouté par défaut. La fonction n’exige pas de mettre la formule entre guillemets<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Il faudrait le faire par contre si la formule est utilisée comme variable, par exemple, &lt;code&gt;formule = "y ~ x1 + x2 + x3"&lt;/code&gt; pour indiquer qu’il s’agit de texte.&lt;/p&gt;'><sup>10</sup></a>.</p>
+<p>Pour écrire le modèle en syntaxe <strong>R</strong>, il faut remplacer les <span class="math inline">\(x\)</span> par le nom des variables dans le jeu de données, utiliser le <code>~</code> (tilde) pour délimiter les variables dépendantes à gauche des variables indépendantes à droite. Les variables indépendantes sont délimitées, comme dans l’équation <a href="pr%C3%A9dire.html#eq:modling">(11.19)</a>, par des signes d’addition <code>+</code>. Il est aussi de définir des effets d’interaction (modération) avec le signe de multiplication <code>*</code> (la section <a href="mod%C3%A9rer.html#mod%C3%A9rer">Modérer</a> approfondie davantage ce sujet). Les symboles <code>-</code> (soustraction) et <code>/</code> (division) ne fonctionnent pas. L’intercepte (<span class="math inline">\(\beta_0\)</span>) est ajouté par défaut. La fonction n’exige pas de mettre la formule entre guillemets<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Il faudrait le faire par contre si la formule est utilisée comme variable, par exemple, &lt;code&gt;formule = "y ~ x1 + x2 + x3"&lt;/code&gt; pour indiquer qu’il s’agit de texte.&lt;/p&gt;'><sup>10</sup></a>.</p>
 <div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="pr%C3%A9dire.html#cb149-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Créer un jeu de données à partir </span></span>
 <span id="cb149-2"><a href="pr%C3%A9dire.html#cb149-2" aria-hidden="true" tabindex="-1"></a><span class="co"># des variables de la syntaxe précédente</span></span>
 <span id="cb149-3"><a href="pr%C3%A9dire.html#cb149-3" aria-hidden="true" tabindex="-1"></a>res.lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">formula =</span> y <span class="sc">~</span> X<span class="fl">.1</span> <span class="sc">+</span> X<span class="fl">.2</span> <span class="sc">+</span> X<span class="fl">.3</span>, <span class="at">data =</span> jd)</span>
@@ -786,7 +788,7 @@ Figure 11.7: Diagramme représentant l’agencement des variables
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Méthodes Quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-08-10.</p>
+    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-08-11.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -247,6 +247,7 @@ ab <- beta_21 * beta_32
 hist(test.ind, 
      prob=TRUE,
      xlab = "Effets indirects", 
+     ylab = "Densite",
      main = "", ylim=c(0,8), 
      breaks = 30)
 lines(x <- seq(-.10,.75, by = .01), y = dnorm(x, mean = ab, sd = SE))
@@ -275,8 +276,7 @@ boot <- function(donnees, alpha = .05, nreps = 5000){
   
   # Informations nécessaire au bootstrap
   # Nombre d'unités
-  n = nrow(jd)  
-  
+  n = nrow(jd)
   # Variable vide pour enregistrer
   effet.indirect = as.numeric()
   
@@ -290,6 +290,8 @@ boot <- function(donnees, alpha = .05, nreps = 5000){
     # Calculer l'indice statistique désirée
     b21 <- coef(lm(y ~ x, data = D))["x"]
     b32 <- coef(lm(y ~ x + m, data = D))["m"]
+    
+    # Enregistrer les résultats de chaque boucle
     effet.indirect[i] = b21 * b32
   }
   

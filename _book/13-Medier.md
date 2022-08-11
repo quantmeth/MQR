@@ -247,8 +247,7 @@ boot <- function(donnees, alpha = .05, nreps = 5000){
   
   # Informations nécessaire au bootstrap
   # Nombre d'unités
-  n = nrow(jd)  
-  
+  n = nrow(jd)
   # Variable vide pour enregistrer
   effet.indirect = as.numeric()
   
@@ -262,6 +261,8 @@ boot <- function(donnees, alpha = .05, nreps = 5000){
     # Calculer l'indice statistique désirée
     b21 <- coef(lm(y ~ x, data = D))["x"]
     b32 <- coef(lm(y ~ x + m, data = D))["m"]
+    
+    # Enregistrer les résultats de chaque boucle
     effet.indirect[i] = b21 * b32
   }
   
@@ -777,7 +778,7 @@ round(Resultats, 3) # Résultats arrondis à 3 décimales
 > total effect x -> y     0.000
 ```
 
-Si les coefficients de régression standardisés étaient préférés, ceux-ci sont obtenables simplement en standardisant le jeu de données, puis rouler l'analyse de médiation de nouveau. Pour standardiser rapidement, `z.donnees = apply(donnees, MARGIN = 2, FUN = scale)` applique (`apply()`) la fonction `FUN = scale` qui standardise les données (`donnees`) par colonne `MARGIN = 2`. 
+Si les coefficients de régression standardisés sont préférés, ceux-ci s'obtiennent simplement en standardisant le jeu de données, puis en roulant l'analyse de médiation de nouveau. Pour standardiser rapidement, `z.donnees = apply(donnees, MARGIN = 2, FUN = scale)` applique (`apply()`) la fonction `FUN = scale` qui standardise les données (`donnees`) par colonne `MARGIN = 2`. 
 
 ## Les packages
 
