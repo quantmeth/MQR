@@ -42,6 +42,7 @@ tab:TCCV
 eq:chi1
 tab:TCCV2
 fig:MH
+fig:histmh2
 eq:cov1
 eq:cov2
 eq:cov3
@@ -95,11 +96,12 @@ eq:eq26
 eq:eq28
 eq:eq29
 fig:mod3
-eq:B
+eq:Bc
 eq:B2
 eq:buildS
 eq:buildB
 fig:simplemed
+eq:B
 eq:etot
 eq:sobel
 fig:sobelhist
@@ -216,7 +218,7 @@ le-test-t-dépendant
 lanalyse-de-variance-à-un-facteur
 la-logique-de-lanalyse-de-variance
 la-création-de-données
-dummy-coding
+codage-factice
 analyse
 lassociation-linéaire
 la-covariance
@@ -268,7 +270,7 @@ modérer
 lanalyse-de-modération
 création-de-données
 un-modérateur-continu
-un-modérateur-nominale
+un-modérateur-nominal
 détecter-leffet-de-modération
 analyse-dun-modérateur-continu
 analyse-dun-modérateur-nominal

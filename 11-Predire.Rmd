@@ -642,12 +642,12 @@ courbe %>%
 
 **R** de base offre la fonction `lm()` pour *linear model* (modèle linéaire) afin de réaliser une régression. Pour réaliser l'analyse, deux éléments sont primordiaux : le jeu de données et le modèle. Le jeu de données est en soi assez évident. Le modèle linéaire est quant à lui représenté par l'équation \@ref(eq:modling). 
 
-\begin{equation}
-y = \beta_0 + \beta_1 x_1 + ... +\beta_k x_k + \epsilon
-(\#eq:modling)
-\end{equation}
+<!-- \begin{equation} -->
+<!-- y = \beta_0 + \beta_1 x_1 + ... +\beta_k x_k + \epsilon -->
+<!-- (\#eq:modling) -->
+<!-- \end{equation} -->
 
-où l'équation \@ref(eq:modling) correspond à la généralisation de l'équation \@ref(eq:modlin) pour $k$ variables indépendantes.
+<!-- où l'équation \@ref(eq:modling) correspond à la généralisation de l'équation \@ref(eq:modlin) pour $k$ variables indépendantes. -->
 
 Pour écrire le modèle en syntaxe **R**, il faut remplacer les $x$ par le nom des variables dans le jeu de données, utiliser le `~` (tilde) pour délimiter les variables dépendantes à gauche des variables indépendantes à droite. Les variables indépendantes sont délimitées, comme dans l'équation \@ref(eq:modling), par des signes d'addition `+`. Il est aussi de définir des effets d'interaction (modération) avec le signe de multiplication `*` (la section [Modérer] approfondie davantage ce sujet). Les symboles `-` (soustraction) et `/` (division) ne fonctionnent pas. L'intercepte ($\beta_0$) est ajouté par défaut. La fonction n'exige pas de mettre la formule entre guillemets^[Il faudrait le faire par contre si la formule est utilisée comme variable, par exemple, `formule = "y ~ x1 + x2 + x3" ` pour indiquer qu'il s'agit de texte.].
 

@@ -1,22 +1,25 @@
 # Médier
 
 
-L'analyse de médiation est une analyse statistique de plus en plus populaire auprès des expérimentateurs, peu importe leur discipline. Cette analyse cherche à expliquer les mécanismes biologiques, psychologiques, cognitifs, etc., qui sous-tendent la relation entre une variable indépendante et une variable dépendante par l'inclusion d'une troisième variable, c'est-à-dire la variable médiatrice. L'intérêt pour cette technique est patent, puisqu'elle quantifie le degré selon lequel une variable participe à la transmission du changement d'une *cause* vers son *effet*. L'analyse de médiation peut contribuer à mieux comprendre la relation entre une variable indépendante et une variable dépendante lorsque ces variables n'ont pas de lien direct évident.
+Outre les *liens directs* entre deux variables, ce qu'une [régression][Prédire] permet de découvrir, il existe également des *liens indirects*, une relation sous-jacente entre une variable indépendante et une variable dépendante expliquée par l'inclusion d'une troisième variable. L'attrait d'une telle analyse est patent : les chercheurs  s'intéressent souvent à expliquer les mécanismes biologiques, psychologiques, cognitifs, etc., qui sous-tendent la relation entre deux variables. 
+
+L'analyse de médiation permet de découvrir et tester des liens indirect. Il est ainsi une analyse statistique de plus en plus populaire parmi les expérimentateurs, peu importe leur discipline, puisqu'elle quantifie le degré selon lequel une variable participe à la transmission du changement d'une *cause* vers son *effet*. L'analyse de médiation peut contribuer à mieux comprendre la relation entre une variable indépendante et une variable dépendante lorsque ces variables n'ont pas de lien direct évident. 
 
 L'analyse de médiation est un sous-ensemble de l'analyse de trajectoire dans lequel le statisticien s'intéresse à la relation entre la variable indépendante $x$ sur la variable dépendante $y$ par l'intermédiaire de la variable médiatrice $m$. Elle s'inscrit dans un système d'équations. L'analyse de médiation se base sur les *liens indirects* qui existent dans ce système d'équations. Ces liens indirects sont ces relations intermédiaires qui intéressent le statisticien. 
 
-Concevoir ce qu'est un lien indirect est parfois plus aisé en le comparant aux *liens directs*. Un lien direct, c'est la relation entre une variable indépendante et une dépendante, comme le coefficient de régression, par exemple. Le lien indirect, c'est la relation qui existe entre une variable indépendante et une dépendante à travers une ou plusieurs autres variables. 
+Il est plus aisé de concevoir ce qu'est un lien indirect en le comparant aux liens directs. Un **lien direct**, c'est la relation entre une variable indépendante et une dépendante, comme le coefficient de régression, par exemple. Le **lien indirect**, c'est la relation qui existe entre une variable indépendante et une dépendante à travers une ou plusieurs autres variables. 
 
-Pour les fins de ce chapitre, l'analyse à un seul médiateur sera présentée (aussi nommé l'analyse de médiation simple).
+Pour les fins de ce chapitre^[La section est partiellement basée sur @Caron18.], l'analyse à un seul médiateur est présentée (aussi nommé l'analyse de médiation simple). Il existe de nombreuses extensions (parallèle, sérielle, modérée, etc.) dont les fondements reposent ultimement sur la même logique que celle présentée.
 
 ## Analyse de médiation simple
 
-Le diagramme de trajectoire correspondant au modèle de médiation simple^[La section est partiellement basée sur @Caron18.] (un seul médiateur) est présenté dans le panneau supérieur de la Figure\ \@ref(fig:simplemed). 
+La Figure\ \@ref(fig:simplemed) présente le diagramme de trajectoire correspondant au modèle de médiation simple (un seul médiateur) dans le panneau supérieur. 
 
 <div class="figure" style="text-align: center">
 <img src="image//simplemed.png" alt="Modèle de médiation simple" width="75%" height="75%" />
 <p class="caption">(\#fig:simplemed)Modèle de médiation simple</p>
 </div>
+
 Le cadran supérieur devrait être familier aux lecteurs, car il a été abordé dans le chapitre [Créer], dans une orientation légèrement différente. La Figure\ \@ref(fig:simplemed) peut également être représentée avec une matrice de coefficients de régression $\mathbf{B}$ dans laquelle se retrouvent les coefficients de régression qui relient les variables.
 
 \begin{equation}
@@ -649,7 +652,8 @@ Avantageusement la fonction maison `indirect()` calcule tous les indices statist
 
 
 ```r
-# Le bootstrap de `indirect()` pour le jeu de données en exemple (trois variables)
+# Le bootstrap de `indirect()` pour le 
+# jeu de données en exemple (trois variables)
 # Informations préliminaires
 alpha <- .05         # Erreur de type I
 n <-  nrow(jd)       # Nombre d'unités
@@ -676,17 +680,17 @@ for(i in 2:(reps+1)){
 Resultats <- data.frame(
   Estimates = Est$Est,
   S.E. = apply(Est, MARGIN = 1, FUN = sd), 
-  CIinf = apply(Est, MARGIN = 1, FUN = quantile, probs = alpha/2),
-  CIsup = apply(Est, MARGIN = 1, FUN = quantile, probs = 1-alpha/2)
+  CI.inf = apply(Est, MARGIN = 1, FUN = quantile, probs = alpha/2),
+  CI.sup = apply(Est, MARGIN = 1, FUN = quantile, probs = 1-alpha/2)
 )
 Resultats
->                       Estimates   S.E.  CIinf CIsup
-> x -> m                    0.336 0.0930 0.1602 0.521
-> x -> y                    0.312 0.0616 0.1974 0.442
-> m -> y                    0.625 0.0731 0.4786 0.765
-> x -> m -> y               0.210 0.0608 0.0976 0.333
-> total indirect x -> y     0.210 0.0608 0.0976 0.333
-> total effect x -> y       0.521 0.0843 0.3641 0.691
+>                       Estimates   S.E. CI.inf CI.sup
+> x -> m                    0.336 0.0930 0.1602  0.521
+> x -> y                    0.312 0.0616 0.1974  0.442
+> m -> y                    0.625 0.0731 0.4786  0.765
+> x -> m -> y               0.210 0.0608 0.0976  0.333
+> total indirect x -> y     0.210 0.0608 0.0976  0.333
+> total effect x -> y       0.521 0.0843 0.3641  0.691
 ```
 
 La variable `Resultats` contient tous les résultats pertinents. La colonne `Resultats$Estimates` retourne tous les coefficients de régression avec leur erreur type (erreur standard ou *standard error*) en deuxième colonne. Les dernières colonnes donnent les intervalles de confiance inférieurs et supérieurs. Comme aucune ne contient la valeur 0 au sein de son intervalle, alors elles sont toutes significatives.
@@ -705,8 +709,8 @@ Les résultats sont illustrés dans la Figure\ \@ref(fig:resmed). Les coefficien
    <th style="text-align:left;">   </th>
    <th style="text-align:center;"> Estimates </th>
    <th style="text-align:center;"> S.E. </th>
-   <th style="text-align:center;"> CIinf </th>
-   <th style="text-align:center;"> CIsup </th>
+   <th style="text-align:center;"> CI.inf </th>
+   <th style="text-align:center;"> CI.sup </th>
   </tr>
  </thead>
 <tbody>
@@ -762,13 +766,13 @@ Calculer les valeurs-$t$ et valeurs-$p$ est envisageable en utilisant les résul
 Resultats$t.value <- Resultats$Estimates / Resultats$S.E.
 Resultats$p.value <- (1 - pt(abs(Resultats$t.value), df = n - p)) * 2
 round(Resultats, 3) # Résultats arrondis à 3 décimales
->                       Estimates  S.E. CIinf CIsup t.value
-> x -> m                    0.336 0.093 0.160 0.521    3.61
-> x -> y                    0.312 0.062 0.197 0.442    5.06
-> m -> y                    0.625 0.073 0.479 0.765    8.55
-> x -> m -> y               0.210 0.061 0.098 0.333    3.45
-> total indirect x -> y     0.210 0.061 0.098 0.333    3.45
-> total effect x -> y       0.521 0.084 0.364 0.691    6.18
+>                       Estimates  S.E. CI.inf CI.sup t.value
+> x -> m                    0.336 0.093  0.160  0.521    3.61
+> x -> y                    0.312 0.062  0.197  0.442    5.06
+> m -> y                    0.625 0.073  0.479  0.765    8.55
+> x -> m -> y               0.210 0.061  0.098  0.333    3.45
+> total indirect x -> y     0.210 0.061  0.098  0.333    3.45
+> total effect x -> y       0.521 0.084  0.364  0.691    6.18
 >                       p.value
 > x -> m                  0.000
 > x -> y                  0.000

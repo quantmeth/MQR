@@ -507,7 +507,7 @@ La Figure \@ref(fig:mod3) montre un modèle à trois variables. La première var
 \beta_{3,1} & \beta_{3,2} & 0 \\
 \end{array} 
 \right)
-(\#eq:B)
+(\#eq:Bc)
 \end{equation}
 
 Afin de bâtir un exemple complet avec **R**, la syntaxe ci-dessous montre les paramètres arbitraires pour la création de données à parti du modèle de la figure \@ref(fig:mod3).

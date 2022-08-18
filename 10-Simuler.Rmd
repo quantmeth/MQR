@@ -273,9 +273,9 @@ for (i in 1:nreps){
 
 La fonction `sample(, replace = TRUE)` rééchantillonne avec remplacement les identifiants des unités. Par simplicité, il est possible d'éliminer la ligne `nouveau.X = X[id]` en utilisant `mean(X[id])` ou plus simplement `mean(sample(X, replace = TRUE))`. Cette utilisation se limite seulement au cas d'un vecteur de données. S'il s'agit d'un jeu de données avec plus d'une variable, alors `mean(X[id, ])` est utilisé. Noter l'usage de la `,` entre crochets. De cette façon, toutes les variables des unités identifiées par `id` sont extraites (voir [Référer à une variable dans un jeu de données]).
 
-À partir des informations obtenues, des inférences statistiques sont possible. Toutes les estimations sont présentées comme un histogramme tel que l'illustre la Figure\ \@ref(fig:hist2). Le code se retrouve ci-dessous. Quelques formules pour améliorer la présentation se retrouvent dans la syntaxe. L'utilisation simple de `hist()` pourra convenir.
+À partir des informations obtenues, des inférences statistiques sont possible. Toutes les estimations sont présentées comme un histogramme tel que l'illustre la Figure\ \@ref(fig:histmh2). Le code se retrouve ci-dessous. Quelques formules pour améliorer la présentation se retrouvent dans la syntaxe. L'utilisation simple de `hist()` pourra convenir.
 
-```{r hist2, fig.cap="Historgamme des estimations des échantillons"}
+```{r histmh2, fig.cap="Historgamme des estimations des échantillons"}
 hist(moyenne.X,              # Données
      ylab = " Frequence",    # Changer l'axe y
      main = "",              # Retirer le titre
@@ -284,7 +284,7 @@ hist(moyenne.X,              # Données
 )
 ```
 
-La distribution de la Figure\ \@ref(fig:hist2) se désigne comme la distribution de la *population*, comme cest le cas dans le chapitre [sur les inférences [Inférer]. Elle permet d'avoir une estimation plus robuste de l'erreur standard, qui se trouve à être l'écart type des indices rééchantillonnés. Elle est également utilisée pour construire des intervalles de confiance et permet ainsi de faire des tests d'hypothèse comme : l'intervalle de confiance à $(1-\alpha) \times 100$ % contient-elle la valeur 0? Comme il est fait avec une hypothèse nulle traditionnelle.
+La distribution de la Figure\ \@ref(fig:histmh2) se désigne comme la distribution de la *population*, comme cest le cas dans le chapitre [sur les inférences [Inférer]. Elle permet d'avoir une estimation plus robuste de l'erreur standard, qui se trouve à être l'écart type des indices rééchantillonnés. Elle est également utilisée pour construire des intervalles de confiance et permet ainsi de faire des tests d'hypothèse comme : l'intervalle de confiance à $(1-\alpha) \times 100$ % contient-elle la valeur 0? Comme il est fait avec une hypothèse nulle traditionnelle.
 
 Le cas illustré est trivial au sens où, par le théorème central limite, la distribution des moyennes est déjà connue. Si l'exemple était plutôt sur la médiane, il faudrait obligatoirement procéder par bootstrap pour calculer son erreur type et ses intervalles de confiance, car aucune formule exacte ne permet sa dérivation (il existe bien des approximations cela dit). Le bootstrap est alors des plus appropriés pour calculer l'erreur type et en tirer des intervalles de confiances, voire même en faire des tests d'hypothèses. Plusieurs statistiques auront recours au bootstrap pour dériver ces informations, la plus utilisée étant le coefficient de détermination (voir le chapitre [sur la régression [Prédire]).
 

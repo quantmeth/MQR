@@ -10,6 +10,7 @@ bookdown::pdf_book:
   includes:
     in_header: preamble.tex
   citation_package: biblatex
+  bibliography: ma.bib
   highlight: monochrome
   keep_tex: yes
 bookdown::epub_book: default

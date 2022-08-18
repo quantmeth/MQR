@@ -325,7 +325,7 @@ Figure 10.1: Illustration du problème de Monty Hall
   <span class="va">moyenne.X</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">nouveau.X</span><span class="op">)</span>
 <span class="op">}</span></code></pre></div>
 <p>La fonction <code>sample(, replace = TRUE)</code> rééchantillonne avec remplacement les identifiants des unités. Par simplicité, il est possible d’éliminer la ligne <code>nouveau.X = X[id]</code> en utilisant <code>mean(X[id])</code> ou plus simplement <code>mean(sample(X, replace = TRUE))</code>. Cette utilisation se limite seulement au cas d’un vecteur de données. S’il s’agit d’un jeu de données avec plus d’une variable, alors <code>mean(X[id, ])</code> est utilisé. Noter l’usage de la <code>,</code> entre crochets. De cette façon, toutes les variables des unités identifiées par <code>id</code> sont extraites (voir <a href="manipuler.html#r%C3%A9f%C3%A9rer-%C3%A0-une-variable-dans-un-jeu-de-donn%C3%A9es">Référer à une variable dans un jeu de données</a>).</p>
-<p>À partir des informations obtenues, des inférences statistiques sont possible. Toutes les estimations sont présentées comme un histogramme tel que l’illustre la Figure <a href="visualiser.html#fig:hist2">7.8</a>. Le code se retrouve ci-dessous. Quelques formules pour améliorer la présentation se retrouvent dans la syntaxe. L’utilisation simple de <code><a href="https://rdrr.io/r/graphics/hist.html">hist()</a></code> pourra convenir.</p>
+<p>À partir des informations obtenues, des inférences statistiques sont possible. Toutes les estimations sont présentées comme un histogramme tel que l’illustre la Figure <a href="simuler.html#fig:histmh2">10.2</a>. Le code se retrouve ci-dessous. Quelques formules pour améliorer la présentation se retrouvent dans la syntaxe. L’utilisation simple de <code><a href="https://rdrr.io/r/graphics/hist.html">hist()</a></code> pourra convenir.</p>
 <div class="sourceCode" id="cb136"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">moyenne.X</span>,              <span class="co"># Données</span>
      ylab <span class="op">=</span> <span class="st">" Frequence"</span>,    <span class="co"># Changer l'axe y</span>
@@ -334,12 +334,12 @@ Figure 10.1: Illustration du problème de Monty Hall
      xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">7</span>,<span class="fl">13</span><span class="op">)</span>          <span class="co"># Définir l'étendu de l'axe x</span>
 <span class="op">)</span></code></pre></div>
 <div class="figure">
-<span style="display:block;" id="fig:hist2"></span>
-<img src="10-Simuler_files/figure-html/hist2-1.png" alt="Historgamme des estimations des échantillons" width="672"><p class="caption">
-Figure 7.8: Historgamme des estimations des échantillons
+<span style="display:block;" id="fig:histmh2"></span>
+<img src="10-Simuler_files/figure-html/histmh2-1.png" alt="Historgamme des estimations des échantillons" width="672"><p class="caption">
+Figure 10.2: Historgamme des estimations des échantillons
 </p>
 </div>
-<p>La distribution de la Figure <a href="visualiser.html#fig:hist2">7.8</a> se désigne comme la distribution de la <em>population</em>, comme cest le cas dans le chapitre [sur les inférences <a href="inf%C3%A9rer.html#inf%C3%A9rer">Inférer</a>. Elle permet d’avoir une estimation plus robuste de l’erreur standard, qui se trouve à être l’écart type des indices rééchantillonnés. Elle est également utilisée pour construire des intervalles de confiance et permet ainsi de faire des tests d’hypothèse comme : l’intervalle de confiance à <span class="math inline">\((1-\alpha) \times 100\)</span> % contient-elle la valeur 0? Comme il est fait avec une hypothèse nulle traditionnelle.</p>
+<p>La distribution de la Figure <a href="simuler.html#fig:histmh2">10.2</a> se désigne comme la distribution de la <em>population</em>, comme cest le cas dans le chapitre [sur les inférences <a href="inf%C3%A9rer.html#inf%C3%A9rer">Inférer</a>. Elle permet d’avoir une estimation plus robuste de l’erreur standard, qui se trouve à être l’écart type des indices rééchantillonnés. Elle est également utilisée pour construire des intervalles de confiance et permet ainsi de faire des tests d’hypothèse comme : l’intervalle de confiance à <span class="math inline">\((1-\alpha) \times 100\)</span> % contient-elle la valeur 0? Comme il est fait avec une hypothèse nulle traditionnelle.</p>
 <p>Le cas illustré est trivial au sens où, par le théorème central limite, la distribution des moyennes est déjà connue. Si l’exemple était plutôt sur la médiane, il faudrait obligatoirement procéder par bootstrap pour calculer son erreur type et ses intervalles de confiance, car aucune formule exacte ne permet sa dérivation (il existe bien des approximations cela dit). Le bootstrap est alors des plus appropriés pour calculer l’erreur type et en tirer des intervalles de confiances, voire même en faire des tests d’hypothèses. Plusieurs statistiques auront recours au bootstrap pour dériver ces informations, la plus utilisée étant le coefficient de détermination (voir le chapitre [sur la régression <a href="pr%C3%A9dire.html#pr%C3%A9dire">Prédire</a>).</p>
 <p>À partir des informations obtenues auprès du rééchantillonnage, il est possible d’obtenir les éléments désirés. Comme le cas est trivial, les indices statistiques seront très similaires. Cela confirmera au lecteur qu’aucun principe ésotérique ne s’est déroulé devant ses yeux en plus de confirmer que les statistiques attendues se produisent effectivement.</p>
 <div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="simuler.html#cb137-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Voici la moyenne et l'erreur standard originales</span></span>
@@ -445,7 +445,7 @@ Figure 7.8: Historgamme des estimations des échantillons
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-08-11.</p>
+    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-08-18.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

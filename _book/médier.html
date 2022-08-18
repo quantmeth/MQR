@@ -6,15 +6,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title> 13 Médier | Méthodes quantitatives avec R</title>
 <meta name="author" content="P.-O. Caron">
-<meta name="description" content="L’analyse de médiation est une analyse statistique de plus en plus populaire auprès des expérimentateurs, peu importe leur discipline. Cette analyse cherche à expliquer les mécanismes biologiques,...">
+<meta name="description" content="Outre les liens directs entre deux variables, ce qu’une régression permet de découvrir, il existe également des liens indirects, une relation sous-jacente entre une variable indépendante et une...">
 <meta name="generator" content="bookdown 0.27 with bs4_book()">
 <meta property="og:title" content=" 13 Médier | Méthodes quantitatives avec R">
 <meta property="og:type" content="book">
 <meta property="og:url" content="mqr.teluq.ca/médier.html">
-<meta property="og:description" content="L’analyse de médiation est une analyse statistique de plus en plus populaire auprès des expérimentateurs, peu importe leur discipline. Cette analyse cherche à expliquer les mécanismes biologiques,...">
+<meta property="og:description" content="Outre les liens directs entre deux variables, ce qu’une régression permet de découvrir, il existe également des liens indirects, une relation sous-jacente entre une variable indépendante et une...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content=" 13 Médier | Méthodes quantitatives avec R">
-<meta name="twitter:description" content="L’analyse de médiation est une analyse statistique de plus en plus populaire auprès des expérimentateurs, peu importe leur discipline. Cette analyse cherche à expliquer les mécanismes biologiques,...">
+<meta name="twitter:description" content="Outre les liens directs entre deux variables, ce qu’une régression permet de découvrir, il existe également des liens indirects, une relation sous-jacente entre une variable indépendante et une...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
@@ -107,15 +107,16 @@
 <h1>
 <span class="header-section-number"> 13</span> Médier<a class="anchor" aria-label="anchor" href="#m%C3%A9dier"><i class="fas fa-link"></i></a>
 </h1>
-<p>L’analyse de médiation est une analyse statistique de plus en plus populaire auprès des expérimentateurs, peu importe leur discipline. Cette analyse cherche à expliquer les mécanismes biologiques, psychologiques, cognitifs, etc., qui sous-tendent la relation entre une variable indépendante et une variable dépendante par l’inclusion d’une troisième variable, c’est-à-dire la variable médiatrice. L’intérêt pour cette technique est patent, puisqu’elle quantifie le degré selon lequel une variable participe à la transmission du changement d’une <em>cause</em> vers son <em>effet</em>. L’analyse de médiation peut contribuer à mieux comprendre la relation entre une variable indépendante et une variable dépendante lorsque ces variables n’ont pas de lien direct évident.</p>
+<p>Outre les <em>liens directs</em> entre deux variables, ce qu’une <a href="pr%C3%A9dire.html#pr%C3%A9dire">régression</a> permet de découvrir, il existe également des <em>liens indirects</em>, une relation sous-jacente entre une variable indépendante et une variable dépendante expliquée par l’inclusion d’une troisième variable. L’attrait d’une telle analyse est patent : les chercheurs s’intéressent souvent à expliquer les mécanismes biologiques, psychologiques, cognitifs, etc., qui sous-tendent la relation entre deux variables.</p>
+<p>L’analyse de médiation permet de découvrir et tester des liens indirect. Il est ainsi une analyse statistique de plus en plus populaire parmi les expérimentateurs, peu importe leur discipline, puisqu’elle quantifie le degré selon lequel une variable participe à la transmission du changement d’une <em>cause</em> vers son <em>effet</em>. L’analyse de médiation peut contribuer à mieux comprendre la relation entre une variable indépendante et une variable dépendante lorsque ces variables n’ont pas de lien direct évident.</p>
 <p>L’analyse de médiation est un sous-ensemble de l’analyse de trajectoire dans lequel le statisticien s’intéresse à la relation entre la variable indépendante <span class="math inline">\(x\)</span> sur la variable dépendante <span class="math inline">\(y\)</span> par l’intermédiaire de la variable médiatrice <span class="math inline">\(m\)</span>. Elle s’inscrit dans un système d’équations. L’analyse de médiation se base sur les <em>liens indirects</em> qui existent dans ce système d’équations. Ces liens indirects sont ces relations intermédiaires qui intéressent le statisticien.</p>
-<p>Concevoir ce qu’est un lien indirect est parfois plus aisé en le comparant aux <em>liens directs</em>. Un lien direct, c’est la relation entre une variable indépendante et une dépendante, comme le coefficient de régression, par exemple. Le lien indirect, c’est la relation qui existe entre une variable indépendante et une dépendante à travers une ou plusieurs autres variables.</p>
-<p>Pour les fins de ce chapitre, l’analyse à un seul médiateur sera présentée (aussi nommé l’analyse de médiation simple).</p>
+<p>Il est plus aisé de concevoir ce qu’est un lien indirect en le comparant aux liens directs. Un <strong>lien direct</strong>, c’est la relation entre une variable indépendante et une dépendante, comme le coefficient de régression, par exemple. Le <strong>lien indirect</strong>, c’est la relation qui existe entre une variable indépendante et une dépendante à travers une ou plusieurs autres variables.</p>
+<p>Pour les fins de ce chapitre<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;La section est partiellement basée sur &lt;span class="citation"&gt;Caron &amp;amp; Valois (&lt;a href="r%C3%A9f%C3%A9rences.html#ref-Caron18" role="doc-biblioref"&gt;2018&lt;/a&gt;)&lt;/span&gt;.&lt;/p&gt;'><sup>14</sup></a>, l’analyse à un seul médiateur est présentée (aussi nommé l’analyse de médiation simple). Il existe de nombreuses extensions (parallèle, sérielle, modérée, etc.) dont les fondements reposent ultimement sur la même logique que celle présentée.</p>
 <div id="analyse-de-médiation-simple" class="section level2" number="13.1">
 <h2>
 <span class="header-section-number">13.1</span> Analyse de médiation simple<a class="anchor" aria-label="anchor" href="#analyse-de-m%C3%A9diation-simple"><i class="fas fa-link"></i></a>
 </h2>
-<p>Le diagramme de trajectoire correspondant au modèle de médiation simple<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;La section est partiellement basée sur &lt;span class="citation"&gt;Caron &amp;amp; Valois (&lt;a href="r%C3%A9f%C3%A9rences.html#ref-Caron18" role="doc-biblioref"&gt;2018&lt;/a&gt;)&lt;/span&gt;.&lt;/p&gt;'><sup>14</sup></a> (un seul médiateur) est présenté dans le panneau supérieur de la Figure <a href="m%C3%A9dier.html#fig:simplemed">13.1</a>.</p>
+<p>La Figure <a href="m%C3%A9dier.html#fig:simplemed">13.1</a> présente le diagramme de trajectoire correspondant au modèle de médiation simple (un seul médiateur) dans le panneau supérieur.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:simplemed"></span>
 <img src="image/simplemed.png" alt="Modèle de médiation simple" width="75%" height="75%"><p class="caption">
@@ -131,15 +132,15 @@ Figure 13.1: Modèle de médiation simple
 \beta_{3,1} &amp; \beta_{3,2} &amp; 0 \\
 \end{array}
 \right)
-\tag{12.22}
+\tag{13.1}
 \end{equation}\]</span></p>
 <p>Dans ce cas-ci, <span class="math inline">\(\beta_{2,1}\)</span> signifie que la variable <span class="math inline">\(x\)</span> prédit le médiateur <span class="math inline">\(m\)</span>, <span class="math inline">\(\beta_{3,2}\)</span> signifie que le médiateur prédit la variable <span class="math inline">\(y\)</span> et <span class="math inline">\(\beta_{3,1}\)</span> signifie que la variable <span class="math inline">\(x\)</span> prédit la variable <span class="math inline">\(y\)</span>. En analyse de médiation, ces effets sont nommés des <em>effets directs</em>, comme l’effet direct de <span class="math inline">\(x\)</span> sur <span class="math inline">\(y\)</span>, ou l’effet direct de <span class="math inline">\(m\)</span> sur <span class="math inline">\(y\)</span>. Pour identifier un effet médiateur, le statisticien cherche l’<em>effet indirect</em> de <span class="math inline">\(x\)</span> sur <span class="math inline">\(y\)</span>, c’est-à-dire l’effet de <span class="math inline">\(x\)</span> <em>passant</em> par <span class="math inline">\(m\)</span>. L’effet indirect est <span class="math inline">\(\beta_{2,1}\times\beta_{3,2}\)</span>. Ce résultat est dérivé notamment des travaux de <span class="citation">Wright (<a href="r%C3%A9f%C3%A9rences.html#ref-Wright34" role="doc-biblioref">1934</a>)</span> sur la méthode de coefficients de trajectoires (<em>path coefficients</em>) qui est un moyen flexible de relier les coefficients de régression entre les variables d’un système d’équations.</p>
 <p>Lorsqu’il n’y a pas de <span class="math inline">\(m\)</span>, la relation existante entre <span class="math inline">\(x\)</span> et <span class="math inline">\(y\)</span> est nommé l’<em>effet total</em> représenté par <span class="math inline">\(\sigma_{x,y}\)</span> et est illustré dans le cadran inférieur de la Figure <a href="m%C3%A9dier.html#fig:simplemed">13.1</a>. Ce lien correspond au coefficient de régression entre <span class="math inline">\(x\)</span> et <span class="math inline">\(y\)</span>. Dans ce cas spécifique à deux variables, il s’agit également de la covariance entre <span class="math inline">\(x\)</span> et <span class="math inline">\(y\)</span>. L’effet total peut être séparé en deux autres effets dont il fait la somme : l’effet direct de <span class="math inline">\(x\)</span> sur <span class="math inline">\(y\)</span> (<span class="math inline">\(\beta_{3,1}\)</span>) et l’effet indirect<span class="math inline">\(\beta_{2,1}\beta_{3,2}\)</span>.</p>
 <p><span class="math display" id="eq:etot">\[\begin{equation}
 \sigma_{3,1} = \beta_{3,1} + \beta_{2,1} \beta_{3,2}
-\tag{13.1}
+\tag{13.2}
 \end{equation}\]</span></p>
-<p>Un avantage de l’équation <a href="m%C3%A9dier.html#eq:etot">(13.1)</a> est qu’elle met en relation l’interdépendance des quatre composantes pour dériver un effet total, direct ou indirect. Si trois des mesures sont connues, la quatrième est dérivable avec un peu de réaménagement algébrique. Un autre avantage sur la plan statistique est également de montrer le lien intime qui existe entre la matrice de covariance et les coefficients de régression.</p>
+<p>Un avantage de l’équation <a href="m%C3%A9dier.html#eq:etot">(13.2)</a> est qu’elle met en relation l’interdépendance des quatre composantes pour dériver un effet total, direct ou indirect. Si trois des mesures sont connues, la quatrième est dérivable avec un peu de réaménagement algébrique. Un autre avantage sur la plan statistique est également de montrer le lien intime qui existe entre la matrice de covariance et les coefficients de régression.</p>
 </div>
 <div id="tester-leffet-indirect" class="section level2" number="13.2">
 <h2>
@@ -219,13 +220,13 @@ Figure 13.1: Modèle de médiation simple
 <span class="header-section-number">13.2.2</span> La méthode delta multivarié<a class="anchor" aria-label="anchor" href="#la-m%C3%A9thode-delta-multivari%C3%A9"><i class="fas fa-link"></i></a>
 </h3>
 <p>La méthode delta multivarié souvent appelée le test de <span class="citation">Sobel (<a href="r%C3%A9f%C3%A9rences.html#ref-Sobel82" role="doc-biblioref">1982</a>)</span>, auteur qui l’a popularisé pour l’analyse des effets indirects est une méthode ayant recours à l’erreur type approximative de l’effet indirect.</p>
-<p>Le test de Sobel se base sur le calcul selon lequel le ratio de l’effet indirect, <span class="math inline">\(\beta_{2,1}\beta{3,2}\)</span> par son erreur standard asymptotique <span class="math inline">\(\sqrt{\beta_{3,2}^2\sigma^2_{\beta_{2,1}} +\beta^2_{2,1}\sigma^2_{\beta_{3,2}}}\)</span> se distribue selon une distribution gaussienne. L’équation <a href="m%C3%A9dier.html#eq:sobel">(13.2)</a> représente ce calcule</p>
+<p>Le test de Sobel se base sur le calcul selon lequel le ratio de l’effet indirect, <span class="math inline">\(\beta_{2,1}\beta{3,2}\)</span> par son erreur standard asymptotique <span class="math inline">\(\sqrt{\beta_{3,2}^2\sigma^2_{\beta_{2,1}} +\beta^2_{2,1}\sigma^2_{\beta_{3,2}}}\)</span> se distribue selon une distribution gaussienne. L’équation <a href="m%C3%A9dier.html#eq:sobel">(13.3)</a> représente ce calcule</p>
 <p><span class="math display" id="eq:sobel">\[\begin{equation}
 z=\frac{\beta_{2,1}\beta{3,2}}{\sqrt{\beta_{3,2}^2\sigma^2_{\beta_{2,1}} +\beta^2_{2,1}\sigma^2_{\beta_{3,2}}}}
-\tag{13.2}
+\tag{13.3}
 \end{equation}\]</span></p>
 <p>où <span class="math inline">\(z\)</span> signifie qu’il s’agit d’un score-<span class="math inline">\(z\)</span>, les <span class="math inline">\(\beta\)</span> sont les coefficients de régression et les <span class="math inline">\(\sigma^2_\beta\)</span> sont les erreurs standard des coefficients de régression.</p>
-<p>La syntaxe suivante illustre une fonction qui calcule l’équation <a href="m%C3%A9dier.html#eq:sobel">(13.2)</a>. La syntaxe calcule deux régressions <code>m ~ x</code> et <code>m ~ x</code>. Du sommaire des résultats, elle extrait, les deux coefficients de régressions et leur erreur standard respective. Elle calcule enfin le score <span class="math inline">\(z\)</span> de l’équation <a href="m%C3%A9dier.html#eq:sobel">(13.2)</a> avec la valeur-<span class="math inline">\(p\)</span> associée. Pour bien fonctionner avec cette fonction, les variables du jeu de données doivent se nommer <code>x</code>, <code>m</code> et <code>y</code>.</p>
+<p>La syntaxe suivante illustre une fonction qui calcule l’équation <a href="m%C3%A9dier.html#eq:sobel">(13.3)</a>. La syntaxe calcule deux régressions <code>m ~ x</code> et <code>m ~ x</code>. Du sommaire des résultats, elle extrait, les deux coefficients de régressions et leur erreur standard respective. Elle calcule enfin le score <span class="math inline">\(z\)</span> de l’équation <a href="m%C3%A9dier.html#eq:sobel">(13.3)</a> avec la valeur-<span class="math inline">\(p\)</span> associée. Pour bien fonctionner avec cette fonction, les variables du jeu de données doivent se nommer <code>x</code>, <code>m</code> et <code>y</code>.</p>
 <div class="sourceCode" id="cb180"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mdm</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">donnees</span>, <span class="va">alpha</span> <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span><span class="op">{</span>
   <span class="co"># alpha est l'erreur de type I</span>
@@ -375,7 +376,7 @@ Figure 13.2: Distribution de l’effet indirect
 -.3 &amp; .4 &amp; 0 \\
 \end{array}
 \right)
-\tag{13.3}
+\tag{13.4}
 \end{equation}\]</span></p>
 <div class="sourceCode" id="cb184"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Pour la reproductibilité</span>
@@ -677,44 +678,45 @@ Figure 13.2: Distribution de l’effet indirect
 <span id="cb193-32"><a href="m%C3%A9dier.html#cb193-32" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> total effect a <span class="ot">-&gt;</span> d    <span class="fl">1.3333</span></span></code></pre></div>
 <p>Magnifique! Toutefois, le statisticien ne s’intéresse rarement qu’aux coefficients de régression. Il aime aussi connaître l’erreur type (erreur standard), la valeur-<span class="math inline">\(p\)</span>, ou peut-être même souhaite-t-il calculer un intervalle de confiance. Une solution bien simple qui ne nécessitera que peu de syntaxe, en plus de respecter les postulats sous-jacents à l’analyse de médiation est le bootstrap. Les éléments fondamentaux du bootstrap sont toujours les mêmes : prendre un jeu de données avec des unités rééchantillonnées aléatoirement avec remplacement, calculer les indices désirés, et réitérer un nombre élevé de fois.</p>
 <p>Avantageusement la fonction maison <code>indirect()</code> calcule tous les indices statistiques pertinents. Il ne reste que le rééchantillonnage et les réplications à programmer.</p>
-<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="m%C3%A9dier.html#cb194-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Le bootstrap de `indirect()` pour le jeu de données en exemple (trois variables)</span></span>
-<span id="cb194-2"><a href="m%C3%A9dier.html#cb194-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Informations préliminaires</span></span>
-<span id="cb194-3"><a href="m%C3%A9dier.html#cb194-3" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> .<span class="dv">05</span>         <span class="co"># Erreur de type I</span></span>
-<span id="cb194-4"><a href="m%C3%A9dier.html#cb194-4" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span>  <span class="fu">nrow</span>(jd)       <span class="co"># Nombre d'unités</span></span>
-<span id="cb194-5"><a href="m%C3%A9dier.html#cb194-5" aria-hidden="true" tabindex="-1"></a>reps <span class="ot">&lt;-</span>  <span class="dv">5000</span>        <span class="co"># Nombre de réplications</span></span>
-<span id="cb194-6"><a href="m%C3%A9dier.html#cb194-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb194-7"><a href="m%C3%A9dier.html#cb194-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Vérifier que la fonction `indirect()`  est bien </span></span>
-<span id="cb194-8"><a href="m%C3%A9dier.html#cb194-8" aria-hidden="true" tabindex="-1"></a><span class="co"># dans l'environnement</span></span>
-<span id="cb194-9"><a href="m%C3%A9dier.html#cb194-9" aria-hidden="true" tabindex="-1"></a>Est <span class="ot">&lt;-</span>  <span class="fu">indirect</span>(jd)</span>
-<span id="cb194-10"><a href="m%C3%A9dier.html#cb194-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb194-11"><a href="m%C3%A9dier.html#cb194-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Variable vide (Est) pour enregistrer les résultats</span></span>
-<span id="cb194-12"><a href="m%C3%A9dier.html#cb194-12" aria-hidden="true" tabindex="-1"></a><span class="co"># avec comme 1ere colonne, les résultats originaux</span></span>
-<span id="cb194-13"><a href="m%C3%A9dier.html#cb194-13" aria-hidden="true" tabindex="-1"></a>Est <span class="ot">&lt;-</span>  <span class="fu">data.frame</span>(<span class="at">Est =</span> Est, </span>
-<span id="cb194-14"><a href="m%C3%A9dier.html#cb194-14" aria-hidden="true" tabindex="-1"></a>                   <span class="at">X =</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="at">ncol =</span> reps)) </span>
-<span id="cb194-15"><a href="m%C3%A9dier.html#cb194-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb194-16"><a href="m%C3%A9dier.html#cb194-16" aria-hidden="true" tabindex="-1"></a><span class="co"># La boucle</span></span>
-<span id="cb194-17"><a href="m%C3%A9dier.html#cb194-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Elle commence à 2 à cause de la première colonne</span></span>
-<span id="cb194-18"><a href="m%C3%A9dier.html#cb194-18" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span>(reps<span class="sc">+</span><span class="dv">1</span>)){</span>
-<span id="cb194-19"><a href="m%C3%A9dier.html#cb194-19" aria-hidden="true" tabindex="-1"></a>  index <span class="ot">&lt;-</span> <span class="fu">sample</span>(n, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb194-20"><a href="m%C3%A9dier.html#cb194-20" aria-hidden="true" tabindex="-1"></a>  D <span class="ot">&lt;-</span> jd[index,]</span>
-<span id="cb194-21"><a href="m%C3%A9dier.html#cb194-21" aria-hidden="true" tabindex="-1"></a>  Est[,i] <span class="ot">&lt;-</span>  <span class="fu">indirect</span>(D)</span>
-<span id="cb194-22"><a href="m%C3%A9dier.html#cb194-22" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb194-23"><a href="m%C3%A9dier.html#cb194-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb194-24"><a href="m%C3%A9dier.html#cb194-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Mettre le tout en commun</span></span>
-<span id="cb194-25"><a href="m%C3%A9dier.html#cb194-25" aria-hidden="true" tabindex="-1"></a>Resultats <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb194-26"><a href="m%C3%A9dier.html#cb194-26" aria-hidden="true" tabindex="-1"></a>  <span class="at">Estimates =</span> Est<span class="sc">$</span>Est,</span>
-<span id="cb194-27"><a href="m%C3%A9dier.html#cb194-27" aria-hidden="true" tabindex="-1"></a>  <span class="at">S.E. =</span> <span class="fu">apply</span>(Est, <span class="at">MARGIN =</span> <span class="dv">1</span>, <span class="at">FUN =</span> sd), </span>
-<span id="cb194-28"><a href="m%C3%A9dier.html#cb194-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">CIinf =</span> <span class="fu">apply</span>(Est, <span class="at">MARGIN =</span> <span class="dv">1</span>, <span class="at">FUN =</span> quantile, <span class="at">probs =</span> alpha<span class="sc">/</span><span class="dv">2</span>),</span>
-<span id="cb194-29"><a href="m%C3%A9dier.html#cb194-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">CIsup =</span> <span class="fu">apply</span>(Est, <span class="at">MARGIN =</span> <span class="dv">1</span>, <span class="at">FUN =</span> quantile, <span class="at">probs =</span> <span class="dv">1</span><span class="sc">-</span>alpha<span class="sc">/</span><span class="dv">2</span>)</span>
-<span id="cb194-30"><a href="m%C3%A9dier.html#cb194-30" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb194-31"><a href="m%C3%A9dier.html#cb194-31" aria-hidden="true" tabindex="-1"></a>Resultats</span>
-<span id="cb194-32"><a href="m%C3%A9dier.html#cb194-32" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>                       Estimates   S.E.  CIinf CIsup</span>
-<span id="cb194-33"><a href="m%C3%A9dier.html#cb194-33" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="ot">-&gt;</span> m                    <span class="fl">0.336</span> <span class="fl">0.0930</span> <span class="fl">0.1602</span> <span class="fl">0.521</span></span>
-<span id="cb194-34"><a href="m%C3%A9dier.html#cb194-34" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="ot">-&gt;</span> y                    <span class="fl">0.312</span> <span class="fl">0.0616</span> <span class="fl">0.1974</span> <span class="fl">0.442</span></span>
-<span id="cb194-35"><a href="m%C3%A9dier.html#cb194-35" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> m <span class="ot">-&gt;</span> y                    <span class="fl">0.625</span> <span class="fl">0.0731</span> <span class="fl">0.4786</span> <span class="fl">0.765</span></span>
-<span id="cb194-36"><a href="m%C3%A9dier.html#cb194-36" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="ot">-&gt;</span> m <span class="ot">-&gt;</span> y               <span class="fl">0.210</span> <span class="fl">0.0608</span> <span class="fl">0.0976</span> <span class="fl">0.333</span></span>
-<span id="cb194-37"><a href="m%C3%A9dier.html#cb194-37" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> total indirect x <span class="ot">-&gt;</span> y     <span class="fl">0.210</span> <span class="fl">0.0608</span> <span class="fl">0.0976</span> <span class="fl">0.333</span></span>
-<span id="cb194-38"><a href="m%C3%A9dier.html#cb194-38" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> total effect x <span class="ot">-&gt;</span> y       <span class="fl">0.521</span> <span class="fl">0.0843</span> <span class="fl">0.3641</span> <span class="fl">0.691</span></span></code></pre></div>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="m%C3%A9dier.html#cb194-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Le bootstrap de `indirect()` pour le </span></span>
+<span id="cb194-2"><a href="m%C3%A9dier.html#cb194-2" aria-hidden="true" tabindex="-1"></a><span class="co"># jeu de données en exemple (trois variables)</span></span>
+<span id="cb194-3"><a href="m%C3%A9dier.html#cb194-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Informations préliminaires</span></span>
+<span id="cb194-4"><a href="m%C3%A9dier.html#cb194-4" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> .<span class="dv">05</span>         <span class="co"># Erreur de type I</span></span>
+<span id="cb194-5"><a href="m%C3%A9dier.html#cb194-5" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span>  <span class="fu">nrow</span>(jd)       <span class="co"># Nombre d'unités</span></span>
+<span id="cb194-6"><a href="m%C3%A9dier.html#cb194-6" aria-hidden="true" tabindex="-1"></a>reps <span class="ot">&lt;-</span>  <span class="dv">5000</span>        <span class="co"># Nombre de réplications</span></span>
+<span id="cb194-7"><a href="m%C3%A9dier.html#cb194-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb194-8"><a href="m%C3%A9dier.html#cb194-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Vérifier que la fonction `indirect()`  est bien </span></span>
+<span id="cb194-9"><a href="m%C3%A9dier.html#cb194-9" aria-hidden="true" tabindex="-1"></a><span class="co"># dans l'environnement</span></span>
+<span id="cb194-10"><a href="m%C3%A9dier.html#cb194-10" aria-hidden="true" tabindex="-1"></a>Est <span class="ot">&lt;-</span>  <span class="fu">indirect</span>(jd)</span>
+<span id="cb194-11"><a href="m%C3%A9dier.html#cb194-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb194-12"><a href="m%C3%A9dier.html#cb194-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Variable vide (Est) pour enregistrer les résultats</span></span>
+<span id="cb194-13"><a href="m%C3%A9dier.html#cb194-13" aria-hidden="true" tabindex="-1"></a><span class="co"># avec comme 1ere colonne, les résultats originaux</span></span>
+<span id="cb194-14"><a href="m%C3%A9dier.html#cb194-14" aria-hidden="true" tabindex="-1"></a>Est <span class="ot">&lt;-</span>  <span class="fu">data.frame</span>(<span class="at">Est =</span> Est, </span>
+<span id="cb194-15"><a href="m%C3%A9dier.html#cb194-15" aria-hidden="true" tabindex="-1"></a>                   <span class="at">X =</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="at">ncol =</span> reps)) </span>
+<span id="cb194-16"><a href="m%C3%A9dier.html#cb194-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb194-17"><a href="m%C3%A9dier.html#cb194-17" aria-hidden="true" tabindex="-1"></a><span class="co"># La boucle</span></span>
+<span id="cb194-18"><a href="m%C3%A9dier.html#cb194-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Elle commence à 2 à cause de la première colonne</span></span>
+<span id="cb194-19"><a href="m%C3%A9dier.html#cb194-19" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span>(reps<span class="sc">+</span><span class="dv">1</span>)){</span>
+<span id="cb194-20"><a href="m%C3%A9dier.html#cb194-20" aria-hidden="true" tabindex="-1"></a>  index <span class="ot">&lt;-</span> <span class="fu">sample</span>(n, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb194-21"><a href="m%C3%A9dier.html#cb194-21" aria-hidden="true" tabindex="-1"></a>  D <span class="ot">&lt;-</span> jd[index,]</span>
+<span id="cb194-22"><a href="m%C3%A9dier.html#cb194-22" aria-hidden="true" tabindex="-1"></a>  Est[,i] <span class="ot">&lt;-</span>  <span class="fu">indirect</span>(D)</span>
+<span id="cb194-23"><a href="m%C3%A9dier.html#cb194-23" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb194-24"><a href="m%C3%A9dier.html#cb194-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb194-25"><a href="m%C3%A9dier.html#cb194-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Mettre le tout en commun</span></span>
+<span id="cb194-26"><a href="m%C3%A9dier.html#cb194-26" aria-hidden="true" tabindex="-1"></a>Resultats <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb194-27"><a href="m%C3%A9dier.html#cb194-27" aria-hidden="true" tabindex="-1"></a>  <span class="at">Estimates =</span> Est<span class="sc">$</span>Est,</span>
+<span id="cb194-28"><a href="m%C3%A9dier.html#cb194-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">S.E. =</span> <span class="fu">apply</span>(Est, <span class="at">MARGIN =</span> <span class="dv">1</span>, <span class="at">FUN =</span> sd), </span>
+<span id="cb194-29"><a href="m%C3%A9dier.html#cb194-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">CI.inf =</span> <span class="fu">apply</span>(Est, <span class="at">MARGIN =</span> <span class="dv">1</span>, <span class="at">FUN =</span> quantile, <span class="at">probs =</span> alpha<span class="sc">/</span><span class="dv">2</span>),</span>
+<span id="cb194-30"><a href="m%C3%A9dier.html#cb194-30" aria-hidden="true" tabindex="-1"></a>  <span class="at">CI.sup =</span> <span class="fu">apply</span>(Est, <span class="at">MARGIN =</span> <span class="dv">1</span>, <span class="at">FUN =</span> quantile, <span class="at">probs =</span> <span class="dv">1</span><span class="sc">-</span>alpha<span class="sc">/</span><span class="dv">2</span>)</span>
+<span id="cb194-31"><a href="m%C3%A9dier.html#cb194-31" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb194-32"><a href="m%C3%A9dier.html#cb194-32" aria-hidden="true" tabindex="-1"></a>Resultats</span>
+<span id="cb194-33"><a href="m%C3%A9dier.html#cb194-33" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>                       Estimates   S.E. CI.inf CI.sup</span>
+<span id="cb194-34"><a href="m%C3%A9dier.html#cb194-34" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="ot">-&gt;</span> m                    <span class="fl">0.336</span> <span class="fl">0.0930</span> <span class="fl">0.1602</span>  <span class="fl">0.521</span></span>
+<span id="cb194-35"><a href="m%C3%A9dier.html#cb194-35" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="ot">-&gt;</span> y                    <span class="fl">0.312</span> <span class="fl">0.0616</span> <span class="fl">0.1974</span>  <span class="fl">0.442</span></span>
+<span id="cb194-36"><a href="m%C3%A9dier.html#cb194-36" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> m <span class="ot">-&gt;</span> y                    <span class="fl">0.625</span> <span class="fl">0.0731</span> <span class="fl">0.4786</span>  <span class="fl">0.765</span></span>
+<span id="cb194-37"><a href="m%C3%A9dier.html#cb194-37" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="ot">-&gt;</span> m <span class="ot">-&gt;</span> y               <span class="fl">0.210</span> <span class="fl">0.0608</span> <span class="fl">0.0976</span>  <span class="fl">0.333</span></span>
+<span id="cb194-38"><a href="m%C3%A9dier.html#cb194-38" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> total indirect x <span class="ot">-&gt;</span> y     <span class="fl">0.210</span> <span class="fl">0.0608</span> <span class="fl">0.0976</span>  <span class="fl">0.333</span></span>
+<span id="cb194-39"><a href="m%C3%A9dier.html#cb194-39" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> total effect x <span class="ot">-&gt;</span> y       <span class="fl">0.521</span> <span class="fl">0.0843</span> <span class="fl">0.3641</span>  <span class="fl">0.691</span></span></code></pre></div>
 <p>La variable <code>Resultats</code> contient tous les résultats pertinents. La colonne <code>Resultats$Estimates</code> retourne tous les coefficients de régression avec leur erreur type (erreur standard ou <em>standard error</em>) en deuxième colonne. Les dernières colonnes donnent les intervalles de confiance inférieurs et supérieurs. Comme aucune ne contient la valeur 0 au sein de son intervalle, alors elles sont toutes significatives.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:resmed"></span>
@@ -737,10 +739,10 @@ Estimates
 S.E.
 </th>
 <th style="text-align:center;">
-CIinf
+CI.inf
 </th>
 <th style="text-align:center;">
-CIsup
+CI.sup
 </th>
 </tr></thead>
 <tbody>
@@ -852,13 +854,13 @@ total effect x -&gt; y
 <div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="m%C3%A9dier.html#cb195-1" aria-hidden="true" tabindex="-1"></a>Resultats<span class="sc">$</span>t.value <span class="ot">&lt;-</span> Resultats<span class="sc">$</span>Estimates <span class="sc">/</span> Resultats<span class="sc">$</span>S.E.</span>
 <span id="cb195-2"><a href="m%C3%A9dier.html#cb195-2" aria-hidden="true" tabindex="-1"></a>Resultats<span class="sc">$</span>p.value <span class="ot">&lt;-</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">pt</span>(<span class="fu">abs</span>(Resultats<span class="sc">$</span>t.value), <span class="at">df =</span> n <span class="sc">-</span> p)) <span class="sc">*</span> <span class="dv">2</span></span>
 <span id="cb195-3"><a href="m%C3%A9dier.html#cb195-3" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(Resultats, <span class="dv">3</span>) <span class="co"># Résultats arrondis à 3 décimales</span></span>
-<span id="cb195-4"><a href="m%C3%A9dier.html#cb195-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>                       Estimates  S.E. CIinf CIsup t.value</span>
-<span id="cb195-5"><a href="m%C3%A9dier.html#cb195-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="ot">-&gt;</span> m                    <span class="fl">0.336</span> <span class="fl">0.093</span> <span class="fl">0.160</span> <span class="fl">0.521</span>    <span class="fl">3.61</span></span>
-<span id="cb195-6"><a href="m%C3%A9dier.html#cb195-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="ot">-&gt;</span> y                    <span class="fl">0.312</span> <span class="fl">0.062</span> <span class="fl">0.197</span> <span class="fl">0.442</span>    <span class="fl">5.06</span></span>
-<span id="cb195-7"><a href="m%C3%A9dier.html#cb195-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> m <span class="ot">-&gt;</span> y                    <span class="fl">0.625</span> <span class="fl">0.073</span> <span class="fl">0.479</span> <span class="fl">0.765</span>    <span class="fl">8.55</span></span>
-<span id="cb195-8"><a href="m%C3%A9dier.html#cb195-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="ot">-&gt;</span> m <span class="ot">-&gt;</span> y               <span class="fl">0.210</span> <span class="fl">0.061</span> <span class="fl">0.098</span> <span class="fl">0.333</span>    <span class="fl">3.45</span></span>
-<span id="cb195-9"><a href="m%C3%A9dier.html#cb195-9" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> total indirect x <span class="ot">-&gt;</span> y     <span class="fl">0.210</span> <span class="fl">0.061</span> <span class="fl">0.098</span> <span class="fl">0.333</span>    <span class="fl">3.45</span></span>
-<span id="cb195-10"><a href="m%C3%A9dier.html#cb195-10" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> total effect x <span class="ot">-&gt;</span> y       <span class="fl">0.521</span> <span class="fl">0.084</span> <span class="fl">0.364</span> <span class="fl">0.691</span>    <span class="fl">6.18</span></span>
+<span id="cb195-4"><a href="m%C3%A9dier.html#cb195-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>                       Estimates  S.E. CI.inf CI.sup t.value</span>
+<span id="cb195-5"><a href="m%C3%A9dier.html#cb195-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="ot">-&gt;</span> m                    <span class="fl">0.336</span> <span class="fl">0.093</span>  <span class="fl">0.160</span>  <span class="fl">0.521</span>    <span class="fl">3.61</span></span>
+<span id="cb195-6"><a href="m%C3%A9dier.html#cb195-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="ot">-&gt;</span> y                    <span class="fl">0.312</span> <span class="fl">0.062</span>  <span class="fl">0.197</span>  <span class="fl">0.442</span>    <span class="fl">5.06</span></span>
+<span id="cb195-7"><a href="m%C3%A9dier.html#cb195-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> m <span class="ot">-&gt;</span> y                    <span class="fl">0.625</span> <span class="fl">0.073</span>  <span class="fl">0.479</span>  <span class="fl">0.765</span>    <span class="fl">8.55</span></span>
+<span id="cb195-8"><a href="m%C3%A9dier.html#cb195-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="ot">-&gt;</span> m <span class="ot">-&gt;</span> y               <span class="fl">0.210</span> <span class="fl">0.061</span>  <span class="fl">0.098</span>  <span class="fl">0.333</span>    <span class="fl">3.45</span></span>
+<span id="cb195-9"><a href="m%C3%A9dier.html#cb195-9" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> total indirect x <span class="ot">-&gt;</span> y     <span class="fl">0.210</span> <span class="fl">0.061</span>  <span class="fl">0.098</span>  <span class="fl">0.333</span>    <span class="fl">3.45</span></span>
+<span id="cb195-10"><a href="m%C3%A9dier.html#cb195-10" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> total effect x <span class="ot">-&gt;</span> y       <span class="fl">0.521</span> <span class="fl">0.084</span>  <span class="fl">0.364</span>  <span class="fl">0.691</span>    <span class="fl">6.18</span></span>
 <span id="cb195-11"><a href="m%C3%A9dier.html#cb195-11" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>                       p.value</span>
 <span id="cb195-12"><a href="m%C3%A9dier.html#cb195-12" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="ot">-&gt;</span> m                  <span class="fl">0.000</span></span>
 <span id="cb195-13"><a href="m%C3%A9dier.html#cb195-13" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="ot">-&gt;</span> y                  <span class="fl">0.000</span></span>
@@ -874,6 +876,23 @@ total effect x -&gt; y
 </h2>
 <p>Le présent chapitre ne fait que gratter la surface de ce qu’il est possible de faire avec l’analyse de médiation. Des articles comme <span class="citation">Caron &amp; Valois (<a href="r%C3%A9f%C3%A9rences.html#ref-Caron18" role="doc-biblioref">2018</a>)</span> et <span class="citation">Lemardelet &amp; Caron (<a href="r%C3%A9f%C3%A9rences.html#ref-Lemardeletsoumis" role="doc-biblioref">2022</a>)</span> donnent des exemples de syntaxe <strong>R</strong> en plus d’approfondir l’analyse. Il existe plusieurs packages <strong>R</strong> pour réaliser l’analyse de médiation, comme <code>mediation</code> <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-mediation" role="doc-biblioref">Tingley et al., 2014</a>)</span> et <code>Rmediation</code> <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-Rmediation" role="doc-biblioref">Tofighi &amp; MacKinnon, 2011</a>)</span>, tous les deux ayant leur propre documentation. Pour des analyses plus compliquées, les packages comme <code>lavaan</code> <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-lavaan" role="doc-biblioref">Rosseel, 2012</a>)</span> permettent de faire des analyses de médiation avec la modélisation par équations structurelles, Toutefois, ce chapitre espère avoir convaincu le lecteur que l’analyse peut être relativement aisément <em>fait maison</em>.</p>
 
+<!-- # ```{r, include = FALSE} -->
+<!-- # dummy.coding = function(x){ -->
+<!-- #   # Retourne un codage factice de x -->
+<!-- #   # avec les facteurs en ordre alphabétique -->
+<!-- #    -->
+<!-- #   tab = table(x)    # Extraire une table -->
+<!-- #   k = length(tab)   # Nombre de groupes -->
+<!-- #   n = length(x)     # Nombre d'unités -->
+<!-- #   X = matrix(0, nrow = n, ncol = k) # Création d'une nouvelle variable  -->
+<!-- #   xlev = as.factor(x) -->
+<!-- #   for (i in 1:n) { -->
+<!-- #     X[i, xlev[i]] = 1 # Identification des groupes -->
+<!-- #   } -->
+<!-- #   colnames(X) = names(tab) -->
+<!-- #   return(X) -->
+<!-- # } -->
+<!-- # ``` -->
 </div>
 </div>
 
@@ -912,7 +931,7 @@ total effect x -&gt; y
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-08-11.</p>
+    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-08-18.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -324,44 +324,65 @@ donnees <- data.frame(groupe, score)
 head(donnees)
 ```
 
-#### Dummy coding
+#### Codage factice
 
-La plupart du temps, les variables de regroupement, les variables identifiant l'appartenance aux groupes, sont construites avec une variable de type facteur, c'est-à-dire une colonne avec différentes valeurs ou libellés. C'est d'ailleurs ce qui a été fait dans l'exemple précédent. Cette méthode d'identification de groupement implique une programmation plus intensive, surtout pour la création de valeurs. En termes de programmation, il est plus élégant de recourir à une fonction de codage factice. Cela permettra de représenter fidèlement le modèle sous-jacent. Étrangement, il n'y a pas de fonction de base avec **R** pour du codage factice. Une fonction maison permettra d'automatiser la réassignation des groupes (en une seule variable) sur plusieurs variables désignant leur appartenance.
+La plupart du temps, les variables de regroupement, les variables identifiant l'appartenance aux groupes, sont construites avec une variable de type facteur, c'est-à-dire une colonne avec différentes valeurs ou libellés. C'est d'ailleurs ce qui a été fait dans l'exemple précédent. Cette méthode d'identification de groupement implique une programmation plus intensive, surtout pour la création de valeurs. En termes de programmation, il est plus élégant de recourir à une fonction de codage factice (*dummy coding*). Cela permettra de représenter fidèlement le modèle sous-jacent. Étrangement, il n'y a pas de fonction de base avec **R** pour du codage factice. Une fonction maison permettra d'automatiser la réassignation des groupes (en une seule variable) sur plusieurs variables désignant leur appartenance.
 
 ```{r}
 dummy.coding <- function(x){
   # Retourne un codage factice de x
   # avec les facteurs en ordre alphabétique
-  
-  tab <- table(x)    # Extraire une table
-  k <- length(tab)   # Nombre de groupes
-  n <- length(x)     # Nombre d'unités
-  X <- matrix(0, nrow = n, ncol = k) # Création d'une nouvelle variable 
-  xlev <- as.factor(x)
-  for (i in 1:n) {
-    X[i, xlev[i]] <- 1 # Identification des groupes
-  }
-  colnames(X) <- names(tab)
-  return(X)
+  W <- sapply(unique(x), 
+              USE.NAMES = TRUE,
+              FUN = function(v) {x == v}) * 1 
+  return(W)
 }
 ```
+
+
+La plupart du temps, les variables de regroupement, les variables identifiant l'appartenance aux groupes, sont construites avec une variable de type facteur, c'est-à-dire une colonne avec différentes valeurs ou libellés. C'est d'ailleurs ce qui a été fait dans l'exemple précédent. Cette méthode d'identification de groupement implique une programmation plus intensive, surtout pour la création de valeurs. En termes de programmation, il est plus élégant de recourir à une fonction de codage factice. Cela permettra de représenter fidèlement le modèle sous-jacent. Étrangement, il n'y a pas de fonction de base avec **R** pour du codage factice. Une fonction maison permettra d'automatiser la réassignation des groupes (en une seule variable) sur plusieurs variables désignant leur appartenance.
+
+<!-- ```{r} -->
+<!-- dummy.coding <- function(x){ -->
+<!--   # Retourne un codage factice de x -->
+<!--   # avec les facteurs en ordre alphabétique -->
+
+<!--   tab <- table(x)    # Extraire une table -->
+<!--   k <- length(tab)   # Nombre de groupes -->
+<!--   n <- length(x)     # Nombre d'unités -->
+<!--   X <- matrix(0, nrow = n, ncol = k) # Création d'une nouvelle variable  -->
+<!--   xlev <- as.factor(x) -->
+<!--   for (i in 1:n) { -->
+<!--     X[i, xlev[i]] <- 1 # Identification des groupes -->
+<!--   } -->
+<!--   colnames(X) <- names(tab) -->
+<!--   return(X) -->
+<!-- } -->
+<!-- ``` -->
 
 La fonction maison retourne un codage factice pour les $k$ groupes. **Attention**, le codage factice est fait en ordre alphabétique. Comme il est redondant d'avoir $k$ groupes (identifier $k$ groupes nécessite $k-1$ variables), un groupe référent est désigné. Ce dernier aura 0 sur tous les scores. Pour retirer un groupe, l'utilisation des crochets et une valeur négative associés à la colonne du groupe référent feront l'affaire, p. ex. `dummy.coding(x)[,-k]` déclare le $k$^e^ groupe comme le groupe référent.
 
 ```{r}
-# Facteur de groupe
+# Pour la reproductibilité
 set.seed(2602)
+
+# Facteur de groupe
 k <- length(categorie)
 nk <- 2
 groupe <- rep(categorie, each = nk)
+
 # Groupement
 X <- dummy.coding(groupe)[,-5] # groupe 4 "chien" comme référent
+
 # Spécifications des paramètres
 mu0 <- 15
 mu <- c(0, 5, -5, 0)
 e <- rnorm(n = k * nk, sd = 4)
+
 # Création des scores
 score <- round(mu0 + X %*% mu + e)
+
+# Comparaison des valeurs
 cbind(donnees, score)
 ```
 
@@ -630,8 +651,8 @@ L'équation\ \@ref(eq:r2t) se traduit simplement en code **R**.
 # Création d'une matrice de corrélation 
 # Il pourrait également s'agir d'un vecteur ou d'un scalaire.
 r <- matrix(c( 1, .5, .4,
-              .5,  1, .3,
-              .4, .3,  1), 
+               .5,  1, .3,
+               .4, .3,  1), 
             nrow = 3, ncol = 3)
 
 # Nombre d'unités (valeur arbitraire ici)
@@ -662,7 +683,7 @@ Jusqu'à présent, deux types d'association de données ont été présenté : u
 set.seed(1)
 n <- 250
 climatosceptique <- sample(c("oui","non"), size = n, 
-                          replace = TRUE, prob = c(.25, .75))
+                           replace = TRUE, prob = c(.25, .75))
 voiture <- rep(0, n)
 voiture[climatosceptique == "oui"] <- sample(c("non","oui"), 
                                              size = sum(climatosceptique == "oui"), replace = TRUE, prob = c(.2, .8))
@@ -731,31 +752,31 @@ khicarre <- function(obs){
 ```
 
 Il y a plusieurs techniques pour créer une base de données, l'essentiel étant de lier les proportions désirées. Ici, une variable sexe est créée avec 50-50% de chance d'être l'un ou l'autre sexe. Par la suite, une proportion différente liée au sexe est utilisée pour générer la fréquence de consommation de tabac. La syntaxe sert principalement à identifier les valeurs `homme` et `femme` de la première variable pour en associer une valeur `tabac`.
-  
+
 ```{r}
-  set.seed(54)
-  n <- 100
-  
-  # Première variable
-  sexe <- sample(c("homme","femme"), 
-                size = n, 
-                replace = TRUE, 
-                prob = c(.5,.5))
-  tabac <- rep(0, 100)
-  
-  # Proportions conditionnelles
-  tabac[sexe == "femme"] <- sample(c("fumeur","non-fumeur"), 
-                                    size = sum(sexe == "femme"), 
-                                    replace = TRUE, 
-                                    prob = c(.2,.8))
-  
-  tabac[sexe == "homme"] <- sample(c("fumeur","non-fumeur"), 
-                                    size = sum(sexe == "homme"), 
-                                    replace = TRUE, 
-                                    prob = c(.1,.9))
-  #base données
-  donnees <- data.frame(sexe, tabac)
-  table(donnees)
+set.seed(54)
+n <- 100
+
+# Première variable
+sexe <- sample(c("homme","femme"), 
+               size = n, 
+               replace = TRUE, 
+               prob = c(.5,.5))
+tabac <- rep(0, 100)
+
+# Proportions conditionnelles
+tabac[sexe == "femme"] <- sample(c("fumeur","non-fumeur"), 
+                                 size = sum(sexe == "femme"), 
+                                 replace = TRUE, 
+                                 prob = c(.2,.8))
+
+tabac[sexe == "homme"] <- sample(c("fumeur","non-fumeur"), 
+                                 size = sum(sexe == "homme"), 
+                                 replace = TRUE, 
+                                 prob = c(.1,.9))
+#base données
+donnees <- data.frame(sexe, tabac)
+table(donnees)
 ```
 
 La fonction `table()` de **R** génère une table de contingence. La fonction maison et deux méthodes de base **R** sont présentées et produisent les mêmes résultats pour le $\chi^2$. Un autre, le test exact de Fisher est également présenté. Celui-ci est plus robuste, mais peut requérir plus intensive des ressources de l'ordinateur pour les grosses tables de contingences.

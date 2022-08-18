@@ -548,11 +548,11 @@ Figure 11.4: Différentes formes de relation
 <span class="header-section-number">11.2.5</span> L’analyse de régression avec <strong>R</strong><a class="anchor" aria-label="anchor" href="#lanalyse-de-r%C3%A9gression-avec-r"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>R</strong> de base offre la fonction <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> pour <em>linear model</em> (modèle linéaire) afin de réaliser une régression. Pour réaliser l’analyse, deux éléments sont primordiaux : le jeu de données et le modèle. Le jeu de données est en soi assez évident. Le modèle linéaire est quant à lui représenté par l’équation <a href="pr%C3%A9dire.html#eq:modling">(11.19)</a>.</p>
-<p><span class="math display" id="eq:modling">\[\begin{equation}
-y = \beta_0 + \beta_1 x_1 + ... +\beta_k x_k + \epsilon
-\tag{11.19}
-\end{equation}\]</span></p>
-<p>où l’équation <a href="pr%C3%A9dire.html#eq:modling">(11.19)</a> correspond à la généralisation de l’équation <a href="pr%C3%A9dire.html#eq:modlin">(11.11)</a> pour <span class="math inline">\(k\)</span> variables indépendantes.</p>
+<!-- \begin{equation} -->
+<!-- y = \beta_0 + \beta_1 x_1 + ... +\beta_k x_k + \epsilon -->
+<!-- (\#eq:modling) -->
+<!-- \end{equation} -->
+<!-- où l'équation \@ref(eq:modling) correspond à la généralisation de l'équation \@ref(eq:modlin) pour $k$ variables indépendantes. -->
 <p>Pour écrire le modèle en syntaxe <strong>R</strong>, il faut remplacer les <span class="math inline">\(x\)</span> par le nom des variables dans le jeu de données, utiliser le <code>~</code> (tilde) pour délimiter les variables dépendantes à gauche des variables indépendantes à droite. Les variables indépendantes sont délimitées, comme dans l’équation <a href="pr%C3%A9dire.html#eq:modling">(11.19)</a>, par des signes d’addition <code>+</code>. Il est aussi de définir des effets d’interaction (modération) avec le signe de multiplication <code>*</code> (la section <a href="mod%C3%A9rer.html#mod%C3%A9rer">Modérer</a> approfondie davantage ce sujet). Les symboles <code>-</code> (soustraction) et <code>/</code> (division) ne fonctionnent pas. L’intercepte (<span class="math inline">\(\beta_0\)</span>) est ajouté par défaut. La fonction n’exige pas de mettre la formule entre guillemets<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Il faudrait le faire par contre si la formule est utilisée comme variable, par exemple, &lt;code&gt;formule = "y ~ x1 + x2 + x3"&lt;/code&gt; pour indiquer qu’il s’agit de texte.&lt;/p&gt;'><sup>10</sup></a>.</p>
 <div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="pr%C3%A9dire.html#cb149-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Créer un jeu de données à partir </span></span>
 <span id="cb149-2"><a href="pr%C3%A9dire.html#cb149-2" aria-hidden="true" tabindex="-1"></a><span class="co"># des variables de la syntaxe précédente</span></span>
@@ -788,7 +788,7 @@ Figure 11.7: Diagramme représentant l’agencement des variables
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-08-11.</p>
+    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-08-18.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
