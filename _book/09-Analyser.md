@@ -377,6 +377,7 @@ Pour créer des valeurs à ces catégories, une stratégie simple est de créer 
 
 
 ```r
+# Pour la reproductibilité
 set.seed(2602)
 char      <- rnorm(n = nk, mean = 15, sd = 4) 
 chat      <- rnorm(n = nk, mean = 20, sd = 4) # Différences ici

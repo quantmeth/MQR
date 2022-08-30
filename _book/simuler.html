@@ -89,12 +89,16 @@
 <li><a class="" href="analyser.html"><span class="header-section-number">9</span> Analyser</a></li>
 <li><a class="active" href="simuler.html"><span class="header-section-number">10</span> Simuler</a></li>
 <li><a class="" href="exercice-analyse.html">Exercices</a></li>
-<li class="book-part">Modèle linéaire</li>
+<li class="book-part">Modèles linéaires</li>
 <li><a class="" href="pr%C3%A9dire.html"><span class="header-section-number">11</span> Prédire</a></li>
 <li><a class="" href="cr%C3%A9er.html"><span class="header-section-number">12</span> Créer</a></li>
 <li><a class="" href="m%C3%A9dier.html"><span class="header-section-number">13</span> Médier</a></li>
 <li><a class="" href="mod%C3%A9rer.html"><span class="header-section-number">14</span> Modérer</a></li>
 <li><a class="" href="exercice-lineaire.html">Exercices</a></li>
+<li class="book-part">Analyses factorielles</li>
+<li><a class="" href="d%C3%A9composer.html"><span class="header-section-number">15</span> Décomposer</a></li>
+<li><a class="" href="explorer.html"><span class="header-section-number">16</span> Explorer</a></li>
+<li><a class="" href="r%C3%A9duire.html"><span class="header-section-number">17</span> Réduire</a></li>
 <li><a class="" href="r%C3%A9f%C3%A9rences.html">Références</a></li>
 </ul>
 
@@ -218,14 +222,16 @@ Figure 10.1: Illustration du problème de Monty Hall
 <span id="cb133-46"><a href="simuler.html#cb133-46" aria-hidden="true" tabindex="-1"></a>  choix.changer <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)[<span class="sc">-</span><span class="fu">c</span>(choix1, monty)]</span>
 <span id="cb133-47"><a href="simuler.html#cb133-47" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb133-48"><a href="simuler.html#cb133-48" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Enregistrement des gains</span></span>
-<span id="cb133-49"><a href="simuler.html#cb133-49" aria-hidden="true" tabindex="-1"></a>  gain.rester  <span class="ot">&lt;-</span> gain.rester  <span class="sc">+</span> (tirage[choix.rester]  <span class="sc">==</span> <span class="st">"Voiture"</span>)</span>
-<span id="cb133-50"><a href="simuler.html#cb133-50" aria-hidden="true" tabindex="-1"></a>  gain.changer <span class="ot">&lt;-</span> gain.changer <span class="sc">+</span> (tirage[choix.changer] <span class="sc">==</span> <span class="st">"Voiture"</span>)</span>
-<span id="cb133-51"><a href="simuler.html#cb133-51" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb133-52"><a href="simuler.html#cb133-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb133-53"><a href="simuler.html#cb133-53" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(gain.rester, gain.changer) <span class="sc">/</span> nreps</span>
-<span id="cb133-54"><a href="simuler.html#cb133-54" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>      gain.rester gain.changer</span>
-<span id="cb133-55"><a href="simuler.html#cb133-55" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>,]       <span class="fl">0.316</span>        <span class="fl">0.684</span></span></code></pre></div>
-<p>Une petite digression avant de poursuivre. <em>Il faut être naïf pour croire que le code fonctionne tel que prévu.</em>. À cause d’un inconvénient de la fonction <code><a href="https://rdrr.io/r/base/sample.html">sample()</a></code>, une approche conditionnelle doit être utilisée. En fait, la fonction échantillonne les éléments de <code>x</code> (premier argument) jusqu’à obtenir <code>size</code> objets. Par contre, si une seule valeur est donnée à <code>x</code> et qu’elle est numérique, alors la fonction utilise les éléments de <code>1:x</code> pour rééchantillonner au lieu de retourner <code>x</code>. Ainsi, si le choix et le prix (porte 2) sont derrière des portes différentes (porte 1 et 2, par exemple), alors une seule valeur est retournée (3), et <code><a href="https://rdrr.io/r/base/sample.html">sample()</a></code> retourne <code>1:3</code> au lieu de <code>3</code>. Ces particularités expliquent et justifient l’utilisation du conditionnel. En programmation, il faut toujours s’assurer que les fonctions s’accordent avec les attentes.</p>
+<span id="cb133-49"><a href="simuler.html#cb133-49" aria-hidden="true" tabindex="-1"></a>  gain.rester  <span class="ot">&lt;-</span> gain.rester  <span class="sc">+</span> </span>
+<span id="cb133-50"><a href="simuler.html#cb133-50" aria-hidden="true" tabindex="-1"></a>                   (tirage[choix.rester]  <span class="sc">==</span> <span class="st">"Voiture"</span>)</span>
+<span id="cb133-51"><a href="simuler.html#cb133-51" aria-hidden="true" tabindex="-1"></a>  gain.changer <span class="ot">&lt;-</span> gain.changer <span class="sc">+</span> </span>
+<span id="cb133-52"><a href="simuler.html#cb133-52" aria-hidden="true" tabindex="-1"></a>                   (tirage[choix.changer] <span class="sc">==</span> <span class="st">"Voiture"</span>)</span>
+<span id="cb133-53"><a href="simuler.html#cb133-53" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb133-54"><a href="simuler.html#cb133-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb133-55"><a href="simuler.html#cb133-55" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(gain.rester, gain.changer) <span class="sc">/</span> nreps</span>
+<span id="cb133-56"><a href="simuler.html#cb133-56" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>      gain.rester gain.changer</span>
+<span id="cb133-57"><a href="simuler.html#cb133-57" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>,]       <span class="fl">0.316</span>        <span class="fl">0.684</span></span></code></pre></div>
+<p>Une petite digression avant de poursuivre. <em>Il faut être naïf pour croire que le code fonctionne tel que prévu</em>. À cause d’un inconvénient de la fonction <code><a href="https://rdrr.io/r/base/sample.html">sample()</a></code>, une approche conditionnelle doit être utilisée. En fait, la fonction échantillonne les éléments de <code>x</code> (premier argument) jusqu’à obtenir <code>size</code> objets. Par contre, si une seule valeur est donnée à <code>x</code> et qu’elle est numérique, alors la fonction utilise les éléments de <code>1:x</code> pour rééchantillonner au lieu de retourner <code>x</code>. Ainsi, si le choix et le prix (porte 2) sont derrière des portes différentes (porte 1 et 2, par exemple), alors une seule valeur est retournée (3), et <code><a href="https://rdrr.io/r/base/sample.html">sample()</a></code> retourne <code>1:3</code> au lieu de <code>3</code>. Ces particularités expliquent et justifient l’utilisation du conditionnel. En programmation, il faut toujours s’assurer que les fonctions s’accordent avec les attentes.</p>
 <p>Quelles sont les résultats de cette simulation? Le fait de <em>rester</em> sur le premier choix devrait obtenir 33% de chance de réussir, comme le joueur a initialement une chance sur trois d’avoir la bonne réponse. Qu’en est-il pour <em>changer</em>? Est-ce qu’ouvrir une porte <em>chèvre</em> modifie les probabilités? Les résultats de la simulation montre que <em>rester</em> gagne 31.6% et que de <em>changer</em> gagne 68.4%. À long terme, il est plus avantageux de changer.</p>
 <p>Une explication simple est de dénombrer les possibilités. Dans le cas où le joueur ne change pas d’idée, il a une chance sur trois, soit : choisir la chèvre 1, et garder la chèvre 1; choisir la chèvre 2, et garder la chèvre 2; et choisir la voiture, et garder la voiture. Si le joueur change d’idée après l’ouverture des portes, les chances sont maintenant de deux sur trois, soit choisir la chèvre 1, changer pour le prix; choisir la chèvre 2 et changer pour le prix; ou choisir le prix et changer pour une chèvre.</p>
 <p>Une autre façon de rendre se problème plus intuitif est de considérer le problème avec 100 portes au lieu de 3. Le présentateur ouvre les 98 portes qui ne sont pas un prix. Si le joueur choisit une porte et garde, il a effectivement 1% de chance de remporter le prix. Par contre, s’il choisit une porte et que le présentateur lui ouvre toutes les autres portes chèvres, le joueur gagne à tout les coups s’il change, sauf s’il a choisi le prix au premier coup. C’est un peu comme si le participant ouvrait les 99 portent, sauf celle qu’il a choisit au début.</p>
@@ -265,13 +271,15 @@ Figure 10.1: Illustration du problème de Monty Hall
 <span id="cb134-33"><a href="simuler.html#cb134-33" aria-hidden="true" tabindex="-1"></a>  choix.changer <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span>n)[<span class="sc">-</span><span class="fu">c</span>(choix1, monty)]</span>
 <span id="cb134-34"><a href="simuler.html#cb134-34" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb134-35"><a href="simuler.html#cb134-35" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Enregistrement des gains</span></span>
-<span id="cb134-36"><a href="simuler.html#cb134-36" aria-hidden="true" tabindex="-1"></a>  gain.rester <span class="ot">&lt;-</span> gain.rester <span class="sc">+</span> (tirage[choix.rester] <span class="sc">==</span> <span class="st">"Voiture"</span>)</span>
-<span id="cb134-37"><a href="simuler.html#cb134-37" aria-hidden="true" tabindex="-1"></a>  gain.changer <span class="ot">&lt;-</span> gain.changer <span class="sc">+</span> (tirage[choix.changer] <span class="sc">==</span> <span class="st">"Voiture"</span>)</span>
-<span id="cb134-38"><a href="simuler.html#cb134-38" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb134-39"><a href="simuler.html#cb134-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb134-40"><a href="simuler.html#cb134-40" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(gain.rester,gain.changer)  <span class="sc">/</span> nreps</span>
-<span id="cb134-41"><a href="simuler.html#cb134-41" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>      gain.rester gain.changer</span>
-<span id="cb134-42"><a href="simuler.html#cb134-42" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>,]       <span class="fl">0.009</span>        <span class="fl">0.991</span></span></code></pre></div>
+<span id="cb134-36"><a href="simuler.html#cb134-36" aria-hidden="true" tabindex="-1"></a>  gain.rester <span class="ot">&lt;-</span> gain.rester <span class="sc">+</span> </span>
+<span id="cb134-37"><a href="simuler.html#cb134-37" aria-hidden="true" tabindex="-1"></a>                  (tirage[choix.rester] <span class="sc">==</span> <span class="st">"Voiture"</span>)</span>
+<span id="cb134-38"><a href="simuler.html#cb134-38" aria-hidden="true" tabindex="-1"></a>  gain.changer <span class="ot">&lt;-</span> gain.changer <span class="sc">+</span> </span>
+<span id="cb134-39"><a href="simuler.html#cb134-39" aria-hidden="true" tabindex="-1"></a>                  (tirage[choix.changer] <span class="sc">==</span> <span class="st">"Voiture"</span>)</span>
+<span id="cb134-40"><a href="simuler.html#cb134-40" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb134-41"><a href="simuler.html#cb134-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb134-42"><a href="simuler.html#cb134-42" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(gain.rester,gain.changer)  <span class="sc">/</span> nreps</span>
+<span id="cb134-43"><a href="simuler.html#cb134-43" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>      gain.rester gain.changer</span>
+<span id="cb134-44"><a href="simuler.html#cb134-44" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>,]       <span class="fl">0.009</span>        <span class="fl">0.991</span></span></code></pre></div>
 <p>La simulation montre que rester gagne 0.9% et que de changer gagne 99.1%.</p>
 <p>Des situations fort plus compliquées pourraient être apportées en simulations Monte-Carlo. Le jeu de Black Jack en est un exemple, bien qu’il soit déjà résolu pour des résultats optimaux <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-Millman83" role="doc-biblioref">Millman, 1983</a>)</span>. Il suffit d’avoir la patience de programmer le tout pour confirmer les résultats analytiques.</p>
 <p>Sur le plan pratique pour l’expérimentateur, les simulations Monte-Carlo peuvent être utiles pour calculer des tailles d’échantillons pour des modèles complexes, comme des modèles par équations structurelles compliquées, multiniveaux ou de classes latentes. Une sous-famille est d’une importance significative pour l’expérimentateur, celle qui sera abordée maintenant, le bootstrap.</p>
@@ -445,7 +453,7 @@ Figure 10.2: Historgamme des estimations des échantillons
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-08-18.</p>
+    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-08-29.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

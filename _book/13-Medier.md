@@ -679,9 +679,9 @@ for(i in 2:(reps+1)){
 # Mettre le tout en commun
 Resultats <- data.frame(
   Estimates = Est$Est,
-  S.E. = apply(Est, MARGIN = 1, FUN = sd), 
-  CI.inf = apply(Est, MARGIN = 1, FUN = quantile, probs = alpha/2),
-  CI.sup = apply(Est, MARGIN = 1, FUN = quantile, probs = 1-alpha/2)
+  S.E. = apply(Est, 1, FUN = sd), 
+  CI.inf = apply(Est, 1, FUN = quantile, probs = alpha/2),
+  CI.sup = apply(Est, 1, FUN = quantile, probs = 1-alpha/2)
 )
 Resultats
 >                       Estimates   S.E. CI.inf CI.sup
@@ -765,21 +765,23 @@ Calculer les valeurs-$t$ et valeurs-$p$ est envisageable en utilisant les résul
 ```r
 Resultats$t.value <- Resultats$Estimates / Resultats$S.E.
 Resultats$p.value <- (1 - pt(abs(Resultats$t.value), df = n - p)) * 2
-round(Resultats, 3) # Résultats arrondis à 3 décimales
->                       Estimates  S.E. CI.inf CI.sup t.value
-> x -> m                    0.336 0.093  0.160  0.521    3.61
-> x -> y                    0.312 0.062  0.197  0.442    5.06
-> m -> y                    0.625 0.073  0.479  0.765    8.55
-> x -> m -> y               0.210 0.061  0.098  0.333    3.45
-> total indirect x -> y     0.210 0.061  0.098  0.333    3.45
-> total effect x -> y       0.521 0.084  0.364  0.691    6.18
+
+# Résultats arrondis à 2 décimales
+round(Resultats, 2)
+>                       Estimates S.E. CI.inf CI.sup t.value
+> x -> m                     0.34 0.09   0.16   0.52    3.61
+> x -> y                     0.31 0.06   0.20   0.44    5.06
+> m -> y                     0.63 0.07   0.48   0.76    8.55
+> x -> m -> y                0.21 0.06   0.10   0.33    3.45
+> total indirect x -> y      0.21 0.06   0.10   0.33    3.45
+> total effect x -> y        0.52 0.08   0.36   0.69    6.19
 >                       p.value
-> x -> m                  0.000
-> x -> y                  0.000
-> m -> y                  0.000
-> x -> m -> y             0.001
-> total indirect x -> y   0.001
-> total effect x -> y     0.000
+> x -> m                      0
+> x -> y                      0
+> m -> y                      0
+> x -> m -> y                 0
+> total indirect x -> y       0
+> total effect x -> y         0
 ```
 
 Si les coefficients de régression standardisés sont préférés, ceux-ci s'obtiennent simplement en standardisant le jeu de données, puis en roulant l'analyse de médiation de nouveau. Pour standardiser rapidement, `z.donnees = apply(donnees, MARGIN = 2, FUN = scale)` applique (`apply()`) la fonction `FUN = scale` qui standardise les données (`donnees`) par colonne `MARGIN = 2`. 

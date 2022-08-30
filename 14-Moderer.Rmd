@@ -63,7 +63,10 @@ La variance du produit de deux variables standardisées [@Craig; @Haldane] corre
 Pour des variables centrées (non complètement standardisées), l'équation\ \@ref(eq:varprod) devient l'équation\ \@ref(eq:prodvar) [@Craig; @Haldane].
 
 \begin{equation}
-\sigma^2_{x \times w} = \mu_{x}\mu_{w}((\frac{\sigma_{x}}{\mu_{x}})^2+ 2\rho_{xw}\frac{\sigma_{x}}{\mu_{x}}\frac{\sigma_{w}}{\mu_{w}}+(\frac{\sigma_{w}}{\mu_{w}})^2+(1+\rho^2)(\frac{\sigma_{x}}{\mu_{x}})^2(\frac{\sigma_{w}}{\mu_{w}})^2)
+\begin{multiline}
+\sigma^2_{x \times w} = \mu_{x}\mu_{w}((\frac{\sigma_{x}}{\mu_{x}})^2+ \\ +
+2\rho_{xw}\frac{\sigma_{x}}{\mu_{x}}\frac{\sigma_{w}}{\mu_{w}} + \\ + (\frac{\sigma_{w}}{\mu_{w}})^2+(1+\rho^2)(\frac{\sigma_{x}}{\mu_{x}})^2(\frac{\sigma_{w}}{\mu_{w}})^2)
+\end{multiline}
 (\#eq:prodvar)
 \end{equation}
 
@@ -333,7 +336,7 @@ pv2 = summary(res2.aov)[[1]][["Pr(>F)"]][2]
 pv3 = res2.anova$`Pr(>F)`[3]
 ```
 
-Le type III a certainement eu un rôle intéressant dans les résultats. Il montre que $w$ n'est pas significativement lié à $y$, $p < `r pv3`$, ce qui était programmé dans le modèle alors que `aov()` montre un lien  significatif, $p<`r pv2`.
+Le type III a certainement eu un rôle intéressant dans les résultats. Il montre que $w$ n'est pas significativement lié à $y$, $p < `r pv3`$, ce qui était programmé dans le modèle alors que `aov()` montre un lien  significatif, $p<`r pv2`$.
 
 Pour respecter la pratique et pour imiter ce qui est fait par d'autres logiciels ce serait l'effet d'interaction `x:w` tel que rapporté par `res2.anova`, soit produite par `car::Anova()`. La valeur-$p$ de l'effet d'interaction est de $p<001$, ce qui signifie qu'il y a un effet modérateur. 
 
@@ -341,7 +344,7 @@ Comme le cas précédent, ce résultat est ardu à interpréter. Des représenta
 
 ## Représentations graphiques d'une modération
 
-À part quelques personnes ayant l'oeil affutée à l'interprétation de modèle linéaire contenant une interaction, il est rare pour tous les autres d’en tirer du sens immédiatement. Ainsi, des analyses graphiques sont plus que pertinentes pour en interpréter les résultats.
+À part quelques personnes ayant l'oeil affuté à l'interprétation de modèle linéaire contenant une interaction, il est rare pour tous les autres d'en tirer du sens immédiatement. Ainsi, des analyses graphiques sont plus que pertinentes pour en interpréter les résultats.
 
 Deux graphiques sont particulièrement pertinents : le graphique de Johnson- Neyman et le graphique des pentes simples (*simple slopes*). Il existe quelques packages pour produire ces graphiques. Dans cet ouvrage, le package `interactions` [@interactions] sera présenté. Ce package peut traiter des interactions doubles et triples et est compatible avec plusieurs commandes de `ggplot2`.
 

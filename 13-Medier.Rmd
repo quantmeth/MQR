@@ -225,7 +225,8 @@ gen.ind.effect <- function(Sigma, n){
 
 ```{r, cache = TRUE, echo = FALSE}
 # Répliquer 5000 la fonction `gen.ind.effect`
-test.ind <- replicate(n = 5000, expr = gen.ind.effect(Sigma, n = 50))
+test.ind <- replicate(n = 5000, 
+                      expr = gen.ind.effect(Sigma, n = 50))
 ```
 
 Par la suite, la fonction `replicate()` permet de répéter `n` fois la fonction `expr`. Il faut bien distinguer le `n` (nombre de participants) de `gen.ind.effect()` de celui de `replicate()` (nombre de réplications). Enfin, un histogramme est produit pour présenter les résultats.
@@ -628,9 +629,9 @@ for(i in 2:(reps+1)){
 # Mettre le tout en commun
 Resultats <- data.frame(
   Estimates = Est$Est,
-  S.E. = apply(Est, MARGIN = 1, FUN = sd), 
-  CI.inf = apply(Est, MARGIN = 1, FUN = quantile, probs = alpha/2),
-  CI.sup = apply(Est, MARGIN = 1, FUN = quantile, probs = 1-alpha/2)
+  S.E. = apply(Est, 1, FUN = sd), 
+  CI.inf = apply(Est, 1, FUN = quantile, probs = alpha/2),
+  CI.sup = apply(Est, 1, FUN = quantile, probs = 1-alpha/2)
 )
 Resultats
 ```
@@ -654,7 +655,9 @@ Calculer les valeurs-$t$ et valeurs-$p$ est envisageable en utilisant les résul
 ```{r}
 Resultats$t.value <- Resultats$Estimates / Resultats$S.E.
 Resultats$p.value <- (1 - pt(abs(Resultats$t.value), df = n - p)) * 2
-round(Resultats, 3) # Résultats arrondis à 3 décimales
+
+# Résultats arrondis à 2 décimales
+round(Resultats, 2)
 ```
 
 Si les coefficients de régression standardisés sont préférés, ceux-ci s'obtiennent simplement en standardisant le jeu de données, puis en roulant l'analyse de médiation de nouveau. Pour standardiser rapidement, `z.donnees = apply(donnees, MARGIN = 2, FUN = scale)` applique (`apply()`) la fonction `FUN = scale` qui standardise les données (`donnees`) par colonne `MARGIN = 2`. 

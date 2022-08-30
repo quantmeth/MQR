@@ -44,7 +44,8 @@ Certains mots sont tout simplement interdits d'utilisation.
 
 
 ```r
-TRUE; FALSE; break; for; in; if; else; while; function; Inf; NA; NaN; NULL
+TRUE; FALSE; break; for; in; if; else; 
+while; function; Inf; NA; NaN; NULL
 ```
 
 ## Les opérateurs arithmétiques

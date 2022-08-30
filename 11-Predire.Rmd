@@ -1,4 +1,4 @@
-# (PART) Modèle linéaire {-}
+# (PART) Modèles linéaires {-}
 # Prédire
 
 Un objectif des chercheurs est généralement de développer des modèles afin de faire des prédictions à partir d'un échantillon sur la population. Les statistiques sont un outils idéalement pour développer ces modèles. La régression est l'une des analyses fondamentales pour réaliser cette objectif et constitue en quelques sortes les fondements de biens des méthodes récentes (comme l'apprentissage machine). 
@@ -40,7 +40,7 @@ covariance1 <- function(X){
   Xc = scale(X, scale = FALSE) # Centrées les variables
   p = ncol(X)                  # Nombre de variables 
   n = nrow(X)                  # Nombre de sujets
-  S = numeric()                # Matrice vide pour enregistrer résultats
+  S = numeric()                # Matrice vide pour enregistrer
   
   for(j in 1:p) {
     for(k in 1:p) {

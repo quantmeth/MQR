@@ -129,8 +129,10 @@ for(i in 1:nreps){
   choix.changer <- c(1:3)[-c(choix1, monty)]
   
   # Enregistrement des gains
-  gain.rester  <- gain.rester  + (tirage[choix.rester]  == "Voiture")
-  gain.changer <- gain.changer + (tirage[choix.changer] == "Voiture")
+  gain.rester  <- gain.rester  + 
+                   (tirage[choix.rester]  == "Voiture")
+  gain.changer <- gain.changer + 
+                   (tirage[choix.changer] == "Voiture")
 }
 
 cbind(gain.rester, gain.changer) / nreps
@@ -138,7 +140,7 @@ cbind(gain.rester, gain.changer) / nreps
 > [1,]       0.316        0.684
 ```
 
-Une petite digression avant de poursuivre. *Il faut être naïf pour croire que le code fonctionne tel que prévu.*. À cause d'un inconvénient de la fonction `sample()`, une approche conditionnelle doit être utilisée. En fait, la fonction échantillonne les éléments de `x` (premier argument) jusqu'à obtenir `size` objets. Par contre, si une seule valeur est donnée à `x` et qu'elle est numérique, alors la fonction utilise les éléments de `1:x` pour rééchantillonner au lieu de retourner `x`. Ainsi, si le choix  et le prix (porte\ 2) sont derrière des portes différentes (porte\ 1\ et\ 2, par exemple), alors une seule valeur est retournée (3), et `sample()` retourne `1:3` au lieu de `3`. Ces particularités expliquent et justifient l'utilisation du conditionnel. En programmation, il faut toujours s'assurer que les fonctions s'accordent avec les attentes.
+Une petite digression avant de poursuivre. *Il faut être naïf pour croire que le code fonctionne tel que prévu*. À cause d'un inconvénient de la fonction `sample()`, une approche conditionnelle doit être utilisée. En fait, la fonction échantillonne les éléments de `x` (premier argument) jusqu'à obtenir `size` objets. Par contre, si une seule valeur est donnée à `x` et qu'elle est numérique, alors la fonction utilise les éléments de `1:x` pour rééchantillonner au lieu de retourner `x`. Ainsi, si le choix  et le prix (porte\ 2) sont derrière des portes différentes (porte\ 1\ et\ 2, par exemple), alors une seule valeur est retournée (3), et `sample()` retourne `1:3` au lieu de `3`. Ces particularités expliquent et justifient l'utilisation du conditionnel. En programmation, il faut toujours s'assurer que les fonctions s'accordent avec les attentes.
 
 Quelles sont les résultats de cette simulation? Le fait de *rester* sur le premier choix devrait obtenir 33% de chance de réussir, comme le joueur a initialement une chance sur trois d'avoir la bonne réponse. Qu'en est-il pour *changer*? Est-ce qu'ouvrir une porte *chèvre* modifie les probabilités? Les résultats de la simulation montre que *rester* gagne 31.6% et que de *changer* gagne 68.4%. À long terme, il est plus avantageux de changer.
 
@@ -185,8 +187,10 @@ for(i in 1:nreps){
   choix.changer <- c(1:n)[-c(choix1, monty)]
   
   # Enregistrement des gains
-  gain.rester <- gain.rester + (tirage[choix.rester] == "Voiture")
-  gain.changer <- gain.changer + (tirage[choix.changer] == "Voiture")
+  gain.rester <- gain.rester + 
+                  (tirage[choix.rester] == "Voiture")
+  gain.changer <- gain.changer + 
+                  (tirage[choix.changer] == "Voiture")
 }
 
 cbind(gain.rester,gain.changer)  / nreps

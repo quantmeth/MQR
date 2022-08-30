@@ -64,7 +64,10 @@ La variance du produit de deux variables standardisées [@Craig; @Haldane] corre
 Pour des variables centrées (non complètement standardisées), l'équation\ \@ref(eq:varprod) devient l'équation\ \@ref(eq:prodvar) [@Craig; @Haldane].
 
 \begin{equation}
-\sigma^2_{x \times w} = \mu_{x}\mu_{w}((\frac{\sigma_{x}}{\mu_{x}})^2+ 2\rho_{xw}\frac{\sigma_{x}}{\mu_{x}}\frac{\sigma_{w}}{\mu_{w}}+(\frac{\sigma_{w}}{\mu_{w}})^2+(1+\rho^2)(\frac{\sigma_{x}}{\mu_{x}})^2(\frac{\sigma_{w}}{\mu_{w}})^2)
+\begin{multiline}
+\sigma^2_{x \times w} = \mu_{x}\mu_{w}((\frac{\sigma_{x}}{\mu_{x}})^2+ \\ +
+2\rho_{xw}\frac{\sigma_{x}}{\mu_{x}}\frac{\sigma_{w}}{\mu_{w}} + \\ + (\frac{\sigma_{w}}{\mu_{w}})^2+(1+\rho^2)(\frac{\sigma_{x}}{\mu_{x}})^2(\frac{\sigma_{w}}{\mu_{w}})^2)
+\end{multiline}
 (\#eq:prodvar)
 \end{equation}
 
@@ -320,21 +323,21 @@ summary(res1.lm)
 > 
 > Residuals:
 >     Min      1Q  Median      3Q     Max 
-> -2.8830 -0.6648 -0.0118  0.6381  2.8814 
+> -2.2513 -0.6918 -0.0172  0.6001  2.9674 
 > 
 > Coefficients:
 >             Estimate Std. Error t value Pr(>|t|)    
-> (Intercept)  0.00523    0.04701    0.11  0.91155    
-> x            0.09604    0.04818    1.99  0.04679 *  
-> w            0.19552    0.05064    3.86  0.00013 ***
-> x:w          0.31174    0.03519    8.86  < 2e-16 ***
+> (Intercept)   0.0373     0.0459    0.81  0.41668    
+> x             0.0559     0.0497    1.12  0.26118    
+> w             0.1907     0.0491    3.88  0.00012 ***
+> x:w           0.2399     0.0406    5.91  6.5e-09 ***
 > ---
 > Signif. codes:  
 > 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 > 
-> Residual standard error: 0.958 on 496 degrees of freedom
-> Multiple R-squared:  0.178,	Adjusted R-squared:  0.173 
-> F-statistic: 35.9 on 3 and 496 DF,  p-value: <2e-16
+> Residual standard error: 0.927 on 496 degrees of freedom
+> Multiple R-squared:  0.115,	Adjusted R-squared:  0.11 
+> F-statistic: 21.5 on 3 and 496 DF,  p-value: 4.09e-13
 
 # Pour comparer avec aov
 res1.aov <- aov(y ~ x * w, data = jd.continue)
@@ -342,11 +345,11 @@ res1.aov <- aov(y ~ x * w, data = jd.continue)
 # L'intercepte est inclus
 summary(res1.aov, intercept = TRUE)
 >              Df Sum Sq Mean Sq F value  Pr(>F)    
-> (Intercept)   1     14    14.5   15.78 8.2e-05 ***
-> x             1     18    17.9   19.47 1.3e-05 ***
-> w             1      9     9.0    9.78  0.0019 ** 
-> x:w           1     72    72.0   78.46 < 2e-16 ***
-> Residuals   496    455     0.9                    
+> (Intercept)   1     12   11.63    13.5 0.00026 ***
+> x             1     13   13.22    15.4 1.0e-04 ***
+> w             1     12   12.25    14.3 0.00018 ***
+> x:w           1     30   29.96    34.9 6.5e-09 ***
+> Residuals   496    426    0.86                    
 > ---
 > Signif. codes:  
 > 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
@@ -366,11 +369,11 @@ res1.anova
 > 
 > Response: y
 >             Sum Sq  Df F value  Pr(>F)    
-> (Intercept)      0   1    0.01 0.91155    
-> x                4   1    3.97 0.04679 *  
-> w               14   1   14.91 0.00013 ***
-> x:w             72   1   78.46 < 2e-16 ***
-> Residuals      455 496                    
+> (Intercept)      1   1    0.66 0.41668    
+> x                1   1    1.27 0.26118    
+> w               13   1   15.06 0.00012 ***
+> x:w             30   1   34.88 6.5e-09 ***
+> Residuals      426 496                    
 > ---
 > Signif. codes:  
 > 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
@@ -380,7 +383,7 @@ Voilà! Les effets simples sont maintenant identiques à la sortie de `lm()`.
 
 
 
-Pour déterminer s'il y a présence de l'effet de modérateur, il faut se fier à la ligne `x:w` et la valeur-$p$ `Pr(>F)` associé qui est ici de 1.46\times 10^{-17}. Par contre, il n'est pas tout à fait clair comment interpréter ce résultat. Ce sera fait dans la section portant sur la représentation graphique de al modération.
+Pour déterminer s'il y a présence de l'effet de modérateur, il faut se fier à la ligne `x:w` et la valeur-$p$ `Pr(>F)` associé qui est ici de 6.5\times 10^{-9}. Par contre, il n'est pas tout à fait clair comment interpréter ce résultat. Ce sera fait dans la section portant sur la représentation graphique de al modération.
 
 ### Analyse d'un modérateur nominal
 
@@ -450,7 +453,7 @@ La fonction `car::Anova()` offre un résultat différent pour $w$ et $xw$ car le
 
 
 
-Le type III a certainement eu un rôle intéressant dans les résultats. Il montre que $w$ n'est pas significativement lié à $y$, $p < 0.247$, ce qui était programmé dans le modèle alors que `aov()` montre un lien  significatif, $p<0.006.
+Le type III a certainement eu un rôle intéressant dans les résultats. Il montre que $w$ n'est pas significativement lié à $y$, $p < 0.247$, ce qui était programmé dans le modèle alors que `aov()` montre un lien  significatif, $p<0.006$.
 
 Pour respecter la pratique et pour imiter ce qui est fait par d'autres logiciels ce serait l'effet d'interaction `x:w` tel que rapporté par `res2.anova`, soit produite par `car::Anova()`. La valeur-$p$ de l'effet d'interaction est de $p<001$, ce qui signifie qu'il y a un effet modérateur. 
 
@@ -458,7 +461,7 @@ Comme le cas précédent, ce résultat est ardu à interpréter. Des représenta
 
 ## Représentations graphiques d'une modération
 
-À part quelques personnes ayant l'oeil affutée à l'interprétation de modèle linéaire contenant une interaction, il est rare pour tous les autres d’en tirer du sens immédiatement. Ainsi, des analyses graphiques sont plus que pertinentes pour en interpréter les résultats.
+À part quelques personnes ayant l'oeil affuté à l'interprétation de modèle linéaire contenant une interaction, il est rare pour tous les autres d'en tirer du sens immédiatement. Ainsi, des analyses graphiques sont plus que pertinentes pour en interpréter les résultats.
 
 Deux graphiques sont particulièrement pertinents : le graphique de Johnson- Neyman et le graphique des pentes simples (*simple slopes*). Il existe quelques packages pour produire ces graphiques. Dans cet ouvrage, le package `interactions` [@interactions] sera présenté. Ce package peut traiter des interactions doubles et triples et est compatible avec plusieurs commandes de `ggplot2`.
 

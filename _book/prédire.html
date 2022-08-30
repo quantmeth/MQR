@@ -89,12 +89,16 @@
 <li><a class="" href="analyser.html"><span class="header-section-number">9</span> Analyser</a></li>
 <li><a class="" href="simuler.html"><span class="header-section-number">10</span> Simuler</a></li>
 <li><a class="" href="exercice-analyse.html">Exercices</a></li>
-<li class="book-part">Modèle linéaire</li>
+<li class="book-part">Modèles linéaires</li>
 <li><a class="active" href="pr%C3%A9dire.html"><span class="header-section-number">11</span> Prédire</a></li>
 <li><a class="" href="cr%C3%A9er.html"><span class="header-section-number">12</span> Créer</a></li>
 <li><a class="" href="m%C3%A9dier.html"><span class="header-section-number">13</span> Médier</a></li>
 <li><a class="" href="mod%C3%A9rer.html"><span class="header-section-number">14</span> Modérer</a></li>
 <li><a class="" href="exercice-lineaire.html">Exercices</a></li>
+<li class="book-part">Analyses factorielles</li>
+<li><a class="" href="d%C3%A9composer.html"><span class="header-section-number">15</span> Décomposer</a></li>
+<li><a class="" href="explorer.html"><span class="header-section-number">16</span> Explorer</a></li>
+<li><a class="" href="r%C3%A9duire.html"><span class="header-section-number">17</span> Réduire</a></li>
 <li><a class="" href="r%C3%A9f%C3%A9rences.html">Références</a></li>
 </ul>
 
@@ -137,7 +141,7 @@ s_{x_j,x_k}=\frac{1}{n-1}\sum_{i=1}^n(x_{i,j})(x_{i,k})
   <span class="va">Xc</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/scale.html">scale</a></span><span class="op">(</span><span class="va">X</span>, scale <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="co"># Centrées les variables</span>
   <span class="va">p</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">X</span><span class="op">)</span>                  <span class="co"># Nombre de variables </span>
   <span class="va">n</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">X</span><span class="op">)</span>                  <span class="co"># Nombre de sujets</span>
-  <span class="va">S</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">numeric</a></span><span class="op">(</span><span class="op">)</span>                <span class="co"># Matrice vide pour enregistrer résultats</span>
+  <span class="va">S</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">numeric</a></span><span class="op">(</span><span class="op">)</span>                <span class="co"># Matrice vide pour enregistrer</span>
   
   <span class="kw">for</span><span class="op">(</span><span class="va">j</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="va">p</span><span class="op">)</span> <span class="op">{</span>
     <span class="kw">for</span><span class="op">(</span><span class="va">k</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="va">p</span><span class="op">)</span> <span class="op">{</span>
@@ -788,7 +792,7 @@ Figure 11.7: Diagramme représentant l’agencement des variables
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-08-18.</p>
+    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-08-29.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

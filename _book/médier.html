@@ -89,12 +89,16 @@
 <li><a class="" href="analyser.html"><span class="header-section-number">9</span> Analyser</a></li>
 <li><a class="" href="simuler.html"><span class="header-section-number">10</span> Simuler</a></li>
 <li><a class="" href="exercice-analyse.html">Exercices</a></li>
-<li class="book-part">Modèle linéaire</li>
+<li class="book-part">Modèles linéaires</li>
 <li><a class="" href="pr%C3%A9dire.html"><span class="header-section-number">11</span> Prédire</a></li>
 <li><a class="" href="cr%C3%A9er.html"><span class="header-section-number">12</span> Créer</a></li>
 <li><a class="active" href="m%C3%A9dier.html"><span class="header-section-number">13</span> Médier</a></li>
 <li><a class="" href="mod%C3%A9rer.html"><span class="header-section-number">14</span> Modérer</a></li>
 <li><a class="" href="exercice-lineaire.html">Exercices</a></li>
+<li class="book-part">Analyses factorielles</li>
+<li><a class="" href="d%C3%A9composer.html"><span class="header-section-number">15</span> Décomposer</a></li>
+<li><a class="" href="explorer.html"><span class="header-section-number">16</span> Explorer</a></li>
+<li><a class="" href="r%C3%A9duire.html"><span class="header-section-number">17</span> Réduire</a></li>
 <li><a class="" href="r%C3%A9f%C3%A9rences.html">Références</a></li>
 </ul>
 
@@ -705,9 +709,9 @@ Figure 13.2: Distribution de l’effet indirect
 <span id="cb194-25"><a href="m%C3%A9dier.html#cb194-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Mettre le tout en commun</span></span>
 <span id="cb194-26"><a href="m%C3%A9dier.html#cb194-26" aria-hidden="true" tabindex="-1"></a>Resultats <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
 <span id="cb194-27"><a href="m%C3%A9dier.html#cb194-27" aria-hidden="true" tabindex="-1"></a>  <span class="at">Estimates =</span> Est<span class="sc">$</span>Est,</span>
-<span id="cb194-28"><a href="m%C3%A9dier.html#cb194-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">S.E. =</span> <span class="fu">apply</span>(Est, <span class="at">MARGIN =</span> <span class="dv">1</span>, <span class="at">FUN =</span> sd), </span>
-<span id="cb194-29"><a href="m%C3%A9dier.html#cb194-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">CI.inf =</span> <span class="fu">apply</span>(Est, <span class="at">MARGIN =</span> <span class="dv">1</span>, <span class="at">FUN =</span> quantile, <span class="at">probs =</span> alpha<span class="sc">/</span><span class="dv">2</span>),</span>
-<span id="cb194-30"><a href="m%C3%A9dier.html#cb194-30" aria-hidden="true" tabindex="-1"></a>  <span class="at">CI.sup =</span> <span class="fu">apply</span>(Est, <span class="at">MARGIN =</span> <span class="dv">1</span>, <span class="at">FUN =</span> quantile, <span class="at">probs =</span> <span class="dv">1</span><span class="sc">-</span>alpha<span class="sc">/</span><span class="dv">2</span>)</span>
+<span id="cb194-28"><a href="m%C3%A9dier.html#cb194-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">S.E. =</span> <span class="fu">apply</span>(Est, <span class="dv">1</span>, <span class="at">FUN =</span> sd), </span>
+<span id="cb194-29"><a href="m%C3%A9dier.html#cb194-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">CI.inf =</span> <span class="fu">apply</span>(Est, <span class="dv">1</span>, <span class="at">FUN =</span> quantile, <span class="at">probs =</span> alpha<span class="sc">/</span><span class="dv">2</span>),</span>
+<span id="cb194-30"><a href="m%C3%A9dier.html#cb194-30" aria-hidden="true" tabindex="-1"></a>  <span class="at">CI.sup =</span> <span class="fu">apply</span>(Est, <span class="dv">1</span>, <span class="at">FUN =</span> quantile, <span class="at">probs =</span> <span class="dv">1</span><span class="sc">-</span>alpha<span class="sc">/</span><span class="dv">2</span>)</span>
 <span id="cb194-31"><a href="m%C3%A9dier.html#cb194-31" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb194-32"><a href="m%C3%A9dier.html#cb194-32" aria-hidden="true" tabindex="-1"></a>Resultats</span>
 <span id="cb194-33"><a href="m%C3%A9dier.html#cb194-33" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>                       Estimates   S.E. CI.inf CI.sup</span>
@@ -853,21 +857,23 @@ total effect x -&gt; y
 <p>Calculer les valeurs-<span class="math inline">\(t\)</span> et valeurs-<span class="math inline">\(p\)</span> est envisageable en utilisant les résultats déjà recueillis. La valeur-<span class="math inline">\(t\)</span> est le ratio entre l’estimateur et son erreur type, la valeur-<span class="math inline">\(p\)</span> est la rareté d’observer cette valeur-<span class="math inline">\(t\)</span> ou une valeur plus rare par rapport à l’hypothèse nulle avec un degré de liberté de <code>dl = n - p</code>, soit plus exactement le nombre d’unités moins le nombre de variables indépendantes.</p>
 <div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="m%C3%A9dier.html#cb195-1" aria-hidden="true" tabindex="-1"></a>Resultats<span class="sc">$</span>t.value <span class="ot">&lt;-</span> Resultats<span class="sc">$</span>Estimates <span class="sc">/</span> Resultats<span class="sc">$</span>S.E.</span>
 <span id="cb195-2"><a href="m%C3%A9dier.html#cb195-2" aria-hidden="true" tabindex="-1"></a>Resultats<span class="sc">$</span>p.value <span class="ot">&lt;-</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">pt</span>(<span class="fu">abs</span>(Resultats<span class="sc">$</span>t.value), <span class="at">df =</span> n <span class="sc">-</span> p)) <span class="sc">*</span> <span class="dv">2</span></span>
-<span id="cb195-3"><a href="m%C3%A9dier.html#cb195-3" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(Resultats, <span class="dv">3</span>) <span class="co"># Résultats arrondis à 3 décimales</span></span>
-<span id="cb195-4"><a href="m%C3%A9dier.html#cb195-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>                       Estimates  S.E. CI.inf CI.sup t.value</span>
-<span id="cb195-5"><a href="m%C3%A9dier.html#cb195-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="ot">-&gt;</span> m                    <span class="fl">0.336</span> <span class="fl">0.093</span>  <span class="fl">0.160</span>  <span class="fl">0.521</span>    <span class="fl">3.61</span></span>
-<span id="cb195-6"><a href="m%C3%A9dier.html#cb195-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="ot">-&gt;</span> y                    <span class="fl">0.312</span> <span class="fl">0.062</span>  <span class="fl">0.197</span>  <span class="fl">0.442</span>    <span class="fl">5.06</span></span>
-<span id="cb195-7"><a href="m%C3%A9dier.html#cb195-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> m <span class="ot">-&gt;</span> y                    <span class="fl">0.625</span> <span class="fl">0.073</span>  <span class="fl">0.479</span>  <span class="fl">0.765</span>    <span class="fl">8.55</span></span>
-<span id="cb195-8"><a href="m%C3%A9dier.html#cb195-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="ot">-&gt;</span> m <span class="ot">-&gt;</span> y               <span class="fl">0.210</span> <span class="fl">0.061</span>  <span class="fl">0.098</span>  <span class="fl">0.333</span>    <span class="fl">3.45</span></span>
-<span id="cb195-9"><a href="m%C3%A9dier.html#cb195-9" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> total indirect x <span class="ot">-&gt;</span> y     <span class="fl">0.210</span> <span class="fl">0.061</span>  <span class="fl">0.098</span>  <span class="fl">0.333</span>    <span class="fl">3.45</span></span>
-<span id="cb195-10"><a href="m%C3%A9dier.html#cb195-10" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> total effect x <span class="ot">-&gt;</span> y       <span class="fl">0.521</span> <span class="fl">0.084</span>  <span class="fl">0.364</span>  <span class="fl">0.691</span>    <span class="fl">6.18</span></span>
-<span id="cb195-11"><a href="m%C3%A9dier.html#cb195-11" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>                       p.value</span>
-<span id="cb195-12"><a href="m%C3%A9dier.html#cb195-12" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="ot">-&gt;</span> m                  <span class="fl">0.000</span></span>
-<span id="cb195-13"><a href="m%C3%A9dier.html#cb195-13" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="ot">-&gt;</span> y                  <span class="fl">0.000</span></span>
-<span id="cb195-14"><a href="m%C3%A9dier.html#cb195-14" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> m <span class="ot">-&gt;</span> y                  <span class="fl">0.000</span></span>
-<span id="cb195-15"><a href="m%C3%A9dier.html#cb195-15" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="ot">-&gt;</span> m <span class="ot">-&gt;</span> y             <span class="fl">0.001</span></span>
-<span id="cb195-16"><a href="m%C3%A9dier.html#cb195-16" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> total indirect x <span class="ot">-&gt;</span> y   <span class="fl">0.001</span></span>
-<span id="cb195-17"><a href="m%C3%A9dier.html#cb195-17" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> total effect x <span class="ot">-&gt;</span> y     <span class="fl">0.000</span></span></code></pre></div>
+<span id="cb195-3"><a href="m%C3%A9dier.html#cb195-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb195-4"><a href="m%C3%A9dier.html#cb195-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Résultats arrondis à 2 décimales</span></span>
+<span id="cb195-5"><a href="m%C3%A9dier.html#cb195-5" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(Resultats, <span class="dv">2</span>)</span>
+<span id="cb195-6"><a href="m%C3%A9dier.html#cb195-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>                       Estimates S.E. CI.inf CI.sup t.value</span>
+<span id="cb195-7"><a href="m%C3%A9dier.html#cb195-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="ot">-&gt;</span> m                     <span class="fl">0.34</span> <span class="fl">0.09</span>   <span class="fl">0.16</span>   <span class="fl">0.52</span>    <span class="fl">3.61</span></span>
+<span id="cb195-8"><a href="m%C3%A9dier.html#cb195-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="ot">-&gt;</span> y                     <span class="fl">0.31</span> <span class="fl">0.06</span>   <span class="fl">0.20</span>   <span class="fl">0.44</span>    <span class="fl">5.06</span></span>
+<span id="cb195-9"><a href="m%C3%A9dier.html#cb195-9" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> m <span class="ot">-&gt;</span> y                     <span class="fl">0.63</span> <span class="fl">0.07</span>   <span class="fl">0.48</span>   <span class="fl">0.76</span>    <span class="fl">8.55</span></span>
+<span id="cb195-10"><a href="m%C3%A9dier.html#cb195-10" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="ot">-&gt;</span> m <span class="ot">-&gt;</span> y                <span class="fl">0.21</span> <span class="fl">0.06</span>   <span class="fl">0.10</span>   <span class="fl">0.33</span>    <span class="fl">3.45</span></span>
+<span id="cb195-11"><a href="m%C3%A9dier.html#cb195-11" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> total indirect x <span class="ot">-&gt;</span> y      <span class="fl">0.21</span> <span class="fl">0.06</span>   <span class="fl">0.10</span>   <span class="fl">0.33</span>    <span class="fl">3.45</span></span>
+<span id="cb195-12"><a href="m%C3%A9dier.html#cb195-12" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> total effect x <span class="ot">-&gt;</span> y        <span class="fl">0.52</span> <span class="fl">0.08</span>   <span class="fl">0.36</span>   <span class="fl">0.69</span>    <span class="fl">6.19</span></span>
+<span id="cb195-13"><a href="m%C3%A9dier.html#cb195-13" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>                       p.value</span>
+<span id="cb195-14"><a href="m%C3%A9dier.html#cb195-14" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="ot">-&gt;</span> m                      <span class="dv">0</span></span>
+<span id="cb195-15"><a href="m%C3%A9dier.html#cb195-15" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="ot">-&gt;</span> y                      <span class="dv">0</span></span>
+<span id="cb195-16"><a href="m%C3%A9dier.html#cb195-16" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> m <span class="ot">-&gt;</span> y                      <span class="dv">0</span></span>
+<span id="cb195-17"><a href="m%C3%A9dier.html#cb195-17" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="ot">-&gt;</span> m <span class="ot">-&gt;</span> y                 <span class="dv">0</span></span>
+<span id="cb195-18"><a href="m%C3%A9dier.html#cb195-18" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> total indirect x <span class="ot">-&gt;</span> y       <span class="dv">0</span></span>
+<span id="cb195-19"><a href="m%C3%A9dier.html#cb195-19" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> total effect x <span class="ot">-&gt;</span> y         <span class="dv">0</span></span></code></pre></div>
 <p>Si les coefficients de régression standardisés sont préférés, ceux-ci s’obtiennent simplement en standardisant le jeu de données, puis en roulant l’analyse de médiation de nouveau. Pour standardiser rapidement, <code>z.donnees = apply(donnees, MARGIN = 2, FUN = scale)</code> applique (<code><a href="https://rdrr.io/r/base/apply.html">apply()</a></code>) la fonction <code>FUN = scale</code> qui standardise les données (<code>donnees</code>) par colonne <code>MARGIN = 2</code>.</p>
 </div>
 <div id="les-packages-2" class="section level2" number="13.5">
@@ -931,7 +937,7 @@ total effect x -&gt; y
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-08-18.</p>
+    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-08-29.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

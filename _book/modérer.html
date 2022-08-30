@@ -89,12 +89,16 @@
 <li><a class="" href="analyser.html"><span class="header-section-number">9</span> Analyser</a></li>
 <li><a class="" href="simuler.html"><span class="header-section-number">10</span> Simuler</a></li>
 <li><a class="" href="exercice-analyse.html">Exercices</a></li>
-<li class="book-part">Modèle linéaire</li>
+<li class="book-part">Modèles linéaires</li>
 <li><a class="" href="pr%C3%A9dire.html"><span class="header-section-number">11</span> Prédire</a></li>
 <li><a class="" href="cr%C3%A9er.html"><span class="header-section-number">12</span> Créer</a></li>
 <li><a class="" href="m%C3%A9dier.html"><span class="header-section-number">13</span> Médier</a></li>
 <li><a class="active" href="mod%C3%A9rer.html"><span class="header-section-number">14</span> Modérer</a></li>
 <li><a class="" href="exercice-lineaire.html">Exercices</a></li>
+<li class="book-part">Analyses factorielles</li>
+<li><a class="" href="d%C3%A9composer.html"><span class="header-section-number">15</span> Décomposer</a></li>
+<li><a class="" href="explorer.html"><span class="header-section-number">16</span> Explorer</a></li>
+<li><a class="" href="r%C3%A9duire.html"><span class="header-section-number">17</span> Réduire</a></li>
 <li><a class="" href="r%C3%A9f%C3%A9rences.html">Références</a></li>
 </ul>
 
@@ -146,7 +150,10 @@ y = \beta_0 + \beta_1 x + (\beta_2 + \beta_3 x) w + \epsilon
 \end{equation}\]</span></p>
 <p>Pour des variables centrées (non complètement standardisées), l’équation <a href="mod%C3%A9rer.html#eq:varprod">(14.3)</a> devient l’équation <a href="mod%C3%A9rer.html#eq:prodvar">(14.4)</a> <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-Craig" role="doc-biblioref">Craig, 1936</a>; <a href="r%C3%A9f%C3%A9rences.html#ref-Haldane" role="doc-biblioref">Haldane, 1942</a>)</span>.</p>
 <p><span class="math display" id="eq:prodvar">\[\begin{equation}
-\sigma^2_{x \times w} = \mu_{x}\mu_{w}((\frac{\sigma_{x}}{\mu_{x}})^2+ 2\rho_{xw}\frac{\sigma_{x}}{\mu_{x}}\frac{\sigma_{w}}{\mu_{w}}+(\frac{\sigma_{w}}{\mu_{w}})^2+(1+\rho^2)(\frac{\sigma_{x}}{\mu_{x}})^2(\frac{\sigma_{w}}{\mu_{w}})^2)
+\begin{multiline}
+\sigma^2_{x \times w} = \mu_{x}\mu_{w}((\frac{\sigma_{x}}{\mu_{x}})^2+ \\ +
+2\rho_{xw}\frac{\sigma_{x}}{\mu_{x}}\frac{\sigma_{w}}{\mu_{w}} + \\ + (\frac{\sigma_{w}}{\mu_{w}})^2+(1+\rho^2)(\frac{\sigma_{x}}{\mu_{x}})^2(\frac{\sigma_{w}}{\mu_{w}})^2)
+\end{multiline}
 \tag{14.4}
 \end{equation}\]</span></p>
 <p>Celle-ci n’est pas des plus attrayante à l’oeil, surtout pour les arithmophobes. L’essentiel : il faut porter une attention particulière à la variance de <span class="math inline">\(xw\)</span> lorsque la variable <span class="math inline">\(y\)</span> est générée, car celle-ci est dépendante de la moyenne et de la variance de ces composantes.</p>
@@ -359,21 +366,21 @@ soit leur covariance originale divisée par leur écart type. Tous les autres va
 <span id="cb204-7"><a href="mod%C3%A9rer.html#cb204-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
 <span id="cb204-8"><a href="mod%C3%A9rer.html#cb204-8" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Residuals<span class="sc">:</span></span>
 <span id="cb204-9"><a href="mod%C3%A9rer.html#cb204-9" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span>     Min      1Q  Median      3Q     Max </span>
-<span id="cb204-10"><a href="mod%C3%A9rer.html#cb204-10" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="sc">-</span><span class="fl">2.8830</span> <span class="sc">-</span><span class="fl">0.6648</span> <span class="sc">-</span><span class="fl">0.0118</span>  <span class="fl">0.6381</span>  <span class="fl">2.8814</span> </span>
+<span id="cb204-10"><a href="mod%C3%A9rer.html#cb204-10" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="sc">-</span><span class="fl">2.2513</span> <span class="sc">-</span><span class="fl">0.6918</span> <span class="sc">-</span><span class="fl">0.0172</span>  <span class="fl">0.6001</span>  <span class="fl">2.9674</span> </span>
 <span id="cb204-11"><a href="mod%C3%A9rer.html#cb204-11" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
 <span id="cb204-12"><a href="mod%C3%A9rer.html#cb204-12" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Coefficients<span class="sc">:</span></span>
 <span id="cb204-13"><a href="mod%C3%A9rer.html#cb204-13" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span>             Estimate Std. Error t value <span class="fu">Pr</span>(<span class="sc">&gt;</span><span class="er">|</span>t<span class="sc">|</span>)    </span>
-<span id="cb204-14"><a href="mod%C3%A9rer.html#cb204-14" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> (Intercept)  <span class="fl">0.00523</span>    <span class="fl">0.04701</span>    <span class="fl">0.11</span>  <span class="fl">0.91155</span>    </span>
-<span id="cb204-15"><a href="mod%C3%A9rer.html#cb204-15" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x            <span class="fl">0.09604</span>    <span class="fl">0.04818</span>    <span class="fl">1.99</span>  <span class="fl">0.04679</span> <span class="sc">*</span>  </span>
-<span id="cb204-16"><a href="mod%C3%A9rer.html#cb204-16" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> w            <span class="fl">0.19552</span>    <span class="fl">0.05064</span>    <span class="fl">3.86</span>  <span class="fl">0.00013</span> <span class="sc">**</span><span class="er">*</span></span>
-<span id="cb204-17"><a href="mod%C3%A9rer.html#cb204-17" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> x<span class="sc">:</span>w          <span class="fl">0.31174</span>    <span class="fl">0.03519</span>    <span class="fl">8.86</span>  <span class="sc">&lt;</span> <span class="fl">2e-16</span> <span class="sc">**</span><span class="er">*</span></span>
+<span id="cb204-14"><a href="mod%C3%A9rer.html#cb204-14" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> (Intercept)   <span class="fl">0.0373</span>     <span class="fl">0.0459</span>    <span class="fl">0.81</span>  <span class="fl">0.41668</span>    </span>
+<span id="cb204-15"><a href="mod%C3%A9rer.html#cb204-15" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x             <span class="fl">0.0559</span>     <span class="fl">0.0497</span>    <span class="fl">1.12</span>  <span class="fl">0.26118</span>    </span>
+<span id="cb204-16"><a href="mod%C3%A9rer.html#cb204-16" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> w             <span class="fl">0.1907</span>     <span class="fl">0.0491</span>    <span class="fl">3.88</span>  <span class="fl">0.00012</span> <span class="sc">**</span><span class="er">*</span></span>
+<span id="cb204-17"><a href="mod%C3%A9rer.html#cb204-17" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> x<span class="sc">:</span>w           <span class="fl">0.2399</span>     <span class="fl">0.0406</span>    <span class="fl">5.91</span>  <span class="fl">6.5e-09</span> <span class="sc">**</span><span class="er">*</span></span>
 <span id="cb204-18"><a href="mod%C3%A9rer.html#cb204-18" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="sc">---</span></span>
 <span id="cb204-19"><a href="mod%C3%A9rer.html#cb204-19" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Signif. codes<span class="sc">:</span>  </span>
 <span id="cb204-20"><a href="mod%C3%A9rer.html#cb204-20" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="dv">0</span> <span class="st">'***'</span> <span class="fl">0.001</span> <span class="st">'**'</span> <span class="fl">0.01</span> <span class="st">'*'</span> <span class="fl">0.05</span> <span class="st">'.'</span> <span class="fl">0.1</span> <span class="st">' '</span> <span class="dv">1</span></span>
 <span id="cb204-21"><a href="mod%C3%A9rer.html#cb204-21" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
-<span id="cb204-22"><a href="mod%C3%A9rer.html#cb204-22" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Residual standard error<span class="sc">:</span> <span class="fl">0.958</span> on <span class="dv">496</span> degrees of freedom</span>
-<span id="cb204-23"><a href="mod%C3%A9rer.html#cb204-23" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Multiple R<span class="sc">-</span>squared<span class="sc">:</span>  <span class="fl">0.178</span>,   Adjusted R<span class="sc">-</span>squared<span class="sc">:</span>  <span class="fl">0.173</span> </span>
-<span id="cb204-24"><a href="mod%C3%A9rer.html#cb204-24" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> F<span class="sc">-</span>statistic<span class="sc">:</span> <span class="fl">35.9</span> on <span class="dv">3</span> and <span class="dv">496</span> DF,  p<span class="sc">-</span>value<span class="sc">:</span> <span class="er">&lt;</span><span class="fl">2e-16</span></span>
+<span id="cb204-22"><a href="mod%C3%A9rer.html#cb204-22" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Residual standard error<span class="sc">:</span> <span class="fl">0.927</span> on <span class="dv">496</span> degrees of freedom</span>
+<span id="cb204-23"><a href="mod%C3%A9rer.html#cb204-23" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Multiple R<span class="sc">-</span>squared<span class="sc">:</span>  <span class="fl">0.115</span>,   Adjusted R<span class="sc">-</span>squared<span class="sc">:</span>  <span class="fl">0.11</span> </span>
+<span id="cb204-24"><a href="mod%C3%A9rer.html#cb204-24" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> F<span class="sc">-</span>statistic<span class="sc">:</span> <span class="fl">21.5</span> on <span class="dv">3</span> and <span class="dv">496</span> DF,  p<span class="sc">-</span>value<span class="sc">:</span> <span class="fl">4.09e-13</span></span>
 <span id="cb204-25"><a href="mod%C3%A9rer.html#cb204-25" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb204-26"><a href="mod%C3%A9rer.html#cb204-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Pour comparer avec aov</span></span>
 <span id="cb204-27"><a href="mod%C3%A9rer.html#cb204-27" aria-hidden="true" tabindex="-1"></a>res1.aov <span class="ot">&lt;-</span> <span class="fu">aov</span>(y <span class="sc">~</span> x <span class="sc">*</span> w, <span class="at">data =</span> jd.continue)</span>
@@ -381,11 +388,11 @@ soit leur covariance originale divisée par leur écart type. Tous les autres va
 <span id="cb204-29"><a href="mod%C3%A9rer.html#cb204-29" aria-hidden="true" tabindex="-1"></a><span class="co"># L'intercepte est inclus</span></span>
 <span id="cb204-30"><a href="mod%C3%A9rer.html#cb204-30" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(res1.aov, <span class="at">intercept =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb204-31"><a href="mod%C3%A9rer.html#cb204-31" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>              Df Sum Sq Mean Sq F value  <span class="fu">Pr</span>(<span class="sc">&gt;</span>F)    </span>
-<span id="cb204-32"><a href="mod%C3%A9rer.html#cb204-32" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> (Intercept)   <span class="dv">1</span>     <span class="dv">14</span>    <span class="fl">14.5</span>   <span class="fl">15.78</span> <span class="fl">8.2e-05</span> <span class="sc">**</span><span class="er">*</span></span>
-<span id="cb204-33"><a href="mod%C3%A9rer.html#cb204-33" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> x             <span class="dv">1</span>     <span class="dv">18</span>    <span class="fl">17.9</span>   <span class="fl">19.47</span> <span class="fl">1.3e-05</span> <span class="sc">**</span><span class="er">*</span></span>
-<span id="cb204-34"><a href="mod%C3%A9rer.html#cb204-34" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> w             <span class="dv">1</span>      <span class="dv">9</span>     <span class="fl">9.0</span>    <span class="fl">9.78</span>  <span class="fl">0.0019</span> <span class="sc">**</span> </span>
-<span id="cb204-35"><a href="mod%C3%A9rer.html#cb204-35" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> x<span class="sc">:</span>w           <span class="dv">1</span>     <span class="dv">72</span>    <span class="fl">72.0</span>   <span class="fl">78.46</span> <span class="sc">&lt;</span> <span class="fl">2e-16</span> <span class="sc">**</span><span class="er">*</span></span>
-<span id="cb204-36"><a href="mod%C3%A9rer.html#cb204-36" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Residuals   <span class="dv">496</span>    <span class="dv">455</span>     <span class="fl">0.9</span>                    </span>
+<span id="cb204-32"><a href="mod%C3%A9rer.html#cb204-32" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> (Intercept)   <span class="dv">1</span>     <span class="dv">12</span>   <span class="fl">11.63</span>    <span class="fl">13.5</span> <span class="fl">0.00026</span> <span class="sc">**</span><span class="er">*</span></span>
+<span id="cb204-33"><a href="mod%C3%A9rer.html#cb204-33" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> x             <span class="dv">1</span>     <span class="dv">13</span>   <span class="fl">13.22</span>    <span class="fl">15.4</span> <span class="fl">1.0e-04</span> <span class="sc">**</span><span class="er">*</span></span>
+<span id="cb204-34"><a href="mod%C3%A9rer.html#cb204-34" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> w             <span class="dv">1</span>     <span class="dv">12</span>   <span class="fl">12.25</span>    <span class="fl">14.3</span> <span class="fl">0.00018</span> <span class="sc">**</span><span class="er">*</span></span>
+<span id="cb204-35"><a href="mod%C3%A9rer.html#cb204-35" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> x<span class="sc">:</span>w           <span class="dv">1</span>     <span class="dv">30</span>   <span class="fl">29.96</span>    <span class="fl">34.9</span> <span class="fl">6.5e-09</span> <span class="sc">**</span><span class="er">*</span></span>
+<span id="cb204-36"><a href="mod%C3%A9rer.html#cb204-36" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Residuals   <span class="dv">496</span>    <span class="dv">426</span>    <span class="fl">0.86</span>                    </span>
 <span id="cb204-37"><a href="mod%C3%A9rer.html#cb204-37" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="sc">---</span></span>
 <span id="cb204-38"><a href="mod%C3%A9rer.html#cb204-38" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Signif. codes<span class="sc">:</span>  </span>
 <span id="cb204-39"><a href="mod%C3%A9rer.html#cb204-39" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="dv">0</span> <span class="st">'***'</span> <span class="fl">0.001</span> <span class="st">'**'</span> <span class="fl">0.01</span> <span class="st">'*'</span> <span class="fl">0.05</span> <span class="st">'.'</span> <span class="fl">0.1</span> <span class="st">' '</span> <span class="dv">1</span></span></code></pre></div>
@@ -398,16 +405,16 @@ soit leur covariance originale divisée par leur écart type. Tous les autres va
 <span id="cb205-4"><a href="mod%C3%A9rer.html#cb205-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
 <span id="cb205-5"><a href="mod%C3%A9rer.html#cb205-5" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Response<span class="sc">:</span> y</span>
 <span id="cb205-6"><a href="mod%C3%A9rer.html#cb205-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>             Sum Sq  Df F value  <span class="fu">Pr</span>(<span class="sc">&gt;</span>F)    </span>
-<span id="cb205-7"><a href="mod%C3%A9rer.html#cb205-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> (Intercept)      <span class="dv">0</span>   <span class="dv">1</span>    <span class="fl">0.01</span> <span class="fl">0.91155</span>    </span>
-<span id="cb205-8"><a href="mod%C3%A9rer.html#cb205-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x                <span class="dv">4</span>   <span class="dv">1</span>    <span class="fl">3.97</span> <span class="fl">0.04679</span> <span class="sc">*</span>  </span>
-<span id="cb205-9"><a href="mod%C3%A9rer.html#cb205-9" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> w               <span class="dv">14</span>   <span class="dv">1</span>   <span class="fl">14.91</span> <span class="fl">0.00013</span> <span class="sc">**</span><span class="er">*</span></span>
-<span id="cb205-10"><a href="mod%C3%A9rer.html#cb205-10" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> x<span class="sc">:</span>w             <span class="dv">72</span>   <span class="dv">1</span>   <span class="fl">78.46</span> <span class="sc">&lt;</span> <span class="fl">2e-16</span> <span class="sc">**</span><span class="er">*</span></span>
-<span id="cb205-11"><a href="mod%C3%A9rer.html#cb205-11" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Residuals      <span class="dv">455</span> <span class="dv">496</span>                    </span>
+<span id="cb205-7"><a href="mod%C3%A9rer.html#cb205-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> (Intercept)      <span class="dv">1</span>   <span class="dv">1</span>    <span class="fl">0.66</span> <span class="fl">0.41668</span>    </span>
+<span id="cb205-8"><a href="mod%C3%A9rer.html#cb205-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x                <span class="dv">1</span>   <span class="dv">1</span>    <span class="fl">1.27</span> <span class="fl">0.26118</span>    </span>
+<span id="cb205-9"><a href="mod%C3%A9rer.html#cb205-9" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> w               <span class="dv">13</span>   <span class="dv">1</span>   <span class="fl">15.06</span> <span class="fl">0.00012</span> <span class="sc">**</span><span class="er">*</span></span>
+<span id="cb205-10"><a href="mod%C3%A9rer.html#cb205-10" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> x<span class="sc">:</span>w             <span class="dv">30</span>   <span class="dv">1</span>   <span class="fl">34.88</span> <span class="fl">6.5e-09</span> <span class="sc">**</span><span class="er">*</span></span>
+<span id="cb205-11"><a href="mod%C3%A9rer.html#cb205-11" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Residuals      <span class="dv">426</span> <span class="dv">496</span>                    </span>
 <span id="cb205-12"><a href="mod%C3%A9rer.html#cb205-12" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="sc">---</span></span>
 <span id="cb205-13"><a href="mod%C3%A9rer.html#cb205-13" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Signif. codes<span class="sc">:</span>  </span>
 <span id="cb205-14"><a href="mod%C3%A9rer.html#cb205-14" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="dv">0</span> <span class="st">'***'</span> <span class="fl">0.001</span> <span class="st">'**'</span> <span class="fl">0.01</span> <span class="st">'*'</span> <span class="fl">0.05</span> <span class="st">'.'</span> <span class="fl">0.1</span> <span class="st">' '</span> <span class="dv">1</span></span></code></pre></div>
 <p>Voilà! Les effets simples sont maintenant identiques à la sortie de <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code>.</p>
-<p>Pour déterminer s’il y a présence de l’effet de modérateur, il faut se fier à la ligne <code>x:w</code> et la valeur-<span class="math inline">\(p\)</span> <code>Pr(&gt;F)</code> associé qui est ici de 1.46^{-17}. Par contre, il n’est pas tout à fait clair comment interpréter ce résultat. Ce sera fait dans la section portant sur la représentation graphique de al modération.</p>
+<p>Pour déterminer s’il y a présence de l’effet de modérateur, il faut se fier à la ligne <code>x:w</code> et la valeur-<span class="math inline">\(p\)</span> <code>Pr(&gt;F)</code> associé qui est ici de 6.5^{-9}. Par contre, il n’est pas tout à fait clair comment interpréter ce résultat. Ce sera fait dans la section portant sur la représentation graphique de al modération.</p>
 </div>
 <div id="analyse-dun-modérateur-nominal" class="section level3" number="14.3.2">
 <h3>
@@ -471,7 +478,7 @@ soit leur covariance originale divisée par leur écart type. Tous les autres va
 <span id="cb206-55"><a href="mod%C3%A9rer.html#cb206-55" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Signif. codes<span class="sc">:</span>  </span>
 <span id="cb206-56"><a href="mod%C3%A9rer.html#cb206-56" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="dv">0</span> <span class="st">'***'</span> <span class="fl">0.001</span> <span class="st">'**'</span> <span class="fl">0.01</span> <span class="st">'*'</span> <span class="fl">0.05</span> <span class="st">'.'</span> <span class="fl">0.1</span> <span class="st">' '</span> <span class="dv">1</span></span></code></pre></div>
 <p>La fonction <code><a href="https://rdrr.io/pkg/car/man/Anova.html">car::Anova()</a></code> offre un résultat différent pour <span class="math inline">\(w\)</span> et <span class="math inline">\(xw\)</span> car les groupes sont mis en commun. Autrement dit, le vecteur de groupement est analysé comme une seule variable.</p>
-<p>Le type III a certainement eu un rôle intéressant dans les résultats. Il montre que <span class="math inline">\(w\)</span> n’est pas significativement lié à <span class="math inline">\(y\)</span>, <span class="math inline">\(p &lt; 0.247\)</span>, ce qui était programmé dans le modèle alors que <code><a href="https://rdrr.io/r/stats/aov.html">aov()</a></code> montre un lien significatif, $p&lt;0.006.</p>
+<p>Le type III a certainement eu un rôle intéressant dans les résultats. Il montre que <span class="math inline">\(w\)</span> n’est pas significativement lié à <span class="math inline">\(y\)</span>, <span class="math inline">\(p &lt; 0.247\)</span>, ce qui était programmé dans le modèle alors que <code><a href="https://rdrr.io/r/stats/aov.html">aov()</a></code> montre un lien significatif, <span class="math inline">\(p&lt;0.006\)</span>.</p>
 <p>Pour respecter la pratique et pour imiter ce qui est fait par d’autres logiciels ce serait l’effet d’interaction <code>x:w</code> tel que rapporté par <code>res2.anova</code>, soit produite par <code><a href="https://rdrr.io/pkg/car/man/Anova.html">car::Anova()</a></code>. La valeur-<span class="math inline">\(p\)</span> de l’effet d’interaction est de <span class="math inline">\(p&lt;001\)</span>, ce qui signifie qu’il y a un effet modérateur.</p>
 <p>Comme le cas précédent, ce résultat est ardu à interpréter. Des représentations graphiques sont d’une aide cruciale pour démêler les effets.</p>
 </div>
@@ -480,7 +487,7 @@ soit leur covariance originale divisée par leur écart type. Tous les autres va
 <h2>
 <span class="header-section-number">14.4</span> Représentations graphiques d’une modération<a class="anchor" aria-label="anchor" href="#repr%C3%A9sentations-graphiques-dune-mod%C3%A9ration"><i class="fas fa-link"></i></a>
 </h2>
-<p>À part quelques personnes ayant l’oeil affutée à l’interprétation de modèle linéaire contenant une interaction, il est rare pour tous les autres d’en tirer du sens immédiatement. Ainsi, des analyses graphiques sont plus que pertinentes pour en interpréter les résultats.</p>
+<p>À part quelques personnes ayant l’oeil affuté à l’interprétation de modèle linéaire contenant une interaction, il est rare pour tous les autres d’en tirer du sens immédiatement. Ainsi, des analyses graphiques sont plus que pertinentes pour en interpréter les résultats.</p>
 <p>Deux graphiques sont particulièrement pertinents : le graphique de Johnson- Neyman et le graphique des pentes simples (<em>simple slopes</em>). Il existe quelques packages pour produire ces graphiques. Dans cet ouvrage, le package <code>interactions</code> <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-interactions" role="doc-biblioref">Long, 2019</a>)</span> sera présenté. Ce package peut traiter des interactions doubles et triples et est compatible avec plusieurs commandes de <code>ggplot2</code>.</p>
 <p>Pour réaliser ces graphiques, il faudra d’abord installer et importer le package.</p>
 <div class="sourceCode" id="cb207"><pre class="downlit sourceCode r">
@@ -645,7 +652,7 @@ Figure 14.6: Le graphiqu Johnson-Neyman pour interpréter les effets modérateur
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-08-18.</p>
+    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-08-29.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

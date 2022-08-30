@@ -533,7 +533,7 @@ La variance résiduelle suit l'équation \@ref(eq:eq28). En équation linéaire,
 
 $$
 \begin{aligned}
-\sigma^2{\epsilon_{x_3}} &  =\sigma^2_{x_3} -( \beta_{3,1}^2\sigma^2_{x_1} + \beta_{3,2}^2\sigma^2_{x_2}  +  2\beta_{3,1}\beta_{3,2}\sigma_{x_1,x_2}) 
+\sigma^2_{\epsilon_{x_3}} &  = \sigma^2_{x_3} -( \beta_{3,1}^2\sigma^2_{x_1} + \beta_{3,2}^2\sigma^2_{x_2}  +  2\beta_{3,1}\beta_{3,2}\sigma_{x_1,x_2}) \\
 & = 1-(\beta_{3,1}^2+\beta_{3,2}^2  +  2\beta_{3,1}\beta_{3,2}\sigma_{x_1,x_2})
 \end{aligned}
 $$
