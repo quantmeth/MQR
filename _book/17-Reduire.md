@@ -1,8 +1,10 @@
 # Réduire
 
-Comme mentionné d'entrer de jeu, l'analyse en composantes principales (ACP) n'est pas une technique de réduction des dimensions. S'il y a $p$ variables, l'ACP produit $p$ dimensions. Toutefois, comme les valeurs propres sont des indices de partage commun entre les variables, elle peut être utilisée de cette façon. Elle est presque toujours utiliser pour réduire la dimension d'un jeu de donnée. Il suffit d'ordonner les valeurs propres. La question devient alors à savoir combien de dimensions faut-il retenir pour rendre adéquatement compte des données? Dès lors, l'ACP devient une technique de réduction des dimension, mais comme elle ne répond pas explicitement à cette question, le statisticien use de techniques complémentaires, des règles d'arrêts (*stopping rules*) pour déterminer le nombre de dimensions.
+Comme mentionné d'entrée de jeu, l'analyse en composantes principales (ACP) n'est pas une technique de réduction des dimensions. S'il y a $p$ variables, l'ACP produit $p$ dimensions. Toutefois, comme les valeurs propres sont des indices de partage commun entre les variables, elle peut être utilisée de cette façon. Elle est presque toujours utiliser pour réduire la dimension d'un jeu de donnée. Il suffit d'ordonner les valeurs propres. 
 
-Ces **règles d'arrêt** sont en général un *bricolage* du statisticien pour répondre à la question. Bricolage n'est pas à prendre péjorativement, mais seulement comme rappel à la réalité que ces techniques sont souvent créées sans dérivation analytique. Il n'est pas possible de leur faire aveuglément confiance (il ne faudrait jamais faire cela de toute façon). Elles ont une pertinence pratique, mais les conditions selon lesquelles elles flanchent n'est pas connue. Il existe probablement des centaines de techniques ayant leur avantage et inconvénients ou bien des scénarios dans lesquels elles sont plus efficaces que les autres. Il en apparaît des nouvelles chaque années depuis 1950. Comme ces techniques sont des bricolages et qu'elles sont taillées différemment, elles ne résultent pas toutes à la même conclusion. Faire l'étalage de ces règles d'arrêt serait bien inutile. Ainsi, les deux techniques les plus utilisées seront présentées, l'analyse parallèle (*parallel analysis*) et une deuxième méthode ayant montré un excellent rendement sera présentée, soit le test séquentiel de la prochaine valeur propre (*Next eigenvalue sequence test*).
+La question devient alors à savoir combien de dimensions faut-il retenir pour rendre adéquatement compte des données? Dès lors, l'ACP devient une technique de réduction des dimension, comme [l'analyse factorielle exploire][Explorer], mais puisqu'elle ne répond pas explicitement à cette question, le statisticien use de techniques complémentaires, des **règles d'arrêts** (*stopping rules*) pour déterminer le nombre de dimensions.
+
+Ces règles d'arrêt sont en général un *bricolage* du statisticien pour répondre à la question. Bricolage n'est pas à prendre péjorativement, mais seulement comme rappel à la réalité que ces techniques sont souvent créées sans dérivation analytique. Il n'est pas possible de leur faire aveuglément confiance (il ne faudrait jamais faire cela de toute façon). Elles ont une pertinence pratique, mais les conditions selon lesquelles elles flanchent n'est pas connue. Il existe probablement des centaines de techniques ayant leur avantage et inconvénients ou bien des scénarios dans lesquels elles sont plus efficaces que les autres. Il en apparaît des nouvelles chaque années depuis 1950. Comme ces techniques sont des bricolages et qu'elles sont taillées différemment, elles ne résultent pas toutes à la même conclusion. Faire l'étalage de ces règles d'arrêt serait bien inutile. Ainsi, les deux techniques les plus utilisées seront présentées, l'analyse parallèle (*parallel analysis*) et une deuxième méthode ayant montré un excellent rendement sera présentée, soit le test séquentiel de la prochaine valeur propre (*Next eigenvalue sequence test*).
 
 ## Illustration
 
@@ -13,13 +15,15 @@ La compression d'images, en informatique, est un exemple dont il est possible d'
 La Figure \@ref(fig:Pigeon) montre un exemple de compression d'une image de pigeon^[Tirée de https://pixnio.com/fr/faune-animaux/des-oiseaux-fr/pigeons-photos/oiseau-pigeon-tumbler-pigeon-mouche-animal-animal, License CC0]. Elle montre à différents niveaux factoriels de compression la même image. À trois dimensions, le pigeon est difficilement perceptible. Progressivement, le pigeon est plus facilement reconnaissable, mais surtout, à un certain seuil (deuxième et troisième lignes de la Figure \@ref(fig:Pigeon), par exemple), l'image gagne en clarté. Trente dimensions conviennent, les plus difficiles désireront peut-être retenir 125 dimensions. L'image à ce stade est très bien. Nonobstant ces nombres, ce sera toujours mieux, en termes de compression, que les 526 dimensions possibles (de l'image original). Ainsi, à 23.764 % des dimensions, l'image est claire et le pigeon reconnaissable. Cette logique s'applique également pour les facteurs psychologiques.
 
 <div class="figure" style="text-align: center">
-<img src="image//pigeon.pdf" alt="Pigeon compressé à divers niveaux de dimension $k$" height="150%" />
+<img src="image//Pigeon.png" alt="Pigeon compressé à divers niveaux de dimension $k$" width="40%" height="40%" />
 <p class="caption">(\#fig:Pigeon)Pigeon compressé à divers niveaux de dimension $k$</p>
 </div>
 
 ## Importance d'une dimension
 
 Une technique pour connaître l'importance d'une dimension est d'afficher les valeurs propres. Les valeurs propres les plus élevées impliquent qu'elle sont les plus importantes (les premières) alors que de petites valeurs signalent les moins importantes (du bruit, des résidus, soit les dernières). Il est toutefois plus ardu de déterminer le seuil entre important et non important.
+
+La structure factorielle et le jeu de données du chapitre [Explorer] est repris afin d'illustrer le propos.
 
 
 ```r
@@ -44,19 +48,26 @@ jd <- MASS::mvrnorm(n = 50,
                     Sigma = R)
 ```
 
+Voici l'analyse en composante principale.
+
 
 ```r
+# L'ACP
 res <- eigen(cor(jd))
+
+# Les valeurs propres
+res$values
+> [1] 2.333 1.423 0.877 0.566 0.531 0.269
 ```
 
-
-
-Une façon d'illustrer les valeurs propres graphiquement est d’utiliser un graphique nommé *scree plot* ou *grahpique des éboulis*. La Figure \@ref(fig:scree) peut être produite avec la syntaxe ci-dessous. Il s'agit de mettre en axe des $x$ la séquence (`idex`) des valeurs propres (leur ordre) par rapport à la valeur propre en axe des $y$. Ce graphique se produit simplement avec `plot()`. L'option `type = "b"` est simplement un type de graphique utilisé, dans ce cas-ci, la combinaison de points et de lignes.
+Une façon d'illustrer les valeurs propres graphiquement est d’utiliser un graphique nommé *scree plot* ou *graphique des éboulis*. La Figure\ \@ref(fig:scree) peut être produite avec la syntaxe ci-dessous. Il s'agit de mettre en axe des $x$ la séquence (`idex`) des valeurs propres (leur ordre) par rapport à la valeur propre en axe des $y$. Ce graphique se produit simplement avec `plot()`. L'option `type = "b"` est simplement un type de graphique utilisé, dans ce cas-ci, la combinaison de points et de lignes.
 
 
 ```r
 plot(res$values,
-     type = "b")
+     type = "b",
+     xlab = "Ordre",
+     ylab = "Valeur propre")
 ```
 
 <div class="figure">

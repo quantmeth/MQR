@@ -306,7 +306,6 @@ eigen
 svd
 représentations-des-résultats
 les-calculs-de-lanalyse-en-composantes-principales
-le-polynôme-caractéristique
 explorer
 création-de-données-2
 première-technique

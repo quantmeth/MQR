@@ -128,7 +128,7 @@ Figure 15.1: Représentations de la régression et l’analyse factorielle
 <span class="header-section-number">15.1</span> L’analyse en composantes principales<a class="anchor" aria-label="anchor" href="#lanalyse-en-composantes-principales"><i class="fas fa-link"></i></a>
 </h2>
 <p>L’analyse en composantes principales (ACP) fait partie de la famille des analyses factorielle exploratoire. Elle consiste à réorganiser des variables corrélées (une matrice de covariance) en nouvelles variables orthogonales (décorrélées) les unes des autres. Ces nouvelles <em>variables</em> sont des composantes principales, axes principaux ou encore des dimensions. Il s’agit d’une technique à la fois géométrique et statistique dont les champs d’application vont de la psychologie, la sociologie, la biologie, la chimie et la physique quantique ou encore les mathématiques pures. Elle ne se limite donc pas qu’à la psychométrie.</p>
-<p>L’ACP prend comme base la matrice de corrélation<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Afin de simplifier le propos, seule l’analyse en composantes principales sur une matrice corrélation sera présentée.&lt;/p&gt;"><sup>20</sup></a> et la réorganisation (essentiellement une rotation géométrique) afin que les nouvelles dimensions sont indépendantes l’une de l’autre. L’ACP procure trois informations cruciales sur une matrice de corrélation, les valeurs propres, les vecteurs propres et les <em>loadings</em>`[Souvent traduit par <em>charge</em>, mais le terme loading semble plus approprié.].</p>
+<p>L’ACP prend comme base la matrice de corrélation<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Afin de simplifier le propos, seule l’analyse en composantes principales sur une matrice corrélation sera présentée.&lt;/p&gt;"><sup>20</sup></a> et la réorganisation (essentiellement une rotation géométrique) afin que les nouvelles dimensions sont indépendantes l’une de l’autre. L’ACP procure trois informations cruciales sur une matrice de corrélation, les valeurs propres, les vecteurs propres et les <em>loadings</em><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Souvent traduit par &lt;em&gt;charge&lt;/em&gt;, mais le terme loading semble plus approprié.&lt;/p&gt;"><sup>21</sup></a>.</p>
 <div id="les-valeurs-propres" class="section level3" number="15.1.1">
 <h3>
 <span class="header-section-number">15.1.1</span> Les valeurs propres<a class="anchor" aria-label="anchor" href="#les-valeurs-propres"><i class="fas fa-link"></i></a>
@@ -249,7 +249,7 @@ Figure 15.2: Présentation des données (<code>jd.acp</code>)
 <h2>
 <span class="header-section-number">15.4</span> Représentations des résultats<a class="anchor" aria-label="anchor" href="#repr%C3%A9sentations-des-r%C3%A9sultats"><i class="fas fa-link"></i></a>
 </h2>
-<p>La Figure <a href="d%C3%A9composer.html#fig:acpsuj">15.3</a> montre à gauche les données originales sur les axes représentées par les deux variables (une reprise de la Figure <a href="d%C3%A9composer.html#fig:plotacp">15.2</a>). À droite, il s’agit de la rotation trouvée par l’ACP (<code><a href="https://rdrr.io/r/base/eigen.html">eigen()</a></code> ou <code><a href="https://rdrr.io/r/base/svd.html">svd()</a></code>). Les participants conservent entre eux les mêmes distances par rapport aux autres, mais aussi par rapport aux axes originaux représentées par des lignes pointillées. C’est vraiment l’orientation du plan qui change<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Tout problème de distance, s’il y a lieu, est dû à l’échelle des figures.&lt;/p&gt;"><sup>21</sup></a>.</p>
+<p>La Figure <a href="d%C3%A9composer.html#fig:acpsuj">15.3</a> montre à gauche les données originales sur les axes représentées par les deux variables (une reprise de la Figure <a href="d%C3%A9composer.html#fig:plotacp">15.2</a>). À droite, il s’agit de la rotation trouvée par l’ACP (<code><a href="https://rdrr.io/r/base/eigen.html">eigen()</a></code> ou <code><a href="https://rdrr.io/r/base/svd.html">svd()</a></code>). Les participants conservent entre eux les mêmes distances par rapport aux autres, mais aussi par rapport aux axes originaux représentées par des lignes pointillées. C’est vraiment l’orientation du plan qui change<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Tout problème de distance, s’il y a lieu, est dû à l’échelle des figures.&lt;/p&gt;"><sup>22</sup></a>.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:acpsuj"></span>
 <img src="15-Decomposer_files/figure-html/acpsuj-1.png" alt="Représentations des participants selon les variables (gauche) ou les composantes principales (droite)." width="75%" height="75%"><p class="caption">
@@ -269,11 +269,7 @@ Figure 15.4: Représentations des vraiables selon les composantes principales.
 <h2>
 <span class="header-section-number">15.5</span> Les calculs de l’analyse en composantes principales<a class="anchor" aria-label="anchor" href="#les-calculs-de-lanalyse-en-composantes-principales"><i class="fas fa-link"></i></a>
 </h2>
-<p>Il existe plusieurs techniques mathématiques pour retrouver les valeurs propres. Elles ont leur forces et avantages. Elles ont certainement tous en commun que, plus le nombre de variables augmente, plus le désir de les calculer par ordinateur est grand. Ici, une technique est présentée dans l’optique de bien vérifier qu’aucun sortilège computationnel n’opère derrière le logiciel<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Et non de rendre le lecteur un expert en algèbre matricielle.&lt;/p&gt;"><sup>22</sup></a>.</p>
-<div id="le-polynôme-caractéristique" class="section level3" number="15.5.1">
-<h3>
-<span class="header-section-number">15.5.1</span> Le polynôme caractéristique<a class="anchor" aria-label="anchor" href="#le-polyn%C3%B4me-caract%C3%A9ristique"><i class="fas fa-link"></i></a>
-</h3>
+<p>Il existe plusieurs techniques mathématiques pour retrouver les valeurs propres. Elles ont leur forces et avantages. Elles ont certainement tous en commun que, plus le nombre de variables augmente, plus le désir de les calculer par ordinateur est grand. Ici, une technique est présentée dans l’optique de bien vérifier qu’aucun sortilège computationnel n’opère derrière le logiciel<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Et non de rendre le lecteur un expert en algèbre matricielle.&lt;/p&gt;"><sup>23</sup></a>.</p>
 <p>L’objectif du polynôme caractéristique est de retrouver tous les inconnus, <span class="math inline">\(\lambda\)</span> (les valeurs propres), de l’équation <a href="d%C3%A9composer.html#eq:polnom">(15.2)</a></p>
 <p><span class="math display" id="eq:polnom">\[\begin{equation}
 |\mathbf{S} - \lambda \mathbf{I}| = 0
@@ -327,7 +323,7 @@ Figure 15.4: Représentations des vraiables selon les composantes principales.
 \right)
 \right| = 0
 \]</span></p>
-<p>Le polynôme caractéristique est retrouvé en calculant le déterminant de la matrice, soit le produit de la diagonale moins le produit des valeurs hors diagonale<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Dans le cas d’une matrice &lt;span class="math inline"&gt;\(2 \times 2\)&lt;/span&gt;. C’est beaucoup compliqué pour de plus grande matrice.&lt;/p&gt;'><sup>23</sup></a>,</p>
+<p>Le polynôme caractéristique est retrouvé en calculant le déterminant de la matrice, soit le produit de la diagonale moins le produit des valeurs hors diagonale<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Dans le cas d’une matrice &lt;span class="math inline"&gt;\(2 \times 2\)&lt;/span&gt;. C’est beaucoup compliqué pour de plus grande matrice.&lt;/p&gt;'><sup>24</sup></a>,</p>
 <p><span class="math display">\[
 (1-\lambda)(1-\lambda) - (.8)(.8) = 0
 \]</span></p>
@@ -348,7 +344,7 @@ a\lambda^2+b\lambda+c=0 \implies \lambda=\frac{-b \pm \sqrt{b^2-4ac}}{2a}
 Figure 15.5: L’équation du polynôme caractéristique
 </p>
 </div>
-<p>Cela fait beaucoup de mathématiques. Est-il possible d’y arriver plus simplement avec <strong>R</strong>? Le package <code>pracma</code> <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-pracma" role="doc-biblioref">Borchers, 2022</a>)</span> offre une fonction <code>charpoly()</code> qui permet de trouver le polynôme caractéristique d’une matrice. <strong>R</strong> de base a aussi une fonction permettant de résoudre des polynômes, <code><a href="https://rdrr.io/r/base/polyroot.html">polyroot()</a></code>. Avec ces deux fonctions, il est possible de refaire toute la présente section. Il faut toutefois noter que les coefficients polynomiaux donnés par <code>charpoly()</code> doivent être inversés pour <code><a href="https://rdrr.io/r/base/polyroot.html">polyroot()</a></code>. À noter l’ajout de la fonction<code><a href="https://rdrr.io/r/base/complex.html">Re()</a></code> assure que les valeurs propres sont ne nombre réels et non imaginaire. Par convention, les valeurs propres sont ordonnées de façon décroissantes, bien qu’elle n’est originalement pas d’ordre particulier.</p>
+<p>Cela fait beaucoup de mathématiques. Est-il possible d’y arriver plus simplement avec <strong>R</strong>? Le package <code>pracma</code> <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-pracma" role="doc-biblioref">Borchers, 2022</a>)</span> offre une fonction <code>charpoly()</code> qui permet de trouver le polynôme caractéristique d’une matrice. <strong>R</strong> de base a aussi une fonction permettant de résoudre des polynômes, <code><a href="https://rdrr.io/r/base/polyroot.html">polyroot()</a></code>. Avec ces deux fonctions, il est possible de refaire toute la présente section. Il faut toutefois noter que les coefficients polynomiaux donnés par <code>charpoly()</code> doivent être inversés pour <code><a href="https://rdrr.io/r/base/polyroot.html">polyroot()</a></code>. À noter, l’ajout de la fonction<code><a href="https://rdrr.io/r/base/complex.html">Re()</a></code> assure que les valeurs propres sont ne nombre réels et non imaginaires. Par convention, les valeurs propres sont ordonnées de façon décroissantes, bien qu’elle n’est originalement pas d’ordre particulier.</p>
 <div class="sourceCode" id="cb217"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Trouver les coefficients polynomiaux</span>
 <span class="va">coef.poly</span> <span class="op">&lt;-</span> <span class="fu">pracma</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pracma/man/charpoly.html">charpoly</a></span><span class="op">(</span><span class="va">S</span><span class="op">)</span>
@@ -367,17 +363,95 @@ Figure 15.5: L’équation du polynôme caractéristique
 \left(\mathbf{S} - \lambda_i \mathbf{I} \right) v_i= 0
 \tag{15.5}
 \end{equation}\]</span></p>
-<p>soit</p>
-Ce système d’équation est toujours indéterminé. Pour le résoudre, la solution est de fixer arbitrairement à l’un des éléments de <span class="math inline">\(\mathbf{V}\)</span>, comme <span class="math inline">\(v_{11} = v_{12} = 1\)</span>
+<p>soit pour <span class="math inline">\(\lambda = 1.8\)</span> :</p>
+<p><span class="math display">\[\left[ \left(
+\begin{array}{cc}
+1 &amp; .8 \\
+.8 &amp; 1
+\end{array}
+\right)
+- 1.8 \left(\begin{array}{cc}
+1 &amp; 0 \\
+0 &amp; 1
+\end{array}
+\right) \right]\left[
+\begin{array}{c}
+v_{11} \\
+v_{21}
+\end{array}
+\right] = 0\]</span></p>
+<p>puis</p>
+<p><span class="math display">\[\left[ \left(
+\begin{array}{cc}
+-.8 &amp; .8 \\
+.8 &amp; -.8
+\end{array}
+\right)
+\right]\left[
+\begin{array}{c}
+v_{11} \\
+v_{21}
+\end{array}
+\right] = 0\]</span></p>
+<p><span class="math display">\[\begin{aligned}
+-.8v_{11} + .8 v_{21}=0 \\
+.8v_{11} - .8 v_{21}=0
+\end{aligned}\]</span></p>
+<p>et de la même façon pour <span class="math inline">\(\lambda = .2\)</span> :</p>
+<p><span class="math display">\[\left[ \left(
+\begin{array}{cc}
+1 &amp; .8 \\
+.8 &amp; 1
+\end{array}
+\right)
+- .2 \left(\begin{array}{cc}
+1 &amp; 0 \\
+0 &amp; 1
+\end{array}
+\right) \right]\left[
+\begin{array}{c}
+v_{11} \\
+v_{21}
+\end{array}
+\right] = 0\]</span></p>
+<p>se simplifie en</p>
+<p><span class="math display">\[\left[ \left(
+\begin{array}{cc}
+.8 &amp; .8 \\
+.8 &amp; .8
+\end{array}
+\right)
+\right]\left[
+\begin{array}{c}
+v_{12} \\
+v_{22}
+\end{array}
+\right] = 0\]</span></p>
+<p>pour donner sous forme linéaire.</p>
+<p><span class="math display">\[\begin{aligned}
+.8v_{12} + .8 v_{22}=0\\
+.8v_{12} + .8 v_{22}=0
+\end{aligned}\]</span></p>
+<p>Ces système d’équation est toujours indéterminé. Pour le résoudre, la solution est de fixer arbitrairement à l’un des éléments de <span class="math inline">\(\mathbf{V}\)</span>, comme <span class="math inline">\(v_{11} = v_{12} = 1\)</span>.</p>
+<p>Pour <span class="math inline">\(v_{11} = 1\)</span>, cela donne
+<span class="math display">\[\begin{aligned}
+-.8(1)+.8v_{21} = 0\\
+-.8 + .8v_{21} = 0\\
+v_{21} = 1
+\end{aligned}\]</span></p>
+<p>et pour <span class="math inline">\(v_{12} = 1\)</span> :</p>
+<p><span class="math display">\[\begin{aligned}
+.8(1)+.8v_{22} = 0\\
+.8+ .8v_{22} = 0\\
+v_{22} = -1
+\end{aligned}\]</span></p>
 <p>Ainsi, la matrice <span class="math inline">\(\mathbf{V}\)</span> est</p>
-<p><span class="math display">\[
-\mathbf{V} = \left[
+<p><span class="math display">\[\mathbf{V} = \left[
 \begin{array}{cc}
 1 &amp; 1 \\
 1 &amp; -1
-\end{array} \right]
-\]</span>
-Il ne reste qu’à normaliser les colonnes (vecteurs) pour que leur longueur soit l’unité. Pour ce faire, il faut diviser chaque élément du vecteur et le diviser par racine carré de la somme des carrés des éléments du vecteur.</p>
+\end{array} \right]\]</span></p>
+<p>Il ne reste qu’à normaliser les colonnes (vecteurs) pour que leur longueur soit l’unité<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;La somme des carrés des éléments du vecteur égale 1&lt;/p&gt;"><sup>25</sup></a>. Pour ce faire, il faut diviser chaque élément du vecteur et le diviser par racine carré de la somme des carrés des éléments du vecteur.</p>
 <p><span class="math display">\[
 \mathbf{V_{ij}} = \frac{v_{ij}}{ \sqrt{\sum_{i = 1}^p v_{i}}}
 \]</span>
@@ -390,9 +464,9 @@ ce qui donne</p>
 \end{array} \right]
 \]</span>
 Les résultats sont reproduits.</p>
-<p>Pour un grand nombre de variables, il est préférable d’utiliser une fonction d’optimisation. La logique demeure similaire. En fixant un élément du vecteur propre, la fonction tente de trouver la meilleur solution pour résoudre l’équation <a href="d%C3%A9composer.html#eq:vec11">(15.5)</a>.</p>
+<p>Pour un grand nombre de variables, il est préférable d’utiliser une fonction d’optimisation. La logique demeure similaire. En fixant un élément du vecteur propre, la fonction tente de trouver la meilleur solution pour résoudre l’équation <a href="d%C3%A9composer.html#eq:vec11">(15.5)</a>. Comme ces valeurs dépendent entièrement de la valeur fixée (qui peut être n’importe quelle valeur pour n’importe quel élément du vecteur), cela justifie la normalisation à la dernière étape.</p>
 <p>Pour ce faire, à chaque vecteur propre, la fonction reçoit la valeur propre associée, la matrice de corrélation et une série d’estimateur (le vecteur propre) à trouver.</p>
-<p>La fonction maison <code>cherche.vecteur()</code> calcule la sommes (<code><a href="https://rdrr.io/r/base/sum.html">sum()</a></code> des écart absolus (<code><a href="https://rdrr.io/r/base/MathFun.html">abs()</a></code>) entre les estimateurs et la valeur cible de 0 de l’équation <a href="d%C3%A9composer.html#eq:vec11">(15.5)</a>. La fonction <strong>R</strong> <code><a href="https://rdrr.io/r/stats/optim.html">optim()</a></code>, prend cette fonction et tente de minimiser les distances, c’est-à-dire d’arriver au résultats de 0 en variant les estimateurs. Noter comment un estimateur est déjà fixé à 1 dans <code>matrix(c(1, est))</code> qui correspond à <span class="math inline">\(v_j\)</span> où <span class="math inline">\(v_{1j}=1\)</span>. La fonction <code><a href="https://rdrr.io/r/stats/optim.html">optim()</a></code> prend un argument d’estimateur <code>par</code>, les paramètres à trouver et <code>fn</code> la fonction à optimiser et une méthode d’optimisation appropriée, <code>method = "BDGS</code> dans ce cas-ci. Les deux autres arguments sont pour la fonction à optimiser <code>cherche.vecteur()</code>, soit la matrice de covariance et la valeur propre.</p>
+<p>La fonction maison <code>cherche.vecteur()</code> calcule la somme (<code><a href="https://rdrr.io/r/base/sum.html">sum()</a></code> des écarts absolus (<code><a href="https://rdrr.io/r/base/MathFun.html">abs()</a></code>) entre les estimateurs et la valeur cible de 0 de l’équation <a href="d%C3%A9composer.html#eq:vec11">(15.5)</a>. La fonction <strong>R</strong> <code><a href="https://rdrr.io/r/stats/optim.html">optim()</a></code>, prend cette fonction et tente de minimiser les distances, c’est-à-dire d’arriver au résultats de 0 en variant les estimateurs. Noter comment un estimateur est déjà fixé à 1 dans <code>matrix(c(1, est))</code> qui correspond à <span class="math inline">\(v_j\)</span> où <span class="math inline">\(v_{1j}=1\)</span>. La fonction <code><a href="https://rdrr.io/r/stats/optim.html">optim()</a></code> prend un argument d’estimateur <code>par</code>, les paramètres à trouver et <code>fn</code> la fonction à optimiser et une méthode d’optimisation appropriée, <code>method = "BDGS</code> dans ce cas-ci. Les deux autres arguments sont pour la fonction à optimiser <code>cherche.vecteur()</code>, soit la matrice de covariance et la valeur propre.</p>
 <div class="sourceCode" id="cb218"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Fonction à optimiser</span>
 <span class="va">cherche.vecteur</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">est</span>, <span class="va">Ep</span>, <span class="va">M</span><span class="op">)</span> <span class="op">{</span>
@@ -482,7 +556,6 @@ Les résultats sont reproduits.</p>
 
 </div>
 </div>
-</div>
 
   <div class="chapter-nav">
 <div class="prev"><a href="exercice-lineaire.html">Exercices</a></div>
@@ -506,9 +579,7 @@ Les résultats sont reproduits.</p>
 </ul>
 </li>
 <li><a class="nav-link" href="#repr%C3%A9sentations-des-r%C3%A9sultats"><span class="header-section-number">15.4</span> Représentations des résultats</a></li>
-<li>
-<a class="nav-link" href="#les-calculs-de-lanalyse-en-composantes-principales"><span class="header-section-number">15.5</span> Les calculs de l’analyse en composantes principales</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#le-polyn%C3%B4me-caract%C3%A9ristique"><span class="header-section-number">15.5.1</span> Le polynôme caractéristique</a></li></ul>
-</li>
+<li><a class="nav-link" href="#les-calculs-de-lanalyse-en-composantes-principales"><span class="header-section-number">15.5</span> Les calculs de l’analyse en composantes principales</a></li>
 </ul>
 
       <div class="book-extra">
@@ -526,7 +597,7 @@ Les résultats sont reproduits.</p>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-08-29.</p>
+    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-08-30.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

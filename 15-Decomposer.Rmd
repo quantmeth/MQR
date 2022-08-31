@@ -23,7 +23,7 @@ Dans ce livre, deux types d'analyse factorielle sont abordées : l'**analyse en 
 
 L'analyse en composantes principales (ACP) fait partie de la famille des analyses factorielle exploratoire. Elle consiste à réorganiser des variables corrélées (une matrice de covariance) en nouvelles variables orthogonales (décorrélées) les unes des autres. Ces nouvelles *variables* sont des composantes principales, axes principaux ou encore des dimensions. Il s'agit d'une technique à la fois géométrique et statistique dont les champs d'application vont de la psychologie, la sociologie, la biologie, la chimie et la physique quantique ou encore les mathématiques pures. Elle ne se limite donc pas qu'à la psychométrie.
 
-L'ACP prend comme base la matrice de corrélation^[Afin de simplifier le propos, seule l'analyse en composantes principales sur une matrice corrélation sera présentée.] et la réorganisation (essentiellement une rotation géométrique) afin que les nouvelles dimensions sont indépendantes l'une de l'autre. L'ACP procure trois informations cruciales sur une matrice de corrélation, les valeurs propres, les vecteurs propres et les *loadings*`[Souvent traduit par *charge*, mais le terme loading semble plus approprié.].
+L'ACP prend comme base la matrice de corrélation^[Afin de simplifier le propos, seule l'analyse en composantes principales sur une matrice corrélation sera présentée.] et la réorganisation (essentiellement une rotation géométrique) afin que les nouvelles dimensions sont indépendantes l'une de l'autre. L'ACP procure trois informations cruciales sur une matrice de corrélation, les valeurs propres, les vecteurs propres et les *loadings*^[Souvent traduit par *charge*, mais le terme loading semble plus approprié.].
 
 ### Les valeurs propres
 
@@ -178,8 +178,6 @@ text(x = ld[2,1]-.1, y = ld[2,2]+.15, labels = "Variable 2")
 
 Il existe plusieurs techniques mathématiques pour retrouver les valeurs propres. Elles ont leur forces et avantages. Elles ont certainement tous en commun que, plus le nombre de variables augmente, plus le désir de les calculer par ordinateur est grand. Ici, une technique est présentée dans l'optique de bien vérifier qu'aucun sortilège computationnel n'opère derrière le logiciel^[Et non de rendre le lecteur un expert en algèbre matricielle.]. 
 
-### Le polynôme caractéristique
-
 L'objectif du polynôme caractéristique est de retrouver tous les inconnus, $\lambda$ (les valeurs propres), de l'équation\ \@ref(eq:polnom) 
 
 \begin{equation}
@@ -277,7 +275,7 @@ text(x = .3, y = .1, labels=expression(paste(lambda[2]," = .2")))
 text(x = 1.7, y = .1, labels=expression(paste(lambda[1]," = 1.8")))
 ```
 
-Cela fait beaucoup de mathématiques. Est-il possible d'y arriver plus simplement avec **R**? Le package `pracma` [@pracma] offre une fonction `charpoly()` qui permet de trouver le polynôme caractéristique d'une matrice. **R** de base a aussi une fonction permettant de résoudre des polynômes, `polyroot()`. Avec ces deux fonctions, il est possible de refaire toute la présente section. Il faut toutefois noter que les coefficients polynomiaux donnés par `charpoly()` doivent être inversés pour `polyroot()`. À noter l'ajout de la fonction`Re()` assure que les valeurs propres sont ne nombre réels et non imaginaire. Par convention, les valeurs propres sont ordonnées de façon décroissantes, bien qu'elle n'est originalement pas d'ordre particulier.
+Cela fait beaucoup de mathématiques. Est-il possible d'y arriver plus simplement avec **R**? Le package `pracma` [@pracma] offre une fonction `charpoly()` qui permet de trouver le polynôme caractéristique d'une matrice. **R** de base a aussi une fonction permettant de résoudre des polynômes, `polyroot()`. Avec ces deux fonctions, il est possible de refaire toute la présente section. Il faut toutefois noter que les coefficients polynomiaux donnés par `charpoly()` doivent être inversés pour `polyroot()`. À noter, l'ajout de la fonction`Re()` assure que les valeurs propres sont ne nombre réels et non imaginaires. Par convention, les valeurs propres sont ordonnées de façon décroissantes, bien qu'elle n'est originalement pas d'ordre particulier.
 
 ```{r, eval = FALSE}
 # Trouver les coefficients polynomiaux
@@ -302,13 +300,9 @@ L'objectif est de trouver pour chaque valeur propre la solution de l'équation\ 
 (\#eq:vec11)
 \end{equation}
 
-soit
+soit pour $\lambda = 1.8$ :
 
-\begin{center}
-\begin{tabular}{c | c}
-$\lambda = 1.8$ & $\lambda = .2$ \\
-& \\
-$\left[ \left(
+$$\left[ \left(
 \begin{array}{cc}
 1 & .8 \\
 .8 & 1
@@ -323,8 +317,31 @@ $\left[ \left(
 v_{11} \\
 v_{21}
 \end{array} 
-\right] = 0 $ & $
-\left[ \left(
+\right] = 0$$
+
+puis
+ 
+$$\left[ \left(
+\begin{array}{cc}
+-.8 & .8 \\
+.8 & -.8
+\end{array} 
+\right)
+\right]\left[
+\begin{array}{c}
+v_{11} \\
+v_{21}
+\end{array} 
+\right] = 0$$
+
+$$\begin{aligned}
+-.8v_{11} + .8 v_{21}=0 \\
+.8v_{11} - .8 v_{21}=0 
+\end{aligned}$$
+
+et de la même façon pour $\lambda = .2$ :
+
+$$\left[ \left(
 \begin{array}{cc}
 1 & .8 \\
 .8 & 1
@@ -336,27 +353,17 @@ v_{21}
 \end{array} 
 \right) \right]\left[
 \begin{array}{c}
-v_{12} \\
-v_{22}
-\end{array} 
-\right] = 0$ \\
- & \\
- $\left[ \left(
-\begin{array}{cc}
--.8 & .8 \\
-.8 & -.8
-\end{array} 
-\right)
-\right]\left[
-\begin{array}{c}
 v_{11} \\
 v_{21}
 \end{array} 
-\right] = 0 $ & $
-\left[ \left(
+\right] = 0$$
+
+se simplifie en
+
+$$\left[ \left(
 \begin{array}{cc}
-.2 & .8 \\
-.8 & .2
+.8 & .8 \\
+.8 & .8
 \end{array} 
 \right)
 \right]\left[
@@ -364,47 +371,41 @@ v_{21}
 v_{12} \\
 v_{22}
 \end{array} 
-\right] = 0$\\
- & \\
-$\begin{aligned}
--.8v_{11} + .8 v_{21}=0 \\
-.8v_{11} - .8 v_{21}=0 
-\end{aligned}$ & 
-$\begin{aligned}
+\right] = 0$$
+
+pour donner sous forme linéaire.
+
+$$\begin{aligned}
 .8v_{12} + .8 v_{22}=0\\
  .8v_{12} + .8 v_{22}=0
-\end{aligned}$ 
-\end{tabular}
-\end{center}
+\end{aligned}$$
 
-Ce système d'équation est toujours indéterminé. Pour le résoudre, la solution est de fixer arbitrairement à l'un des éléments de $\mathbf{V}$, comme $v_{11} = v_{12} = 1$ 
-\begin{center}
-\begin{tabular}{l | r}
-$\begin{aligned}
-v_{11} = 1 \\
+Ces système d'équation est toujours indéterminé. Pour le résoudre, la solution est de fixer arbitrairement à l'un des éléments de $\mathbf{V}$, comme $v_{11} = v_{12} = 1$. 
+
+Pour $v_{11} = 1$, cela donne
+$$\begin{aligned}
 -.8(1)+.8v_{21} = 0\\
 -.8 + .8v_{21} = 0\\
 v_{21} = 1
-\end{aligned}$ &
-$\begin{aligned}
-v_{12} = 1 \\
+\end{aligned}$$
+
+et pour $v_{12} = 1$ :
+
+$$\begin{aligned}
 .8(1)+.8v_{22} = 0\\
 .8+ .8v_{22} = 0\\
 v_{22} = -1
-\end{aligned}$
-\end{tabular}
-\end{center}
+\end{aligned}$$
 
 Ainsi, la matrice $\mathbf{V}$ est
 
-$$
-\mathbf{V} = \left[
+$$\mathbf{V} = \left[
 \begin{array}{cc}
 1 & 1 \\
 1 & -1
-\end{array} \right]
-$$
-Il ne reste qu'à normaliser les colonnes (vecteurs) pour que leur longueur soit l'unité. Pour ce faire, il faut diviser chaque élément du vecteur et le diviser par racine carré de la somme des carrés des éléments du vecteur. 
+\end{array} \right]$$
+
+Il ne reste qu'à normaliser les colonnes (vecteurs) pour que leur longueur soit l'unité^[La somme des carrés des éléments du vecteur égale 1]. Pour ce faire, il faut diviser chaque élément du vecteur et le diviser par racine carré de la somme des carrés des éléments du vecteur. 
 
 $$
 \mathbf{V_{ij}} = \frac{v_{ij}}{ \sqrt{\sum_{i = 1}^p v_{i}}}
@@ -420,11 +421,11 @@ $$
 $$
 Les résultats sont reproduits.
 
-Pour un grand nombre de variables, il est préférable d'utiliser une fonction d'optimisation. La logique demeure similaire. En fixant un élément du vecteur propre, la fonction tente de trouver la meilleur solution pour résoudre l'équation\ \@ref(eq:vec11).
+Pour un grand nombre de variables, il est préférable d'utiliser une fonction d'optimisation. La logique demeure similaire. En fixant un élément du vecteur propre, la fonction tente de trouver la meilleur solution pour résoudre l'équation\ \@ref(eq:vec11). Comme ces valeurs dépendent entièrement de la valeur fixée (qui peut être n'importe quelle valeur pour n'importe quel élément du vecteur), cela justifie la normalisation à la dernière étape.
 
 Pour ce faire, à chaque vecteur propre, la fonction reçoit la valeur propre associée, la matrice de corrélation et une série d'estimateur (le vecteur propre) à trouver.
 
-La fonction maison `cherche.vecteur()` calcule la sommes (`sum()` des écart absolus (`abs()`) entre les estimateurs et la valeur cible de 0 de l'équation\ \@ref(eq:vec11). La fonction **R** `optim()`, prend cette fonction et tente de minimiser les distances, c'est-à-dire d'arriver au résultats de 0 en variant les estimateurs. Noter comment un estimateur est déjà fixé à 1 dans `matrix(c(1, est))` qui correspond à $v_j$ où $v_{1j}=1$. La fonction `optim()` prend un argument d'estimateur `par`, les paramètres à trouver et `fn` la fonction à optimiser et une méthode d'optimisation appropriée, `method = "BDGS` dans ce cas-ci. Les deux autres arguments sont pour la fonction à optimiser `cherche.vecteur()`, soit la matrice de covariance et la valeur propre.
+La fonction maison `cherche.vecteur()` calcule la somme (`sum()` des écarts absolus (`abs()`) entre les estimateurs et la valeur cible de 0 de l'équation\ \@ref(eq:vec11). La fonction **R** `optim()`, prend cette fonction et tente de minimiser les distances, c'est-à-dire d'arriver au résultats de 0 en variant les estimateurs. Noter comment un estimateur est déjà fixé à 1 dans `matrix(c(1, est))` qui correspond à $v_j$ où $v_{1j}=1$. La fonction `optim()` prend un argument d'estimateur `par`, les paramètres à trouver et `fn` la fonction à optimiser et une méthode d'optimisation appropriée, `method = "BDGS` dans ce cas-ci. Les deux autres arguments sont pour la fonction à optimiser `cherche.vecteur()`, soit la matrice de covariance et la valeur propre.
 
 ```{r, eval = FALSE}
 # Fonction à optimiser
@@ -506,7 +507,6 @@ acp.maison(S)
 Les résultats sont virtuellement identiques.
 
 <!-- ### Décomposition QR -->
-
 
 ```{r, echo = FALSE, eval = FALSE}
 A = .5 * (A + t(A))
