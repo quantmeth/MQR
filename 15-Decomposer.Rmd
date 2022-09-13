@@ -380,7 +380,7 @@ $$\begin{aligned}
  .8v_{12} + .8 v_{22}=0
 \end{aligned}$$
 
-Ces système d'équation est toujours indéterminé. Pour le résoudre, la solution est de fixer arbitrairement à l'un des éléments de $\mathbf{V}$, comme $v_{11} = v_{12} = 1$. 
+Ces systèmes d'équations sont toujours indéterminés. Pour les résoudre, la solution est de fixer arbitrairement, pour chaque colonne, un des éléments de $\mathbf{V}$, comme $v_{11} = v_{12} = 1$. 
 
 Pour $v_{11} = 1$, cela donne
 $$\begin{aligned}

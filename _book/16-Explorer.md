@@ -16,8 +16,8 @@ La Figure \@ref(fig:FactStruct) illustre un exemple de modèle. Les rectangles s
 
 
 <div class="figure" style="text-align: center">
-<img src="image//factstruct.png" alt="Structure Factorielle" width="50%" height="50%" />
-<p class="caption">(\#fig:FactStruct)Structure Factorielle</p>
+<img src="image//factstruct.png" alt="Structure factorielle" width="50%" height="50%" />
+<p class="caption">(\#fig:FactStruct)Structure factorielle</p>
 </div>
 
 La syntaxe ci-dessous reconstruit le modèle de la Figure \@ref(fig:FactStruct). La variable `phi` pour $\Phi$ contient les loadings des deux composantes pour créer les six variables. Les lignes (les variables) sont identifiées par `i` et les colonnes (les facteurs) sont identifiées par `F`.

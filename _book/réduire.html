@@ -99,6 +99,8 @@
 <li><a class="" href="d%C3%A9composer.html"><span class="header-section-number">15</span> Décomposer</a></li>
 <li><a class="" href="explorer.html"><span class="header-section-number">16</span> Explorer</a></li>
 <li><a class="active" href="r%C3%A9duire.html"><span class="header-section-number">17</span> Réduire</a></li>
+<li class="book-part">Annexes</li>
+<li><a class="" href="solutions.html">Solutions</a></li>
 <li><a class="" href="r%C3%A9f%C3%A9rences.html">Références</a></li>
 </ul>
 
@@ -111,9 +113,7 @@
 <h1>
 <span class="header-section-number"> 17</span> Réduire<a class="anchor" aria-label="anchor" href="#r%C3%A9duire"><i class="fas fa-link"></i></a>
 </h1>
-<p>Comme mentionné d’entrée de jeu, l’analyse en composantes principales (ACP) n’est pas une technique de réduction des dimensions. S’il y a <span class="math inline">\(p\)</span> variables, l’ACP produit <span class="math inline">\(p\)</span> dimensions. Toutefois, comme les valeurs propres sont des indices de partage commun entre les variables, elle peut être utilisée de cette façon. Elle est presque toujours utiliser pour réduire la dimension d’un jeu de donnée. Il suffit d’ordonner les valeurs propres.</p>
-<p>La question devient alors à savoir combien de dimensions faut-il retenir pour rendre adéquatement compte des données? Dès lors, l’ACP devient une technique de réduction des dimension, comme <a href="explorer.html#explorer">l’analyse factorielle exploire</a>, mais puisqu’elle ne répond pas explicitement à cette question, le statisticien use de techniques complémentaires, des <strong>règles d’arrêts</strong> (<em>stopping rules</em>) pour déterminer le nombre de dimensions.</p>
-<p>Ces règles d’arrêt sont en général un <em>bricolage</em> du statisticien pour répondre à la question. Bricolage n’est pas à prendre péjorativement, mais seulement comme rappel à la réalité que ces techniques sont souvent créées sans dérivation analytique. Il n’est pas possible de leur faire aveuglément confiance (il ne faudrait jamais faire cela de toute façon). Elles ont une pertinence pratique, mais les conditions selon lesquelles elles flanchent n’est pas connue. Il existe probablement des centaines de techniques ayant leur avantage et inconvénients ou bien des scénarios dans lesquels elles sont plus efficaces que les autres. Il en apparaît des nouvelles chaque années depuis 1950. Comme ces techniques sont des bricolages et qu’elles sont taillées différemment, elles ne résultent pas toutes à la même conclusion. Faire l’étalage de ces règles d’arrêt serait bien inutile. Ainsi, les deux techniques les plus utilisées seront présentées, l’analyse parallèle (<em>parallel analysis</em>) et une deuxième méthode ayant montré un excellent rendement sera présentée, soit le test séquentiel de la prochaine valeur propre (<em>Next eigenvalue sequence test</em>).</p>
+<p>Comme mentionné d’entrée de jeu, l’analyse en composantes principales (ACP) n’est pas une technique de réduction des dimensions. S’il y a <span class="math inline">\(p\)</span> variables, l’ACP produit <span class="math inline">\(p\)</span> dimensions. Toutefois, comme les valeurs propres sont des indices de partage commun entre les variables, elle peut être utilisée de cette façon. En fait, l’ACP est presque toujours utiliser pour réduire la dimension d’un jeu de donnée.</p>
 <div id="illustration" class="section level2" number="17.1">
 <h2>
 <span class="header-section-number">17.1</span> Illustration<a class="anchor" aria-label="anchor" href="#illustration"><i class="fas fa-link"></i></a>
@@ -123,7 +123,7 @@
 <p>La Figure <a href="r%C3%A9duire.html#fig:Pigeon">17.1</a> montre un exemple de compression d’une image de pigeon<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Tirée de &lt;a href="https://pixnio.com/fr/faune-animaux/des-oiseaux-fr/pigeons-photos/oiseau-pigeon-tumbler-pigeon-mouche-animal-animal" class="uri"&gt;https://pixnio.com/fr/faune-animaux/des-oiseaux-fr/pigeons-photos/oiseau-pigeon-tumbler-pigeon-mouche-animal-animal&lt;/a&gt;, License CC0&lt;/p&gt;'><sup>28</sup></a>. Elle montre à différents niveaux factoriels de compression la même image. À trois dimensions, le pigeon est difficilement perceptible. Progressivement, le pigeon est plus facilement reconnaissable, mais surtout, à un certain seuil (deuxième et troisième lignes de la Figure <a href="r%C3%A9duire.html#fig:Pigeon">17.1</a>, par exemple), l’image gagne en clarté. Trente dimensions conviennent, les plus difficiles désireront peut-être retenir 125 dimensions. L’image à ce stade est très bien. Nonobstant ces nombres, ce sera toujours mieux, en termes de compression, que les 526 dimensions possibles (de l’image original). Ainsi, à 23.764 % des dimensions, l’image est claire et le pigeon reconnaissable. Cette logique s’applique également pour les facteurs psychologiques.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:Pigeon"></span>
-<img src="image/Pigeon.png" alt="Pigeon compressé à divers niveaux de dimension $k$" width="40%" height="40%"><p class="caption">
+<img src="image/Pigeon.png" alt="Pigeon compressé à divers niveaux de dimension $k$" width="75%" height="75%"><p class="caption">
 Figure 17.1: Pigeon compressé à divers niveaux de dimension <span class="math inline">\(k\)</span>
 </p>
 </div>
@@ -136,16 +136,19 @@ Figure 17.1: Pigeon compressé à divers niveaux de dimension <span class="math 
 <p>La structure factorielle et le jeu de données du chapitre <a href="explorer.html#explorer">Explorer</a> est repris afin d’illustrer le propos.</p>
 <div class="sourceCode" id="cb239"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Pour la reproductibilité</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">33</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">44</span><span class="op">)</span>
 
 <span class="co"># Création de la matrice de recette de fabrication</span>
 <span class="va">phi</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.9</span>, <span class="fl">.8</span>, <span class="fl">.7</span>,  <span class="fl">0</span>,  <span class="fl">0</span>, <span class="fl">.4</span>,
-               <span class="fl">0</span>,  <span class="fl">0</span>,  <span class="fl">0</span>, <span class="fl">.6</span>, <span class="fl">.5</span>, <span class="fl">.4</span><span class="op">)</span>, 
+                <span class="fl">0</span>,  <span class="fl">0</span>,  <span class="fl">0</span>, <span class="fl">.6</span>, <span class="fl">.5</span>, <span class="fl">.4</span><span class="op">)</span>, 
              nrow <span class="op">=</span> <span class="fl">6</span>, ncol <span class="op">=</span>  <span class="fl">2</span><span class="op">)</span>
+
+<span class="co"># Nombre de variables</span>
+<span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">phi</span><span class="op">)</span>
 
 <span class="co"># Identification des variables et facteurs</span>
 <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">phi</span><span class="op">)</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"F1"</span>, <span class="st">"F2"</span><span class="op">)</span>
-<span class="fu"><a href="https://tibble.tidyverse.org/reference/rownames.html">rownames</a></span><span class="op">(</span><span class="va">phi</span><span class="op">)</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"i"</span>,<span class="fl">6</span><span class="op">)</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span>
+<span class="fu"><a href="https://tibble.tidyverse.org/reference/rownames.html">rownames</a></span><span class="op">(</span><span class="va">phi</span><span class="op">)</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"i"</span>, <span class="fl">6</span><span class="op">)</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span>
 
 <span class="va">R</span> <span class="op">=</span> <span class="va">phi</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">phi</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/diag.html">diag</a></span><span class="op">(</span><span class="va">R</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fl">1</span>
@@ -160,180 +163,401 @@ Figure 17.1: Pigeon compressé à divers niveaux de dimension <span class="math 
 <span id="cb240-3"><a href="r%C3%A9duire.html#cb240-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb240-4"><a href="r%C3%A9duire.html#cb240-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Les valeurs propres</span></span>
 <span id="cb240-5"><a href="r%C3%A9duire.html#cb240-5" aria-hidden="true" tabindex="-1"></a>res<span class="sc">$</span>values</span>
-<span id="cb240-6"><a href="r%C3%A9duire.html#cb240-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">2.333</span> <span class="fl">1.423</span> <span class="fl">0.877</span> <span class="fl">0.566</span> <span class="fl">0.531</span> <span class="fl">0.269</span></span></code></pre></div>
+<span id="cb240-6"><a href="r%C3%A9duire.html#cb240-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">2.576</span> <span class="fl">1.699</span> <span class="fl">0.771</span> <span class="fl">0.421</span> <span class="fl">0.328</span> <span class="fl">0.205</span></span></code></pre></div>
 <p>Une façon d’illustrer les valeurs propres graphiquement est d’utiliser un graphique nommé <em>scree plot</em> ou <em>graphique des éboulis</em>. La Figure <a href="r%C3%A9duire.html#fig:scree">17.2</a> peut être produite avec la syntaxe ci-dessous. Il s’agit de mettre en axe des <span class="math inline">\(x\)</span> la séquence (<code>idex</code>) des valeurs propres (leur ordre) par rapport à la valeur propre en axe des <span class="math inline">\(y\)</span>. Ce graphique se produit simplement avec <code><a href="https://rdrr.io/r/graphics/plot.default.html">plot()</a></code>. L’option <code>type = "b"</code> est simplement un type de graphique utilisé, dans ce cas-ci, la combinaison de points et de lignes.</p>
 <div class="sourceCode" id="cb241"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">res</span><span class="op">$</span><span class="va">values</span>,
-     type <span class="op">=</span> <span class="st">"b"</span>,
-     xlab <span class="op">=</span> <span class="st">"Ordre"</span>,
-     ylab <span class="op">=</span> <span class="st">"Valeur propre"</span><span class="op">)</span></code></pre></div>
-<div class="figure">
+<code class="sourceCode R"><span class="va">Position</span> <span class="op">&lt;-</span>  <span class="fl">1</span><span class="op">:</span><span class="va">p</span>
+<span class="va">vp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>Position <span class="op">=</span> <span class="va">Position</span> ,
+                 Valeurs.propres <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">res</span><span class="op">$</span><span class="va">values</span><span class="op">)</span>,
+                 Test <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"Empiriques"</span>, <span class="va">p</span><span class="op">)</span><span class="op">)</span>
+
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">vp</span>,
+       mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Position</span>, 
+                     y <span class="op">=</span> <span class="va">Valeurs.propres</span>, 
+                     color <span class="op">=</span> <span class="va">Test</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">"Valeur propre"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.8</span>, <span class="fl">0.8</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:scree"></span>
-<img src="17-Reduire_files/figure-html/scree-1.png" alt="Les valeurs propres en fonctions de la position de l'axe" width="672"><p class="caption">
+<img src="17-Reduire_files/figure-html/scree-1.png" alt="Les valeurs propres en fonctions de la position de l'axe" width="75%" height="75%"><p class="caption">
 Figure 17.2: Les valeurs propres en fonctions de la position de l’axe
 </p>
 </div>
+<p>La Figure <a href="r%C3%A9duire.html#fig:scree">17.2</a> est une bonne représentation visuelle des valeurs propres. Elle ne répond pas à laquelle question d’intérêt : combien y a-t-il de dimensions <em>importantes</em>. Elle donne toutefois une idée. Probablement 2 ou 3? La première est indubitable; la valeur propre est très élevée. Les 4<sup>e</sup>, 5<sup>e</sup> et 6<sup>e</sup> sont quant à elles très petites. Comment déterminer avec plus de rigueur le nombre de dimensions. C’est là que les règles d’arrêt entre en jeu.</p>
 </div>
-<div id="lanalyse-parallèle" class="section level2" number="17.3">
+<div id="les-règles-darrêt" class="section level2" number="17.3">
 <h2>
-<span class="header-section-number">17.3</span> L’analyse parallèle<a class="anchor" aria-label="anchor" href="#lanalyse-parall%C3%A8le"><i class="fas fa-link"></i></a>
+<span class="header-section-number">17.3</span> Les règles d’arrêt<a class="anchor" aria-label="anchor" href="#les-r%C3%A8gles-darr%C3%AAt"><i class="fas fa-link"></i></a>
 </h2>
-<p>Avant d’introduire l’analyse parallèle (PA), il est intéressant de présenter le test duquel il est inspiré, soit le <em>test de Kaiser</em> <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-Kaiser" role="doc-biblioref">Kaiser, 1960</a>)</span>. C’est le test utilisé par défaut dans certains logiciel traditionnel, malgré qu’il soit discrédité depuis plusieurs années <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-Achim20" role="doc-biblioref">Achim, 2020</a>; <a href="r%C3%A9f%C3%A9rences.html#ref-Beauducel01" role="doc-biblioref">Beauducel, 2001</a>; <a href="r%C3%A9f%C3%A9rences.html#ref-Turner98" role="doc-biblioref">Turner, 1998</a>)</span>. Ce test se fonde sur l’idée selon laquelle, si les variables ne sont pas corrélées entre elles, donc s’il n’y a pas de facteurs, les valeurs propres seront égales à 1. La logique du test est d’affirmer que, si une valeur propre est supérieure à 1, alors de l’information commune est nécessairement partagée entre deux ou plusieurs variables. Selon le test de Kaiser, le nombre de composantes à retenir correspond au nombre de valeurs propres supérieures à 1.
-Asymptotiquement parlant, si <span class="math inline">\(n \to \infty\)</span>, le test est vraie. Par contre, l’ACP capitalise sur l’erreur et en inclut accidentellement dans les premières dimensions. Conséquemment, les premiers axes seront surestimés, alors que les derniers seront sous-estimées.</p>
-<p>La solution proposée par <span class="citation">Horn (<a href="r%C3%A9f%C3%A9rences.html#ref-Horn65" role="doc-biblioref">1965</a>)</span> est alors de tenir compte de cette erreur d’échantillonnage accidentelle. Pour ce faire, il propose de rééchantillonner les valeurs propres d’un jeu de données sans aucun facteur (aucune corrélation entre les variables) et ayant les mêmes caractéristiques que le jeu de données cible (même nombre de variables et de participant). Le jeu de données cible correspond au jeu de données de l’expérimentateur. Même s’il n’y a pas de corrélation sur le plan de la population, il y aura accidentellement des corrélations dans un échantillon. Le rééchantillonnage est réitéré sur des milliers de jeu de données artificiel. À chaque fois, les valeurs propres sont enregistrées. Des moyennes en sont retirés à la toute fin. Il s’agit du critère auquel l’hypothèse nulle est rejetée. De la première à la dernière, chaque valeur propre cible est comparée à la valeur propre moyenne correspondante, si la cible est plus élevée, il s’agit d’une dimension à retenir. Dès que la cible est inférieur, le test est arrêté. Le nombre de valeurs propres supérieures aux valeurs propres artificielles correspond au nombre de dimensions à retenir.</p>
-<p>Dans la syntaxe ci-dessous, les mêmes caractéristiques que le jeu de données précédent sont utilisés, soit <span class="math inline">\(p = 6\)</span> et <span class="math inline">\(n = 5000\)</span>. À la fin, il sera possible de comparer s’il y a effectivement deux facteurs selon l’AP.</p>
-<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="r%C3%A9duire.html#cb242-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pour la reproductibilité</span></span>
-<span id="cb242-2"><a href="r%C3%A9duire.html#cb242-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1019</span>)</span>
-<span id="cb242-3"><a href="r%C3%A9duire.html#cb242-3" aria-hidden="true" tabindex="-1"></a>p <span class="ot">=</span> <span class="dv">6</span>        <span class="co"># Nombre de variables</span></span>
-<span id="cb242-4"><a href="r%C3%A9duire.html#cb242-4" aria-hidden="true" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">500</span>      <span class="co"># Nombre de participants </span></span>
-<span id="cb242-5"><a href="r%C3%A9duire.html#cb242-5" aria-hidden="true" tabindex="-1"></a>reps <span class="ot">=</span> <span class="dv">1000</span>  <span class="co"># Nombre d'itérations</span></span>
-<span id="cb242-6"><a href="r%C3%A9duire.html#cb242-6" aria-hidden="true" tabindex="-1"></a>valeurs.propres <span class="ot">=</span> <span class="fu">matrix</span>(<span class="dv">0</span>,           <span class="co"># Création d'une variable</span></span>
-<span id="cb242-7"><a href="r%C3%A9duire.html#cb242-7" aria-hidden="true" tabindex="-1"></a>                         <span class="at">nrow =</span> p,    <span class="co"># vide pour enregistrer</span></span>
-<span id="cb242-8"><a href="r%C3%A9duire.html#cb242-8" aria-hidden="true" tabindex="-1"></a>                         <span class="at">ncol =</span> reps) <span class="co"># les valeurs propres</span></span>
-<span id="cb242-9"><a href="r%C3%A9duire.html#cb242-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Création de la boucle                                        </span></span>
-<span id="cb242-10"><a href="r%C3%A9duire.html#cb242-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>reps) {</span>
-<span id="cb242-11"><a href="r%C3%A9duire.html#cb242-11" aria-hidden="true" tabindex="-1"></a>  score <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="at">n =</span> n <span class="sc">*</span> p)             <span class="co"># Création de n * p valeurs </span></span>
-<span id="cb242-12"><a href="r%C3%A9duire.html#cb242-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># aléatoires non corrélées</span></span>
-<span id="cb242-13"><a href="r%C3%A9duire.html#cb242-13" aria-hidden="true" tabindex="-1"></a>  D <span class="ot">=</span> <span class="fu">matrix</span>(score,                    <span class="co"># Formater en matrice le jeu</span></span>
-<span id="cb242-14"><a href="r%C3%A9duire.html#cb242-14" aria-hidden="true" tabindex="-1"></a>             <span class="at">nrow =</span> n, <span class="at">ncol =</span> p)       <span class="co"># de données </span></span>
-<span id="cb242-15"><a href="r%C3%A9duire.html#cb242-15" aria-hidden="true" tabindex="-1"></a>  ACP <span class="ot">=</span> <span class="fu">svd</span>(<span class="fu">cor</span>(D))                    <span class="co"># Réaliser l'ACP </span></span>
-<span id="cb242-16"><a href="r%C3%A9duire.html#cb242-16" aria-hidden="true" tabindex="-1"></a>  valeurs.propres[,i] <span class="ot">=</span> ACP<span class="sc">$</span>d          <span class="co"># Enregistrer les valeurs propres</span></span>
-<span id="cb242-17"><a href="r%C3%A9duire.html#cb242-17" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb242-18"><a href="r%C3%A9duire.html#cb242-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb242-19"><a href="r%C3%A9duire.html#cb242-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Une fois les valeurs propres obtenues,</span></span>
-<span id="cb242-20"><a href="r%C3%A9duire.html#cb242-20" aria-hidden="true" tabindex="-1"></a><span class="co"># les moyennes et quantiles sont calculables</span></span>
-<span id="cb242-21"><a href="r%C3%A9duire.html#cb242-21" aria-hidden="true" tabindex="-1"></a><span class="fu">rowMeans</span>(valeurs.propres)        <span class="co"># Une moyenne par ligne (valeur propres)</span></span>
-<span id="cb242-22"><a href="r%C3%A9duire.html#cb242-22" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">1.150</span> <span class="fl">1.077</span> <span class="fl">1.022</span> <span class="fl">0.973</span> <span class="fl">0.920</span> <span class="fl">0.858</span></span>
-<span id="cb242-23"><a href="r%C3%A9duire.html#cb242-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb242-24"><a href="r%C3%A9duire.html#cb242-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Ou si le 95e percentile était préféré</span></span>
-<span id="cb242-25"><a href="r%C3%A9duire.html#cb242-25" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(<span class="at">X =</span> valeurs.propres, </span>
-<span id="cb242-26"><a href="r%C3%A9duire.html#cb242-26" aria-hidden="true" tabindex="-1"></a>      <span class="at">FUN =</span> quantile,</span>
-<span id="cb242-27"><a href="r%C3%A9duire.html#cb242-27" aria-hidden="true" tabindex="-1"></a>      <span class="at">MARGIN =</span> <span class="dv">1</span>,</span>
-<span id="cb242-28"><a href="r%C3%A9duire.html#cb242-28" aria-hidden="true" tabindex="-1"></a>      <span class="at">probs =</span> .<span class="dv">95</span>)</span>
-<span id="cb242-29"><a href="r%C3%A9duire.html#cb242-29" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">1.211</span> <span class="fl">1.118</span> <span class="fl">1.056</span> <span class="fl">1.004</span> <span class="fl">0.957</span> <span class="fl">0.904</span></span></code></pre></div>
-<p>Pour connaître le nombre de dimension, il suffit de tester les valeurs propres empiriques et les comparer aux valeurs propres simulées (moyenne ou 95<sup>e</sup> percentile). Le nombre de valeur propre empirique supérieur aux valeurs propres simulés correspond au nombre de composantes à retenir.</p>
-<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="r%C3%A9duire.html#cb243-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Les valeurs propres empiriques</span></span>
-<span id="cb243-2"><a href="r%C3%A9duire.html#cb243-2" aria-hidden="true" tabindex="-1"></a>res<span class="sc">$</span>values</span>
-<span id="cb243-3"><a href="r%C3%A9duire.html#cb243-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">2.333</span> <span class="fl">1.423</span> <span class="fl">0.877</span> <span class="fl">0.566</span> <span class="fl">0.531</span> <span class="fl">0.269</span></span>
-<span id="cb243-4"><a href="r%C3%A9duire.html#cb243-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb243-5"><a href="r%C3%A9duire.html#cb243-5" aria-hidden="true" tabindex="-1"></a><span class="co"># La moyenne des valeurs propres simulées</span></span>
-<span id="cb243-6"><a href="r%C3%A9duire.html#cb243-6" aria-hidden="true" tabindex="-1"></a><span class="fu">rowMeans</span>(valeurs.propres)</span>
-<span id="cb243-7"><a href="r%C3%A9duire.html#cb243-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">1.150</span> <span class="fl">1.077</span> <span class="fl">1.022</span> <span class="fl">0.973</span> <span class="fl">0.920</span> <span class="fl">0.858</span></span>
-<span id="cb243-8"><a href="r%C3%A9duire.html#cb243-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb243-9"><a href="r%C3%A9duire.html#cb243-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Nombre de valeurs propres empiriques supérieures aux simulées</span></span>
-<span id="cb243-10"><a href="r%C3%A9duire.html#cb243-10" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(res<span class="sc">$</span>values <span class="sc">&gt;</span> <span class="fu">rowMeans</span>(valeurs.propres))</span>
-<span id="cb243-11"><a href="r%C3%A9duire.html#cb243-11" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">2</span></span></code></pre></div>
-<p>Ainsi, 2 facteurs sont à retenir. Une façon d’illustrer les résultats de l’analyse parallèle est d’utiliser le graphique de éboulis en y représentant les valeurs propres empiriques comparativement aux simulées. Le nombre de valeurs propres empiriques supérieures aux simulées est le nombre de dimensions à retenir. Ce graphique est produit à la Figure <a href="r%C3%A9duire.html#fig:scree2">17.3</a>. Voici la syntaxe pour produire ce graphique avec <code>ggplot2</code>. La première étape est de mettre en commun les résultats obtenus dans un jeu de données. La variable <code>Index</code> indique l’index de la valeur propres, <code>valeurs.propres</code> contient les valeurs propres et <code>Type</code> indique s’il s’agit de valeurs propres empiriques ou simulées de l’analyse parallèle. Pour le reste, il s’agit de recourir à <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code>.</p>
-<div class="sourceCode" id="cb244"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>Index <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="va">p</span>, <span class="va">p</span><span class="op">)</span>,
-           valeurs.propres <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">res</span><span class="op">$</span><span class="va">values</span>, <span class="fu"><a href="https://rdrr.io/r/base/colSums.html">rowMeans</a></span><span class="op">(</span><span class="va">valeurs.propres</span><span class="op">)</span><span class="op">)</span>,
-           Type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Empirique"</span>,<span class="st">"Simulées"</span><span class="op">)</span>, each <span class="op">=</span> <span class="va">p</span><span class="op">)</span>
-<span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Index</span>, y <span class="op">=</span> <span class="va">valeurs.propres</span>, color <span class="op">=</span> <span class="va">Type</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+<p>La question devient alors à savoir combien de dimensions faut-il retenir pour rendre adéquatement compte des données? Dès lors, l’ACP devient une technique de réduction des dimension. Or, les analyses exploratoires (comme l’ACP ou <a href="explorer.html#explorer">l’analyse factorielle exploire</a> ne répondent pas explicitement à cette question. Le statisticien use de techniques complémentaires, des <strong>règles d’arrêts</strong> (<em>stopping rules</em>), pour déterminer le nombre de dimensions à retenir.</p>
+<p>Ces règles d’arrêt sont en général un <em>bricolage</em> du statisticien pour répondre à la question. Bricolage n’est pas à prendre péjorativement, mais seulement comme rappel à la réalité que ces techniques sont souvent créées sans dérivation analytique. Il n’est pas possible de leur faire aveuglément confiance (il ne faudrait jamais faire cela de toute façon). Elles ont une pertinence pratique, mais les conditions selon lesquelles elles flanchent n’est pas connue. Il existe probablement des centaines de techniques ayant leur avantage et inconvénients ou bien des scénarios dans lesquels elles sont plus efficaces que les autres. Il en apparaît des nouvelles chaque années depuis 1950. Comme ces techniques sont des bricolages et qu’elles sont taillées différemment, elles ne résultent pas toutes à la même conclusion. Faire l’étalage de ces règles d’arrêt serait bien inutile. Ainsi, les deux techniques les plus utilisées seront présentées, l’analyse parallèle (<em>parallel analysis</em>) et une deuxième méthode ayant montré un excellent rendement sera présentée, soit le test séquentiel de la prochaine valeur propre (<em>Next eigenvalue sequence test</em>).</p>
+<div id="le-test-de-kaiser" class="section level3" number="17.3.1">
+<h3>
+<span class="header-section-number">17.3.1</span> Le test de Kaiser<a class="anchor" aria-label="anchor" href="#le-test-de-kaiser"><i class="fas fa-link"></i></a>
+</h3>
+<p>Historiquement, le premier test de celui du <em>test de Kaiser</em> <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-Kaiser" role="doc-biblioref">Kaiser, 1960</a>)</span>. C’est le test utilisé par défaut dans la plupart des logiciels traditionnels. Cela lui permet d’être encore très répandue aujourd’hui, malgré qu’il soit discrédité depuis les années 60. <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-Achim20" role="doc-biblioref">Achim, 2020</a>; <a href="r%C3%A9f%C3%A9rences.html#ref-Beauducel01" role="doc-biblioref">Beauducel, 2001</a>; <a href="r%C3%A9f%C3%A9rences.html#ref-Turner98" role="doc-biblioref">Turner, 1998</a>)</span>.</p>
+<p>Le test de Kaiser se fonde sur l’idée selon laquelle, si les variables ne sont pas corrélées entre elles, donc s’il n’y a pas de facteurs, les valeurs propres seront égales à 1. La logique du test est d’affirmer que, si une valeur propre est supérieure à 1, alors de l’information commune est nécessairement partagée entre deux ou plusieurs variables. Selon le test de Kaiser, le nombre de composantes à retenir correspond au nombre de valeurs propres supérieures à 1.</p>
+<p>À titre illustratif, une matrice de corrélation sans aucune corrélation est une matrice d’identité.</p>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="r%C3%A9duire.html#cb242-1" aria-hidden="true" tabindex="-1"></a>mat.cor <span class="ot">&lt;-</span> <span class="fu">diag</span>(<span class="dv">6</span>)</span>
+<span id="cb242-2"><a href="r%C3%A9duire.html#cb242-2" aria-hidden="true" tabindex="-1"></a>mat.cor</span>
+<span id="cb242-3"><a href="r%C3%A9duire.html#cb242-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>      [,<span class="dv">1</span>] [,<span class="dv">2</span>] [,<span class="dv">3</span>] [,<span class="dv">4</span>] [,<span class="dv">5</span>] [,<span class="dv">6</span>]</span>
+<span id="cb242-4"><a href="r%C3%A9duire.html#cb242-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>,]    <span class="dv">1</span>    <span class="dv">0</span>    <span class="dv">0</span>    <span class="dv">0</span>    <span class="dv">0</span>    <span class="dv">0</span></span>
+<span id="cb242-5"><a href="r%C3%A9duire.html#cb242-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">2</span>,]    <span class="dv">0</span>    <span class="dv">1</span>    <span class="dv">0</span>    <span class="dv">0</span>    <span class="dv">0</span>    <span class="dv">0</span></span>
+<span id="cb242-6"><a href="r%C3%A9duire.html#cb242-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">3</span>,]    <span class="dv">0</span>    <span class="dv">0</span>    <span class="dv">1</span>    <span class="dv">0</span>    <span class="dv">0</span>    <span class="dv">0</span></span>
+<span id="cb242-7"><a href="r%C3%A9duire.html#cb242-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">4</span>,]    <span class="dv">0</span>    <span class="dv">0</span>    <span class="dv">0</span>    <span class="dv">1</span>    <span class="dv">0</span>    <span class="dv">0</span></span>
+<span id="cb242-8"><a href="r%C3%A9duire.html#cb242-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">5</span>,]    <span class="dv">0</span>    <span class="dv">0</span>    <span class="dv">0</span>    <span class="dv">0</span>    <span class="dv">1</span>    <span class="dv">0</span></span>
+<span id="cb242-9"><a href="r%C3%A9duire.html#cb242-9" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">6</span>,]    <span class="dv">0</span>    <span class="dv">0</span>    <span class="dv">0</span>    <span class="dv">0</span>    <span class="dv">0</span>    <span class="dv">1</span></span></code></pre></div>
+<p>Les valeurs propres de cette matrice sont toutes égalent à 1.</p>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="r%C3%A9duire.html#cb243-1" aria-hidden="true" tabindex="-1"></a><span class="fu">eigen</span>(mat.cor)<span class="sc">$</span>values</span>
+<span id="cb243-2"><a href="r%C3%A9duire.html#cb243-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span></span></code></pre></div>
+<p>Et si une seule corrélation est ajoutée, aussi petite soit-elle, alors toutes les plus grandes valeurs propres tendent à capitaliser sur cette variance partagée.</p>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="r%C3%A9duire.html#cb244-1" aria-hidden="true" tabindex="-1"></a>mat.cor[<span class="dv">1</span>, <span class="dv">6</span>] <span class="ot">&lt;-</span> mat.cor[<span class="dv">6</span>,<span class="dv">1</span>] <span class="ot">&lt;-</span> .<span class="dv">1</span></span>
+<span id="cb244-2"><a href="r%C3%A9duire.html#cb244-2" aria-hidden="true" tabindex="-1"></a>mat.cor</span>
+<span id="cb244-3"><a href="r%C3%A9duire.html#cb244-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>      [,<span class="dv">1</span>] [,<span class="dv">2</span>] [,<span class="dv">3</span>] [,<span class="dv">4</span>] [,<span class="dv">5</span>] [,<span class="dv">6</span>]</span>
+<span id="cb244-4"><a href="r%C3%A9duire.html#cb244-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>,]  <span class="fl">1.0</span>    <span class="dv">0</span>    <span class="dv">0</span>    <span class="dv">0</span>    <span class="dv">0</span>  <span class="fl">0.1</span></span>
+<span id="cb244-5"><a href="r%C3%A9duire.html#cb244-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">2</span>,]  <span class="fl">0.0</span>    <span class="dv">1</span>    <span class="dv">0</span>    <span class="dv">0</span>    <span class="dv">0</span>  <span class="fl">0.0</span></span>
+<span id="cb244-6"><a href="r%C3%A9duire.html#cb244-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">3</span>,]  <span class="fl">0.0</span>    <span class="dv">0</span>    <span class="dv">1</span>    <span class="dv">0</span>    <span class="dv">0</span>  <span class="fl">0.0</span></span>
+<span id="cb244-7"><a href="r%C3%A9duire.html#cb244-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">4</span>,]  <span class="fl">0.0</span>    <span class="dv">0</span>    <span class="dv">0</span>    <span class="dv">1</span>    <span class="dv">0</span>  <span class="fl">0.0</span></span>
+<span id="cb244-8"><a href="r%C3%A9duire.html#cb244-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">5</span>,]  <span class="fl">0.0</span>    <span class="dv">0</span>    <span class="dv">0</span>    <span class="dv">0</span>    <span class="dv">1</span>  <span class="fl">0.0</span></span>
+<span id="cb244-9"><a href="r%C3%A9duire.html#cb244-9" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">6</span>,]  <span class="fl">0.1</span>    <span class="dv">0</span>    <span class="dv">0</span>    <span class="dv">0</span>    <span class="dv">0</span>  <span class="fl">1.0</span></span>
+<span id="cb244-10"><a href="r%C3%A9duire.html#cb244-10" aria-hidden="true" tabindex="-1"></a><span class="fu">eigen</span>(mat.cor)<span class="sc">$</span>values</span>
+<span id="cb244-11"><a href="r%C3%A9duire.html#cb244-11" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">1.1</span> <span class="fl">1.0</span> <span class="fl">1.0</span> <span class="fl">1.0</span> <span class="fl">1.0</span> <span class="fl">0.9</span></span></code></pre></div>
+<p>Autrement dit, si une valeur propre est supérieure à 1, c’est qu’il y a un facteur.</p>
+<p>La Figure <a href="#fir:kaiser"><strong>??</strong></a> illustre le test de Kaiser avec le présent exemple qui suggère deux facteurs (comme simulé).</p>
+<div class="sourceCode" id="cb245"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">vp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="va">vp</span>,
+      <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>Position <span class="op">=</span> <span class="va">Position</span>,
+                 Valeurs.propres <span class="op">=</span> <span class="fl">1</span>,
+                 Test <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"Kaiser"</span>, <span class="va">p</span><span class="op">)</span><span class="op">)</span>
+      <span class="op">)</span>
+
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">vp</span>,
+       mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Position</span>, 
+                     y <span class="op">=</span> <span class="va">Valeurs.propres</span>, 
+                     color <span class="op">=</span> <span class="va">Test</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">"Valeur propre"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.8</span>, <span class="fl">0.8</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<div class="figure">
-<span style="display:block;" id="fig:scree2"></span>
-<img src="17-Reduire_files/figure-html/scree2-1.png" alt="Comparaison des valeurs propres empiriques et simulées" width="672"><p class="caption">
-Figure 17.3: Comparaison des valeurs propres empiriques et simulées
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:kaiser"></span>
+<img src="17-Reduire_files/figure-html/kaiser-1.png" alt="Les valeurs propres en fonctions de la position de l'axe" width="75%" height="75%"><p class="caption">
+Figure 17.3: Les valeurs propres en fonctions de la position de l’axe
 </p>
 </div>
+<p>Une fonction simple pour programme le test de Kaiser.</p>
+<div class="sourceCode" id="cb246"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">kaiser</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">jd</span><span class="op">)</span><span class="op">{</span>
+  <span class="co"># Obtenir la matrice de corrélation</span>
+  <span class="va">R</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">jd</span><span class="op">)</span>
+  
+  <span class="co"># Extraire uniquement les valeurs propres</span>
+  <span class="va">eig</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/eigen.html">eigen</a></span><span class="op">(</span><span class="va">R</span>, only.values <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">$</span><span class="va">values</span>
+  
+  <span class="co"># Les valeurs propres plus grandes que 1</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">eig</span> <span class="op">&gt;</span> <span class="fl">1</span><span class="op">)</span>
+<span class="op">}</span></code></pre></div>
 </div>
-<div id="nest" class="section level2" number="17.4">
-<h2>
-<span class="header-section-number">17.4</span> NEST<a class="anchor" aria-label="anchor" href="#nest"><i class="fas fa-link"></i></a>
-</h2>
-<p>Le <em>Next Eigenvalue Sequential Test</em> développé par Achim <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-Achim17" role="doc-biblioref">2017</a>, <a href="r%C3%A9f%C3%A9rences.html#ref-Achim20" role="doc-biblioref">2020</a>)</span> est le dernier cri en termes d’estimations du nombre de composante à retenir.</p>
-<!-- Il est à mi-chemin entre MAP et AP  -->
-<p><em>À terminer</em></p>
-<div class="sourceCode" id="cb245"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">NEST</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">data</span>, <span class="va">N</span><span class="op">=</span><span class="cn">NULL</span>, <span class="va">reps</span> <span class="op">=</span> <span class="fl">1000</span>, 
-                 <span class="va">alpha</span> <span class="op">=</span> <span class="fl">.05</span>, <span class="va">convergence</span> <span class="op">=</span> <span class="fl">1e-5</span>, <span class="va">maxit</span> <span class="op">=</span> <span class="fl">500</span>, <span class="va">...</span><span class="op">)</span><span class="op">{</span>
+<div id="lanalyse-parallèle-de-horn" class="section level3" number="17.3.2">
+<h3>
+<span class="header-section-number">17.3.2</span> L’analyse parallèle de Horn<a class="anchor" aria-label="anchor" href="#lanalyse-parall%C3%A8le-de-horn"><i class="fas fa-link"></i></a>
+</h3>
+<p>Asymptotiquement parlant, si <span class="math inline">\(n \to \infty\)</span>, le test est vraie. Par contre, l’ordre des valeurs propres capitalise sur l’erreur, ce qui introduit l’idée selon laquelle les corrélations accidentelles se retrouvent dans les premières dimensions. Conséquemment, les premiers axes sont surestimés, alors que les derniers sont sous-estimées.</p>
+<p>La solution proposée par <span class="citation">Horn (<a href="r%C3%A9f%C3%A9rences.html#ref-Horn65" role="doc-biblioref">1965</a>)</span> est alors de tenir compte de cette erreur d’échantillonnage accidentelle. Pour ce faire, il propose de rééchantillonner les valeurs propres d’un jeu de données sans aucun facteur (aucune corrélation entre les variables) et ayant les mêmes caractéristiques que le jeu de données cible (même nombre de variables et de participant). Le jeu de données cible correspond au jeu de données de l’expérimentateur. Même s’il n’y a pas de corrélation sur le plan de la population, il y aura accidentellement des corrélations dans un échantillon.</p>
+<p>Le rééchantillonnage est réitéré sur des milliers de jeu de données artificiel. À chaque fois, les valeurs propres sont enregistrées. Des moyennes en sont retirés à la toute fin. Il s’agit du critère auquel l’hypothèse nulle est rejetée. De la première à la dernière, chaque valeur propre cible est comparée à la valeur propre moyenne correspondante, si la cible est plus élevée, il s’agit d’une dimension à retenir. Dès que la cible est inférieur, le test est arrêté. Le nombre de valeurs propres supérieures aux valeurs propres artificielles correspond au nombre de dimensions à retenir.</p>
+<p>Dans la syntaxe ci-dessous, les mêmes caractéristiques que le jeu de données précédent sont utilisés, soit <span class="math inline">\(p = 6\)</span> et <span class="math inline">\(n = 5000\)</span>. À la fin, il sera possible de comparer s’il y a effectivement deux facteurs selon l’analyse parallèle.</p>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="r%C3%A9duire.html#cb247-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pour la reproductibilité</span></span>
+<span id="cb247-2"><a href="r%C3%A9duire.html#cb247-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1019</span>)</span>
+<span id="cb247-3"><a href="r%C3%A9duire.html#cb247-3" aria-hidden="true" tabindex="-1"></a>p <span class="ot">=</span> <span class="dv">6</span>        <span class="co"># Nombre de variables</span></span>
+<span id="cb247-4"><a href="r%C3%A9duire.html#cb247-4" aria-hidden="true" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">50</span>       <span class="co"># Nombre de participants </span></span>
+<span id="cb247-5"><a href="r%C3%A9duire.html#cb247-5" aria-hidden="true" tabindex="-1"></a>nreps <span class="ot">=</span> <span class="dv">1000</span> <span class="co"># Nombre d'itérations</span></span>
+<span id="cb247-6"><a href="r%C3%A9duire.html#cb247-6" aria-hidden="true" tabindex="-1"></a>valeurs.propres <span class="ot">=</span> <span class="fu">matrix</span>(<span class="dv">0</span>,            <span class="co"># Création d'une variable</span></span>
+<span id="cb247-7"><a href="r%C3%A9duire.html#cb247-7" aria-hidden="true" tabindex="-1"></a>                         <span class="at">nrow =</span> p,     <span class="co"># vide pour enregistrer</span></span>
+<span id="cb247-8"><a href="r%C3%A9duire.html#cb247-8" aria-hidden="true" tabindex="-1"></a>                         <span class="at">ncol =</span> nreps) <span class="co"># les valeurs propres</span></span>
+<span id="cb247-9"><a href="r%C3%A9duire.html#cb247-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb247-10"><a href="r%C3%A9duire.html#cb247-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Création d'une matrice de corrélation vide</span></span>
+<span id="cb247-11"><a href="r%C3%A9duire.html#cb247-11" aria-hidden="true" tabindex="-1"></a>R <span class="ot">&lt;-</span> <span class="fu">diag</span>(p)</span>
+<span id="cb247-12"><a href="r%C3%A9duire.html#cb247-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb247-13"><a href="r%C3%A9duire.html#cb247-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Création de la boucle                                        </span></span>
+<span id="cb247-14"><a href="r%C3%A9duire.html#cb247-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>nreps) {</span>
+<span id="cb247-15"><a href="r%C3%A9duire.html#cb247-15" aria-hidden="true" tabindex="-1"></a>  D <span class="ot">&lt;-</span> MASS<span class="sc">::</span><span class="fu">mvrnorm</span>(<span class="at">n =</span> n,            <span class="co"># Création de n * p valeurs</span></span>
+<span id="cb247-16"><a href="r%C3%A9duire.html#cb247-16" aria-hidden="true" tabindex="-1"></a>                     <span class="at">mu =</span> <span class="fu">rep</span>(<span class="dv">0</span>, p),   <span class="co"># aléatoires accidentellement</span></span>
+<span id="cb247-17"><a href="r%C3%A9duire.html#cb247-17" aria-hidden="true" tabindex="-1"></a>                     <span class="at">Sigma =</span> R)        <span class="co"># corrélées</span></span>
+<span id="cb247-18"><a href="r%C3%A9duire.html#cb247-18" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb247-19"><a href="r%C3%A9duire.html#cb247-19" aria-hidden="true" tabindex="-1"></a>  ACP <span class="ot">&lt;-</span> <span class="fu">eigen</span>(<span class="fu">cor</span>(D),                 <span class="co"># Réaliser l'ACP</span></span>
+<span id="cb247-20"><a href="r%C3%A9duire.html#cb247-20" aria-hidden="true" tabindex="-1"></a>               <span class="at">only.values =</span> <span class="cn">TRUE</span>)        </span>
+<span id="cb247-21"><a href="r%C3%A9duire.html#cb247-21" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb247-22"><a href="r%C3%A9duire.html#cb247-22" aria-hidden="true" tabindex="-1"></a>  valeurs.propres[,i] <span class="ot">&lt;-</span> ACP<span class="sc">$</span>values    <span class="co"># Enregistrer les valeurs propres</span></span>
+<span id="cb247-23"><a href="r%C3%A9duire.html#cb247-23" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb247-24"><a href="r%C3%A9duire.html#cb247-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb247-25"><a href="r%C3%A9duire.html#cb247-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Une fois les valeurs propres obtenues,</span></span>
+<span id="cb247-26"><a href="r%C3%A9duire.html#cb247-26" aria-hidden="true" tabindex="-1"></a><span class="co"># les moyennes et quantiles sont calculables</span></span>
+<span id="cb247-27"><a href="r%C3%A9duire.html#cb247-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb247-28"><a href="r%C3%A9duire.html#cb247-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Une moyenne par ligne (valeur propres)</span></span>
+<span id="cb247-29"><a href="r%C3%A9duire.html#cb247-29" aria-hidden="true" tabindex="-1"></a><span class="fu">rowMeans</span>(valeurs.propres)</span>
+<span id="cb247-30"><a href="r%C3%A9duire.html#cb247-30" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">1.495</span> <span class="fl">1.242</span> <span class="fl">1.057</span> <span class="fl">0.899</span> <span class="fl">0.739</span> <span class="fl">0.568</span></span>
+<span id="cb247-31"><a href="r%C3%A9duire.html#cb247-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb247-32"><a href="r%C3%A9duire.html#cb247-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Le 95e percentile (si préféré)</span></span>
+<span id="cb247-33"><a href="r%C3%A9duire.html#cb247-33" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(<span class="at">X =</span> valeurs.propres, </span>
+<span id="cb247-34"><a href="r%C3%A9duire.html#cb247-34" aria-hidden="true" tabindex="-1"></a>      <span class="at">FUN =</span> quantile,</span>
+<span id="cb247-35"><a href="r%C3%A9duire.html#cb247-35" aria-hidden="true" tabindex="-1"></a>      <span class="at">MARGIN =</span> <span class="dv">1</span>,</span>
+<span id="cb247-36"><a href="r%C3%A9duire.html#cb247-36" aria-hidden="true" tabindex="-1"></a>      <span class="at">probs =</span> .<span class="dv">95</span>)</span>
+<span id="cb247-37"><a href="r%C3%A9duire.html#cb247-37" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">1.723</span> <span class="fl">1.388</span> <span class="fl">1.163</span> <span class="fl">0.998</span> <span class="fl">0.858</span> <span class="fl">0.700</span></span></code></pre></div>
+<p>Pour connaître le nombre de dimension, il suffit de tester les valeurs propres empiriques et les comparer aux valeurs propres simulées (moyenne ou 95<sup>e</sup> percentile). Le nombre de valeur propre empirique supérieur aux valeurs propres simulés correspond au nombre de composantes à retenir.</p>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="r%C3%A9duire.html#cb248-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Les valeurs propres empiriques</span></span>
+<span id="cb248-2"><a href="r%C3%A9duire.html#cb248-2" aria-hidden="true" tabindex="-1"></a>res<span class="sc">$</span>values</span>
+<span id="cb248-3"><a href="r%C3%A9duire.html#cb248-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">2.576</span> <span class="fl">1.699</span> <span class="fl">0.771</span> <span class="fl">0.421</span> <span class="fl">0.328</span> <span class="fl">0.205</span></span>
+<span id="cb248-4"><a href="r%C3%A9duire.html#cb248-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb248-5"><a href="r%C3%A9duire.html#cb248-5" aria-hidden="true" tabindex="-1"></a><span class="co"># La moyenne des valeurs propres simulées</span></span>
+<span id="cb248-6"><a href="r%C3%A9duire.html#cb248-6" aria-hidden="true" tabindex="-1"></a><span class="fu">rowMeans</span>(valeurs.propres)</span>
+<span id="cb248-7"><a href="r%C3%A9duire.html#cb248-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">1.495</span> <span class="fl">1.242</span> <span class="fl">1.057</span> <span class="fl">0.899</span> <span class="fl">0.739</span> <span class="fl">0.568</span></span>
+<span id="cb248-8"><a href="r%C3%A9duire.html#cb248-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb248-9"><a href="r%C3%A9duire.html#cb248-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Nombre de valeurs propres empiriques supérieures aux simulées</span></span>
+<span id="cb248-10"><a href="r%C3%A9duire.html#cb248-10" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(res<span class="sc">$</span>values <span class="sc">&gt;</span> <span class="fu">rowMeans</span>(valeurs.propres))</span>
+<span id="cb248-11"><a href="r%C3%A9duire.html#cb248-11" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">2</span></span></code></pre></div>
+<p>Ainsi, 2 facteurs sont à retenir. Une façon d’illustrer les résultats de l’analyse parallèle est d’utiliser le graphique de éboulis en y représentant les valeurs propres empiriques comparativement aux simulées. Le nombre de valeurs propres empiriques supérieures aux simulées est le nombre de dimensions à retenir. Ce graphique est produit à la Figure <a href="r%C3%A9duire.html#fig:scree2">17.4</a>. Voici la syntaxe pour produire ce graphique avec <code>ggplot2</code>. La première étape est de mettre en commun les résultats obtenus dans un jeu de données. La variable <code>Index</code> indique l’index de la valeur propres, <code>valeurs.propres</code> contient les valeurs propres et <code>Type</code> indique s’il s’agit de valeurs propres empiriques ou simulées de l’analyse parallèle. Pour le reste, il s’agit de recourir à <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code>.</p>
+<div class="sourceCode" id="cb249"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">vp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="va">vp</span>,
+      <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>Position <span class="op">=</span> <span class="va">Position</span>,
+                 Valeurs.propres <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/colSums.html">rowMeans</a></span><span class="op">(</span><span class="va">valeurs.propres</span><span class="op">)</span>,
+                 Test <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"Analyse parallèle"</span>, <span class="va">p</span><span class="op">)</span><span class="op">)</span>
+      <span class="op">)</span>
+
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">vp</span>,
+       mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Position</span>, 
+                     y <span class="op">=</span> <span class="va">Valeurs.propres</span>, 
+                     color <span class="op">=</span> <span class="va">Test</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">"Valeur propre"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.8</span>, <span class="fl">0.8</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:scree2"></span>
+<img src="17-Reduire_files/figure-html/scree2-1.png" alt="Comparaison des valeurs propres empiriques et simulées" width="75%" height="75%"><p class="caption">
+Figure 17.4: Comparaison des valeurs propres empiriques et simulées
+</p>
+</div>
+<p>Voici une fonction pour programmer l’analyse parallèle.</p>
+<div class="sourceCode" id="cb250"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">analyse.parallele</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">jd</span>, 
+                              <span class="va">p</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">jd</span><span class="op">)</span>, 
+                              <span class="va">n</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">jd</span><span class="op">)</span>, 
+                              <span class="va">nreps</span> <span class="op">=</span> <span class="fl">1000</span>,
+                              <span class="va">alpha</span> <span class="op">=</span> <span class="fl">.05</span><span class="op">)</span><span class="op">{</span>
+ 
+  <span class="co"># Extraire uniquement les valeurs propres</span>
+  <span class="va">eig</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/eigen.html">eigen</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">R</span><span class="op">)</span>, only.values <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">$</span><span class="va">values</span>
+
+  <span class="co"># Création d'une variable vide pour enregistrer</span>
+<span class="va">valeurs.propres</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">0</span>,            
+                         nrow <span class="op">=</span> <span class="va">p</span>,     
+                         ncol <span class="op">=</span> <span class="va">nreps</span><span class="op">)</span> 
+
+<span class="co"># Création d'une matrice de corrélation vide</span>
+<span class="va">R</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/diag.html">diag</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span>
+
+<span class="co"># Création de la boucle                                        </span>
+<span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="va">nreps</span><span class="op">)</span> <span class="op">{</span>
+  <span class="va">D</span> <span class="op">&lt;-</span> <span class="fu">MASS</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/MASS/man/mvrnorm.html">mvrnorm</a></span><span class="op">(</span>n <span class="op">=</span> <span class="va">n</span>,            <span class="co"># Création de n * p valeurs</span>
+                     mu <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="va">p</span><span class="op">)</span>,   <span class="co"># aléatoires accidentellement</span>
+                     Sigma <span class="op">=</span> <span class="va">R</span><span class="op">)</span>        <span class="co"># corrélées</span>
   
-  <span class="va">ns</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>
-  <span class="va">nv</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>
-  <span class="kw">if</span><span class="op">(</span><span class="va">ns</span><span class="op">==</span><span class="va">nv</span><span class="op">)</span><span class="op">{</span>
-    <span class="kw">if</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NULL.html">is.null</a></span><span class="op">(</span><span class="va">N</span><span class="op">)</span><span class="op">)</span> <span class="kw"><a href="https://rdrr.io/r/base/stop.html">stop</a></span><span class="op">(</span><span class="st">"Error: 'N' is required"</span><span class="op">)</span> 
-    <span class="va">ns</span> <span class="op">=</span> <span class="va">N</span>
-  <span class="op">}</span><span class="kw">else</span><span class="op">{</span>
-    <span class="va">data</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span>
-  <span class="op">}</span> 
-  <span class="va">E</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/eigen.html">eigen</a></span><span class="op">(</span><span class="va">data</span>, symmetric<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">$</span><span class="va">values</span>
+  <span class="va">ACP</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/eigen.html">eigen</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">D</span><span class="op">)</span>,                 <span class="co"># Réaliser l'ACP</span>
+               only.values <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>        
   
-  <span class="kw">for</span> <span class="op">(</span><span class="va">nfact</span> <span class="kw">in</span> <span class="fl">0</span><span class="op">:</span><span class="op">(</span><span class="va">nv</span><span class="op">-</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
-    <span class="va">rnk</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="va">nfact</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span>
-    <span class="kw">if</span> <span class="op">(</span><span class="va">nfact</span><span class="op">==</span><span class="fl">0</span><span class="op">)</span><span class="op">{</span>
-      <span class="va">model</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/diag.html">diag</a></span><span class="op">(</span><span class="va">nv</span><span class="op">)</span>
-    <span class="op">}</span><span class="kw">else</span><span class="op">{</span>
-      <span class="va">R</span> <span class="op">=</span> <span class="va">data</span>
-      <span class="va">pre</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/diag.html">diag</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span>
-      <span class="kw">for</span> <span class="op">(</span><span class="va">jj</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="va">maxit</span><span class="op">)</span><span class="op">{</span>
-        <span class="va">res</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/eigen.html">eigen</a></span><span class="op">(</span><span class="va">R</span>, symmetric<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>
-        <span class="kw">if</span> <span class="op">(</span><span class="va">nfact</span><span class="op">==</span><span class="fl">1</span><span class="op">)</span><span class="op">{</span>
-          <span class="va">ld</span> <span class="op">=</span> <span class="va">res</span><span class="op">$</span><span class="va">vectors</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">res</span><span class="op">$</span><span class="va">values</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span>
-          <span class="va">co</span> <span class="op">=</span> <span class="va">ld</span><span class="op">*</span><span class="va">ld</span>
-        <span class="op">}</span><span class="kw">else</span><span class="op">{</span>
-          <span class="va">ff</span> <span class="op">=</span> <span class="va">nfact</span>
-          <span class="kw">while</span> <span class="op">(</span><span class="va">res</span><span class="op">$</span><span class="va">value</span><span class="op">[</span><span class="va">ff</span><span class="op">]</span> <span class="op">&lt;=</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span><span class="va">ff</span> <span class="op">=</span> <span class="va">ff</span> <span class="op">-</span> <span class="fl">1</span><span class="op">}</span>
-          <span class="va">ld</span> <span class="op">=</span> <span class="va">res</span><span class="op">$</span><span class="va">vectors</span><span class="op">[</span>,<span class="fl">1</span><span class="op">:</span><span class="va">ff</span><span class="op">]</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/diag.html">diag</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">res</span><span class="op">$</span><span class="va">values</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="va">ff</span><span class="op">]</span><span class="op">)</span><span class="op">)</span>
-          <span class="va">co</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/colSums.html">rowSums</a></span><span class="op">(</span><span class="va">ld</span><span class="op">*</span><span class="va">ld</span><span class="op">)</span>
-        <span class="op">}</span>
-        
-        <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">co</span><span class="op">)</span><span class="op">&gt;</span><span class="fl">1</span><span class="op">)</span><span class="op">{</span>
-          <span class="va">R</span> <span class="op">=</span> <span class="va">R</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/diag.html">diag</a></span><span class="op">(</span><span class="va">pre</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/diag.html">diag</a></span><span class="op">(</span><span class="va">R</span><span class="op">)</span><span class="op">)</span>
-          <span class="kw">break</span>
-        <span class="op">}</span>
-        
-        <span class="va">diff</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">pre</span> <span class="op">-</span> <span class="va">co</span><span class="op">)</span><span class="op">)</span>
-        <span class="kw">if</span> <span class="op">(</span><span class="va">diff</span> <span class="op">&lt;</span> <span class="va">convergence</span><span class="op">)</span> <span class="kw">break</span>
-        <span class="va">R</span> <span class="op">=</span> <span class="va">R</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/diag.html">diag</a></span><span class="op">(</span><span class="va">co</span><span class="op">-</span><span class="va">pre</span><span class="op">)</span>
-        <span class="va">pre</span> <span class="op">=</span> <span class="va">co</span>
-      <span class="op">}</span>
-      
-      <span class="kw">if</span> <span class="op">(</span><span class="va">jj</span> <span class="op">&gt;=</span> <span class="va">maxit</span><span class="op">)</span><span class="op">{</span>
-        <span class="va">nt</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"Warning! Convergence not achieved"</span><span class="op">)</span>
-      <span class="op">}</span>
-      
-      
-      <span class="va">model</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">ld</span>, <span class="fu"><a href="https://rdrr.io/r/base/diag.html">diag</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fl">1</span><span class="op">-</span><span class="va">co</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-    <span class="op">}</span>
-    <span class="va">nd</span> <span class="op">=</span> <span class="va">nfact</span> <span class="op">+</span> <span class="va">nv</span>
-    <span class="kw">for</span> <span class="op">(</span><span class="va">j</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="va">reps</span><span class="op">)</span><span class="op">{</span>
-      <span class="va">res</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/eigen.html">eigen</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">ns</span> <span class="op">*</span> <span class="va">nd</span><span class="op">)</span>, <span class="va">ns</span>, <span class="va">nd</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="va">model</span><span class="op">)</span>, 
-                  symmetric<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">$</span><span class="va">values</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="op">(</span><span class="va">nfact</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span><span class="op">]</span>
-      <span class="va">rnk</span> <span class="op">=</span> <span class="va">rnk</span> <span class="op">+</span> <span class="op">(</span><span class="va">res</span> <span class="op">&gt;=</span> <span class="va">E</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="op">(</span><span class="va">nfact</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span><span class="op">]</span><span class="op">)</span>
-    <span class="op">}</span>
-    <span class="kw">if</span> <span class="op">(</span><span class="va">rnk</span><span class="op">[</span><span class="va">nfact</span><span class="op">+</span><span class="fl">1</span><span class="op">]</span> <span class="op">&gt;</span> <span class="va">alpha</span><span class="op">*</span><span class="op">(</span><span class="va">reps</span><span class="op">+</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="kw">break</span>
+  <span class="va">valeurs.propres</span><span class="op">[</span>,<span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">ACP</span><span class="op">$</span><span class="va">values</span>    <span class="co"># Enregistrer les valeurs propres</span>
+<span class="op">}</span>
+
+<span class="co"># Le 95e percentile</span>
+<span class="va">vp.crit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span>X <span class="op">=</span> <span class="va">valeurs.propres</span>, 
+                 FUN <span class="op">=</span> <span class="va">quantile</span>,
+                 MARGIN <span class="op">=</span> <span class="fl">1</span>,
+                 probs <span class="op">=</span> <span class="fl">1</span> <span class="op">-</span> <span class="va">alpha</span><span class="op">)</span>
+
+<span class="co"># Les valeurs propres empiriques plus grandes </span>
+<span class="co"># que celles simulées</span>
+<span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">eig</span> <span class="op">&gt;</span> <span class="va">vp.crit</span><span class="op">)</span> 
+<span class="op">}</span></code></pre></div>
+</div>
+<div id="le-test-séquentiel-de-la-valeur-propre-suivante-dachim" class="section level3" number="17.3.3">
+<h3>
+<span class="header-section-number">17.3.3</span> Le test séquentiel de la valeur propre suivante d’Achim<a class="anchor" aria-label="anchor" href="#le-test-s%C3%A9quentiel-de-la-valeur-propre-suivante-dachim"><i class="fas fa-link"></i></a>
+</h3>
+<p>L’un des problèmes de l’analyse parallèle est que, bien qu’elle tient compte de l’erreur d’échantillonnage, elle ne tient pas compte de la logique séquentielle des test d’hypothèses des valeurs propres <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-Beauducel01" role="doc-biblioref">Beauducel, 2001</a>; <a href="r%C3%A9f%C3%A9rences.html#ref-Turner98" role="doc-biblioref">Turner, 1998</a>)</span>. Précisément, le test d’hypothèse sous-jacent, en termes de <span class="math inline">\(k\)</span> dimensions à retenir, est
+<span class="math display">\[
+H_0 : k = 0 \\
+H_1 : k \geq1
+\]</span></p>
+<p>Autrement dit, il n’y a pas de facteurs, ou bien il y a plus d’un facteur. Une fois la première dimension déterminée par l’analyse parallèle, il est inadéquat de tester les suivantes avec la même matrice de corrélation. Il faut tenir compte de cette nouvelle information : il y a au moins <span class="math inline">\(k\)</span> dimensions.</p>
+<p>Le <strong>Test séquentiel de la valeur propre suivante</strong> (<em>Next Eigenvalue Sequential Test</em>, NEST) développé par Achim <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-Achim17" role="doc-biblioref">2017</a>, <a href="r%C3%A9f%C3%A9rences.html#ref-Achim20" role="doc-biblioref">2020</a>)</span> est le dernier cri en termes d’estimation du nombre de composantes à retenir. En plus de tenir compte pour l’erreur d’échantillonnage, comme l’analyse parallèle, il tient compte aussi de la logique séquentielle du test d’hypothèse. Plus précisément, le test utilise une matrice de corrélation contenant les <span class="math inline">\(k\)</span> dimensions déterminées auparavant. Lorsque <span class="math inline">\(k=0\)</span>, le test est équivalent à l’analyse parallèle, mais uniquement pour la première valeur propre. Une fois l’hypothèse nulle rejetée, <span class="math inline">\(k\)</span> est incrémenté, une nouvelle matrice de corrélation basée sur ces <span class="math inline">\(k\)</span> facteurs est calculées, et un nouveau rééchantillonnage des valeurs propres est entrepris. Le test s’arrête lorsque la <span class="math inline">\(k+1\)</span> valeur propre (l’hypothèse nulle) n’est pas rejetée, pour donner <span class="math inline">\(k\)</span> dimensions.</p>
+<p>La syntaxe suivante illustre de façon simplifier le test NEST. Elle utilise plusieurs éléments déjà utilisée.</p>
+<ul>
+<li><p>Elle est basée sur <a href="r%C3%A9duire.html#lanalyse-parall%C3%A8le-de-horn">l’analyse parallèle</a>. Le changement principal est que la matrice de corrélation change pour différente valeur de <span class="math inline">\(k\)</span>, alors qu’elle reste toujours identique pour l’analyse parallèle, <code>R = diag(p)</code>, peu importe <span class="math inline">\(k\)</span>.</p></li>
+<li><p>Comme l’analyse parallèle, la fonction utilise une forme de rééchantillonnage qui est en fait du <a href="simuler.html#le-bootstrap">bootstrap</a>.</p></li>
+<li><p>Elle utilise <code><a href="https://rdrr.io/r/stats/factanal.html">factanal()</a></code> (voir <a href="explorer.html#explorer">Explorer</a>) pour reconstruire la matrice de corrélation à <span class="math inline">\(k\)</span> facteurs.</p></li>
+</ul>
+<div class="sourceCode" id="cb251"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">mat.cor</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">jd</span><span class="op">)</span>  <span class="co"># Matrice de corrélation du jeu de données</span>
+<span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">mat.cor</span><span class="op">)</span>  <span class="co"># Nombre de variables (6)</span>
+<span class="va">n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">jd</span><span class="op">)</span>       <span class="co"># Nombre de participants (50)</span>
+<span class="va">nreps</span> <span class="op">&lt;-</span> <span class="fl">1000</span>       <span class="co"># Nombre d'itérations</span>
+
+<span class="co"># Test séquentiel des valeurs propres</span>
+<span class="kw">for</span> <span class="op">(</span><span class="va">k</span> <span class="kw">in</span> <span class="fl">0</span><span class="op">:</span><span class="op">(</span><span class="va">p</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">{</span> <span class="co"># Pour 0 à (p-1) dimensions</span>
+  
+  <span class="co"># Déterminer la matrice de corrélation pour k dimensions</span>
+  <span class="kw">if</span><span class="op">(</span><span class="va">k</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span>      <span class="co"># Pour tester 0 dimension (analyse parallèle)</span>
+    
+    <span class="va">R</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/diag.html">diag</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span>    <span class="co"># Matrice de corrélation à 0 dimension</span>
+    
+  <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span>          <span class="co"># Pour tester k dimensions</span>
+    
+    <span class="va">fa</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/factanal.html">factanal</a></span><span class="op">(</span>covmat <span class="op">=</span> <span class="va">mat.cor</span>, n.obs <span class="op">=</span> <span class="va">n</span>, factors <span class="op">=</span> <span class="va">k</span><span class="op">)</span>
+    <span class="va">R</span> <span class="op">&lt;-</span> <span class="va">fa</span><span class="op">$</span><span class="va">loadings</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">fa</span><span class="op">$</span><span class="va">loadings</span><span class="op">)</span>
+    <span class="fu"><a href="https://rdrr.io/r/base/diag.html">diag</a></span><span class="op">(</span><span class="va">R</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fl">1</span>    <span class="co"># Matrice de corrélation à k dimensions</span>
   <span class="op">}</span>
   
-  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span>OUT <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"NEST"</span>, nfact <span class="op">=</span> <span class="va">nfact</span><span class="op">)</span>   <span class="op">)</span>
-<span class="op">}</span></code></pre></div>
-<p>Pour tester</p>
-<div class="sourceCode" id="cb246"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">NEST</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">jd5000</span><span class="op">)</span>, N <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">jd5000</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+  <span class="co"># Rééchantillonnage des valeurs propres</span>
+  <span class="co"># Création d'une variable vide pour enregistrer</span>
+  <span class="va">valeurs.propres</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">0</span>,            
+                           nrow <span class="op">=</span> <span class="va">p</span>,     
+                           ncol <span class="op">=</span> <span class="va">nreps</span><span class="op">)</span> 
+  
+  <span class="co"># Création de la boucle                                        </span>
+  <span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="va">nreps</span><span class="op">)</span> <span class="op">{</span>
+    
+    <span class="co"># Création de n * p valeurs aléatoires corrélées</span>
+    <span class="va">D</span> <span class="op">&lt;-</span> <span class="fu">MASS</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/MASS/man/mvrnorm.html">mvrnorm</a></span><span class="op">(</span>n <span class="op">=</span> <span class="va">n</span>,            
+                       mu <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="va">p</span><span class="op">)</span>,   
+                       Sigma <span class="op">=</span> <span class="va">R</span><span class="op">)</span>
+    
+     <span class="co"># Réaliser l'ACP</span>
+    <span class="va">ACP</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/eigen.html">eigen</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">D</span><span class="op">)</span>,                
+                only.values <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>  
+    
+     <span class="co"># Enregistrer les valeurs propres</span>
+    <span class="va">valeurs.propres</span><span class="op">[</span>,<span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">ACP</span><span class="op">$</span><span class="va">values</span>   
+  <span class="op">}</span>
+  
+  <span class="co"># Tester la k+1 valeurs propres à alpha = .05</span>
+  <span class="va">vp.crit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">valeurs.propres</span><span class="op">[</span><span class="va">k</span><span class="op">+</span><span class="fl">1</span>,<span class="op">]</span>, probs <span class="op">=</span> <span class="fl">.95</span><span class="op">)</span>
+  
+  <span class="co"># Valeur propre empirique k testée à la valeur simulée</span>
+  <span class="co"># Si la valeur propre est plus élevée, NEST continue,</span>
+  <span class="co"># si la valeur propre est plus petite, NEST arrête.</span>
+  <span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="op">(</span><span class="va">res</span><span class="op">$</span><span class="va">values</span><span class="op">[</span><span class="va">k</span> <span class="op">+</span> <span class="fl">1</span><span class="op">]</span> <span class="op">&gt;</span> <span class="va">vp.crit</span><span class="op">)</span><span class="op">)</span><span class="op">{</span><span class="kw">break</span><span class="op">}</span>
+<span class="op">}</span>
+
+<span class="co"># Nombre de facteurs à retenir</span>
+<span class="va">nfactors</span> <span class="op">=</span> <span class="va">k</span></code></pre></div>
+<p>La sortie ici, <code>nfactors</code> représente le nombre de dimensions à retenir.</p>
+<div id="le-package-rnest" class="section level4" number="17.3.3.1">
+<h4>
+<span class="header-section-number">17.3.3.1</span> Le package Rnest<a class="anchor" aria-label="anchor" href="#le-package-rnest"><i class="fas fa-link"></i></a>
+</h4>
+<p>Il existe une version préliminaire d’un package permettant de réaliser facilement NEST en plus de fournir quelques fonctions utiles. Le package est <code>Rnest</code> <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-Rnest" role="doc-biblioref">Caron, 2022</a>)</span>. Il est disponible par GitHub et est importable sur <strong>R</strong> avec la syntaxe suivante.</p>
+<div class="sourceCode" id="cb252"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span>repo <span class="op">=</span> <span class="st">"quantmeth/Rnest"</span><span class="op">)</span></code></pre></div>
+<p>Comme à l’habitude, il faut l’appeller dans l’environnement.</p>
+<div class="sourceCode" id="cb253"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">Rnest</span><span class="op">)</span></code></pre></div>
+<p>La fonction principale est <code><a href="https://rdrr.io/pkg/Rnest/man/nest.html">nest()</a></code>. Elle prend en argument un jeu de donnée ou une matrice de corrélation avec le nombre de participants. D’autres options sont possibles, comme le seuil critique (<code>alpha</code>), le nombre de répétions (<code>nreps</code>), et la méthode d’extraction des dimensions (<code>"ml"</code>, <em>maximum likelihood</em>; <code>"paf"</code>, <em>principal axis factoring</em>; <code>"mrfa"</code>, <em>minimum rank factor analysis</em>)</p>
+<p>Voici la fonction avec le présent exemple.</p>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="r%C3%A9duire.html#cb254-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nest</span>(jd)</span>
+<span id="cb254-2"><a href="r%C3%A9duire.html#cb254-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> At <span class="dv">95</span>% confidence, NEST suggests <span class="dv">2</span> factors.</span></code></pre></div>
+<p>Voici la sortie des valeurs propres comparées aux deux autres règles d’arrêt illustrée à la Figure <a href="r%C3%A9duire.html#fig:scree3">17.5</a>.</p>
+<div class="sourceCode" id="cb255"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Réorganisation des jeu de données contenant</span>
+<span class="co"># les valeurs propres</span>
+<span class="va">vp.nest</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/Rnest/man/nest.html">nest</a></span><span class="op">(</span><span class="va">jd</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">data</span><span class="op">[</span><span class="op">-</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="va">p</span><span class="op">)</span>,<span class="op">]</span>
+<span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">vp.nest</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">vp</span><span class="op">)</span>
+<span class="va">vp.nest</span><span class="op">$</span><span class="va">Test</span> <span class="op">&lt;-</span> <span class="st">"NEST"</span> 
+<span class="va">vp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="va">vp</span>, <span class="va">vp.nest</span><span class="op">)</span>
+
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">vp</span>,
+       mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Position</span>, 
+                     y <span class="op">=</span> <span class="va">Valeurs.propres</span>, 
+                     color <span class="op">=</span> <span class="va">Test</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">"Valeur propre"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.8</span>, <span class="fl">0.8</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:scree3"></span>
+<img src="17-Reduire_files/figure-html/scree3-1.png" alt="Comparaison des valeurs propres empiriques et simulées (analyses parallèle et nest)" width="75%" height="75%"><p class="caption">
+Figure 17.5: Comparaison des valeurs propres empiriques et simulées (analyses parallèle et nest)
+</p>
 </div>
-<div id="packages" class="section level2" number="17.5">
-<h2>
-<span class="header-section-number">17.5</span> Packages<a class="anchor" aria-label="anchor" href="#packages"><i class="fas fa-link"></i></a>
-</h2>
-<p>La fonction <code><a href="https://rdrr.io/r/base/svd.html">svd()</a></code> a été abordée, mais d’autres fonctions peuvent aussi réaliser l’analyse en composantes principales, soit <code><a href="https://rdrr.io/r/stats/prcomp.html">prcomp()</a></code> et <code><a href="https://rdrr.io/r/base/eigen.html">eigen()</a></code>. Les sorties et arguments seront légèrement différents, mais correspondent aux mêmes analyses.</p>
+<p>Un bel avantage du package est sa possibilité de créer un graphique pour différentes valeurs critiques <code>alpha</code>. La Figure <a href="r%C3%A9duire.html#fig:screenest">17.6</a> illustre la sortie.</p>
+<div class="sourceCode" id="cb256"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/Rnest/man/nest.html">nest</a></span><span class="op">(</span><span class="va">jd</span>, alpha <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.01</span>, <span class="fl">.025</span>, <span class="fl">.05</span>, <span class="fl">.10</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:screenest"></span>
+<img src="17-Reduire_files/figure-html/screenest-1.png" alt="Graphique sortir de `nest` de `Rnest`" width="75%" height="75%"><p class="caption">
+Figure 17.6: Graphique sortir de <code>nest</code> de <code>Rnest</code>
+</p>
+</div>
+<!-- ### Comparaisons des règles d'arrêts -->
+<!-- À ce stage, les trois règles d'arrêt ont sorti le même nombre de facteurs. Elles semblent ne devenir qu'inutilement alambiqué. Il revient à l'exemple original d'être très simples : des loadings assez saillants, des valeurs propres élevées et une structure simple et orthogonale. Voici un exemple plus complexe. -->
+<!-- Le package `Rnest` founir une matrice de corrélation basée sur 4 facteurs corrélées. La matrice se nomme `ex_4factors_corr` et la Figure\ \@ref(fig:structcp) -->
+<!-- ```{r structcp, fig.cap = "Structure factorielle de `ex_4factors_corr`", fig.ext = 'png', cache=TRUE, echo = FALSE, out.height="50%", out.width="50%", fig.align = "center"} -->
+<!-- knitr::include_graphics("image//factstruct2.png") -->
+<!-- ``` -->
+<!-- À partir de cette matrice, il est possible de créer un jeu de données pour 500 participants.  -->
+<!-- ```{r} -->
+<!-- set.seed(42) -->
+<!-- jd2 <- MASS::mvrnorm(n = 500, -->
+<!--                      mu = rep(0, ncol(ex_4factors_corr)), -->
+<!--                      Sigma = ex_4factors_corr)  -->
+<!-- ``` -->
+<!-- La Figure\ \@ref(fig:scree4) les valeurs propres du jeu de données. -->
+<!-- ```{r scree4,echo = FALSE, fig.cap="Les valeurs propres de `ex_4factors_corr`"} -->
+<!-- res = eigen(cor(jd2), only.values = TRUE)$values -->
+<!-- vp <- data.frame(Position = 1:ncol(ex_4factors_corr) , -->
+<!--                  Valeurs.propres = res, -->
+<!--                  Test = rep("Empiriques", p)) -->
+<!-- ggplot(data = vp, -->
+<!--        mapping = aes(x = Position,  -->
+<!--                      y = Valeurs.propres)) + -->
+<!--   geom_line() +  -->
+<!--   geom_point() + -->
+<!--   ylab("Valeur propre") + -->
+<!--   scale_x_continuous(breaks = scales::pretty_breaks())+  -->
+<!--   theme(legend.position = c(0.8, 0.8)) -->
+<!-- ``` -->
+<!-- Voici les tests comparés. -->
+<!-- ```{r, cache = TRUE} -->
+<!-- kaiser(jd2) -->
+<!-- analyse.parallele(jd2) -->
+<!-- nest(jd2) -->
+<!-- ``` -->
 
 </div>
 </div>
+</div>
+</div>
+
+
+
 
   <div class="chapter-nav">
 <div class="prev"><a href="explorer.html"><span class="header-section-number">16</span> Explorer</a></div>
-<div class="next"><a href="r%C3%A9f%C3%A9rences.html">Références</a></div>
+<div class="next"><a href="solutions.html">Solutions</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#r%C3%A9duire"><span class="header-section-number">17</span> Réduire</a></li>
 <li><a class="nav-link" href="#illustration"><span class="header-section-number">17.1</span> Illustration</a></li>
 <li><a class="nav-link" href="#importance-dune-dimension"><span class="header-section-number">17.2</span> Importance d’une dimension</a></li>
-<li><a class="nav-link" href="#lanalyse-parall%C3%A8le"><span class="header-section-number">17.3</span> L’analyse parallèle</a></li>
-<li><a class="nav-link" href="#nest"><span class="header-section-number">17.4</span> NEST</a></li>
-<li><a class="nav-link" href="#packages"><span class="header-section-number">17.5</span> Packages</a></li>
+<li>
+<a class="nav-link" href="#les-r%C3%A8gles-darr%C3%AAt"><span class="header-section-number">17.3</span> Les règles d’arrêt</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#le-test-de-kaiser"><span class="header-section-number">17.3.1</span> Le test de Kaiser</a></li>
+<li><a class="nav-link" href="#lanalyse-parall%C3%A8le-de-horn"><span class="header-section-number">17.3.2</span> L’analyse parallèle de Horn</a></li>
+<li><a class="nav-link" href="#le-test-s%C3%A9quentiel-de-la-valeur-propre-suivante-dachim"><span class="header-section-number">17.3.3</span> Le test séquentiel de la valeur propre suivante d’Achim</a></li>
+</ul>
+</li>
 </ul>
 
       <div class="book-extra">
@@ -351,7 +575,7 @@ Figure 17.3: Comparaison des valeurs propres empiriques et simulées
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-08-30.</p>
+    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-09-13.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

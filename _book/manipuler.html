@@ -99,6 +99,8 @@
 <li><a class="" href="d%C3%A9composer.html"><span class="header-section-number">15</span> Décomposer</a></li>
 <li><a class="" href="explorer.html"><span class="header-section-number">16</span> Explorer</a></li>
 <li><a class="" href="r%C3%A9duire.html"><span class="header-section-number">17</span> Réduire</a></li>
+<li class="book-part">Annexes</li>
+<li><a class="" href="solutions.html">Solutions</a></li>
 <li><a class="" href="r%C3%A9f%C3%A9rences.html">Références</a></li>
 </ul>
 
@@ -231,50 +233,49 @@
 
 <span class="co"># Rendre le package accessible</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></code></pre></div>
-</div>
-<div id="les-fonctions-utiles" class="section level2" number="6.3">
-<h2>
-<span class="header-section-number">6.3</span> Les fonctions utiles<a class="anchor" aria-label="anchor" href="#les-fonctions-utiles"><i class="fas fa-link"></i></a>
-</h2>
+<div id="les-fonctions-utiles" class="section level3" number="6.2.1">
+<h3>
+<span class="header-section-number">6.2.1</span> Les fonctions utiles<a class="anchor" aria-label="anchor" href="#les-fonctions-utiles"><i class="fas fa-link"></i></a>
+</h3>
 <p>Un des avantages et originalité d’utiliser le <code>tidyverse</code> est d’obtenir l’opérateur <code>%&gt;%</code> (appelée <em>pipe</em> en anglais que l’on peut traduire par <em>tuyau</em>) qui provient originellement du package <code>magrittr</code> <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-magri" role="doc-biblioref">Bache &amp; Wickham, 2020</a>)</span> et est importé par <code>dplyr</code>. L’opérateur favorise la lisibilité et la productivité, car il est plus facile de suivre le flux de plusieurs fonctions à travers ces <em>tuyaux</em> que de revenir en arrière lorsque plusieurs fonctions sont imbriquées. En fait, il favorise la lecture par verbes, soit par action (fonction), dans une séquence temporelle intuitive. Si les arguments sont placés en une seule ligne, non seulement la ligne est-elle longue et complexe, voire illisible, mais, en plus, les éléments les plus à gauche (les premiers à la lecture) sont les derniers opérés. Si chacune des fonctions était en ligne, alors il faudrait écraser ou créer des variables temporaires inutiles tout simplement pour arriver à réaliser les fonctions. La philosophie <code>tidyverse</code>, par l’usage de <code>%&gt;%</code>, évite tous ses problèmes.</p>
 <p>L’opérateur <code>%&gt;%</code> s’ajoute à la fin d’une ligne syntaxe. Son fonctionnement se traduit par l’argument de la ligne à gauche est introduit dans la fonction de droite, et ce, du haut vers le bas. Il peut être commandé plus rapidement avec le raccourci <strong>Ctrl + Shift + M</strong> sur Windows. En plus de l’opérateur <code>%&gt;%</code> , <code>dplyr</code> offre de nouvelles fonctions pour gérer un jeu de données. Quelques-unes des plus importantes sont décrites ici. Par la suite, une mise en situation permet de mieux comprendre leur fonctionnement.</p>
-<div id="sélectionner-des-variables" class="section level3" number="6.3.1">
-<h3>
-<span class="header-section-number">6.3.1</span> Sélectionner des variables<a class="anchor" aria-label="anchor" href="#s%C3%A9lectionner-des-variables"><i class="fas fa-link"></i></a>
-</h3>
+<div id="sélectionner-des-variables" class="section level4" number="6.2.1.1">
+<h4>
+<span class="header-section-number">6.2.1.1</span> Sélectionner des variables<a class="anchor" aria-label="anchor" href="#s%C3%A9lectionner-des-variables"><i class="fas fa-link"></i></a>
+</h4>
 <p>Pour sélectionner des données d’un très grand jeu de données, la fonction <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> permet de choisir les variables à conserver. Pour utiliser la fonction, il suffit d’indiquer les variables par leur nom de colonne dans la fonction. Aucun besoin de guillemets anglophones.</p>
 </div>
-<div id="sélectionner-des-participants" class="section level3" number="6.3.2">
-<h3>
-<span class="header-section-number">6.3.2</span> Sélectionner des participants<a class="anchor" aria-label="anchor" href="#s%C3%A9lectionner-des-participants"><i class="fas fa-link"></i></a>
-</h3>
+<div id="sélectionner-des-participants" class="section level4" number="6.2.1.2">
+<h4>
+<span class="header-section-number">6.2.1.2</span> Sélectionner des participants<a class="anchor" aria-label="anchor" href="#s%C3%A9lectionner-des-participants"><i class="fas fa-link"></i></a>
+</h4>
 <p>Pour filtrer les participants selon les caractéristiques désirées, la fonction <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> permet de sélectionner les unités satisfaisant les conditions spécifiées. Pour utiliser la fonction, il faut indiquer le ou les arguments conditionnels à respecter et sur quelle variable.</p>
 <p>Dans ce contexte la fonction <code>na.if()</code> peut être utile pour retirer une valeur aberrante.</p>
 </div>
-<div id="transformer-et-créer-des-variables" class="section level3" number="6.3.3">
-<h3>
-<span class="header-section-number">6.3.3</span> Transformer et créer des variables<a class="anchor" aria-label="anchor" href="#transformer-et-cr%C3%A9er-des-variables"><i class="fas fa-link"></i></a>
-</h3>
+<div id="transformer-et-créer-des-variables" class="section level4" number="6.2.1.3">
+<h4>
+<span class="header-section-number">6.2.1.3</span> Transformer et créer des variables<a class="anchor" aria-label="anchor" href="#transformer-et-cr%C3%A9er-des-variables"><i class="fas fa-link"></i></a>
+</h4>
 <p>Pour créer ou transformer des variables, la fonction <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> permettra de créer de nouvelles variables à partir des valeurs déjà dans le jeu de données. Il suffit d’indiquer dans la fonction, le calcul qui doit être opérer.</p>
 </div>
-<div id="sommariser-les-informations-pertinentes" class="section level3" number="6.3.4">
-<h3>
-<span class="header-section-number">6.3.4</span> Sommariser les informations pertinentes<a class="anchor" aria-label="anchor" href="#sommariser-les-informations-pertinentes"><i class="fas fa-link"></i></a>
-</h3>
+<div id="sommariser-les-informations-pertinentes" class="section level4" number="6.2.1.4">
+<h4>
+<span class="header-section-number">6.2.1.4</span> Sommariser les informations pertinentes<a class="anchor" aria-label="anchor" href="#sommariser-les-informations-pertinentes"><i class="fas fa-link"></i></a>
+</h4>
 <p>Pour obtenir des informations sur le jeu de données ainsi créées, la fonction <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code> permettra notamment d’obtenir des statistiques d’intérêt. En ajoutant, dans la fonction, les fonctions désirées, comme <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code> ou <code><a href="https://rdrr.io/r/stats/sd.html">sd()</a></code>, avec les variables sur lesquelles elles devraient être opérées ou encore <code><a href="https://dplyr.tidyverse.org/reference/context.html">n()</a></code> pour connaître la taille des groupes.</p>
 <p>S’il y a des groupes ou des catégories, le sommaire peut être divisé avec la fonction <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> où la variable nominale est spécifiée.</p>
 </div>
-<div id="autres-fonctions" class="section level3" number="6.3.5">
-<h3>
-<span class="header-section-number">6.3.5</span> Autres fonctions<a class="anchor" aria-label="anchor" href="#autres-fonctions"><i class="fas fa-link"></i></a>
-</h3>
+<div id="autres-fonctions" class="section level4" number="6.2.1.5">
+<h4>
+<span class="header-section-number">6.2.1.5</span> Autres fonctions<a class="anchor" aria-label="anchor" href="#autres-fonctions"><i class="fas fa-link"></i></a>
+</h4>
 <p>Il existe plusieurs autres fonctions possibles. Notamment, <code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice()</a></code> permet de choisir les unités désirées en passant comme argument la base de données et le ou les numéros de ligne; <code>sample_slice()</code> qui est très similaire, retourne des lignes aléatoires; <code><a href="https://dplyr.tidyverse.org/reference/rename.html">rename()</a></code>, similaire à <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code>, permet de renommer les variables; <code>arrange</code> reclasse par ordre croissant en fonction d’une variable placée en argument. Et il y en a plusieurs autres.</p>
 </div>
 </div>
-<div id="mise-en-situation" class="section level2" number="6.4">
-<h2>
-<span class="header-section-number">6.4</span> Mise en situation<a class="anchor" aria-label="anchor" href="#mise-en-situation"><i class="fas fa-link"></i></a>
-</h2>
+<div id="mise-en-situation" class="section level3" number="6.2.2">
+<h3>
+<span class="header-section-number">6.2.2</span> Mise en situation<a class="anchor" aria-label="anchor" href="#mise-en-situation"><i class="fas fa-link"></i></a>
+</h3>
 <p>Pour mettre en pratique la philosophie <code>tidyverse</code>, voici un exemple tiré du jeu de données <code>starwars</code> (disponible du <code>tidyverse</code>). Ce jeu de données possède de nombreuses caractéristiques (diversité de variables, de mesures, données manquantes) qui en font un jeu de données similaires à ce qu’un expérimentateur pourrait obtenir.</p>
 <p>Sans plus de préliminaire, la fonction <code><a href="https://rdrr.io/r/utils/head.html">head()</a></code> donne un aperçu du jeu de données</p>
 <div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="manipuler.html#cb81-1" aria-hidden="true" tabindex="-1"></a>starwars[,<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>]</span>
@@ -412,6 +413,7 @@
 
 </div>
 </div>
+</div>
 
   <div class="chapter-nav">
 <div class="prev"><a href="importer.html"><span class="header-section-number">5</span> Importer</a></div>
@@ -428,17 +430,12 @@
 <li><a class="nav-link" href="#donn%C3%A9es-manquantes"><span class="header-section-number">6.1.4</span> Données manquantes</a></li>
 </ul>
 </li>
-<li><a class="nav-link" href="#le-tidyverse"><span class="header-section-number">6.2</span> Le tidyverse</a></li>
 <li>
-<a class="nav-link" href="#les-fonctions-utiles"><span class="header-section-number">6.3</span> Les fonctions utiles</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#s%C3%A9lectionner-des-variables"><span class="header-section-number">6.3.1</span> Sélectionner des variables</a></li>
-<li><a class="nav-link" href="#s%C3%A9lectionner-des-participants"><span class="header-section-number">6.3.2</span> Sélectionner des participants</a></li>
-<li><a class="nav-link" href="#transformer-et-cr%C3%A9er-des-variables"><span class="header-section-number">6.3.3</span> Transformer et créer des variables</a></li>
-<li><a class="nav-link" href="#sommariser-les-informations-pertinentes"><span class="header-section-number">6.3.4</span> Sommariser les informations pertinentes</a></li>
-<li><a class="nav-link" href="#autres-fonctions"><span class="header-section-number">6.3.5</span> Autres fonctions</a></li>
+<a class="nav-link" href="#le-tidyverse"><span class="header-section-number">6.2</span> Le tidyverse</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#les-fonctions-utiles"><span class="header-section-number">6.2.1</span> Les fonctions utiles</a></li>
+<li><a class="nav-link" href="#mise-en-situation"><span class="header-section-number">6.2.2</span> Mise en situation</a></li>
 </ul>
 </li>
-<li><a class="nav-link" href="#mise-en-situation"><span class="header-section-number">6.4</span> Mise en situation</a></li>
 </ul>
 
       <div class="book-extra">
@@ -456,7 +453,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-08-30.</p>
+    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-09-13.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

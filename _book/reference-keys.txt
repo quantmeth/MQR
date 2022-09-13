@@ -136,7 +136,10 @@ eq:resvarfact
 eq:com
 fig:Pigeon
 fig:scree
+fig:kaiser
 fig:scree2
+fig:scree3
+fig:screenest
 commencer
 r
 pourquoi-r
@@ -316,6 +319,8 @@ calculs-de-lanalyse-factorielle-exploratoire
 réduire
 illustration
 importance-dune-dimension
-lanalyse-parallèle
-nest
-packages
+les-règles-darrêt
+le-test-de-kaiser
+lanalyse-parallèle-de-horn
+le-test-séquentiel-de-la-valeur-propre-suivante-dachim
+le-package-rnest

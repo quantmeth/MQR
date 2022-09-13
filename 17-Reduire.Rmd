@@ -1,10 +1,6 @@
 # Réduire
 
-Comme mentionné d'entrée de jeu, l'analyse en composantes principales (ACP) n'est pas une technique de réduction des dimensions. S'il y a $p$ variables, l'ACP produit $p$ dimensions. Toutefois, comme les valeurs propres sont des indices de partage commun entre les variables, elle peut être utilisée de cette façon. Elle est presque toujours utiliser pour réduire la dimension d'un jeu de donnée. Il suffit d'ordonner les valeurs propres. 
-
-La question devient alors à savoir combien de dimensions faut-il retenir pour rendre adéquatement compte des données? Dès lors, l'ACP devient une technique de réduction des dimension, comme [l'analyse factorielle exploire][Explorer], mais puisqu'elle ne répond pas explicitement à cette question, le statisticien use de techniques complémentaires, des **règles d'arrêts** (*stopping rules*) pour déterminer le nombre de dimensions.
-
-Ces règles d'arrêt sont en général un *bricolage* du statisticien pour répondre à la question. Bricolage n'est pas à prendre péjorativement, mais seulement comme rappel à la réalité que ces techniques sont souvent créées sans dérivation analytique. Il n'est pas possible de leur faire aveuglément confiance (il ne faudrait jamais faire cela de toute façon). Elles ont une pertinence pratique, mais les conditions selon lesquelles elles flanchent n'est pas connue. Il existe probablement des centaines de techniques ayant leur avantage et inconvénients ou bien des scénarios dans lesquels elles sont plus efficaces que les autres. Il en apparaît des nouvelles chaque années depuis 1950. Comme ces techniques sont des bricolages et qu'elles sont taillées différemment, elles ne résultent pas toutes à la même conclusion. Faire l'étalage de ces règles d'arrêt serait bien inutile. Ainsi, les deux techniques les plus utilisées seront présentées, l'analyse parallèle (*parallel analysis*) et une deuxième méthode ayant montré un excellent rendement sera présentée, soit le test séquentiel de la prochaine valeur propre (*Next eigenvalue sequence test*).
+Comme mentionné d'entrée de jeu, l'analyse en composantes principales (ACP) n'est pas une technique de réduction des dimensions. S'il y a $p$ variables, l'ACP produit $p$ dimensions. Toutefois, comme les valeurs propres sont des indices de partage commun entre les variables, elle peut être utilisée de cette façon. En fait, l'ACP est presque toujours utiliser pour réduire la dimension d'un jeu de donnée.
 
 ## Illustration
 
@@ -14,7 +10,7 @@ La compression d'images, en informatique, est un exemple dont il est possible d'
 
 La Figure \@ref(fig:Pigeon) montre un exemple de compression d'une image de pigeon^[Tirée de https://pixnio.com/fr/faune-animaux/des-oiseaux-fr/pigeons-photos/oiseau-pigeon-tumbler-pigeon-mouche-animal-animal, License CC0]. Elle montre à différents niveaux factoriels de compression la même image. À trois dimensions, le pigeon est difficilement perceptible. Progressivement, le pigeon est plus facilement reconnaissable, mais surtout, à un certain seuil (deuxième et troisième lignes de la Figure \@ref(fig:Pigeon), par exemple), l'image gagne en clarté. Trente dimensions conviennent, les plus difficiles désireront peut-être retenir 125 dimensions. L'image à ce stade est très bien. Nonobstant ces nombres, ce sera toujours mieux, en termes de compression, que les 526 dimensions possibles (de l'image original). Ainsi, à `r 125/526*100` % des dimensions, l'image est claire et le pigeon reconnaissable. Cette logique s'applique également pour les facteurs psychologiques.
 
-```{r Pigeon, fig.cap="Pigeon compressé à divers niveaux de dimension $k$",echo=FALSE, fig.align="center", out.height='40%', out.width='40%'}
+```{r Pigeon, fig.cap="Pigeon compressé à divers niveaux de dimension $k$",echo=FALSE, fig.align="center", out.height='75%', out.width='75%'}
 knitr::include_graphics("image//Pigeon.png")
 ```
 
@@ -26,16 +22,19 @@ La structure factorielle et le jeu de données du chapitre [Explorer] est repris
 
 ```{r}
 # Pour la reproductibilité
-set.seed(33)
+set.seed(44)
 
 # Création de la matrice de recette de fabrication
 phi = matrix(c(.9, .8, .7,  0,  0, .4,
-               0,  0,  0, .6, .5, .4), 
+                0,  0,  0, .6, .5, .4), 
              nrow = 6, ncol =  2)
+
+# Nombre de variables
+p <- nrow(phi)
 
 # Identification des variables et facteurs
 colnames(phi) = c("F1", "F2")
-rownames(phi) = paste0(rep("i",6), 1:6)
+rownames(phi) = paste0(rep("i", 6), 1:6)
 
 R = phi %*% t(phi)
 diag(R) <- 1
@@ -58,53 +57,138 @@ res$values
 
 Une façon d'illustrer les valeurs propres graphiquement est d’utiliser un graphique nommé *scree plot* ou *graphique des éboulis*. La Figure\ \@ref(fig:scree) peut être produite avec la syntaxe ci-dessous. Il s'agit de mettre en axe des $x$ la séquence (`idex`) des valeurs propres (leur ordre) par rapport à la valeur propre en axe des $y$. Ce graphique se produit simplement avec `plot()`. L'option `type = "b"` est simplement un type de graphique utilisé, dans ce cas-ci, la combinaison de points et de lignes.
 
-```{r scree, fig.cap="Les valeurs propres en fonctions de la position de l'axe"}
-plot(res$values,
-     type = "b",
-     xlab = "Ordre",
-     ylab = "Valeur propre")
+```{r scree, fig.cap="Les valeurs propres en fonctions de la position de l'axe",fig.align="center", out.height='75%', out.width='75%'}
+Position <-  1:p
+vp <- data.frame(Position = Position ,
+                 Valeurs.propres = c(res$values),
+                 Test = rep("Empiriques", p))
+
+ggplot(data = vp,
+       mapping = aes(x = Position, 
+                     y = Valeurs.propres, 
+                     color = Test)) +
+  geom_line() + 
+  geom_point() +
+  ylab("Valeur propre") +
+  theme(legend.position = c(0.8, 0.8))
+```
+La Figure\ \@ref(fig:scree) est une bonne représentation visuelle des valeurs propres. Elle ne répond pas à laquelle question d'intérêt : combien y a-t-il de dimensions *importantes*. Elle donne toutefois une idée. Probablement 2 ou 3? La première est indubitable; la valeur propre est très élevée. Les 4^e^, 5^e^ et 6^e^ sont quant à elles très petites. Comment déterminer avec plus de rigueur le nombre de dimensions. C'est là que les règles d'arrêt entre en jeu.
+
+## Les règles d'arrêt
+
+La question devient alors à savoir combien de dimensions faut-il retenir pour rendre adéquatement compte des données? Dès lors, l'ACP devient une technique de réduction des dimension. Or, les analyses exploratoires (comme l'ACP ou [l'analyse factorielle exploire][Explorer] ne répondent pas explicitement à cette question. Le statisticien use de techniques complémentaires, des **règles d'arrêts** (*stopping rules*), pour déterminer le nombre de dimensions à retenir.
+
+Ces règles d'arrêt sont en général un *bricolage* du statisticien pour répondre à la question. Bricolage n'est pas à prendre péjorativement, mais seulement comme rappel à la réalité que ces techniques sont souvent créées sans dérivation analytique. Il n'est pas possible de leur faire aveuglément confiance (il ne faudrait jamais faire cela de toute façon). Elles ont une pertinence pratique, mais les conditions selon lesquelles elles flanchent n'est pas connue. Il existe probablement des centaines de techniques ayant leur avantage et inconvénients ou bien des scénarios dans lesquels elles sont plus efficaces que les autres. Il en apparaît des nouvelles chaque années depuis 1950. Comme ces techniques sont des bricolages et qu'elles sont taillées différemment, elles ne résultent pas toutes à la même conclusion. Faire l'étalage de ces règles d'arrêt serait bien inutile. Ainsi, les deux techniques les plus utilisées seront présentées, l'analyse parallèle (*parallel analysis*) et une deuxième méthode ayant montré un excellent rendement sera présentée, soit le test séquentiel de la prochaine valeur propre (*Next eigenvalue sequence test*).
+
+### Le test de Kaiser
+
+Historiquement, le premier test de celui du *test de Kaiser* [@Kaiser]. C'est le test utilisé par défaut dans la plupart des logiciels traditionnels. Cela lui permet d'être encore très répandue aujourd'hui, malgré qu'il soit discrédité depuis les années 60. [@Turner98;@Achim20;@Beauducel01]. 
+
+Le test de Kaiser se fonde sur l'idée selon laquelle, si les variables ne sont pas corrélées entre elles, donc s'il n'y a pas de facteurs, les valeurs propres seront égales à 1. La logique du test est d'affirmer que, si une valeur propre est supérieure à 1, alors de l'information commune est nécessairement partagée entre deux ou plusieurs variables. Selon le test de Kaiser, le nombre de composantes à retenir correspond au nombre de valeurs propres supérieures à 1. 
+
+À titre illustratif, une matrice de corrélation sans aucune corrélation est une matrice d'identité.
+
+```{r}
+mat.cor <- diag(6)
+mat.cor
+```
+Les valeurs propres de cette matrice sont toutes égalent à 1.
+
+```{r}
+eigen(mat.cor)$values
+```
+Et si une seule corrélation est ajoutée, aussi petite soit-elle, alors toutes les plus grandes valeurs propres tendent à capitaliser sur cette variance partagée.
+
+```{r}
+mat.cor[1, 6] <- mat.cor[6,1] <- .1
+mat.cor
+eigen(mat.cor)$values
+```
+Autrement dit, si une valeur propre est supérieure à 1, c'est qu'il y a un facteur.
+
+La Figure\ \@ref(fir:kaiser) illustre le test de Kaiser avec le présent exemple qui suggère deux facteurs (comme simulé).
+
+```{r kaiser, fig.cap="Les valeurs propres en fonctions de la position de l'axe",fig.align="center", out.height='75%', out.width='75%'}
+vp <- rbind(vp,
+      data.frame(Position = Position,
+                 Valeurs.propres = 1,
+                 Test = rep("Kaiser", p))
+      )
+
+ggplot(data = vp,
+       mapping = aes(x = Position, 
+                     y = Valeurs.propres, 
+                     color = Test)) +
+  geom_line() + 
+  geom_point() +
+  ylab("Valeur propre") +
+  theme(legend.position = c(0.8, 0.8))
 ```
 
-## L'analyse parallèle
+Une fonction simple pour programme le test de Kaiser.
 
-Avant d'introduire l'analyse parallèle (PA), il est intéressant de présenter le test duquel il est inspiré, soit le *test de Kaiser* [@Kaiser]. C'est le test utilisé par défaut dans certains logiciel traditionnel, malgré qu'il soit discrédité depuis plusieurs années [@Turner98;@Achim20;@Beauducel01]. Ce test se fonde sur l'idée selon laquelle, si les variables ne sont pas corrélées entre elles, donc s'il n'y a pas de facteurs, les valeurs propres seront égales à 1. La logique du test est d'affirmer que, si une valeur propre est supérieure à 1, alors de l'information commune est nécessairement partagée entre deux ou plusieurs variables. Selon le test de Kaiser, le nombre de composantes à retenir correspond au nombre de valeurs propres supérieures à 1. 
-Asymptotiquement parlant, si $n \to \infty$, le test est vraie. Par contre, l'ACP capitalise sur l'erreur et en inclut accidentellement dans les premières dimensions. Conséquemment, les premiers axes seront surestimés, alors que les derniers seront sous-estimées.   
+```{r}
+kaiser <- function(jd){
+  # Obtenir la matrice de corrélation
+  R <- cor(jd)
+  
+  # Extraire uniquement les valeurs propres
+  eig <- eigen(R, only.values = TRUE)$values
+  
+  # Les valeurs propres plus grandes que 1
+  sum(eig > 1)
+}
+```
 
-La solution proposée par @Horn65 est alors de tenir compte de cette erreur d'échantillonnage accidentelle. Pour ce faire, il propose de rééchantillonner les valeurs propres d'un jeu de données sans aucun facteur (aucune corrélation entre les variables) et ayant les mêmes caractéristiques que le jeu de données cible (même nombre de variables et de participant). Le jeu de données cible correspond au jeu de données de l'expérimentateur. Même s'il n'y a pas de corrélation sur le plan de la population, il y aura accidentellement des corrélations dans un échantillon. Le rééchantillonnage est réitéré sur des milliers de jeu de données artificiel. À chaque fois, les valeurs propres sont enregistrées. Des moyennes en sont retirés à la toute fin. Il s'agit du critère auquel l'hypothèse nulle est rejetée. De la première à la dernière, chaque valeur propre cible est comparée à la valeur propre moyenne correspondante, si la cible est plus élevée, il s'agit d'une dimension à retenir. Dès que la cible est inférieur, le test est arrêté. Le nombre de valeurs propres supérieures aux valeurs propres artificielles correspond au nombre de dimensions à retenir. 
+### L'analyse parallèle de Horn
 
-Dans la syntaxe ci-dessous, les mêmes caractéristiques que le jeu de données précédent sont utilisés, soit $p = 6$ et $n = 5000$. À la fin, il sera possible de comparer s'il y a effectivement deux facteurs selon l'AP. 
+Asymptotiquement parlant, si $n \to \infty$, le test est vraie. Par contre, l'ordre des valeurs propres capitalise sur l'erreur, ce qui introduit l'idée selon laquelle les corrélations accidentelles se retrouvent dans les premières dimensions. Conséquemment, les premiers axes sont surestimés, alors que les derniers sont sous-estimées.   
+
+La solution proposée par @Horn65 est alors de tenir compte de cette erreur d'échantillonnage accidentelle. Pour ce faire, il propose de rééchantillonner les valeurs propres d'un jeu de données sans aucun facteur (aucune corrélation entre les variables) et ayant les mêmes caractéristiques que le jeu de données cible (même nombre de variables et de participant). Le jeu de données cible correspond au jeu de données de l'expérimentateur. Même s'il n'y a pas de corrélation sur le plan de la population, il y aura accidentellement des corrélations dans un échantillon. 
+
+Le rééchantillonnage est réitéré sur des milliers de jeu de données artificiel. À chaque fois, les valeurs propres sont enregistrées. Des moyennes en sont retirés à la toute fin. Il s'agit du critère auquel l'hypothèse nulle est rejetée. De la première à la dernière, chaque valeur propre cible est comparée à la valeur propre moyenne correspondante, si la cible est plus élevée, il s'agit d'une dimension à retenir. Dès que la cible est inférieur, le test est arrêté. Le nombre de valeurs propres supérieures aux valeurs propres artificielles correspond au nombre de dimensions à retenir. 
+
+Dans la syntaxe ci-dessous, les mêmes caractéristiques que le jeu de données précédent sont utilisés, soit $p = 6$ et $n = 5000$. À la fin, il sera possible de comparer s'il y a effectivement deux facteurs selon l'analyse parallèle. 
 
 ```{r}
 # Pour la reproductibilité
 set.seed(1019)
 p = 6        # Nombre de variables
-n = 500      # Nombre de participants 
-reps = 1000  # Nombre d'itérations
-valeurs.propres = matrix(0,           # Création d'une variable
-                         nrow = p,    # vide pour enregistrer
-                         ncol = reps) # les valeurs propres
+n = 50       # Nombre de participants 
+nreps = 1000 # Nombre d'itérations
+valeurs.propres = matrix(0,            # Création d'une variable
+                         nrow = p,     # vide pour enregistrer
+                         ncol = nreps) # les valeurs propres
+
+# Création d'une matrice de corrélation vide
+R <- diag(p)
+
 # Création de la boucle                                        
-for(i in 1:reps) {
-  score = rnorm(n = n * p)             # Création de n * p valeurs 
-  # aléatoires non corrélées
-  D = matrix(score,                    # Formater en matrice le jeu
-             nrow = n, ncol = p)       # de données 
-  ACP = svd(cor(D))                    # Réaliser l'ACP 
-  valeurs.propres[,i] = ACP$d          # Enregistrer les valeurs propres
+for(i in 1:nreps) {
+  D <- MASS::mvrnorm(n = n,            # Création de n * p valeurs
+                     mu = rep(0, p),   # aléatoires accidentellement
+                     Sigma = R)        # corrélées
+  
+  ACP <- eigen(cor(D),                 # Réaliser l'ACP
+               only.values = TRUE)        
+  
+  valeurs.propres[,i] <- ACP$values    # Enregistrer les valeurs propres
 }
 
 # Une fois les valeurs propres obtenues,
 # les moyennes et quantiles sont calculables
-rowMeans(valeurs.propres)        # Une moyenne par ligne (valeur propres)
 
-# Ou si le 95e percentile était préféré
+# Une moyenne par ligne (valeur propres)
+rowMeans(valeurs.propres)
+
+# Le 95e percentile (si préféré)
 apply(X = valeurs.propres, 
       FUN = quantile,
       MARGIN = 1,
       probs = .95)
 ```
 
-Pour connaître le nombre de dimension, il suffit de tester les valeurs propres empiriques et les comparer aux valeurs propres simulées (moyenne ou 95^e^ percentile).  Le nombre de valeur propre empirique supérieur aux valeurs propres simulés correspond au nombre de composantes à retenir.
+Pour connaître le nombre de dimension, il suffit de tester les valeurs propres empiriques et les comparer aux valeurs propres simulées (moyenne ou 95^e^ percentile). Le nombre de valeur propre empirique supérieur aux valeurs propres simulés correspond au nombre de composantes à retenir.
 
 ```{r}
 # Les valeurs propres empiriques
@@ -119,97 +203,240 @@ sum(res$values > rowMeans(valeurs.propres))
 
 Ainsi, `r sum(res$values > rowMeans(valeurs.propres))` facteurs sont à retenir. Une façon d'illustrer les résultats de l'analyse parallèle est d'utiliser le graphique de éboulis en y représentant les valeurs propres empiriques comparativement aux simulées. Le nombre de valeurs propres empiriques supérieures aux simulées est le nombre de dimensions à retenir. Ce graphique est produit à la Figure \@ref(fig:scree2). Voici la syntaxe pour produire ce graphique avec `ggplot2`. La première étape est de mettre en commun les résultats obtenus dans un jeu de données. La variable `Index` indique l'index de la valeur propres, `valeurs.propres` contient les valeurs propres et `Type` indique s'il s'agit de valeurs propres empiriques ou simulées de l'analyse parallèle. Pour le reste, il s'agit de recourir à `ggplot()`.
 
-```{r scree2, fig.cap="Comparaison des valeurs propres empiriques et simulées"}
-data.frame(Index = rep(1:p, p),
-           valeurs.propres = c(res$values, rowMeans(valeurs.propres)),
-           Type = rep(c("Empirique","Simulées"), each = p)
-) %>% 
-  ggplot(mapping = aes(x = Index, y = valeurs.propres, color = Type)) +
+```{r scree2, fig.cap="Comparaison des valeurs propres empiriques et simulées",fig.align="center", out.height='75%', out.width='75%'}
+vp <- rbind(vp,
+      data.frame(Position = Position,
+                 Valeurs.propres = rowMeans(valeurs.propres),
+                 Test = rep("Analyse parallèle", p))
+      )
+
+ggplot(data = vp,
+       mapping = aes(x = Position, 
+                     y = Valeurs.propres, 
+                     color = Test)) +
   geom_line() + 
   geom_point() +
+  ylab("Valeur propre") +
   theme(legend.position = c(0.8, 0.8))
 ```
+Voici une fonction pour programmer l'analyse parallèle.
 
-## NEST
+```{r}
+analyse.parallele <- function(jd, 
+                              p = ncol(jd), 
+                              n = nrow(jd), 
+                              nreps = 1000,
+                              alpha = .05){
+ 
+  # Extraire uniquement les valeurs propres
+  eig <- eigen(cor(R), only.values = TRUE)$values
 
-Le *Next Eigenvalue Sequential Test* développé par Achim [-@Achim17;-@Achim20] est le dernier cri en termes d'estimations du nombre de composante à retenir.
+  # Création d'une variable vide pour enregistrer
+valeurs.propres = matrix(0,            
+                         nrow = p,     
+                         ncol = nreps) 
 
-<!-- Il est à mi-chemin entre MAP et AP  -->
+# Création d'une matrice de corrélation vide
+R <- diag(p)
 
-*À terminer*
-
-```{r, eval = FALSE}
-NEST <- function(data, N=NULL, reps = 1000, 
-                 alpha = .05, convergence = 1e-5, maxit = 500, ...){
+# Création de la boucle                                        
+for(i in 1:nreps) {
+  D <- MASS::mvrnorm(n = n,            # Création de n * p valeurs
+                     mu = rep(0, p),   # aléatoires accidentellement
+                     Sigma = R)        # corrélées
   
-  ns = dim(data)[1]
-  nv = dim(data)[2]
-  if(ns==nv){
-    if(is.null(N)) stop("Error: 'N' is required") 
-    ns = N
-  }else{
-    data = cor(data)
-  } 
-  E = eigen(data, symmetric=TRUE)$values
+  ACP <- eigen(cor(D),                 # Réaliser l'ACP
+               only.values = TRUE)        
   
-  for (nfact in 0:(nv-2)){
-    rnk = rep(1, nfact + 1)
-    if (nfact==0){
-      model = diag(nv)
-    }else{
-      R = data
-      pre = diag(data)
-      for (jj in 1:maxit){
-        res = eigen(R, symmetric=TRUE)
-        if (nfact==1){
-          ld = res$vectors[,1] * sqrt(res$values[1])
-          co = ld*ld
-        }else{
-          ff = nfact
-          while (res$value[ff] <= 0) {ff = ff - 1}
-          ld = res$vectors[,1:ff] %*% diag(sqrt(res$values[1:ff]))
-          co = rowSums(ld*ld)
-        }
-        
-        if (max(co)>1){
-          R = R + diag(pre - diag(R))
-          break
-        }
-        
-        diff = max(abs(pre - co))
-        if (diff < convergence) break
-        R = R + diag(co-pre)
-        pre = co
-      }
-      
-      if (jj >= maxit){
-        nt<-paste("Warning! Convergence not achieved")
-      }
-      
-      
-      model = t(cbind(ld, diag(sqrt(1-co))))
-    }
-    nd = nfact + nv
-    for (j in 1:reps){
-      res = eigen(cor(matrix(rnorm(ns * nd), ns, nd) %*% model), 
-                  symmetric=TRUE)$values[1:(nfact + 1)]
-      rnk = rnk + (res >= E[1:(nfact + 1)])
-    }
-    if (rnk[nfact+1] > alpha*(reps+1)) break
-  }
-  
-  return(OUT = list(name = "NEST", nfact = nfact)	)
+  valeurs.propres[,i] <- ACP$values    # Enregistrer les valeurs propres
+}
+
+# Le 95e percentile
+vp.crit <- apply(X = valeurs.propres, 
+                 FUN = quantile,
+                 MARGIN = 1,
+                 probs = 1 - alpha)
+
+# Les valeurs propres empiriques plus grandes 
+# que celles simulées
+sum(eig > vp.crit) 
 }
 ```
 
-Pour tester
-```{r, eval = FALSE}
-NEST(cor(jd5000), N = nrow(jd5000))
+### Le test séquentiel de la valeur propre suivante d'Achim
+
+L'un des problèmes de l'analyse parallèle est que, bien qu'elle tient compte de l'erreur d'échantillonnage, elle ne tient pas compte de la logique séquentielle des test d'hypothèses des valeurs propres [@Turner98; @Beauducel01]. Précisément, le test d'hypothèse sous-jacent, en termes de $k$ dimensions à retenir, est 
+$$
+H_0 : k = 0 \\
+H_1 : k \geq1 
+$$
+
+
+Autrement dit, il n'y a pas de facteurs, ou bien il y a plus d'un facteur. Une fois la première dimension déterminée par l'analyse parallèle, il est inadéquat de tester les suivantes avec la même matrice de corrélation. Il faut tenir compte de cette nouvelle information : il y a au moins $k$ dimensions.
+
+Le **Test séquentiel de la valeur propre suivante** (*Next Eigenvalue Sequential Test*, NEST) développé par Achim [-@Achim17;-@Achim20] est le dernier cri en termes d'estimation du nombre de composantes à retenir. En plus de tenir compte pour l'erreur d'échantillonnage, comme l'analyse parallèle, il tient compte aussi de la logique séquentielle du test d'hypothèse. Plus précisément, le test utilise une matrice de corrélation contenant les $k$ dimensions déterminées auparavant. Lorsque $k=0$, le test est équivalent à l'analyse parallèle, mais uniquement pour la première valeur propre. Une fois l'hypothèse nulle rejetée, $k$ est incrémenté, une nouvelle matrice de corrélation basée sur ces $k$ facteurs est calculées, et un nouveau rééchantillonnage des valeurs propres est entrepris. Le test s'arrête lorsque la $k+1$ valeur propre (l'hypothèse nulle) n'est pas rejetée, pour donner $k$ dimensions.
+
+La syntaxe suivante illustre de façon simplifier le test NEST. Elle utilise plusieurs éléments déjà utilisée. 
+
+* Elle est basée sur [l'analyse parallèle][L'analyse parallèle de Horn]. Le changement principal est que la matrice de corrélation change pour différente valeur de $k$, alors qu'elle reste toujours identique pour l'analyse parallèle, `R = diag(p)`, peu importe $k$.
+
+* Comme l'analyse parallèle, la fonction utilise une forme de rééchantillonnage qui est en fait du [bootstrap][Le bootstrap].
+ 
+* Elle utilise `factanal()` (voir [Explorer]) pour reconstruire la matrice de corrélation à $k$ facteurs.
+
+```{r}
+mat.cor <- cor(jd)  # Matrice de corrélation du jeu de données
+p <- ncol(mat.cor)  # Nombre de variables (6)
+n <- nrow(jd)       # Nombre de participants (50)
+nreps <- 1000       # Nombre d'itérations
+
+# Test séquentiel des valeurs propres
+for (k in 0:(p-1)){ # Pour 0 à (p-1) dimensions
+  
+  # Déterminer la matrice de corrélation pour k dimensions
+  if(k == 0) {      # Pour tester 0 dimension (analyse parallèle)
+    
+    R <- diag(p)    # Matrice de corrélation à 0 dimension
+    
+  } else {          # Pour tester k dimensions
+    
+    fa <- factanal(covmat = mat.cor, n.obs = n, factors = k)
+    R <- fa$loadings %*% t(fa$loadings)
+    diag(R) <- 1    # Matrice de corrélation à k dimensions
+  }
+  
+  # Rééchantillonnage des valeurs propres
+  # Création d'une variable vide pour enregistrer
+  valeurs.propres = matrix(0,            
+                           nrow = p,     
+                           ncol = nreps) 
+  
+  # Création de la boucle                                        
+  for(i in 1:nreps) {
+    
+    # Création de n * p valeurs aléatoires corrélées
+    D <- MASS::mvrnorm(n = n,            
+                       mu = rep(0, p),   
+                       Sigma = R)
+    
+     # Réaliser l'ACP
+    ACP <- eigen(cor(D),                
+                only.values = TRUE)  
+    
+     # Enregistrer les valeurs propres
+    valeurs.propres[,i] <- ACP$values   
+  }
+  
+  # Tester la k+1 valeurs propres à alpha = .05
+  vp.crit <- quantile(valeurs.propres[k+1,], probs = .95)
+  
+  # Valeur propre empirique k testée à la valeur simulée
+  # Si la valeur propre est plus élevée, NEST continue,
+  # si la valeur propre est plus petite, NEST arrête.
+  if(!(res$values[k + 1] > vp.crit)){break}
+}
+
+# Nombre de facteurs à retenir
+nfactors = k
+```
+La sortie ici, `nfactors`  représente le nombre de dimensions à retenir.
+
+#### Le package Rnest
+
+```{r, message = FALSE, warning=FALSE, comment=FALSE, include = FALSE}
+remotes::install_github(repo = "quantmeth/Rnest")
 ```
 
 
-## Packages
+Il existe une version préliminaire d'un package permettant de réaliser facilement NEST en plus de fournir quelques fonctions utiles. Le package est `Rnest` [@Rnest]. Il est disponible par GitHub et est importable sur **R** avec la syntaxe suivante.
 
-La fonction `svd()` a été abordée, mais d'autres fonctions peuvent aussi réaliser l'analyse en composantes principales, soit `prcomp()` et `eigen()`. Les sorties et arguments seront légèrement différents, mais correspondent aux mêmes analyses.
+```{r, eval = FALSE}
+remotes::install_github(repo = "quantmeth/Rnest")
+```
+
+Comme à l'habitude, il faut l'appeller dans l'environnement.
+
+```{r, message = FALSE, warning=FALSE, comment=FALSE}
+library(Rnest)
+```
+
+La fonction principale est `nest()`. Elle prend en argument un jeu de donnée ou une matrice de corrélation avec le nombre de participants. D'autres options sont possibles, comme le seuil critique (`alpha`), le nombre de répétions (`nreps`), et la méthode d'extraction des dimensions (`"ml"`, *maximum likelihood*; `"paf"`, *principal axis factoring*; `"mrfa"`, *minimum rank factor analysis*)
+
+Voici la fonction avec le présent exemple.
+
+```{r}
+nest(jd)
+```
+Voici la sortie des valeurs propres comparées aux deux autres règles d'arrêt illustrée à la Figure\ \@ref(fig:scree3).
+
+```{r scree3, fig.cap="Comparaison des valeurs propres empiriques et simulées (analyses parallèle et nest)",fig.align="center", out.height='75%', out.width='75%'}
+# Réorganisation des jeu de données contenant
+# les valeurs propres
+vp.nest <- plot(nest(jd))$data[-(1:p),]
+colnames(vp.nest) <- colnames(vp)
+vp.nest$Test <- "NEST" 
+vp <- rbind(vp, vp.nest)
+
+ggplot(data = vp,
+       mapping = aes(x = Position, 
+                     y = Valeurs.propres, 
+                     color = Test)) +
+  geom_line() + 
+  geom_point() +
+  ylab("Valeur propre") +
+  theme(legend.position = c(0.8, 0.8))
+```
+
+Un bel avantage du package est sa possibilité de créer un graphique pour différentes valeurs critiques `alpha`. La Figure\ \@ref(fig:screenest) illustre la sortie.
+
+```{r screenest, fig.align="center", out.height='75%', out.width='75%', fig.cap="Graphique sortir de `nest` de `Rnest`"}
+plot(nest(jd, alpha = c(.01, .025, .05, .10)))
+```
+
+<!-- ### Comparaisons des règles d'arrêts -->
+
+<!-- À ce stage, les trois règles d'arrêt ont sorti le même nombre de facteurs. Elles semblent ne devenir qu'inutilement alambiqué. Il revient à l'exemple original d'être très simples : des loadings assez saillants, des valeurs propres élevées et une structure simple et orthogonale. Voici un exemple plus complexe. -->
+
+<!-- Le package `Rnest` founir une matrice de corrélation basée sur 4 facteurs corrélées. La matrice se nomme `ex_4factors_corr` et la Figure\ \@ref(fig:structcp) -->
+
+<!-- ```{r structcp, fig.cap = "Structure factorielle de `ex_4factors_corr`", fig.ext = 'png', cache=TRUE, echo = FALSE, out.height="50%", out.width="50%", fig.align = "center"} -->
+<!-- knitr::include_graphics("image//factstruct2.png") -->
+<!-- ``` -->
+
+<!-- À partir de cette matrice, il est possible de créer un jeu de données pour 500 participants.  -->
+
+<!-- ```{r} -->
+<!-- set.seed(42) -->
+<!-- jd2 <- MASS::mvrnorm(n = 500, -->
+<!--                      mu = rep(0, ncol(ex_4factors_corr)), -->
+<!--                      Sigma = ex_4factors_corr)  -->
+<!-- ``` -->
+
+<!-- La Figure\ \@ref(fig:scree4) les valeurs propres du jeu de données. -->
+
+<!-- ```{r scree4,echo = FALSE, fig.cap="Les valeurs propres de `ex_4factors_corr`"} -->
+<!-- res = eigen(cor(jd2), only.values = TRUE)$values -->
+<!-- vp <- data.frame(Position = 1:ncol(ex_4factors_corr) , -->
+<!--                  Valeurs.propres = res, -->
+<!--                  Test = rep("Empiriques", p)) -->
+
+<!-- ggplot(data = vp, -->
+<!--        mapping = aes(x = Position,  -->
+<!--                      y = Valeurs.propres)) + -->
+<!--   geom_line() +  -->
+<!--   geom_point() + -->
+<!--   ylab("Valeur propre") + -->
+<!--   scale_x_continuous(breaks = scales::pretty_breaks())+  -->
+<!--   theme(legend.position = c(0.8, 0.8)) -->
+<!-- ``` -->
+
+<!-- Voici les tests comparés. -->
+
+<!-- ```{r, cache = TRUE} -->
+<!-- kaiser(jd2) -->
+<!-- analyse.parallele(jd2) -->
+<!-- nest(jd2) -->
+<!-- ``` -->
+
 
 

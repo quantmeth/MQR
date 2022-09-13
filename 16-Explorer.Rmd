@@ -15,7 +15,7 @@ Il est plus simple de considérer pour l'instant une structure standardisée, c'
 La Figure \@ref(fig:FactStruct) illustre un exemple de modèle. Les rectangles sont des variables manifestes (observées) à partir des quelles les variables encerclées représentent des facteurs sous-jacents, soit des variables latentes (retrouvées à partir des variables manifestes.
 
 
-```{r FactStruct, fig.cap = "Structure Factorielle", fig.ext = 'png', cache=TRUE, echo = FALSE, out.height="50%", out.width="50%", fig.align = "center"}
+```{r FactStruct, fig.cap = "Structure factorielle", fig.ext = 'png', cache=TRUE, echo = FALSE, out.height="50%", out.width="50%", fig.align = "center"}
 knitr::include_graphics("image//factstruct.png")
 ```
 

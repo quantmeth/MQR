@@ -17,7 +17,7 @@ Pour le non-initié aux fonctions permettant de créer des nombres pseudoaléato
 
 ```r
 runif(n = 1)
-> [1] 0.687
+> [1] 0.789
 ```
 
 Le statisticien s'intéresse à inférer comment ces valeurs sont générées. Il postule ainsi que les valeurs aléatoires suivent une distribution de probabilité. Connaître cette distribution est très important, car c'est elle qui permet de répondre à des questions comme : quelle est la probabilité d'obtenir un résultat aussi rare que $x$? Ou quelle sont les valeurs attendues pour $95\%$ des tirages? Questions tout à fait pertinentes pour l'expérimentateur. Une des distributions les plus connues est certainement la distribution normale, celle qui est derrière la fonction `rnorm()` d'ailleurs. Mais, il y en a beaucoup, beaucoup d'autres. 

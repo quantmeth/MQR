@@ -323,21 +323,21 @@ summary(res1.lm)
 > 
 > Residuals:
 >     Min      1Q  Median      3Q     Max 
-> -2.5843 -0.6221 -0.0296  0.6443  2.7643 
+> -2.8899 -0.5820  0.0053  0.6430  2.7131 
 > 
 > Coefficients:
 >             Estimate Std. Error t value Pr(>|t|)    
-> (Intercept)   0.0124     0.0444    0.28    0.779    
-> x             0.0948     0.0474    2.00    0.046 *  
-> w             0.2041     0.0476    4.29  2.1e-05 ***
-> x:w           0.3194     0.0400    7.98  1.0e-14 ***
+> (Intercept)  0.00792    0.04497    0.18     0.86    
+> x           -0.01292    0.05078   -0.25     0.80    
+> w            0.28992    0.05025    5.77  1.4e-08 ***
+> x:w          0.28747    0.03533    8.14  3.3e-15 ***
 > ---
 > Signif. codes:  
 > 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 > 
-> Residual standard error: 0.905 on 496 degrees of freedom
-> Multiple R-squared:  0.198,	Adjusted R-squared:  0.193 
-> F-statistic: 40.8 on 3 and 496 DF,  p-value: <2e-16
+> Residual standard error: 0.917 on 496 degrees of freedom
+> Multiple R-squared:  0.175,	Adjusted R-squared:  0.17 
+> F-statistic: 35.2 on 3 and 496 DF,  p-value: <2e-16
 
 # Pour comparer avec aov
 res1.aov <- aov(y ~ x * w, data = jd.continue)
@@ -345,11 +345,11 @@ res1.aov <- aov(y ~ x * w, data = jd.continue)
 # L'intercepte est inclus
 summary(res1.aov, intercept = TRUE)
 >              Df Sum Sq Mean Sq F value  Pr(>F)    
-> (Intercept)   1     15    14.6    17.8 2.9e-05 ***
-> x             1     27    26.7    32.6 2.0e-08 ***
-> w             1     21    21.4    26.2 4.5e-07 ***
-> x:w           1     52    52.2    63.7 1.0e-14 ***
-> Residuals   496    406     0.8                    
+> (Intercept)   1     12    11.6   13.78 0.00023 ***
+> x             1      6     6.3    7.46 0.00652 ** 
+> w             1     27    26.8   31.85 2.8e-08 ***
+> x:w           1     56    55.7   66.22 3.3e-15 ***
+> Residuals   496    417     0.8                    
 > ---
 > Signif. codes:  
 > 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
@@ -369,11 +369,11 @@ res1.anova
 > 
 > Response: y
 >             Sum Sq  Df F value  Pr(>F)    
-> (Intercept)      0   1    0.08   0.779    
-> x                3   1    3.99   0.046 *  
-> w               15   1   18.42 2.1e-05 ***
-> x:w             52   1   63.73 1.0e-14 ***
-> Residuals      406 496                    
+> (Intercept)      0   1    0.03    0.86    
+> x                0   1    0.06    0.80    
+> w               28   1   33.28 1.4e-08 ***
+> x:w             56   1   66.22 3.3e-15 ***
+> Residuals      417 496                    
 > ---
 > Signif. codes:  
 > 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
@@ -383,7 +383,7 @@ Voilà! Les effets simples sont maintenant identiques à la sortie de `lm()`.
 
 
 
-Pour déterminer s'il y a présence de l'effet de modérateur, il faut se fier à la ligne `x:w` et la valeur-$p$ `Pr(>F)` associé qui est ici de 1.001\times 10^{-14}. Par contre, il n'est pas tout à fait clair comment interpréter ce résultat. Ce sera fait dans la section portant sur la représentation graphique de al modération.
+Pour déterminer s'il y a présence de l'effet de modérateur, il faut se fier à la ligne `x:w` et la valeur-$p$ `Pr(>F)` associé qui est ici de 3.273\times 10^{-15}. Par contre, il n'est pas tout à fait clair comment interpréter ce résultat. Ce sera fait dans la section portant sur la représentation graphique de al modération.
 
 ### Analyse d'un modérateur nominal
 
