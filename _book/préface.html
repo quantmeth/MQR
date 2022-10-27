@@ -7,7 +7,7 @@
 <title>Préface | Méthodes quantitatives avec R</title>
 <meta name="author" content="P.-O. Caron">
 <meta name="description" content="La méthode scientifique impose aux expérimentateurs de tirer des conclusions avec minutie sur leur objet d’étude. Toutefois, ils font confiance à d’autres pour des tâches qui dépassent leur propre...">
-<meta name="generator" content="bookdown 0.27 with bs4_book()">
+<meta name="generator" content="bookdown 0.29 with bs4_book()">
 <meta property="og:title" content="Préface | Méthodes quantitatives avec R">
 <meta property="og:type" content="book">
 <meta property="og:url" content="mqr.teluq.ca/préface.html">
@@ -131,9 +131,12 @@ Figure 0.1: Cognitions sociales d’un saumon atlantique décédés. Tirés de B
 <p><span class="citation">Eklund et al. (<a href="r%C3%A9f%C3%A9rences.html#ref-Eklund16" role="doc-biblioref">2016</a>)</span> tentent de valider les méthodes statistiques derrière l’IRMf à l’aide de données réelles. Ils utilisent des données d’IRMf provenant de 499 personnes saines et en état de repos pour effectuer 3 millions d’analyses de groupes de tâches. En utilisant ces données nulles avec différents plans expérimentaux, ils estiment l’incidence des résultats significatifs (en théorie fixé à 5% de faux positifs pour un seuil de signification de 5%). Toutefois, ils constatent que les progiciels les plus courants pour l’analyse de l’IRMf entraînent des taux de faux positifs allant jusqu’à 70%. Ces résultats remettent en question la validité d’un certain nombre d’études utilisant l’IRMf et ont des conséquences importantes sur l’interprétation des résultats de neuro-imagerie.</p>
 <p>Cette étude a fait un tollé dans la littérature scientifique. Bien que certains aspects de l’étude soient attaquables, il n’en demeure pas moins qu’elle met en lumière le danger de faire confiance aveuglément aux analyses statistiques.</p>
 <p>L’objectif de ce court texte n’est pas de discrédité les analyses statistiques ou les chercheurs qui les emploient. Ce n’est pas non plus de concrétiser l’adage : <em>faire dire n’importe quoi à une statistique</em> (c’est plus facile de faire dire n’importe quoi à des mots, par ailleurs). Les statistiques sont très utiles et fournissent de l’information qu’il est impossible d’obtenir autrement. Il s’agit d’une mise en garde justifiant en partie l’approche pédagogique de ce livre.</p>
-<p>Il est dit en partie, car le seconde, en filigrane de ce livre, repose sur la double approche d’apprentissage statistique et programmation. Il s’agit de la symbiose entre les deux. D’une part, rendre accessible et efficace des calculs parfois laborieux et ennuyants et, d’autre part, de fournir un objectif de programmation afin de susciter l’intérêt et l’engagement. En programmant des modèles statistiques, le lecteur a une plus grande emprise sur ceux-ci. Il peut mieux les utiliser, les étudier et les modifier. Il peut s’en servir pour connaître et apprendre davantage. Certaines boîtes noires resteront irrémédiablement des boîtes noires pour le lecteur, mais plus elles seront démustifiées, mieux il comprendra ce qui se cache derrière les algorithmes statistiques.</p>
-<p>La première section de ce livre justifie et explique le logiciel <strong>R</strong> et montre comment l’installer ainsi que quelques rudiments statistiques qui seront fort utiles pour le reste de la lecteur. La seconde section couvre ce qui sera probablement le plus important pour l’utilisateur : l’importation, la gestion et la visualisation des données. La troisième section explique quelques rudiments fondamentaux des statistiques ainsi que des analyses de bases.</p>
-<p>TODO</p>
+<p>Il est dit en partie, car le seconde, en filigrane de ce livre, repose sur la double approche d’apprentissage statistique et programmation. Il s’agit de la symbiose entre les deux. D’une part, rendre accessible et efficace des calculs parfois laborieux et ennuyants et, d’autre part, de fournir un objectif de programmation afin de susciter l’intérêt et l’engagement. En programmant des modèles statistiques, le lecteur a une plus grande emprise sur ceux-ci. Il peut mieux les utiliser, les étudier et les modifier. Il peut s’en servir pour connaître et apprendre davantage. Certaines boîtes noires resteront irrémédiablement des boîtes noires pour le lecteur, mais plus elles seront démystifiées, mieux il comprendra ce qui se cache derrière les algorithmes statistiques.</p>
+<p>La première section de ce livre justifie et explique le logiciel <strong>R</strong> et montre comment l’installer ainsi que quelques rudiments statistiques qui seront fort utiles pour le reste de la lecteur.</p>
+<p>La seconde section couvre ce qui sera probablement le plus important pour l’utilisateur : l’importation, la gestion et la visualisation des données. La troisième section explique quelques rudiments fondamentaux des statistiques ainsi que des analyses de bases.</p>
+<p>La troisième section porte sur l’inférence statistique avec les tests d’hypothèses pour par la suite développer les analyses de base, comme le test <span class="math inline">\(t\)</span>, l’ANOVA, la corrélation, et le test du <span class="math inline">\(\chi^2\)</span> carré. En parallèle, les méthodes pour créer des jeux de données propres aux analyses sont illustrées. La section termine sur des exemples d’utilisation de R à des fins plus empiriques, soit développer un simulation Monte-Carlo, mais surtout, les techniques de rééchantillonnage (c’est-à-dire, le <em>bootstrap</em>).</p>
+<p>La quatrième section présente le modèle linéaire général, commre la régression <a href="pr%C3%A9dire.html#pr%C3%A9dire">Prédire</a>, la médiation <a href="m%C3%A9dier.html#m%C3%A9dier">Médier</a> et la modération <a href="mod%C3%A9rer.html#mod%C3%A9rer">Modérer</a>. Comme auparavant, l’accent est mis sur la création de données correspondant à ces modèles, particulièrement au chapitre <a href="cr%C3%A9er.html#cr%C3%A9er">Créer</a> qui montre en détails la création de modèle linéaire récursif.</p>
+<p>La cinquième section montre les analyses factorielles, soit l’analyse en composantes principales (<a href="d%C3%A9composer.html#d%C3%A9composer">Décomposer</a>), l’analyse factorielle exploratoire (<a href="explorer.html#explorer">Explorer</a>). Un chapitre est dédier au sujet d’identifier le nombre de facteurs à retenir dans les analyses exploratoires (<a href="r%C3%A9duire.html#r%C3%A9duire">Réduire</a>).</p>
 
 </div>
 
@@ -161,7 +164,7 @@ Figure 0.1: Cognitions sociales d’un saumon atlantique décédés. Tirés de B
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-09-13.</p>
+    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-10-27.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
@@ -174,7 +177,7 @@ Figure 0.1: Cognitions sociales d’un saumon atlantique décédés. Tirés de B
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

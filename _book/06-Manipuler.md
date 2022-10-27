@@ -2,7 +2,7 @@
 
 # Manipuler
 
-Avec **R**, il ne faut jamais manipuler directement le fichier contenant les données. **Cette pratique est déconseillée**. Il vaut mieux préserver le fichier original intact, ce qui évite de nombreuses complications, comme la compatibilité entre les versions, la reproductibilité des bases, la maintenance, etc. Toutes les manipulations doivent être conservées dans un fichier script. Cela favorise le suivi des modifications apportées en comparant tout simplement les traces dans entre les syntaxes, mais aussi le partage entre collègues. 
+Avec **R**, il ne faut jamais manipuler directement le fichier contenant les données. **Cette pratique est déconseillée**. Il vaut mieux préserver le fichier original intact, ce qui évite de nombreuses complications, comme la compatibilité entre les versions, la reproductibilité des bases, la maintenance, etc. Toutes les manipulations doivent être conservées dans un fichier script. Cela favorise le suivi des modifications apportées en comparant tout simplement les traces dans les syntaxes, mais aussi le partage entre collègues. 
 
 
 En pratique, l'expérimentateur aura le jeu de données officiel (final) avec lequel travailler. Il doit l'importer à chaque début de séance, tel que précisé dans la section [Importer]. Par la suite, il ne lui reste qu'à mettre en place le nettoyage et la préparation du jeu de données ou bien, si cela est déjà fait, de rouler les scripts des séances précédentes, ce qui se fait facilement en quelques cliques. 
@@ -205,19 +205,20 @@ Sans plus de préliminaire, la fonction `head()` donne un aperçu du jeu de donn
 ```r
 starwars[,1:6]
 > # A tibble: 87 x 6
->    name         height  mass hair_color skin_color eye_color
->    <chr>         <int> <dbl> <chr>      <chr>      <chr>    
->  1 Luke Skywal~    172    77 blond      fair       blue     
->  2 C-3PO           167    75 <NA>       gold       yellow   
->  3 R2-D2            96    32 <NA>       white, bl~ red      
->  4 Darth Vader     202   136 none       white      yellow   
->  5 Leia Organa     150    49 brown      light      brown    
->  6 Owen Lars       178   120 brown, gr~ light      blue     
->  7 Beru Whites~    165    75 brown      light      blue     
->  8 R5-D4            97    32 <NA>       white, red red      
->  9 Biggs Darkl~    183    84 black      light      brown    
-> 10 Obi-Wan Ken~    182    77 auburn, w~ fair       blue-gray
-> # ... with 77 more rows
+>    name               height  mass hair_co~1 skin_~2 eye_c~3
+>    <chr>               <int> <dbl> <chr>     <chr>   <chr>  
+>  1 Luke Skywalker        172    77 blond     fair    blue   
+>  2 C-3PO                 167    75 <NA>      gold    yellow 
+>  3 R2-D2                  96    32 <NA>      white,~ red    
+>  4 Darth Vader           202   136 none      white   yellow 
+>  5 Leia Organa           150    49 brown     light   brown  
+>  6 Owen Lars             178   120 brown, g~ light   blue   
+>  7 Beru Whitesun lars    165    75 brown     light   blue   
+>  8 R5-D4                  97    32 <NA>      white,~ red    
+>  9 Biggs Darklighter     183    84 black     light   brown  
+> 10 Obi-Wan Kenobi        182    77 auburn, ~ fair    blue-g~
+> # ... with 77 more rows, and abbreviated variable names
+> #   1: hair_color, 2: skin_color, 3: eye_color
 ```
 
 Pour obtenir de l'information sur ce jeu de données.
@@ -345,11 +346,11 @@ jd %>%
   group_by(sex) %>% 
   summarise(mean(IMC), sd(IMC), min(IMC), max(IMC), length(IMC)) 
 > # A tibble: 2 x 6
->   sex    `mean(IMC)` `sd(IMC)` `min(IMC)` `max(IMC)`
->   <chr>        <dbl>     <dbl>      <dbl>      <dbl>
-> 1 female        22.0      5.51       16.5       27.5
-> 2 male          26.0      4.29       21.5       37.9
-> # ... with 1 more variable: `length(IMC)` <int>
+>   sex    `mean(IMC)` `sd(IMC)` `min(IMC)` `max(IMC)` lengt~1
+>   <chr>        <dbl>     <dbl>      <dbl>      <dbl>   <int>
+> 1 female        22.0      5.51       16.5       27.5       3
+> 2 male          26.0      4.29       21.5       37.9      19
+> # ... with abbreviated variable name 1: `length(IMC)`
 ```
 
 Le jeu de données issu de ces opérations peut être utilisée normalement pour réaliser des analyses statistiques. Il existe des packages afin de demeurer dans le `tidyverse` comme `rstatix` où il est possible de faire des test-$t$ avec `test_t()` ou des corrélations avec `cor_test()`, par exemple. Voir la documentation complète du package pour une vue d'ensemble de ce qu'il est possible d'accomplir avec `rstatix`. Cela dit, l'utilisateur préférera probablement utiliser d'autres méthodes lorsque des analyses statistiques seront nécessaires.
@@ -371,16 +372,17 @@ jd %>%
   select(IMC, mass, height) %>% 
   cor_test() 
 > # A tibble: 9 x 8
->   var1   var2     cor statistic         p conf.low conf.high
->   <chr>  <chr>  <dbl>     <dbl>     <dbl>    <dbl>     <dbl>
-> 1 IMC    IMC     1      2.12e+8 5.26e-155    1.00      1    
-> 2 IMC    mass    0.85   7.32e+0 4.47e-  7    0.674     0.938
-> 3 IMC    height  0.18   8.13e-1 4.26e-  1   -0.262     0.558
-> 4 mass   IMC     0.85   7.32e+0 4.47e-  7    0.674     0.938
-> 5 mass   mass    1      3.00e+8 5.13e-158    1         1    
-> 6 mass   height  0.65   3.84e+0 1.02e-  3    0.317     0.842
-> 7 height IMC     0.18   8.13e-1 4.26e-  1   -0.262     0.558
-> 8 height mass    0.65   3.84e+0 1.02e-  3    0.317     0.842
-> 9 height height  1    Inf       0            1         1    
-> # ... with 1 more variable: method <chr>
+>   var1   var2     cor    statistic         p conf.~1 conf.~2
+>   <chr>  <chr>  <dbl>        <dbl>     <dbl>   <dbl>   <dbl>
+> 1 IMC    IMC     1         2.12e+8 5.26e-155   1.00    1    
+> 2 IMC    mass    0.85      7.32e+0 4.47e-  7   0.674   0.938
+> 3 IMC    height  0.18      8.13e-1 4.26e-  1  -0.262   0.558
+> 4 mass   IMC     0.85      7.32e+0 4.47e-  7   0.674   0.938
+> 5 mass   mass    1         3.00e+8 5.13e-158   1       1    
+> 6 mass   height  0.65      3.84e+0 1.02e-  3   0.317   0.842
+> 7 height IMC     0.18      8.13e-1 4.26e-  1  -0.262   0.558
+> 8 height mass    0.65      3.84e+0 1.02e-  3   0.317   0.842
+> 9 height height  1       Inf       0           1       1    
+> # ... with 1 more variable: method <chr>, and abbreviated
+> #   variable names 1: conf.low, 2: conf.high
 ```

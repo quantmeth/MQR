@@ -57,11 +57,19 @@ Cette étude a fait un tollé dans la littérature scientifique. Bien que certai
 
 L'objectif de ce court texte n'est pas de discrédité les analyses statistiques ou les chercheurs qui les emploient. Ce n'est pas non plus de concrétiser l'adage : *faire dire n'importe quoi à une statistique* (c'est plus facile de faire dire n'importe quoi à des mots, par ailleurs). Les statistiques sont très utiles et fournissent de l'information qu'il est impossible d'obtenir autrement. Il s'agit d'une mise en garde justifiant en partie l'approche pédagogique de ce livre.
 
-Il est dit en partie, car le seconde, en filigrane de ce livre, repose sur la double approche d'apprentissage statistique et programmation. Il s'agit de la symbiose entre les deux. D'une part, rendre accessible et efficace des calculs parfois laborieux et ennuyants et, d'autre part, de fournir un objectif de programmation afin de susciter l'intérêt et l'engagement. En programmant des modèles statistiques, le lecteur a une plus grande emprise sur ceux-ci. Il peut mieux les utiliser, les étudier et les modifier. Il peut s'en servir pour connaître et apprendre davantage. Certaines boîtes noires resteront irrémédiablement des boîtes noires pour le lecteur, mais plus elles seront démustifiées, mieux il comprendra ce qui se cache derrière les algorithmes statistiques.
-
-La première section de ce livre justifie et explique le logiciel **R** et montre comment l'installer ainsi que quelques rudiments statistiques qui seront fort utiles pour le reste de la lecteur. La seconde section couvre ce qui sera probablement le plus important pour l'utilisateur : l'importation, la gestion et la visualisation des données. La troisième section explique quelques rudiments fondamentaux des statistiques ainsi que des analyses de bases.
+Il est dit en partie, car le seconde, en filigrane de ce livre, repose sur la double approche d'apprentissage statistique et programmation. Il s'agit de la symbiose entre les deux. D'une part, rendre accessible et efficace des calculs parfois laborieux et ennuyants et, d'autre part, de fournir un objectif de programmation afin de susciter l'intérêt et l'engagement. En programmant des modèles statistiques, le lecteur a une plus grande emprise sur ceux-ci. Il peut mieux les utiliser, les étudier et les modifier. Il peut s'en servir pour connaître et apprendre davantage. Certaines boîtes noires resteront irrémédiablement des boîtes noires pour le lecteur, mais plus elles seront démystifiées, mieux il comprendra ce qui se cache derrière les algorithmes statistiques.
 
 TODO
+
+La première section de ce livre justifie et explique le logiciel **R** et montre comment l'installer ainsi que quelques rudiments statistiques qui seront fort utiles pour le reste de la lecteur. 
+
+La seconde section couvre ce qui sera probablement le plus important pour l'utilisateur : l'importation ([Importer]), la gestion ([Manipuler]) et la visualisation ([Visualiser]) des données.
+
+La troisième section porte sur l'inférence statistique avec les tests d'hypothèses ([Inférer]) pour par la suite développer les analyses de base ([Analyser]), comme le test $t$, l'ANOVA, la corrélation, et le test du $\chi^2$ carré. En parallèle, les méthodes pour créer des jeux de données propres aux analyses sont illustrées. La section se termine sur des exemples d'utilisation de R ([Simuler])à des fins plus empiriques, soit développer un simulation Monte-Carlo, mais surtout, les techniques de rééchantillonnage (c'est-à-dire, le *bootstrap*).
+
+La quatrième section présente le modèle linéaire général, comme la régression ([Prédire]), la médiation ([Médier]) et la modération ([Modérer]). Comme auparavant, l'accent est mis sur la création de données correspondant à ces modèles, particulièrement au chapitre [Créer] qui montre en détails la création de modèle linéaire récursif.
+
+La cinquième section montre les analyses factorielles, soit l'analyse en composantes principales ([Décomposer]), l'analyse factorielle exploratoire ([Explorer]). Un chapitre est dédier au sujet d'identifier le nombre de facteurs à retenir dans les analyses exploratoires ([Réduire]).
 
 ```{r, include=FALSE}
 # automatically create a bib database for R packages

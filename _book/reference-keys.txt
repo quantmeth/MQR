@@ -313,7 +313,7 @@ explorer
 création-de-données-2
 première-technique
 deuxième-technique
-lanalyse-factorielle
+lanalyse-en-composantes-principales-1
 analyse-factorielle-exploratoire
 calculs-de-lanalyse-factorielle-exploratoire
 réduire

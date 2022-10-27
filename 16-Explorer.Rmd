@@ -1,25 +1,25 @@
 # Explorer
 
-Comme il a été vu, [l'analyse en composantes principales] (ACP) fait partie de la famille des **analyses factorielles exploratoires**. Elle est **exploratoire**, car les loadings sont complètement libres. De plus l'ACP n'impose pas de structure sur les données. Elle réorganise les variables corrélées (une matrice de covariance) en nouvelles variables orthogonales (décorrélées) les unes des autres (composantes). L'ACP n'informe pas du nombre de composantes *signifiantes* (importantes) dans le jeu de données. S'il y a $p$ variables, elle réorganise la variance en $p$ dimensions. Cependant, le statisticien opportuniste sait que l'information pertinente se trouve dans [les valeurs propres] les plus élevées et peut les utiliser pour résumer les données.
+Comme il a été vu, [l'analyse en composantes principales] (ACP) fait partie de la famille des **analyses factorielles exploratoires**. Elle est **exploratoire**, car les loadings sont complètement libres. De plus, l'ACP n'impose pas de structure sur les données. Elle réorganise les variables corrélées (une matrice de covariance) en nouvelles variables orthogonales (décorrélées) les unes des autres (composantes). L'ACP n'informe pas du nombre de composantes *signifiantes* (importantes) dans le jeu de données. S'il y a $p$ variables, elle réorganise la variance en $p$ dimensions. Cependant, le statisticien opportuniste sait que l'information pertinente se trouve dans [les valeurs propres] les plus élevées et peut les utiliser pour résumer les données.
 
 Le statisticien peut toutefois tenter d'isoler la structure factorielle sous-jacente aux données. Plutôt que de réorganiser la matrice de corrélation par une rotation géométrique, il peut tenter d'extraire des facteurs latents de cette matrice. Cette technique se nomme l'**analyse factorielle exploratoire**. Elle impose une structure aux données, soit un nombre de facteurs, mais demeure exploratoire, car les loadings restent libres.
 
-À ce stade, il est intéressant de se pencher sur ce qu'est la structure factorielle sous-jacente à la matrice de corrélation avant d'expliquer l'analyse qui permet de la retouver.
+À ce stade, il est intéressant de se pencher sur ce qu'est la structure factorielle sous-jacente à la matrice de corrélation avant d'expliquer l'analyse qui permet de la retrouver. La création de données aidera à en mieux comprendre les tenants et aboutissants. 
 
 ## Création de données
 
-Pour construire une un jeu de données ayant une structure factorielle, il faut d'abord concevoir cette structure. Il s'agit [des loadings][Les loadings] des facteurs^[Ne pas se tromper avec les vecteurs propres]. Il s'agit d'une matrice $k \times p $, c'est-à-dire nombre de facteurs par nombre de variables. 
+Pour construire une un jeu de données ayant une structure factorielle, il faut d'abord concevoir cette structure. Il s'agit [des loadings][Les loadings] des facteurs^[Ne pas se tromper avec les vecteurs propres]. Il s'agit d'une matrice $k \times p$, c'est-à-dire nombre de facteurs par nombre de variables. 
 
-Il est plus simple de considérer pour l'instant une structure standardisée, c'est-à-dire que les variables produites auront des variances de 1 (les moyennes sont écartés, car elles ne sont pas nécessaire, mais pour être plus explicite elles sont nulles). Lors de la spécification de la structure factorielle, il faudra s'assurer que la somme des carrés des loadings de chaque variable ne dépasse pas $1$, soit la variance désirée des variables. Ne pas respecter cette limite ne créera pas forcément une erreur ou un problème. Seulement, le scénario ne sera plus standardisé.
+Il est plus simple de considérer pour l'instant une structure standardisée, c'est-à-dire que les variables produites auront des variances de 1 (les moyennes sont écartés, car elles ne sont pas nécessaires). Lors de la spécification de la structure factorielle, il faut s'assurer que la somme des carrés des loadings de chaque variable ne dépasse pas $1$, soit la variance désirée des variables. Ne pas respecter cette limite ne crée pas forcément une erreur. Seulement, le scénario ne sera plus standardisé.
 
-La Figure \@ref(fig:FactStruct) illustre un exemple de modèle. Les rectangles sont des variables manifestes (observées) à partir des quelles les variables encerclées représentent des facteurs sous-jacents, soit des variables latentes (retrouvées à partir des variables manifestes.
+La Figure \@ref(fig:FactStruct) illustre un exemple de modèle. Les rectangles sont des variables manifestes (observées) à partir desquelles les variables encerclées représentent des facteurs sous-jacents, soit des variables latentes (retrouvées à partir des variables manifestes.
 
 
 ```{r FactStruct, fig.cap = "Structure factorielle", fig.ext = 'png', cache=TRUE, echo = FALSE, out.height="50%", out.width="50%", fig.align = "center"}
 knitr::include_graphics("image//factstruct.png")
 ```
 
-La syntaxe ci-dessous reconstruit le modèle de la Figure \@ref(fig:FactStruct). La variable `phi` pour $\Phi$ contient les loadings des deux composantes pour créer les six variables. Les lignes (les variables) sont identifiées par `i` et les colonnes (les facteurs) sont identifiées par `F`.
+La syntaxe ci-dessous reconstruit le modèle de la Figure \@ref(fig:FactStruct). La variable `phi`, pour $\Phi$, contient les loadings des deux composantes pour créer les six variables. Les lignes (les variables) sont identifiées par `i` et les colonnes (les facteurs) sont identifiées par `F`.
 
 ```{r}
 # Création de la matrice de recette de fabrication
@@ -35,7 +35,7 @@ phi
 
 ### Première technique
 
-À partir de `phi`, il est possible d'obtenir la matrice de corrélation de la population $\text{P}$ ($\rho majuscule$) par l'équation \@ref(eq:fact2cor)
+À partir de `phi`, il est possible d'obtenir la matrice de corrélation de la population $\text{P}$ ($\rho$ majuscule) par l'équation \@ref(eq:fact2cor)
 
 \begin{equation}
 \text{P} = \Phi \Phi^{\prime}
@@ -49,9 +49,9 @@ R = phi %*% t(phi)
 R
 ```
 
-Le lecteur attentif aura remarqué qu'il ne s'agit pas encore d'une matrice de corrélation. La diagonale n'est pas constitué de 1. Le résultat de $\Phi\Phi^{\prime}$ représente la **matrice de corrélation réduite*. 
+Le lecteur attentif aura remarqué qu'il ne s'agit pas encore d'une matrice de corrélation\ : la diagonale n'est pas constituée de 1. Le résultat de $\Phi\Phi^{\prime}$ représente la **matrice de corrélation réduite**. 
 
-Il reste à ajouter le bruit, la variance résiduelle, ce qui est fait en changeant la diagonale de $R$ pour l'unité l'unité, $\text{diag}(R) = 1$. D'ailleurs, si une valeur de la diagonale `R` dépasse 1, alors le scénario standardisé n'est pas respecté. C'est la façon de s'en assurer.
+Il reste à ajouter le bruit, la variance résiduelle, ce qui est fait en changeant la diagonale de $R$ pour l'unité, $\text{diag}(R) = 1$. D'ailleurs, si une valeur de la diagonale `R` dépasse 1, alors le scénario standardisé n'est pas respecté. Il s'agit d'une des méthodes pour s'en assurer.
 
 ```{r}
 diag(R) <- 1
@@ -73,7 +73,7 @@ head(jd)
 
 ### Deuxième technique
 
-Passer par `MASS::mvrnorm()` est toutefois contre productif, puisque la fonction `mvrnorm()` utilise l'ACP pour extraire une structure factorielle pour ensuite générer les données. Une autre façon de créer des données est en passant par [la loi de la somme des variances]. Chaque $k$ loading, $\phi_k$ est dans ce contexte [une constante d'échelle][Ajout des constantes d'échelle $\beta$] joins à un score factorielle normalement distribuée $z_k$. L'équation\ \@ref(eq:fact2var) représente cette relation.
+Passer par `MASS::mvrnorm()` est toutefois contre productif, puisque la fonction `mvrnorm()` utilise l'ACP pour extraire une structure factorielle pour ensuite générer les données. Une autre façon de créer des données est en passant par [la loi de la somme des variances]. Chaque $k$ loadings $\phi_k$ d'une variable $x_i$ est dans ce contexte [une constante d'échelle][Ajout des constantes d'échelle $\beta$] joints à un score factorielle normalement distribuée $z_k$. L'équation\ \@ref(eq:fact2var) représente cette relation.
 
 \begin{equation}
 x_i = \phi_1 z_1 + ... + \phi_k z_k + \epsilon 
@@ -95,7 +95,7 @@ Les écarts types des $\epsilon$ de chaque $p$ variable de la structure factorie
 sd.eps <- sqrt(1 - rowSums(phi^2))
 ```
 
-Maintenant, il faut ajouter cette variable à la structure factorielle. Comme les résidus sont tous indépendants par définition, ils sont techniquement tous leur propre facteur, chacun sa colonne, ce qui se fait bien avec la syntaxe suivante.
+Maintenant, il faut ajouter cette variable à la structure factorielle. Comme les résidus sont tous indépendants par définition, ils ont tous leur propre facteur (chacun sa colonne), ce qui se fait bien avec la syntaxe suivante.
 
 ```{r}
 diag(sd.eps)
@@ -107,7 +107,7 @@ Il suffit maintenant de joindre cette matrice à `phi`.
 phi2 <- cbind(phi, diag(sd.eps))
 ```
 
-Il est tentant de joindre directement le vecteur `sd.eps` à `phi`. Par contre, joindre ce vecteur comme `cbind(phi, sd.eps)` implique une structure à trois facteurs et que les résidus sont corrélés par les loadings de ce troisième facteur. En utilisant `diag(se.eps)`, chaque résidu à sont propre facteurs et est indépendants des autres. La structure finale possède $k$ (nombre de facteurs, 2 dans cet exemple) communs en plus de $p$ (nombre de variables, 6 dans cet exemple) facteurs résiduels et ainsi $k + p$ dimensions.
+Il est tentant de joindre directement le vecteur `sd.eps` à `phi`. Par contre, joindre ce vecteur comme `cbind(phi, sd.eps)` implique une structure à trois facteurs\ : les résidus sont corrélés par les loadings de ce troisième facteur. En utilisant `diag(se.eps)`, chaque résidu à son propre facteur et est indépendant des autres. La structure finale possède $k$ (nombre de facteurs, 2 dans cet exemple) communs en plus de $p$ (nombre de variables, 6 dans cet exemple) facteurs résiduels et ainsi $k + p$ dimensions.
 
 Comme auparavant à l'équation\ \@ref(eq:fact2cor), `phi2` permet d'obtenir la matrice de corrélation de la population.
 
@@ -117,7 +117,7 @@ R2 = phi2 %*% t(phi2)
 R2
 ```
 
-Exactement le même résultat que l'autre méthode, et ce, sans avoir à modifier la diagonale. Les variances résiduelles sont déjà calculées.
+Exactement le même résultat que l'autre méthode, et ce, sans avoir à modifier la diagonale par l'unité. Les variances résiduelles sont déjà calculées.
 
 Une fois la structure factorielle obtenue, il faut générer les scores des participants (les valeurs $z$ de l'équation\ \@ref(eq:fact2var)). Une technique usuelle est de créer une matrice $(k + p)  \times n$ de scores normaux, soit le nombre de facteur plus le nombre de variables (pour les résidus) en ligne par $n$ le nombre d'unités en colonnes. Cette matrice représente les scores factoriaux de chaque unité pour chacun des scores et sont multipliés avec la structure factorielle. Autrement dit, chaque poids (loadings) est multiplié à une distribution normale qui représente le score du participant pour ce facteur. 
 
@@ -128,7 +128,7 @@ score.ind = matrix(rnorm(n * p * k),
                    ncol = n)
 ```
 
-Il ne reste plus qu'à faire le produit matricielle de `phi2` ($\left[ \Phi, \text{diag}(\epsilon) \right]$) et des scores individuelles (`score.ind`). -->
+Il ne reste plus qu'à faire le produit matricielle de `phi2` ($\left[ \Phi, \text{diag}(\epsilon) \right]$) et des scores individuelles (`score.ind`).
 
 ```{r}
 jd2 <- phi2 %*% score.ind
@@ -143,7 +143,7 @@ head(jd2)
 
 Voilà une base de données prêtes à être utiliser pour une analyse factorielle. En pratique, pour donner un peu plus de réalisme, il est possible d'ajouter une moyenne (additionner), de modifier l'écart type (multiplier) de chacune des variables, d'arrondir les scores, et plus en fonction des besoins.
 
-## L'analyse factorielle
+### L'analyse en composantes principales
 
 À titre de comparaison, voici les résultats de l'analyse en composantes principales.
 
@@ -162,9 +162,9 @@ ld
 
 Elle est assez près de la structure originale, mais pas exactement. Et ce n'est pas à cause du relativement petit `n` ou de [la graine][Les graines]. La cause est bel et bien que **l'ACP réorganise la variance plutôt que rechercher une structure factorielle**. L'ACP ne sait pas que la *vraie* structure contient des facteurs communs entre les variables. Pour tester la présence de facteurs commun, il faut procéder avec une autre analyse : l'**analyse factorielle exploratoire (AFE)**.
 
-### Analyse factorielle exploratoire
+## Analyse factorielle exploratoire
 
-Pour réaliser une analyse factorielle exploratoire, la fonction de base **R** `factanal()` prend un jeu de donnée et le nombre de facteur à tester. La fonction détecte automatiquement s'il s'agit d'un jeu de données ou une matrice de covariance; l'un ou l'autre peut être fourni.
+Pour réaliser une analyse factorielle exploratoire, la fonction `factanal()` de **R** prend un jeu de donnée et le nombre de facteur à tester. La fonction détecte automatiquement s'il s'agit d'un jeu de données ou une matrice de covariance; l'un ou l'autre peut être fourni.
 
 ```{r}
 res1 <-  factanal(jd2, factors = 1)
@@ -191,24 +191,24 @@ Les mêmes statistiques, mais pour deux facteurs, sont obtenues. Les résultats 
 
 Il existe deux techniques plus connues pour réaliser l'analyse factorielle exploratoire : la **factorisation en axes principaux** (PAF; *principal axis factoring*) et l'**analyse factorielle par maximum de vraisemblance** (MLFA; *maximum likelihood factor analysis*). 
 
-La PAF tente de retrouver la matrice de corrélation originale sans bruit, c'est-à-dire la **matrice de corrélation réduite** dans laquelle la diagonale n'est pas constituée de $1$ soit `phi %*% t(phi)` $\Phi\Phi^\prime$. Elle se base sur l'ACP (la fonction maison ci-dessous utilise `eigen()`) avec en plus quelques peaufinement.
+La PAF tente de retrouver la matrice de corrélation originale sans bruit, c'est-à-dire la **matrice de corrélation réduite** dans laquelle la diagonale n'est pas constituée de $1$ soit `phi %*% t(phi)` $\Phi\Phi^\prime$. Elle se base sur l'ACP (la fonction maison ci-dessous utilise `eigen()`) avec quelques peaufinements en plus.
 
-La logique est de prendre les loadings, $\phi$ d'un nombre arbitraire de facteurs, puis de calculer la communalité des variables, soit l'équation\ \@ref(eq:com) pour la variable $i$.
+La logique est de prendre les loadings $\phi$ d'un nombre arbitraire de ,$k$, facteurs, puis de calculer la communalité des variables, soit l'équation\ \@ref(eq:com) pour la variable $i$.
 
 \begin{equation}
 C_i = \sum_{i=1}^k \Phi_i^2
 (\#eq:com)
 \end{equation}
 
-pour enfin soustraire deux communalités subséquentes jusqu'à ce que la différence est convergée vers le plus près de 0 (plus de différence entre les communulalités. Autrement dit, l'objectif de la PAF est de retrouver la matrice de corrélation réduite.
+pour enfin soustraire de deux communalités subséquentes la différence jusqu'à ce que celle-ci est convergée le plus près de 0 possible (donc, virtuellement aucune différence entre les deux communalités). Autrement dit, l'objectif de la PAF est de retrouver la matrice de corrélation réduite.
 
 Pour ce faire, il faut utiliser une technique itérative. Lorsqu'il faut programmer de l'optimisation, il faut prendre quelques précautions pour s'assurer du bon fonctionnement de tout logiciel : 
 
-* fixer un maximum d'itérations afin de s'assurer que dans une boucle interminable duquel le logiciel ne peut s'échapper;
+* fixer un maximum d'itérations afin de s'assurer d'éviter d'entrer dans une boucle interminable duquel le logiciel ne peut s'échapper;
 
 * fixer un seuil de convergence à atteindre afin de déterminer une fin à l'optimisation.
 
-Ces deux règles évitent aux programmeurs de fixer son écran pendant des heures pendant que le programme calcule des résultats dans des boucles interminables.
+Ces deux règles évitent aux programmeurs de fixer son écran pendant des heures pendant lesquelles le programme calcule des résultats de boucles interminables.
 
 Ces deux recommandations se retrouvent en arguments et peuvent être modifiées
 
@@ -239,7 +239,7 @@ paf <- function(covmat,
     diff <- diag(covmat) - co
     
     # Si toutes les différences sont plus petites que
-    # convergence, alors `break` cesse la boucle
+    # `convergence`, alors `break` cesse la boucle
     if (all(abs(diff) < converge)) break
     
     # Si non,
@@ -255,7 +255,7 @@ paf <- function(covmat,
 }
 ```
 
-Noter l'ajout de `ncol = ` dans la fonction `diag()`. Cela a pour but de forcer *R* à créer une matrice $1 \times 1$^[Essayer `diag(1.5)` pour observer le comportement de **R**. Ce n'est pas le résultat attendu.]. Enfin, noter l'introduction de `break` (aperçu dans la section [Les variables]) qui permet une boucle lorsque une condition est atteinte.
+Noter l'ajout de `ncol = ` dans la fonction `diag()`. Cela a pour but de forcer *R* à créer une matrice $1 \times 1$^[Essayer `diag(1.5)` pour observer le comportement de **R**. Ce n'est pas le résultat attendu.]. Enfin, noter l'introduction de `break` (aperçu dans la section [Les variables]) qui permet de mettre fin à une boucle lorsque une condition est atteinte.
 
 À toute fin de comparaison, voici la technique PAF maison (`paf()`) et l'analyse factorielle de **R**.
 
@@ -271,4 +271,4 @@ phi%*%t(phi)
 paf(covmat = R, nfactors = 2)$covmat
 ```
 
-Les résultats sont toutefois légèrement différent pour les loadings. Cela est dû au fait que `factanal()` n'utilise pas la méthode PAF, mais bien le MLFA. Cette technique n'est pas détaillé ici. La technique est très similaire à PAF à l'exception qu'elle focalise sur l'estimation des loadings pour dériver les communalités, plutôt que de seulement les communalités comme la méthode PAF. Pour produire une fonction similaire, il faut passer par l'optimisation avec `optim()` (vu dans [Les calculs de l'analyse en composantes principales]).
+Les résultats sont toutefois légèrement différents pour les loadings. Cela est dû au fait que `factanal()` n'utilise pas la méthode PAF, mais bien le MLFA. Cette technique n'est pas détaillée ici. Elle est très similaire à PAF à l'exception qu'elle focalise sur l'estimation des loadings pour dériver les communalités, plutôt que d'utiliser seulement les communalités. Pour produire une fonction similaire, il faut passer par l'optimisation avec `optim()` (vu dans [Les calculs de l'analyse en composantes principales]).
