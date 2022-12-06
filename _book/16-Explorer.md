@@ -26,7 +26,7 @@ La syntaxe ci-dessous reconstruit le modèle de la Figure \@ref(fig:FactStruct).
 ```r
 # Création de la matrice de recette de fabrication
 phi = matrix(c(.9, .8, .7,  0,  0, .4,
-               0,  0,  0, .6, .5, .4), 
+               0,  0,  0, .4, .5, .6), 
              nrow = 6, ncol =  2)
 
 # Identification des variables et facteurs
@@ -37,9 +37,9 @@ phi
 > i1 0.9 0.0
 > i2 0.8 0.0
 > i3 0.7 0.0
-> i4 0.0 0.6
+> i4 0.0 0.4
 > i5 0.0 0.5
-> i6 0.4 0.4
+> i6 0.4 0.6
 ```
 
 ### Première technique
@@ -61,9 +61,9 @@ R
 > i1 0.81 0.72 0.63 0.00 0.00 0.36
 > i2 0.72 0.64 0.56 0.00 0.00 0.32
 > i3 0.63 0.56 0.49 0.00 0.00 0.28
-> i4 0.00 0.00 0.00 0.36 0.30 0.24
-> i5 0.00 0.00 0.00 0.30 0.25 0.20
-> i6 0.36 0.32 0.28 0.24 0.20 0.32
+> i4 0.00 0.00 0.00 0.16 0.20 0.24
+> i5 0.00 0.00 0.00 0.20 0.25 0.30
+> i6 0.36 0.32 0.28 0.24 0.30 0.52
 ```
 
 Le lecteur attentif aura remarqué qu'il ne s'agit pas encore d'une matrice de corrélation\ : la diagonale n'est pas constituée de 1. Le résultat de $\Phi\Phi^{\prime}$ représente la **matrice de corrélation réduite**. 
@@ -78,9 +78,9 @@ R
 > i1 1.00 0.72 0.63 0.00 0.0 0.36
 > i2 0.72 1.00 0.56 0.00 0.0 0.32
 > i3 0.63 0.56 1.00 0.00 0.0 0.28
-> i4 0.00 0.00 0.00 1.00 0.3 0.24
-> i5 0.00 0.00 0.00 0.30 1.0 0.20
-> i6 0.36 0.32 0.28 0.24 0.2 1.00
+> i4 0.00 0.00 0.00 1.00 0.2 0.24
+> i5 0.00 0.00 0.00 0.20 1.0 0.30
+> i6 0.36 0.32 0.28 0.24 0.3 1.00
 ```
 
 Avec la matrice `R` calculée, il est évidemment possible, comme il a été fait précédemment de recourir à la fonction `MASS::mvrnorm()` avec comme argument `Sigma = R` pour la matrice de corrélation afin de créer `n` participants. Il ne reste qu'à choisir une taille d'échantillon.
@@ -95,13 +95,13 @@ jd <- MASS::mvrnorm(n = 50,
                     mu = rep(0, ncol(R)), 
                     Sigma = R)
 head(jd)
->          i1     i2     i3      i4     i5     i6
-> [1,]  0.378  0.396 -0.455 -0.0367  1.209 -0.146
-> [2,] -0.311  0.057 -0.439  1.1648  1.058  0.768
-> [3,] -0.934 -0.450 -1.221 -0.1498 -0.662 -0.443
-> [4,] -0.456  0.250  0.287  0.5350 -0.986  0.686
-> [5,]  1.105  2.319  2.236  0.2671  2.468  0.647
-> [6,] -0.735 -0.787 -0.825  1.6026 -1.382  1.201
+>           i1     i2      i3     i4      i5     i6
+> [1,]  0.0147 -0.464  0.5397  1.187 -0.2932  0.335
+> [2,] -0.4613 -0.288  0.0302  0.960  1.2070  0.789
+> [3,] -1.1191 -0.980 -0.2839 -0.684  0.0166 -0.700
+> [4,] -0.2842  0.619  0.0473 -1.013  0.8804  0.139
+> [5,]  1.0263  2.322  1.4843  2.451 -0.5138  1.936
+> [6,] -0.6026 -0.569 -0.5789 -1.501  2.2906  0.157
 ```
 
 ### Deuxième technique
@@ -134,13 +134,13 @@ Maintenant, il faut ajouter cette variable à la structure factorielle. Comme le
 
 ```r
 diag(sd.eps)
->       [,1] [,2]  [,3] [,4]  [,5]  [,6]
-> [1,] 0.436  0.0 0.000  0.0 0.000 0.000
-> [2,] 0.000  0.6 0.000  0.0 0.000 0.000
-> [3,] 0.000  0.0 0.714  0.0 0.000 0.000
-> [4,] 0.000  0.0 0.000  0.8 0.000 0.000
-> [5,] 0.000  0.0 0.000  0.0 0.866 0.000
-> [6,] 0.000  0.0 0.000  0.0 0.000 0.825
+>       [,1] [,2]  [,3]  [,4]  [,5]  [,6]
+> [1,] 0.436  0.0 0.000 0.000 0.000 0.000
+> [2,] 0.000  0.6 0.000 0.000 0.000 0.000
+> [3,] 0.000  0.0 0.714 0.000 0.000 0.000
+> [4,] 0.000  0.0 0.000 0.917 0.000 0.000
+> [5,] 0.000  0.0 0.000 0.000 0.866 0.000
+> [6,] 0.000  0.0 0.000 0.000 0.000 0.693
 ```
 
 Il suffit maintenant de joindre cette matrice à `phi`.
@@ -163,9 +163,9 @@ R2
 > i1 1.00 0.72 0.63 0.00 0.0 0.36
 > i2 0.72 1.00 0.56 0.00 0.0 0.32
 > i3 0.63 0.56 1.00 0.00 0.0 0.28
-> i4 0.00 0.00 0.00 1.00 0.3 0.24
-> i5 0.00 0.00 0.00 0.30 1.0 0.20
-> i6 0.36 0.32 0.28 0.24 0.2 1.00
+> i4 0.00 0.00 0.00 1.00 0.2 0.24
+> i5 0.00 0.00 0.00 0.20 1.0 0.30
+> i6 0.36 0.32 0.28 0.24 0.3 1.00
 ```
 
 Exactement le même résultat que l'autre méthode, et ce, sans avoir à modifier la diagonale par l'unité. Les variances résiduelles sont déjà calculées.
@@ -178,6 +178,9 @@ n <- 500; k <- 2; p <- 6
 score.ind = matrix(rnorm(n * p * k), 
                    nrow = (k + p), 
                    ncol = n)
+> Warning in matrix(rnorm(n * p * k), nrow = (k + p), ncol =
+> n): data length differs from size of matrix: [6000 != 8 x
+> 500]
 ```
 
 Il ne reste plus qu'à faire le produit matricielle de `phi2` ($\left[ \Phi, \text{diag}(\epsilon) \right]$) et des scores individuelles (`score.ind`).
@@ -193,13 +196,13 @@ La variable `jd2` contient tous les scores des $n$ participants sur les $p$ vari
 ```r
 jd2 <- t(jd2)
 head(jd2)
->          i1     i2      i3     i4     i5     i6
-> [1,]  0.111 -0.886 -0.9769  0.819  1.562  1.566
-> [2,] -1.332 -0.808 -1.0043  0.292  0.372 -1.451
-> [3,] -1.451 -1.331 -1.7075 -0.111 -1.145 -1.925
-> [4,]  0.439 -0.528  1.4282 -0.708  0.437 -0.253
-> [5,] -0.387 -0.488 -0.0509  0.606  0.346 -0.453
-> [6,]  0.526  1.163  0.2766  0.371  0.747  0.767
+>          i1     i2      i3      i4     i5     i6
+> [1,]  0.111 -0.886 -0.9769  0.5398  1.562  1.698
+> [2,] -1.332 -0.808 -1.0043  0.0559  0.372 -1.006
+> [3,] -1.451 -1.331 -1.7075  0.4404 -1.145 -2.224
+> [4,]  0.439 -0.528  1.4282 -0.8922  0.437 -0.076
+> [5,] -0.387 -0.488 -0.0509  0.5412  0.346 -0.262
+> [6,]  0.526  1.163  0.2766  0.1620  0.747  0.944
 ```
 
 Voilà une base de données prêtes à être utiliser pour une analyse factorielle. En pratique, pour donner un peu plus de réalisme, il est possible d'ajouter une moyenne (additionner), de modifier l'écart type (multiplier) de chacune des variables, d'arrondir les scores, et plus en fonction des besoins.
@@ -215,16 +218,16 @@ res <- eigen(cor(jd2))
 res
 > eigen() decomposition
 > $values
-> [1] 2.518 1.357 0.780 0.660 0.430 0.253
+> [1] 2.503 1.340 0.888 0.588 0.427 0.253
 > 
 > $vectors
->        [,1]    [,2]    [,3]   [,4]    [,5]    [,6]
-> [1,] 0.5659  0.0961 -0.0395 -0.114  0.1689  0.7921
-> [2,] 0.5397  0.0904  0.0772 -0.134  0.6172 -0.5437
-> [3,] 0.5109  0.1025 -0.1587 -0.287 -0.7409 -0.2687
-> [4,] 0.0108 -0.6541  0.5957 -0.461 -0.0486  0.0452
-> [5,] 0.0161 -0.6273 -0.7593 -0.106  0.1344 -0.0173
-> [6,] 0.3565 -0.3882  0.1895  0.814 -0.1455 -0.0497
+>         [,1]   [,2]    [,3]    [,4]    [,5]     [,6]
+> [1,] -0.5659  0.133  0.0015  0.0729 -0.1699  0.79231
+> [2,] -0.5394  0.129  0.1006  0.0207 -0.6224 -0.54259
+> [3,] -0.5118  0.143 -0.0587  0.3666  0.7118 -0.27061
+> [4,] -0.0330 -0.555  0.7725  0.3039  0.0111  0.04282
+> [5,] -0.0431 -0.629 -0.6206  0.4303 -0.1780 -0.00138
+> [6,] -0.3520 -0.491 -0.0676 -0.7631  0.2128 -0.05277
 
 # Les deux premières valeurs propres
 
@@ -232,13 +235,13 @@ res
 ld <- res$vectors[,1:2] %*% 
                  diag(sqrt(res$values)[1:2])
 ld
->        [,1]   [,2]
-> [1,] 0.8981  0.112
-> [2,] 0.8565  0.105
-> [3,] 0.8107  0.119
-> [4,] 0.0172 -0.762
-> [5,] 0.0255 -0.731
-> [6,] 0.5658 -0.452
+>         [,1]   [,2]
+> [1,] -0.8954  0.154
+> [2,] -0.8534  0.149
+> [3,] -0.8097  0.165
+> [4,] -0.0522 -0.642
+> [5,] -0.0682 -0.729
+> [6,] -0.5569 -0.568
 ```
 
 Elle est assez près de la structure originale, mais pas exactement. Et ce n'est pas à cause du relativement petit `n` ou de [la graine][Les graines]. La cause est bel et bien que **l'ACP réorganise la variance plutôt que rechercher une structure factorielle**. L'ACP ne sait pas que la *vraie* structure contient des facteurs communs entre les variables. Pour tester la présence de facteurs commun, il faut procéder avec une autre analyse : l'**analyse factorielle exploratoire (AFE)**.
@@ -257,24 +260,24 @@ res1
 > 
 > Uniquenesses:
 >    i1    i2    i3    i4    i5    i6 
-> 0.157 0.376 0.487 0.999 1.000 0.835 
+> 0.156 0.376 0.487 1.000 1.000 0.851 
 > 
 > Loadings:
 >    Factor1
-> i1  0.918 
+> i1  0.919 
 > i2  0.790 
 > i3  0.716 
 > i4        
 > i5        
-> i6  0.406 
+> i6  0.386 
 > 
 >                Factor1
-> SS loadings      2.147
-> Proportion Var   0.358
+> SS loadings      2.131
+> Proportion Var   0.355
 > 
 > Test of the hypothesis that 1 factor is sufficient.
-> The chi square statistic is 72.2 on 9 degrees of freedom.
-> The p-value is 5.7e-12
+> The chi square statistic is 86.9 on 9 degrees of freedom.
+> The p-value is 6.84e-15
 ```
 
 C'est aussi simple que l'ACP (même plus!). La sortie procure trois statistiques d'intérêts : les loadings, la proportion de variance expliquée (`Proportion Var`) et un test de $\chi^2$ avec sa valeur-$p$. Les loadings entre -.1 et .1 ne sont pas affichés afin d'attirer l'attention sur la structure. Les loadings peuvent être extraits avec la fonction `loadings()` ou en élément de liste. L'utilisation de `[]` permet d'affichier complètement la matrice de loadings.
@@ -285,24 +288,24 @@ loadings(res1)
 > 
 > Loadings:
 >    Factor1
-> i1  0.918 
+> i1  0.919 
 > i2  0.790 
 > i3  0.716 
 > i4        
 > i5        
-> i6  0.406 
+> i6  0.386 
 > 
 >                Factor1
-> SS loadings      2.147
-> Proportion Var   0.358
+> SS loadings      2.131
+> Proportion Var   0.355
 res1$loadings[]
 >    Factor1
-> i1  0.9183
-> i2  0.7902
-> i3  0.7164
-> i4 -0.0340
-> i5 -0.0186
-> i6  0.4060
+> i1  0.9187
+> i2  0.7896
+> i3  0.7165
+> i4 -0.0140
+> i5 -0.0124
+> i6  0.3864
 ```
 
 La valeur-$p$ concerne la qualité de de l'ajustement de la strucuture à `factors` facteurs. Comme la valeur-$p$ est significative à un facteur, $p < .001$, cela signifie que la structure testée (un facteur) n'est pas vraisemblable. Il faut tester pour deux facteurs.
@@ -317,25 +320,25 @@ res2
 > 
 > Uniquenesses:
 >    i1    i2    i3    i4    i5    i6 
-> 0.156 0.376 0.487 0.709 0.815 0.667 
+> 0.154 0.378 0.487 0.910 0.849 0.288 
 > 
 > Loadings:
 >    Factor1 Factor2
-> i1  0.918         
-> i2  0.790         
+> i1  0.920         
+> i2  0.788         
 > i3  0.716         
-> i4          0.538 
-> i5          0.430 
-> i6  0.417   0.398 
+> i4          0.298 
+> i5          0.387 
+> i6  0.373   0.757 
 > 
 >                Factor1 Factor2
-> SS loadings      2.155   0.635
-> Proportion Var   0.359   0.106
-> Cumulative Var   0.359   0.465
+> SS loadings      2.121   0.812
+> Proportion Var   0.354   0.135
+> Cumulative Var   0.354   0.489
 > 
 > Test of the hypothesis that 2 factors are sufficient.
-> The chi square statistic is 5.45 on 4 degrees of freedom.
-> The p-value is 0.244
+> The chi square statistic is 5.31 on 4 degrees of freedom.
+> The p-value is 0.257
 ```
 
 Les mêmes statistiques, mais pour deux facteurs, sont obtenues. Les résultats sont très près de la structure originale. La valeur-$p$ n'est plus significative, ce qui suggère que le modèle semble bien de deux facteurs. 
@@ -422,46 +425,46 @@ factanal(covmat = R, n.obs = n, factors = 2)
 > 
 > Uniquenesses:
 >   i1   i2   i3   i4   i5   i6 
-> 0.19 0.36 0.51 0.64 0.75 0.68 
+> 0.19 0.36 0.51 0.84 0.75 0.48 
 > 
 > Loadings:
 >    Factor1 Factor2
-> i1  0.900         
-> i2  0.800         
-> i3  0.700         
-> i4          0.600 
-> i5          0.500 
-> i6  0.392   0.408 
+> i1  0.899         
+> i2  0.799         
+> i3  0.699         
+> i4          0.399 
+> i5          0.499 
+> i6  0.368   0.620 
 > 
 >                Factor1 Factor2
-> SS loadings      2.093   0.777
-> Proportion Var   0.349   0.129
-> Cumulative Var   0.349   0.478
+> SS loadings      2.071   0.799
+> Proportion Var   0.345   0.133
+> Cumulative Var   0.345   0.478
 > 
 > Test of the hypothesis that 2 factors are sufficient.
 > The chi square statistic is 0 on 4 degrees of freedom.
 > The p-value is 1
 paf(covmat = R, nfactors = 2)
 > $uniquenesses
-> [1] 0.19 0.36 0.51 0.64 0.75 0.68
+> [1] 0.19 0.36 0.51 0.84 0.75 0.48
 > 
 > $loadings
->        [,1]    [,2]
-> [1,] 0.8937 -0.1060
-> [2,] 0.7944 -0.0942
-> [3,] 0.6951 -0.0824
-> [4,] 0.0707  0.5958
-> [5,] 0.0589  0.4965
-> [6,] 0.4443  0.3501
+>         [,1]   [,2]
+> [1,] -0.8865 -0.155
+> [2,] -0.7880 -0.138
+> [3,] -0.6895 -0.121
+> [4,] -0.0689  0.394
+> [5,] -0.0862  0.493
+> [6,] -0.4974  0.522
 > 
 > $covmat
 >      i1   i2   i3   i4   i5   i6
 > i1 0.81 0.72 0.63 0.00 0.00 0.36
 > i2 0.72 0.64 0.56 0.00 0.00 0.32
 > i3 0.63 0.56 0.49 0.00 0.00 0.28
-> i4 0.00 0.00 0.00 0.36 0.30 0.24
-> i5 0.00 0.00 0.00 0.30 0.25 0.20
-> i6 0.36 0.32 0.28 0.24 0.20 0.32
+> i4 0.00 0.00 0.00 0.16 0.20 0.24
+> i5 0.00 0.00 0.00 0.20 0.25 0.30
+> i6 0.36 0.32 0.28 0.24 0.30 0.52
 ```
 
 Les résultats sont très près, beaucoup plus que l'ACP de la matrice `R`. La sortie `uniqueness` correspond à `1-C`, la variance résiduelle. Dans les cas, elles sont virtuellement identiques. Dans la sortie de `paf()`, la matrice de corrélation réduite de `R` est sortie et montre qu'elle correspond à ce qui est attendu soit $\Phi\Phi^{\prime}$.
@@ -473,17 +476,17 @@ phi%*%t(phi)
 > i1 0.81 0.72 0.63 0.00 0.00 0.36
 > i2 0.72 0.64 0.56 0.00 0.00 0.32
 > i3 0.63 0.56 0.49 0.00 0.00 0.28
-> i4 0.00 0.00 0.00 0.36 0.30 0.24
-> i5 0.00 0.00 0.00 0.30 0.25 0.20
-> i6 0.36 0.32 0.28 0.24 0.20 0.32
+> i4 0.00 0.00 0.00 0.16 0.20 0.24
+> i5 0.00 0.00 0.00 0.20 0.25 0.30
+> i6 0.36 0.32 0.28 0.24 0.30 0.52
 paf(covmat = R, nfactors = 2)$covmat
 >      i1   i2   i3   i4   i5   i6
 > i1 0.81 0.72 0.63 0.00 0.00 0.36
 > i2 0.72 0.64 0.56 0.00 0.00 0.32
 > i3 0.63 0.56 0.49 0.00 0.00 0.28
-> i4 0.00 0.00 0.00 0.36 0.30 0.24
-> i5 0.00 0.00 0.00 0.30 0.25 0.20
-> i6 0.36 0.32 0.28 0.24 0.20 0.32
+> i4 0.00 0.00 0.00 0.16 0.20 0.24
+> i5 0.00 0.00 0.00 0.20 0.25 0.30
+> i6 0.36 0.32 0.28 0.24 0.30 0.52
 ```
 
 Les résultats sont toutefois légèrement différents pour les loadings. Cela est dû au fait que `factanal()` n'utilise pas la méthode PAF, mais bien le MLFA. Cette technique n'est pas détaillée ici. Elle est très similaire à PAF à l'exception qu'elle focalise sur l'estimation des loadings pour dériver les communalités, plutôt que d'utiliser seulement les communalités. Pour produire une fonction similaire, il faut passer par l'optimisation avec `optim()` (vu dans [Les calculs de l'analyse en composantes principales]).

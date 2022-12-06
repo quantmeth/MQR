@@ -6,7 +6,6 @@ library(rstatix)
 
 Avec **R**, il ne faut jamais manipuler directement le fichier contenant les données. **Cette pratique est déconseillée**. Il vaut mieux préserver le fichier original intact, ce qui évite de nombreuses complications, comme la compatibilité entre les versions, la reproductibilité des bases, la maintenance, etc. Toutes les manipulations doivent être conservées dans un fichier script. Cela favorise le suivi des modifications apportées en comparant tout simplement les traces dans les syntaxes, mais aussi le partage entre collègues. 
 
-
 En pratique, l'expérimentateur aura le jeu de données officiel (final) avec lequel travailler. Il doit l'importer à chaque début de séance, tel que précisé dans la section [Importer]. Par la suite, il ne lui reste qu'à mettre en place le nettoyage et la préparation du jeu de données ou bien, si cela est déjà fait, de rouler les scripts des séances précédentes, ce qui se fait facilement en quelques cliques. 
 
 Il existe plusieurs méthodes pour gèrer des données; il ne faut pas s'étonner de voir d'autres ouvrages aborder la gestion de données d'une autre façon. Au final, la meilleure méthode est celle qui m'est l'utilisateur à son aise.

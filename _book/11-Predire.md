@@ -1,7 +1,7 @@
 # (PART) Modèles linéaires {-}
 # Prédire
 
-Un objectif des chercheurs est généralement de développer des modèles afin de faire des prédictions à partir d'un échantillon sur la population. Les statistiques sont un outils idéalement pour développer ces modèles. La régression est l'une des analyses fondamentales pour réaliser cette objectif et constitue en quelques sortes les fondements de biens des méthodes récentes (comme l'apprentissage machine). 
+Un objectif des chercheurs est généralement de développer des modèles afin de faire des prédictions à partir d'un échantillon. Les statistiques sont des outils idéaux pour développer ces modèles. La régression est l'une des analyses fondamentales pour réaliser cette objectif et constitue en quelques sortes les fondements de biens des méthodes récentes (comme l'apprentissage machine). 
 
 L'objectif de la régression est de décrire la relation entre un variable dépendante et un ensemble de variables indépendantes. Un aperçu est donnée à la section sur [l'association linéaire] dans le chapitre [Analyser]. Ce présent chapitre débute avec la notion de covariance et l'étend jusqu'à celle de régression. Des techniques rudimentaires de création de données sont présentées. Par la suite, les mathématiques et la programmation sous-jacente au modèle linéaire sont illustrées. 
 
@@ -38,29 +38,29 @@ Avantageusement, lorsque $j=k$, les équations \@ref(eq:cov2) et \@ref(eq:cov3) 
 ```r
 covariance1 <- function(X){ 
   # X est un jeu de données
-  Xc = scale(X, scale = FALSE) # Centrées les variables
-  p = ncol(X)                  # Nombre de variables 
-  n = nrow(X)                  # Nombre de sujets
-  S = numeric()                # Matrice vide pour enregistrer
+  Xc <- scale(X, scale = FALSE)  # Centrées les variables
+  p  <- ncol(X)                  # Nombre de variables 
+  n  <- nrow(X)                  # Nombre de sujets
+  S  <- matrix(0, p, p)          # Matrice vide pour enregistrer
   
   for(j in 1:p) {
     for(k in 1:p) {
-      S[j, k] = sum(Xc[ ,j] * Xc[ ,k])
+      S[j, k] <- sum(Xc[ ,j] * Xc[ ,k])
     }
   }
   
-  S = S / (n-1)
+  S <- S / (n-1)
   
   # S est la matrice de covariance
   return(covariance = S)
 }
 ```
 
-Dans le code **R** ci-dessus, les fonctions `ncol()` et `nrow()` extraient le nombre de dimensions de la base de données, soit le nombre de variables et le nombre d'unités. La fonction `scale()` permet de centrer les variables de `X` et de les retourner dans `Xc`, par défaut `center = TRUE`, ce pourquoi l'argument n'est pas explicité, mais ne les standardise pas, `scale = FALSE`. Une variable vide `S` est créé pour enregistrer les résultats. La boucle, quant à elle, calcule l'addition de l'équation\ \@ref(eq:cov3) pour enfin diviser la somme par $n-1$. Le résultat est `S`, la matrice de covariance.
+Dans le code **R** ci-dessus, les fonctions `ncol()` et `nrow()` extraient le nombre de dimensions de la base de données, soit le nombre de variables et le nombre d'unités. La fonction `scale()` permet de centrer les variables de `X` et de les retourner dans `Xc`. Par défaut, l'argument pour centrer est `center = TRUE`, ce pourquoi l'argument n'est pas explicité, mais la fonction ne standardise pas les valeurs, car `scale = FALSE`. Une variable vide `S` est créé pour enregistrer les résultats. La boucle, quant à elle, calcule l'addition de l'équation\ \@ref(eq:cov3) pour enfin diviser la somme par $n-1$. Le résultat est `S`, la matrice de covariance.
 
 ### Illustration de la covariance
 
-Il est relativement aisé d'exprimer graphiquement la covariance bivariée. L'équation\ \@ref(eq:cov3) rappelle l'aire d'un rectangle. Pour chaque paire $(x_i,y_i)$, un rectangle peut être dessiner à partir du centre $(0, 0)$ jusqu'au $(x_i,y_i)$. La Figure\ \@ref(fig:covfig) montre quatre exemples de ces rectangles. Lorsque la moyenne d'une variable est soustraite, les données deviennent centrées sur le point $(0, 0)$. L'expression $xy$ ou $x_ix_j$ rappelle le calcul de l'aire d'un rectangle. C'est effectivement ce qui se produit pour la covariance. L'équation calcule l'aire du rectangle formé par les points $(0,0)$ et $(x_i,y_i)$. En fait, l'équation\ \@ref(eq:cov1) calcule le rectangle *moyen* dont la somme des produits est divisé par le nombre de rectangles moins 1, $(n-1)$.
+Il est relativement aisé d'exprimer graphiquement la covariance bivariée. L'équation\ \@ref(eq:cov3) rappelle l'aire d'un rectangle. Pour chaque paire $(x_i,y_i)$, un rectangle peut être dessiner à partir du centre $(0, 0)$ jusqu'au $(x_i,y_i)$. La Figure\ \@ref(fig:covfig) montre quatre exemples de ces rectangles. Lorsque la moyenne d'une variable est soustraite, les données deviennent centrées sur le point $(0, 0)$. L'expression $xy$ ou $x_ix_j$ rappelle le calcul de l'aire d'un rectangle. C'est effectivement ce qui se produit pour la covariance. L'équation calcule l'aire du rectangle formé par les points $(0,0)$ et $(x_i,y_i)$. En fait, l'équation\ \@ref(eq:cov1) calcule le rectangle *moyen* dont la somme des produits est divisée par le nombre de rectangles moins 1, soit $(n-1)$.
 
 
 <div class="figure" style="text-align: center">
@@ -124,7 +124,7 @@ Le symbole $\mathbf{S}$ représente la matrice de variance-covariance. La diagon
 \mathbf{S} & = (n-1)^{-1}
 \left(\begin{array}{cccc} 
 x_{1,1} & x_{2,1} & ... & x_{n,1} \\
-x_{2,1} & x_{2,2} & ... & x_{n,2} \\
+x_{1,2} & x_{2,2} & ... & x_{n,2} \\
 \end{array}\right) 
 \left(\begin{array}{cc} 
 x_{1,1} & x_{1,2} \\
@@ -148,16 +148,16 @@ L'équation \@ref(eq:covmat2) illustre l'équation \@ref(eq:covmat1) qui sont to
 covariance2 = function(X){
   # X est une jeu de données ou matrice de n sujets par p variables
   n <- nrow(X)
-  Xc <- scale(x, scale = FALSE)
+  Xc <- scale(X, scale = FALSE)
   
-  # L'algèbre matriciel pour le produit permet de calculer
-  # le produit d'une colonne avec les autres colonnes
+  # L'algèbre matriciel permet de calculer le
+  # produit d'une colonne avec les autres colonnes
   cov.X <- t(Xc) %*% Xc / (n - 1)
   return(cov.X)
 }
 ```
 
-La fonction `t()` opère la transpose (représentée par $\prime$) et le symbole `%*%` signifie le produit matriciel des variables. Si l'usuel symbole de multiplication `*` est utilisé, **R** opère une multiplication cellule par cellule (avec recyclage) plutôt que l'opération matricielle.
+La fonction `t()` opère la transpose (représentée par $\prime$) et le symbole `%*%` signifie le produit matriciel des variables. Il faut bien distinguer `*` et `%*%`. L'usuel symbole de multiplication `*` de **R** opère une multiplication cellule par cellule (avec recyclage) plutôt que l'opération matricielle (multiplication des colonnes de la première matrice avec les lignes de la seconde matrice).
 
 L'utilisation de l'algèbre matricielle est plus simple et efficace. Elle nécessite cinq lignes de code, élimine deux boucles, prend moins de temps à calculer, en plus de produire toutes les variances et covariances.
 
@@ -166,10 +166,10 @@ Une matrice de covariance possède plusieurs propriétés importantes. Elle est 
 \begin{equation}
 \mathbf{\Sigma} = \left( 
 \begin{array}{cccc}
-\sigma_{1,1} & \sigma_{1,2} & ... &  \sigma_{1,p}\\
-\sigma_{2,1} & \sigma_{2,2} & ... &  \sigma_{2,p}\\
+\sigma_{1,1}^2 & \sigma_{1,2} & ... &  \sigma_{1,p}\\
+\sigma_{2,1} & \sigma_{2,2}^2 & ... &  \sigma_{2,p}\\
 ...& ...& ... &  \sigma_{3,p}\\
-\sigma_{p,1} & \sigma_{p,2} & ... &  \sigma_{p,p}\\
+\sigma_{p,1} & \sigma_{p,2} & ... &  \sigma_{p,p}^2\\
 \end{array}
 \right)
 (\#eq:sigma123)
@@ -190,7 +190,7 @@ n <- nrow(x)
 cor.X <- t(Xz) %*% Xz / (n - 1)
 ```
 
-La deuxième méthode est de standardiser la matrice de covariance en termes d'algèbre matricielle, où $\mathbf{S}$ est la matrice de covariance. Pour ce faire, on pré et post multiplie $\mathbf{S}$ par $\mathbf{D}$, comme l'équation \@ref(eq:obtD1).
+La deuxième méthode est de standardiser la matrice de covariance en utilisant l'algèbre matricielle, où $\mathbf{S}$ est la matrice de covariance. Pour ce faire, on pré et post multiplie $\mathbf{S}$ par $\mathbf{D}$, comme l'équation \@ref(eq:obtD1).
 
 \begin{equation}
 \mathbf{R}=\mathbf{D_{S}}\mathbf{S}\mathbf{D_{S}}
@@ -329,17 +329,18 @@ Quelques détails sont importants à considérer pour la programmation. Afin d'a
 regression <- function(y, X){
   # Taille d'échantillon et nombre de variables
   n <- nrow(X)
-  p <- ncol(X)
+  p <- ncol(X) + 1
   
   # Joindre un intercepte
   X <- cbind(intercept = 1, X)
   X <- as.matrix(X)
+  p <- ncol(X)
   
   # Calculer les coefficients de régression
   B <- solve(t(X) %*% X) %*% t(X) %*% y
   
   #Calculer la variance résiduelle
-  var.e <- var(y - X %*% B)
+  var.e <- sum((y - X %*% B)^2) / (n-p)
   
   # Calculer les erreurs standards des beta
   se.B <- sqrt(c(var.e) * diag(solve(t(X) %*% X)))
@@ -348,7 +349,7 @@ regression <- function(y, X){
   vt <- B / se.B
   
   # Valeurs-p
-  vp <- (1-pt(abs(vt), df = n - p - 1)) * 2
+  vp <- pt(abs(vt), df = n - p - 1, lower.tail = FALSE) * 2
   
   # Création d'un tableau de sortie
   resultats <- data.frame(Estimate = B, 
@@ -368,14 +369,15 @@ Une façon simple et efficace de créer des données à ce stade est la package 
 
 ```r
 # Création de la matrice de covariance pour p = 3
+p <- 3   # Nombre de variables
 Sigma <- matrix(c(s11, s12, s13,
                   s12, s22, s23,
                   s13, s23, s33), 
-                nrow = 3, ncol = 3)
+                nrow = p, ncol = p)
 
 # Création des données 
 donnees <- data.frame(MASS::mvrnorm(n = n, 
-                                    mu = c(0, 0), 
+                                    mu = rep(0, p), 
                                     Sigma = Sigma))
 ```
 
@@ -384,9 +386,9 @@ La matrice de covariance, $\mathbf{\Sigma}$, pour $p=3$, s'écrit comme l'équat
 \begin{equation}
 \mathbf{\Sigma} = \left( 
 \begin{array}{ccc}
-\sigma_{1,1} & \sigma_{1,2} & \sigma_{1,3}\\
-\sigma_{2,1} & \sigma_{2,2} & \sigma_{2,3}\\
-\sigma_{3,1} & \sigma_{3,2} & \sigma_{2,3}
+\sigma_{1,1}^2 & \sigma_{1,2} & \sigma_{1,3}\\
+\sigma_{2,1} & \sigma_{2,2}^2 & \sigma_{2,3}\\
+\sigma_{3,1} & \sigma_{3,2} & \sigma_{2,3}^2
 \end{array}
 \right)
 (\#eq:covp3)
@@ -424,9 +426,9 @@ Cette méthode de création de données possède toutefois des limites. Principa
 
 Certaines valeurs sont déjà connues, car préspécifiées par l'utilisateur, $\beta_1 = 1$ et $\sigma_x = 1$. Qu'en est-il de $\sigma_y$? L'utilisateur n'a pas spécifié la valeur de la variance de $y$, il a plutôt choisi la valeur de la variance de l'erreur résiduelle, $\sigma^2_{\epsilon}$. [La loi de la somme des variances] permet de calculer cette valeur. Pour le lecteur intéressé, les réponses sont $\sigma^2_y = \beta_1^2\sigma^2_x+\sigma^2_{\epsilon} = 10$ et donc $\rho_{x,y} = \frac{\beta_1 \sigma_x}{\sigma_y} = 0.316$ (les détails sont présentés dans le chapitre [Créer]).
 
-La limite liée à la méthode de création de données est maintenant flagrante. En plus de ne pas connaître la corrélation entre les variables, la variance de $y$ n'est pas connue a priori. La stratégie de spécification est ainsi de choisir des valeurs et d'espérer qu'elles soient conformes aux attentes. Pire, s'il y avait plusieurs variables indépendantes, elles seraient toutes non corrélées entre elles, alors que l'utilisateur pourrait le vouloir autrement, mais cette première technique ne le permet pas.
+La limite liée à la méthode de création de données est maintenant flagrante. En plus de ne pas connaître la corrélation entre les variables, la variance de $y$ n'est pas connue a priori. La stratégie de spécification est ainsi de choisir des valeurs et d'espérer qu'elles soient conformes aux attentes. Pire, s'il y avait plusieurs variables indépendantes, elles seraient toutes non corrélées entre elles, alors que l'utilisateur pourrait vouloir autrement, mais cette première technique ne le permet pas.
 
-Pour l'utilisateur qui crée son jeu de données, ces caractéristiques sont souvent plus essentielles que de spécifier à l'avance la variance résiduelle. Pour résoudre cette situation, la solution est de spécifier un modèle standardisé, puis de le *déstandardiser* (ajouté des moyennes et des variances a posteriori).
+Pour l'utilisateur qui crée son propre jeu de données, ces caractéristiques sont souvent plus essentielles que de spécifier à l'avance la variance résiduelle. Pour résoudre cette situation, la solution est de spécifier un modèle standardisé, puis de le *déstandardiser* (ajouté des moyennes et des variances a posteriori).
 
 La philosophie de modélisation de cet ouvrage repose sur l'idée selon laquelle, un modèle doit être standardisé au départ puis *déstandardisé*. Cette logique ne se prêtera pas à tous les contextes. Pour certains la difficulté sera immense; pour d'autres, cela ne respectera pas les objectifs. En partant d'un modèle standardisé toutefois, la matrice de corrélation est connue à l'avance et la variance est spécifiée directement par l'utilisateur. Les tailles d'effets attendues sont également assurées. Il suffit de dériver la variance résiduelle du modèle plutôt que de la spécifier.
 
@@ -483,7 +485,7 @@ mu <- rep(0, k)
 # Choix des betas standardisés
 B <- c(beta1 = .2, beta2 = -.5, beta3 = .3)
 
-#variance de epsilon
+# Variance de epsilon
 var_e <- 1 - t(B) %*% R %*% B
 
 # Créations des variables aléatoires
@@ -601,18 +603,20 @@ summary(res.lm)
 
 Pour ajouter une variable, il suffit de `VD ~ VI1 + VI2`; pour ajouter un effet d'interaction, il est possible de faire `VD ~ VI1 * VI2`. Pour ajouter une variable nominale (catégorielle), il suffit d'ajouter la variable comme n'importe quelles autres `x`, mais en s'assurant bien qu'elle soit désignée comme un facteur dans le jeu de données. Si ce n'était pas le cas, la fonction `as.factor()` corrige la situation.
 
-La fonction `lm()` en elle-même n'imprime que peut de résultats. Pour obtenir l'information complète, il faut requérir le sommaire avec la fonction `summary()`. Le sommaire des résultats contient toute l'information qu'un expérimentateur peut désirer. Il y a les coefficients de régression `Estimate`, leur erreur standard `Std. Error`, leur valeur-$t$ `t value` et leur valeur-$p$ `Pr(>|t|)`. Tout cela peut être extrait avec `summary(res.lm)$...` en remplaçant `...` par les éléments désirés. Au-dessous de la sortie imprimée, il y a également le coefficient de détermination ($R^2$, `R-squared`), les degrés de liberté et la valeur-$p$ associé au modèle.
+La fonction `lm()` en elle-même n'imprime que peut de résultats. Pour obtenir l'information complète, il faut requérir le sommaire avec la fonction `summary()`. Le sommaire des résultats contient toute l'information qu'un expérimentateur peut désirer. Il y a les coefficients de régression `Estimate`, leur erreur standard `Std. Error`, leur valeur-$t$ `t value` et leur valeur-$p$ `Pr(>|t|)`. Au-dessous de la sortie imprimée, il y a également le coefficient de détermination ($R^2$, `R-squared`), les degrés de liberté et la valeur-$p$ associé au modèle. 
 
-Les résultats de `lm()` peuvent être comparés avec la fonction maison `regression()` expliquée auparavant à la section [L’analyse de régression].
+Tous les éléments peuvent être extraits avec `summary(res.lm)$...` en remplaçant `...` par les éléments désirés. Par exemple, le coefficient de détermination peut être extrait indépendamment avec la syntaxe `summary(res.lm)$r.squared`.
+
+Les résultats de `lm()` sont comparables avec la fonction maison `regression()` expliquée auparavant à la section [L’analyse de régression].
 
 
 ```r
 regression(y = jd$y, X = jd[ ,2:4])
 >           Estimate Std.Error t.value  p.value
-> intercept  -0.0171    0.0253  -0.678 4.98e-01
-> X.1         0.2139    0.0266   8.046 2.44e-15
-> X.2        -0.5520    0.0257 -21.449 0.00e+00
-> X.3         0.3095    0.0263  11.775 0.00e+00
+> intercept  -0.0171    0.0253  -0.677 4.99e-01
+> X.1         0.2139    0.0266   8.034 2.66e-15
+> X.2        -0.5520    0.0258 -21.417 5.52e-84
+> X.3         0.3095    0.0263  11.757 5.63e-30
 ```
 
 
@@ -622,7 +626,7 @@ Un manuscrit rapporte les résultats à peu prêt comme ceci.
 
 > Le modèle tester obtient un coefficient de détermination de $R^2(996) = 0.383, p < .001$. Les trois prédicteurs sont liés significativement à la variable dépendante, respectivement $X_1: \beta_1 = 0.214$, $p = < .001$, $X_2: \beta_2 = 0.214$, $p = < .001$, $X_3: \beta_3 = 0.31$, $p = < .001$. 
 
-Évidemment, comme l'exemple est artificiel, il y a peu de chose à dire sans devoir fabriquer de toutes pièces des interprétations alambiquées bien que cela fût fort bénéfique pour la carrière de certains.
+Évidemment, comme l'exemple est artificiel, il y a peu de chose à dire sans devoir fabriquer de toutes pièces des interprétations alambiquées bien que cela s'avère bénéfique pour la carrière de certains.
 
 Pour vérifier la qualité des résultats, il faut vérifier la distribution des résidus. Pour ce faire, il faut extraire les résidus et les valeurs prédites. Pour la création de graphiques, il est plus simple d'ajouter ces scores au jeu de données. Les fonctions `resid()` et `predict()` extraient les résidus et les prédictions en y insérant comme argument le sommaire de la fonction `lm()` obtenu avec les données.
 
@@ -675,7 +679,7 @@ La corrélation partielle mesure le degré d'association *symétrique* entre deu
 (\#eq:partielle)
 \end{equation}
 
-La formule pour calculer $\mathbf{D}_{\mathbf{S}^{-1}}$ est la même que \@ref(eq:obtD2), mais où $\mathbf{S}$ est remplacée par $\mathbf{S}^{-1}$. En code **R**, l'équation\ \@ref(eq:partielle) devient la syntaxe suivante.
+La formule pour calculer $\mathbf{D}_{\mathbf{S}^{-1}}$ est la même que l'équation\ \@ref(eq:obtD2), mais où $\mathbf{S}$ est remplacée par $\mathbf{S}^{-1}$. En code **R**, l'équation\ \@ref(eq:partielle) devient la syntaxe suivante.
 
 
 ```r
@@ -687,7 +691,7 @@ Par souci esthétique la diagonale de $\mathbf{R}_{\text{partielle}}$ est souven
 
 ### Les corrélation semi partielles
 
-La corrélation semi partielle mesure le degré d'association *asymétrique* entre une variable indépendante et dépendante en contrôlant pour toutes les autres. Conceptuellement, il s'agit de retirer l'effet d'un ensemble de variables *contrôles* sur la variable dépendante, puis de d'utiliser la variable indépendante comme nouveau prédicteur. Autrement dit, il s'agit de la **contribution ajouté** d'une variable sur une autre.
+La corrélation semi partielle mesure le degré d'association *asymétrique* entre une variable indépendante et dépendante en contrôlant pour toutes les autres. Conceptuellement, il s'agit de retirer l'effet d'un ensemble de variables *contrôles* sur la variable dépendante, puis d'utiliser la variable indépendante comme nouveau prédicteur. Autrement dit, il s'agit de la **contribution ajouté** d'une variable sur une autre.
 
 Le calcul de la matrice de corrélation semi partielle part de la matrice de corrélation partielle et applique un dénominateur pondérant les contributions des autres variables dans la matrice [@Seongho15]. La formule est représenté par l'équation\ \@ref(eq:semipartielle)
 
@@ -758,7 +762,7 @@ Rsp
 > z -0.163 0.816  1.000
 ```
 
-Les matrices `Rp` et `Rsp` se lisent comme suit : La ligne (variable indépendante) prédit la colonne (variable dépendante). Cette distinction n'est pas important pour la matrice `Rp` (corrélations partielles), car les variables sont symétriques, mais est très importantes pour la matrice `Rsp` (corrélations semi partielles), car la relation est asymétrique. Par exemple, la corrélation semi partielle de $x$ prédit $y$ est de 0.333, mais l'inverse est de 0.2.
+Les matrices `Rp` et `Rsp` se lisent comme suit : La ligne (variable indépendante) prédit la colonne (variable dépendante). Cette distinction n'est pas importante pour la matrice `Rp` (corrélations partielles), car les variables sont symétriques, mais est très importantes pour la matrice `Rsp` (corrélations semi partielles), car la relation est asymétrique. Par exemple, la corrélation semi partielle de $x$ prédit $y$ est de 0.333, mais l'inverse est de 0.2.
 
 Plusieurs observations sont possibles.
 
@@ -768,16 +772,18 @@ Pour une même paire de variable, la corrélation partielle est toujours plus gr
 
 La matrice de corrélation partielle est symétrique alors que la matrice de corrélation semi partielle ne l'est pas. Cela s'explique du fait que la corrélation semi partielle attribue un rôle (indépendant et dépendant) pour une paire de variable. La contribution des autres variables est retirée de la variable dépendante, puis c'est l'ajout de la variable indépendante qui est d'intérêt. Par exemple, l'effet de la variable `x` prédite par `y` en contrôlant par `x` est de 0.2. Ce lien est limité à cause de l'effet de `z` sur `x`. 
 
-Une dernière observation : Les explications basées sur les diagrammes de Venn pour distinguer les corrélations partielles et semi partielles portent plus souvent à confusion (à long terme) qu'elle n'apporte d'éclaircissement (à court terme), bien qu'elle se retrouve abondamment dans les manuels. 
+Une dernière observation : Les explications basées sur les diagrammes de Venn pour distinguer les corrélations partielles et semi partielles portent plus souvent à confusion (à long terme) qu'elles n'apportent d'éclaircissement (à court terme), bien qu'elles se retrouvent abondamment dans les manuels. 
 
 <div class="figure" style="text-align: center">
 <img src="image//venn.png" alt="Diagramme représentant l'agencement des variables" width="75%" height="75%" />
 <p class="caption">(\#fig:venn)Diagramme représentant l'agencement des variables</p>
 </div>
 
-Dans la Figure\ \@ref(fig:venn), tiré de l'exemple avec `Sigma` ci-haut, la zone $a$ illustre la covariance entre $x$ et $y$ au carré^[Il faut mettre les corrélations partielles, semi partielles et les covariances au carré pour expliquer en termes d'aire.], soit $\sigma_{xy}^2 = a$, et de façon équivalente, $sigma^2_{yz} = .8^2$ $sigma^2_{xz} = 0$. Chaque cercle a un aire de 1, par exemple, l'aire du cercle en bas à gauche est $a+x=.2^2+.96 =1$. Par simplicité, les autres aires sont précalculés. Un ouvrage indique souvent que la corrélation partielle au carré entre $x$ vers $y$ est égale à $a/(a+y)=.2^2/(.2^2+.32)=.111$ dont la racine carré donne $.333$, comme prévu. L'inverse, la corrélation partielle au carré entre $y$ vers $x$, devrait être $a/(a+x)$? mais cela donne $a/(a+x)=.2^2/(.2^2+.96)=.04$. La racine carré donne $.2$... la corrélation semi partielle!? L'équation donne donc plutôt la corrélation semi partielle et non la partielle. En plus, des zones comme la corrélation semi partielles entre $x$ vers $z$, qui est de -0.267 qui au carré donne 0.071, ne sont étrangement pas illustrées. Où est la zone d'aire correspondante? Le pire est certainement que les ouvrages utilisent souvent des agencement de variables plus compliquées que celui-ci, un modèle simple avec deux variables non-corrélées, qui cache davantage ces ambiguïtés.
+Dans la Figure\ \@ref(fig:venn), tirée de l'exemple avec `Sigma` ci-haut, la zone $a$ illustre la covariance entre $x$ et $y$ au carré^[Il faut mettre les corrélations partielles, semi partielles et les covariances au carré pour expliquer en termes d'aire.], soit $\sigma_{xy}^2 = a$, et de façon équivalente, $\sigma^2_{yz} = .8^2$ et $\sigma^2_{xz} = 0$. Chaque cercle possède une aire de 1, par exemple, l'aire du cercle en bas à gauche est $a+x=.2^2+.96 =1$. Par simplicité, les autres aires sont précalculées. Les ouvrages indiquent souvent que la corrélation partielle au carré entre $x$ vers $y$ est égale à $a/(a+y)=.2^2/(.2^2+.32)=.111$ dont la racine carré donne $.333$, comme prévu. L'inverse, la corrélation partielle au carré entre $y$ vers $x$, devrait être $a/(a+x)$, mais cela donne $a/(a+x)=.2^2/(.2^2+.96)=.04$. La racine carré donne $.2$... la corrélation semi partielle!? L'équation calcule plutôt la corrélation semi partielle et non la partielle. En plus, des zones comme la corrélation semi partielles entre $x$ vers $z$, qui est de -0.267 et au carré donne 0.071, ne sont étrangement pas illustrées. Où est la zone d'aire correspondante? Le pire est certainement que les ouvrages utilisent souvent des agencements de variables plus compliquées que celui-ci, un modèle simple avec deux variables non-corrélées, qui cache réduit les potentielles ambiguïtés.
 
-Qu'est-ce qui explique ces divergences? Il revient au fait que les corrélations partielles et semi partielles se basent sur l'inverse de la matrice de covariance, `solve(Sigma)`, la matrice de précisions. Elles se retrouvent ainsi dans un espace différent de celle de la matrice de covariance qui, elle, est bien illustrée  dans le diagramme de Venn.
+Qu'est-ce qui explique ces divergences? Il revient au fait que les corrélations partielles et semi partielles se basent sur l'inverse de la matrice de covariance, $\mathbf{\Sigma}^{-1}$ ou `solve(Sigma)`, la matrice de précisions. Elles se retrouvent dans un espace différent de celle de la matrice de covariance qui, elle, est bien illustrée dans le diagramme de Venn. 
+
+Il faut toujours contre-vérifier.
 
 <!-- # L'analyse de régression en modélisation par équations structurelles -->
 

@@ -4,7 +4,6 @@
 
 Avec **R**, il ne faut jamais manipuler directement le fichier contenant les données. **Cette pratique est déconseillée**. Il vaut mieux préserver le fichier original intact, ce qui évite de nombreuses complications, comme la compatibilité entre les versions, la reproductibilité des bases, la maintenance, etc. Toutes les manipulations doivent être conservées dans un fichier script. Cela favorise le suivi des modifications apportées en comparant tout simplement les traces dans les syntaxes, mais aussi le partage entre collègues. 
 
-
 En pratique, l'expérimentateur aura le jeu de données officiel (final) avec lequel travailler. Il doit l'importer à chaque début de séance, tel que précisé dans la section [Importer]. Par la suite, il ne lui reste qu'à mettre en place le nettoyage et la préparation du jeu de données ou bien, si cela est déjà fait, de rouler les scripts des séances précédentes, ce qui se fait facilement en quelques cliques. 
 
 Il existe plusieurs méthodes pour gèrer des données; il ne faut pas s'étonner de voir d'autres ouvrages aborder la gestion de données d'une autre façon. Au final, la meilleure méthode est celle qui m'est l'utilisateur à son aise.
@@ -204,21 +203,21 @@ Sans plus de préliminaire, la fonction `head()` donne un aperçu du jeu de donn
 
 ```r
 starwars[,1:6]
-> # A tibble: 87 x 6
->    name               height  mass hair_co~1 skin_~2 eye_c~3
+> # A tibble: 87 × 6
+>    name               height  mass hair_co…¹ skin_…² eye_c…³
 >    <chr>               <int> <dbl> <chr>     <chr>   <chr>  
 >  1 Luke Skywalker        172    77 blond     fair    blue   
 >  2 C-3PO                 167    75 <NA>      gold    yellow 
->  3 R2-D2                  96    32 <NA>      white,~ red    
+>  3 R2-D2                  96    32 <NA>      white,… red    
 >  4 Darth Vader           202   136 none      white   yellow 
 >  5 Leia Organa           150    49 brown     light   brown  
->  6 Owen Lars             178   120 brown, g~ light   blue   
+>  6 Owen Lars             178   120 brown, g… light   blue   
 >  7 Beru Whitesun lars    165    75 brown     light   blue   
->  8 R5-D4                  97    32 <NA>      white,~ red    
+>  8 R5-D4                  97    32 <NA>      white,… red    
 >  9 Biggs Darklighter     183    84 black     light   brown  
-> 10 Obi-Wan Kenobi        182    77 auburn, ~ fair    blue-g~
-> # ... with 77 more rows, and abbreviated variable names
-> #   1: hair_color, 2: skin_color, 3: eye_color
+> 10 Obi-Wan Kenobi        182    77 auburn, … fair    blue-g…
+> # … with 77 more rows, and abbreviated variable names
+> #   ¹​hair_color, ²​skin_color, ³​eye_color
 ```
 
 Pour obtenir de l'information sur ce jeu de données.
@@ -278,7 +277,7 @@ jd <-  starwars %>%
   mutate(height = height  / 100) %>% 
   mutate(IMC = mass / height^2)  
 jd
-> # A tibble: 22 x 5
+> # A tibble: 22 × 5
 >    sex     mass height species   IMC
 >    <chr>  <dbl>  <dbl> <chr>   <dbl>
 >  1 male      77   1.72 Human    26.0
@@ -291,7 +290,7 @@ jd
 >  8 male      84   1.88 Human    23.8
 >  9 male      80   1.8  Human    24.7
 > 10 male      77   1.7  Human    26.6
-> # ... with 12 more rows
+> # … with 12 more rows
 ```
 
 Les étapes de la syntaxe se lisent comme suit :
@@ -318,7 +317,7 @@ jd <- na.omit(jd)                                        # na.omit()
 jd[,"height"] <- jd[,"height"] / 100                     # mutate()
 jd[,"IMC"] <- jd[,"mass"] / jd[,"height"]^2              # mutate()
 jd
-> # A tibble: 22 x 5
+> # A tibble: 22 × 5
 >    sex     mass height species   IMC
 >    <chr>  <dbl>  <dbl> <chr>   <dbl>
 >  1 male      77   1.72 Human    26.0
@@ -331,7 +330,7 @@ jd
 >  8 male      84   1.88 Human    23.8
 >  9 male      80   1.8  Human    24.7
 > 10 male      77   1.7  Human    26.6
-> # ... with 12 more rows
+> # … with 12 more rows
 ```
 
 Le jeu de données est créé en autant de ligne de syntaxe. Par contre, la lecture n'est pas aussi intuitive qu'avec l'utilisation de l'opérateur `%>%` et des fonctions associées `select()`, `filter()`, `mutate()`. Il ne faut pas trop penser à quoi ressemblerait ces manipulations en une seule ligne de syntaxe.
@@ -345,12 +344,12 @@ Une fois le jeu de données prêt, il est possible d'obtenir les informations so
 jd %>% 
   group_by(sex) %>% 
   summarise(mean(IMC), sd(IMC), min(IMC), max(IMC), length(IMC)) 
-> # A tibble: 2 x 6
->   sex    `mean(IMC)` `sd(IMC)` `min(IMC)` `max(IMC)` lengt~1
+> # A tibble: 2 × 6
+>   sex    `mean(IMC)` `sd(IMC)` `min(IMC)` `max(IMC)` lengt…¹
 >   <chr>        <dbl>     <dbl>      <dbl>      <dbl>   <int>
 > 1 female        22.0      5.51       16.5       27.5       3
 > 2 male          26.0      4.29       21.5       37.9      19
-> # ... with abbreviated variable name 1: `length(IMC)`
+> # … with abbreviated variable name ¹​`length(IMC)`
 ```
 
 Le jeu de données issu de ces opérations peut être utilisée normalement pour réaliser des analyses statistiques. Il existe des packages afin de demeurer dans le `tidyverse` comme `rstatix` où il est possible de faire des test-$t$ avec `test_t()` ou des corrélations avec `cor_test()`, par exemple. Voir la documentation complète du package pour une vue d'ensemble de ce qu'il est possible d'accomplir avec `rstatix`. Cela dit, l'utilisateur préférera probablement utiliser d'autres méthodes lorsque des analyses statistiques seront nécessaires.
@@ -362,7 +361,7 @@ library(rstatix)
 # Test-t sur l'IMC en fonction du sexe
 jd %>% 
   t_test(IMC ~ sex)
-> # A tibble: 1 x 8
+> # A tibble: 1 × 8
 >   .y.   group1 group2    n1    n2 statistic    df     p
 > * <chr> <chr>  <chr>  <int> <int>     <dbl> <dbl> <dbl>
 > 1 IMC   female male       3    19     -1.23  2.40 0.326
@@ -371,8 +370,8 @@ jd %>%
 jd %>% 
   select(IMC, mass, height) %>% 
   cor_test() 
-> # A tibble: 9 x 8
->   var1   var2     cor    statistic         p conf.~1 conf.~2
+> # A tibble: 9 × 8
+>   var1   var2     cor    statistic         p conf.…¹ conf.…²
 >   <chr>  <chr>  <dbl>        <dbl>     <dbl>   <dbl>   <dbl>
 > 1 IMC    IMC     1         2.12e+8 5.26e-155   1.00    1    
 > 2 IMC    mass    0.85      7.32e+0 4.47e-  7   0.674   0.938
@@ -383,6 +382,6 @@ jd %>%
 > 7 height IMC     0.18      8.13e-1 4.26e-  1  -0.262   0.558
 > 8 height mass    0.65      3.84e+0 1.02e-  3   0.317   0.842
 > 9 height height  1       Inf       0           1       1    
-> # ... with 1 more variable: method <chr>, and abbreviated
-> #   variable names 1: conf.low, 2: conf.high
+> # … with 1 more variable: method <chr>, and abbreviated
+> #   variable names ¹​conf.low, ²​conf.high
 ```

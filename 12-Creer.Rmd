@@ -222,14 +222,14 @@ beta1^2 * s.x1^2 + beta2^2 * s.x2^2 +
   2 * beta1 * beta2 * s.x1x2 
 ```
 
-tel qu'attendue par l'équation \@ref(eq:eq12).
+Le résultat est celui attendu par l'équation \@ref(eq:eq12).
 
 <!-- check -->
 
 $$
 \begin{aligned}
-\sigma_y^2 &= \beta_1^2 \sigma_{x_1}^2+\beta_2^2 \sigma_{x_2}^2+2\beta_1 \beta_2 \sigma_{x_1,x_2} &=
-`r beta1`^2 \times `r s.x1^2` + `r beta2`^2 \times `r s.x2^2` + 2 \times `r beta1` \times `r beta2` \times `r s.x1x2` &= `r beta1^2 * s.x1^2 + beta2^2 * s.x2^2 + 2 * beta1 * beta2 * s.x1x2`
+\sigma_y^2 &= \beta_1^2 \sigma_{x_1}^2+\beta_2^2 \sigma_{x_2}^2+2\beta_1 \beta_2 \sigma_{x_1,x_2} \\ & =
+`r beta1`^2 \times `r s.x1^2` + `r beta2`^2 \times `r s.x2^2` + 2 \times `r beta1` \times `r beta2` \times `r s.x1x2` \\ & = `r beta1^2 * s.x1^2 + beta2^2 * s.x2^2 + 2 * beta1 * beta2 * s.x1x2`
 \end{aligned}
 $$
 
@@ -254,7 +254,7 @@ un code plus général et qui s'appliquera à toutes les situations (peu importe
 
 Il est intéressant de noter que l'équation \@ref(eq:eq12) est la même que les coefficients de détermination, $R^2$ [@Cohen03], lorsque toutes les variables et les coefficients de régression sont normalisés.
 
-Dans le modèle linéaire simple décrit dans l'équation \@ref(eq:eq9), l'équation \@ref(eq:eq11) devient :
+Dans le modèle linéaire simple décrit dans l'équation \@ref(eq:eq9), l'équation \@ref(eq:eq11) devient
 
 \begin{equation}
 \sigma_y^2 = 
@@ -373,7 +373,7 @@ où l'équation \@ref(eq:eq16) pour la forme en algèbre matricielle.
 
 <!-- \begin{equation} -->
 $$
-\sigma_y^2 = 
+\sigma_{\epsilon}^2 = 
 \left(\begin{array}{cc} 
 1 & -1
 \end{array}\right) 
@@ -698,7 +698,7 @@ lm(x3 ~ x1 + x2, data = X)
 ```
 
 
-Comme la formule est générale et qu'elle implique plusieurs itérations, il est envisageable de programmer ces calculs avec une boucle dans une fonction maison. La fonction maison `beta2cov()` permet, à partir d'une matrice de coefficient de régression et d'un vecteur de variance, d'obenir la matrice de covariance. 
+Comme la formule est générale et qu'elle implique plusieurs itérations, il est envisageable de programmer ces calculs avec une boucle dans une fonction maison. La fonction maison `beta2cov()` permet, à partir d'une matrice de coefficient de régression et d'un vecteur de variance, d'obtenir la matrice de covariance. 
 
 
 ```{r, eval = FALSE}
@@ -710,16 +710,16 @@ beta2cov <- function(B, V = NULL){
   if(is.null(V)){   # Si V est nulle, alors V est une
     S <- diag(p)    # matrice diagonale d'identité,
   }else{            # autrement il s'agit d'une matrice
-    S <-  diag(V)   # avec les variances en diagonale
+    S <- diag(V)    # avec les variances en diagonale
   }  
   
   # Boucle de calcul pour la covariance
   # de la variable i (i = 2:p)
   for(i in 2:p){
     
-    COV = B[(i), (1:(i-1))] %*% S[1:(i-1), 1:(i-1)]
-    S[i, 1:(i-1)] = COV
-    S[1:(i-1), i] = COV
+    COV <- B[(i), (1:(i-1))] %*% S[1:(i-1), 1:(i-1)]
+    S[i, 1:(i-1)] <- COV
+    S[1:(i-1), i] <- COV
     
   }
   
@@ -739,7 +739,7 @@ L'équation \@ref(eq:buildB) se transforme (relativement) aisément en fonction 
 
 ```{r}
 # De la covariance à Beta (cov2beta)
-cov2beta <-  function(S){
+cov2beta <- function(S){
   
   p <- ncol(S)            # Nombre de variable
   BETA <- matrix(0, p, p) # Matrice vide

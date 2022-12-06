@@ -1,9 +1,9 @@
 # Médier
 
 
-Outre les *liens directs* entre deux variables, ce qu'une [régression][Prédire] permet de découvrir, il existe également des *liens indirects*, une relation sous-jacente entre une variable indépendante et une variable dépendante expliquée par l'inclusion d'une troisième variable. L'attrait d'une telle analyse est patent : les chercheurs  s'intéressent souvent à expliquer les mécanismes biologiques, psychologiques, cognitifs, etc., qui sous-tendent la relation entre deux variables. 
+Outre les *liens directs* entre deux variables (ce qu'une [régression][Prédire] permet de découvrir), il existe également des *liens indirects*, une relation sous-jacente entre une variable indépendante et une variable dépendante expliquée par l'inclusion d'une troisième variable. L'attrait d'une telle analyse est patent : les chercheurs  s'intéressent souvent à expliquer les mécanismes biologiques, psychologiques, cognitifs, etc., qui sous-tendent la relation entre deux variables. 
 
-L'analyse de médiation permet de découvrir et tester des liens indirect. Il est ainsi une analyse statistique de plus en plus populaire parmi les expérimentateurs, peu importe leur discipline, puisqu'elle quantifie le degré selon lequel une variable participe à la transmission du changement d'une *cause* vers son *effet*. L'analyse de médiation peut contribuer à mieux comprendre la relation entre une variable indépendante et une variable dépendante lorsque ces variables n'ont pas de lien direct évident. 
+L'analyse de médiation permet de découvrir et tester des liens indirect. Elle est une analyse statistique de plus en plus populaire parmi les expérimentateurs, peu importe leur discipline, puisqu'elle quantifie le degré selon lequel une variable participe à la transmission du changement d'une *cause* vers son *effet*. L'analyse de médiation peut contribuer à mieux comprendre la relation entre une variable indépendante et une variable dépendante lorsque ces variables n'ont pas de lien direct évident. 
 
 L'analyse de médiation est un sous-ensemble de l'analyse de trajectoire dans lequel le statisticien s'intéresse à la relation entre la variable indépendante $x$ sur la variable dépendante $y$ par l'intermédiaire de la variable médiatrice $m$. Elle s'inscrit dans un système d'équations. L'analyse de médiation se base sur les *liens indirects* qui existent dans ce système d'équations. Ces liens indirects sont ces relations intermédiaires qui intéressent le statisticien. 
 
@@ -33,9 +33,16 @@ Le cadran supérieur devrait être familier aux lecteurs, car il a été abordé
 (\#eq:B)
 \end{equation}
 
-Dans ce cas-ci, $\beta_{2,1}$ signifie que la variable $x$ prédit le médiateur $m$, $\beta_{3,2}$ signifie que le médiateur prédit la variable $y$ et $\beta_{3,1}$ signifie que la variable $x$ prédit la variable $y$. En analyse de médiation, ces effets sont nommés des *effets directs*, comme l'effet direct de $x$ sur $y$, ou l'effet direct de $m$ sur $y$. Pour identifier un effet médiateur, le statisticien cherche l'*effet indirect* de $x$ sur $y$, c'est-à-dire l'effet de $x$ *passant* par $m$. L'effet indirect est $\beta_{2,1}\times\beta_{3,2}$. Ce résultat est dérivé notamment des travaux de @Wright34 sur la méthode de coefficients de trajectoires (*path coefficients*) qui est un moyen flexible de relier les coefficients de régression entre les variables d'un système d'équations.
+Dans ce cas-ci, $\beta_{2,1}$ signifie que la variable $x$ prédit le médiateur $m$, $\beta_{3,2}$ signifie que le médiateur prédit la variable $y$ et $\beta_{3,1}$ signifie que la variable $x$ prédit la variable $y$. En analyse de médiation, ces effets sont nommés des *effets directs*, comme l'effet direct de $x$ sur $y$, ou l'effet direct de $m$ sur $y$. Pour identifier un effet médiateur, le statisticien cherche l'*effet indirect* de $x$ sur $y$, c'est-à-dire l'effet de $x$ *passant* par $m$ et allant à $y$. L'effet indirect est le produit des deux effets directs concernés et correspond à l'équation\ \@ref(eq:indi1).
 
-Lorsqu'il n'y a pas de $m$, la relation existante entre $x$ et $y$ est nommé l'*effet total* représenté par $\sigma_{x,y}$ et est illustré dans le cadran inférieur de la Figure\ \@ref(fig:simplemed). Ce lien correspond au coefficient de régression entre $x$ et $y$. Dans ce cas spécifique à deux variables, il s'agit également de la covariance entre $x$ et $y$. L'effet total peut être séparé en deux autres effets dont il fait la somme : l'effet direct de $x$ sur $y$ ($\beta_{3,1}$) et l'effet indirect$\beta_{2,1}\beta_{3,2}$. 
+\begin{equation}
+\beta_{2,1}\times\beta_{3,2}
+(\#eq:indi1)
+\end{equation}
+
+Ce résultat est dérivé notamment des travaux de @Wright34 sur la méthode de coefficients de trajectoires (*path coefficients*) qui est un moyen flexible de relier les coefficients de régression entre les variables d'un système d'équations.
+
+Lorsqu'il n'y a pas de $m$, la relation existante entre $x$ et $y$ est nommée l'**effet total** représentée par $\sigma_{x,y}$ et est illustrée dans le cadran inférieur de la Figure\ \@ref(fig:simplemed). Ce lien correspond au coefficient de régression entre $x$ et $y$. Dans ce cas spécifique à deux variables, il s'agit également de la covariance entre $x$ et $y$. L'effet total peut être séparé en deux autres effets dont il fait la somme : l'effet direct de $x$ sur $y$ ($\beta_{3,1}$) et l'effet indirect $\beta_{2,1}\beta_{3,2}$. 
 
 \begin{equation}
 \sigma_{3,1} = \beta_{3,1} + \beta_{2,1} \beta_{3,2}
@@ -50,7 +57,7 @@ Qu'en est-il du test d'hypothèse de l'effet indirect? Il existe trois méthodes
 
 ### La méthode d'étape causale
 
-La méthode d'étape causale aussi connue sous le nom de test de Baron-Kenny est un test séquentiel d'hypothèse afin de vérifier l'existence du lien indirect. Ce test est présenté à des fins historiques uniquement et parce que certains chercheurs l'exigent et l'utilisent encore. Par contre, dans la littérature méthodologique, il n'est plus recommandé, étant rejeté en faveur d'autres méthodes plus adéquates tant sur le plan statistique que conceptuel. La méthode provenant des années 80 lorsque les ordinateurs personnels n'étaient pas encore dans toutes les chaumières a certainement du mérite pour l'époque, mais n'est plus nécessaire aujourd'hui. En plus, c'est un bon exercice d'extraction de résultats avec **R**.
+La méthode d'étape causale aussi connue sous le nom de test de Baron-Kenny est un test séquentiel d'hypothèse afin de vérifier l'existence du lien indirect. Ce test est présenté à des fins historiques uniquement (certains chercheurs l'exigent et l'utilisent encore!). Par contre, dans la littérature méthodologique, il n'est plus recommandé, étant rejeté en faveur d'autres méthodes plus adéquates tant sur le plan statistique que conceptuel. La méthode provenant des années 80 lorsque les ordinateurs personnels n'étaient pas encore dans toutes les chaumières a certainement du mérite pour l'époque, mais n'est plus nécessaire aujourd'hui. En plus, c'est un bon exercice d'extraction de résultats avec **R**.
 
 Pour réaliser le test en bonne et due forme, trois tests d'hypothèse sont réalisés en séries. 
 
@@ -62,13 +69,13 @@ Pour réaliser le test en bonne et due forme, trois tests d'hypothèse sont réa
 
 Les étapes 2 et 3 visent à vérifier si le médiateur a bel et bien un rôle à jouer entre la variable indépendante et dépendante. Le rejet de l'une ou l'autre de ces trois hypothèses mènerait certainement à un statisticien à douter d'une relation entre les variables. Comment pourrait-il y avoir un lien indirect, si l'un de ces liens n'était pas soutenu par les données.
 
-En guise de quatrième test, souvent les chercheurs suivant cette tendance d'analyse testent si la médiation est *complète* ou *partielle*. La médiation complète signifie que l'entièreté du lien total entre $x$ et $y$ est maintenant attribuable à l'ajout de $m$. Ce résultat s'observe lorsque le lien direct entre $x$ et $y$ (lorsque $m$ est inclus pour prédire $y$) n'est pas significatif contrairement à la première étape où le lien total, lui, était significatif. Si le lien direct entre $x$ et $y$ était toujours significatif même après avoir ajouté le $m$ dans la prédiction de $y$, alors la médiation est dite partielle.
+En guise de quatrième test, les chercheurs suivant cette tradition testent si la médiation est *complète* ou *partielle*. La **médiation complète** signifie que l'entièreté du lien total entre $x$ et $y$ est maintenant attribuable à l'ajout de $m$. Ce résultat s'observe lorsque le lien direct entre $x$ et $y$ (lorsque $m$ est inclus pour prédire $y$) n'est pas significatif en comparaison à la première étape où le lien total, lui, était significatif. Si le lien direct entre $x$ et $y$ est toujours significatif, même après avoir ajouté le $m$ dans la prédiction de $y$, alors la **médiation est partielle**.
 
 La syntaxe montre comment la méthode d'étape causale pourrait être programmée dans **R**. Il y a trois régressions (`lm()`), une pour chaque test d'hypothèse et quatre étapes sous forme de conditionnel (les trois hypothèses plus le type de médiation). 
 
 Si une des conditions (`if`) n'est pas respectée, le test retourne l'hypothèse nulle. À chacune des étapes, la valeur-$p$ du coefficient a testé est extraite et comparée à l'erreur de type\ I fixée à l'avance ($\alpha$). Le test doit être significatif pour procéder à l'étape suivante. À la toute fin, l'hypothèse nulle est rejetée et le type de médiation (complète ou partielle) est rapporté.
 
-Pour chaque régression, il faut extraire la valeur-$p$ de l'estimateur concerné. La valeur=$p$ se trouve dans le sommaire (`summary()`) du résultat de la régression (`etape`) dans la liste `coefficients`. Dans cette liste, il faut identifier la ligne (`"estimateur"`) à la colonne `"Pr(>|t|)"` qui correspond aux valeurs-$p$. Au final, l'extraction se commande  `summary(etape)$coefficients["estimateur", "Pr(>|t|)"]`. Pour bien fonctionner, les variables du jeu de données doivent se nommer `x`, `m` et `y`. 
+Pour chaque régression, il faut extraire la valeur-$p$ de l'estimateur concerné. La valeur-$p$ se trouve dans le sommaire (`summary()`) du résultat de la régression (`etape`) dans la liste `coefficients`. Dans cette liste, il faut identifier la ligne (`"estimateur"`) à la colonne `"Pr(>|t|)"` qui correspond aux valeurs-$p$. Au final, l'extraction se commande  `summary(etape)$coefficients["estimateur", "Pr(>|t|)"]`. Pour bien fonctionner, les variables du jeu de données doivent se nommer `x`, `m` et `y`. 
 
 
 ```r
@@ -130,10 +137,10 @@ Une seconde raison est que l'absence d'effet total entre la variable indépendan
 
 La méthode delta multivarié souvent appelée le test de @Sobel82, auteur qui l'a popularisé pour l'analyse des effets indirects est une méthode ayant recours à l'erreur type approximative de l'effet indirect. 
 
-Le test de Sobel se base sur le calcul selon lequel le ratio de l'effet indirect, $\beta_{2,1}\beta{3,2}$ par son erreur standard asymptotique $\sqrt{\beta_{3,2}^2\sigma^2_{\beta_{2,1}} +\beta^2_{2,1}\sigma^2_{\beta_{3,2}}}$ se distribue selon une distribution gaussienne. L'équation\ \@ref(eq:sobel) représente ce calcule
+Le test de Sobel se base sur le calcul selon lequel le ratio de l'effet indirect, $\beta_{2,1}\beta_{3,2}$ par son erreur standard asymptotique $\sqrt{\beta_{3,2}^2\sigma^2_{\beta_{2,1}} +\beta^2_{2,1}\sigma^2_{\beta_{3,2}}}$ se distribue selon une distribution gaussienne. L'équation\ \@ref(eq:sobel) représente ce calcule
 
 \begin{equation}
-z=\frac{\beta_{2,1}\beta{3,2}}{\sqrt{\beta_{3,2}^2\sigma^2_{\beta_{2,1}} +\beta^2_{2,1}\sigma^2_{\beta_{3,2}}}}
+z=\frac{\beta_{2,1}\beta_{3,2}}{\sqrt{\beta_{3,2}^2\sigma^2_{\beta_{2,1}} +\beta^2_{2,1}\sigma^2_{\beta_{3,2}}}}
 (\#eq:sobel)
 \end{equation}
 
@@ -250,23 +257,23 @@ boot <- function(donnees, alpha = .05, nreps = 5000){
   
   # Informations nécessaire au bootstrap
   # Nombre d'unités
-  n = nrow(jd)
+  n <- nrow(donnees)
   # Variable vide pour enregistrer
-  effet.indirect = as.numeric()
+  effet.indirect <- as.numeric()
   
   # La boucle
   for (i in 1:nreps){
     # Sélectionner aléatoirement et avec remplacement
     # les unités d'un jeu de données
     index <- sample(n, replace = TRUE)
-    D = jd[index,]
+    D <- jd[index,]
     
     # Calculer l'indice statistique désirée
-    b21 <- coef(lm(y ~ x, data = D))["x"]
+    b21 <- coef(lm(m ~ x, data = D))["x"]
     b32 <- coef(lm(y ~ x + m, data = D))["m"]
     
     # Enregistrer les résultats de chaque boucle
-    effet.indirect[i] = b21 * b32
+    effet.indirect[i] <- b21 * b32
   }
   
   # Créer l'intervalle de confiance avec alpha 
@@ -275,7 +282,7 @@ boot <- function(donnees, alpha = .05, nreps = 5000){
   
   # Si l'intervalle ne contient pas 0, 
   # l'hypothèse nulle est rejetée.
-  if(prod(CI > 0)){
+  if(prod(CI) > 0){
     
     cat("L'effet indirect est significatif")
     decision = TRUE
@@ -353,9 +360,9 @@ m <- B[2,1] * x + em
 
 # Troisième étape
 sd_ey = sqrt(V[3] - (B[3,1]^2 * V[1] + 
-                       B[3,2]^2 * V[2] + 
-                       2 * B[3,1] * B[3,2] * 
-                       V[1]^.5 * V[2]^.5 * B[2,1]))
+                     B[3,2]^2 * V[2] + 
+                     2 * B[3,1] * B[3,2] * 
+                     V[1]^.5 * V[2]^.5 * B[2,1]))
 ey <- rnorm(n = n, sd = sd_ey)
 y <- B[3,1] * x + B[3,2] * m + ey
 
@@ -387,55 +394,57 @@ Toutes les analyses confirment la présence d'un effet indirect.
 
 Le défaut des fonctions maison (`BK()`, `mdm()` et `boot()`) est certainement qu'elles ne font que tester les effets indirects. Une fonction plus intéressante serait d'afficher toutes les sorties, soit les coefficients de régressions, leur erreur type, leur intervalle de confiance ou toutes autres informations jugées pertinentes.
 
+<!-- ## TODO RAPPORTER RÉSULTATS -->
+
 ## Analyse complète
 
-La fonction suivante extrait tous les coefficients de régression d'un modèle récursif. L'ordre des variables est ici d'une énorme importance, puisque c'est l'ordre des variables dans le jeu de données qui déterminer l'ordre *causal* des variables: la première étant la *cause* de toutes, et la dernière l'*effet* de toutes.
+La fonction suivante extrait tous les coefficients de régression d'un modèle récursif. L'ordre des variables est ici d'une énorme importance, puisque c'est l'ordre des variables dans le jeu de données qui détermine l'ordre *causal* des variables: la première étant la *cause* de toutes, et la dernière l'*effet* de toutes.
 
 
 ```r
 indirect <-  function(donnees){
-  COV <-  cov(donnees)   # Matrice de covariance
-  p <-  ncol(COV)        # Nombre de variables
+  COV <- cov(donnees)   # Matrice de covariance
+  p <- ncol(COV)        # Nombre de variables
   
   # Calculer la matrice des coefficients de
   # régression. Le lecteur assidu aura reconnu 
   # la fonction `cov2beta()`
-  BETA <-  matrix(0, p, p)  
+  BETA <- matrix(0, p, p)  
   for(i in 1:(p-1)){
-    R <-  solve(COV[1:i,1:i], COV[1+i,1:i])
-    BETA[i+1, 1:i] <-  R
+    R <- solve(COV[1:i,1:i], COV[1+i,1:i])
+    BETA[i+1, 1:i] <- R
   }
   
   # Extraire les coefficients de régression en vecteur
-  est <-  as.matrix(BETA[lower.tri(BETA)])
+  est <- as.matrix(BETA[lower.tri(BETA)])
   
   # Libellés des effets directs
-  name <-  colnames(COV)
-  label <-  matrix(name[combn(p, 2)], (p * (p-1) / 2), 2, byrow = TRUE)
-  rname <-  apply(FUN = paste, as.matrix(label[,1]), MARGIN = 2, "->")
-  rname <-  apply(FUN = paste, rname, label[,2], MARGIN = 2, "")
-  row.names(est) <-  rname
+  name <- colnames(COV)
+  label <-matrix(name[combn(p, 2)], (p * (p-1) / 2), 2, byrow = TRUE)
+  rname <- apply(FUN = paste, as.matrix(label[,1]), MARGIN = 2, "->")
+  rname <- apply(FUN = paste, rname, label[,2], MARGIN = 2, "")
+  row.names(est) <- rname
   
   # Lister tous les effets indirects possibles
   if(p != 3){
     # S'il y a plus de 3 variables, 
     # identifier les niveaux supérieurs
     # d'effets indirects (à 4 variables et plus)
-    listeffects <-  mapply(combn, p, 3:p)
+    listeffects <- mapply(combn, p, 3:p)
   } else {
     # S'il y a 3 variables, il n'y a qu'un niveau
-    listeffects <-  list((matrix(1:3, 3, 1)))
+    listeffects <- list((matrix(1:3, 3, 1)))
   }
   
   
   # Extraire tous les effets indirects
   for(i in 1:length(listeffects)){    # Nombre de niveaux d'effet indirect
-    J <-  ncol(listeffects[[i]])      # Nombre d'effets du niveau i
+    J <- ncol(listeffects[[i]])       # Nombre d'effets du niveau i
     for(j in 1:J){                
-      ide <-  listeffects[[i]][,j]    # Identifier l'effet en cours
-      B <-  BETA[ide, ide]            # Leur coefficients de régression 
-      B <-  B[-1, -ncol(B)]           # Retirer les coefficients superflus
-      e <-  as.matrix(prod(diag(B)))  # Calculer l'effet indirect
+      ide <- listeffects[[i]][,j]     # Identifier l'effet en cours
+      B <- BETA[ide, ide]             # Leur coefficients de régression 
+      B <- B[-1, -ncol(B)]            # Retirer les coefficients superflus
+      e <- as.matrix(prod(diag(B)))   # Calculer l'effet indirect
       rownames(e) <- paste(name[ide], # Le libellé
                            collapse = " -> ")
       est <- rbind(est, e)            # Ajouter l'effet aux autres
@@ -444,21 +453,21 @@ indirect <-  function(donnees){
   
   # Ajout les effets totaux
   # Calculs
-  totald <-  as.matrix(solve(COV[1,1], COV[p, 1]))
-  totali <-  as.matrix(totald - BETA[p, 1])
+  totald <- as.matrix(solve(COV[1,1], COV[p, 1]))
+  totali <- as.matrix(totald - BETA[p, 1])
   
   # Libeller
   rownames(totali) <- paste("total indirect",
                             colnames(COV)[1],
                             "->",
                             colnames(COV)[p])
-  rownames(totald) <-  paste("total effect",
-                             colnames(COV)[1],
-                             "->",
-                             colnames(COV)[p])
+  rownames(totald) <- paste("total effect",
+                            colnames(COV)[1],
+                            "->",
+                            colnames(COV)[p])
   
   # Mettre le tout en commun
-  estimates <-  rbind(est, totali, totald)
+  estimates <- rbind(est, totali, totald)
   return(estimates)
 }
 ```
@@ -475,8 +484,8 @@ COV <- matrix(c(3, 2, 1, 4,
                 2, 6, 2, 5,
                 1, 2, 5, 1,
                 4, 5, 1, 4), ncol = p, nrow = p)
-colnames(COV) = letters[1:p]
-rownames(COV) = letters[1:p]
+colnames(COV) <- letters[1:p]
+rownames(COV) <- letters[1:p]
 
 # Normalement, celle-ci serait obtenue d'un échantillon
 COV
@@ -495,10 +504,10 @@ COV
 # Les prochaines calcules la matrice de coefficients
 # régression. Le lecteur assidu aura reconnu 
 # la fonction `cov2beta()`
-BETA <-  matrix(0, p, p)  
+BETA <- matrix(0, p, p)  
 for(i in 1:(p-1)){
-  R <-  solve(COV[1:i,1:i], COV[1+i,1:i])
-  BETA[i+1, 1:i] <-  R
+  R <- solve(COV[1:i,1:i], COV[1+i,1:i])
+  BETA[i+1, 1:i] <- R
 }
 BETA
 >       [,1]  [,2]   [,3] [,4]
@@ -513,7 +522,7 @@ BETA
 
 ```r
 # Extraire les coefficients de régression en vecteur
-est <-  as.matrix(BETA[lower.tri(BETA)])
+est <- as.matrix(BETA[lower.tri(BETA)])
 est
 >        [,1]
 > [1,]  0.667
@@ -529,11 +538,11 @@ est
 
 ```r
 # Libellés des effets directs
-name <-  colnames(COV)
-label <-  matrix(name[combn(p, 2)], (p * (p-1) / 2), 2, byrow = TRUE)
-rname <-  apply(FUN = paste, as.matrix(label[,1]), MARGIN = 2, "->")
-rname <-  apply(FUN = paste, rname, label[,2], MARGIN = 2, "")
-row.names(est) <-  rname
+name <- colnames(COV)
+label <- matrix(name[combn(p, 2)], (p * (p-1) / 2), 2, byrow = TRUE)
+rname <- apply(FUN = paste, as.matrix(label[,1]), MARGIN = 2, "->")
+rname <- apply(FUN = paste, rname, label[,2], MARGIN = 2, "")
+row.names(est) <- rname
 # Beaucoup de syntaxe pour au final bien peu, mais
 # le résultat est élégant
 est
@@ -554,10 +563,10 @@ est
 if(p != 3){
   # S'il y a plus de 3 variables, identifier les niveaux supérieurs
   # d'effets indirects (à 4 variables et plus)
-  listeffects <-  mapply(combn, p, 3:p)
+  listeffects <- mapply(combn, p, 3:p)
 } else {
   # S'il y a 3 variables, il n'y a qu'un niveau
-  listeffects <-  list((matrix(1:3, 3, 1)))
+  listeffects <- list((matrix(1:3, 3, 1)))
 }
 listeffects
 > [[1]]
@@ -581,13 +590,13 @@ Dans cet exemple, il y a deux niveaux d'effets indirects : un niveau à trois va
 
 ```r
 # Extraire tous les effets indirects
-for(i in 1:length(listeffects)){  # Nombre de niveaux d'effet indirect
-  J <-  ncol(listeffects[[i]])      # Nombre d'effet du niveau i
+for(i in 1:length(listeffects)){    # Nombre de niveaux d'effet indirect
+  J <- ncol(listeffects[[i]])       # Nombre d'effet du niveau i
   for(j in 1:J){                
-    ide <-  listeffects[[i]][,j]    # Identifier l'effet en cours
-    B <-  BETA[ide, ide]            # Leur coefficients de régression 
-    B <-  B[-1, -ncol(B)]           # Retirer les coefficients superflus
-    e <-  as.matrix(prod(diag(B)))  # Calculer l'effet indirect
+    ide <- listeffects[[i]][,j]     # Identifier l'effet en cours
+    B <- BETA[ide, ide]             # Leur coefficients de régression 
+    B <- B[-1, -ncol(B)]            # Retirer les coefficients superflus
+    e <- as.matrix(prod(diag(B)))   # Calculer l'effet indirect
     rownames(e) <- paste(name[ide], # Le libellé
                          collapse = " -> ") 
     est <- rbind(est, e)            # Ajouter l'effet aux autres
@@ -622,13 +631,13 @@ rownames(totali) <- paste("total indirect",
                           colnames(COV)[1],
                           "->",
                           colnames(COV)[p])
-rownames(totald) <-  paste("total effect",
-                           colnames(COV)[1],
-                           "->",
-                           colnames(COV)[p])
+rownames(totald) <- paste("total effect",
+                          colnames(COV)[1],
+                          "->",
+                          colnames(COV)[p])
 
 # Mettre le tout en commun
-estimates <-  rbind(est, totali, totald)
+estimates <- rbind(est, totali, totald)
 estimates
 >                          [,1]
 > a -> b                 0.6667
@@ -656,16 +665,16 @@ Avantageusement la fonction maison `indirect()` calcule tous les indices statist
 # jeu de données en exemple (trois variables)
 # Informations préliminaires
 alpha <- .05         # Erreur de type I
-n <-  nrow(jd)       # Nombre d'unités
-reps <-  5000        # Nombre de réplications
+n <- nrow(jd)        # Nombre d'unités
+reps <- 5000         # Nombre de réplications
 
 # Vérifier que la fonction `indirect()`  est bien 
 # dans l'environnement
-Est <-  indirect(jd)
+Est <- indirect(jd)
 
 # Variable vide (Est) pour enregistrer les résultats
 # avec comme 1ere colonne, les résultats originaux
-Est <-  data.frame(Est = Est, 
+Est <- data.frame(Est = Est, 
                    X = matrix(0, ncol = reps)) 
 
 # La boucle
@@ -789,3 +798,5 @@ Si les coefficients de régression standardisés sont préférés, ceux-ci s'obt
 ## Les packages
 
 Le présent chapitre ne fait que gratter la surface de ce qu'il est possible de faire avec l'analyse de médiation. Des articles comme @Caron18 et @Lemardeletsoumis donnent des exemples de syntaxe **R** en plus d'approfondir l'analyse. Il existe plusieurs packages **R** pour réaliser l'analyse de médiation, comme `mediation` [@mediation] et `Rmediation` [@Rmediation], tous les deux ayant leur propre documentation. Pour des analyses plus compliquées, les packages comme `lavaan` [@lavaan] permettent de faire des analyses de médiation avec la modélisation par équations structurelles, Toutefois, ce chapitre espère avoir convaincu le lecteur que l'analyse peut être relativement aisément *fait maison*.
+
+<!-- ## TODO EXTENSION MATRICIELLE -->

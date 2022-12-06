@@ -6,18 +6,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title> 13 Médier | Méthodes quantitatives avec R</title>
 <meta name="author" content="P.-O. Caron">
-<meta name="description" content="Outre les liens directs entre deux variables, ce qu’une régression permet de découvrir, il existe également des liens indirects, une relation sous-jacente entre une variable indépendante et une...">
+<meta name="description" content="Outre les liens directs entre deux variables (ce qu’une régression permet de découvrir), il existe également des liens indirects, une relation sous-jacente entre une variable indépendante et une...">
 <meta name="generator" content="bookdown 0.29 with bs4_book()">
 <meta property="og:title" content=" 13 Médier | Méthodes quantitatives avec R">
 <meta property="og:type" content="book">
 <meta property="og:url" content="mqr.teluq.ca/médier.html">
-<meta property="og:description" content="Outre les liens directs entre deux variables, ce qu’une régression permet de découvrir, il existe également des liens indirects, une relation sous-jacente entre une variable indépendante et une...">
+<meta property="og:description" content="Outre les liens directs entre deux variables (ce qu’une régression permet de découvrir), il existe également des liens indirects, une relation sous-jacente entre une variable indépendante et une...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content=" 13 Médier | Méthodes quantitatives avec R">
-<meta name="twitter:description" content="Outre les liens directs entre deux variables, ce qu’une régression permet de découvrir, il existe également des liens indirects, une relation sous-jacente entre une variable indépendante et une...">
+<meta name="twitter:description" content="Outre les liens directs entre deux variables (ce qu’une régression permet de découvrir), il existe également des liens indirects, une relation sous-jacente entre une variable indépendante et une...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.0/transition.js"></script><script src="libs/bs3compat-0.4.0/tabs.js"></script><script src="libs/bs3compat-0.4.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 <!-- 
     \(
@@ -113,11 +113,11 @@
 <h1>
 <span class="header-section-number"> 13</span> Médier<a class="anchor" aria-label="anchor" href="#m%C3%A9dier"><i class="fas fa-link"></i></a>
 </h1>
-<p>Outre les <em>liens directs</em> entre deux variables, ce qu’une <a href="pr%C3%A9dire.html#pr%C3%A9dire">régression</a> permet de découvrir, il existe également des <em>liens indirects</em>, une relation sous-jacente entre une variable indépendante et une variable dépendante expliquée par l’inclusion d’une troisième variable. L’attrait d’une telle analyse est patent : les chercheurs s’intéressent souvent à expliquer les mécanismes biologiques, psychologiques, cognitifs, etc., qui sous-tendent la relation entre deux variables.</p>
-<p>L’analyse de médiation permet de découvrir et tester des liens indirect. Il est ainsi une analyse statistique de plus en plus populaire parmi les expérimentateurs, peu importe leur discipline, puisqu’elle quantifie le degré selon lequel une variable participe à la transmission du changement d’une <em>cause</em> vers son <em>effet</em>. L’analyse de médiation peut contribuer à mieux comprendre la relation entre une variable indépendante et une variable dépendante lorsque ces variables n’ont pas de lien direct évident.</p>
+<p>Outre les <em>liens directs</em> entre deux variables (ce qu’une <a href="pr%C3%A9dire.html#pr%C3%A9dire">régression</a> permet de découvrir), il existe également des <em>liens indirects</em>, une relation sous-jacente entre une variable indépendante et une variable dépendante expliquée par l’inclusion d’une troisième variable. L’attrait d’une telle analyse est patent : les chercheurs s’intéressent souvent à expliquer les mécanismes biologiques, psychologiques, cognitifs, etc., qui sous-tendent la relation entre deux variables.</p>
+<p>L’analyse de médiation permet de découvrir et tester des liens indirect. Elle est une analyse statistique de plus en plus populaire parmi les expérimentateurs, peu importe leur discipline, puisqu’elle quantifie le degré selon lequel une variable participe à la transmission du changement d’une <em>cause</em> vers son <em>effet</em>. L’analyse de médiation peut contribuer à mieux comprendre la relation entre une variable indépendante et une variable dépendante lorsque ces variables n’ont pas de lien direct évident.</p>
 <p>L’analyse de médiation est un sous-ensemble de l’analyse de trajectoire dans lequel le statisticien s’intéresse à la relation entre la variable indépendante <span class="math inline">\(x\)</span> sur la variable dépendante <span class="math inline">\(y\)</span> par l’intermédiaire de la variable médiatrice <span class="math inline">\(m\)</span>. Elle s’inscrit dans un système d’équations. L’analyse de médiation se base sur les <em>liens indirects</em> qui existent dans ce système d’équations. Ces liens indirects sont ces relations intermédiaires qui intéressent le statisticien.</p>
 <p>Il est plus aisé de concevoir ce qu’est un lien indirect en le comparant aux liens directs. Un <strong>lien direct</strong>, c’est la relation entre une variable indépendante et une dépendante, comme le coefficient de régression, par exemple. Le <strong>lien indirect</strong>, c’est la relation qui existe entre une variable indépendante et une dépendante à travers une ou plusieurs autres variables.</p>
-<p>Pour les fins de ce chapitre<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;La section est partiellement basée sur &lt;span class="citation"&gt;Caron &amp;amp; Valois (&lt;a href="r%C3%A9f%C3%A9rences.html#ref-Caron18" role="doc-biblioref"&gt;2018&lt;/a&gt;)&lt;/span&gt;.&lt;/p&gt;'><sup>14</sup></a>, l’analyse à un seul médiateur est présentée (aussi nommé l’analyse de médiation simple). Il existe de nombreuses extensions (parallèle, sérielle, modérée, etc.) dont les fondements reposent ultimement sur la même logique que celle présentée.</p>
+<p>Pour les fins de ce chapitre<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;La section est partiellement basée sur &lt;span class="citation"&gt;Caron &amp;amp; Valois (&lt;a href="r%C3%A9f%C3%A9rences.html#ref-Caron18" role="doc-biblioref"&gt;2018&lt;/a&gt;)&lt;/span&gt;.&lt;/p&gt;'><sup>13</sup></a>, l’analyse à un seul médiateur est présentée (aussi nommé l’analyse de médiation simple). Il existe de nombreuses extensions (parallèle, sérielle, modérée, etc.) dont les fondements reposent ultimement sur la même logique que celle présentée.</p>
 <div id="analyse-de-médiation-simple" class="section level2" number="13.1">
 <h2>
 <span class="header-section-number">13.1</span> Analyse de médiation simple<a class="anchor" aria-label="anchor" href="#analyse-de-m%C3%A9diation-simple"><i class="fas fa-link"></i></a>
@@ -140,13 +140,18 @@ Figure 13.1: Modèle de médiation simple
 \right)
 \tag{13.1}
 \end{equation}\]</span></p>
-<p>Dans ce cas-ci, <span class="math inline">\(\beta_{2,1}\)</span> signifie que la variable <span class="math inline">\(x\)</span> prédit le médiateur <span class="math inline">\(m\)</span>, <span class="math inline">\(\beta_{3,2}\)</span> signifie que le médiateur prédit la variable <span class="math inline">\(y\)</span> et <span class="math inline">\(\beta_{3,1}\)</span> signifie que la variable <span class="math inline">\(x\)</span> prédit la variable <span class="math inline">\(y\)</span>. En analyse de médiation, ces effets sont nommés des <em>effets directs</em>, comme l’effet direct de <span class="math inline">\(x\)</span> sur <span class="math inline">\(y\)</span>, ou l’effet direct de <span class="math inline">\(m\)</span> sur <span class="math inline">\(y\)</span>. Pour identifier un effet médiateur, le statisticien cherche l’<em>effet indirect</em> de <span class="math inline">\(x\)</span> sur <span class="math inline">\(y\)</span>, c’est-à-dire l’effet de <span class="math inline">\(x\)</span> <em>passant</em> par <span class="math inline">\(m\)</span>. L’effet indirect est <span class="math inline">\(\beta_{2,1}\times\beta_{3,2}\)</span>. Ce résultat est dérivé notamment des travaux de <span class="citation">Wright (<a href="r%C3%A9f%C3%A9rences.html#ref-Wright34" role="doc-biblioref">1934</a>)</span> sur la méthode de coefficients de trajectoires (<em>path coefficients</em>) qui est un moyen flexible de relier les coefficients de régression entre les variables d’un système d’équations.</p>
-<p>Lorsqu’il n’y a pas de <span class="math inline">\(m\)</span>, la relation existante entre <span class="math inline">\(x\)</span> et <span class="math inline">\(y\)</span> est nommé l’<em>effet total</em> représenté par <span class="math inline">\(\sigma_{x,y}\)</span> et est illustré dans le cadran inférieur de la Figure <a href="m%C3%A9dier.html#fig:simplemed">13.1</a>. Ce lien correspond au coefficient de régression entre <span class="math inline">\(x\)</span> et <span class="math inline">\(y\)</span>. Dans ce cas spécifique à deux variables, il s’agit également de la covariance entre <span class="math inline">\(x\)</span> et <span class="math inline">\(y\)</span>. L’effet total peut être séparé en deux autres effets dont il fait la somme : l’effet direct de <span class="math inline">\(x\)</span> sur <span class="math inline">\(y\)</span> (<span class="math inline">\(\beta_{3,1}\)</span>) et l’effet indirect<span class="math inline">\(\beta_{2,1}\beta_{3,2}\)</span>.</p>
-<p><span class="math display" id="eq:etot">\[\begin{equation}
-\sigma_{3,1} = \beta_{3,1} + \beta_{2,1} \beta_{3,2}
+<p>Dans ce cas-ci, <span class="math inline">\(\beta_{2,1}\)</span> signifie que la variable <span class="math inline">\(x\)</span> prédit le médiateur <span class="math inline">\(m\)</span>, <span class="math inline">\(\beta_{3,2}\)</span> signifie que le médiateur prédit la variable <span class="math inline">\(y\)</span> et <span class="math inline">\(\beta_{3,1}\)</span> signifie que la variable <span class="math inline">\(x\)</span> prédit la variable <span class="math inline">\(y\)</span>. En analyse de médiation, ces effets sont nommés des <em>effets directs</em>, comme l’effet direct de <span class="math inline">\(x\)</span> sur <span class="math inline">\(y\)</span>, ou l’effet direct de <span class="math inline">\(m\)</span> sur <span class="math inline">\(y\)</span>. Pour identifier un effet médiateur, le statisticien cherche l’<em>effet indirect</em> de <span class="math inline">\(x\)</span> sur <span class="math inline">\(y\)</span>, c’est-à-dire l’effet de <span class="math inline">\(x\)</span> <em>passant</em> par <span class="math inline">\(m\)</span> et allant à <span class="math inline">\(y\)</span>. L’effet indirect est le produit des deux effets directs concernés et correspond à l’équation <a href="m%C3%A9dier.html#eq:indi1">(13.2)</a>.</p>
+<p><span class="math display" id="eq:indi1">\[\begin{equation}
+\beta_{2,1}\times\beta_{3,2}
 \tag{13.2}
 \end{equation}\]</span></p>
-<p>Un avantage de l’équation <a href="m%C3%A9dier.html#eq:etot">(13.2)</a> est qu’elle met en relation l’interdépendance des quatre composantes pour dériver un effet total, direct ou indirect. Si trois des mesures sont connues, la quatrième est dérivable avec un peu de réaménagement algébrique. Un autre avantage sur la plan statistique est également de montrer le lien intime qui existe entre la matrice de covariance et les coefficients de régression.</p>
+<p>Ce résultat est dérivé notamment des travaux de <span class="citation">Wright (<a href="r%C3%A9f%C3%A9rences.html#ref-Wright34" role="doc-biblioref">1934</a>)</span> sur la méthode de coefficients de trajectoires (<em>path coefficients</em>) qui est un moyen flexible de relier les coefficients de régression entre les variables d’un système d’équations.</p>
+<p>Lorsqu’il n’y a pas de <span class="math inline">\(m\)</span>, la relation existante entre <span class="math inline">\(x\)</span> et <span class="math inline">\(y\)</span> est nommée l’<strong>effet total</strong> représentée par <span class="math inline">\(\sigma_{x,y}\)</span> et est illustrée dans le cadran inférieur de la Figure <a href="m%C3%A9dier.html#fig:simplemed">13.1</a>. Ce lien correspond au coefficient de régression entre <span class="math inline">\(x\)</span> et <span class="math inline">\(y\)</span>. Dans ce cas spécifique à deux variables, il s’agit également de la covariance entre <span class="math inline">\(x\)</span> et <span class="math inline">\(y\)</span>. L’effet total peut être séparé en deux autres effets dont il fait la somme : l’effet direct de <span class="math inline">\(x\)</span> sur <span class="math inline">\(y\)</span> (<span class="math inline">\(\beta_{3,1}\)</span>) et l’effet indirect <span class="math inline">\(\beta_{2,1}\beta_{3,2}\)</span>.</p>
+<p><span class="math display" id="eq:etot">\[\begin{equation}
+\sigma_{3,1} = \beta_{3,1} + \beta_{2,1} \beta_{3,2}
+\tag{13.3}
+\end{equation}\]</span></p>
+<p>Un avantage de l’équation <a href="m%C3%A9dier.html#eq:etot">(13.3)</a> est qu’elle met en relation l’interdépendance des quatre composantes pour dériver un effet total, direct ou indirect. Si trois des mesures sont connues, la quatrième est dérivable avec un peu de réaménagement algébrique. Un autre avantage sur la plan statistique est également de montrer le lien intime qui existe entre la matrice de covariance et les coefficients de régression.</p>
 </div>
 <div id="tester-leffet-indirect" class="section level2" number="13.2">
 <h2>
@@ -157,7 +162,7 @@ Figure 13.1: Modèle de médiation simple
 <h3>
 <span class="header-section-number">13.2.1</span> La méthode d’étape causale<a class="anchor" aria-label="anchor" href="#la-m%C3%A9thode-d%C3%A9tape-causale"><i class="fas fa-link"></i></a>
 </h3>
-<p>La méthode d’étape causale aussi connue sous le nom de test de Baron-Kenny est un test séquentiel d’hypothèse afin de vérifier l’existence du lien indirect. Ce test est présenté à des fins historiques uniquement et parce que certains chercheurs l’exigent et l’utilisent encore. Par contre, dans la littérature méthodologique, il n’est plus recommandé, étant rejeté en faveur d’autres méthodes plus adéquates tant sur le plan statistique que conceptuel. La méthode provenant des années 80 lorsque les ordinateurs personnels n’étaient pas encore dans toutes les chaumières a certainement du mérite pour l’époque, mais n’est plus nécessaire aujourd’hui. En plus, c’est un bon exercice d’extraction de résultats avec <strong>R</strong>.</p>
+<p>La méthode d’étape causale aussi connue sous le nom de test de Baron-Kenny est un test séquentiel d’hypothèse afin de vérifier l’existence du lien indirect. Ce test est présenté à des fins historiques uniquement (certains chercheurs l’exigent et l’utilisent encore!). Par contre, dans la littérature méthodologique, il n’est plus recommandé, étant rejeté en faveur d’autres méthodes plus adéquates tant sur le plan statistique que conceptuel. La méthode provenant des années 80 lorsque les ordinateurs personnels n’étaient pas encore dans toutes les chaumières a certainement du mérite pour l’époque, mais n’est plus nécessaire aujourd’hui. En plus, c’est un bon exercice d’extraction de résultats avec <strong>R</strong>.</p>
 <p>Pour réaliser le test en bonne et due forme, trois tests d’hypothèse sont réalisés en séries.</p>
 <ol style="list-style-type: decimal">
 <li><p>Existe-t-il une relation entre <span class="math inline">\(x\)</span> et <span class="math inline">\(y\)</span> pour l’effet total? Autrement dit, avant de procéder à l’analyse du lien indirect, y a-t-il un lien entre les variables indépendantes et dépendantes?</p></li>
@@ -165,139 +170,139 @@ Figure 13.1: Modèle de médiation simple
 <li><p>Existe-t-il une relation directe entre <span class="math inline">\(m\)</span> et <span class="math inline">\(y\)</span>? Y a-t-il un lien entre le médiateur et la variable dépendante?</p></li>
 </ol>
 <p>Les étapes 2 et 3 visent à vérifier si le médiateur a bel et bien un rôle à jouer entre la variable indépendante et dépendante. Le rejet de l’une ou l’autre de ces trois hypothèses mènerait certainement à un statisticien à douter d’une relation entre les variables. Comment pourrait-il y avoir un lien indirect, si l’un de ces liens n’était pas soutenu par les données.</p>
-<p>En guise de quatrième test, souvent les chercheurs suivant cette tendance d’analyse testent si la médiation est <em>complète</em> ou <em>partielle</em>. La médiation complète signifie que l’entièreté du lien total entre <span class="math inline">\(x\)</span> et <span class="math inline">\(y\)</span> est maintenant attribuable à l’ajout de <span class="math inline">\(m\)</span>. Ce résultat s’observe lorsque le lien direct entre <span class="math inline">\(x\)</span> et <span class="math inline">\(y\)</span> (lorsque <span class="math inline">\(m\)</span> est inclus pour prédire <span class="math inline">\(y\)</span>) n’est pas significatif contrairement à la première étape où le lien total, lui, était significatif. Si le lien direct entre <span class="math inline">\(x\)</span> et <span class="math inline">\(y\)</span> était toujours significatif même après avoir ajouté le <span class="math inline">\(m\)</span> dans la prédiction de <span class="math inline">\(y\)</span>, alors la médiation est dite partielle.</p>
+<p>En guise de quatrième test, les chercheurs suivant cette tradition testent si la médiation est <em>complète</em> ou <em>partielle</em>. La <strong>médiation complète</strong> signifie que l’entièreté du lien total entre <span class="math inline">\(x\)</span> et <span class="math inline">\(y\)</span> est maintenant attribuable à l’ajout de <span class="math inline">\(m\)</span>. Ce résultat s’observe lorsque le lien direct entre <span class="math inline">\(x\)</span> et <span class="math inline">\(y\)</span> (lorsque <span class="math inline">\(m\)</span> est inclus pour prédire <span class="math inline">\(y\)</span>) n’est pas significatif en comparaison à la première étape où le lien total, lui, était significatif. Si le lien direct entre <span class="math inline">\(x\)</span> et <span class="math inline">\(y\)</span> est toujours significatif, même après avoir ajouté le <span class="math inline">\(m\)</span> dans la prédiction de <span class="math inline">\(y\)</span>, alors la <strong>médiation est partielle</strong>.</p>
 <p>La syntaxe montre comment la méthode d’étape causale pourrait être programmée dans <strong>R</strong>. Il y a trois régressions (<code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code>), une pour chaque test d’hypothèse et quatre étapes sous forme de conditionnel (les trois hypothèses plus le type de médiation).</p>
 <p>Si une des conditions (<code>if</code>) n’est pas respectée, le test retourne l’hypothèse nulle. À chacune des étapes, la valeur-<span class="math inline">\(p\)</span> du coefficient a testé est extraite et comparée à l’erreur de type I fixée à l’avance (<span class="math inline">\(\alpha\)</span>). Le test doit être significatif pour procéder à l’étape suivante. À la toute fin, l’hypothèse nulle est rejetée et le type de médiation (complète ou partielle) est rapporté.</p>
-<p>Pour chaque régression, il faut extraire la valeur-<span class="math inline">\(p\)</span> de l’estimateur concerné. La valeur=<span class="math inline">\(p\)</span> se trouve dans le sommaire (<code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code>) du résultat de la régression (<code>etape</code>) dans la liste <code>coefficients</code>. Dans cette liste, il faut identifier la ligne (<code>"estimateur"</code>) à la colonne <code>"Pr(&gt;|t|)"</code> qui correspond aux valeurs-<span class="math inline">\(p\)</span>. Au final, l’extraction se commande <code>summary(etape)$coefficients["estimateur", "Pr(&gt;|t|)"]</code>. Pour bien fonctionner, les variables du jeu de données doivent se nommer <code>x</code>, <code>m</code> et <code>y</code>.</p>
+<p>Pour chaque régression, il faut extraire la valeur-<span class="math inline">\(p\)</span> de l’estimateur concerné. La valeur-<span class="math inline">\(p\)</span> se trouve dans le sommaire (<code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code>) du résultat de la régression (<code>etape</code>) dans la liste <code>coefficients</code>. Dans cette liste, il faut identifier la ligne (<code>"estimateur"</code>) à la colonne <code>"Pr(&gt;|t|)"</code> qui correspond aux valeurs-<span class="math inline">\(p\)</span>. Au final, l’extraction se commande <code>summary(etape)$coefficients["estimateur", "Pr(&gt;|t|)"]</code>. Pour bien fonctionner, les variables du jeu de données doivent se nommer <code>x</code>, <code>m</code> et <code>y</code>.</p>
 <div class="sourceCode" id="cb179"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">BK</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">donnees</span>, <span class="va">alpha</span> <span class="op">=</span> <span class="fl">.05</span><span class="op">)</span><span class="op">{</span>
-  <span class="co"># alpha est l'erreur de type I</span>
-  
-  <span class="co"># Créer l'hypothèse nulle</span>
-  <span class="va">decision</span> <span class="op">=</span> <span class="cn">FALSE</span>
-  <span class="va">interpretation</span> <span class="op">=</span> <span class="st">"L'effet indirect est non significatif"</span>
-  
-  <span class="co"># Première régression</span>
-  <span class="co"># Est-ce que l'effet total est significatif?</span>
-  <span class="va">etape1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">y</span> <span class="op">~</span> <span class="va">x</span>, data <span class="op">=</span> <span class="va">donnees</span><span class="op">)</span>
-  <span class="va">pC</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">etape1</span><span class="op">)</span><span class="op">$</span><span class="va">coefficients</span><span class="op">[</span><span class="st">"x"</span>, <span class="st">"Pr(&gt;|t|)"</span><span class="op">]</span>
-  
-  <span class="kw">if</span> <span class="op">(</span><span class="va">pC</span> <span class="op">&lt;=</span> <span class="va">alpha</span><span class="op">)</span><span class="op">{</span>
-    <span class="co"># Si le coefficient rho_31 est significatif, alors</span>
-    <span class="co"># Deuxième régression</span>
-    <span class="co"># Est-ce que l'effet direct de x vers m est significatif?</span>
-    <span class="va">etape2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">m</span> <span class="op">~</span> <span class="va">x</span>, data <span class="op">=</span> <span class="va">donnees</span><span class="op">)</span>
-    <span class="va">pA</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">etape2</span><span class="op">)</span><span class="op">$</span><span class="va">coefficients</span><span class="op">[</span><span class="st">"x"</span>, <span class="st">"Pr(&gt;|t|)"</span><span class="op">]</span>
-    
-    <span class="kw">if</span> <span class="op">(</span><span class="va">pA</span> <span class="op">&lt;=</span> <span class="va">alpha</span><span class="op">)</span><span class="op">{</span>
-      <span class="co"># Si le coefficient beta_21 est significatif, alors</span>
-      <span class="co"># Troisième régression</span>
-      <span class="co"># Est-ce que l'effet direct de m vers y est significatif?</span>
-      <span class="va">etape3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">y</span> <span class="op">~</span> <span class="va">x</span> <span class="op">+</span> <span class="va">m</span>, data <span class="op">=</span> <span class="va">donnees</span><span class="op">)</span>
-      <span class="va">pB</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">etape3</span><span class="op">)</span><span class="op">$</span><span class="va">coefficients</span><span class="op">[</span><span class="st">"m"</span>, <span class="st">"Pr(&gt;|t|)"</span><span class="op">]</span>
-      
-      <span class="co"># Enregistrer le résultats, si l'effet de médiation a lieu</span>
-      <span class="va">decision</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="va">pB</span> <span class="op">&lt;=</span> <span class="va">alpha</span><span class="op">)</span>
-      
-      <span class="kw">if</span> <span class="op">(</span><span class="va">decision</span><span class="op">)</span><span class="op">{</span>
-        <span class="co"># S'il y médiation, est-elle partielle ou complète?</span>
-        <span class="co"># Est-ce que Beta_31 est significatif?</span>
-        <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">etape3</span><span class="op">)</span><span class="op">$</span><span class="va">coefficients</span><span class="op">[</span><span class="st">"x"</span>, <span class="st">"Pr(&gt;|t|)"</span><span class="op">]</span> <span class="op">&lt;=</span> <span class="va">alpha</span><span class="op">)</span><span class="op">{</span>
-          <span class="co"># Si oui,</span>
-          <span class="va">interpretation</span> <span class="op">&lt;-</span> <span class="st">"L'effet indirect est significatif 
-          et la médiation est partielle"</span>
-        <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span>
-          <span class="co"># Si non,</span>
-          <span class="va">interpretation</span> <span class="op">&lt;-</span> <span class="st">"L'effet indirect est significatif 
-          et la médiation est complète"</span>
-        <span class="op">}</span>
-      <span class="op">}</span>
-    <span class="op">}</span>
-  <span class="op">}</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="va">interpretation</span><span class="op">)</span>
-  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">decision</span><span class="op">)</span>
-  
-<span class="op">}</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">BK</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">donnees</span>, <span class="va">alpha</span> <span class="op">=</span> <span class="fl">.05</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="co"># alpha est l'erreur de type I</span></span>
+<span>  </span>
+<span>  <span class="co"># Créer l'hypothèse nulle</span></span>
+<span>  <span class="va">decision</span> <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span>  <span class="va">interpretation</span> <span class="op">=</span> <span class="st">"L'effet indirect est non significatif"</span></span>
+<span>  </span>
+<span>  <span class="co"># Première régression</span></span>
+<span>  <span class="co"># Est-ce que l'effet total est significatif?</span></span>
+<span>  <span class="va">etape1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">y</span> <span class="op">~</span> <span class="va">x</span>, data <span class="op">=</span> <span class="va">donnees</span><span class="op">)</span></span>
+<span>  <span class="va">pC</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">etape1</span><span class="op">)</span><span class="op">$</span><span class="va">coefficients</span><span class="op">[</span><span class="st">"x"</span>, <span class="st">"Pr(&gt;|t|)"</span><span class="op">]</span></span>
+<span>  </span>
+<span>  <span class="kw">if</span> <span class="op">(</span><span class="va">pC</span> <span class="op">&lt;=</span> <span class="va">alpha</span><span class="op">)</span><span class="op">{</span></span>
+<span>    <span class="co"># Si le coefficient rho_31 est significatif, alors</span></span>
+<span>    <span class="co"># Deuxième régression</span></span>
+<span>    <span class="co"># Est-ce que l'effet direct de x vers m est significatif?</span></span>
+<span>    <span class="va">etape2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">m</span> <span class="op">~</span> <span class="va">x</span>, data <span class="op">=</span> <span class="va">donnees</span><span class="op">)</span></span>
+<span>    <span class="va">pA</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">etape2</span><span class="op">)</span><span class="op">$</span><span class="va">coefficients</span><span class="op">[</span><span class="st">"x"</span>, <span class="st">"Pr(&gt;|t|)"</span><span class="op">]</span></span>
+<span>    </span>
+<span>    <span class="kw">if</span> <span class="op">(</span><span class="va">pA</span> <span class="op">&lt;=</span> <span class="va">alpha</span><span class="op">)</span><span class="op">{</span></span>
+<span>      <span class="co"># Si le coefficient beta_21 est significatif, alors</span></span>
+<span>      <span class="co"># Troisième régression</span></span>
+<span>      <span class="co"># Est-ce que l'effet direct de m vers y est significatif?</span></span>
+<span>      <span class="va">etape3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">y</span> <span class="op">~</span> <span class="va">x</span> <span class="op">+</span> <span class="va">m</span>, data <span class="op">=</span> <span class="va">donnees</span><span class="op">)</span></span>
+<span>      <span class="va">pB</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">etape3</span><span class="op">)</span><span class="op">$</span><span class="va">coefficients</span><span class="op">[</span><span class="st">"m"</span>, <span class="st">"Pr(&gt;|t|)"</span><span class="op">]</span></span>
+<span>      </span>
+<span>      <span class="co"># Enregistrer le résultats, si l'effet de médiation a lieu</span></span>
+<span>      <span class="va">decision</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="va">pB</span> <span class="op">&lt;=</span> <span class="va">alpha</span><span class="op">)</span></span>
+<span>      </span>
+<span>      <span class="kw">if</span> <span class="op">(</span><span class="va">decision</span><span class="op">)</span><span class="op">{</span></span>
+<span>        <span class="co"># S'il y médiation, est-elle partielle ou complète?</span></span>
+<span>        <span class="co"># Est-ce que Beta_31 est significatif?</span></span>
+<span>        <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">etape3</span><span class="op">)</span><span class="op">$</span><span class="va">coefficients</span><span class="op">[</span><span class="st">"x"</span>, <span class="st">"Pr(&gt;|t|)"</span><span class="op">]</span> <span class="op">&lt;=</span> <span class="va">alpha</span><span class="op">)</span><span class="op">{</span></span>
+<span>          <span class="co"># Si oui,</span></span>
+<span>          <span class="va">interpretation</span> <span class="op">&lt;-</span> <span class="st">"L'effet indirect est significatif </span></span>
+<span><span class="st">          et la médiation est partielle"</span></span>
+<span>        <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
+<span>          <span class="co"># Si non,</span></span>
+<span>          <span class="va">interpretation</span> <span class="op">&lt;-</span> <span class="st">"L'effet indirect est significatif </span></span>
+<span><span class="st">          et la médiation est complète"</span></span>
+<span>        <span class="op">}</span></span>
+<span>      <span class="op">}</span></span>
+<span>    <span class="op">}</span></span>
+<span>  <span class="op">}</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="va">interpretation</span><span class="op">)</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">decision</span><span class="op">)</span></span>
+<span>  </span>
+<span><span class="op">}</span></span></code></pre></div>
 <p>Plusieurs raisons suggèrent de ne pas utiliser la méthode d’étape causale. D’abord, comme une série de tests d’hypothèse est réalisée, l’erreur de type I est différente de celle fixée. Il y a trois hypothèses nulles à rejeter, chacune ayant un seuil <span class="math inline">\(\alpha\)</span>. La vraie erreur de type I est égale la probabilité de rejeter toutes ces hypothèses nulles accidentellement. Cela correspond à <span class="math inline">\(\alpha^3\)</span>. Avec <span class="math inline">\(\alpha=.05\)</span>, cela signifie que le taux est de <span class="math inline">\(\alpha^3=.05^3= 1.25\times 10^{-4}\)</span>, ce qui est bien plus stricte que l’erreur de type I fixée. Cela entraîne une perte de puissance, c’est-à-dire de trouver des effets indirects lorsqu’ils sont vrais.</p>
-<p>Une seconde raison est que l’absence d’effet total entre la variable indépendante et dépendante n’est pas une hypothèse obligatoire. Autrement dit, la première étape, tester si <span class="math inline">\(x\)</span> est lié à <span class="math inline">\(y\)</span> sans tenir de compte de <span class="math inline">\(m\)</span>, n’est pas recommander. Il peut exister des effets indirects théoriquement valides sans effets totaux. De plus, les deux autres hypothèses (étapes) ne sont pas obligatoire non plus (quoi qu’elles sont un peu plus dures à justifier) d’ailleurs. Il est tout à fait possible d’avoir des effets indirects significatifs dont les effets directs qui le compose sont non-significatifs<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Quoique dans ces cas, les effets directs sont souvent près d’être significatifs.&lt;/p&gt;"><sup>15</sup></a>.</p>
+<p>Une seconde raison est que l’absence d’effet total entre la variable indépendante et dépendante n’est pas une hypothèse obligatoire. Autrement dit, la première étape, tester si <span class="math inline">\(x\)</span> est lié à <span class="math inline">\(y\)</span> sans tenir de compte de <span class="math inline">\(m\)</span>, n’est pas recommander. Il peut exister des effets indirects théoriquement valides sans effets totaux. De plus, les deux autres hypothèses (étapes) ne sont pas obligatoire non plus (quoi qu’elles sont un peu plus dures à justifier) d’ailleurs. Il est tout à fait possible d’avoir des effets indirects significatifs dont les effets directs qui le compose sont non-significatifs<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Quoique dans ces cas, les effets directs sont souvent près d’être significatifs.&lt;/p&gt;"><sup>14</sup></a>.</p>
 </div>
 <div id="la-méthode-delta-multivarié" class="section level3" number="13.2.2">
 <h3>
 <span class="header-section-number">13.2.2</span> La méthode delta multivarié<a class="anchor" aria-label="anchor" href="#la-m%C3%A9thode-delta-multivari%C3%A9"><i class="fas fa-link"></i></a>
 </h3>
 <p>La méthode delta multivarié souvent appelée le test de <span class="citation">Sobel (<a href="r%C3%A9f%C3%A9rences.html#ref-Sobel82" role="doc-biblioref">1982</a>)</span>, auteur qui l’a popularisé pour l’analyse des effets indirects est une méthode ayant recours à l’erreur type approximative de l’effet indirect.</p>
-<p>Le test de Sobel se base sur le calcul selon lequel le ratio de l’effet indirect, <span class="math inline">\(\beta_{2,1}\beta{3,2}\)</span> par son erreur standard asymptotique <span class="math inline">\(\sqrt{\beta_{3,2}^2\sigma^2_{\beta_{2,1}} +\beta^2_{2,1}\sigma^2_{\beta_{3,2}}}\)</span> se distribue selon une distribution gaussienne. L’équation <a href="m%C3%A9dier.html#eq:sobel">(13.3)</a> représente ce calcule</p>
+<p>Le test de Sobel se base sur le calcul selon lequel le ratio de l’effet indirect, <span class="math inline">\(\beta_{2,1}\beta_{3,2}\)</span> par son erreur standard asymptotique <span class="math inline">\(\sqrt{\beta_{3,2}^2\sigma^2_{\beta_{2,1}} +\beta^2_{2,1}\sigma^2_{\beta_{3,2}}}\)</span> se distribue selon une distribution gaussienne. L’équation <a href="m%C3%A9dier.html#eq:sobel">(13.4)</a> représente ce calcule</p>
 <p><span class="math display" id="eq:sobel">\[\begin{equation}
-z=\frac{\beta_{2,1}\beta{3,2}}{\sqrt{\beta_{3,2}^2\sigma^2_{\beta_{2,1}} +\beta^2_{2,1}\sigma^2_{\beta_{3,2}}}}
-\tag{13.3}
+z=\frac{\beta_{2,1}\beta_{3,2}}{\sqrt{\beta_{3,2}^2\sigma^2_{\beta_{2,1}} +\beta^2_{2,1}\sigma^2_{\beta_{3,2}}}}
+\tag{13.4}
 \end{equation}\]</span></p>
 <p>où <span class="math inline">\(z\)</span> signifie qu’il s’agit d’un score-<span class="math inline">\(z\)</span>, les <span class="math inline">\(\beta\)</span> sont les coefficients de régression et les <span class="math inline">\(\sigma^2_\beta\)</span> sont les erreurs standard des coefficients de régression.</p>
-<p>La syntaxe suivante illustre une fonction qui calcule l’équation <a href="m%C3%A9dier.html#eq:sobel">(13.3)</a>. La syntaxe calcule deux régressions <code>m ~ x</code> et <code>m ~ x</code>. Du sommaire des résultats, elle extrait, les deux coefficients de régressions et leur erreur standard respective. Elle calcule enfin le score <span class="math inline">\(z\)</span> de l’équation <a href="m%C3%A9dier.html#eq:sobel">(13.3)</a> avec la valeur-<span class="math inline">\(p\)</span> associée. Pour bien fonctionner avec cette fonction, les variables du jeu de données doivent se nommer <code>x</code>, <code>m</code> et <code>y</code>.</p>
+<p>La syntaxe suivante illustre une fonction qui calcule l’équation <a href="m%C3%A9dier.html#eq:sobel">(13.4)</a>. La syntaxe calcule deux régressions <code>m ~ x</code> et <code>m ~ x</code>. Du sommaire des résultats, elle extrait, les deux coefficients de régressions et leur erreur standard respective. Elle calcule enfin le score <span class="math inline">\(z\)</span> de l’équation <a href="m%C3%A9dier.html#eq:sobel">(13.4)</a> avec la valeur-<span class="math inline">\(p\)</span> associée. Pour bien fonctionner avec cette fonction, les variables du jeu de données doivent se nommer <code>x</code>, <code>m</code> et <code>y</code>.</p>
 <div class="sourceCode" id="cb180"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">mdm</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">donnees</span>, <span class="va">alpha</span> <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span><span class="op">{</span>
-  <span class="co"># alpha est l'erreur de type I</span>
-  
-  <span class="co"># Réaliser les deux régressions</span>
-  <span class="va">etape1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">m</span> <span class="op">~</span> <span class="va">x</span>, data <span class="op">=</span> <span class="va">donnees</span><span class="op">)</span>
-  <span class="va">etape2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">y</span> <span class="op">~</span> <span class="va">x</span> <span class="op">+</span> <span class="va">m</span>, data <span class="op">=</span> <span class="va">donnees</span><span class="op">)</span>
-  
-  <span class="co"># Extraire les statistiques</span>
-  <span class="co"># Les coefficients de régression</span>
-  <span class="va">beta_21</span> <span class="op">&lt;-</span> <span class="va">etape1</span><span class="op">$</span><span class="va">coefficients</span><span class="op">[</span><span class="st">"x"</span><span class="op">]</span>
-  <span class="va">beta_32</span> <span class="op">&lt;-</span> <span class="va">etape2</span><span class="op">$</span><span class="va">coefficients</span><span class="op">[</span><span class="st">"m"</span><span class="op">]</span>
-  <span class="co"># Les erreurs standards</span>
-  <span class="va">SEa</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">etape1</span><span class="op">)</span><span class="op">$</span><span class="va">coefficients</span><span class="op">[</span><span class="st">"x"</span>, <span class="st">"Std. Error"</span><span class="op">]</span>
-  <span class="va">SEb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">etape2</span><span class="op">)</span><span class="op">$</span><span class="va">coefficients</span><span class="op">[</span><span class="st">"m"</span>, <span class="st">"Std. Error"</span><span class="op">]</span>
-  
-  <span class="co"># Calcul du score z de l'effet indirect</span>
-  <span class="va">SE</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">beta_21</span><span class="op">^</span><span class="fl">2</span> <span class="op">*</span> <span class="va">SEb</span><span class="op">^</span><span class="fl">2</span> <span class="op">+</span> <span class="va">beta_32</span><span class="op">^</span><span class="fl">2</span> <span class="op">*</span> <span class="va">SEa</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span>
-  <span class="va">z</span> <span class="op">&lt;-</span> <span class="va">beta_21</span> <span class="op">*</span> <span class="va">beta_32</span> <span class="op">/</span> <span class="va">SE</span>
-  
-  <span class="co"># Décision</span>
-  <span class="kw">if</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">z</span><span class="op">)</span> <span class="op">&gt;=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">qnorm</a></span><span class="op">(</span><span class="fl">1</span> <span class="op">-</span> <span class="va">alpha</span><span class="op">/</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
-    <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"L'effet indirect est significatif"</span><span class="op">)</span>
-    <span class="va">decision</span> <span class="op">=</span> <span class="cn">TRUE</span>
-  <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span>
-    <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"L'effet indirect n'est pas significatif"</span><span class="op">)</span>  
-    <span class="va">decision</span> <span class="op">=</span> <span class="cn">FALSE</span>
-  <span class="op">}</span>
-  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">decision</span><span class="op">)</span>
-<span class="op">}</span></code></pre></div>
-<p>La raison selon laquelle il ne faut pas recourir au test de Sobel est que le calcul est asymptotique. En fait, la distribution de l’effet indirect tend vers la normalité lorsque la taille d’échantillon est grande. Cela a poussé les chercheurs à développer des corrections pour ce test afin de l’amélioré. La distribution des effets indirects peut facilement se programmer avec <strong>R</strong>. En se basant sur le chapitre <a href="simuler.html#simuler">Simuler</a>, il est possible de construire une petite illustration. D’abord, il faut créer une fonction qui crée des jeux de données, ici, <code>gen.ind.effect()</code> qui prend une matrice de covariance <code>Sigma</code> et une taille d’échantillon <code>n</code>. La fonction extrait ensuite les deux coefficients de régression et les multiplie. Noter la fonction <code><a href="https://rdrr.io/r/stats/coef.html">coef()</a></code> qui permet d’extraire plus simplement les coefficients de régression d’une sortie de <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> et <code><a href="https://rdrr.io/r/base/unname.html">unname()</a></code> qui dénomme le résultat (facultatif, mais plus élégant pour la sortie)<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;&lt;strong&gt;R&lt;/strong&gt; conserve étrangement le nom des variables dans ce cas.&lt;/p&gt;"><sup>16</sup></a>.</p>
+<code class="sourceCode R"><span><span class="va">mdm</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">donnees</span>, <span class="va">alpha</span> <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="co"># alpha est l'erreur de type I</span></span>
+<span>  </span>
+<span>  <span class="co"># Réaliser les deux régressions</span></span>
+<span>  <span class="va">etape1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">m</span> <span class="op">~</span> <span class="va">x</span>, data <span class="op">=</span> <span class="va">donnees</span><span class="op">)</span></span>
+<span>  <span class="va">etape2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">y</span> <span class="op">~</span> <span class="va">x</span> <span class="op">+</span> <span class="va">m</span>, data <span class="op">=</span> <span class="va">donnees</span><span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="co"># Extraire les statistiques</span></span>
+<span>  <span class="co"># Les coefficients de régression</span></span>
+<span>  <span class="va">beta_21</span> <span class="op">&lt;-</span> <span class="va">etape1</span><span class="op">$</span><span class="va">coefficients</span><span class="op">[</span><span class="st">"x"</span><span class="op">]</span></span>
+<span>  <span class="va">beta_32</span> <span class="op">&lt;-</span> <span class="va">etape2</span><span class="op">$</span><span class="va">coefficients</span><span class="op">[</span><span class="st">"m"</span><span class="op">]</span></span>
+<span>  <span class="co"># Les erreurs standards</span></span>
+<span>  <span class="va">SEa</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">etape1</span><span class="op">)</span><span class="op">$</span><span class="va">coefficients</span><span class="op">[</span><span class="st">"x"</span>, <span class="st">"Std. Error"</span><span class="op">]</span></span>
+<span>  <span class="va">SEb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">etape2</span><span class="op">)</span><span class="op">$</span><span class="va">coefficients</span><span class="op">[</span><span class="st">"m"</span>, <span class="st">"Std. Error"</span><span class="op">]</span></span>
+<span>  </span>
+<span>  <span class="co"># Calcul du score z de l'effet indirect</span></span>
+<span>  <span class="va">SE</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">beta_21</span><span class="op">^</span><span class="fl">2</span> <span class="op">*</span> <span class="va">SEb</span><span class="op">^</span><span class="fl">2</span> <span class="op">+</span> <span class="va">beta_32</span><span class="op">^</span><span class="fl">2</span> <span class="op">*</span> <span class="va">SEa</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span></span>
+<span>  <span class="va">z</span> <span class="op">&lt;-</span> <span class="va">beta_21</span> <span class="op">*</span> <span class="va">beta_32</span> <span class="op">/</span> <span class="va">SE</span></span>
+<span>  </span>
+<span>  <span class="co"># Décision</span></span>
+<span>  <span class="kw">if</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">z</span><span class="op">)</span> <span class="op">&gt;=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">qnorm</a></span><span class="op">(</span><span class="fl">1</span> <span class="op">-</span> <span class="va">alpha</span><span class="op">/</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"L'effet indirect est significatif"</span><span class="op">)</span></span>
+<span>    <span class="va">decision</span> <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>  <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"L'effet indirect n'est pas significatif"</span><span class="op">)</span>  </span>
+<span>    <span class="va">decision</span> <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span>  <span class="op">}</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">decision</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div>
+<p>La raison selon laquelle il ne faut pas recourir au test de Sobel est que le calcul est asymptotique. En fait, la distribution de l’effet indirect tend vers la normalité lorsque la taille d’échantillon est grande. Cela a poussé les chercheurs à développer des corrections pour ce test afin de l’amélioré. La distribution des effets indirects peut facilement se programmer avec <strong>R</strong>. En se basant sur le chapitre <a href="simuler.html#simuler">Simuler</a>, il est possible de construire une petite illustration. D’abord, il faut créer une fonction qui crée des jeux de données, ici, <code>gen.ind.effect()</code> qui prend une matrice de covariance <code>Sigma</code> et une taille d’échantillon <code>n</code>. La fonction extrait ensuite les deux coefficients de régression et les multiplie. Noter la fonction <code><a href="https://rdrr.io/r/stats/coef.html">coef()</a></code> qui permet d’extraire plus simplement les coefficients de régression d’une sortie de <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> et <code><a href="https://rdrr.io/r/base/unname.html">unname()</a></code> qui dénomme le résultat (facultatif, mais plus élégant pour la sortie)<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;&lt;strong&gt;R&lt;/strong&gt; conserve étrangement le nom des variables dans ce cas.&lt;/p&gt;"><sup>15</sup></a>.</p>
 <div class="sourceCode" id="cb181"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Pour la reproductibilité</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">1442</span><span class="op">)</span>
-
-<span class="co"># Matrice de covariance</span>
-<span class="va">Sigma</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span> <span class="fl">1</span>, <span class="fl">.2</span>,  <span class="fl">0</span>,
-                  <span class="fl">.2</span>,  <span class="fl">1</span>, <span class="fl">.3</span>,
-                   <span class="fl">0</span>, <span class="fl">.3</span>,  <span class="fl">1</span><span class="op">)</span>,
-                ncol <span class="op">=</span> <span class="fl">3</span>, nrow <span class="op">=</span> <span class="fl">3</span>,
-                dimnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">nom</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"x"</span>, <span class="st">"m"</span>, <span class="st">"y"</span><span class="op">)</span>, 
-                                <span class="va">nom</span><span class="op">)</span><span class="op">)</span>
-
-<span class="co"># Créer une fonction qui génère des données</span>
-<span class="co"># selon une matrice de covariance `Sigma`</span>
-<span class="co"># et un nombre de participants `n`</span>
-<span class="va">gen.ind.effect</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">Sigma</span>, <span class="va">n</span><span class="op">)</span><span class="op">{</span>
-  <span class="co"># Créer jeu de données</span>
-  <span class="va">jd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="fu">MASS</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/MASS/man/mvrnorm.html">mvrnorm</a></span><span class="op">(</span>n <span class="op">=</span>  <span class="va">n</span>, 
-                                    Sigma <span class="op">=</span> <span class="va">Sigma</span>, 
-                                    mu <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">Sigma</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-  <span class="co"># Réaliser deux régressions</span>
-  <span class="va">etape1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">m</span> <span class="op">~</span> <span class="va">x</span>, data <span class="op">=</span> <span class="va">jd</span><span class="op">)</span>
-  <span class="va">etape2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">y</span> <span class="op">~</span> <span class="va">x</span> <span class="op">+</span> <span class="va">m</span>, data <span class="op">=</span> <span class="va">jd</span><span class="op">)</span>
-  
-  <span class="co"># Extraire et multiplier les coefficients de régression</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/unname.html">unname</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span><span class="op">(</span><span class="va">etape1</span><span class="op">)</span><span class="op">[</span><span class="st">"x"</span><span class="op">]</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span><span class="op">(</span><span class="va">etape2</span><span class="op">)</span><span class="op">[</span><span class="st">"m"</span><span class="op">]</span><span class="op">)</span>
-<span class="op">}</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Pour la reproductibilité</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">1442</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Matrice de covariance</span></span>
+<span><span class="va">Sigma</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span> <span class="fl">1</span>, <span class="fl">.2</span>,  <span class="fl">0</span>,</span>
+<span>                  <span class="fl">.2</span>,  <span class="fl">1</span>, <span class="fl">.3</span>,</span>
+<span>                   <span class="fl">0</span>, <span class="fl">.3</span>,  <span class="fl">1</span><span class="op">)</span>,</span>
+<span>                ncol <span class="op">=</span> <span class="fl">3</span>, nrow <span class="op">=</span> <span class="fl">3</span>,</span>
+<span>                dimnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">nom</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"x"</span>, <span class="st">"m"</span>, <span class="st">"y"</span><span class="op">)</span>, </span>
+<span>                                <span class="va">nom</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Créer une fonction qui génère des données</span></span>
+<span><span class="co"># selon une matrice de covariance `Sigma`</span></span>
+<span><span class="co"># et un nombre de participants `n`</span></span>
+<span><span class="va">gen.ind.effect</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">Sigma</span>, <span class="va">n</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="co"># Créer jeu de données</span></span>
+<span>  <span class="va">jd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="fu">MASS</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/MASS/man/mvrnorm.html">mvrnorm</a></span><span class="op">(</span>n <span class="op">=</span>  <span class="va">n</span>, </span>
+<span>                                    Sigma <span class="op">=</span> <span class="va">Sigma</span>, </span>
+<span>                                    mu <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">Sigma</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="co"># Réaliser deux régressions</span></span>
+<span>  <span class="va">etape1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">m</span> <span class="op">~</span> <span class="va">x</span>, data <span class="op">=</span> <span class="va">jd</span><span class="op">)</span></span>
+<span>  <span class="va">etape2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">y</span> <span class="op">~</span> <span class="va">x</span> <span class="op">+</span> <span class="va">m</span>, data <span class="op">=</span> <span class="va">jd</span><span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="co"># Extraire et multiplier les coefficients de régression</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/unname.html">unname</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span><span class="op">(</span><span class="va">etape1</span><span class="op">)</span><span class="op">[</span><span class="st">"x"</span><span class="op">]</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span><span class="op">(</span><span class="va">etape2</span><span class="op">)</span><span class="op">[</span><span class="st">"m"</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div>
 <p>Par la suite, la fonction <code><a href="https://rdrr.io/r/base/lapply.html">replicate()</a></code> permet de répéter <code>n</code> fois la fonction <code>expr</code>. Il faut bien distinguer le <code>n</code> (nombre de participants) de <code>gen.ind.effect()</code> de celui de <code><a href="https://rdrr.io/r/base/lapply.html">replicate()</a></code> (nombre de réplications). Enfin, un histogramme est produit pour présenter les résultats.</p>
 <div class="sourceCode" id="cb182"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Répliquer 5000 la fonction `gen.ind.effect`</span>
-<span class="va">test.ind</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">5000</span>, expr <span class="op">=</span> <span class="fu">gen.ind.effect</span><span class="op">(</span><span class="va">Sigma</span>, n <span class="op">=</span> <span class="fl">50</span><span class="op">)</span><span class="op">)</span>
-
-<span class="co"># Afficher l'histogramme des résultats</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">test.ind</span>, prob <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Répliquer 5000 la fonction `gen.ind.effect`</span></span>
+<span><span class="va">test.ind</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">5000</span>, expr <span class="op">=</span> <span class="fu">gen.ind.effect</span><span class="op">(</span><span class="va">Sigma</span>, n <span class="op">=</span> <span class="fl">50</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Afficher l'histogramme des résultats</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">test.ind</span>, prob <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p>La Figure <a href="m%C3%A9dier.html#fig:sobelhist">13.2</a> montre la distribution des effets indirects obtenus avec la simulation. La ligne correspond à la distribution gaussienne sous-jacente au test de Sobel. Dans le cas <code>n = 50</code> testé, il appert évident que les effets ne suivent pas exactement la distribution attendue. La distribution est centrée sur la bonne valeur <span class="math inline">\(0.2 \times 0.3 = 0.06\)</span>. La distribution est toutefois asymétrique.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:sobelhist"></span>
@@ -305,7 +310,7 @@ z=\frac{\beta_{2,1}\beta{3,2}}{\sqrt{\beta_{3,2}^2\sigma^2_{\beta_{2,1}} +\beta^
 Figure 13.2: Distribution de l’effet indirect
 </p>
 </div>
-<p>Le chapitre <a href="simuler.html#simuler">Simuler</a> présente une technique statistique toute désignée lorsque la disbribution statistique n’est pas connue<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Celle des produits de variables aléatoires est connues, simplement fort complexe et soivent difficilement calculables &lt;span class="citation"&gt;(&lt;a href="r%C3%A9f%C3%A9rences.html#ref-Cui" role="doc-biblioref"&gt;Cui et al., 2016&lt;/a&gt;)&lt;/span&gt;.&lt;/p&gt;'><sup>17</sup></a>, il s’agit du <a href="simuler.html#le-bootstrap">bootstrap</a>.</p>
+<p>Le chapitre <a href="simuler.html#simuler">Simuler</a> présente une technique statistique toute désignée lorsque la disbribution statistique n’est pas connue<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Celle des produits de variables aléatoires est connues, simplement fort complexe et soivent difficilement calculables &lt;span class="citation"&gt;(&lt;a href="r%C3%A9f%C3%A9rences.html#ref-Cui" role="doc-biblioref"&gt;Cui et al., 2016&lt;/a&gt;)&lt;/span&gt;.&lt;/p&gt;'><sup>16</sup></a>, il s’agit du <a href="simuler.html#le-bootstrap">bootstrap</a>.</p>
 </div>
 <div id="la-technique-du-bootstrap" class="section level3" number="13.2.3">
 <h3>
@@ -320,52 +325,52 @@ Figure 13.2: Distribution de l’effet indirect
 </ol>
 <p>Le test d’hypothèse de l’effet indirect n’échappe pas à cette logique.</p>
 <div class="sourceCode" id="cb183"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">boot</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">donnees</span>, <span class="va">alpha</span> <span class="op">=</span> <span class="fl">.05</span>, <span class="va">nreps</span> <span class="op">=</span> <span class="fl">5000</span><span class="op">)</span><span class="op">{</span>
-  <span class="co"># alpha est l'erreur de type I</span>
-  <span class="co"># nreps  est le nombre de répétitions</span>
-  
-  <span class="co"># Informations nécessaire au bootstrap</span>
-  <span class="co"># Nombre d'unités</span>
-  <span class="va">n</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">jd</span><span class="op">)</span>
-  <span class="co"># Variable vide pour enregistrer</span>
-  <span class="va">effet.indirect</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="op">)</span>
-  
-  <span class="co"># La boucle</span>
-  <span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="va">nreps</span><span class="op">)</span><span class="op">{</span>
-    <span class="co"># Sélectionner aléatoirement et avec remplacement</span>
-    <span class="co"># les unités d'un jeu de données</span>
-    <span class="va">index</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">n</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-    <span class="va">D</span> <span class="op">=</span> <span class="va">jd</span><span class="op">[</span><span class="va">index</span>,<span class="op">]</span>
-    
-    <span class="co"># Calculer l'indice statistique désirée</span>
-    <span class="va">b21</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">x</span>, data <span class="op">=</span> <span class="va">D</span><span class="op">)</span><span class="op">)</span><span class="op">[</span><span class="st">"x"</span><span class="op">]</span>
-    <span class="va">b32</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">x</span> <span class="op">+</span> <span class="va">m</span>, data <span class="op">=</span> <span class="va">D</span><span class="op">)</span><span class="op">)</span><span class="op">[</span><span class="st">"m"</span><span class="op">]</span>
-    
-    <span class="co"># Enregistrer les résultats de chaque boucle</span>
-    <span class="va">effet.indirect</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">=</span> <span class="va">b21</span> <span class="op">*</span> <span class="va">b32</span>
-  <span class="op">}</span>
-  
-  <span class="co"># Créer l'intervalle de confiance avec alpha </span>
-  <span class="va">CI</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">effet.indirect</span>, 
-                 probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">alpha</span><span class="op">/</span><span class="fl">2</span>, <span class="fl">1</span> <span class="op">-</span> <span class="va">alpha</span><span class="op">/</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span>
-  
-  <span class="co"># Si l'intervalle ne contient pas 0, </span>
-  <span class="co"># l'hypothèse nulle est rejetée.</span>
-  <span class="kw">if</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/prod.html">prod</a></span><span class="op">(</span><span class="va">CI</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
-    
-    <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"L'effet indirect est significatif"</span><span class="op">)</span>
-    <span class="va">decision</span> <span class="op">=</span> <span class="cn">TRUE</span>
-    
-  <span class="op">}</span><span class="kw">else</span><span class="op">{</span>
-    
-    <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"L'effet indirect est non significatif"</span><span class="op">)</span> 
-    <span class="va">decision</span> <span class="op">=</span> <span class="cn">FALSE</span>
-    
-  <span class="op">}</span>
-  
-  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">decision</span><span class="op">)</span>
-  
-<span class="op">}</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">boot</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">donnees</span>, <span class="va">alpha</span> <span class="op">=</span> <span class="fl">.05</span>, <span class="va">nreps</span> <span class="op">=</span> <span class="fl">5000</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="co"># alpha est l'erreur de type I</span></span>
+<span>  <span class="co"># nreps  est le nombre de répétitions</span></span>
+<span>  </span>
+<span>  <span class="co"># Informations nécessaire au bootstrap</span></span>
+<span>  <span class="co"># Nombre d'unités</span></span>
+<span>  <span class="va">n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">donnees</span><span class="op">)</span></span>
+<span>  <span class="co"># Variable vide pour enregistrer</span></span>
+<span>  <span class="va">effet.indirect</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="co"># La boucle</span></span>
+<span>  <span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="va">nreps</span><span class="op">)</span><span class="op">{</span></span>
+<span>    <span class="co"># Sélectionner aléatoirement et avec remplacement</span></span>
+<span>    <span class="co"># les unités d'un jeu de données</span></span>
+<span>    <span class="va">index</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">n</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span>    <span class="va">D</span> <span class="op">&lt;-</span> <span class="va">jd</span><span class="op">[</span><span class="va">index</span>,<span class="op">]</span></span>
+<span>    </span>
+<span>    <span class="co"># Calculer l'indice statistique désirée</span></span>
+<span>    <span class="va">b21</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">m</span> <span class="op">~</span> <span class="va">x</span>, data <span class="op">=</span> <span class="va">D</span><span class="op">)</span><span class="op">)</span><span class="op">[</span><span class="st">"x"</span><span class="op">]</span></span>
+<span>    <span class="va">b32</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">x</span> <span class="op">+</span> <span class="va">m</span>, data <span class="op">=</span> <span class="va">D</span><span class="op">)</span><span class="op">)</span><span class="op">[</span><span class="st">"m"</span><span class="op">]</span></span>
+<span>    </span>
+<span>    <span class="co"># Enregistrer les résultats de chaque boucle</span></span>
+<span>    <span class="va">effet.indirect</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">b21</span> <span class="op">*</span> <span class="va">b32</span></span>
+<span>  <span class="op">}</span></span>
+<span>  </span>
+<span>  <span class="co"># Créer l'intervalle de confiance avec alpha </span></span>
+<span>  <span class="va">CI</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">effet.indirect</span>, </span>
+<span>                 probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">alpha</span><span class="op">/</span><span class="fl">2</span>, <span class="fl">1</span> <span class="op">-</span> <span class="va">alpha</span><span class="op">/</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="co"># Si l'intervalle ne contient pas 0, </span></span>
+<span>  <span class="co"># l'hypothèse nulle est rejetée.</span></span>
+<span>  <span class="kw">if</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/prod.html">prod</a></span><span class="op">(</span><span class="va">CI</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span><span class="op">{</span></span>
+<span>    </span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"L'effet indirect est significatif"</span><span class="op">)</span></span>
+<span>    <span class="va">decision</span> <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>    </span>
+<span>  <span class="op">}</span><span class="kw">else</span><span class="op">{</span></span>
+<span>    </span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"L'effet indirect est non significatif"</span><span class="op">)</span> </span>
+<span>    <span class="va">decision</span> <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span>    </span>
+<span>  <span class="op">}</span></span>
+<span>  </span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">decision</span><span class="op">)</span></span>
+<span>  </span>
+<span><span class="op">}</span></span></code></pre></div>
 </div>
 </div>
 <div id="la-création-de-données-2" class="section level2" number="13.3">
@@ -382,59 +387,59 @@ Figure 13.2: Distribution de l’effet indirect
 -.3 &amp; .4 &amp; 0 \\
 \end{array}
 \right)
-\tag{13.4}
+\tag{13.5}
 \end{equation}\]</span></p>
 <div class="sourceCode" id="cb184"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Pour la reproductibilité</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">1102</span><span class="op">)</span>
-
-<span class="co"># Paramètres du modèle</span>
-<span class="co"># Taille d'échantillon</span>
-<span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">100</span>
-
-<span class="co"># Matrice de coefficients de régression</span>
-<span class="va">B</span> <span class="op">&lt;-</span>  <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span> <span class="fl">0</span>,  <span class="fl">0</span>, <span class="fl">0</span>,
-               <span class="fl">.5</span>,  <span class="fl">0</span>, <span class="fl">0</span>,
-               <span class="fl">.3</span>, <span class="fl">.6</span>, <span class="fl">0</span><span class="op">)</span>, 
-             ncol <span class="op">=</span> <span class="fl">3</span>, nrow <span class="op">=</span> <span class="fl">3</span>,
-             byrow <span class="op">=</span> <span class="cn">TRUE</span>,
-             dimnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">nom</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"x"</span>, <span class="st">"m"</span>, <span class="st">"y"</span><span class="op">)</span>, 
-                             <span class="va">nom</span><span class="op">)</span><span class="op">)</span>
-<span class="co"># Variance des variables</span>
-<span class="va">V</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span> 
-
-<span class="co"># Première option : </span>
-<span class="co"># Créer de la matrice de covariance à partir de B et V</span>
-<span class="co"># Vérifier que la fonction `beta2cov()` est </span>
-<span class="co"># bien dans l'environnement sinon la ligne suivante</span>
-<span class="co"># ne fonctionne pas.</span>
-<span class="va">S</span> <span class="op">&lt;-</span> <span class="fu">beta2cov</span><span class="op">(</span>B <span class="op">=</span> <span class="va">B</span>, V <span class="op">=</span> <span class="va">V</span><span class="op">)</span>   
-
-<span class="co"># Créer le jeu de données avec la matrice de covariance</span>
-<span class="va">jd</span> <span class="op">&lt;-</span> <span class="fu">MASS</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/MASS/man/mvrnorm.html">mvrnorm</a></span><span class="op">(</span>n <span class="op">=</span> <span class="va">n</span>, mu <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>, Sigma <span class="op">=</span> <span class="va">S</span><span class="op">)</span>
-<span class="va">jd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">jd</span><span class="op">)</span>
-
-<span class="co"># Deuxième option : </span>
-<span class="co"># Création des données en système d'équations</span>
-<span class="co"># Première étape</span>
-<span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">n</span>, sd <span class="op">=</span> <span class="va">V</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span>
-
-<span class="co"># Deuxième étape</span>
-<span class="va">em</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n <span class="op">=</span> <span class="va">n</span>, sd <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">V</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span> <span class="op">-</span> <span class="va">B</span><span class="op">[</span><span class="fl">2</span>,<span class="fl">1</span><span class="op">]</span><span class="op">^</span><span class="fl">2</span> <span class="op">*</span> <span class="va">V</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span><span class="op">)</span>
-<span class="va">m</span> <span class="op">&lt;-</span> <span class="va">B</span><span class="op">[</span><span class="fl">2</span>,<span class="fl">1</span><span class="op">]</span> <span class="op">*</span> <span class="va">x</span> <span class="op">+</span> <span class="va">em</span>
-
-<span class="co"># Troisième étape</span>
-<span class="va">sd_ey</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">V</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span> <span class="op">-</span> <span class="op">(</span><span class="va">B</span><span class="op">[</span><span class="fl">3</span>,<span class="fl">1</span><span class="op">]</span><span class="op">^</span><span class="fl">2</span> <span class="op">*</span> <span class="va">V</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op">+</span> 
-                       <span class="va">B</span><span class="op">[</span><span class="fl">3</span>,<span class="fl">2</span><span class="op">]</span><span class="op">^</span><span class="fl">2</span> <span class="op">*</span> <span class="va">V</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span> <span class="op">+</span> 
-                       <span class="fl">2</span> <span class="op">*</span> <span class="va">B</span><span class="op">[</span><span class="fl">3</span>,<span class="fl">1</span><span class="op">]</span> <span class="op">*</span> <span class="va">B</span><span class="op">[</span><span class="fl">3</span>,<span class="fl">2</span><span class="op">]</span> <span class="op">*</span> 
-                       <span class="va">V</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">^</span><span class="fl">.5</span> <span class="op">*</span> <span class="va">V</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">^</span><span class="fl">.5</span> <span class="op">*</span> <span class="va">B</span><span class="op">[</span><span class="fl">2</span>,<span class="fl">1</span><span class="op">]</span><span class="op">)</span><span class="op">)</span>
-<span class="va">ey</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n <span class="op">=</span> <span class="va">n</span>, sd <span class="op">=</span> <span class="va">sd_ey</span><span class="op">)</span>
-<span class="va">y</span> <span class="op">&lt;-</span> <span class="va">B</span><span class="op">[</span><span class="fl">3</span>,<span class="fl">1</span><span class="op">]</span> <span class="op">*</span> <span class="va">x</span> <span class="op">+</span> <span class="va">B</span><span class="op">[</span><span class="fl">3</span>,<span class="fl">2</span><span class="op">]</span> <span class="op">*</span> <span class="va">m</span> <span class="op">+</span> <span class="va">ey</span>
-
-<span class="co"># Créer le de données avec les trois variables</span>
-<span class="va">jd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>,
-                 m <span class="op">=</span> <span class="va">m</span>,
-                 y <span class="op">=</span> <span class="va">y</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Pour la reproductibilité</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">1102</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Paramètres du modèle</span></span>
+<span><span class="co"># Taille d'échantillon</span></span>
+<span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">100</span></span>
+<span></span>
+<span><span class="co"># Matrice de coefficients de régression</span></span>
+<span><span class="va">B</span> <span class="op">&lt;-</span>  <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span> <span class="fl">0</span>,  <span class="fl">0</span>, <span class="fl">0</span>,</span>
+<span>               <span class="fl">.5</span>,  <span class="fl">0</span>, <span class="fl">0</span>,</span>
+<span>               <span class="fl">.3</span>, <span class="fl">.6</span>, <span class="fl">0</span><span class="op">)</span>, </span>
+<span>             ncol <span class="op">=</span> <span class="fl">3</span>, nrow <span class="op">=</span> <span class="fl">3</span>,</span>
+<span>             byrow <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>             dimnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">nom</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"x"</span>, <span class="st">"m"</span>, <span class="st">"y"</span><span class="op">)</span>, </span>
+<span>                             <span class="va">nom</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co"># Variance des variables</span></span>
+<span><span class="va">V</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span> </span>
+<span></span>
+<span><span class="co"># Première option : </span></span>
+<span><span class="co"># Créer de la matrice de covariance à partir de B et V</span></span>
+<span><span class="co"># Vérifier que la fonction `beta2cov()` est </span></span>
+<span><span class="co"># bien dans l'environnement sinon la ligne suivante</span></span>
+<span><span class="co"># ne fonctionne pas.</span></span>
+<span><span class="va">S</span> <span class="op">&lt;-</span> <span class="fu">beta2cov</span><span class="op">(</span>B <span class="op">=</span> <span class="va">B</span>, V <span class="op">=</span> <span class="va">V</span><span class="op">)</span>   </span>
+<span></span>
+<span><span class="co"># Créer le jeu de données avec la matrice de covariance</span></span>
+<span><span class="va">jd</span> <span class="op">&lt;-</span> <span class="fu">MASS</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/MASS/man/mvrnorm.html">mvrnorm</a></span><span class="op">(</span>n <span class="op">=</span> <span class="va">n</span>, mu <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>, Sigma <span class="op">=</span> <span class="va">S</span><span class="op">)</span></span>
+<span><span class="va">jd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">jd</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Deuxième option : </span></span>
+<span><span class="co"># Création des données en système d'équations</span></span>
+<span><span class="co"># Première étape</span></span>
+<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">n</span>, sd <span class="op">=</span> <span class="va">V</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Deuxième étape</span></span>
+<span><span class="va">em</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n <span class="op">=</span> <span class="va">n</span>, sd <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">V</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span> <span class="op">-</span> <span class="va">B</span><span class="op">[</span><span class="fl">2</span>,<span class="fl">1</span><span class="op">]</span><span class="op">^</span><span class="fl">2</span> <span class="op">*</span> <span class="va">V</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">m</span> <span class="op">&lt;-</span> <span class="va">B</span><span class="op">[</span><span class="fl">2</span>,<span class="fl">1</span><span class="op">]</span> <span class="op">*</span> <span class="va">x</span> <span class="op">+</span> <span class="va">em</span></span>
+<span></span>
+<span><span class="co"># Troisième étape</span></span>
+<span><span class="va">sd_ey</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">V</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span> <span class="op">-</span> <span class="op">(</span><span class="va">B</span><span class="op">[</span><span class="fl">3</span>,<span class="fl">1</span><span class="op">]</span><span class="op">^</span><span class="fl">2</span> <span class="op">*</span> <span class="va">V</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op">+</span> </span>
+<span>                     <span class="va">B</span><span class="op">[</span><span class="fl">3</span>,<span class="fl">2</span><span class="op">]</span><span class="op">^</span><span class="fl">2</span> <span class="op">*</span> <span class="va">V</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span> <span class="op">+</span> </span>
+<span>                     <span class="fl">2</span> <span class="op">*</span> <span class="va">B</span><span class="op">[</span><span class="fl">3</span>,<span class="fl">1</span><span class="op">]</span> <span class="op">*</span> <span class="va">B</span><span class="op">[</span><span class="fl">3</span>,<span class="fl">2</span><span class="op">]</span> <span class="op">*</span> </span>
+<span>                     <span class="va">V</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">^</span><span class="fl">.5</span> <span class="op">*</span> <span class="va">V</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">^</span><span class="fl">.5</span> <span class="op">*</span> <span class="va">B</span><span class="op">[</span><span class="fl">2</span>,<span class="fl">1</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">ey</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n <span class="op">=</span> <span class="va">n</span>, sd <span class="op">=</span> <span class="va">sd_ey</span><span class="op">)</span></span>
+<span><span class="va">y</span> <span class="op">&lt;-</span> <span class="va">B</span><span class="op">[</span><span class="fl">3</span>,<span class="fl">1</span><span class="op">]</span> <span class="op">*</span> <span class="va">x</span> <span class="op">+</span> <span class="va">B</span><span class="op">[</span><span class="fl">3</span>,<span class="fl">2</span><span class="op">]</span> <span class="op">*</span> <span class="va">m</span> <span class="op">+</span> <span class="va">ey</span></span>
+<span></span>
+<span><span class="co"># Créer le de données avec les trois variables</span></span>
+<span><span class="va">jd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>,</span>
+<span>                 m <span class="op">=</span> <span class="va">m</span>,</span>
+<span>                 y <span class="op">=</span> <span class="va">y</span><span class="op">)</span></span></code></pre></div>
 <p>Le jeu de données est créé en suivant les étapes de chapitre <a href="cr%C3%A9er.html#cr%C3%A9er">Créer</a>. Maintenant, il reste à déterminer l’effet indirect dans le jeu de données. Le jeu de données issu du système d’équations sera utilisé pour la suite.</p>
 <p>Comme les fonctions maisons pour la méthode d’étape causale (<code>BK()</code>), la méthode delta multivarié (<code>mdm()</code>) et la méthode bootstrap (<code>boot()</code>), il est possible de les utiliser pour vérifier l’effet indirect.</p>
 <div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="m%C3%A9dier.html#cb185-1" aria-hidden="true" tabindex="-1"></a><span class="fu">BK</span>(<span class="at">donnees =</span> jd)</span>
@@ -449,81 +454,82 @@ Figure 13.2: Distribution de l’effet indirect
 <span id="cb185-10"><a href="m%C3%A9dier.html#cb185-10" aria-hidden="true" tabindex="-1"></a><span class="st">&gt; [1] TRUE</span></span></code></pre></div>
 <p>Toutes les analyses confirment la présence d’un effet indirect.</p>
 <p>Le défaut des fonctions maison (<code>BK()</code>, <code>mdm()</code> et <code>boot()</code>) est certainement qu’elles ne font que tester les effets indirects. Une fonction plus intéressante serait d’afficher toutes les sorties, soit les coefficients de régressions, leur erreur type, leur intervalle de confiance ou toutes autres informations jugées pertinentes.</p>
+<!-- ## TODO RAPPORTER RÉSULTATS -->
 </div>
 <div id="analyse-complète" class="section level2" number="13.4">
 <h2>
 <span class="header-section-number">13.4</span> Analyse complète<a class="anchor" aria-label="anchor" href="#analyse-compl%C3%A8te"><i class="fas fa-link"></i></a>
 </h2>
-<p>La fonction suivante extrait tous les coefficients de régression d’un modèle récursif. L’ordre des variables est ici d’une énorme importance, puisque c’est l’ordre des variables dans le jeu de données qui déterminer l’ordre <em>causal</em> des variables: la première étant la <em>cause</em> de toutes, et la dernière l’<em>effet</em> de toutes.</p>
+<p>La fonction suivante extrait tous les coefficients de régression d’un modèle récursif. L’ordre des variables est ici d’une énorme importance, puisque c’est l’ordre des variables dans le jeu de données qui détermine l’ordre <em>causal</em> des variables: la première étant la <em>cause</em> de toutes, et la dernière l’<em>effet</em> de toutes.</p>
 <div class="sourceCode" id="cb186"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">indirect</span> <span class="op">&lt;-</span>  <span class="kw">function</span><span class="op">(</span><span class="va">donnees</span><span class="op">)</span><span class="op">{</span>
-  <span class="va">COV</span> <span class="op">&lt;-</span>  <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cov</a></span><span class="op">(</span><span class="va">donnees</span><span class="op">)</span>   <span class="co"># Matrice de covariance</span>
-  <span class="va">p</span> <span class="op">&lt;-</span>  <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">COV</span><span class="op">)</span>        <span class="co"># Nombre de variables</span>
-  
-  <span class="co"># Calculer la matrice des coefficients de</span>
-  <span class="co"># régression. Le lecteur assidu aura reconnu </span>
-  <span class="co"># la fonction `cov2beta()`</span>
-  <span class="va">BETA</span> <span class="op">&lt;-</span>  <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">0</span>, <span class="va">p</span>, <span class="va">p</span><span class="op">)</span>  
-  <span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="op">(</span><span class="va">p</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
-    <span class="va">R</span> <span class="op">&lt;-</span>  <span class="fu"><a href="https://rdrr.io/r/base/solve.html">solve</a></span><span class="op">(</span><span class="va">COV</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="va">i</span>,<span class="fl">1</span><span class="op">:</span><span class="va">i</span><span class="op">]</span>, <span class="va">COV</span><span class="op">[</span><span class="fl">1</span><span class="op">+</span><span class="va">i</span>,<span class="fl">1</span><span class="op">:</span><span class="va">i</span><span class="op">]</span><span class="op">)</span>
-    <span class="va">BETA</span><span class="op">[</span><span class="va">i</span><span class="op">+</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">:</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span>  <span class="va">R</span>
-  <span class="op">}</span>
-  
-  <span class="co"># Extraire les coefficients de régression en vecteur</span>
-  <span class="va">est</span> <span class="op">&lt;-</span>  <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">BETA</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/lower.tri.html">lower.tri</a></span><span class="op">(</span><span class="va">BETA</span><span class="op">)</span><span class="op">]</span><span class="op">)</span>
-  
-  <span class="co"># Libellés des effets directs</span>
-  <span class="va">name</span> <span class="op">&lt;-</span>  <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">COV</span><span class="op">)</span>
-  <span class="va">label</span> <span class="op">&lt;-</span>  <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="va">name</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/utils/combn.html">combn</a></span><span class="op">(</span><span class="va">p</span>, <span class="fl">2</span><span class="op">)</span><span class="op">]</span>, <span class="op">(</span><span class="va">p</span> <span class="op">*</span> <span class="op">(</span><span class="va">p</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span> <span class="op">/</span> <span class="fl">2</span><span class="op">)</span>, <span class="fl">2</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-  <span class="va">rname</span> <span class="op">&lt;-</span>  <span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span>FUN <span class="op">=</span> <span class="va">paste</span>, <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">label</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span><span class="op">)</span>, MARGIN <span class="op">=</span> <span class="fl">2</span>, <span class="st">"-&gt;"</span><span class="op">)</span>
-  <span class="va">rname</span> <span class="op">&lt;-</span>  <span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span>FUN <span class="op">=</span> <span class="va">paste</span>, <span class="va">rname</span>, <span class="va">label</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span>, MARGIN <span class="op">=</span> <span class="fl">2</span>, <span class="st">""</span><span class="op">)</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/row.names.html">row.names</a></span><span class="op">(</span><span class="va">est</span><span class="op">)</span> <span class="op">&lt;-</span>  <span class="va">rname</span>
-  
-  <span class="co"># Lister tous les effets indirects possibles</span>
-  <span class="kw">if</span><span class="op">(</span><span class="va">p</span> <span class="op">!=</span> <span class="fl">3</span><span class="op">)</span><span class="op">{</span>
-    <span class="co"># S'il y a plus de 3 variables, </span>
-    <span class="co"># identifier les niveaux supérieurs</span>
-    <span class="co"># d'effets indirects (à 4 variables et plus)</span>
-    <span class="va">listeffects</span> <span class="op">&lt;-</span>  <span class="fu"><a href="https://rdrr.io/r/base/mapply.html">mapply</a></span><span class="op">(</span><span class="va">combn</span>, <span class="va">p</span>, <span class="fl">3</span><span class="op">:</span><span class="va">p</span><span class="op">)</span>
-  <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span>
-    <span class="co"># S'il y a 3 variables, il n'y a qu'un niveau</span>
-    <span class="va">listeffects</span> <span class="op">&lt;-</span>  <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, <span class="fl">3</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-  <span class="op">}</span>
-  
-  
-  <span class="co"># Extraire tous les effets indirects</span>
-  <span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">listeffects</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>    <span class="co"># Nombre de niveaux d'effet indirect</span>
-    <span class="va">J</span> <span class="op">&lt;-</span>  <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">listeffects</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span><span class="op">)</span>      <span class="co"># Nombre d'effets du niveau i</span>
-    <span class="kw">for</span><span class="op">(</span><span class="va">j</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="va">J</span><span class="op">)</span><span class="op">{</span>                
-      <span class="va">ide</span> <span class="op">&lt;-</span>  <span class="va">listeffects</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span><span class="op">[</span>,<span class="va">j</span><span class="op">]</span>    <span class="co"># Identifier l'effet en cours</span>
-      <span class="va">B</span> <span class="op">&lt;-</span>  <span class="va">BETA</span><span class="op">[</span><span class="va">ide</span>, <span class="va">ide</span><span class="op">]</span>            <span class="co"># Leur coefficients de régression </span>
-      <span class="va">B</span> <span class="op">&lt;-</span>  <span class="va">B</span><span class="op">[</span><span class="op">-</span><span class="fl">1</span>, <span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">B</span><span class="op">)</span><span class="op">]</span>           <span class="co"># Retirer les coefficients superflus</span>
-      <span class="va">e</span> <span class="op">&lt;-</span>  <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/prod.html">prod</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/diag.html">diag</a></span><span class="op">(</span><span class="va">B</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>  <span class="co"># Calculer l'effet indirect</span>
-      <span class="fu"><a href="https://tibble.tidyverse.org/reference/rownames.html">rownames</a></span><span class="op">(</span><span class="va">e</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">name</span><span class="op">[</span><span class="va">ide</span><span class="op">]</span>, <span class="co"># Le libellé</span>
-                           collapse <span class="op">=</span> <span class="st">" -&gt; "</span><span class="op">)</span>
-      <span class="va">est</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="va">est</span>, <span class="va">e</span><span class="op">)</span>            <span class="co"># Ajouter l'effet aux autres</span>
-    <span class="op">}</span>
-  <span class="op">}</span>
-  
-  <span class="co"># Ajout les effets totaux</span>
-  <span class="co"># Calculs</span>
-  <span class="va">totald</span> <span class="op">&lt;-</span>  <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/solve.html">solve</a></span><span class="op">(</span><span class="va">COV</span><span class="op">[</span><span class="fl">1</span>,<span class="fl">1</span><span class="op">]</span>, <span class="va">COV</span><span class="op">[</span><span class="va">p</span>, <span class="fl">1</span><span class="op">]</span><span class="op">)</span><span class="op">)</span>
-  <span class="va">totali</span> <span class="op">&lt;-</span>  <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">totald</span> <span class="op">-</span> <span class="va">BETA</span><span class="op">[</span><span class="va">p</span>, <span class="fl">1</span><span class="op">]</span><span class="op">)</span>
-  
-  <span class="co"># Libeller</span>
-  <span class="fu"><a href="https://tibble.tidyverse.org/reference/rownames.html">rownames</a></span><span class="op">(</span><span class="va">totali</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"total indirect"</span>,
-                            <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">COV</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>,
-                            <span class="st">"-&gt;"</span>,
-                            <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">COV</span><span class="op">)</span><span class="op">[</span><span class="va">p</span><span class="op">]</span><span class="op">)</span>
-  <span class="fu"><a href="https://tibble.tidyverse.org/reference/rownames.html">rownames</a></span><span class="op">(</span><span class="va">totald</span><span class="op">)</span> <span class="op">&lt;-</span>  <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"total effect"</span>,
-                             <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">COV</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>,
-                             <span class="st">"-&gt;"</span>,
-                             <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">COV</span><span class="op">)</span><span class="op">[</span><span class="va">p</span><span class="op">]</span><span class="op">)</span>
-  
-  <span class="co"># Mettre le tout en commun</span>
-  <span class="va">estimates</span> <span class="op">&lt;-</span>  <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="va">est</span>, <span class="va">totali</span>, <span class="va">totald</span><span class="op">)</span>
-  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">estimates</span><span class="op">)</span>
-<span class="op">}</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">indirect</span> <span class="op">&lt;-</span>  <span class="kw">function</span><span class="op">(</span><span class="va">donnees</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="va">COV</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cov</a></span><span class="op">(</span><span class="va">donnees</span><span class="op">)</span>   <span class="co"># Matrice de covariance</span></span>
+<span>  <span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">COV</span><span class="op">)</span>        <span class="co"># Nombre de variables</span></span>
+<span>  </span>
+<span>  <span class="co"># Calculer la matrice des coefficients de</span></span>
+<span>  <span class="co"># régression. Le lecteur assidu aura reconnu </span></span>
+<span>  <span class="co"># la fonction `cov2beta()`</span></span>
+<span>  <span class="va">BETA</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">0</span>, <span class="va">p</span>, <span class="va">p</span><span class="op">)</span>  </span>
+<span>  <span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="op">(</span><span class="va">p</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
+<span>    <span class="va">R</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/solve.html">solve</a></span><span class="op">(</span><span class="va">COV</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="va">i</span>,<span class="fl">1</span><span class="op">:</span><span class="va">i</span><span class="op">]</span>, <span class="va">COV</span><span class="op">[</span><span class="fl">1</span><span class="op">+</span><span class="va">i</span>,<span class="fl">1</span><span class="op">:</span><span class="va">i</span><span class="op">]</span><span class="op">)</span></span>
+<span>    <span class="va">BETA</span><span class="op">[</span><span class="va">i</span><span class="op">+</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">:</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">R</span></span>
+<span>  <span class="op">}</span></span>
+<span>  </span>
+<span>  <span class="co"># Extraire les coefficients de régression en vecteur</span></span>
+<span>  <span class="va">est</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">BETA</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/lower.tri.html">lower.tri</a></span><span class="op">(</span><span class="va">BETA</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="co"># Libellés des effets directs</span></span>
+<span>  <span class="va">name</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">COV</span><span class="op">)</span></span>
+<span>  <span class="va">label</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="va">name</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/utils/combn.html">combn</a></span><span class="op">(</span><span class="va">p</span>, <span class="fl">2</span><span class="op">)</span><span class="op">]</span>, <span class="op">(</span><span class="va">p</span> <span class="op">*</span> <span class="op">(</span><span class="va">p</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span> <span class="op">/</span> <span class="fl">2</span><span class="op">)</span>, <span class="fl">2</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span>  <span class="va">rname</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span>FUN <span class="op">=</span> <span class="va">paste</span>, <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">label</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span><span class="op">)</span>, MARGIN <span class="op">=</span> <span class="fl">2</span>, <span class="st">"-&gt;"</span><span class="op">)</span></span>
+<span>  <span class="va">rname</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span>FUN <span class="op">=</span> <span class="va">paste</span>, <span class="va">rname</span>, <span class="va">label</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span>, MARGIN <span class="op">=</span> <span class="fl">2</span>, <span class="st">""</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/row.names.html">row.names</a></span><span class="op">(</span><span class="va">est</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">rname</span></span>
+<span>  </span>
+<span>  <span class="co"># Lister tous les effets indirects possibles</span></span>
+<span>  <span class="kw">if</span><span class="op">(</span><span class="va">p</span> <span class="op">!=</span> <span class="fl">3</span><span class="op">)</span><span class="op">{</span></span>
+<span>    <span class="co"># S'il y a plus de 3 variables, </span></span>
+<span>    <span class="co"># identifier les niveaux supérieurs</span></span>
+<span>    <span class="co"># d'effets indirects (à 4 variables et plus)</span></span>
+<span>    <span class="va">listeffects</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mapply.html">mapply</a></span><span class="op">(</span><span class="va">combn</span>, <span class="va">p</span>, <span class="fl">3</span><span class="op">:</span><span class="va">p</span><span class="op">)</span></span>
+<span>  <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
+<span>    <span class="co"># S'il y a 3 variables, il n'y a qu'un niveau</span></span>
+<span>    <span class="va">listeffects</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, <span class="fl">3</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="op">}</span></span>
+<span>  </span>
+<span>  </span>
+<span>  <span class="co"># Extraire tous les effets indirects</span></span>
+<span>  <span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">listeffects</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>    <span class="co"># Nombre de niveaux d'effet indirect</span></span>
+<span>    <span class="va">J</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">listeffects</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span><span class="op">)</span>       <span class="co"># Nombre d'effets du niveau i</span></span>
+<span>    <span class="kw">for</span><span class="op">(</span><span class="va">j</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="va">J</span><span class="op">)</span><span class="op">{</span>                </span>
+<span>      <span class="va">ide</span> <span class="op">&lt;-</span> <span class="va">listeffects</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span><span class="op">[</span>,<span class="va">j</span><span class="op">]</span>     <span class="co"># Identifier l'effet en cours</span></span>
+<span>      <span class="va">B</span> <span class="op">&lt;-</span> <span class="va">BETA</span><span class="op">[</span><span class="va">ide</span>, <span class="va">ide</span><span class="op">]</span>             <span class="co"># Leur coefficients de régression </span></span>
+<span>      <span class="va">B</span> <span class="op">&lt;-</span> <span class="va">B</span><span class="op">[</span><span class="op">-</span><span class="fl">1</span>, <span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">B</span><span class="op">)</span><span class="op">]</span>            <span class="co"># Retirer les coefficients superflus</span></span>
+<span>      <span class="va">e</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/prod.html">prod</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/diag.html">diag</a></span><span class="op">(</span><span class="va">B</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>   <span class="co"># Calculer l'effet indirect</span></span>
+<span>      <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">e</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">name</span><span class="op">[</span><span class="va">ide</span><span class="op">]</span>, <span class="co"># Le libellé</span></span>
+<span>                           collapse <span class="op">=</span> <span class="st">" -&gt; "</span><span class="op">)</span></span>
+<span>      <span class="va">est</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="va">est</span>, <span class="va">e</span><span class="op">)</span>            <span class="co"># Ajouter l'effet aux autres</span></span>
+<span>    <span class="op">}</span></span>
+<span>  <span class="op">}</span></span>
+<span>  </span>
+<span>  <span class="co"># Ajout les effets totaux</span></span>
+<span>  <span class="co"># Calculs</span></span>
+<span>  <span class="va">totald</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/solve.html">solve</a></span><span class="op">(</span><span class="va">COV</span><span class="op">[</span><span class="fl">1</span>,<span class="fl">1</span><span class="op">]</span>, <span class="va">COV</span><span class="op">[</span><span class="va">p</span>, <span class="fl">1</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="va">totali</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">totald</span> <span class="op">-</span> <span class="va">BETA</span><span class="op">[</span><span class="va">p</span>, <span class="fl">1</span><span class="op">]</span><span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="co"># Libeller</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">totali</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"total indirect"</span>,</span>
+<span>                            <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">COV</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>,</span>
+<span>                            <span class="st">"-&gt;"</span>,</span>
+<span>                            <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">COV</span><span class="op">)</span><span class="op">[</span><span class="va">p</span><span class="op">]</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">totald</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"total effect"</span>,</span>
+<span>                            <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">COV</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>,</span>
+<span>                            <span class="st">"-&gt;"</span>,</span>
+<span>                            <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">COV</span><span class="op">)</span><span class="op">[</span><span class="va">p</span><span class="op">]</span><span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="co"># Mettre le tout en commun</span></span>
+<span>  <span class="va">estimates</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="va">est</span>, <span class="va">totali</span>, <span class="va">totald</span><span class="op">)</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">estimates</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div>
 <p>Pour tester ce code, il vaut la peine de tester chacune des étapes de la syntaxe précédente avec une matrice de covariance.</p>
 <div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="m%C3%A9dier.html#cb187-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Nombre de variables</span></span>
 <span id="cb187-2"><a href="m%C3%A9dier.html#cb187-2" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="dv">4</span></span>
@@ -533,8 +539,8 @@ Figure 13.2: Distribution de l’effet indirect
 <span id="cb187-6"><a href="m%C3%A9dier.html#cb187-6" aria-hidden="true" tabindex="-1"></a>                <span class="dv">2</span>, <span class="dv">6</span>, <span class="dv">2</span>, <span class="dv">5</span>,</span>
 <span id="cb187-7"><a href="m%C3%A9dier.html#cb187-7" aria-hidden="true" tabindex="-1"></a>                <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">1</span>,</span>
 <span id="cb187-8"><a href="m%C3%A9dier.html#cb187-8" aria-hidden="true" tabindex="-1"></a>                <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">1</span>, <span class="dv">4</span>), <span class="at">ncol =</span> p, <span class="at">nrow =</span> p)</span>
-<span id="cb187-9"><a href="m%C3%A9dier.html#cb187-9" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(COV) <span class="ot">=</span> letters[<span class="dv">1</span><span class="sc">:</span>p]</span>
-<span id="cb187-10"><a href="m%C3%A9dier.html#cb187-10" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(COV) <span class="ot">=</span> letters[<span class="dv">1</span><span class="sc">:</span>p]</span>
+<span id="cb187-9"><a href="m%C3%A9dier.html#cb187-9" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(COV) <span class="ot">&lt;-</span> letters[<span class="dv">1</span><span class="sc">:</span>p]</span>
+<span id="cb187-10"><a href="m%C3%A9dier.html#cb187-10" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(COV) <span class="ot">&lt;-</span> letters[<span class="dv">1</span><span class="sc">:</span>p]</span>
 <span id="cb187-11"><a href="m%C3%A9dier.html#cb187-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb187-12"><a href="m%C3%A9dier.html#cb187-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Normalement, celle-ci serait obtenue d'un échantillon</span></span>
 <span id="cb187-13"><a href="m%C3%A9dier.html#cb187-13" aria-hidden="true" tabindex="-1"></a>COV</span>
@@ -549,10 +555,10 @@ Figure 13.2: Distribution de l’effet indirect
 <div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="m%C3%A9dier.html#cb188-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Les prochaines calcules la matrice de coefficients</span></span>
 <span id="cb188-2"><a href="m%C3%A9dier.html#cb188-2" aria-hidden="true" tabindex="-1"></a><span class="co"># régression. Le lecteur assidu aura reconnu </span></span>
 <span id="cb188-3"><a href="m%C3%A9dier.html#cb188-3" aria-hidden="true" tabindex="-1"></a><span class="co"># la fonction `cov2beta()`</span></span>
-<span id="cb188-4"><a href="m%C3%A9dier.html#cb188-4" aria-hidden="true" tabindex="-1"></a>BETA <span class="ot">&lt;-</span>  <span class="fu">matrix</span>(<span class="dv">0</span>, p, p)  </span>
+<span id="cb188-4"><a href="m%C3%A9dier.html#cb188-4" aria-hidden="true" tabindex="-1"></a>BETA <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, p, p)  </span>
 <span id="cb188-5"><a href="m%C3%A9dier.html#cb188-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>(p<span class="dv">-1</span>)){</span>
-<span id="cb188-6"><a href="m%C3%A9dier.html#cb188-6" aria-hidden="true" tabindex="-1"></a>  R <span class="ot">&lt;-</span>  <span class="fu">solve</span>(COV[<span class="dv">1</span><span class="sc">:</span>i,<span class="dv">1</span><span class="sc">:</span>i], COV[<span class="dv">1</span><span class="sc">+</span>i,<span class="dv">1</span><span class="sc">:</span>i])</span>
-<span id="cb188-7"><a href="m%C3%A9dier.html#cb188-7" aria-hidden="true" tabindex="-1"></a>  BETA[i<span class="sc">+</span><span class="dv">1</span>, <span class="dv">1</span><span class="sc">:</span>i] <span class="ot">&lt;-</span>  R</span>
+<span id="cb188-6"><a href="m%C3%A9dier.html#cb188-6" aria-hidden="true" tabindex="-1"></a>  R <span class="ot">&lt;-</span> <span class="fu">solve</span>(COV[<span class="dv">1</span><span class="sc">:</span>i,<span class="dv">1</span><span class="sc">:</span>i], COV[<span class="dv">1</span><span class="sc">+</span>i,<span class="dv">1</span><span class="sc">:</span>i])</span>
+<span id="cb188-7"><a href="m%C3%A9dier.html#cb188-7" aria-hidden="true" tabindex="-1"></a>  BETA[i<span class="sc">+</span><span class="dv">1</span>, <span class="dv">1</span><span class="sc">:</span>i] <span class="ot">&lt;-</span> R</span>
 <span id="cb188-8"><a href="m%C3%A9dier.html#cb188-8" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb188-9"><a href="m%C3%A9dier.html#cb188-9" aria-hidden="true" tabindex="-1"></a>BETA</span>
 <span id="cb188-10"><a href="m%C3%A9dier.html#cb188-10" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>       [,<span class="dv">1</span>]  [,<span class="dv">2</span>]   [,<span class="dv">3</span>] [,<span class="dv">4</span>]</span>
@@ -564,7 +570,7 @@ Figure 13.2: Distribution de l’effet indirect
 <li>Vectoriser <code>BETA</code>.</li>
 </ol>
 <div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="m%C3%A9dier.html#cb189-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extraire les coefficients de régression en vecteur</span></span>
-<span id="cb189-2"><a href="m%C3%A9dier.html#cb189-2" aria-hidden="true" tabindex="-1"></a>est <span class="ot">&lt;-</span>  <span class="fu">as.matrix</span>(BETA[<span class="fu">lower.tri</span>(BETA)])</span>
+<span id="cb189-2"><a href="m%C3%A9dier.html#cb189-2" aria-hidden="true" tabindex="-1"></a>est <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(BETA[<span class="fu">lower.tri</span>(BETA)])</span>
 <span id="cb189-3"><a href="m%C3%A9dier.html#cb189-3" aria-hidden="true" tabindex="-1"></a>est</span>
 <span id="cb189-4"><a href="m%C3%A9dier.html#cb189-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>        [,<span class="dv">1</span>]</span>
 <span id="cb189-5"><a href="m%C3%A9dier.html#cb189-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>,]  <span class="fl">0.667</span></span>
@@ -577,11 +583,11 @@ Figure 13.2: Distribution de l’effet indirect
 <li>Libeller les effets directs.</li>
 </ol>
 <div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="m%C3%A9dier.html#cb190-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Libellés des effets directs</span></span>
-<span id="cb190-2"><a href="m%C3%A9dier.html#cb190-2" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span>  <span class="fu">colnames</span>(COV)</span>
-<span id="cb190-3"><a href="m%C3%A9dier.html#cb190-3" aria-hidden="true" tabindex="-1"></a>label <span class="ot">&lt;-</span>  <span class="fu">matrix</span>(name[<span class="fu">combn</span>(p, <span class="dv">2</span>)], (p <span class="sc">*</span> (p<span class="dv">-1</span>) <span class="sc">/</span> <span class="dv">2</span>), <span class="dv">2</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb190-4"><a href="m%C3%A9dier.html#cb190-4" aria-hidden="true" tabindex="-1"></a>rname <span class="ot">&lt;-</span>  <span class="fu">apply</span>(<span class="at">FUN =</span> paste, <span class="fu">as.matrix</span>(label[,<span class="dv">1</span>]), <span class="at">MARGIN =</span> <span class="dv">2</span>, <span class="st">"-&gt;"</span>)</span>
-<span id="cb190-5"><a href="m%C3%A9dier.html#cb190-5" aria-hidden="true" tabindex="-1"></a>rname <span class="ot">&lt;-</span>  <span class="fu">apply</span>(<span class="at">FUN =</span> paste, rname, label[,<span class="dv">2</span>], <span class="at">MARGIN =</span> <span class="dv">2</span>, <span class="st">""</span>)</span>
-<span id="cb190-6"><a href="m%C3%A9dier.html#cb190-6" aria-hidden="true" tabindex="-1"></a><span class="fu">row.names</span>(est) <span class="ot">&lt;-</span>  rname</span>
+<span id="cb190-2"><a href="m%C3%A9dier.html#cb190-2" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="fu">colnames</span>(COV)</span>
+<span id="cb190-3"><a href="m%C3%A9dier.html#cb190-3" aria-hidden="true" tabindex="-1"></a>label <span class="ot">&lt;-</span> <span class="fu">matrix</span>(name[<span class="fu">combn</span>(p, <span class="dv">2</span>)], (p <span class="sc">*</span> (p<span class="dv">-1</span>) <span class="sc">/</span> <span class="dv">2</span>), <span class="dv">2</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb190-4"><a href="m%C3%A9dier.html#cb190-4" aria-hidden="true" tabindex="-1"></a>rname <span class="ot">&lt;-</span> <span class="fu">apply</span>(<span class="at">FUN =</span> paste, <span class="fu">as.matrix</span>(label[,<span class="dv">1</span>]), <span class="at">MARGIN =</span> <span class="dv">2</span>, <span class="st">"-&gt;"</span>)</span>
+<span id="cb190-5"><a href="m%C3%A9dier.html#cb190-5" aria-hidden="true" tabindex="-1"></a>rname <span class="ot">&lt;-</span> <span class="fu">apply</span>(<span class="at">FUN =</span> paste, rname, label[,<span class="dv">2</span>], <span class="at">MARGIN =</span> <span class="dv">2</span>, <span class="st">""</span>)</span>
+<span id="cb190-6"><a href="m%C3%A9dier.html#cb190-6" aria-hidden="true" tabindex="-1"></a><span class="fu">row.names</span>(est) <span class="ot">&lt;-</span> rname</span>
 <span id="cb190-7"><a href="m%C3%A9dier.html#cb190-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Beaucoup de syntaxe pour au final bien peu, mais</span></span>
 <span id="cb190-8"><a href="m%C3%A9dier.html#cb190-8" aria-hidden="true" tabindex="-1"></a><span class="co"># le résultat est élégant</span></span>
 <span id="cb190-9"><a href="m%C3%A9dier.html#cb190-9" aria-hidden="true" tabindex="-1"></a>est</span>
@@ -599,10 +605,10 @@ Figure 13.2: Distribution de l’effet indirect
 <span id="cb191-2"><a href="m%C3%A9dier.html#cb191-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(p <span class="sc">!=</span> <span class="dv">3</span>){</span>
 <span id="cb191-3"><a href="m%C3%A9dier.html#cb191-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># S'il y a plus de 3 variables, identifier les niveaux supérieurs</span></span>
 <span id="cb191-4"><a href="m%C3%A9dier.html#cb191-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># d'effets indirects (à 4 variables et plus)</span></span>
-<span id="cb191-5"><a href="m%C3%A9dier.html#cb191-5" aria-hidden="true" tabindex="-1"></a>  listeffects <span class="ot">&lt;-</span>  <span class="fu">mapply</span>(combn, p, <span class="dv">3</span><span class="sc">:</span>p)</span>
+<span id="cb191-5"><a href="m%C3%A9dier.html#cb191-5" aria-hidden="true" tabindex="-1"></a>  listeffects <span class="ot">&lt;-</span> <span class="fu">mapply</span>(combn, p, <span class="dv">3</span><span class="sc">:</span>p)</span>
 <span id="cb191-6"><a href="m%C3%A9dier.html#cb191-6" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
 <span id="cb191-7"><a href="m%C3%A9dier.html#cb191-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># S'il y a 3 variables, il n'y a qu'un niveau</span></span>
-<span id="cb191-8"><a href="m%C3%A9dier.html#cb191-8" aria-hidden="true" tabindex="-1"></a>  listeffects <span class="ot">&lt;-</span>  <span class="fu">list</span>((<span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">1</span>)))</span>
+<span id="cb191-8"><a href="m%C3%A9dier.html#cb191-8" aria-hidden="true" tabindex="-1"></a>  listeffects <span class="ot">&lt;-</span> <span class="fu">list</span>((<span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">1</span>)))</span>
 <span id="cb191-9"><a href="m%C3%A9dier.html#cb191-9" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb191-10"><a href="m%C3%A9dier.html#cb191-10" aria-hidden="true" tabindex="-1"></a>listeffects</span>
 <span id="cb191-11"><a href="m%C3%A9dier.html#cb191-11" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [[<span class="dv">1</span>]]</span>
@@ -622,13 +628,13 @@ Figure 13.2: Distribution de l’effet indirect
 <li>Extraire tous les effets indirects et les libeller adéquatement.</li>
 </ol>
 <div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="m%C3%A9dier.html#cb192-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extraire tous les effets indirects</span></span>
-<span id="cb192-2"><a href="m%C3%A9dier.html#cb192-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(listeffects)){  <span class="co"># Nombre de niveaux d'effet indirect</span></span>
-<span id="cb192-3"><a href="m%C3%A9dier.html#cb192-3" aria-hidden="true" tabindex="-1"></a>  J <span class="ot">&lt;-</span>  <span class="fu">ncol</span>(listeffects[[i]])      <span class="co"># Nombre d'effet du niveau i</span></span>
+<span id="cb192-2"><a href="m%C3%A9dier.html#cb192-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(listeffects)){    <span class="co"># Nombre de niveaux d'effet indirect</span></span>
+<span id="cb192-3"><a href="m%C3%A9dier.html#cb192-3" aria-hidden="true" tabindex="-1"></a>  J <span class="ot">&lt;-</span> <span class="fu">ncol</span>(listeffects[[i]])       <span class="co"># Nombre d'effet du niveau i</span></span>
 <span id="cb192-4"><a href="m%C3%A9dier.html#cb192-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>J){                </span>
-<span id="cb192-5"><a href="m%C3%A9dier.html#cb192-5" aria-hidden="true" tabindex="-1"></a>    ide <span class="ot">&lt;-</span>  listeffects[[i]][,j]    <span class="co"># Identifier l'effet en cours</span></span>
-<span id="cb192-6"><a href="m%C3%A9dier.html#cb192-6" aria-hidden="true" tabindex="-1"></a>    B <span class="ot">&lt;-</span>  BETA[ide, ide]            <span class="co"># Leur coefficients de régression </span></span>
-<span id="cb192-7"><a href="m%C3%A9dier.html#cb192-7" aria-hidden="true" tabindex="-1"></a>    B <span class="ot">&lt;-</span>  B[<span class="sc">-</span><span class="dv">1</span>, <span class="sc">-</span><span class="fu">ncol</span>(B)]           <span class="co"># Retirer les coefficients superflus</span></span>
-<span id="cb192-8"><a href="m%C3%A9dier.html#cb192-8" aria-hidden="true" tabindex="-1"></a>    e <span class="ot">&lt;-</span>  <span class="fu">as.matrix</span>(<span class="fu">prod</span>(<span class="fu">diag</span>(B)))  <span class="co"># Calculer l'effet indirect</span></span>
+<span id="cb192-5"><a href="m%C3%A9dier.html#cb192-5" aria-hidden="true" tabindex="-1"></a>    ide <span class="ot">&lt;-</span> listeffects[[i]][,j]     <span class="co"># Identifier l'effet en cours</span></span>
+<span id="cb192-6"><a href="m%C3%A9dier.html#cb192-6" aria-hidden="true" tabindex="-1"></a>    B <span class="ot">&lt;-</span> BETA[ide, ide]             <span class="co"># Leur coefficients de régression </span></span>
+<span id="cb192-7"><a href="m%C3%A9dier.html#cb192-7" aria-hidden="true" tabindex="-1"></a>    B <span class="ot">&lt;-</span> B[<span class="sc">-</span><span class="dv">1</span>, <span class="sc">-</span><span class="fu">ncol</span>(B)]            <span class="co"># Retirer les coefficients superflus</span></span>
+<span id="cb192-8"><a href="m%C3%A9dier.html#cb192-8" aria-hidden="true" tabindex="-1"></a>    e <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(<span class="fu">prod</span>(<span class="fu">diag</span>(B)))   <span class="co"># Calculer l'effet indirect</span></span>
 <span id="cb192-9"><a href="m%C3%A9dier.html#cb192-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rownames</span>(e) <span class="ot">&lt;-</span> <span class="fu">paste</span>(name[ide], <span class="co"># Le libellé</span></span>
 <span id="cb192-10"><a href="m%C3%A9dier.html#cb192-10" aria-hidden="true" tabindex="-1"></a>                         <span class="at">collapse =</span> <span class="st">" -&gt; "</span>) </span>
 <span id="cb192-11"><a href="m%C3%A9dier.html#cb192-11" aria-hidden="true" tabindex="-1"></a>    est <span class="ot">&lt;-</span> <span class="fu">rbind</span>(est, e)            <span class="co"># Ajouter l'effet aux autres</span></span>
@@ -660,13 +666,13 @@ Figure 13.2: Distribution de l’effet indirect
 <span id="cb193-8"><a href="m%C3%A9dier.html#cb193-8" aria-hidden="true" tabindex="-1"></a>                          <span class="fu">colnames</span>(COV)[<span class="dv">1</span>],</span>
 <span id="cb193-9"><a href="m%C3%A9dier.html#cb193-9" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"-&gt;"</span>,</span>
 <span id="cb193-10"><a href="m%C3%A9dier.html#cb193-10" aria-hidden="true" tabindex="-1"></a>                          <span class="fu">colnames</span>(COV)[p])</span>
-<span id="cb193-11"><a href="m%C3%A9dier.html#cb193-11" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(totald) <span class="ot">&lt;-</span>  <span class="fu">paste</span>(<span class="st">"total effect"</span>,</span>
-<span id="cb193-12"><a href="m%C3%A9dier.html#cb193-12" aria-hidden="true" tabindex="-1"></a>                           <span class="fu">colnames</span>(COV)[<span class="dv">1</span>],</span>
-<span id="cb193-13"><a href="m%C3%A9dier.html#cb193-13" aria-hidden="true" tabindex="-1"></a>                           <span class="st">"-&gt;"</span>,</span>
-<span id="cb193-14"><a href="m%C3%A9dier.html#cb193-14" aria-hidden="true" tabindex="-1"></a>                           <span class="fu">colnames</span>(COV)[p])</span>
+<span id="cb193-11"><a href="m%C3%A9dier.html#cb193-11" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(totald) <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">"total effect"</span>,</span>
+<span id="cb193-12"><a href="m%C3%A9dier.html#cb193-12" aria-hidden="true" tabindex="-1"></a>                          <span class="fu">colnames</span>(COV)[<span class="dv">1</span>],</span>
+<span id="cb193-13"><a href="m%C3%A9dier.html#cb193-13" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"-&gt;"</span>,</span>
+<span id="cb193-14"><a href="m%C3%A9dier.html#cb193-14" aria-hidden="true" tabindex="-1"></a>                          <span class="fu">colnames</span>(COV)[p])</span>
 <span id="cb193-15"><a href="m%C3%A9dier.html#cb193-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb193-16"><a href="m%C3%A9dier.html#cb193-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Mettre le tout en commun</span></span>
-<span id="cb193-17"><a href="m%C3%A9dier.html#cb193-17" aria-hidden="true" tabindex="-1"></a>estimates <span class="ot">&lt;-</span>  <span class="fu">rbind</span>(est, totali, totald)</span>
+<span id="cb193-17"><a href="m%C3%A9dier.html#cb193-17" aria-hidden="true" tabindex="-1"></a>estimates <span class="ot">&lt;-</span> <span class="fu">rbind</span>(est, totali, totald)</span>
 <span id="cb193-18"><a href="m%C3%A9dier.html#cb193-18" aria-hidden="true" tabindex="-1"></a>estimates</span>
 <span id="cb193-19"><a href="m%C3%A9dier.html#cb193-19" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>                          [,<span class="dv">1</span>]</span>
 <span id="cb193-20"><a href="m%C3%A9dier.html#cb193-20" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> a <span class="ot">-&gt;</span> b                 <span class="fl">0.6667</span></span>
@@ -688,16 +694,16 @@ Figure 13.2: Distribution de l’effet indirect
 <span id="cb194-2"><a href="m%C3%A9dier.html#cb194-2" aria-hidden="true" tabindex="-1"></a><span class="co"># jeu de données en exemple (trois variables)</span></span>
 <span id="cb194-3"><a href="m%C3%A9dier.html#cb194-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Informations préliminaires</span></span>
 <span id="cb194-4"><a href="m%C3%A9dier.html#cb194-4" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> .<span class="dv">05</span>         <span class="co"># Erreur de type I</span></span>
-<span id="cb194-5"><a href="m%C3%A9dier.html#cb194-5" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span>  <span class="fu">nrow</span>(jd)       <span class="co"># Nombre d'unités</span></span>
-<span id="cb194-6"><a href="m%C3%A9dier.html#cb194-6" aria-hidden="true" tabindex="-1"></a>reps <span class="ot">&lt;-</span>  <span class="dv">5000</span>        <span class="co"># Nombre de réplications</span></span>
+<span id="cb194-5"><a href="m%C3%A9dier.html#cb194-5" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">nrow</span>(jd)        <span class="co"># Nombre d'unités</span></span>
+<span id="cb194-6"><a href="m%C3%A9dier.html#cb194-6" aria-hidden="true" tabindex="-1"></a>reps <span class="ot">&lt;-</span> <span class="dv">5000</span>         <span class="co"># Nombre de réplications</span></span>
 <span id="cb194-7"><a href="m%C3%A9dier.html#cb194-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb194-8"><a href="m%C3%A9dier.html#cb194-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Vérifier que la fonction `indirect()`  est bien </span></span>
 <span id="cb194-9"><a href="m%C3%A9dier.html#cb194-9" aria-hidden="true" tabindex="-1"></a><span class="co"># dans l'environnement</span></span>
-<span id="cb194-10"><a href="m%C3%A9dier.html#cb194-10" aria-hidden="true" tabindex="-1"></a>Est <span class="ot">&lt;-</span>  <span class="fu">indirect</span>(jd)</span>
+<span id="cb194-10"><a href="m%C3%A9dier.html#cb194-10" aria-hidden="true" tabindex="-1"></a>Est <span class="ot">&lt;-</span> <span class="fu">indirect</span>(jd)</span>
 <span id="cb194-11"><a href="m%C3%A9dier.html#cb194-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb194-12"><a href="m%C3%A9dier.html#cb194-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Variable vide (Est) pour enregistrer les résultats</span></span>
 <span id="cb194-13"><a href="m%C3%A9dier.html#cb194-13" aria-hidden="true" tabindex="-1"></a><span class="co"># avec comme 1ere colonne, les résultats originaux</span></span>
-<span id="cb194-14"><a href="m%C3%A9dier.html#cb194-14" aria-hidden="true" tabindex="-1"></a>Est <span class="ot">&lt;-</span>  <span class="fu">data.frame</span>(<span class="at">Est =</span> Est, </span>
+<span id="cb194-14"><a href="m%C3%A9dier.html#cb194-14" aria-hidden="true" tabindex="-1"></a>Est <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Est =</span> Est, </span>
 <span id="cb194-15"><a href="m%C3%A9dier.html#cb194-15" aria-hidden="true" tabindex="-1"></a>                   <span class="at">X =</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="at">ncol =</span> reps)) </span>
 <span id="cb194-16"><a href="m%C3%A9dier.html#cb194-16" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb194-17"><a href="m%C3%A9dier.html#cb194-17" aria-hidden="true" tabindex="-1"></a><span class="co"># La boucle</span></span>
@@ -883,24 +889,8 @@ total effect x -&gt; y
 <span class="header-section-number">13.5</span> Les packages<a class="anchor" aria-label="anchor" href="#les-packages-2"><i class="fas fa-link"></i></a>
 </h2>
 <p>Le présent chapitre ne fait que gratter la surface de ce qu’il est possible de faire avec l’analyse de médiation. Des articles comme <span class="citation">Caron &amp; Valois (<a href="r%C3%A9f%C3%A9rences.html#ref-Caron18" role="doc-biblioref">2018</a>)</span> et <span class="citation">Lemardelet &amp; Caron (<a href="r%C3%A9f%C3%A9rences.html#ref-Lemardeletsoumis" role="doc-biblioref">2022</a>)</span> donnent des exemples de syntaxe <strong>R</strong> en plus d’approfondir l’analyse. Il existe plusieurs packages <strong>R</strong> pour réaliser l’analyse de médiation, comme <code>mediation</code> <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-mediation" role="doc-biblioref">Tingley et al., 2014</a>)</span> et <code>Rmediation</code> <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-Rmediation" role="doc-biblioref">Tofighi &amp; MacKinnon, 2011</a>)</span>, tous les deux ayant leur propre documentation. Pour des analyses plus compliquées, les packages comme <code>lavaan</code> <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-lavaan" role="doc-biblioref">Rosseel, 2012</a>)</span> permettent de faire des analyses de médiation avec la modélisation par équations structurelles, Toutefois, ce chapitre espère avoir convaincu le lecteur que l’analyse peut être relativement aisément <em>fait maison</em>.</p>
+<!-- ## TODO EXTENSION MATRICIELLE -->
 
-<!-- # ```{r, include = FALSE} -->
-<!-- # dummy.coding = function(x){ -->
-<!-- #   # Retourne un codage factice de x -->
-<!-- #   # avec les facteurs en ordre alphabétique -->
-<!-- #    -->
-<!-- #   tab = table(x)    # Extraire une table -->
-<!-- #   k = length(tab)   # Nombre de groupes -->
-<!-- #   n = length(x)     # Nombre d'unités -->
-<!-- #   X = matrix(0, nrow = n, ncol = k) # Création d'une nouvelle variable  -->
-<!-- #   xlev = as.factor(x) -->
-<!-- #   for (i in 1:n) { -->
-<!-- #     X[i, xlev[i]] = 1 # Identification des groupes -->
-<!-- #   } -->
-<!-- #   colnames(X) = names(tab) -->
-<!-- #   return(X) -->
-<!-- # } -->
-<!-- # ``` -->
 </div>
 </div>
 
@@ -939,7 +929,7 @@ total effect x -&gt; y
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-10-27.</p>
+    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-12-06.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

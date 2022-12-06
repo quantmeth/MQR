@@ -17,7 +17,7 @@
 <meta name="twitter:description" content="Rudiments  Quel est le résultat de mean &lt;- c(1, 2, 3)? Pourquoi? Le résultat est \(1, 2, 3\). Le fait d’assigner une valeur à une fonction (ou variable) écrase cette dernière. mean &lt;- c(1, 2, 3)...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.0/transition.js"></script><script src="libs/bs3compat-0.4.0/tabs.js"></script><script src="libs/bs3compat-0.4.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 <!-- 
     \(
@@ -148,8 +148,8 @@
 </ol>
 </blockquote>
 <div class="sourceCode" id="cb259"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">vecteur</span> <span class="op">&lt;-</span> <span class="fl">4</span><span class="op">:</span><span class="fl">11</span> <span class="co"># ou seq(4, 11)</span>
-<span class="va">vecteur</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">vecteur</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span> <span class="op">+</span> <span class="fl">100</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">vecteur</span> <span class="op">&lt;-</span> <span class="fl">4</span><span class="op">:</span><span class="fl">11</span> <span class="co"># ou seq(4, 11)</span></span>
+<span><span class="va">vecteur</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">vecteur</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span> <span class="op">+</span> <span class="fl">100</span></span></code></pre></div>
 <p>Voir <a href="programmer.html#concat%C3%A9ner">Concaténer</a> pour créer un vecteur et <a href="programmer.html#r%C3%A9f%C3%A9rer-%C3%A0-des-sous-%C3%A9l%C3%A9ments">Référer à des sous-éléments</a> pour choisir un élément.</p>
 <blockquote>
 <ol start="5" style="list-style-type: decimal">
@@ -230,19 +230,19 @@
 </blockquote>
 <p>Voici une autre fonction calculant une médiane d’un vecteur.</p>
 <div class="sourceCode" id="cb264"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">mediane</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span>
-  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
-  <span class="va">longueur</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
-  <span class="kw">if</span> <span class="op">(</span><span class="va">longueur</span><span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span><span class="fl">2</span><span class="op">)</span> <span class="op">{</span>
-    <span class="co"># Si impair</span>
-    <span class="co"># Prendre la valeur centrale</span>
-    <span class="va">x</span><span class="op">[</span><span class="op">(</span><span class="va">longueur</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span><span class="op">/</span><span class="fl">2</span><span class="op">]</span>
-  <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span>
-    <span class="co"># Si pair</span>
-    <span class="co"># Faire la moyenne des deux éléments du centre</span>
-    <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">x</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="va">longueur</span><span class="op">/</span><span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span> <span class="op">+</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span>
-  <span class="op">}</span>
-<span class="op">}</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">mediane</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
+<span>  <span class="va">longueur</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
+<span>  <span class="kw">if</span> <span class="op">(</span><span class="va">longueur</span><span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span><span class="fl">2</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="co"># Si impair</span></span>
+<span>    <span class="co"># Prendre la valeur centrale</span></span>
+<span>    <span class="va">x</span><span class="op">[</span><span class="op">(</span><span class="va">longueur</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span><span class="op">/</span><span class="fl">2</span><span class="op">]</span></span>
+<span>  <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
+<span>    <span class="co"># Si pair</span></span>
+<span>    <span class="co"># Faire la moyenne des deux éléments du centre</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">x</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="va">longueur</span><span class="op">/</span><span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span> <span class="op">+</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span></span>
+<span>  <span class="op">}</span></span>
+<span><span class="op">}</span></span></code></pre></div>
 <p>Encore une fois (il n’y a pas vraiment de façon de l’éviter), <code>%%2</code> permet de tester si pair (<code>FALSE</code>, car <code>0</code> si pair) ou impair (<code>TRUE</code>, car <code>1</code> si impair), puis de prendre la valeur à la position correspondante. Il y a plusieurs façons de tirer les éléments du vecteur.</p>
 <p>Voir <a href="programmer.html#les-fonctions">Les fonctions</a>, mais surtout <a href="calculer.html#la-m%C3%A9diane">La médiane</a>, pour plus d’informations.</p>
 <blockquote>
@@ -270,35 +270,35 @@
 </blockquote>
 <p>Plusieurs solutions possibles dont en voici deux.</p>
 <div class="sourceCode" id="cb266"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">fibonnaci1</span> <span class="op">&lt;-</span>  <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">{</span>
-  <span class="co"># n est le nombre d'éléments de la série demandée.</span>
-  <span class="co"># Création d'un vecteur de taille n ne contenant que des 1.</span>
-  <span class="va">serie</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="va">n</span><span class="op">)</span>
-  
-  <span class="co"># Le premier test logique rapporte la (n = 1) ou </span>
-  <span class="co"># les deux (n = 2) premières valeurs.</span>
-  <span class="kw">if</span><span class="op">(</span><span class="va">n</span> <span class="op">&lt;=</span> <span class="fl">2</span><span class="op">)</span><span class="op">{</span>
-    <span class="va">serie</span> <span class="op">&lt;-</span>  <span class="va">serie</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="va">n</span><span class="op">]</span>
-    
-    <span class="co"># Le deuxième réalise les calculs pour les autres options.  </span>
-  <span class="op">}</span><span class="kw">else</span><span class="op">{</span>
-    <span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">3</span><span class="op">:</span><span class="va">n</span><span class="op">)</span><span class="op">{</span>
-      <span class="va">serie</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span>  <span class="va">serie</span><span class="op">[</span><span class="va">i</span><span class="op">-</span><span class="fl">1</span><span class="op">]</span> <span class="op">+</span> <span class="va">serie</span><span class="op">[</span><span class="va">i</span><span class="op">-</span><span class="fl">2</span><span class="op">]</span>  
-    <span class="op">}</span>
-  <span class="op">}</span>
-  <span class="va">serie</span>
-<span class="op">}</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">fibonnaci1</span> <span class="op">&lt;-</span>  <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="co"># n est le nombre d'éléments de la série demandée.</span></span>
+<span>  <span class="co"># Création d'un vecteur de taille n ne contenant que des 1.</span></span>
+<span>  <span class="va">serie</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="va">n</span><span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="co"># Le premier test logique rapporte la (n = 1) ou </span></span>
+<span>  <span class="co"># les deux (n = 2) premières valeurs.</span></span>
+<span>  <span class="kw">if</span><span class="op">(</span><span class="va">n</span> <span class="op">&lt;=</span> <span class="fl">2</span><span class="op">)</span><span class="op">{</span></span>
+<span>    <span class="va">serie</span> <span class="op">&lt;-</span>  <span class="va">serie</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="va">n</span><span class="op">]</span></span>
+<span>    </span>
+<span>    <span class="co"># Le deuxième réalise les calculs pour les autres options.  </span></span>
+<span>  <span class="op">}</span><span class="kw">else</span><span class="op">{</span></span>
+<span>    <span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">3</span><span class="op">:</span><span class="va">n</span><span class="op">)</span><span class="op">{</span></span>
+<span>      <span class="va">serie</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span>  <span class="va">serie</span><span class="op">[</span><span class="va">i</span><span class="op">-</span><span class="fl">1</span><span class="op">]</span> <span class="op">+</span> <span class="va">serie</span><span class="op">[</span><span class="va">i</span><span class="op">-</span><span class="fl">2</span><span class="op">]</span>  </span>
+<span>    <span class="op">}</span></span>
+<span>  <span class="op">}</span></span>
+<span>  <span class="va">serie</span></span>
+<span><span class="op">}</span></span></code></pre></div>
 <p>En voici une autre en utilisant la récursion (une fonction qui s’appelle elle-même).</p>
 <div class="sourceCode" id="cb267"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">fibonnaci2</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">{</span>
-  <span class="kw">if</span><span class="op">(</span><span class="va">n</span> <span class="op">&lt;=</span> <span class="fl">2</span><span class="op">)</span><span class="op">{</span>
-    <span class="co"># Si n est plus petit que 2, alors retourne 1</span>
-    <span class="fl">1</span>
-  <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span>
-    <span class="co"># Autrement, retourne les deux valeurs de Fibonncaci précédentes.</span>
-    <span class="fu">fibonnaci2</span><span class="op">(</span><span class="va">n</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span> <span class="op">+</span> <span class="fu">fibonnaci2</span> <span class="op">(</span><span class="va">n</span><span class="op">-</span><span class="fl">2</span><span class="op">)</span>
-  <span class="op">}</span>
-<span class="op">}</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">fibonnaci2</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="kw">if</span><span class="op">(</span><span class="va">n</span> <span class="op">&lt;=</span> <span class="fl">2</span><span class="op">)</span><span class="op">{</span></span>
+<span>    <span class="co"># Si n est plus petit que 2, alors retourne 1</span></span>
+<span>    <span class="fl">1</span></span>
+<span>  <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
+<span>    <span class="co"># Autrement, retourne les deux valeurs de Fibonncaci précédentes.</span></span>
+<span>    <span class="fu">fibonnaci2</span><span class="op">(</span><span class="va">n</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span> <span class="op">+</span> <span class="fu">fibonnaci2</span> <span class="op">(</span><span class="va">n</span><span class="op">-</span><span class="fl">2</span><span class="op">)</span></span>
+<span>  <span class="op">}</span></span>
+<span><span class="op">}</span></span></code></pre></div>
 <p>Les voici comparées.</p>
 <div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="solutions.html#cb268-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">8</span></span>
 <span id="cb268-2"><a href="solutions.html#cb268-2" aria-hidden="true" tabindex="-1"></a><span class="fu">fibonnaci1</span>(n)</span>
@@ -338,7 +338,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-10-27.</p>
+    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-12-06.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

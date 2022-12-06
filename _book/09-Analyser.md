@@ -252,12 +252,12 @@ t.test(temps1, temps2, paired = TRUE)
 > 
 > data:  temps1 and temps2
 > t = -3, df = 24, p-value = 0.004
-> alternative hypothesis: true difference in means is not equal to 0
+> alternative hypothesis: true mean difference is not equal to 0
 > 95 percent confidence interval:
 >  -2.172 -0.465
 > sample estimates:
-> mean of the differences 
->                   -1.32
+> mean difference 
+>           -1.32
 testt.dep(temps1, temps2)
 > $valeur.t
 > [1] -3.19

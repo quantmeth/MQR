@@ -17,7 +17,7 @@
 <meta name="twitter:description" content="Prédire une variable dépendante à partir de variables indépendantes n’est pas la seule façon de décortiquer des données. Il existe des techniques statistiques qui réorganisent l’information (les...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.0/transition.js"></script><script src="libs/bs3compat-0.4.0/tabs.js"></script><script src="libs/bs3compat-0.4.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 <!-- 
     \(
@@ -121,7 +121,7 @@
 Figure 15.1: Représentations de la régression et l’analyse factorielle
 </p>
 </div>
-<p>Plusieurs éléments permettent de mieux mettre en évidence les différences entre les deux modèles. Les <strong>variables manifestes</strong> <span class="math inline">\(x_i\)</span> sont des mesures empiriques mesurées auprès d’unités d’observations. Elles sont représentées pas des rectangles. Le facteur <span class="math inline">\(F\)</span> est représentée par un cercle. Il s’agit d’une <strong>variable latente</strong>, une variable non observée et inférée à partir des variables manifestes. Par exemple, les habiletés de lecture <span class="math inline">\(x_1\)</span> sont liées aux habiletés en mathématiques <span class="math inline">\(x_2\)</span>. D’un côté, mieux le participant lit, plus il répond rapidement et exactement aux questions de mathématiques. De l’autre côté, les habiletés de mathématiques et de lectures peuvent aussi être liées à un facteur commun : l’intelligence. Les habiletés de mathématiques et de lectures sont observables par des évaluations, mais l’intelligence s’infère à partir de ces tests<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Il est particulièrement important d’identifier le facteur comme variable latente. Autrement, le modèle à droite pourrait également représenté une &lt;strong&gt;variable confondante&lt;/strong&gt;, une variable qui cause &lt;em&gt;accidentellement&lt;/em&gt; la corrélation entre deux autres. Par exemple, le lien entre l’intelligence et la grandeur des pieds provient de l’effet de l’âge.&lt;/p&gt;"><sup>19</sup></a>. C’est là que les analyses factorielles entre en jeu.</p>
+<p>Plusieurs éléments permettent de mieux mettre en évidence les différences entre les deux modèles. Les <strong>variables manifestes</strong> <span class="math inline">\(x_i\)</span> sont des mesures empiriques mesurées auprès d’unités d’observations. Elles sont représentées pas des rectangles. Le facteur <span class="math inline">\(F\)</span> est représenté par un cercle. Il s’agit d’une <strong>variable latente</strong>, une variable non observée et inférée à partir des variables manifestes. Par exemple, les habiletés de lecture <span class="math inline">\(x_1\)</span> sont liées aux habiletés en mathématiques <span class="math inline">\(x_2\)</span>. D’un côté, mieux le participant lit, plus il répond rapidement et exactement aux questions de mathématiques. De l’autre côté, les habiletés de mathématiques et de lectures peuvent aussi être liées à un facteur commun : l’intelligence. Les habiletés de mathématiques et de lectures sont observables par des évaluations, mais l’intelligence s’infère à partir de ces tests<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Il est particulièrement important d’identifier le facteur comme variable latente. Autrement, le modèle à droite pourrait également représenté une &lt;strong&gt;variable confondante&lt;/strong&gt;, une variable qui cause &lt;em&gt;accidentellement&lt;/em&gt; la corrélation entre deux autres. Par exemple, le lien entre l’intelligence et la grandeur des pieds provient de l’effet de l’âge.&lt;/p&gt;"><sup>19</sup></a>. C’est là que les analyses factorielles entre en jeu.</p>
 <p>Les analyses factorielles sont utilisés, par exemple, lors de la création d’un test psychométrique. Le psychométricien s’intéresse à connaître quels items (variables manifestes) sont liés sur quelle dimension et à quel degré. Les items communs sont liés sur certains facteurs et peu ou pas sur les autres. Le facteur à un fort potentiel explicatif pour les items qui lui sont fortement liés, voire même représente un concept, thème ou construit théorique commun partagé entre ces items.</p>
 <!-- L'ACP a une optique d'utilisation beaucoup plus grande que l'analyse factorielle exploratoire. L'expérimentateur pourrait s'intéresser à seulement réorganiser la variance sans aucune visée *factorielle*. Il pourrait vouloir identifier l'ensemble des meilleurs prédicteurs ou encore résumer l'information de façon à générer des figures qui seraient autrement trop complexes. Enfin, l'ACP peut aussi être conceptualisé comme une forme de compression comme en informatique. Puisque l'information se trouve dans les premières composantes, les moins informatives peuvent être discartées afin de résumer un maximum d'informations sur les données avec le minimum de facteurs. -->
 <p>Dans ce livre, deux types d’analyse factorielle sont abordées : l’<strong>analyse en composantes principales</strong> et l’<strong>analyse factorielle</strong>. La première est un modèle athéorique (sans hypothèses sous-jacentes) à la structure des données, alors que la seconde présuppose, comme hypothèse, un ou des facteurs latents communs. Sur le plan computationnel, l’analyse en composantes principales réorganise tous les facteurs, alors que l’analyse factorielle extrait un nombre donné de facteurs. Les analyses factorielles se distinguent également en deux catégories : <strong>exploratoire</strong> et <strong>confirmatoire</strong>. Ces termes distinguent si l’analyse contraint ou non la structure factorielle. Tout cela sera abordé plus en détails dans les prochains chapitres.</p>
@@ -130,7 +130,7 @@ Figure 15.1: Représentations de la régression et l’analyse factorielle
 <span class="header-section-number">15.1</span> L’analyse en composantes principales<a class="anchor" aria-label="anchor" href="#lanalyse-en-composantes-principales"><i class="fas fa-link"></i></a>
 </h2>
 <p>L’analyse en composantes principales (ACP) fait partie de la famille des analyses factorielle exploratoire. Elle consiste à réorganiser des variables corrélées (une matrice de covariance) en nouvelles variables orthogonales (décorrélées) les unes des autres. Ces nouvelles <em>variables</em> sont des composantes principales, axes principaux ou encore des dimensions. Il s’agit d’une technique à la fois géométrique et statistique dont les champs d’application vont de la psychologie, la sociologie, la biologie, la chimie à la physique quantique jusqu’aux mathématiques pures. Elle ne se limite donc pas qu’à la psychométrie.</p>
-<p>L’ACP prend comme base la matrice de corrélation<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Afin de simplifier le propos, seule l’analyse en composantes principales sur une matrice corrélation sera présentée.&lt;/p&gt;"><sup>20</sup></a> et la réorganisation (essentiellement une rotation géométrique) afin que les nouvelles dimensions sont indépendantes l’une de l’autre. L’ACP procure trois informations cruciales sur une matrice de corrélation, les valeurs propres et les vecteurs propres, desquels les <em>loadings</em><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Souvent traduit par &lt;em&gt;charge&lt;/em&gt;, mais le terme loading semble plus approprié.&lt;/p&gt;"><sup>21</sup></a> sont calculables.</p>
+<p>L’ACP prend comme base la matrice de corrélation<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Afin de simplifier le propos, seule l’analyse en composantes principales sur une matrice corrélation sera présentée.&lt;/p&gt;"><sup>20</sup></a> et la réorganisation (essentiellement une rotation géométrique) afin que les nouvelles dimensions soient indépendantes l’une de l’autre. L’ACP procure trois informations cruciales sur une matrice de corrélation, les valeurs propres et les vecteurs propres, desquels les <em>loadings</em><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Souvent traduit par &lt;em&gt;charge&lt;/em&gt;, mais le terme loading semble plus approprié.&lt;/p&gt;"><sup>21</sup></a> sont calculables.</p>
 <div id="les-valeurs-propres" class="section level3" number="15.1.1">
 <h3>
 <span class="header-section-number">15.1.1</span> Les valeurs propres<a class="anchor" aria-label="anchor" href="#les-valeurs-propres"><i class="fas fa-link"></i></a>
@@ -164,21 +164,21 @@ Figure 15.1: Représentations de la régression et l’analyse factorielle
 </h2>
 <p>La création de données pour une ACP est très simple. Il suffit de créer une matrice de covariance ou de corrélation. Dans cet exemple, 10 participants sont mesurés sur deux variables ayant une corrélation de .80 entre elles.</p>
 <div class="sourceCode" id="cb214"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Pour la reproductibilité</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">42</span><span class="op">)</span>
-
-<span class="co"># Quelques paramètres</span>
-<span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">10</span>
-<span class="va">rho</span> <span class="op">&lt;-</span> <span class="fl">.80</span>
-<span class="va">S</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span> <span class="fl">1</span>, <span class="va">rho</span>,
-              <span class="va">rho</span>, <span class="fl">1</span><span class="op">)</span>,
-            ncol <span class="op">=</span> <span class="fl">2</span>, nrow <span class="op">=</span> <span class="fl">2</span>,
-            dimnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">nom</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"x1"</span>, <span class="st">"x2"</span><span class="op">)</span>, <span class="va">nom</span><span class="op">)</span><span class="op">)</span>
-
-<span class="va">jd.acp</span> <span class="op">&lt;-</span> <span class="fu">MASS</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/MASS/man/mvrnorm.html">mvrnorm</a></span><span class="op">(</span>n <span class="op">=</span> <span class="va">n</span>, 
-                        mu <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">2</span><span class="op">)</span>, 
-                        Sigma <span class="op">=</span> <span class="va">S</span>, 
-                        empirical <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Pour la reproductibilité</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">42</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Quelques paramètres</span></span>
+<span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">10</span></span>
+<span><span class="va">rho</span> <span class="op">&lt;-</span> <span class="fl">.80</span></span>
+<span><span class="va">S</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span> <span class="fl">1</span>, <span class="va">rho</span>,</span>
+<span>              <span class="va">rho</span>, <span class="fl">1</span><span class="op">)</span>,</span>
+<span>            ncol <span class="op">=</span> <span class="fl">2</span>, nrow <span class="op">=</span> <span class="fl">2</span>,</span>
+<span>            dimnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">nom</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"x1"</span>, <span class="st">"x2"</span><span class="op">)</span>, <span class="va">nom</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">jd.acp</span> <span class="op">&lt;-</span> <span class="fu">MASS</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/MASS/man/mvrnorm.html">mvrnorm</a></span><span class="op">(</span>n <span class="op">=</span> <span class="va">n</span>, </span>
+<span>                        mu <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">2</span><span class="op">)</span>, </span>
+<span>                        Sigma <span class="op">=</span> <span class="va">S</span>, </span>
+<span>                        empirical <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p>L’argument <code>empirical = TRUE</code> assure que la matrice de corrélation de la population est identique à celle de l’équation, <span class="math inline">\(\mathbf{\Sigma} = \mathbf{S}\)</span>, ce qui facilite l’interprétation de cet exemple.</p>
 <p>La Figure <a href="d%C3%A9composer.html#fig:plotacp">15.2</a> illustre la répartition des 10 participants par rapport aux variables 1 et 2. La ligne pointillée désigne la droite de régression qui les relient, soit la pente <span class="math inline">\(\beta = .8\)</span>.</p>
 <div class="figure" style="text-align: center">
@@ -193,7 +193,7 @@ Figure 15.2: Présentation des données (<code>jd.acp</code>)
 <span class="header-section-number">15.3</span> Analyse<a class="anchor" aria-label="anchor" href="#analyse-1"><i class="fas fa-link"></i></a>
 </h2>
 <p>Il existe plusieurs fonctions dans <strong>R</strong>, mais aussi dans des packages, pour réaliser l’ACP. L’analyse en soi n’a rien de sorcier (en autant que les statisticiens ne font pas de la magie), c’est surtout l’emballage (arguments, graphiques et sorties) qui change de l’une à l’autre des méthodes. Ces fonctions précalculent et extraient les statistiques désirées, rien que l’utilisateur ne peut faire lui-même.</p>
-<p>Il existe quatre fonctions de base <strong>R</strong> pour faire l’analyse en composantes principales. Les deux principales, <code><a href="https://rdrr.io/r/base/eigen.html">eigen()</a></code> et <code><a href="https://rdrr.io/r/base/svd.html">svd()</a></code>, fournissent des résultats virtuellement identiques, mais sont différentes sur l’étendue des analyses qu’elles peuvent faire. Les deux autres, <code>princomp</code> et <code><a href="https://rdrr.io/r/stats/prcomp.html">prcomp()</a></code>, sont leur emballage respectif. Les détails des calculs seront présentées dans une autre section, la section sur <a href="d%C3%A9composer.html#les-calculs-de-lanalyse-en-composantes-principales">Les calculs de l’analyse en composantes principales</a>.</p>
+<p>Il existe quatre fonctions de base <strong>R</strong> pour faire l’analyse en composantes principales. Les deux principales, <code><a href="https://rdrr.io/r/base/eigen.html">eigen()</a></code> et <code><a href="https://rdrr.io/r/base/svd.html">svd()</a></code>, fournissent des résultats virtuellement identiques, mais se distinguent sur leur limite de ce qu’elles peuvent accomplir. Les deux autres, <code>princomp</code> et <code><a href="https://rdrr.io/r/stats/prcomp.html">prcomp()</a></code>, sont leur emballage respectif. Les détails des calculs seront présentées dans une autre section, la section sur <a href="d%C3%A9composer.html#les-calculs-de-lanalyse-en-composantes-principales">Les calculs de l’analyse en composantes principales</a>.</p>
 <div id="eigen" class="section level3" number="15.3.1">
 <h3>
 <span class="header-section-number">15.3.1</span> <code>eigen()</code><a class="anchor" aria-label="anchor" href="#eigen"><i class="fas fa-link"></i></a>
@@ -244,14 +244,14 @@ Figure 15.2: Présentation des données (<code>jd.acp</code>)
 <span id="cb216-18"><a href="d%C3%A9composer.html#cb216-18" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">2</span>,] <span class="sc">-</span><span class="fl">0.949</span>  <span class="fl">0.316</span></span></code></pre></div>
 <p>Les résultats sont identiques à la fonction <code><a href="https://rdrr.io/r/base/eigen.html">eigen()</a></code>. Le lecteur attentif aura toutefois remarqué que <code>res.svd$v</code> n’égale pas exactement <code>res.eig$vectors</code> à cause des signes négatifs du premier vecteur propre. Toutefois, il convient d’affirmer que c’est seulement la polarité qui est différente, comme si un vecteur propre indiquait le nord et l’autre le sud, alors que les deux sont dos à dos, exactement à <span class="math inline">\(180^{\circ}\)</span>.</p>
 <p>La fonction <code><a href="https://rdrr.io/r/base/svd.html">svd()</a></code> est plus générale et peut utiliser des matrices rectangulaires. Il faut faire attention de ne pas lui fournir le jeu de données et bien la matrice de covariance ou de corrélation.</p>
-<p>Il convient également d’ajouter que, comme <span class="math inline">\(\mathbf{\Sigma} = \mathbf{S}\)</span> (à l’aide de l’argument <code>empirical = TRUE</code> de <code><a href="https://rdrr.io/pkg/MASS/man/mvrnorm.html">MASS::mvrnorm()</a></code>), il n’était pas nécessaire de générer de données à proprement parler pour réaliser les analyses, car <code>svd(S)</code> ou <code>eigen(S)</code> offre les mêmes résultats. C’est la matrice de corrélation qui est décomposée et non les participants. Remarquez d’ailleurs comment l’ACP est indépendante de la taille d’échantillon dans son fonctionnement.</p>
+<p>Il convient également d’ajouter que, comme <span class="math inline">\(\mathbf{\Sigma} = \mathbf{S}\)</span> (à l’aide de l’argument <code>empirical = TRUE</code> de <code><a href="https://rdrr.io/pkg/MASS/man/mvrnorm.html">MASS::mvrnorm()</a></code>), il n’était pas nécessaire de générer de données à proprement parler pour réaliser les analyses, car <code>svd(S)</code> ou <code>eigen(S)</code> offre les mêmes résultats. C’est la matrice de corrélation qui est décomposée et non les participants. Remarquez d’ailleurs comment l’ACP est indépendante de la taille d’échantillon<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;La taille d’échantillon a des conséquences sur la matrice de corrélation, mais l’ACP en est techniquement indépendante.&lt;/p&gt;"><sup>23</sup></a>.</p>
 </div>
 </div>
 <div id="représentations-des-résultats" class="section level2" number="15.4">
 <h2>
 <span class="header-section-number">15.4</span> Représentations des résultats<a class="anchor" aria-label="anchor" href="#repr%C3%A9sentations-des-r%C3%A9sultats"><i class="fas fa-link"></i></a>
 </h2>
-<p>La Figure <a href="d%C3%A9composer.html#fig:acpsuj">15.3</a> montre à gauche les données originales sur les axes représentées par les deux variables (une reprise de la Figure <a href="d%C3%A9composer.html#fig:plotacp">15.2</a>). À droite, il s’agit de la rotation trouvée par l’ACP (<code><a href="https://rdrr.io/r/base/eigen.html">eigen()</a></code> ou <code><a href="https://rdrr.io/r/base/svd.html">svd()</a></code>). Les participants conservent entre eux les mêmes distances par rapport aux autres, mais aussi par rapport aux axes originaux représentées par des lignes pointillées. C’est vraiment l’orientation du plan qui change<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Tout problème de distance, s’il y a lieu, est dû à l’échelle des figures.&lt;/p&gt;"><sup>23</sup></a>.</p>
+<p>La Figure <a href="d%C3%A9composer.html#fig:acpsuj">15.3</a> montre à gauche les données originales sur les axes représentées par les deux variables (une reprise de la Figure <a href="d%C3%A9composer.html#fig:plotacp">15.2</a>). À droite, il s’agit de la rotation trouvée par l’ACP (<code><a href="https://rdrr.io/r/base/eigen.html">eigen()</a></code> ou <code><a href="https://rdrr.io/r/base/svd.html">svd()</a></code>). Les participants conservent entre eux les mêmes distances par rapport aux autres, mais aussi par rapport aux axes originaux représentées par des lignes pointillées. C’est vraiment l’orientation du plan qui change<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Tout problème de distance, s’il y a lieu, est dû à l’échelle des figures.&lt;/p&gt;"><sup>24</sup></a>.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:acpsuj"></span>
 <img src="15-Decomposer_files/figure-html/acpsuj-1.png" alt="Représentations des participants selon les variables (gauche) ou les composantes principales (droite)." width="75%" height="75%"><p class="caption">
@@ -271,7 +271,7 @@ Figure 15.4: Représentations des vraiables selon les composantes principales.
 <h2>
 <span class="header-section-number">15.5</span> Les calculs de l’analyse en composantes principales<a class="anchor" aria-label="anchor" href="#les-calculs-de-lanalyse-en-composantes-principales"><i class="fas fa-link"></i></a>
 </h2>
-<p>Il existe plusieurs techniques mathématiques pour retrouver les valeurs propres. Elles ont leur forces et avantages. Elles ont certainement tous en commun que, plus le nombre de variables augmente, plus le désir de les calculer par ordinateur est grand. Ici, une technique est présentée dans l’optique de bien vérifier qu’aucun sortilège computationnel n’opère derrière le logiciel<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Et non de rendre le lecteur un expert en algèbre matricielle.&lt;/p&gt;"><sup>24</sup></a>.</p>
+<p>Il existe plusieurs techniques mathématiques pour retrouver les valeurs propres. Elles ont leur forces et avantages. Elles ont certainement tous en commun que, plus le nombre de variables augmente, plus le désir de les calculer par ordinateur est grand. Ici, une technique est présentée dans l’optique de bien vérifier qu’aucun sortilège computationnel n’opère derrière le logiciel<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Et non de rendre le lecteur un expert en algèbre matricielle.&lt;/p&gt;"><sup>25</sup></a>.</p>
 <p>Une des méthodes pour réaliser l’ACP est de résoudre le polynôme caractéristique. Autrement dit, il s’agit de retrouver tous les inconnus <span class="math inline">\(\lambda\)</span> (les valeurs propres) du polynôme caractéristique, soit l’équation <a href="d%C3%A9composer.html#eq:polnom">(15.2)</a></p>
 <p><span class="math display" id="eq:polnom">\[\begin{equation}
 |\mathbf{S} - \lambda \mathbf{I}| = 0
@@ -325,7 +325,7 @@ Figure 15.4: Représentations des vraiables selon les composantes principales.
 \right)
 \right| = 0
 \]</span></p>
-<p>Le polynôme caractéristique est retrouvé en calculant le déterminant de la matrice, soit le produit de la diagonale moins le produit des valeurs hors diagonale<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Dans le cas d’une matrice &lt;span class="math inline"&gt;\(2 \times 2\)&lt;/span&gt;. C’est beaucoup compliqué pour de plus grande matrice.&lt;/p&gt;'><sup>25</sup></a>,</p>
+<p>Le polynôme caractéristique est retrouvé en calculant le déterminant de la matrice, soit le produit de la diagonale moins le produit des valeurs hors diagonale<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Dans le cas d’une matrice &lt;span class="math inline"&gt;\(2 \times 2\)&lt;/span&gt;. C’est beaucoup compliqué pour de plus grande matrice.&lt;/p&gt;'><sup>26</sup></a>,</p>
 <p><span class="math display">\[
 (1-\lambda)(1-\lambda) - (.8)(.8) = 0
 \]</span></p>
@@ -346,22 +346,22 @@ a\lambda^2+b\lambda+c=0 \implies \lambda=\frac{-b \pm \sqrt{b^2-4ac}}{2a}
 Figure 15.5: L’équation du polynôme caractéristique
 </p>
 </div>
-<p>Cela fait beaucoup de mathématiques. Est-il possible d’y arriver plus simplement avec <strong>R</strong>? Le package <code>pracma</code> <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-pracma" role="doc-biblioref">Borchers, 2022</a>)</span> offre une fonction <code>charpoly()</code> qui permet de trouver le polynôme caractéristique d’une matrice. <strong>R</strong> de base a aussi une fonction permettant de résoudre des polynômes, <code><a href="https://rdrr.io/r/base/polyroot.html">polyroot()</a></code>. Avec ces deux fonctions, il est possible de refaire toute la présente section. Il faut toutefois noter que les coefficients polynomiaux donnés par <code>charpoly()</code> doivent être inversés pour <code><a href="https://rdrr.io/r/base/polyroot.html">polyroot()</a></code>. À noter également, l’ajout de la fonction<code><a href="https://rdrr.io/r/base/complex.html">Re()</a></code> assure que les valeurs propres sont des nombres réels et non imaginaires<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Par exemple, &lt;span class="math inline"&gt;\(i=\sqrt{-1}\)&lt;/span&gt; est imaginaire&lt;/p&gt;'><sup>26</sup></a>. Par convention, les valeurs propres sont ordonnées de façon décroissantes, bien qu’elle n’est originalement pas d’ordre particulier.</p>
+<p>Cela fait beaucoup de mathématiques. Est-il possible d’y arriver plus simplement avec <strong>R</strong>? Le package <code>pracma</code> <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-pracma" role="doc-biblioref">Borchers, 2022</a>)</span> offre une fonction <code>charpoly()</code> qui permet de trouver le polynôme caractéristique d’une matrice. <strong>R</strong> de base a aussi une fonction permettant de résoudre des polynômes, <code><a href="https://rdrr.io/r/base/polyroot.html">polyroot()</a></code>. Avec ces deux fonctions, il est possible de refaire toute la présente section. Il faut toutefois noter que les coefficients polynomiaux donnés par <code>charpoly()</code> doivent être inversés pour <code><a href="https://rdrr.io/r/base/polyroot.html">polyroot()</a></code>. À noter également, l’ajout de la fonction<code><a href="https://rdrr.io/r/base/complex.html">Re()</a></code> assure que les valeurs propres sont des nombres réels et non imaginaires<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Par exemple, &lt;span class="math inline"&gt;\(i=\sqrt{-1}\)&lt;/span&gt; est imaginaire&lt;/p&gt;'><sup>27</sup></a>. Par convention, les valeurs propres sont ordonnées de façon décroissantes, bien qu’elle n’est originalement pas d’ordre particulier.</p>
 <div class="sourceCode" id="cb217"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Trouver les coefficients polynomiaux</span>
-<span class="va">coef.poly</span> <span class="op">&lt;-</span> <span class="fu">pracma</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pracma/man/charpoly.html">charpoly</a></span><span class="op">(</span><span class="va">S</span><span class="op">)</span>
-
-<span class="co"># Inverser l'ordre</span>
-<span class="va">coef.poly</span> <span class="op">&lt;-</span> <span class="va">coef.poly</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">coef.poly</span><span class="op">)</span><span class="op">:</span><span class="fl">1</span><span class="op">]</span>
-
-<span class="co"># Trouver les valeurs à 0 (valeurs propres, E)</span>
-<span class="va">E</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/complex.html">Re</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/polyroot.html">polyroot</a></span><span class="op">(</span><span class="va">coef.poly</span><span class="op">)</span><span class="op">)</span>
-
-<span class="co"># Mettre en ordre décroissant</span>
-<span class="va">E</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="va">E</span>, decreasing <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-
-<span class="co"># Résultats</span>
-<span class="va">E</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Trouver les coefficients polynomiaux</span></span>
+<span><span class="va">coef.poly</span> <span class="op">&lt;-</span> <span class="fu">pracma</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pracma/man/charpoly.html">charpoly</a></span><span class="op">(</span><span class="va">S</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Inverser l'ordre</span></span>
+<span><span class="va">coef.poly</span> <span class="op">&lt;-</span> <span class="va">coef.poly</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">coef.poly</span><span class="op">)</span><span class="op">:</span><span class="fl">1</span><span class="op">]</span></span>
+<span></span>
+<span><span class="co"># Trouver les valeurs à 0 (valeurs propres, E)</span></span>
+<span><span class="va">E</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/complex.html">Re</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/polyroot.html">polyroot</a></span><span class="op">(</span><span class="va">coef.poly</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Mettre en ordre décroissant</span></span>
+<span><span class="va">E</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="va">E</span>, decreasing <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Résultats</span></span>
+<span><span class="va">E</span></span></code></pre></div>
 <p>Et voilà! Les valeurs propres sont retrouvées. Pour les vecteurs propres, c’est un peu plus compliqué.</p>
 <p>L’objectif est de trouver pour chaque valeur propre la solution de l’équation <a href="d%C3%A9composer.html#eq:vec11">(15.5)</a></p>
 <p><span class="math display" id="eq:vec11">\[\begin{equation}
@@ -456,7 +456,7 @@ v_{22} = -1
 1 &amp; 1 \\
 1 &amp; -1
 \end{array} \right]\]</span></p>
-<p>Il ne reste qu’à normaliser les colonnes (vecteurs) pour que leur longueur soit l’unité<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;La somme des carrés des éléments du vecteur égale 1&lt;/p&gt;"><sup>27</sup></a>. Pour ce faire, il faut diviser chaque élément du vecteur et le diviser par racine carré de la somme des carrés des éléments du vecteur.</p>
+<p>Il ne reste qu’à normaliser les colonnes (vecteurs) pour que leur longueur soit l’unité<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;La somme des carrés des éléments du vecteur égale 1&lt;/p&gt;"><sup>28</sup></a>. Pour ce faire, il faut diviser chaque élément du vecteur et le diviser par racine carré de la somme des carrés des éléments du vecteur.</p>
 <p><span class="math display">\[
 \mathbf{V_{ij}} = \frac{v_{ij}}{ \sqrt{\sum_{i = 1}^p v_{i}}}
 \]</span>
@@ -473,71 +473,71 @@ Les résultats sont reproduits.</p>
 <p>Pour ce faire, à chaque vecteur propre, la fonction reçoit la valeur propre associée, la matrice de corrélation et une série d’estimateur (le vecteur propre) à trouver.</p>
 <p>La fonction maison <code>cherche.vecteur()</code> calcule la somme (<code><a href="https://rdrr.io/r/base/sum.html">sum()</a></code> des écarts absolus (<code><a href="https://rdrr.io/r/base/MathFun.html">abs()</a></code>) entre les estimateurs et la valeur cible de 0 de l’équation <a href="d%C3%A9composer.html#eq:vec11">(15.5)</a>. La fonction <strong>R</strong> <code><a href="https://rdrr.io/r/stats/optim.html">optim()</a></code> prend cette fonction et tente de minimiser les distances, c’est-à-dire d’arriver au résultats de 0 en variant les estimateurs. Noter comment un estimateur est déjà fixé à 1 dans <code>matrix(c(1, est))</code> qui correspond à <span class="math inline">\(v_j\)</span> où <span class="math inline">\(v_{1j}=1\)</span>. La fonction <code><a href="https://rdrr.io/r/stats/optim.html">optim()</a></code> prend un argument d’estimateur <code>par</code>, les paramètres à trouver et <code>fn</code> la fonction à optimiser et une méthode d’optimisation appropriée, <code>method = "BDGS</code> dans ce cas-ci. Les deux autres arguments sont pour la fonction à optimiser <code>cherche.vecteur()</code>, soit la matrice de covariance et la valeur propre.</p>
 <div class="sourceCode" id="cb218"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Fonction à optimiser</span>
-<span class="va">cherche.vecteur</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">est</span>, <span class="va">Ep</span>, <span class="va">M</span><span class="op">)</span> <span class="op">{</span>
-  <span class="co"># est = estimateur</span>
-  <span class="co"># Ep = valeur propre</span>
-  <span class="co"># M =  matrice de corrélation</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="op">(</span><span class="va">M</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/diag.html">diag</a></span><span class="op">(</span><span class="va">Ep</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">M</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="va">est</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-<span class="op">}</span>
-
-<span class="co"># Variable pour enregistre les résultats</span>
-<span class="va">V</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">S</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">S</span><span class="op">)</span><span class="op">)</span>
-
-<span class="co"># Boucle d'optimisation pour chaque</span>
-<span class="co"># valeur propre</span>
-<span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">E</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
-  <span class="va">V</span><span class="op">[</span>,<span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/stats/optim.html">optim</a></span><span class="op">(</span>par <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">S</span><span class="op">)</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span>,
-                      fn <span class="op">=</span> <span class="va">cherche.vecteur</span>,
-                      method <span class="op">=</span> <span class="st">"BFGS"</span>,
-                      Ep <span class="op">=</span> <span class="va">E</span><span class="op">[</span><span class="va">i</span><span class="op">]</span>, <span class="co"># valeur.prpore</span>
-                      M <span class="op">=</span> <span class="va">S</span><span class="op">)</span><span class="op">$</span><span class="va">par</span>
-  <span class="op">)</span>
-<span class="op">}</span>
-
-<span class="co"># Normaliser les vecteurs</span>
-<span class="va">V</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">V</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colSums.html">colSums</a></span><span class="op">(</span><span class="va">V</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Fonction à optimiser</span></span>
+<span><span class="va">cherche.vecteur</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">est</span>, <span class="va">Ep</span>, <span class="va">M</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="co"># est = estimateur</span></span>
+<span>  <span class="co"># Ep = valeur propre</span></span>
+<span>  <span class="co"># M =  matrice de corrélation</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="op">(</span><span class="va">M</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/diag.html">diag</a></span><span class="op">(</span><span class="va">Ep</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">M</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="va">est</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="co"># Variable pour enregistre les résultats</span></span>
+<span><span class="va">V</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">S</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">S</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Boucle d'optimisation pour chaque</span></span>
+<span><span class="co"># valeur propre</span></span>
+<span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">E</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">V</span><span class="op">[</span>,<span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/stats/optim.html">optim</a></span><span class="op">(</span>par <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">S</span><span class="op">)</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span>,</span>
+<span>                      fn <span class="op">=</span> <span class="va">cherche.vecteur</span>,</span>
+<span>                      method <span class="op">=</span> <span class="st">"BFGS"</span>,</span>
+<span>                      Ep <span class="op">=</span> <span class="va">E</span><span class="op">[</span><span class="va">i</span><span class="op">]</span>, <span class="co"># valeur.prpore</span></span>
+<span>                      M <span class="op">=</span> <span class="va">S</span><span class="op">)</span><span class="op">$</span><span class="va">par</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="co"># Normaliser les vecteurs</span></span>
+<span><span class="va">V</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">V</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colSums.html">colSums</a></span><span class="op">(</span><span class="va">V</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Il suffit maintenant de jumeler la syntaxe pour trouver les valeur propre et celle ci-haut pour créer sa propre fonction d’analyse en composantes principales.</p>
 <div class="sourceCode" id="cb219"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">acp.maison</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">S</span><span class="op">)</span><span class="op">{</span>
-  <span class="co"># Trouver les coefficients polynomiaux</span>
-<span class="va">coef.poly</span> <span class="op">&lt;-</span> <span class="fu">pracma</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pracma/man/charpoly.html">charpoly</a></span><span class="op">(</span><span class="va">S</span><span class="op">)</span>
-
-<span class="co"># Inverser l'ordre</span>
-<span class="va">coef.poly</span> <span class="op">&lt;-</span> <span class="va">coef.poly</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">coef.poly</span><span class="op">)</span><span class="op">:</span><span class="fl">1</span><span class="op">]</span>
-
-<span class="co"># Trouver les valeurs à 0 (valeurs propres, E)</span>
-<span class="va">E</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/complex.html">Re</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/polyroot.html">polyroot</a></span><span class="op">(</span><span class="va">coef.poly</span><span class="op">)</span><span class="op">)</span>
-
-<span class="co"># Mettre en ordre décroissant</span>
-<span class="va">E</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="va">E</span>, decreasing <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-
-<span class="co"># Fonction à optimiser</span>
-<span class="va">cherche.vecteur</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">est</span>, <span class="va">Ep</span>, <span class="va">M</span><span class="op">)</span> <span class="op">{</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="op">(</span><span class="va">M</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/diag.html">diag</a></span><span class="op">(</span><span class="va">Ep</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">S</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="va">est</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-<span class="op">}</span>
-
-<span class="co"># Variable pour enregistre les vecteurs propres</span>
-<span class="va">V</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">S</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">S</span><span class="op">)</span><span class="op">)</span>
-
-<span class="co"># Boucle d'optimisation pour chaque</span>
-<span class="co"># valeur propre</span>
-<span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">E</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
-  <span class="va">V</span><span class="op">[</span>,<span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/stats/optim.html">optim</a></span><span class="op">(</span>par <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">S</span><span class="op">)</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span>,
-                      fn <span class="op">=</span> <span class="va">cherche.vecteur</span>,
-                      method <span class="op">=</span> <span class="st">"BFGS"</span>,
-                      Ep <span class="op">=</span> <span class="va">E</span><span class="op">[</span><span class="va">i</span><span class="op">]</span>, 
-                      M <span class="op">=</span> <span class="va">S</span><span class="op">)</span><span class="op">$</span><span class="va">par</span>
-  <span class="op">)</span>
-<span class="op">}</span>
-
-<span class="co"># Normaliser les vecteurs</span>
-<span class="va">V</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">V</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colSums.html">colSums</a></span><span class="op">(</span><span class="va">V</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-
-<span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>valeur.propre <span class="op">=</span> <span class="va">E</span>, 
-            vecteur.propre <span class="op">=</span> <span class="va">V</span><span class="op">)</span><span class="op">)</span>
-
-<span class="op">}</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">acp.maison</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">S</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="co"># Trouver les coefficients polynomiaux</span></span>
+<span><span class="va">coef.poly</span> <span class="op">&lt;-</span> <span class="fu">pracma</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pracma/man/charpoly.html">charpoly</a></span><span class="op">(</span><span class="va">S</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Inverser l'ordre</span></span>
+<span><span class="va">coef.poly</span> <span class="op">&lt;-</span> <span class="va">coef.poly</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">coef.poly</span><span class="op">)</span><span class="op">:</span><span class="fl">1</span><span class="op">]</span></span>
+<span></span>
+<span><span class="co"># Trouver les valeurs à 0 (valeurs propres, E)</span></span>
+<span><span class="va">E</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/complex.html">Re</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/polyroot.html">polyroot</a></span><span class="op">(</span><span class="va">coef.poly</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Mettre en ordre décroissant</span></span>
+<span><span class="va">E</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="va">E</span>, decreasing <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Fonction à optimiser</span></span>
+<span><span class="va">cherche.vecteur</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">est</span>, <span class="va">Ep</span>, <span class="va">M</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="op">(</span><span class="va">M</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/diag.html">diag</a></span><span class="op">(</span><span class="va">Ep</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">S</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="va">est</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="co"># Variable pour enregistre les vecteurs propres</span></span>
+<span><span class="va">V</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">S</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">S</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Boucle d'optimisation pour chaque</span></span>
+<span><span class="co"># valeur propre</span></span>
+<span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">E</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">V</span><span class="op">[</span>,<span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/stats/optim.html">optim</a></span><span class="op">(</span>par <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">S</span><span class="op">)</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span>,</span>
+<span>                      fn <span class="op">=</span> <span class="va">cherche.vecteur</span>,</span>
+<span>                      method <span class="op">=</span> <span class="st">"BFGS"</span>,</span>
+<span>                      Ep <span class="op">=</span> <span class="va">E</span><span class="op">[</span><span class="va">i</span><span class="op">]</span>, </span>
+<span>                      M <span class="op">=</span> <span class="va">S</span><span class="op">)</span><span class="op">$</span><span class="va">par</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="co"># Normaliser les vecteurs</span></span>
+<span><span class="va">V</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">V</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colSums.html">colSums</a></span><span class="op">(</span><span class="va">V</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>valeur.propre <span class="op">=</span> <span class="va">E</span>, </span>
+<span>            vecteur.propre <span class="op">=</span> <span class="va">V</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="op">}</span></span></code></pre></div>
 <p>Pour terminer, la fonction est mis à l’épreuve.</p>
 <div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="d%C3%A9composer.html#cb220-1" aria-hidden="true" tabindex="-1"></a><span class="fu">acp.maison</span>(S)</span>
 <span id="cb220-2"><a href="d%C3%A9composer.html#cb220-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="er">$</span>valeur.propre</span>
@@ -602,7 +602,7 @@ Les résultats sont reproduits.</p>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-10-27.</p>
+    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-12-06.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

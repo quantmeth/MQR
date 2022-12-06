@@ -17,7 +17,7 @@
 <meta name="twitter:description" content="En plus des relations linéaires, c’est-à-dire des effets selon lesquels plus une variable (ou diminue) plus une seconde variables augmente (ou diminue), il existe des variables qui interagissent...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.0/transition.js"></script><script src="libs/bs3compat-0.4.0/tabs.js"></script><script src="libs/bs3compat-0.4.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 <!-- 
     \(
@@ -113,14 +113,13 @@
 <h1>
 <span class="header-section-number"> 14</span> Modérer<a class="anchor" aria-label="anchor" href="#mod%C3%A9rer"><i class="fas fa-link"></i></a>
 </h1>
-<p>En plus des relations linéaires, c’est-à-dire des effets selon lesquels plus une variable (ou diminue) plus une seconde variables augmente (ou diminue), il existe des variables qui interagissent de sorte à accentuer ou amenuiser la force d’un effet, voire même à altérer sa direction. Ce type d’effet, appelée modérateur, est analysé à l’aide d’analyse de modération, analyse statistique très populaire dans laquelle la relation entre la variable dépendante (<span class="math inline">\(y\)</span>) et la variable indépendante (<span class="math inline">\(x\)</span>) est altérée par une tierce variable, la variable modératrice (<span class="math inline">\(w\)</span>).</p>
-<p>Bien que la modération ait son chapitre désigné, elle a déjà été rencontrée dans ce livre, notamment, au chapitre <a href="pr%C3%A9dire.html#pr%C3%A9dire">Prédire</a>. L’analyse de modération dans son essence correspond à étudier un effet d’interaction dans un modèle linaire, ou autrement dit, la multiplication entre deux variables, ici <span class="math inline">\(x \times w\)</span>. Ainsi, en recourant aux fonctions <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> ou <code><a href="https://rdrr.io/r/stats/aov.html">aov()</a></code>, la modération se commande en employant le symbole <code>*</code> comme <code>lm(y ~ x * w)</code> ou <code>aov(y ~ x * w)</code>. Toutefois, ayant ses défis qui lui sont propres en création de données et en interprétation, le chapitre suivant propose une description de l’analyse de modération<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;La section est partiellement basée sur &lt;span class="citation"&gt;Caron et al. (&lt;a href="r%C3%A9f%C3%A9rences.html#ref-Caron20" role="doc-biblioref"&gt;2020&lt;/a&gt;)&lt;/span&gt;.&lt;/p&gt;'><sup>18</sup></a>.</p>
+<p>En plus des relations linéaires, c’est-à-dire des effets selon lesquels plus une variable (ou diminue) plus une seconde variables augmente (ou diminue), il existe des variables qui interagissent de sorte à accentuer ou amenuiser la force d’un effet, voire même à altérer sa direction. Ce type d’effet, appelée modérateur, est analysé à l’aide d’analyse de modération, analyse statistique très populaire dans laquelle la relation entre la variable dépendante (<span class="math inline">\(y\)</span>) et la variable indépendante (<span class="math inline">\(x\)</span>) est altérée par une tierce variable, la variable modératrice (<span class="math inline">\(w\)</span>).
+Bien que la modération ait son chapitre désigné, elle a déjà été rencontrée dans ce livre, notamment, au chapitre <a href="pr%C3%A9dire.html#pr%C3%A9dire">Prédire</a>. L’analyse de modération dans son essence correspond à étudier un effet d’interaction dans un modèle linaire, ou autrement dit, la multiplication entre deux variables, ici <span class="math inline">\(x \times w\)</span>. Ainsi, en recourant aux fonctions <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> ou <code><a href="https://rdrr.io/r/stats/aov.html">aov()</a></code>, la modération se commande en employant le symbole <code>*</code> comme <code>lm(y ~ x * w)</code> ou <code>aov(y ~ x * w)</code>. Toutefois, ayant ses défis qui lui sont propres en création de données et en interprétation, le chapitre suivant propose une description approfondie de la modération<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;La section est partiellement basée sur &lt;span class="citation"&gt;Caron et al. (&lt;a href="r%C3%A9f%C3%A9rences.html#ref-Caron20" role="doc-biblioref"&gt;2020&lt;/a&gt;)&lt;/span&gt;.&lt;/p&gt;'><sup>17</sup></a>.</p>
 <div id="lanalyse-de-modération" class="section level2" number="14.1">
 <h2>
 <span class="header-section-number">14.1</span> L’analyse de modération<a class="anchor" aria-label="anchor" href="#lanalyse-de-mod%C3%A9ration"><i class="fas fa-link"></i></a>
 </h2>
-<p>Sur le plan quantitatif, l’analyse de modération est un modèle linéaire général réalisé en une seule étape (soit une analyse de la variance ou une régression, en fonction des variables concernées) dans laquelle une variable dépendante, <span class="math inline">\(y\)</span>, est prédite par trois variables, la variable variable indépendante, <span class="math inline">\(x\)</span>, l’effet simple se la variable modératrice, <span class="math inline">\(w\)</span>, et leur produit <span class="math inline">\(x \times w=xw\)</span>. En termes d’analyse de la variance,
-le produit <span class="math inline">\(xw\)</span> est une interaction. En d’autres termes, dans un le modèle linéaire général (ANOVA, régression), un modérateur se subsume à une interaction. Mathématiquement, la relation s’exprime comme l’équation <a href="mod%C3%A9rer.html#eq:moderation">(14.1)</a></p>
+<p>Sur le plan quantitatif, l’analyse de modération est un modèle linéaire général réalisé en une seule étape (soit une analyse de la variance ou une régression, en fonction des variables concernées) dans laquelle une variable dépendante, <span class="math inline">\(y\)</span>, est prédite par trois variables, la variable variable indépendante, <span class="math inline">\(x\)</span>, l’effet simple se la variable modératrice, <span class="math inline">\(w\)</span>, et leur produit <span class="math inline">\(x \times w=xw\)</span>. En termes du modèle linéaire général (ANOVA, régression), un modérateur se subsume à une interaction. Mathématiquement, la relation s’exprime comme l’équation <a href="mod%C3%A9rer.html#eq:moderation">(14.1)</a></p>
 <p><span class="math display" id="eq:moderation">\[\begin{equation}
 y = \beta_0 + \beta_1 x + \beta_2 w + \beta_3 (x \times w) + \epsilon
 \tag{14.1}
@@ -138,13 +137,14 @@ Figure 14.1: Représentations de la modération
 y = \beta_0 + \beta_1 x + (\beta_2 + \beta_3 x) w + \epsilon
 \tag{14.2}
 \end{equation}\]</span></p>
+<p>L’équation <a href="mod%C3%A9rer.html#eq:moderation2">(14.2)</a> montre comment <span class="math inline">\(\beta_3\)</span> altère la relation entre <span class="math inline">\(w\)</span> et <span class="math inline">\(y\)</span>.</p>
 </div>
 <div id="création-de-données" class="section level2" number="14.2">
 <h2>
 <span class="header-section-number">14.2</span> Création de données<a class="anchor" aria-label="anchor" href="#cr%C3%A9ation-de-donn%C3%A9es"><i class="fas fa-link"></i></a>
 </h2>
-<p>Une caractéristique fondamentale de la création d’interactions est qu’elles doivent être créées à partir de ces composantes. Autrement dit, le produit <span class="math inline">\(xw\)</span> comme variable n’est calculable que si <span class="math inline">\(x\)</span> ou <span class="math inline">\(w\)</span> sont d’abord créées. Il faut connaître deux des trois variables pour calculer la troisième. En conséquence, il n’est pas possible de créer des variables d’interaction, comme c’était le cas auparavant avec la fonction <code>MASS::mvrnorn()</code>, malgré que la matrice de covariance et les coefficients de régression soient calculables a priori.</p>
-<p>La variance du produit de deux variables peut devenir rapidement compliqué. En fait, l’étude des produits de variables est si complexe, particulièrement lorsque les variables ont des moyennes non nulles qu’il n’y a eu que très dernièrement des développements mathématiques sur leur distribution formelle <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-Cui" role="doc-biblioref">Cui et al., 2016</a>; <a href="r%C3%A9f%C3%A9rences.html#ref-Nadarajah" role="doc-biblioref">Nadarajah &amp; Pagány, 2016</a>)</span>, ce pourquoi les statisticiens préfèrent recourir à du bootstrap pour tester les effets médiateurs.</p>
+<p>Une caractéristique fondamentale de la création d’interactions est qu’elles doivent être créées à partir de ces composantes. Autrement dit, le produit <span class="math inline">\(xw\)</span> comme variable n’est calculable que si <span class="math inline">\(x\)</span> ou <span class="math inline">\(w\)</span> sont d’abord créées. Il faut connaître deux des trois variables pour calculer la troisième. En conséquence, il n’est pas possible de créer des variables d’interaction, comme c’était le cas auparavant avec la fonction <code><a href="https://rdrr.io/pkg/MASS/man/mvrnorm.html">MASS::mvrnorm()</a></code>, malgré que la matrice de covariance et les coefficients de régression soient calculables a priori.</p>
+<p>La variance du produit de deux variables peut devenir rapidement compliquée. En fait, l’étude des produits de variables est si complexe, particulièrement lorsque les variables ont des moyennes non nulles qu’il n’y a eu que très dernièrement des développements mathématiques sur leur distribution formelle <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-Cui" role="doc-biblioref">Cui et al., 2016</a>; <a href="r%C3%A9f%C3%A9rences.html#ref-Nadarajah" role="doc-biblioref">Nadarajah &amp; Pagány, 2016</a>)</span>, ce pourquoi les statisticiens préfèrent recourir généralement au bootstrap pour tester les effets médiateurs.</p>
 <p>La variance du produit de deux variables standardisées <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-Craig" role="doc-biblioref">Craig, 1936</a>; <a href="r%C3%A9f%C3%A9rences.html#ref-Haldane" role="doc-biblioref">Haldane, 1942</a>)</span> correspond à l’équation <a href="mod%C3%A9rer.html#eq:varprod">(14.3)</a>.</p>
 <p><span class="math display" id="eq:varprod">\[\begin{equation}
 \sigma^2_{x \times w} = 1 + \rho_{xw}^2
@@ -152,10 +152,10 @@ y = \beta_0 + \beta_1 x + (\beta_2 + \beta_3 x) w + \epsilon
 \end{equation}\]</span></p>
 <p>Pour des variables centrées (non complètement standardisées), l’équation <a href="mod%C3%A9rer.html#eq:varprod">(14.3)</a> devient l’équation <a href="mod%C3%A9rer.html#eq:prodvar">(14.4)</a> <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-Craig" role="doc-biblioref">Craig, 1936</a>; <a href="r%C3%A9f%C3%A9rences.html#ref-Haldane" role="doc-biblioref">Haldane, 1942</a>)</span>.</p>
 <p><span class="math display" id="eq:prodvar">\[\begin{equation}
-\begin{multiline}
-\sigma^2_{x \times w} = \mu_{x}\mu_{w}((\frac{\sigma_{x}}{\mu_{x}})^2+ \\ +
-2\rho_{xw}\frac{\sigma_{x}}{\mu_{x}}\frac{\sigma_{w}}{\mu_{w}} + \\ + (\frac{\sigma_{w}}{\mu_{w}})^2+(1+\rho^2)(\frac{\sigma_{x}}{\mu_{x}})^2(\frac{\sigma_{w}}{\mu_{w}})^2)
-\end{multiline}
+
+\sigma^2_{x \times w} = \mu_{x}\mu_{w}((\frac{\sigma_{x}}{\mu_{x}})^2+
+2\rho_{xw}\frac{\sigma_{x}}{\mu_{x}}\frac{\sigma_{w}}{\mu_{w}} + (\frac{\sigma_{w}}{\mu_{w}})^2+\\(1+\rho^2)(\frac{\sigma_{x}}{\mu_{x}})^2(\frac{\sigma_{w}}{\mu_{w}})^2)
+
 \tag{14.4}
 \end{equation}\]</span></p>
 <p>Celle-ci n’est pas des plus attrayante à l’oeil, surtout pour les arithmophobes. L’essentiel : il faut porter une attention particulière à la variance de <span class="math inline">\(xw\)</span> lorsque la variable <span class="math inline">\(y\)</span> est générée, car celle-ci est dépendante de la moyenne et de la variance de ces composantes.</p>
@@ -163,8 +163,8 @@ y = \beta_0 + \beta_1 x + (\beta_2 + \beta_3 x) w + \epsilon
 <h3>
 <span class="header-section-number">14.2.1</span> Un modérateur continu<a class="anchor" aria-label="anchor" href="#un-mod%C3%A9rateur-continu"><i class="fas fa-link"></i></a>
 </h3>
-<p>Dans le cas de deux variables continues (une variable indépendante <span class="math inline">\(x\)</span> et une modératrice <span class="math inline">\(w\)</span>), celles-ci peuvent être créées par système d’équations ou bien avec la matrice de covariance (des deux variables). Une fois <span class="math inline">\(x\)</span> et <span class="math inline">\(w\)</span> générées, il faut les multiplier pour obtenir <span class="math inline">\(xw\)</span>.</p>
-<p>La variance de <span class="math inline">\(xw\)</span> suit l’équation <a href="mod%C3%A9rer.html#eq:prodvar">(14.4)</a> et les covariances avec les premières variables sont nulles dans la mesure où c’est variable dont symétrique. (Si elles ne sont pas symétriques, il pourrait y avoir des corrélations causées par l’asymétrie). La matrice de covariance (et de corrélation dans ce cas-ci) est ainsi calculable a priori.</p>
+<p>Dans le cas de deux variables continues (une variable indépendante <span class="math inline">\(x\)</span> et une modératrice <span class="math inline">\(w\)</span>), celles-ci peuvent être créées par système d’équations ou bien avec la matrice de covariance (des deux variables). Une fois <span class="math inline">\(x\)</span> et <span class="math inline">\(w\)</span> générées, il faut les multiplier pour obtenir <span class="math inline">\(xw\)</span>. C’est l’étape cruciale qui distingue la modération des autres analyses, car les deux variables doivent créer avant de créer l’interaction.</p>
+<p>La variance de <span class="math inline">\(xw\)</span> suit l’équation <a href="mod%C3%A9rer.html#eq:prodvar">(14.4)</a> et les covariances avec les premières variables sont nulles dans la mesure où ces variables sont symétriques<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Si elles ne sont pas symétriques, il pourrait y avoir des corrélations causées par l’asymétrie&lt;/p&gt;"><sup>18</sup></a>. La matrice de covariance (et de corrélation dans ce cas-ci) est ainsi calculable a priori.</p>
 <p><span class="math display" id="eq:S1">\[\begin{equation}
 \mathbf{\Sigma} =
 \left( \begin{array}{ccc}
@@ -177,43 +177,43 @@ y = \beta_0 + \beta_1 x + (\beta_2 + \beta_3 x) w + \epsilon
 \end{equation}\]</span></p>
 <p>En spécifiant les coefficients de régression à l’avance avec <span class="math inline">\(\mathbf{B}\)</span>, la variance résiduelle de la variable dépendante peut être calculée comme l’équation <a href="cr%C3%A9er.html#eq:eq28">(12.20)</a> afin d’assurer un <a href="cr%C3%A9er.html#le-sc%C3%A9nario-standardis%C3%A9">scénario standardisé</a>, rappelée ici.</p>
 <p><span class="math display">\[
-\sigma^2_{\epsilon} = 1 - \mathbf {B \Sigma B}
+\sigma^2_{\epsilon} = 1 - \mathbf {B^{\prime} \Sigma B}
 \]</span></p>
 <div class="sourceCode" id="cb196"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Tailles d'échantillon</span>
-<span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">500</span>
-
-<span class="co"># Covariance entre x et w</span>
-<span class="va">rhoxw</span>  <span class="op">&lt;-</span>  <span class="fl">.5</span>    
-
-<span class="co"># Matrice de covariance a priori</span>
-<span class="va">S</span> <span class="op">&lt;-</span>  <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="va">rhoxw</span>, <span class="fl">0</span>,   
-               <span class="va">rhoxw</span>, <span class="fl">1</span>, <span class="fl">0</span>,
-               <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">1</span> <span class="op">+</span> <span class="va">rhoxw</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span>,
-             ncol <span class="op">=</span> <span class="fl">3</span>, nrow <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>
-
-<span class="co"># Coefficients de régression de x, w et xw</span>
-<span class="va">B</span> <span class="op">&lt;-</span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.1</span>, <span class="fl">.2</span>, <span class="fl">.3</span><span class="op">)</span>             
-
-<span class="co"># Création des deux premières variables</span>
-<span class="va">X</span> <span class="op">&lt;-</span>  <span class="fu">MASS</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/MASS/man/mvrnorm.html">mvrnorm</a></span><span class="op">(</span>n <span class="op">=</span> <span class="va">n</span>, mu <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>, Sigma <span class="op">=</span> <span class="va">S</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span>
-
-<span class="co"># Ajouter en joignant aux deux autres leur produit</span>
-<span class="va">X</span> <span class="op">&lt;-</span>  <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">X</span>, <span class="va">X</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span> <span class="op">*</span> <span class="va">X</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span><span class="op">)</span>
-
-<span class="co"># Calculer la variance résiduelle</span>
-<span class="va">var_ey</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="fl">1</span> <span class="op">-</span> <span class="va">B</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="va">S</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="va">B</span><span class="op">)</span>
-
-<span class="co"># Création de la variable dépendante</span>
-<span class="va">y</span> <span class="op">&lt;-</span>  <span class="va">X</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="va">B</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n <span class="op">=</span> <span class="va">n</span>, sd <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">var_ey</span><span class="op">)</span><span class="op">)</span>
-
-<span class="co"># Mettre le tout en commun et </span>
-<span class="co"># renommer les variables</span>
-<span class="va">jd.continue</span> <span class="op">&lt;-</span>  <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">X</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>,
-                           w <span class="op">=</span> <span class="va">X</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span>,
-                           xw <span class="op">=</span> <span class="va">X</span><span class="op">[</span>,<span class="fl">3</span><span class="op">]</span>,
-                           y <span class="op">=</span> <span class="va">y</span><span class="op">)</span></code></pre></div>
-<p>Le code ci-dessus montre un scénario standardisé (toutes les moyennes sont 0; toutes les variances égalent 1). Le modèle est illustré à la Figure <a href="mod%C3%A9rer.html#fig:ex1mod">14.2</a>.</p>
+<code class="sourceCode R"><span><span class="co"># Tailles d'échantillon</span></span>
+<span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">500</span></span>
+<span></span>
+<span><span class="co"># Covariance entre x et w</span></span>
+<span><span class="va">rhoxw</span>  <span class="op">&lt;-</span>  <span class="fl">.5</span>    </span>
+<span></span>
+<span><span class="co"># Matrice de covariance a priori</span></span>
+<span><span class="va">S</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="va">rhoxw</span>, <span class="fl">0</span>,   </span>
+<span>              <span class="va">rhoxw</span>, <span class="fl">1</span>, <span class="fl">0</span>,</span>
+<span>              <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">1</span> <span class="op">+</span> <span class="va">rhoxw</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span>,</span>
+<span>            ncol <span class="op">=</span> <span class="fl">3</span>, nrow <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Coefficients de régression de x, w et xw</span></span>
+<span><span class="va">B</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.1</span>, <span class="fl">.2</span>, <span class="fl">.3</span><span class="op">)</span>             </span>
+<span></span>
+<span><span class="co"># Création des deux premières variables</span></span>
+<span><span class="va">X</span> <span class="op">&lt;-</span> <span class="fu">MASS</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/MASS/man/mvrnorm.html">mvrnorm</a></span><span class="op">(</span>n <span class="op">=</span> <span class="va">n</span>, mu <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>, Sigma <span class="op">=</span> <span class="va">S</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Ajouter en joignant aux deux autres leur produit</span></span>
+<span><span class="va">X</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">X</span>, <span class="va">X</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span> <span class="op">*</span> <span class="va">X</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Calculer la variance résiduelle</span></span>
+<span><span class="va">var_ey</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="fl">1</span> <span class="op">-</span> <span class="va">B</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="va">S</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="va">B</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Création de la variable dépendante</span></span>
+<span><span class="va">y</span> <span class="op">&lt;-</span> <span class="va">X</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="va">B</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n <span class="op">=</span> <span class="va">n</span>, sd <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">var_ey</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Mettre le tout en commun et </span></span>
+<span><span class="co"># renommer les variables</span></span>
+<span><span class="va">jd.continue</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">X</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>,</span>
+<span>                          w <span class="op">=</span> <span class="va">X</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span>,</span>
+<span>                          xw <span class="op">=</span> <span class="va">X</span><span class="op">[</span>,<span class="fl">3</span><span class="op">]</span>,</span>
+<span>                          y <span class="op">=</span> <span class="va">y</span><span class="op">)</span></span></code></pre></div>
+<p>Le code ci-dessus montre un scénario standardisé (toutes les moyennes sont 0; toutes les variances égalent 1, sauf l’interaction). Le modèle est illustré à la Figure <a href="mod%C3%A9rer.html#fig:ex1mod">14.2</a>.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:ex1mod"></span>
 <img src="image/ex1mod.png" alt="Exemple de modèle de modération" width="75%" height="75%"><p class="caption">
@@ -222,8 +222,8 @@ Figure 14.2: Exemple de modèle de modération
 </div>
 <p>Pour simuler une étude réelle, la variable d’interaction n’a pas à être enregistrée dans les deux jeux de données. Elle n’était nécessaire que pour la création de la variable dépendante.</p>
 <div class="sourceCode" id="cb197"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Jeu de données final </span>
-<span class="va">jd.continue</span> <span class="op">&lt;-</span> <span class="va">jd.continue</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"x"</span>,<span class="st">"w"</span>,<span class="st">"y"</span><span class="op">)</span><span class="op">]</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Jeu de données final </span></span>
+<span><span class="va">jd.continue</span> <span class="op">&lt;-</span> <span class="va">jd.continue</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"x"</span>,<span class="st">"w"</span>,<span class="st">"y"</span><span class="op">)</span><span class="op">]</span></span></code></pre></div>
 </div>
 <div id="un-modérateur-nominal" class="section level3" number="14.2.2">
 <h3>
@@ -231,35 +231,35 @@ Figure 14.2: Exemple de modèle de modération
 </h3>
 <p>Pour créer un jeu de données avec une variable indépendante continue et une variable modératrice nominale, la procédure sera similaire à celle de <a href="analyser.html#lanalyse-de-variance-%C3%A0-un-facteur">l’analyse de variance</a> avec le <a href="analyser.html#codage-factice">Codage factice</a> en combinaison avec la technique décrite ci-haut.</p>
 <div class="sourceCode" id="cb198"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Pour la reproductibilité</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">50015610</span><span class="op">)</span>  
-
-<span class="co"># Tailles des trois groupes (pourraient être différents)</span>
-<span class="va">g1</span> <span class="op">&lt;-</span> <span class="va">g2</span> <span class="op">&lt;-</span> <span class="va">g3</span> <span class="op">&lt;-</span> <span class="fl">5000</span>
-
-<span class="co"># Nombre total d'unités (somme de tous les groupes)</span>
-<span class="va">n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">g1</span>, <span class="va">g2</span>, <span class="va">g3</span><span class="op">)</span><span class="op">)</span>
-
-<span class="co"># Création de variables</span>
-<span class="co"># Variable continue</span>
-<span class="va">x</span> <span class="op">&lt;-</span>  <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span>  <span class="co"># Variable continue</span>
-<span class="co"># Vecteur de groupement (facteur)</span>
-<span class="va">w</span> <span class="op">&lt;-</span>  <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="va">g1</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">2</span>, <span class="va">g2</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">3</span>, <span class="va">g3</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-
-
-<span class="co"># Codage factice du groupement</span>
-<span class="co"># Le troisième groupe (retiré) est le référent</span>
-<span class="va">W</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">w</span><span class="op">)</span>,
-            USE.NAMES <span class="op">=</span> <span class="cn">TRUE</span>,
-            FUN <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span><span class="va">w</span> <span class="op">==</span> <span class="va">x</span><span class="op">}</span><span class="op">)</span> <span class="op">*</span> <span class="fl">1</span> 
-<span class="va">W</span> <span class="op">&lt;-</span> <span class="va">W</span><span class="op">[</span>,<span class="op">-</span><span class="fl">3</span><span class="op">]</span>
-
-<span class="co"># Mettre tous les prédicteurs ensemble </span>
-<span class="co"># pour le modèle linéaire sous forme de matrice</span>
-<span class="va">X</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>,
-          w <span class="op">=</span> <span class="va">W</span>,
-          xw <span class="op">=</span> <span class="va">x</span> <span class="op">*</span> <span class="va">W</span><span class="op">)</span></code></pre></div>
-<p>En considérant <span class="math inline">\(p_i = \frac{g_i}{n}\)</span> comme la probabilité d’une unité d’être dans le groupe <span class="math inline">\(i\)</span>, la variance d’un groupe représenté par <span class="math inline">\(w_i\)</span> est de <span class="math inline">\(p_i(1-p_i)\)</span>, soit la variance d’une distribution binomiale pour une probabilité <span class="math inline">\(p\)</span>. La covariance avec un autre groupe <span class="math inline">\(j\)</span> est de <span class="math inline">\(-p_ip_h\)</span>, soit que la probabilité d’être dans un groupe est négativement liée à celle d’être dans un autre groupe. Enfin, la variance d’une interaction est de <span class="math inline">\(p_i\)</span>, car il s’agit du pourcentage de <span class="math inline">\(x\)</span> qui se retrouve dans l’interaction <span class="math inline">\(xw_i\)</span>. En conséquence, comme il s’agit de la même information (à cause du multiple de 1 de la variable <span class="math inline">\(w_i\)</span>, c’est-dire appartenir au groupe <span class="math inline">\(i\)</span>), cela mère une covariance accidentelle de <span class="math inline">\(p_i\)</span> entre <span class="math inline">\(x\)</span> et <span class="math inline">\(w_i\)</span>.</p>
+<code class="sourceCode R"><span><span class="co"># Pour la reproductibilité</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">50015610</span><span class="op">)</span>  </span>
+<span></span>
+<span><span class="co"># Tailles des trois groupes (pourraient être différentes)</span></span>
+<span><span class="va">g1</span> <span class="op">&lt;-</span> <span class="va">g2</span> <span class="op">&lt;-</span> <span class="va">g3</span> <span class="op">&lt;-</span> <span class="fl">5000</span></span>
+<span></span>
+<span><span class="co"># Nombre total d'unités (somme de tous les groupes)</span></span>
+<span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">g1</span>, <span class="va">g2</span>, <span class="va">g3</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Création de variables</span></span>
+<span><span class="co"># Variable continue</span></span>
+<span><span class="va">x</span> <span class="op">&lt;-</span>  <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span>  <span class="co"># Variable continue</span></span>
+<span><span class="co"># Vecteur de groupement (facteur)</span></span>
+<span><span class="va">w</span> <span class="op">&lt;-</span>  <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="va">g1</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">2</span>, <span class="va">g2</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">3</span>, <span class="va">g3</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span></span>
+<span><span class="co"># Codage factice du groupement</span></span>
+<span><span class="co"># Le troisième groupe (retiré) est le référent</span></span>
+<span><span class="va">W</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">w</span><span class="op">)</span>,</span>
+<span>            USE.NAMES <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>            FUN <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span><span class="va">w</span> <span class="op">==</span> <span class="va">x</span><span class="op">}</span><span class="op">)</span> <span class="op">*</span> <span class="fl">1</span> </span>
+<span><span class="va">W</span> <span class="op">&lt;-</span> <span class="va">W</span><span class="op">[</span>,<span class="op">-</span><span class="fl">3</span><span class="op">]</span></span>
+<span></span>
+<span><span class="co"># Mettre tous les prédicteurs ensemble </span></span>
+<span><span class="co"># pour le modèle linéaire sous forme de matrice</span></span>
+<span><span class="va">X</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>,</span>
+<span>          w <span class="op">=</span> <span class="va">W</span>,</span>
+<span>          xw <span class="op">=</span> <span class="va">x</span> <span class="op">*</span> <span class="va">W</span><span class="op">)</span></span></code></pre></div>
+<p>En considérant <span class="math inline">\(p_i = \frac{g_i}{n}\)</span> comme la probabilité d’une unité d’être dans le groupe <span class="math inline">\(i\)</span>, la variance d’un groupe, représentée par <span class="math inline">\(w_i\)</span>, est <span class="math inline">\(p_i(1-p_i)\)</span>, soit la variance d’une distribution binomiale pour une probabilité <span class="math inline">\(p_i\)</span>. La covariance avec un autre groupe <span class="math inline">\(j\)</span> est de <span class="math inline">\(-p_ip_j\)</span>, la probabilité d’être dans un groupe est négativement liée à celle d’être dans un autre groupe. Enfin, la variance d’une interaction est de <span class="math inline">\(p_i\)</span>, car il s’agit du pourcentage de <span class="math inline">\(x\)</span> qui se retrouve dans l’interaction <span class="math inline">\(xw_i\)</span>. En conséquence, comme il s’agit de la même information (à cause du multiple de 1 de la variable <span class="math inline">\(w_i\)</span>, c’est-dire appartenir au groupe <span class="math inline">\(i\)</span>), cela mène une covariance accidentelle de <span class="math inline">\(p_i\)</span> entre <span class="math inline">\(x\)</span> et <span class="math inline">\(w_i\)</span>.</p>
 <div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="mod%C3%A9rer.html#cb199-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> g1<span class="sc">/</span>n</span>
 <span id="cb199-2"><a href="mod%C3%A9rer.html#cb199-2" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> g2<span class="sc">/</span>n</span>
 <span id="cb199-3"><a href="mod%C3%A9rer.html#cb199-3" aria-hidden="true" tabindex="-1"></a>S <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, p1, p2,</span>
@@ -285,14 +285,14 @@ Figure 14.2: Exemple de modèle de modération
 <span id="cb199-23"><a href="mod%C3%A9rer.html#cb199-23" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>    <span class="fl">0.32067</span>  <span class="fl">0.00121</span> <span class="sc">-</span><span class="fl">0.00243</span> <span class="sc">-</span><span class="fl">3.39e-05</span>  <span class="fl">3.21e-01</span></span></code></pre></div>
 <p>Toutefois, il sera plus simple de standardiser <code>W</code> avant de créer les interactions, ce qui éliminera les covariances accidentelles.</p>
 <div class="sourceCode" id="cb200"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Standardiser les codes factices</span>
-<span class="va">W</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span><span class="va">W</span>, MARGIN <span class="op">=</span> <span class="fl">2</span>, FUN <span class="op">=</span> <span class="va">scale</span><span class="op">)</span>
-
-<span class="co"># Mettre tous les prédicteurs ensemble </span>
-<span class="co"># pour le modèle linéaire sous forme de matrice</span>
-<span class="va">X2</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>,
-           w <span class="op">=</span> <span class="va">W</span>,
-           xw <span class="op">=</span> <span class="va">x</span><span class="op">*</span><span class="va">W</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Standardiser les codes factices</span></span>
+<span><span class="va">W</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span><span class="va">W</span>, MARGIN <span class="op">=</span> <span class="fl">2</span>, FUN <span class="op">=</span> <span class="va">scale</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Mettre tous les prédicteurs ensemble </span></span>
+<span><span class="co"># pour le modèle linéaire sous forme de matrice</span></span>
+<span><span class="va">X2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>,</span>
+<span>            w <span class="op">=</span> <span class="va">W</span>,</span>
+<span>            xw <span class="op">=</span> <span class="va">x</span> <span class="op">*</span> <span class="va">W</span><span class="op">)</span></span></code></pre></div>
 <p>Alors la covariance entre <span class="math inline">\(w_i\)</span> et <span class="math inline">\(w_j\)</span> et la covariance entre <span class="math inline">\(xw_i\)</span> et <span class="math inline">\(xw_j\)</span> deviennent
 <span class="math display">\[p_1 p_2 / \sqrt{p_1(1 - p_1) p_2 (1 - p_2)}\]</span>
 soit leur covariance originale divisée par leur écart type. Tous les autres valeurs deviennent 1 dans le cas des variances et 0 pour les covariances.</p>
@@ -323,32 +323,32 @@ soit leur covariance originale divisée par leur écart type. Tous les autres va
 <span id="cb201-25"><a href="mod%C3%A9rer.html#cb201-25" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>   <span class="sc">-</span><span class="fl">0.01736</span> <span class="sc">-</span><span class="fl">0.0174</span>  <span class="fl">0.01601</span>  <span class="fl">0.9666</span> <span class="sc">-</span><span class="fl">0.46885</span></span>
 <span id="cb201-26"><a href="mod%C3%A9rer.html#cb201-26" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>   <span class="sc">-</span><span class="fl">0.01201</span>  <span class="fl">0.0160</span> <span class="sc">-</span><span class="fl">0.00887</span> <span class="sc">-</span><span class="fl">0.4689</span>  <span class="fl">0.97049</span></span></code></pre></div>
 <p>Il est possible d’ajouter des corrélations entre une variable continue et les groupes, mais cela déborde du cadre de ce livre et des connaissances détaillées jusqu’ici. Mais, c’est possible!</p>
-<p>Maintenant, il reste à créer la variable dépendante. Pour ce faire, il faut spécifier cinq coefficients de régressions, car une variable continue avec deux variables modératrices (facteur transformé en <a href="analyser.html#codage-factice">codage factice</a>) donnent deux variables d’interaction.</p>
+<p>Maintenant, il reste à créer la variable dépendante. Pour ce faire, il faut spécifier cinq coefficients de régressions, car une variable continue avec deux variables modératrices (facteurs transformés par le <a href="analyser.html#codage-factice">codage factice</a>) donnent deux variables d’interaction.</p>
 <div class="sourceCode" id="cb202"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Les coefficients de régression</span>
-<span class="va">B</span> <span class="op">&lt;-</span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.25</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">.50</span>, <span class="op">-</span><span class="fl">.50</span><span class="op">)</span>
-
-<span class="co"># La variance résiduelle</span>
-<span class="co"># La deuxième matrice de covariance est utilisée</span>
-<span class="va">var_ey</span> <span class="op">&lt;-</span> <span class="fl">1</span> <span class="op">-</span> <span class="va">B</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="va">S2</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="va">B</span>  
-
-<span class="co"># Création de la variable dépendante</span>
-<span class="va">y</span> <span class="op">&lt;-</span> <span class="va">X2</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="va">B</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n <span class="op">=</span> <span class="va">n</span>, sd <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">var_ey</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Les coefficients de régression</span></span>
+<span><span class="va">B</span> <span class="op">&lt;-</span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.25</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">.50</span>, <span class="op">-</span><span class="fl">.50</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># La variance résiduelle</span></span>
+<span><span class="co"># La deuxième matrice de covariance est utilisée</span></span>
+<span><span class="va">var_ey</span> <span class="op">&lt;-</span> <span class="fl">1</span> <span class="op">-</span> <span class="va">B</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="va">S2</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="va">B</span>  </span>
+<span></span>
+<span><span class="co"># Création de la variable dépendante</span></span>
+<span><span class="va">y</span> <span class="op">&lt;-</span> <span class="va">X2</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="va">B</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n <span class="op">=</span> <span class="va">n</span>, sd <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">var_ey</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Pour simuler une étude réelle, les variables d’interactions et le codage factices peuvent être écartés du jeu de données. Ces variables ne sont nécessaires que pour la création de la variable dépendante.</p>
 <div class="sourceCode" id="cb203"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Jeu de données final </span>
-<span class="va">jd.nominale</span> <span class="op">&lt;-</span>  <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>,
-                           w <span class="op">=</span> <span class="va">w</span>,
-                           y <span class="op">=</span> <span class="va">y</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Jeu de données final </span></span>
+<span><span class="va">jd.nominale</span> <span class="op">&lt;-</span>  <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>,</span>
+<span>                           w <span class="op">=</span> <span class="va">w</span>,</span>
+<span>                           y <span class="op">=</span> <span class="va">y</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
 <div id="détecter-leffet-de-modération" class="section level2" number="14.3">
 <h2>
 <span class="header-section-number">14.3</span> Détecter l’effet de modération<a class="anchor" aria-label="anchor" href="#d%C3%A9tecter-leffet-de-mod%C3%A9ration"><i class="fas fa-link"></i></a>
 </h2>
-<p>Pour détecter les effets modérateurs, l’analyse de modèle linéaire par <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> et <code><a href="https://rdrr.io/r/stats/aov.html">aov()</a></code> joueront parfaitement le rôle. Par contre, il faut noter une différence <strong>cruciale</strong> entre les deux fonctions. Le calcul de la somme des carrés est différent entre les deux : <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> utilise le type III et <code><a href="https://rdrr.io/r/stats/aov.html">aov()</a></code> utilise le type I.</p>
-<p>Le choix du type porte à controverse. Pour choisir le type d’estimateur, de nombreux facteurs entrent en ligne de compte, le plus important étant l’hypothèse de recherche. Il n’y a donc pas de réponse claire; il y a bien quelques recommandations.</p>
-<p>Le type I teste séquentiellement le modèle <span class="math inline">\(y = x + w + xw\)</span>, soit l’effet de <span class="math inline">\(x\)</span>, puis l’effet de <span class="math inline">\(w\)</span> en tenant compte de <span class="math inline">\(x\)</span> (écrit <span class="math inline">\(\text{SC}(w|x)\)</span>, soit la somme des carrés de <span class="math inline">\(w\)</span> considérant <span class="math inline">\(x\)</span>), et enfin l’effet de <span class="math inline">\(x\times w\)</span> par <span class="math inline">\(\text{SC}(xw|x,w)\)</span>. Il teste très bien les termes d’interaction, en plus, d’offrir un modèle alternatif si l’interaction n’est pas significative. Le type I ne traite pas les effets simples de façon égale (l’ordre importe!). Le type II contourne le traitement différentiel des effets simples en considérant simultanément des effets de même niveau, comme <span class="math inline">\(\text{SC}(w|x)\)</span> et <span class="math inline">\(\text{SC}(x|w)\)</span>, ce qui est très bien pour tester les effets simples s’il n’y a pas de terme d’interaction. Le type III conditionne tous les effets, <span class="math inline">\(x\)</span>, <span class="math inline">\(w\)</span> et <span class="math inline">\(xw\)</span>, au même niveau, soit <span class="math inline">\(\text{SC}(x|w,xw)\)</span>, <span class="math inline">\(\text{SC}(w|x,xw)\)</span> et <span class="math inline">\(\text{SC}(xw|x,w)\)</span>. Tous les effets sont traités de façon équivalente. Le type IV, pour le mentionner, permet de tenir compte de combinaison de groupes nulle (ou vide). Il est équivalent au type III s’il y a au moins une valeur dans chaque groupe.</p>
+<p>Pour détecter les effets modérateurs, l’analyse de modèle linéaire par <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> et <code><a href="https://rdrr.io/r/stats/aov.html">aov()</a></code> joueront parfaitement le rôle. Par contre, il faut noter une différence <strong>cruciale</strong> entre les deux fonctions. Le calcul de la somme des carrés est différent entre les deux : <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> utilise le type III et <code><a href="https://rdrr.io/r/stats/aov.html">aov()</a></code> utilise le type I.</p>
+<p>Le choix du type porte à controverse <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-Herr86" role="doc-biblioref">Herr, 1986</a>)</span>. Pour choisir le type d’estimateur, de nombreux facteurs entrent en ligne de compte, le plus important étant l’hypothèse de recherche. Il n’y a donc pas de réponse claire; il y a bien quelques recommandations.</p>
+<p>Le type I teste séquentiellement le modèle <span class="math inline">\(y = x + w + xw\)</span>, soit l’effet de <span class="math inline">\(x\)</span>, puis l’effet de <span class="math inline">\(w\)</span> en tenant compte de <span class="math inline">\(x\)</span> (écrit <span class="math inline">\(\text{SC}(w|x)\)</span>, soit la somme des carrés de <span class="math inline">\(w\)</span> considérant <span class="math inline">\(x\)</span>), et enfin l’effet de <span class="math inline">\(x\times w\)</span> par <span class="math inline">\(\text{SC}(xw|x,w)\)</span>. Il teste très bien les termes d’interaction, en plus, d’offrir un modèle alternatif si l’interaction n’est pas significative. Le type I ne traite pas les effets simples de façon égale. L’ordre importe!. Le type II contourne le traitement différentiel des effets simples en considérant simultanément des effets de même niveau, comme <span class="math inline">\(\text{SC}(w|x)\)</span> et <span class="math inline">\(\text{SC}(x|w)\)</span>, ce qui est très bien pour tester les effets simples s’il n’y a pas de terme d’interaction. Le type III conditionne tous les effets, <span class="math inline">\(x\)</span>, <span class="math inline">\(w\)</span> et <span class="math inline">\(xw\)</span>, au même niveau, soit <span class="math inline">\(\text{SC}(x|w,xw)\)</span>, <span class="math inline">\(\text{SC}(w|x,xw)\)</span> et <span class="math inline">\(\text{SC}(xw|x,w)\)</span>. Tous les effets sont traités de façon équivalente. Le type IV, pour le mentionner, permet de tenir compte de combinaison de groupes nulle (ou vide). Il est équivalent au type III s’il y a au moins une valeur dans chaque groupe.</p>
 <p>La controverse provient du fait que les hypothèses concernées ne sont pas très utiles pour les expérimentateurs puisqu’ils s’intéressent au terme d’interaction, et non aux effets principaux lorsqu’un terme d’interaction est présent. L’avantage du type I est de montrer les modèles possibles de façon hiérarchique, ce que ne fait pas le type III. Le type I oblige de la réflexion : la séquence des variables d’une part, mais aussi l’analyse des résultats hypothèses séquentielles.</p>
 <p>S’il y a un effet d’interaction, alors les effets simples ne sont pas interprétés. Le type III est alors inutiles pour interpréter ces effets.</p>
 <p>Les programmeurs de <strong>R</strong> championnent cette perspective en définissant l’option de type de sommes de carrés par défaut pour les fonctions <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> et <code><a href="https://rdrr.io/r/stats/aov.html">aov()</a></code>. Ils y vont de mots très durs à l’endroit des logiciels qui recourent automatiquement au type III.</p>
@@ -368,21 +368,21 @@ soit leur covariance originale divisée par leur écart type. Tous les autres va
 <span id="cb204-7"><a href="mod%C3%A9rer.html#cb204-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
 <span id="cb204-8"><a href="mod%C3%A9rer.html#cb204-8" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Residuals<span class="sc">:</span></span>
 <span id="cb204-9"><a href="mod%C3%A9rer.html#cb204-9" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span>     Min      1Q  Median      3Q     Max </span>
-<span id="cb204-10"><a href="mod%C3%A9rer.html#cb204-10" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="sc">-</span><span class="fl">2.6213</span> <span class="sc">-</span><span class="fl">0.5394</span>  <span class="fl">0.0443</span>  <span class="fl">0.5886</span>  <span class="fl">3.0658</span> </span>
+<span id="cb204-10"><a href="mod%C3%A9rer.html#cb204-10" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="sc">-</span><span class="fl">3.0763</span> <span class="sc">-</span><span class="fl">0.6624</span>  <span class="fl">0.0439</span>  <span class="fl">0.6712</span>  <span class="fl">2.7483</span> </span>
 <span id="cb204-11"><a href="mod%C3%A9rer.html#cb204-11" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
 <span id="cb204-12"><a href="mod%C3%A9rer.html#cb204-12" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Coefficients<span class="sc">:</span></span>
 <span id="cb204-13"><a href="mod%C3%A9rer.html#cb204-13" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span>             Estimate Std. Error t value <span class="fu">Pr</span>(<span class="sc">&gt;</span><span class="er">|</span>t<span class="sc">|</span>)    </span>
-<span id="cb204-14"><a href="mod%C3%A9rer.html#cb204-14" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> (Intercept)   <span class="fl">0.0480</span>     <span class="fl">0.0426</span>    <span class="fl">1.13</span>  <span class="fl">0.26081</span>    </span>
-<span id="cb204-15"><a href="mod%C3%A9rer.html#cb204-15" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x             <span class="fl">0.1516</span>     <span class="fl">0.0442</span>    <span class="fl">3.43</span>  <span class="fl">0.00065</span> <span class="sc">**</span><span class="er">*</span></span>
-<span id="cb204-16"><a href="mod%C3%A9rer.html#cb204-16" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> w             <span class="fl">0.1506</span>     <span class="fl">0.0441</span>    <span class="fl">3.42</span>  <span class="fl">0.00068</span> <span class="sc">**</span><span class="er">*</span></span>
-<span id="cb204-17"><a href="mod%C3%A9rer.html#cb204-17" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> x<span class="sc">:</span>w           <span class="fl">0.2885</span>     <span class="fl">0.0341</span>    <span class="fl">8.45</span>  <span class="fl">3.3e-16</span> <span class="sc">**</span><span class="er">*</span></span>
+<span id="cb204-14"><a href="mod%C3%A9rer.html#cb204-14" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> (Intercept)  <span class="fl">0.00574</span>    <span class="fl">0.04482</span>    <span class="fl">0.13</span>  <span class="fl">0.89813</span>    </span>
+<span id="cb204-15"><a href="mod%C3%A9rer.html#cb204-15" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x            <span class="fl">0.15174</span>    <span class="fl">0.04858</span>    <span class="fl">3.12</span>  <span class="fl">0.00189</span> <span class="sc">**</span> </span>
+<span id="cb204-16"><a href="mod%C3%A9rer.html#cb204-16" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> w            <span class="fl">0.16712</span>    <span class="fl">0.04850</span>    <span class="fl">3.45</span>  <span class="fl">0.00062</span> <span class="sc">**</span><span class="er">*</span></span>
+<span id="cb204-17"><a href="mod%C3%A9rer.html#cb204-17" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> x<span class="sc">:</span>w          <span class="fl">0.33400</span>    <span class="fl">0.03912</span>    <span class="fl">8.54</span>  <span class="sc">&lt;</span> <span class="fl">2e-16</span> <span class="sc">**</span><span class="er">*</span></span>
 <span id="cb204-18"><a href="mod%C3%A9rer.html#cb204-18" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="sc">---</span></span>
 <span id="cb204-19"><a href="mod%C3%A9rer.html#cb204-19" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Signif. codes<span class="sc">:</span>  </span>
 <span id="cb204-20"><a href="mod%C3%A9rer.html#cb204-20" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="dv">0</span> <span class="st">'***'</span> <span class="fl">0.001</span> <span class="st">'**'</span> <span class="fl">0.01</span> <span class="st">'*'</span> <span class="fl">0.05</span> <span class="st">'.'</span> <span class="fl">0.1</span> <span class="st">' '</span> <span class="dv">1</span></span>
 <span id="cb204-21"><a href="mod%C3%A9rer.html#cb204-21" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
-<span id="cb204-22"><a href="mod%C3%A9rer.html#cb204-22" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Residual standard error<span class="sc">:</span> <span class="fl">0.862</span> on <span class="dv">496</span> degrees of freedom</span>
-<span id="cb204-23"><a href="mod%C3%A9rer.html#cb204-23" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Multiple R<span class="sc">-</span>squared<span class="sc">:</span>  <span class="fl">0.209</span>,   Adjusted R<span class="sc">-</span>squared<span class="sc">:</span>  <span class="fl">0.205</span> </span>
-<span id="cb204-24"><a href="mod%C3%A9rer.html#cb204-24" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> F<span class="sc">-</span>statistic<span class="sc">:</span> <span class="fl">43.8</span> on <span class="dv">3</span> and <span class="dv">496</span> DF,  p<span class="sc">-</span>value<span class="sc">:</span> <span class="er">&lt;</span><span class="fl">2e-16</span></span>
+<span id="cb204-22"><a href="mod%C3%A9rer.html#cb204-22" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Residual standard error<span class="sc">:</span> <span class="fl">0.944</span> on <span class="dv">496</span> degrees of freedom</span>
+<span id="cb204-23"><a href="mod%C3%A9rer.html#cb204-23" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Multiple R<span class="sc">-</span>squared<span class="sc">:</span>  <span class="fl">0.165</span>,   Adjusted R<span class="sc">-</span>squared<span class="sc">:</span>  <span class="fl">0.16</span> </span>
+<span id="cb204-24"><a href="mod%C3%A9rer.html#cb204-24" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> F<span class="sc">-</span>statistic<span class="sc">:</span> <span class="fl">32.6</span> on <span class="dv">3</span> and <span class="dv">496</span> DF,  p<span class="sc">-</span>value<span class="sc">:</span> <span class="er">&lt;</span><span class="fl">2e-16</span></span>
 <span id="cb204-25"><a href="mod%C3%A9rer.html#cb204-25" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb204-26"><a href="mod%C3%A9rer.html#cb204-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Pour comparer avec aov</span></span>
 <span id="cb204-27"><a href="mod%C3%A9rer.html#cb204-27" aria-hidden="true" tabindex="-1"></a>res1.aov <span class="ot">&lt;-</span> <span class="fu">aov</span>(y <span class="sc">~</span> x <span class="sc">*</span> w, <span class="at">data =</span> jd.continue)</span>
@@ -390,15 +390,15 @@ soit leur covariance originale divisée par leur écart type. Tous les autres va
 <span id="cb204-29"><a href="mod%C3%A9rer.html#cb204-29" aria-hidden="true" tabindex="-1"></a><span class="co"># L'intercepte est inclus</span></span>
 <span id="cb204-30"><a href="mod%C3%A9rer.html#cb204-30" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(res1.aov, <span class="at">intercept =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb204-31"><a href="mod%C3%A9rer.html#cb204-31" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>              Df Sum Sq Mean Sq F value  <span class="fu">Pr</span>(<span class="sc">&gt;</span>F)    </span>
-<span id="cb204-32"><a href="mod%C3%A9rer.html#cb204-32" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> (Intercept)   <span class="dv">1</span>     <span class="dv">18</span>    <span class="fl">17.7</span>    <span class="fl">23.8</span> <span class="fl">1.5e-06</span> <span class="sc">**</span><span class="er">*</span></span>
-<span id="cb204-33"><a href="mod%C3%A9rer.html#cb204-33" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> x             <span class="dv">1</span>     <span class="dv">28</span>    <span class="fl">28.3</span>    <span class="fl">38.0</span> <span class="fl">1.5e-09</span> <span class="sc">**</span><span class="er">*</span></span>
-<span id="cb204-34"><a href="mod%C3%A9rer.html#cb204-34" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> w             <span class="dv">1</span>     <span class="dv">16</span>    <span class="fl">16.4</span>    <span class="fl">22.0</span> <span class="fl">3.5e-06</span> <span class="sc">**</span><span class="er">*</span></span>
-<span id="cb204-35"><a href="mod%C3%A9rer.html#cb204-35" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> x<span class="sc">:</span>w           <span class="dv">1</span>     <span class="dv">53</span>    <span class="fl">53.1</span>    <span class="fl">71.4</span> <span class="fl">3.3e-16</span> <span class="sc">**</span><span class="er">*</span></span>
-<span id="cb204-36"><a href="mod%C3%A9rer.html#cb204-36" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Residuals   <span class="dv">496</span>    <span class="dv">369</span>     <span class="fl">0.7</span>                    </span>
+<span id="cb204-32"><a href="mod%C3%A9rer.html#cb204-32" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> (Intercept)   <span class="dv">1</span>      <span class="dv">7</span>     <span class="fl">7.3</span>    <span class="fl">8.17</span>  <span class="fl">0.0044</span> <span class="sc">**</span> </span>
+<span id="cb204-33"><a href="mod%C3%A9rer.html#cb204-33" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> x             <span class="dv">1</span>     <span class="dv">15</span>    <span class="fl">14.5</span>   <span class="fl">16.29</span> <span class="fl">6.3e-05</span> <span class="sc">**</span><span class="er">*</span></span>
+<span id="cb204-34"><a href="mod%C3%A9rer.html#cb204-34" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> w             <span class="dv">1</span>      <span class="dv">8</span>     <span class="fl">7.8</span>    <span class="fl">8.75</span>  <span class="fl">0.0032</span> <span class="sc">**</span> </span>
+<span id="cb204-35"><a href="mod%C3%A9rer.html#cb204-35" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> x<span class="sc">:</span>w           <span class="dv">1</span>     <span class="dv">65</span>    <span class="fl">64.9</span>   <span class="fl">72.88</span> <span class="sc">&lt;</span> <span class="fl">2e-16</span> <span class="sc">**</span><span class="er">*</span></span>
+<span id="cb204-36"><a href="mod%C3%A9rer.html#cb204-36" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Residuals   <span class="dv">496</span>    <span class="dv">442</span>     <span class="fl">0.9</span>                    </span>
 <span id="cb204-37"><a href="mod%C3%A9rer.html#cb204-37" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="sc">---</span></span>
 <span id="cb204-38"><a href="mod%C3%A9rer.html#cb204-38" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Signif. codes<span class="sc">:</span>  </span>
 <span id="cb204-39"><a href="mod%C3%A9rer.html#cb204-39" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="dv">0</span> <span class="st">'***'</span> <span class="fl">0.001</span> <span class="st">'**'</span> <span class="fl">0.01</span> <span class="st">'*'</span> <span class="fl">0.05</span> <span class="st">'.'</span> <span class="fl">0.1</span> <span class="st">' '</span> <span class="dv">1</span></span></code></pre></div>
-<p>Comme prévu, les résultats sont différents à cause des différentes sommes des carrés considérées. L’effet modérateur est identique, cela dit, ce sont les effets principaux qui sont différents.</p>
+<p>Comme prévu, les résultats sont différents à cause des différentes sommes des carrés considérées. L’effet modérateur est identique. Les effets principaux sont différents.</p>
 <p>Pour observer les résultats de <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> de la même façon que <code>aov</code> (avec une table d’analyse de variance), le code <code>anova(res1.lm)</code> produira la même sortie, signalant ainsi la différence des sommes de carré pour calculer les coefficients et celles pour produire la table.</p>
 <p>Pour obtenir l’analyse de variance avec le type III, il faut utiliser le package <code>car</code> et sa fonction <code>Anova()</code> en y spécifiant la sortie de la fonction <code><a href="https://rdrr.io/r/stats/aov.html">aov()</a></code> et type de somme de carrés demandée.</p>
 <div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="mod%C3%A9rer.html#cb205-1" aria-hidden="true" tabindex="-1"></a>res1.anova <span class="ot">&lt;-</span> car<span class="sc">::</span><span class="fu">Anova</span>(res1.aov, <span class="at">type =</span> <span class="st">"III"</span>)</span>
@@ -407,16 +407,16 @@ soit leur covariance originale divisée par leur écart type. Tous les autres va
 <span id="cb205-4"><a href="mod%C3%A9rer.html#cb205-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
 <span id="cb205-5"><a href="mod%C3%A9rer.html#cb205-5" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Response<span class="sc">:</span> y</span>
 <span id="cb205-6"><a href="mod%C3%A9rer.html#cb205-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>             Sum Sq  Df F value  <span class="fu">Pr</span>(<span class="sc">&gt;</span>F)    </span>
-<span id="cb205-7"><a href="mod%C3%A9rer.html#cb205-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> (Intercept)      <span class="dv">1</span>   <span class="dv">1</span>    <span class="fl">1.27</span> <span class="fl">0.26081</span>    </span>
-<span id="cb205-8"><a href="mod%C3%A9rer.html#cb205-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x                <span class="dv">9</span>   <span class="dv">1</span>   <span class="fl">11.78</span> <span class="fl">0.00065</span> <span class="sc">**</span><span class="er">*</span></span>
-<span id="cb205-9"><a href="mod%C3%A9rer.html#cb205-9" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> w                <span class="dv">9</span>   <span class="dv">1</span>   <span class="fl">11.68</span> <span class="fl">0.00068</span> <span class="sc">**</span><span class="er">*</span></span>
-<span id="cb205-10"><a href="mod%C3%A9rer.html#cb205-10" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> x<span class="sc">:</span>w             <span class="dv">53</span>   <span class="dv">1</span>   <span class="fl">71.39</span> <span class="fl">3.3e-16</span> <span class="sc">**</span><span class="er">*</span></span>
-<span id="cb205-11"><a href="mod%C3%A9rer.html#cb205-11" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Residuals      <span class="dv">369</span> <span class="dv">496</span>                    </span>
+<span id="cb205-7"><a href="mod%C3%A9rer.html#cb205-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> (Intercept)      <span class="dv">0</span>   <span class="dv">1</span>    <span class="fl">0.02</span> <span class="fl">0.89813</span>    </span>
+<span id="cb205-8"><a href="mod%C3%A9rer.html#cb205-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x                <span class="dv">9</span>   <span class="dv">1</span>    <span class="fl">9.76</span> <span class="fl">0.00189</span> <span class="sc">**</span> </span>
+<span id="cb205-9"><a href="mod%C3%A9rer.html#cb205-9" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> w               <span class="dv">11</span>   <span class="dv">1</span>   <span class="fl">11.88</span> <span class="fl">0.00062</span> <span class="sc">**</span><span class="er">*</span></span>
+<span id="cb205-10"><a href="mod%C3%A9rer.html#cb205-10" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> x<span class="sc">:</span>w             <span class="dv">65</span>   <span class="dv">1</span>   <span class="fl">72.88</span> <span class="sc">&lt;</span> <span class="fl">2e-16</span> <span class="sc">**</span><span class="er">*</span></span>
+<span id="cb205-11"><a href="mod%C3%A9rer.html#cb205-11" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Residuals      <span class="dv">442</span> <span class="dv">496</span>                    </span>
 <span id="cb205-12"><a href="mod%C3%A9rer.html#cb205-12" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="sc">---</span></span>
 <span id="cb205-13"><a href="mod%C3%A9rer.html#cb205-13" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Signif. codes<span class="sc">:</span>  </span>
 <span id="cb205-14"><a href="mod%C3%A9rer.html#cb205-14" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="dv">0</span> <span class="st">'***'</span> <span class="fl">0.001</span> <span class="st">'**'</span> <span class="fl">0.01</span> <span class="st">'*'</span> <span class="fl">0.05</span> <span class="st">'.'</span> <span class="fl">0.1</span> <span class="st">' '</span> <span class="dv">1</span></span></code></pre></div>
 <p>Voilà! Les effets simples sont maintenant identiques à la sortie de <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code>.</p>
-<p>Pour déterminer s’il y a présence de l’effet de modérateur, il faut se fier à la ligne <code>x:w</code> et la valeur-<span class="math inline">\(p\)</span> <code>Pr(&gt;F)</code> associé qui est ici de 3.269^{-16}. Par contre, il n’est pas tout à fait clair comment interpréter ce résultat. Ce sera fait dans la section portant sur la représentation graphique de al modération.</p>
+<p>Pour déterminer s’il y a présence de l’effet de modérateur, il faut se fier à la ligne <code>x:w</code> et la valeur-<span class="math inline">\(p\)</span>, <code>Pr(&gt;F)</code>, associée qui est ici de <span class="math inline">\(3.269^{-16}\)</span>. Par contre, il n’est pas tout à fait clair comment interpréter ce résultat. Ce sera fait dans la section portant sur la représentation graphique de al modération.</p>
 </div>
 <div id="analyse-dun-modérateur-nominal" class="section level3" number="14.3.2">
 <h3>
@@ -479,10 +479,10 @@ soit leur covariance originale divisée par leur écart type. Tous les autres va
 <span id="cb206-54"><a href="mod%C3%A9rer.html#cb206-54" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="sc">---</span></span>
 <span id="cb206-55"><a href="mod%C3%A9rer.html#cb206-55" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Signif. codes<span class="sc">:</span>  </span>
 <span id="cb206-56"><a href="mod%C3%A9rer.html#cb206-56" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="dv">0</span> <span class="st">'***'</span> <span class="fl">0.001</span> <span class="st">'**'</span> <span class="fl">0.01</span> <span class="st">'*'</span> <span class="fl">0.05</span> <span class="st">'.'</span> <span class="fl">0.1</span> <span class="st">' '</span> <span class="dv">1</span></span></code></pre></div>
-<p>La fonction <code><a href="https://rdrr.io/pkg/car/man/Anova.html">car::Anova()</a></code> offre un résultat différent pour <span class="math inline">\(w\)</span> et <span class="math inline">\(xw\)</span> car les groupes sont mis en commun. Autrement dit, le vecteur de groupement est analysé comme une seule variable.</p>
+<p>La fonction <code><a href="https://rdrr.io/pkg/car/man/Anova.html">car::Anova()</a></code> offre un résultat différent pour <span class="math inline">\(w\)</span> et <span class="math inline">\(xw\)</span> car les groupes sont mis en commun. Autrement dit, le vecteur de groupement est analysé comme une seule variable. C’est cette statistique qui est préférée pour éviter d’augmenter l’erreur de Type I survenant lorsque le nombre de tests d’hypothèse s’accroît (par exemple, si chaque effet est testé individuellement).</p>
 <p>Le type III a certainement eu un rôle intéressant dans les résultats. Il montre que <span class="math inline">\(w\)</span> n’est pas significativement lié à <span class="math inline">\(y\)</span>, <span class="math inline">\(p &lt; 0.247\)</span>, ce qui était programmé dans le modèle alors que <code><a href="https://rdrr.io/r/stats/aov.html">aov()</a></code> montre un lien significatif, <span class="math inline">\(p&lt;0.006\)</span>.</p>
-<p>Pour respecter la pratique et pour imiter ce qui est fait par d’autres logiciels ce serait l’effet d’interaction <code>x:w</code> tel que rapporté par <code>res2.anova</code>, soit produite par <code><a href="https://rdrr.io/pkg/car/man/Anova.html">car::Anova()</a></code>. La valeur-<span class="math inline">\(p\)</span> de l’effet d’interaction est de <span class="math inline">\(p&lt;001\)</span>, ce qui signifie qu’il y a un effet modérateur.</p>
-<p>Comme le cas précédent, ce résultat est ardu à interpréter. Des représentations graphiques sont d’une aide cruciale pour démêler les effets.</p>
+<p>Pour respecter la pratique et pour imiter ce qui est fait par d’autres logiciels, il est préférable de rapporter l’effet d’interaction <code>x:w</code> de <code>res2.anova</code>, soit la sortie produite par <code><a href="https://rdrr.io/pkg/car/man/Anova.html">car::Anova()</a></code>. La valeur-<span class="math inline">\(p\)</span> de l’effet d’interaction est de <span class="math inline">\(p&lt;001\)</span>, ce qui signifie qu’il y a un effet modérateur.
+Comme le cas précédent, ce résultat est ardu à interpréter. Des représentations graphiques sont d’une aide cruciale pour démêler les effets.</p>
 </div>
 </div>
 <div id="représentations-graphiques-dune-modération" class="section level2" number="14.4">
@@ -492,13 +492,15 @@ soit leur covariance originale divisée par leur écart type. Tous les autres va
 <p>À part quelques personnes ayant l’oeil affuté à l’interprétation de modèle linéaire contenant une interaction, il est rare pour tous les autres d’en tirer du sens immédiatement. Ainsi, des analyses graphiques sont plus que pertinentes pour en interpréter les résultats.</p>
 <p>Deux graphiques sont particulièrement pertinents : le graphique de Johnson- Neyman et le graphique des pentes simples (<em>simple slopes</em>). Il existe quelques packages pour produire ces graphiques. Dans cet ouvrage, le package <code>interactions</code> <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-interactions" role="doc-biblioref">Long, 2019</a>)</span> sera présenté. Ce package peut traiter des interactions doubles et triples et est compatible avec plusieurs commandes de <code>ggplot2</code>.</p>
 <p>Pour réaliser ces graphiques, il faudra d’abord installer et importer le package.</p>
-<div class="sourceCode" id="cb207"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://interactions.jacob-long.com">interactions</a></span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="mod%C3%A9rer.html#cb207-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(interactions)</span>
+<span id="cb207-2"><a href="mod%C3%A9rer.html#cb207-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Warning<span class="sc">:</span> le package <span class="st">'interactions'</span> a été compilé avec la</span>
+<span id="cb207-3"><a href="mod%C3%A9rer.html#cb207-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> version R <span class="dv">4</span>.<span class="fl">2.2</span></span></code></pre></div>
+<p>À noter que le package <code>interactions</code> dépend du package <code>sandwich</code> <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-Zeileis" role="doc-biblioref">Zeileis, 2006</a>)</span> qu’il faut également installé.</p>
 <div id="lanalyse-des-pentes-simples" class="section level3" number="14.4.1">
 <h3>
 <span class="header-section-number">14.4.1</span> L’analyse des pentes simples<a class="anchor" aria-label="anchor" href="#lanalyse-des-pentes-simples"><i class="fas fa-link"></i></a>
 </h3>
-<p>La méthode <em>classique</em> de sonder d’approfondir un effet d’interaction consiste à calculer la pente du prédicteur à différentes valeurs du modérateur. Cette analyse se réfère à l’analyse des pentes simples. La fonction permettant de commander cette technique est <code><a href="https://interactions.jacob-long.com/reference/sim_slopes.html">sim_slopes()</a></code>. Il faut y mettre en argument la sortie de <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code>, désigner le prédicteur <code>pred =</code> et le modérateur <code>modx =</code>.</p>
+<p>La méthode <em>classique</em> de sonder d’approfondir un effet d’interaction consiste à calculer la pente du prédicteur à différentes valeurs du modérateur. Cette analyse se réfère à l’analyse des pentes simples. La fonction permettant de commander cette technique est <code>sim_slopes()</code>. Il faut y mettre en argument la sortie de <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code>, désigner le prédicteur <code>pred =</code> et le modérateur <code>modx =</code>.</p>
 <p>Cette analyse est faite avec l’exemple avec la variable de groupement, <code>jd.nominale</code>. L’argument <code>johnson_neyman = FALSE</code> évite simplement un message d’erreur, car le graphique éponyme ne peut être généré lorsque le modérateur est une variable de groupement.</p>
 <div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="mod%C3%A9rer.html#cb208-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Les statistiques liées aux pentes simples</span></span>
 <span id="cb208-2"><a href="mod%C3%A9rer.html#cb208-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sim_slopes</span>(<span class="at">model =</span> res2.lm,</span>
@@ -526,11 +528,11 @@ soit leur covariance originale divisée par leur écart type. Tous les autres va
 <span id="cb208-24"><a href="mod%C3%A9rer.html#cb208-24" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span>   <span class="fl">0.26</span>   <span class="fl">0.01</span>    <span class="fl">42.19</span>   <span class="fl">0.00</span></span></code></pre></div>
 <p>Ce tableau pour les groupes de <span class="math inline">\(w\)</span> si l’effet modérateur est significatif.</p>
 <div class="sourceCode" id="cb209"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Le graphique des pentes simples</span>
-<span class="fu"><a href="https://interactions.jacob-long.com/reference/interact_plot.html">interact_plot</a></span><span class="op">(</span>model <span class="op">=</span> <span class="va">res2.lm</span>,
-              pred <span class="op">=</span> <span class="va">x</span>,
-              modx <span class="op">=</span> <span class="va">w</span>, 
-              plot.points <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Le graphique des pentes simples</span></span>
+<span><span class="fu">interact_plot</span><span class="op">(</span>model <span class="op">=</span> <span class="va">res2.lm</span>,</span>
+<span>              pred <span class="op">=</span> <span class="va">x</span>,</span>
+<span>              modx <span class="op">=</span> <span class="va">w</span>, </span>
+<span>              plot.points <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <div class="figure">
 <span style="display:block;" id="fig:ip1"></span>
 <img src="14-Moderer_files/figure-html/ip1-1.png" alt="Analyse de pentes simples pour un modérateur nominal" width="672"><p class="caption">
@@ -540,23 +542,23 @@ Figure 14.3: Analyse de pentes simples pour un modérateur nominal
 <p>Le code ci-dessus illustre ce patron de différences avec la Figure <a href="mod%C3%A9rer.html#fig:ip1">14.3</a>. L’axe des <span class="math inline">\(x\)</span> et des <span class="math inline">\(y\)</span> montrent la relation entre les variables en fonction des groupes qui sont représentées par des lignes différentes. L’option <code>plot.point = TRUE</code> affiche optionnellement les données dans la figure. La Figure <a href="mod%C3%A9rer.html#fig:ip1">14.3</a> montre une tendance positive entre <span class="math inline">\(x\)</span> et <span class="math inline">\(y\)</span> pour le groupe de référence (<code>3</code>) qui s’accentue de façon importante pour le groupe (<code>1</code>), mais qui s’inverse pour le groupe <code>2</code>.</p>
 <p>Le graphique des pentes peut aussi être réalisé pour un modérateur continu. La Figure <a href="mod%C3%A9rer.html#fig:ip2">14.4</a> illustre ce graphique. Lorsque le modérateur représente des groupes, les niveaux sont clairement définis. Dans le cas d’un modérateur continu, des niveaux arbitraire doivent être sélectionnés.</p>
 <div class="sourceCode" id="cb210"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://interactions.jacob-long.com/reference/interact_plot.html">interact_plot</a></span><span class="op">(</span>model <span class="op">=</span> <span class="va">res1.lm</span>,
-              pred <span class="op">=</span> <span class="va">x</span>,
-              modx <span class="op">=</span> <span class="va">w</span>, 
-              plot.points <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">interact_plot</span><span class="op">(</span>model <span class="op">=</span> <span class="va">res1.lm</span>,</span>
+<span>              pred <span class="op">=</span> <span class="va">x</span>,</span>
+<span>              modx <span class="op">=</span> <span class="va">w</span>, </span>
+<span>              plot.points <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <div class="figure">
 <span style="display:block;" id="fig:ip2"></span>
 <img src="14-Moderer_files/figure-html/ip2-1.png" alt="Analyses des pentes simples pour un modérateur continu" width="672"><p class="caption">
 Figure 14.4: Analyses des pentes simples pour un modérateur continu
 </p>
 </div>
-<p>Par défaut, l’analyse est réalisée avec <span class="math inline">\(-1\)</span> écart type, la moyenne et <span class="math inline">\(+1\)</span> écart type comme groupement de <span class="math inline">\(w\)</span>. Ces valeurs peuvent être choisies manuellement avec <code>modx.values =</code> en y spécifiant les valeurs d’intérêt. En plus, cet argument est compatible non seulement avec <code><a href="https://interactions.jacob-long.com/reference/interact_plot.html">interact_plot()</a></code> et <code><a href="https://interactions.jacob-long.com/reference/sim_slopes.html">sim_slopes()</a></code>. La Figure <a href="mod%C3%A9rer.html#fig:ip3">14.5</a> montre l’analyse des pentes pour des valeurs de <code>modx.values = c(-2, -1, 0, 1, 2)</code>.</p>
+<p>Par défaut, l’analyse est réalisée avec <span class="math inline">\(-1\)</span> écart type, la moyenne et <span class="math inline">\(+1\)</span> écart type comme groupement de <span class="math inline">\(w\)</span>. Ces valeurs peuvent être choisies manuellement avec <code>modx.values =</code> en y spécifiant les valeurs d’intérêt. En plus, cet argument est compatible non seulement avec <code>interact_plot()</code> et <code>sim_slopes()</code>. La Figure <a href="mod%C3%A9rer.html#fig:ip3">14.5</a> montre l’analyse des pentes pour des valeurs de <code>modx.values = c(-2, -1, 0, 1, 2)</code>.</p>
 <div class="sourceCode" id="cb211"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://interactions.jacob-long.com/reference/interact_plot.html">interact_plot</a></span><span class="op">(</span>model <span class="op">=</span> <span class="va">res1.lm</span>,
-              pred <span class="op">=</span> <span class="va">x</span>,
-              modx <span class="op">=</span> <span class="va">w</span>, 
-              plot.points <span class="op">=</span> <span class="cn">TRUE</span>,
-              modx.values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">2</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">interact_plot</span><span class="op">(</span>model <span class="op">=</span> <span class="va">res1.lm</span>,</span>
+<span>              pred <span class="op">=</span> <span class="va">x</span>,</span>
+<span>              modx <span class="op">=</span> <span class="va">w</span>, </span>
+<span>              plot.points <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>              modx.values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">2</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="figure">
 <span style="display:block;" id="fig:ip3"></span>
 <img src="14-Moderer_files/figure-html/ip3-1.png" alt="Analyses des pentes simples pour un modérateur continu" width="672"><p class="caption">
@@ -569,44 +571,45 @@ Figure 14.5: Analyses des pentes simples pour un modérateur continu
 <span class="header-section-number">14.4.2</span> Le graphique de Johnson-Neyman<a class="anchor" aria-label="anchor" href="#le-graphique-de-johnson-neyman"><i class="fas fa-link"></i></a>
 </h3>
 <p>Lorsque le modérateur est continu, la méthode la plus rigoureuse d’explorer des effets modérateurs est de calculer l’intervalle de Johnson-Neyman qui indique la plage de valeurs du modérateur selon lesquelles la pente du prédicteur est significative ou non pour un seuil <span class="math inline">\(\alpha\)</span> spécifié. Comme les deux variables doivent être continues, c’est le jeu de données <code>jd.continue</code> qui sera utilisé pour cet exemple.</p>
-<p>La fonction <code><a href="https://interactions.jacob-long.com/reference/sim_slopes.html">sim_slopes()</a></code> génère l’analyse des pentes simples, mais produit également l’intervalle de Johnson-Neyman et le graphique associé. La fonction est utilisée comme précédemment, à l’exception qu’il est possible de demander comme argument <code>jnplot = TRUE</code> pour obtenir le graphique Johnson-Neyman et qu’il n’est plus nécessaire de commander <code>johnson_neyman = FALSE</code> évite un message d’erreur.</p>
+<p>La fonction <code>sim_slopes()</code> génère l’analyse des pentes simples, mais produit également l’intervalle de Johnson-Neyman et le graphique associé. La fonction est utilisée comme précédemment, à l’exception qu’il est possible de demander comme argument <code>jnplot = TRUE</code> pour obtenir le graphique Johnson-Neyman et qu’il n’est plus nécessaire de commander <code>johnson_neyman = FALSE</code> évite un message d’erreur.</p>
 <div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="mod%C3%A9rer.html#cb212-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sim_slopes</span>(<span class="at">model =</span> res1.lm,</span>
 <span id="cb212-2"><a href="mod%C3%A9rer.html#cb212-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">pred =</span> x,</span>
 <span id="cb212-3"><a href="mod%C3%A9rer.html#cb212-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">modx =</span> w, </span>
 <span id="cb212-4"><a href="mod%C3%A9rer.html#cb212-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">jnplot =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb212-5"><a href="mod%C3%A9rer.html#cb212-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> JOHNSON<span class="sc">-</span>NEYMAN INTERVAL </span>
 <span id="cb212-6"><a href="mod%C3%A9rer.html#cb212-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
-<span id="cb212-7"><a href="mod%C3%A9rer.html#cb212-7" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> When w is OUTSIDE the interval [<span class="sc">-</span><span class="fl">0.95</span>, <span class="sc">-</span><span class="fl">0.20</span>], the slope</span>
+<span id="cb212-7"><a href="mod%C3%A9rer.html#cb212-7" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> When w is OUTSIDE the interval [<span class="sc">-</span><span class="fl">0.64</span>, <span class="fl">0.16</span>], the slope</span>
 <span id="cb212-8"><a href="mod%C3%A9rer.html#cb212-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> of x is p <span class="sc">&lt;</span> .<span class="fl">05.</span></span>
 <span id="cb212-9"><a href="mod%C3%A9rer.html#cb212-9" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
-<span id="cb212-10"><a href="mod%C3%A9rer.html#cb212-10" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Note<span class="sc">:</span> The range of observed values of w is [<span class="sc">-</span><span class="fl">2.81</span>, <span class="fl">2.52</span>]</span></code></pre></div>
+<span id="cb212-10"><a href="mod%C3%A9rer.html#cb212-10" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Note<span class="sc">:</span> The range of observed values of w is [<span class="sc">-</span><span class="fl">2.99</span>, <span class="fl">3.14</span>]</span></code></pre></div>
 <div class="figure">
 <span style="display:block;" id="fig:jn1"></span>
-<img src="14-Moderer_files/figure-html/jn1-1.png" alt="Le graphiqu Johnson-Neyman pour interpréter les effets modérateurs" width="672"><p class="caption">
-Figure 14.6: Le graphiqu Johnson-Neyman pour interpréter les effets modérateurs
+<img src="14-Moderer_files/figure-html/jn1-1.png" alt="Le graphique Johnson-Neyman pour interpréter les effets modérateurs" width="672"><p class="caption">
+Figure 14.6: Le graphique Johnson-Neyman pour interpréter les effets modérateurs
 </p>
 </div>
 <pre><code>&gt; SIMPLE SLOPES ANALYSIS 
 &gt; 
-&gt; Slope of x when w = -1.101 (- 1 SD): 
+&gt; Slope of x when w = -0.94712 (- 1 SD): 
 &gt; 
 &gt;    Est.   S.E.   t val.      p
 &gt; ------- ------ -------- ------
-&gt;   -0.16   0.06    -2.54   0.01
+&gt;   -0.19   0.07    -2.90   0.00
 &gt; 
-&gt; Slope of x when w = -0.060 (Mean): 
-&gt; 
-&gt;   Est.   S.E.   t val.      p
-&gt; ------ ------ -------- ------
-&gt;   0.14   0.05     2.79   0.01
-&gt; 
-&gt; Slope of x when w =  0.981 (+ 1 SD): 
+&gt; Slope of x when w =  0.00994 (Mean): 
 &gt; 
 &gt;   Est.   S.E.   t val.      p
 &gt; ------ ------ -------- ------
-&gt;   0.44   0.07     6.50   0.00</code></pre>
+&gt;   0.05   0.05     1.13   0.26
+&gt; 
+&gt; Slope of x when w =  0.96699 (+ 1 SD): 
+&gt; 
+&gt;   Est.   S.E.   t val.      p
+&gt; ------ ------ -------- ------
+&gt;   0.30   0.06     5.05   0.00</code></pre>
 <p>La Figure <a href="mod%C3%A9rer.html#fig:jn1">14.6</a> montre le graphique Johnson-Neyman. La zone bleue indique le niveau de modérateur où l’effet de <span class="math inline">\(x\)</span> est significativement différent de la pente de <span class="math inline">\(x\)</span> lorsque l’effet du modérateur est nul. La zone rouge montre l’étendue où il n’y a pas d’effet de modération. L’étendue est également précisée dans la première phrase imprimée de la sortie. La sortie a également produit la sortie de l’analyse de pentes simples ou l’information obtenue du graphique Johnson-Neyman est répétée d’une façon différente.</p>
-<p>Dans cet exemple, plus l’unité à un niveau de modérateur élevé (en termes absolus), plus il accentue l’effet de la variable indépendante (zones bleues). Lae modérateur joue donc un rôle très important dans ce modèle.</p>
+<p>Dans cet exemple, plus l’unité à un niveau de modérateur élevé (en termes absolus), plus il accentue l’effet de la variable indépendante (zones bleues). Le modérateur joue donc un rôle très important dans ce modèle.</p>
+<!-- ## TODO  AJOUTER INTERPÉTATION STAT -->
 </div>
 </div>
 </div>
@@ -654,7 +657,7 @@ Figure 14.6: Le graphiqu Johnson-Neyman pour interpréter les effets modérateur
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-10-27.</p>
+    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-12-06.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

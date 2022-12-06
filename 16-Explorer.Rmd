@@ -24,7 +24,7 @@ La syntaxe ci-dessous reconstruit le modèle de la Figure \@ref(fig:FactStruct).
 ```{r}
 # Création de la matrice de recette de fabrication
 phi = matrix(c(.9, .8, .7,  0,  0, .4,
-               0,  0,  0, .6, .5, .4), 
+               0,  0,  0, .4, .5, .6), 
              nrow = 6, ncol =  2)
 
 # Identification des variables et facteurs

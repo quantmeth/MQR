@@ -126,7 +126,7 @@ jd %>%
   ggplot(mapping = aes(x = mass, y = height)) + 
   geom_point(size = 2) +
   geom_smooth(method = lm, se = FALSE, color = "black")
-> `geom_smooth()` using formula 'y ~ x'
+> `geom_smooth()` using formula = 'y ~ x'
 ```
 
 <div class="figure" style="text-align: center">

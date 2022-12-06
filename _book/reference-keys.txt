@@ -102,6 +102,7 @@ eq:buildS
 eq:buildB
 fig:simplemed
 eq:B
+eq:indi1
 eq:etot
 eq:sobel
 fig:sobelhist

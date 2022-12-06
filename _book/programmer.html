@@ -17,7 +17,7 @@
 <meta name="twitter:description" content="Une fois R (ou RStudio) ouvert, qu’est-il possible de réaliser? Dans les prochaines sections, les différents éléments de programmation permettant la création et la manipulation de données sont...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.0/transition.js"></script><script src="libs/bs3compat-0.4.0/tabs.js"></script><script src="libs/bs3compat-0.4.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 <!-- 
     \(
@@ -135,7 +135,7 @@
 <p>La sortie produit <code>3</code> et non plus <code>2</code>.</p>
 <p>Cette remarque est importante, car elle signifie que des fonctions sont écrasables en nommant des variables. Il faut ainsi éviter de nommer des variables avec des fonctions utilisées par <strong>R</strong>, notamment l’utilisation des noms suivants.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">c</span>; <span class="va">q</span>; <span class="va">t</span>; <span class="va">C</span>; <span class="va">D</span>; <span class="va">I</span>; <span class="cn">T</span>; <span class="cn">F</span>; <span class="va">pi</span>; <span class="va">mean</span>; <span class="va">var</span>; <span class="va">sd</span>; <span class="va">length</span>; <span class="va">diff</span>; <span class="va">rep</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">c</span>; <span class="va">q</span>; <span class="va">t</span>; <span class="va">C</span>; <span class="va">D</span>; <span class="va">I</span>; <span class="cn">T</span>; <span class="cn">F</span>; <span class="va">pi</span>; <span class="va">mean</span>; <span class="va">var</span>; <span class="va">sd</span>; <span class="va">length</span>; <span class="va">diff</span>; <span class="va">rep</span></span></code></pre></div>
 <p>Certains mots sont tout simplement interdits d’utilisation.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="programmer.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="cn">TRUE</span>; <span class="cn">FALSE</span>; <span class="cf">break</span>; <span class="cf">for</span>; <span class="cf">in</span>; <span class="cf">if</span>; <span class="cf">else</span>; </span>
 <span id="cb6-2"><a href="programmer.html#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span>; <span class="cf">function</span>; <span class="cn">Inf</span>; <span class="cn">NA</span>; <span class="cn">NaN</span>; <span class="cn">NULL</span></span></code></pre></div>
@@ -158,7 +158,7 @@
 <span id="cb8-4"><a href="programmer.html#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">0.1</span></span></code></pre></div>
 <p>Les deux premières lignes assignent des valeurs à <code>a</code> et <code>b</code>, puis la troisième imprime la division. L’absence de marqueur <code>&lt;-</code> ou <code>=</code> indique à <strong>R</strong> d’imprimer la réponse dans la console. Si le résultat <code>a / b</code> est assigné à une variable, alors aucun résultat n’est affiché, bien que la variable contienne la réponse.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">resultat</span> <span class="op">&lt;-</span> <span class="va">a</span> <span class="op">/</span> <span class="va">b</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">resultat</span> <span class="op">&lt;-</span> <span class="va">a</span> <span class="op">/</span> <span class="va">b</span></span></code></pre></div>
 <p>Il n’y a aucune réponse d’affichée. Maintenant, si la variable <code>resultat</code> est demandée, R affiche son contenu.</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="programmer.html#cb10-1" aria-hidden="true" tabindex="-1"></a>resultat</span>
 <span id="cb10-2"><a href="programmer.html#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">0.1</span></span></code></pre></div>
@@ -353,7 +353,7 @@
 </h3>
 <p>Pour installer un package, il faut utiliser la fonction</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"..."</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"..."</span><span class="op">)</span></span></code></pre></div>
 <p>où les <code>"..."</code> doivent être remplacé par le nom du package. Il est important de bien inscrire le nom du package entre guillemet anglophone. Il est aussi possible de sélectionner</p>
 <blockquote>
 <p>Tools;
@@ -367,7 +367,7 @@ Install Packages…</p>
 </h3>
 <p>Ce qui n’est pas des plus intuitif avec <strong>R</strong>, c’est qu’une fois le package téléchargé, il n’est pas directement utilisable. Il faut d’abord l’appeler avec la fonction <code><a href="https://rdrr.io/r/base/library.html">library()</a></code>.</p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st">"..."</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st">"..."</span><span class="op">)</span></span></code></pre></div>
 <p>Cette étape doit être faite à chaque ouverture de <strong>R</strong>. Cela permet de ne pas mettre en mémoire trop de package simultanément. Il importe d’indiquer tous les packages utilisés en début de script sans quoi des erreurs, comme l’absence de fonctions, sont produites.</p>
 <p>Une technique à laquelle l’utilisateur peut avoir recourt lorsqu’il souhaite n’utiliser qu’une fonction spécifique d’un package est l’utilisation des <code>::</code> débutant par le nom du package suivi par le nom de la fonction, comme <code><a href="https://rdrr.io/pkg/MASS/man/mvrnorm.html">MASS::mvrnorm()</a></code>. La fonction s’utilise de façon usuelle. En utilisant <code>::</code>, il n’est pas nécessaire d’appeler le package avec la fonction <code><a href="https://rdrr.io/r/base/library.html">library()</a></code>. Il faut toute fois que le package soit bel et bien installer.</p>
 </div>
@@ -378,11 +378,11 @@ Install Packages…</p>
 </h2>
 <p><strong>R</strong> offre une multitude de fonctions et permet également à l’usager de bâtir ses propres fonctions (fonctions maison). Elles permettent d’automatiser des calculs (généralement, mais peut faire beaucoup plus!). Tout au long de cet ouvrage, les fonctions sont identifiées par l’ajout de parenthèse à leur fin, comme ceci : <code>function()</code>. Ces fonctions ont généralement la forme suivante.</p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">nom</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">argument1</span>, <span class="va">argument2</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span>
-  
-  <span class="co"># Calcul à réaliser</span>
-  
-<span class="op">}</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">nom</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">argument1</span>, <span class="va">argument2</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  </span>
+<span>  <span class="co"># Calcul à réaliser</span></span>
+<span>  </span>
+<span><span class="op">}</span></span></code></pre></div>
 <p>Ici, <code>nom</code> est le nom auquel la fonction sera référée par la suite, <code>function</code> est la fonction <strong>R</strong> qui permet de créer la fonction maison, <code>argument1</code> et <code>argument2</code> sont les arguments (les entrées) fournis à la fonction et à partir desquels les calculs sont réalisés, et les accolades <code><a href="https://rdrr.io/r/base/Paren.html">{}</a></code> définissent le début et la fin de la fonction dans le script.</p>
 <p>Il est bien utile de créer ses propres fonctions bien que <strong>R</strong> possède une pléthore de fonctions et de packages en contenant encore plus. Toutes les fonctions, qu’elles soient maisons ou déjà intégrées, respectent le même fonctionnement, ce pour quoi il est utile de s’y pencher. Les fonctions maison permettent d’automatiser certains calculs qui sont propres à résoudre les problèmes spécifiques de l’utilisateur et d’être réutilisé ultérieurement.</p>
 <p>Voici un exemple trivial de fonction, soit la somme de deux nombres.</p>
@@ -431,15 +431,15 @@ Install Packages…</p>
 </h2>
 <p>Pour automatiser certains calculs, il peut être utile de recourir à une boucle (<em>loop</em>) qui permet de répéter plusieurs fois une même opération. Voici l’anatomie d’une boucle.</p>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="va">vec</span><span class="op">)</span><span class="op">{</span>
-  <span class="co"># Calcul désiré</span>
-<span class="op">}</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="va">vec</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="co"># Calcul désiré</span></span>
+<span><span class="op">}</span></span></code></pre></div>
 <p>L’élément <code>for</code> est la fonction déclarant la boucle. Les renseignements sur les itérations se retrouvent entre les parenthèses. La variable <code>i</code> prendra successivement tous les éléments dans (<code>in</code>) le vecteur à gauche (<code>vec</code>). Tout le contenu de la boucle (ce qui est répété) se retrouve entre les accolades <code><a href="https://rdrr.io/r/base/Paren.html">{}</a></code>, c’est ce qui est calculé à chaque boucle. Dans cet exemple, la boucle se répète <span class="math inline">\(k\)</span> fois, soit de <span class="math inline">\(1,2,3,...,k\)</span>, à cause de l’expression <code>1:k</code> qui correspond à générer un vecteur de <span class="math inline">\(1\)</span> à <span class="math inline">\(k\)</span> (voir la section <a href="calculer.html#la-s%C3%A9quence">La séquence</a>). La variable <code>i</code> quant à elle change de valeur à chaque itération. Elle prend tour à tour les valeurs <span class="math inline">\(1,2,3,...,k\)</span>. La variable peut judicieusement être utilisée dans la boucle afin de profiter ce comportement, notamment pour le classement des résultats. Lorsque la boucle atteint <span class="math inline">\(k\)</span>, elle se termine.</p>
 <p>Il est aussi possible de rédiger la boucle en utilisant uniquement <code>k</code>. Alors, <code>i</code> prendra toutes les valeurs contenues dans <code>k</code>. La longueur du vecteur <code>k</code> définit le nombre d’itérations.</p>
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="va">k</span><span class="op">)</span><span class="op">{</span>
-  <span class="co"># Calcul désiré</span>
-<span class="op">}</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="va">k</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="co"># Calcul désiré</span></span>
+<span><span class="op">}</span></span></code></pre></div>
 </div>
 <div id="les-clauses-conditionnelles" class="section level2" number="2.10">
 <h2>
@@ -537,9 +537,9 @@ ou
 <p>Ici, toutes les valeurs vraies de l’opérateur logique sont rapportées.</p>
 <p>Les opérateurs logiques servent également à définir des opérations conditionnelles. La fonction <code>if</code> est alors utilisée. Il y a trois principales formes : <code>if</code> (Si ceci, alors cela), le <code>if  else</code> (Si ceci, alors cela, sinon autre chose) et les échelles <code>if else if else</code>.</p>
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw">if</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span>
-  <span class="co"># Opération désirée</span>
-<span class="op">}</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw">if</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="co"># Opération désirée</span></span>
+<span><span class="op">}</span></span></code></pre></div>
 <p>L’anatomie d’une fonction <code>if</code> comporte d’abord la fonction <code>if</code>. L’argument entre parenthèses à sa plus simple expression doit être vérifié par vrai (<code>TRUE</code>) ou faux (<code>FALSE</code>). Si l’argument est vrai, alors le calcul désiré est réalisé, autrement le logiciel ignore le calcul de la fonction entre accolades <code><a href="https://rdrr.io/r/base/Paren.html">{}</a></code>.</p>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="programmer.html#cb32-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">2</span></span>
 <span id="cb32-2"><a href="programmer.html#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(x <span class="sc">&lt;</span> <span class="dv">0</span>){</span>
@@ -573,8 +573,8 @@ ou
 </h2>
 <p>En utilisant <code>help(nom)</code> ou <code>?nom</code>, où il faut remplacer <code>nom</code> par le nom d’une fonction ou d’un package, <strong>R</strong> offre de la documentation. Les fonctions d’aide retournent une page de documentation contenant généralement de l’information sur les entrées et les sorties des fonctions. Certaines sont mieux détaillées que d’autres, tout dépendant de leurs créateurs et des personnes qui maintiennent ces fonctions.</p>
 <div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Obtenir de l'aide pour la fonction help()</span>
-<span class="op">?</span><span class="va">help</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Obtenir de l'aide pour la fonction help()</span></span>
+<span><span class="op">?</span><span class="va">help</span></span></code></pre></div>
 <p>Il existe également la fonction <code>??nom</code> qui produit une liste de toutes fonctions <strong>R</strong> ayant partiellement l’inscription introduite à la place de <code>nom</code>. Aussi, <code>example(nom)</code> produit un exemple d’une fonction.</p>
 </div>
 <div id="en-cas-de-pépins" class="section level2" number="2.12">
@@ -634,7 +634,7 @@ ou
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-10-27.</p>
+    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-12-06.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

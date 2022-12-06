@@ -2,7 +2,7 @@
 
 Comme mentionné d'entrée de jeu, l'analyse en composantes principales (ACP) n'est pas une technique de réduction des dimensions. S'il y a $p$ variables, l'ACP produit $p$ dimensions. Toutefois, comme les valeurs propres sont des indices de partage commun entre les variables, elle peut être utilisée de cette façon. En fait, l'ACP est presque toujours utiliser pour réduire la dimension d'un jeu de donnée.
 
-Parallèlement, l'[analyse factorielle exploratoire] permet de dériver un indice de suffisance du nombre de dimensions (le $chi^2$), toutefois, il existe de meilleurs techniques pour déterminer le nombre de dimensions à retenir dans une analyse exploratoire.
+Parallèlement, l'[analyse factorielle exploratoire] permet de dériver un indice de suffisance du nombre de dimensions (le $\chi^2$), toutefois, il existe de meilleurs techniques pour déterminer le nombre de dimensions à retenir dans une analyse exploratoire.
 
 Cette section porte sur les méthodes afin d'identifier le nombre de dimensions à retenir. C'est un sujet très complexe dont seulement quelques brides seront abordées.
 
