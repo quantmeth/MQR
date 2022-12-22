@@ -3,7 +3,7 @@
 
 ## Rudiments {-}
 
-> 1. Quel est le résultat de `mean <- c(1, 2, 3)`? Pourquoi?
+### 1. Quel est le résultat de `mean <- c(1, 2, 3)`? Pourquoi?
 
 Le résultat est $1, 2, 3$. Le fait d'assigner une valeur à une fonction (ou variable) écrase cette dernière.
 
@@ -16,11 +16,11 @@ mean
 
 Voir [Les variables] pour plus de renseignements.
 
-> 2. Quelle est la différence entre `# Caractère` et `"Caractère"`?
+### 2. Quelle est la différence entre `# Caractère` et `"Caractère"`?
 
-Le premier est une commentaire (voir [Les commentaires]) alors que le second est une chaîne de caractère [Les chaînes de caractère].
+Le premier est une commentaire (voir [Les commentaires]) alors que le second est une chaîne de caractère (voir [Les chaînes de caractère]).
 
-> 3. Créer un vecteur contenant les valeurs $4, 10, 32$. Calculer la moyenne et l'écart type de ce vecteur.
+### 3. Créer un vecteur contenant les valeurs $4, 10, 32$. Calculer la moyenne et l'écart type de ce vecteur.
 
 
 ```r
@@ -31,9 +31,9 @@ sd(vecteur)
 > [1] 14.7
 ```
 
-Voir [Concaténer] pour créer un vecteur et [La moyenne] et [L'écart type] pour plus d'informations.
+Voir [Concaténer] pour créer un vecteur et [la moyenne] et [l'écart type] pour plus d'informations.
 
-> 4. Créer un vecteur contenant les valeurs de $4$ à $11$. Sélectionner la deuxième valeur de ce vecteur, puis additionner 100 à cette valeur et remplacer la dans le vecteur.
+### 4. Créer un vecteur contenant les valeurs de $4$ à $11$. Sélectionner la deuxième valeur de ce vecteur, puis additionner 100 à cette valeur et remplacer la dans le vecteur.
 
 
 ```r
@@ -43,7 +43,7 @@ vecteur[2] <- vecteur[2] + 100
 
 Voir [Concaténer] pour créer un vecteur et [Référer à des sous-éléments] pour choisir un élément.
 
-> 5. Générer 10 valeurs aléatoires distribuées normalement avec une moyenne de 50 et un écart type de 4. Calculer la moyenne, la médiane et la variance.
+### 5. Générer 10 valeurs aléatoires distribuées normalement avec une moyenne de 50 et un écart type de 4. Calculer la moyenne, la médiane et la variance.
 
 
 ```r
@@ -62,9 +62,9 @@ var(x)
 > [1] 11.2
 ```
 
-Voir [Les graines] pour la fonction `set.seed()`, [Les distributions] pour la fonction `rnorm()` ainsi que son aide `?rnorm` pour les arguments spécifiques, et [La moyenne], [La médiane] et [La variance] pour plus d'informations.
+Voir [Les graines] pour la fonction `set.seed()`, [Les distributions] pour la fonction `rnorm()` ainsi que son aide `?rnorm` pour les arguments spécifiques, et [la moyenne], [la médiane] et [la variance] pour plus d'informations.
 
-> 6. Créer un jeu de données contenant quatre sujets avec, pour chacun, leur nom de famille, leur âge et un score d'appréciation tiré d'une distribution uniforme allant de 0 à 100.
+### 6. Créer un jeu de données contenant quatre sujets avec, pour chacun, leur nom de famille, leur âge et un score d'appréciation tiré d'une distribution uniforme allant de 0 à 100.
 
 
 ```r
@@ -85,9 +85,9 @@ jd
 > 4   Capaldi  55  62.3
 ```
 
-Voir [Les graines] pour la fonction `set.seed()`, [Création d’un jeu de données] pour `data.frame()` et [Concaténer] pour les vecteurs en arguments, [Les distributions] pour la fonction `runif()` ainsi que son aide `?runif` pour les arguments spécifiques. Les noms sont des chaînes de caractère [Les chaînes de caractère].
+Voir [Les graines] pour la fonction `set.seed()`, [Créer un jeu de données] pour `data.frame()` et [Concaténer] pour les vecteurs en arguments, [Les distributions] pour la fonction `runif()` ainsi que son aide `?runif` pour les arguments spécifiques. Les noms sont des [chaînes de caractère][Les chaînes de caractère].
 
-> 7. Rédiger une fonction calculant l'hypoténuse d'un triangle rectangle. Rappel: le théorème de Pythagore est $c^2=a^2+b^2$.
+### 7. Rédiger une fonction calculant l'hypoténuse d'un triangle rectangle. Rappel: le théorème de Pythagore est $c^2=a^2+b^2$.
 
 En prenant `a` et `b` comme arguments.
 
@@ -102,7 +102,7 @@ hypothenus(3, 4)
 
 Voir [Les fonctions] pour plus d'informations.
 
-> 8. Rédiger une fonction calculant un score-$z$ pour une variable. Rappel: un score-$z$, correspond à $z=\frac{x-\mu}{\sigma}$.
+### 8. Rédiger une fonction calculant un score-$z$ pour une variable. Rappel: un score-$z$, correspond à $z=\frac{x-\mu}{\sigma}$.
 
 Deux possibilités ici. Soit `x` est un vecteur contenant plusieurs nombres ou il est un nombre et il faut ajouter la moyenne ($\mu$) et l'écart type ($\sigma$).
 
@@ -126,7 +126,7 @@ Le premier cas est l'équivalent de la fonction `scale()` qui rempliera la même
 
 Voir [Les fonctions] pour plus d'informations. Les scores-$z$ sont abordés plus en profondeur à la section [Inférence avec la distribution normale sur une unité].
 
-> 9. Rédiger une fonction calculant la médiane d'une variable (ne recopiez pas celle de ce livre).
+### 9. Rédiger une fonction calculant la médiane d'une variable (ne recopiez pas celle de ce livre).
 
 Voici une autre fonction calculant une médiane d'un vecteur.
 
@@ -150,7 +150,7 @@ Encore une fois (il n'y a pas vraiment de façon de l'éviter), `%%2` permet de 
 
 Voir [Les fonctions], mais surtout [La médiane], pour plus d'informations. 
 
-> 10. Rédiger une fonction qui pivote une liste de $k$ éléments par $n$. Par exemple, une liste de six ($k=6$ comme $[1,2,3,4,5,6]$) pivoté de deux ($n=2$) devient ($[3,4,5,6,1,2]$).
+### 10. Rédiger une fonction qui pivote une liste de $k$ éléments par $n$. Par exemple, une liste de six ($k=6$ comme $[1,2,3,4,5,6]$) pivoté de deux ($n=2$) devient ($[3,4,5,6,1,2]$).
 
 Plusieurs solutions possibles dont en voici une.
 
@@ -171,7 +171,7 @@ pivot(k = k, n = 2)
 ```
 
 
-> 11. Rédiger une fonction pour générer une séquence de Fibonacci (chaque nombre est la somme des deux précédents) jusqu'à une certaine valeur, soit $1, 1, 2, 3, 5, 8,...$.
+### 11. Rédiger une fonction pour générer une séquence de Fibonacci (chaque nombre est la somme des deux précédents) jusqu'à une certaine valeur, soit $1, 1, 2, 3, 5, 8,...$.
 
 Plusieurs solutions possibles dont en voici deux.
 
@@ -222,7 +222,6 @@ fibonnaci1(n)
 fibonnaci2(n)
 > [1] 21
 ```
-
 
 
 ## Jeux de données {-}

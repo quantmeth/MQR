@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title> 4 Rédiger | Méthodes quantitatives avec R</title>
+<meta name="author" content="P.-O. Caron">
+<meta name="description" content="R et RStudio offre un environnement pour rédiger des rapports de recherche. C’est le package Rmarkdown qui permettra de le faire. Plus, R et RStudio permettent de faire des articles, des livres...">
+<meta name="generator" content="bookdown 0.29 with bs4_book()">
+<meta property="og:title" content=" 4 Rédiger | Méthodes quantitatives avec R">
+<meta property="og:type" content="book">
+<meta property="og:url" content="mqr.teluq.ca/rédiger.html">
+<meta property="og:description" content="R et RStudio offre un environnement pour rédiger des rapports de recherche. C’est le package Rmarkdown qui permettra de le faire. Plus, R et RStudio permettent de faire des articles, des livres...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content=" 4 Rédiger | Méthodes quantitatives avec R">
+<meta name="twitter:description" content="R et RStudio offre un environnement pour rédiger des rapports de recherche. C’est le package Rmarkdown qui permettra de le faire. Plus, R et RStudio permettent de faire des articles, des livres...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.0/transition.js"></script><script src="libs/bs3compat-0.4.0/tabs.js"></script><script src="libs/bs3compat-0.4.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<!-- 
+    \(
+    \newcommand{\EX}{\mathbb{E}}
+    \)
+    --><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+<link rel="stylesheet" href="bs4_style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Méthodes quantitatives avec R</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Bienvenue!</a></li>
+<li><a class="" href="pr%C3%A9face.html">Préface</a></li>
+<li class="book-part">Rudiments</li>
+<li><a class="" href="commencer.html"><span class="header-section-number">1</span> Commencer</a></li>
+<li><a class="" href="programmer.html"><span class="header-section-number">2</span> Programmer</a></li>
+<li><a class="" href="calculer.html"><span class="header-section-number">3</span> Calculer</a></li>
+<li><a class="active" href="r%C3%A9diger.html"><span class="header-section-number">4</span> Rédiger</a></li>
+<li><a class="" href="exercice-rudiments.html">Exercices</a></li>
+<li class="book-part">Jeux de données</li>
+<li><a class="" href="entrer.html"><span class="header-section-number">5</span> Entrer</a></li>
+<li><a class="" href="importer.html"><span class="header-section-number">6</span> Importer</a></li>
+<li><a class="" href="manipuler.html"><span class="header-section-number">7</span> Manipuler</a></li>
+<li><a class="" href="visualiser.html"><span class="header-section-number">8</span> Visualiser</a></li>
+<li><a class="" href="exercice-gestion.html">Exercices</a></li>
+<li class="book-part">Statistiques</li>
+<li><a class="" href="inf%C3%A9rer.html"><span class="header-section-number">9</span> Inférer</a></li>
+<li><a class="" href="analyser.html"><span class="header-section-number">10</span> Analyser</a></li>
+<li><a class="" href="simuler.html"><span class="header-section-number">11</span> Simuler</a></li>
+<li><a class="" href="exercice-analyse.html">Exercices</a></li>
+<li class="book-part">Modèles linéaires</li>
+<li><a class="" href="pr%C3%A9dire.html"><span class="header-section-number">12</span> Prédire</a></li>
+<li><a class="" href="cr%C3%A9er.html"><span class="header-section-number">13</span> Créer</a></li>
+<li><a class="" href="m%C3%A9dier.html"><span class="header-section-number">14</span> Médier</a></li>
+<li><a class="" href="mod%C3%A9rer.html"><span class="header-section-number">15</span> Modérer</a></li>
+<li><a class="" href="exercice-lineaire.html">Exercices</a></li>
+<li class="book-part">Analyses factorielles</li>
+<li><a class="" href="d%C3%A9composer.html"><span class="header-section-number">16</span> Décomposer</a></li>
+<li><a class="" href="explorer.html"><span class="header-section-number">17</span> Explorer</a></li>
+<li><a class="" href="r%C3%A9duire.html"><span class="header-section-number">18</span> Réduire</a></li>
+<li class="book-part">Annexes</li>
+<li><a class="" href="solutions.html">Solutions</a></li>
+<li><a class="" href="r%C3%A9f%C3%A9rences.html">Références</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/quantmeth/MQR">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="rédiger" class="section level1" number="4">
+<h1>
+<span class="header-section-number"> 4</span> Rédiger<a class="anchor" aria-label="anchor" href="#r%C3%A9diger"><i class="fas fa-link"></i></a>
+</h1>
+<p><strong>R</strong> et <strong>RStudio</strong> offre un environnement pour rédiger des rapports de recherche. C’est le package <code>Rmarkdown</code> qui permettra de le faire. Plus, <strong>R</strong> et <strong>RStudio</strong> permettent de faire des articles, des livres (comme celui-ci), des sites, des applications, etc. Pour ce faire, ils intègrent différents langages de programmation. Cette section insiste sur la production de rapports de recherche simple. La philosophie étant que, si <strong>Rmarkdown</strong> ne le fait pas, c’est que c’est superflu. Il est possible de personnaliser plusieurs éléments de ces textes, mais souvent cela sera inutile pour l’utilisateur débutant.</p>
+<p>L’avantage principal de rédiger dans <strong>R</strong> est certainement le fait de tenir dans un projet, toute la syntaxe, le jeu de données, les graphiques ainsi que le texte rapportant le tout dans un seul fichier.</p>
+<div id="ouvrir-un-document" class="section level2" number="4.1">
+<h2>
+<span class="header-section-number">4.1</span> Ouvrir un document<a class="anchor" aria-label="anchor" href="#ouvrir-un-document"><i class="fas fa-link"></i></a>
+</h2>
+<p>La première à s’assurer est que le package <code>Rmarkdown</code> soit bien installé. Il est préférable d’utiliser <strong>R</strong>Studio. Cela facilitera beaucoup l’expérience de l’utilisateur. Une fois cela fait, pour ouvrir un nouveau document il faut faire <code>File -&gt; New File -&gt; Rmarkdown</code>. La boîte de dialogue affichée à la Figure <a href="r%C3%A9diger.html#fig:rediger1">4.1</a> demande quatre éléments : le titre, le nom de l’auteur, la date et le format du rapport (html, pdf ou word). Les deux premiers sont les plus utilisés. Une fois rempli, il faut cliquer sur OK.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:rediger1"></span>
+<img src="image/rediger1.PNG" alt="Boîte de dialogue de Rmarkdown" width="50%" height="50%"><p class="caption">
+Figure 4.1: Boîte de dialogue de Rmarkdown
+</p>
+</div>
+<p>Cette procédure ouvre un <em>script</em> d’extension <code>.RMd</code>. Ce nouveau document est un exemple typique qui rappelle des éléments de base pour produire un document. L’exemple est présenté à la Figure <a href="r%C3%A9diger.html#fig:rediger2">4.2</a> Chacun sera vu en détail.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:rediger2"></span>
+<img src="image/rediger2.PNG" alt="Exemple de Rmarkdown" width="50%" height="50%"><p class="caption">
+Figure 4.2: Exemple de Rmarkdown
+</p>
+</div>
+<p>Il est possible de voir immédiatement le résultat final de ce script en cliquant sur <code>Knit</code> au milieu en haut (le symbole de pelote de laine avec une aiguille). À chaque que l’utilisateur désirer produire le rapport, il faudra le tricoter en cliquant sur ce icône.</p>
+</div>
+<div id="les-éléments-importants" class="section level2" number="4.2">
+<h2>
+<span class="header-section-number">4.2</span> Les éléments importants<a class="anchor" aria-label="anchor" href="#les-%C3%A9l%C3%A9ments-importants"><i class="fas fa-link"></i></a>
+</h2>
+<div id="lentête" class="section level3" number="4.2.1">
+<h3>
+<span class="header-section-number">4.2.1</span> L’entête<a class="anchor" aria-label="anchor" href="#lent%C3%AAte"><i class="fas fa-link"></i></a>
+</h3>
+<p>L’entête est l’espace qui conserve les éléments du texte, permet la personnalisation et l’ajout de composante, le cas échéant. Cet espace se nomme YAML pour <em>Yet Another Markdown Language</em>. Pour l’instant, les renseignements initiaux s’y retrouvent (titre, nom, date et format).</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:entete"></span>
+<img src="image/entete.PNG" alt="Entête ou YAML" width="50%" height="50%"><p class="caption">
+Figure 4.3: Entête ou YAML
+</p>
+</div>
+</div>
+<div id="les-niveaux-de-titre" class="section level3" number="4.2.2">
+<h3>
+<span class="header-section-number">4.2.2</span> Les niveaux de titre<a class="anchor" aria-label="anchor" href="#les-niveaux-de-titre"><i class="fas fa-link"></i></a>
+</h3>
+<p>Pour les titres de section, les <code>#</code> permette d’indiquer qu’il s’agit effectivement d’un titre et leur nombre permette d’indiquer leur niveau, comme <code>#</code> est de niveau 1, <code>##</code> est de niveau 2, etc. Dans l’exemple, il y a deux titres de sections de niveau 2.</p>
+</div>
+<div id="les-chunks" class="section level3" number="4.2.3">
+<h3>
+<span class="header-section-number">4.2.3</span> Les chunks<a class="anchor" aria-label="anchor" href="#les-chunks"><i class="fas fa-link"></i></a>
+</h3>
+<p>Comme le texte est rédiger dans <strong>R</strong>, il sera utile d’employer du code de ce langage dans le rapport. Ainsi, les rapports servent à jumeler, textes, analyses et graphiques. Pour déterminer le texte du code à lire, la syntaxe à rouler est inscrite dans un <strong>chunk</strong> (morceau en français). Les chunks sont délimités par trois accents graves (<em>backticks</em> en anglais), puis un accolade indiquant le langage utilisé dans le chunk (<code>r</code> en général), et se termine par trois autre accents grave. La Figure <a href="r%C3%A9diger.html#fig:chunk1">4.4</a> montre un chunk.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:chunk1"></span>
+<img src="image/chunk1.PNG" alt="Un chunk" width="50%" height="50%"><p class="caption">
+Figure 4.4: Un chunk
+</p>
+</div>
+<p>Pour accélérer l’écriture au clavier, il est possible de faire <strong>Ctrl + Alt + I</strong> pour ouvrir un <em>chunk</em> complet automatiquement. C’est beaucoup plus efficace que de le taper caractère par caractère.</p>
+<p>Le code peut être présenté avec <code>echo = TRUE</code> (par défaut) ou caché <code>echo = FALSE</code> au besoin.</p>
+<p>Le code est automatiquement exécuté. S’il y a un chunk, le code est roulé. Cela se modifie avec <code>eval = TRUE</code> (par défaut) pour exécuter le code ou ne pas exécuter le code <code>echo = FALSE</code>. Il va sans dire que s’il y a une erreur de code dans un chunk, <strong>R</strong> ne produira pas le rapport.</p>
+<p>Ces arguments <code>echo</code> et <code>eval</code> doivent être spécifier dans les accolades du chunk. Il est possible de combiner les deux selon les besoins.</p>
+</div>
+<div id="les-figures" class="section level3" number="4.2.4">
+<h3>
+<span class="header-section-number">4.2.4</span> Les figures<a class="anchor" aria-label="anchor" href="#les-figures"><i class="fas fa-link"></i></a>
+</h3>
+<p>Pour inclure une figure, il suffit de la programmer dans un chunk. Dans l’exemple, le graphique du jeu de <code>pressure</code> est présenté avec <code>plot(pressure)</code> dans un chunk, voir la Figure <a href="r%C3%A9diger.html#fig:rediger3">4.5</a>. Noter dans les accolades la présence de <code>echo=FALSE</code> qui retire le code pour produire l’image du document final (le chunk n’est pas rapporté). Seule la figure est affichée.</p>
+<div class="figure">
+<span style="display:block;" id="fig:rediger3"></span>
+<img src="image/rediger3.PNG" alt="Ajouter une figure" width="50%" height="50%"><p class="caption">
+Figure 4.5: Ajouter une figure
+</p>
+</div>
+<p>Une autre option est utile pour les figure est de leur ajouter une légende (<em>caption</em> en anglais). Pour ce faire, il faut ajouter dans les accolades du chunk l’argument <code>fig.cap = L'égende de la figure</code>.</p>
+</div>
+<div id="les-images-externes" class="section level3" number="4.2.5">
+<h3>
+<span class="header-section-number">4.2.5</span> Les images externes<a class="anchor" aria-label="anchor" href="#les-images-externes"><i class="fas fa-link"></i></a>
+</h3>
+<p>Pour ajouter une image, il est possible de l’ajouter simplement avec la syntaxe suivante.</p>
+<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html">include_graphics</a></span><span class="op">(</span><span class="st">"chemin_vers_l_image/image.extension"</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div id="les-tableaux" class="section level3" number="4.2.6">
+<h3>
+<span class="header-section-number">4.2.6</span> Les tableaux<a class="anchor" aria-label="anchor" href="#les-tableaux"><i class="fas fa-link"></i></a>
+</h3>
+<p>Pour ajouter un tableau, il est possible de passer par la fonction <code>kable()</code> de <code>knitr</code>. Le premier argument est le tableau à présenter. Dans cet exemple, il s’agit des six premières lignes (avec la fonction <code><a href="https://rdrr.io/r/utils/head.html">head()</a></code>) du jeu de données <code>cars</code>. Les autres options sont pour la présentation. L’argument <code>caption =</code> spécifie le titre, l’argument <code>align =</code> permet de centrer (avec <code>"c"</code>) les éléments dans les cellules et <code>booktabs = TRUE</code> retire la majorité du grillage du tableau.</p>
+<p>Il importe pour chaque tableau de s’assurer que la variable contient le <code>data.frame</code> ou la <code>matrix</code> disposé tel que l’utilisateur le souhaite.</p>
+<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">cars</span><span class="op">)</span>, caption <span class="op">=</span> <span class="st">"Titre du tableau"</span>, align <span class="op">=</span> <span class="st">"c"</span>, booktabs <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:unnamed-chunk-1">Table 4.1: </span>Titre du tableau
+</caption>
+<thead><tr>
+<th style="text-align:center;">
+speed
+</th>
+<th style="text-align:center;">
+dist
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+4
+</td>
+<td style="text-align:center;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+4
+</td>
+<td style="text-align:center;">
+10
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+7
+</td>
+<td style="text-align:center;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+7
+</td>
+<td style="text-align:center;">
+22
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+8
+</td>
+<td style="text-align:center;">
+16
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+9
+</td>
+<td style="text-align:center;">
+10
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div id="les-équations" class="section level3" number="4.2.7">
+<h3>
+<span class="header-section-number">4.2.7</span> Les équations<a class="anchor" aria-label="anchor" href="#les-%C3%A9quations"><i class="fas fa-link"></i></a>
+</h3>
+<p>Il arrive qu’il soit nécessaire d’ajouter des équations dans un rapport. Pour ce faire, <strong>R</strong> utilise latex, un très puissant langage de programmation pour la rédaction de texte. Toute équation commence et termine avec le signe de dollars $. Par exemple, l’équation <span class="math inline">\(2+2=4\)</span> s’écrit <code>$2+2=4$</code>. Il est possible d’ajouter des exposants avec <code>^</code> ou des indices avec <code>_</code>. Les lettres grecques s’écrivent avec une barre oblique, par exemple, <span class="math inline">\(\beta\)</span>, s’écrit <code>$\beta$</code> ou la variance <span class="math inline">\(\sigma^2\)</span>, s’écrit <code>$\sigma^2$</code>.</p>
+<p>S’il faut utiliser les vrais symboles, par exemple $ et %, alors il faut ajouter un <code>\</code> devant, comme <code>\$</code> ou <code>\%</code>. Également, l’utilisation de la barre oblique devant un espace permet de créer un espace insécable.</p>
+</div>
+<div id="référer-à-des-variables-de-r-dans-le-texte" class="section level3" number="4.2.8">
+<h3>
+<span class="header-section-number">4.2.8</span> Référer à des variables de <strong>R</strong> dans le texte<a class="anchor" aria-label="anchor" href="#r%C3%A9f%C3%A9rer-%C3%A0-des-variables-de-r-dans-le-texte"><i class="fas fa-link"></i></a>
+</h3>
+<p>Pour référer à des variables de l’environnement du rapport, il est possible d’appeler ces valeurs des accents graves. Voici un exemple.</p>
+<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">moyenne</span> <span class="op">&lt;-</span> <span class="fl">10</span></span></code></pre></div>
+<p>Pour rapporter la variable <code>moyenne</code> dans le texte, il faut recourir à <code>`r moyenne`</code>, c’est-à-dire un accent grave, l’appel à <code>r</code> pour indiquer que la suite est du code <strong>R</strong>, le nom de la variable et un autre accent grave pour indiquer la fin. Ainsi, <code>`r moyenne`</code> produit le contenu de 10.</p>
+</div>
+<div id="formater-du-texte" class="section level3" number="4.2.9">
+<h3>
+<span class="header-section-number">4.2.9</span> Formater du texte<a class="anchor" aria-label="anchor" href="#formater-du-texte"><i class="fas fa-link"></i></a>
+</h3>
+<p>Plutôt que d’utiliser des onglets et des options pour modifier le texte, il faut utiliser la syntaxe <code>Markdown</code> (un langage de programmation de texte) pour altérer le texte. Ainsi, entourer un ou des mots avec une étoile de chaque côté met le texte en italique, comme ceci : <code>*italique*</code> donne <em>italique</em>; deux étoiles mettent en gras, <code>**gras**</code> donne <strong>gras</strong>, pour ajouter des éléments de code, il faut entourer le mot d’accent grave, <code>`code`</code> donne <code>code</code>. Pour souligner il faut passer par du latex pour les pdf, avec <code>\underline{souligné}</code>, ou par <code>&lt;u&gt;souligné&lt;/u&gt;</code> en html, ce qui donne <u>souligné</u>.</p>
+</div>
+<div id="les-commentaires-dans-le-texte" class="section level3" number="4.2.10">
+<h3>
+<span class="header-section-number">4.2.10</span> Les commentaires dans le texte<a class="anchor" aria-label="anchor" href="#les-commentaires-dans-le-texte"><i class="fas fa-link"></i></a>
+</h3>
+<p>Un commentaire dans le texte permet de délimiter une section de texte qui ne sera par exécuté lorsque le texte sera rendu. Cela permet de retirer du texte ou du code qui n’est pas présentement utile tout en le conservant dans le fichier.</p>
+<p>Pour commenter dans un fichier <code>.Rmd</code>, il faut entourer le texte de <code>&lt;!---</code> et <code>---&gt;</code>, comme ceci <code>&lt;!-- Commentaires --&gt;</code>. Pour être plus efficace, plutôt que d’écrire tout au long, il est possible de sélectionner le texte puis <strong>Ctrl + Shift + C</strong>, ce qui commentera tout le texte sélectionné.</p>
+</div>
+</div>
+<div id="pour-aller-plus-loin" class="section level2" number="4.3">
+<h2>
+<span class="header-section-number">4.3</span> Pour aller plus loin<a class="anchor" aria-label="anchor" href="#pour-aller-plus-loin"><i class="fas fa-link"></i></a>
+</h2>
+<p>Cette section n’est qu’un survol des possibilités. Pour aller plus loin, il y a beaucoup de documentation sur le web pouvant aider à maîtrise la création d’équation, des spécifier sur la gestion des figures, ou les façons de formater les figures. Et comme c’est la communauté de <strong>R</strong> qui crée le contenu, il y a plus d’une bonne manière de faire la même chose.</p>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="calculer.html"><span class="header-section-number">3</span> Calculer</a></div>
+<div class="next"><a href="exercice-rudiments.html">Exercices</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#r%C3%A9diger"><span class="header-section-number">4</span> Rédiger</a></li>
+<li><a class="nav-link" href="#ouvrir-un-document"><span class="header-section-number">4.1</span> Ouvrir un document</a></li>
+<li>
+<a class="nav-link" href="#les-%C3%A9l%C3%A9ments-importants"><span class="header-section-number">4.2</span> Les éléments importants</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#lent%C3%AAte"><span class="header-section-number">4.2.1</span> L’entête</a></li>
+<li><a class="nav-link" href="#les-niveaux-de-titre"><span class="header-section-number">4.2.2</span> Les niveaux de titre</a></li>
+<li><a class="nav-link" href="#les-chunks"><span class="header-section-number">4.2.3</span> Les chunks</a></li>
+<li><a class="nav-link" href="#les-figures"><span class="header-section-number">4.2.4</span> Les figures</a></li>
+<li><a class="nav-link" href="#les-images-externes"><span class="header-section-number">4.2.5</span> Les images externes</a></li>
+<li><a class="nav-link" href="#les-tableaux"><span class="header-section-number">4.2.6</span> Les tableaux</a></li>
+<li><a class="nav-link" href="#les-%C3%A9quations"><span class="header-section-number">4.2.7</span> Les équations</a></li>
+<li><a class="nav-link" href="#r%C3%A9f%C3%A9rer-%C3%A0-des-variables-de-r-dans-le-texte"><span class="header-section-number">4.2.8</span> Référer à des variables de R dans le texte</a></li>
+<li><a class="nav-link" href="#formater-du-texte"><span class="header-section-number">4.2.9</span> Formater du texte</a></li>
+<li><a class="nav-link" href="#les-commentaires-dans-le-texte"><span class="header-section-number">4.2.10</span> Les commentaires dans le texte</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#pour-aller-plus-loin"><span class="header-section-number">4.3</span> Pour aller plus loin</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/quantmeth/MQR/blob/master/04_Rediger.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/quantmeth/MQR/edit/master/04_Rediger.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-12-22.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

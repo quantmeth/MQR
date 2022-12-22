@@ -6,15 +6,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Solutions | Méthodes quantitatives avec R</title>
 <meta name="author" content="P.-O. Caron">
-<meta name="description" content="Rudiments  Quel est le résultat de mean &lt;- c(1, 2, 3)? Pourquoi? Le résultat est \(1, 2, 3\). Le fait d’assigner une valeur à une fonction (ou variable) écrase cette dernière. mean &lt;- c(1, 2, 3)...">
+<meta name="description" content="Rudiments  18.3.4 1. Quel est le résultat de mean &lt;- c(1, 2, 3)? Pourquoi? Le résultat est \(1, 2, 3\). Le fait d’assigner une valeur à une fonction (ou variable) écrase cette dernière. mean &lt;-...">
 <meta name="generator" content="bookdown 0.29 with bs4_book()">
 <meta property="og:title" content="Solutions | Méthodes quantitatives avec R">
 <meta property="og:type" content="book">
 <meta property="og:url" content="mqr.teluq.ca/solutions.html">
-<meta property="og:description" content="Rudiments  Quel est le résultat de mean &lt;- c(1, 2, 3)? Pourquoi? Le résultat est \(1, 2, 3\). Le fait d’assigner une valeur à une fonction (ou variable) écrase cette dernière. mean &lt;- c(1, 2, 3)...">
+<meta property="og:description" content="Rudiments  18.3.4 1. Quel est le résultat de mean &lt;- c(1, 2, 3)? Pourquoi? Le résultat est \(1, 2, 3\). Le fait d’assigner une valeur à une fonction (ou variable) écrase cette dernière. mean &lt;-...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Solutions | Méthodes quantitatives avec R">
-<meta name="twitter:description" content="Rudiments  Quel est le résultat de mean &lt;- c(1, 2, 3)? Pourquoi? Le résultat est \(1, 2, 3\). Le fait d’assigner une valeur à une fonction (ou variable) écrase cette dernière. mean &lt;- c(1, 2, 3)...">
+<meta name="twitter:description" content="Rudiments  18.3.4 1. Quel est le résultat de mean &lt;- c(1, 2, 3)? Pourquoi? Le résultat est \(1, 2, 3\). Le fait d’assigner une valeur à une fonction (ou variable) écrase cette dernière. mean &lt;-...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.0/transition.js"></script><script src="libs/bs3compat-0.4.0/tabs.js"></script><script src="libs/bs3compat-0.4.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
@@ -77,28 +77,29 @@
 <li><a class="" href="commencer.html"><span class="header-section-number">1</span> Commencer</a></li>
 <li><a class="" href="programmer.html"><span class="header-section-number">2</span> Programmer</a></li>
 <li><a class="" href="calculer.html"><span class="header-section-number">3</span> Calculer</a></li>
+<li><a class="" href="r%C3%A9diger.html"><span class="header-section-number">4</span> Rédiger</a></li>
 <li><a class="" href="exercice-rudiments.html">Exercices</a></li>
 <li class="book-part">Jeux de données</li>
-<li><a class="" href="entrer.html"><span class="header-section-number">4</span> Entrer</a></li>
-<li><a class="" href="importer.html"><span class="header-section-number">5</span> Importer</a></li>
-<li><a class="" href="manipuler.html"><span class="header-section-number">6</span> Manipuler</a></li>
-<li><a class="" href="visualiser.html"><span class="header-section-number">7</span> Visualiser</a></li>
+<li><a class="" href="entrer.html"><span class="header-section-number">5</span> Entrer</a></li>
+<li><a class="" href="importer.html"><span class="header-section-number">6</span> Importer</a></li>
+<li><a class="" href="manipuler.html"><span class="header-section-number">7</span> Manipuler</a></li>
+<li><a class="" href="visualiser.html"><span class="header-section-number">8</span> Visualiser</a></li>
 <li><a class="" href="exercice-gestion.html">Exercices</a></li>
 <li class="book-part">Statistiques</li>
-<li><a class="" href="inf%C3%A9rer.html"><span class="header-section-number">8</span> Inférer</a></li>
-<li><a class="" href="analyser.html"><span class="header-section-number">9</span> Analyser</a></li>
-<li><a class="" href="simuler.html"><span class="header-section-number">10</span> Simuler</a></li>
+<li><a class="" href="inf%C3%A9rer.html"><span class="header-section-number">9</span> Inférer</a></li>
+<li><a class="" href="analyser.html"><span class="header-section-number">10</span> Analyser</a></li>
+<li><a class="" href="simuler.html"><span class="header-section-number">11</span> Simuler</a></li>
 <li><a class="" href="exercice-analyse.html">Exercices</a></li>
 <li class="book-part">Modèles linéaires</li>
-<li><a class="" href="pr%C3%A9dire.html"><span class="header-section-number">11</span> Prédire</a></li>
-<li><a class="" href="cr%C3%A9er.html"><span class="header-section-number">12</span> Créer</a></li>
-<li><a class="" href="m%C3%A9dier.html"><span class="header-section-number">13</span> Médier</a></li>
-<li><a class="" href="mod%C3%A9rer.html"><span class="header-section-number">14</span> Modérer</a></li>
+<li><a class="" href="pr%C3%A9dire.html"><span class="header-section-number">12</span> Prédire</a></li>
+<li><a class="" href="cr%C3%A9er.html"><span class="header-section-number">13</span> Créer</a></li>
+<li><a class="" href="m%C3%A9dier.html"><span class="header-section-number">14</span> Médier</a></li>
+<li><a class="" href="mod%C3%A9rer.html"><span class="header-section-number">15</span> Modérer</a></li>
 <li><a class="" href="exercice-lineaire.html">Exercices</a></li>
 <li class="book-part">Analyses factorielles</li>
-<li><a class="" href="d%C3%A9composer.html"><span class="header-section-number">15</span> Décomposer</a></li>
-<li><a class="" href="explorer.html"><span class="header-section-number">16</span> Explorer</a></li>
-<li><a class="" href="r%C3%A9duire.html"><span class="header-section-number">17</span> Réduire</a></li>
+<li><a class="" href="d%C3%A9composer.html"><span class="header-section-number">16</span> Décomposer</a></li>
+<li><a class="" href="explorer.html"><span class="header-section-number">17</span> Explorer</a></li>
+<li><a class="" href="r%C3%A9duire.html"><span class="header-section-number">18</span> Réduire</a></li>
 <li class="book-part">Annexes</li>
 <li><a class="active" href="solutions.html">Solutions</a></li>
 <li><a class="" href="r%C3%A9f%C3%A9rences.html">Références</a></li>
@@ -115,121 +116,120 @@
 <div id="rudiments" class="section level2 unnumbered">
 <h2>Rudiments<a class="anchor" aria-label="anchor" href="#rudiments"><i class="fas fa-link"></i></a>
 </h2>
-<blockquote>
-<ol style="list-style-type: decimal">
-<li>Quel est le résultat de <code>mean &lt;- c(1, 2, 3)</code>? Pourquoi?</li>
-</ol>
-</blockquote>
+<div id="quel-est-le-résultat-de-mean---c1-2-3-pourquoi" class="section level3" number="18.3.4">
+<h3>
+<span class="header-section-number">18.3.4</span> 1. Quel est le résultat de <code>mean &lt;- c(1, 2, 3)</code>? Pourquoi?<a class="anchor" aria-label="anchor" href="#quel-est-le-r%C3%A9sultat-de-mean---c1-2-3-pourquoi"><i class="fas fa-link"></i></a>
+</h3>
 <p>Le résultat est <span class="math inline">\(1, 2, 3\)</span>. Le fait d’assigner une valeur à une fonction (ou variable) écrase cette dernière.</p>
-<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="solutions.html#cb257-1" aria-hidden="true" tabindex="-1"></a>mean <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
-<span id="cb257-2"><a href="solutions.html#cb257-2" aria-hidden="true" tabindex="-1"></a>mean</span>
-<span id="cb257-3"><a href="solutions.html#cb257-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span></span></code></pre></div>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="solutions.html#cb260-1" aria-hidden="true" tabindex="-1"></a>mean <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb260-2"><a href="solutions.html#cb260-2" aria-hidden="true" tabindex="-1"></a>mean</span>
+<span id="cb260-3"><a href="solutions.html#cb260-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span></span></code></pre></div>
 <p>Voir <a href="programmer.html#les-variables">Les variables</a> pour plus de renseignements.</p>
-<blockquote>
-<ol start="2" style="list-style-type: decimal">
-<li>Quelle est la différence entre <code># Caractère</code> et <code>"Caractère"</code>?</li>
-</ol>
-</blockquote>
-<p>Le premier est une commentaire (voir <a href="programmer.html#les-commentaires">Les commentaires</a>) alors que le second est une chaîne de caractère <a href="programmer.html#les-cha%C3%AEnes-de-caract%C3%A8re">Les chaînes de caractère</a>.</p>
-<blockquote>
-<ol start="3" style="list-style-type: decimal">
-<li>Créer un vecteur contenant les valeurs <span class="math inline">\(4, 10, 32\)</span>. Calculer la moyenne et l’écart type de ce vecteur.</li>
-</ol>
-</blockquote>
-<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="solutions.html#cb258-1" aria-hidden="true" tabindex="-1"></a>vecteur <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">10</span>, <span class="dv">32</span>)</span>
-<span id="cb258-2"><a href="solutions.html#cb258-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(vecteur)</span>
-<span id="cb258-3"><a href="solutions.html#cb258-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">15.3</span></span>
-<span id="cb258-4"><a href="solutions.html#cb258-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(vecteur)</span>
-<span id="cb258-5"><a href="solutions.html#cb258-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">14.7</span></span></code></pre></div>
-<p>Voir <a href="programmer.html#concat%C3%A9ner">Concaténer</a> pour créer un vecteur et <a href="calculer.html#la-moyenne">La moyenne</a> et <a href="calculer.html#l%C3%A9cart-type">L’écart type</a> pour plus d’informations.</p>
-<blockquote>
-<ol start="4" style="list-style-type: decimal">
-<li>Créer un vecteur contenant les valeurs de <span class="math inline">\(4\)</span> à <span class="math inline">\(11\)</span>. Sélectionner la deuxième valeur de ce vecteur, puis additionner 100 à cette valeur et remplacer la dans le vecteur.</li>
-</ol>
-</blockquote>
-<div class="sourceCode" id="cb259"><pre class="downlit sourceCode r">
+</div>
+<div id="quelle-est-la-différence-entre-caractère-et-caractère" class="section level3" number="18.3.5">
+<h3>
+<span class="header-section-number">18.3.5</span> 2. Quelle est la différence entre <code># Caractère</code> et <code>"Caractère"</code>?<a class="anchor" aria-label="anchor" href="#quelle-est-la-diff%C3%A9rence-entre-caract%C3%A8re-et-caract%C3%A8re"><i class="fas fa-link"></i></a>
+</h3>
+<p>Le premier est une commentaire (voir <a href="programmer.html#les-commentaires">Les commentaires</a>) alors que le second est une chaîne de caractère (voir <a href="programmer.html#les-cha%C3%AEnes-de-caract%C3%A8re">Les chaînes de caractère</a>).</p>
+</div>
+<div id="créer-un-vecteur-contenant-les-valeurs-4-10-32.-calculer-la-moyenne-et-lécart-type-de-ce-vecteur." class="section level3" number="18.3.6">
+<h3>
+<span class="header-section-number">18.3.6</span> 3. Créer un vecteur contenant les valeurs <span class="math inline">\(4, 10, 32\)</span>. Calculer la moyenne et l’écart type de ce vecteur.<a class="anchor" aria-label="anchor" href="#cr%C3%A9er-un-vecteur-contenant-les-valeurs-4-10-32.-calculer-la-moyenne-et-l%C3%A9cart-type-de-ce-vecteur."><i class="fas fa-link"></i></a>
+</h3>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="solutions.html#cb261-1" aria-hidden="true" tabindex="-1"></a>vecteur <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">10</span>, <span class="dv">32</span>)</span>
+<span id="cb261-2"><a href="solutions.html#cb261-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(vecteur)</span>
+<span id="cb261-3"><a href="solutions.html#cb261-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">15.3</span></span>
+<span id="cb261-4"><a href="solutions.html#cb261-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(vecteur)</span>
+<span id="cb261-5"><a href="solutions.html#cb261-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">14.7</span></span></code></pre></div>
+<p>Voir <a href="programmer.html#concat%C3%A9ner">Concaténer</a> pour créer un vecteur et <a href="calculer.html#la-moyenne">la moyenne</a> et <a href="calculer.html#l%C3%A9cart-type">l’écart type</a> pour plus d’informations.</p>
+</div>
+<div id="créer-un-vecteur-contenant-les-valeurs-de-4-à-11.-sélectionner-la-deuxième-valeur-de-ce-vecteur-puis-additionner-100-à-cette-valeur-et-remplacer-la-dans-le-vecteur." class="section level3" number="18.3.7">
+<h3>
+<span class="header-section-number">18.3.7</span> 4. Créer un vecteur contenant les valeurs de <span class="math inline">\(4\)</span> à <span class="math inline">\(11\)</span>. Sélectionner la deuxième valeur de ce vecteur, puis additionner 100 à cette valeur et remplacer la dans le vecteur.<a class="anchor" aria-label="anchor" href="#cr%C3%A9er-un-vecteur-contenant-les-valeurs-de-4-%C3%A0-11.-s%C3%A9lectionner-la-deuxi%C3%A8me-valeur-de-ce-vecteur-puis-additionner-100-%C3%A0-cette-valeur-et-remplacer-la-dans-le-vecteur."><i class="fas fa-link"></i></a>
+</h3>
+<div class="sourceCode" id="cb262"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">vecteur</span> <span class="op">&lt;-</span> <span class="fl">4</span><span class="op">:</span><span class="fl">11</span> <span class="co"># ou seq(4, 11)</span></span>
 <span><span class="va">vecteur</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">vecteur</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span> <span class="op">+</span> <span class="fl">100</span></span></code></pre></div>
 <p>Voir <a href="programmer.html#concat%C3%A9ner">Concaténer</a> pour créer un vecteur et <a href="programmer.html#r%C3%A9f%C3%A9rer-%C3%A0-des-sous-%C3%A9l%C3%A9ments">Référer à des sous-éléments</a> pour choisir un élément.</p>
-<blockquote>
-<ol start="5" style="list-style-type: decimal">
-<li>Générer 10 valeurs aléatoires distribuées normalement avec une moyenne de 50 et un écart type de 4. Calculer la moyenne, la médiane et la variance.</li>
-</ol>
-</blockquote>
-<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="solutions.html#cb260-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pour la reproductibilité</span></span>
-<span id="cb260-2"><a href="solutions.html#cb260-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
-<span id="cb260-3"><a href="solutions.html#cb260-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb260-4"><a href="solutions.html#cb260-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Créer</span></span>
-<span id="cb260-5"><a href="solutions.html#cb260-5" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">10</span>, <span class="at">mean =</span> <span class="dv">50</span>, <span class="at">sd =</span> <span class="dv">4</span>)</span>
-<span id="cb260-6"><a href="solutions.html#cb260-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb260-7"><a href="solutions.html#cb260-7" aria-hidden="true" tabindex="-1"></a><span class="co"># La moyenne, la médiane et la variance</span></span>
-<span id="cb260-8"><a href="solutions.html#cb260-8" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x)</span>
-<span id="cb260-9"><a href="solutions.html#cb260-9" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">52.2</span></span>
-<span id="cb260-10"><a href="solutions.html#cb260-10" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(x)</span>
-<span id="cb260-11"><a href="solutions.html#cb260-11" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">51.5</span></span>
-<span id="cb260-12"><a href="solutions.html#cb260-12" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(x)</span>
-<span id="cb260-13"><a href="solutions.html#cb260-13" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">11.2</span></span></code></pre></div>
-<p>Voir <a href="calculer.html#les-graines">Les graines</a> pour la fonction <code><a href="https://rdrr.io/r/base/Random.html">set.seed()</a></code>, <a href="calculer.html#les-distributions">Les distributions</a> pour la fonction <code><a href="https://rdrr.io/r/stats/Normal.html">rnorm()</a></code> ainsi que son aide <code><a href="https://rdrr.io/r/stats/Normal.html">?rnorm</a></code> pour les arguments spécifiques, et <a href="calculer.html#la-moyenne">La moyenne</a>, <a href="calculer.html#la-m%C3%A9diane">La médiane</a> et <a href="calculer.html#la-variance">La variance</a> pour plus d’informations.</p>
-<blockquote>
-<ol start="6" style="list-style-type: decimal">
-<li>Créer un jeu de données contenant quatre sujets avec, pour chacun, leur nom de famille, leur âge et un score d’appréciation tiré d’une distribution uniforme allant de 0 à 100.</li>
-</ol>
-</blockquote>
-<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="solutions.html#cb261-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pour la reproductibilité</span></span>
-<span id="cb261-2"><a href="solutions.html#cb261-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
-<span id="cb261-3"><a href="solutions.html#cb261-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb261-4"><a href="solutions.html#cb261-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Créer</span></span>
-<span id="cb261-5"><a href="solutions.html#cb261-5" aria-hidden="true" tabindex="-1"></a>jd <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">nom =</span> <span class="fu">c</span>(<span class="st">"Eccleston"</span>, <span class="st">"Tennant"</span>, <span class="st">"Smith"</span>, <span class="st">"Capaldi"</span>),</span>
-<span id="cb261-6"><a href="solutions.html#cb261-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">age =</span> <span class="fu">c</span>(<span class="dv">41</span>, <span class="dv">35</span>, <span class="dv">28</span>, <span class="dv">55</span>),</span>
-<span id="cb261-7"><a href="solutions.html#cb261-7" aria-hidden="true" tabindex="-1"></a>                 <span class="at">score =</span> <span class="fu">runif</span>(<span class="at">n =</span> <span class="dv">4</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">100</span>))</span>
-<span id="cb261-8"><a href="solutions.html#cb261-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb261-9"><a href="solutions.html#cb261-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Imprimer le jeu dans la console</span></span>
-<span id="cb261-10"><a href="solutions.html#cb261-10" aria-hidden="true" tabindex="-1"></a>jd</span>
-<span id="cb261-11"><a href="solutions.html#cb261-11" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>         nom age score</span>
-<span id="cb261-12"><a href="solutions.html#cb261-12" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">1</span> Eccleston  <span class="dv">41</span>  <span class="fl">11.4</span></span>
-<span id="cb261-13"><a href="solutions.html#cb261-13" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">2</span>   Tennant  <span class="dv">35</span>  <span class="fl">62.2</span></span>
-<span id="cb261-14"><a href="solutions.html#cb261-14" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">3</span>     Smith  <span class="dv">28</span>  <span class="fl">60.9</span></span>
-<span id="cb261-15"><a href="solutions.html#cb261-15" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">4</span>   Capaldi  <span class="dv">55</span>  <span class="fl">62.3</span></span></code></pre></div>
-<p>Voir <a href="calculer.html#les-graines">Les graines</a> pour la fonction <code><a href="https://rdrr.io/r/base/Random.html">set.seed()</a></code>, [Création d’un jeu de données] pour <code><a href="https://rdrr.io/r/base/data.frame.html">data.frame()</a></code> et <a href="programmer.html#concat%C3%A9ner">Concaténer</a> pour les vecteurs en arguments, <a href="calculer.html#les-distributions">Les distributions</a> pour la fonction <code><a href="https://rdrr.io/r/stats/Uniform.html">runif()</a></code> ainsi que son aide <code><a href="https://rdrr.io/r/stats/Uniform.html">?runif</a></code> pour les arguments spécifiques. Les noms sont des chaînes de caractère <a href="programmer.html#les-cha%C3%AEnes-de-caract%C3%A8re">Les chaînes de caractère</a>.</p>
-<blockquote>
-<ol start="7" style="list-style-type: decimal">
-<li>Rédiger une fonction calculant l’hypoténuse d’un triangle rectangle. Rappel: le théorème de Pythagore est <span class="math inline">\(c^2=a^2+b^2\)</span>.</li>
-</ol>
-</blockquote>
+</div>
+<div id="générer-10-valeurs-aléatoires-distribuées-normalement-avec-une-moyenne-de-50-et-un-écart-type-de-4.-calculer-la-moyenne-la-médiane-et-la-variance." class="section level3" number="18.3.8">
+<h3>
+<span class="header-section-number">18.3.8</span> 5. Générer 10 valeurs aléatoires distribuées normalement avec une moyenne de 50 et un écart type de 4. Calculer la moyenne, la médiane et la variance.<a class="anchor" aria-label="anchor" href="#g%C3%A9n%C3%A9rer-10-valeurs-al%C3%A9atoires-distribu%C3%A9es-normalement-avec-une-moyenne-de-50-et-un-%C3%A9cart-type-de-4.-calculer-la-moyenne-la-m%C3%A9diane-et-la-variance."><i class="fas fa-link"></i></a>
+</h3>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="solutions.html#cb263-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pour la reproductibilité</span></span>
+<span id="cb263-2"><a href="solutions.html#cb263-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb263-3"><a href="solutions.html#cb263-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb263-4"><a href="solutions.html#cb263-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Créer</span></span>
+<span id="cb263-5"><a href="solutions.html#cb263-5" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">10</span>, <span class="at">mean =</span> <span class="dv">50</span>, <span class="at">sd =</span> <span class="dv">4</span>)</span>
+<span id="cb263-6"><a href="solutions.html#cb263-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb263-7"><a href="solutions.html#cb263-7" aria-hidden="true" tabindex="-1"></a><span class="co"># La moyenne, la médiane et la variance</span></span>
+<span id="cb263-8"><a href="solutions.html#cb263-8" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x)</span>
+<span id="cb263-9"><a href="solutions.html#cb263-9" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">52.2</span></span>
+<span id="cb263-10"><a href="solutions.html#cb263-10" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(x)</span>
+<span id="cb263-11"><a href="solutions.html#cb263-11" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">51.5</span></span>
+<span id="cb263-12"><a href="solutions.html#cb263-12" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(x)</span>
+<span id="cb263-13"><a href="solutions.html#cb263-13" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">11.2</span></span></code></pre></div>
+<p>Voir <a href="calculer.html#les-graines">Les graines</a> pour la fonction <code><a href="https://rdrr.io/r/base/Random.html">set.seed()</a></code>, <a href="calculer.html#les-distributions">Les distributions</a> pour la fonction <code><a href="https://rdrr.io/r/stats/Normal.html">rnorm()</a></code> ainsi que son aide <code><a href="https://rdrr.io/r/stats/Normal.html">?rnorm</a></code> pour les arguments spécifiques, et <a href="calculer.html#la-moyenne">la moyenne</a>, <a href="calculer.html#la-m%C3%A9diane">la médiane</a> et <a href="calculer.html#la-variance">la variance</a> pour plus d’informations.</p>
+</div>
+<div id="créer-un-jeu-de-données-contenant-quatre-sujets-avec-pour-chacun-leur-nom-de-famille-leur-âge-et-un-score-dappréciation-tiré-dune-distribution-uniforme-allant-de-0-à-100." class="section level3" number="18.3.9">
+<h3>
+<span class="header-section-number">18.3.9</span> 6. Créer un jeu de données contenant quatre sujets avec, pour chacun, leur nom de famille, leur âge et un score d’appréciation tiré d’une distribution uniforme allant de 0 à 100.<a class="anchor" aria-label="anchor" href="#cr%C3%A9er-un-jeu-de-donn%C3%A9es-contenant-quatre-sujets-avec-pour-chacun-leur-nom-de-famille-leur-%C3%A2ge-et-un-score-dappr%C3%A9ciation-tir%C3%A9-dune-distribution-uniforme-allant-de-0-%C3%A0-100."><i class="fas fa-link"></i></a>
+</h3>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="solutions.html#cb264-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pour la reproductibilité</span></span>
+<span id="cb264-2"><a href="solutions.html#cb264-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb264-3"><a href="solutions.html#cb264-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb264-4"><a href="solutions.html#cb264-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Créer</span></span>
+<span id="cb264-5"><a href="solutions.html#cb264-5" aria-hidden="true" tabindex="-1"></a>jd <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">nom =</span> <span class="fu">c</span>(<span class="st">"Eccleston"</span>, <span class="st">"Tennant"</span>, <span class="st">"Smith"</span>, <span class="st">"Capaldi"</span>),</span>
+<span id="cb264-6"><a href="solutions.html#cb264-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">age =</span> <span class="fu">c</span>(<span class="dv">41</span>, <span class="dv">35</span>, <span class="dv">28</span>, <span class="dv">55</span>),</span>
+<span id="cb264-7"><a href="solutions.html#cb264-7" aria-hidden="true" tabindex="-1"></a>                 <span class="at">score =</span> <span class="fu">runif</span>(<span class="at">n =</span> <span class="dv">4</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">100</span>))</span>
+<span id="cb264-8"><a href="solutions.html#cb264-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb264-9"><a href="solutions.html#cb264-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Imprimer le jeu dans la console</span></span>
+<span id="cb264-10"><a href="solutions.html#cb264-10" aria-hidden="true" tabindex="-1"></a>jd</span>
+<span id="cb264-11"><a href="solutions.html#cb264-11" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>         nom age score</span>
+<span id="cb264-12"><a href="solutions.html#cb264-12" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">1</span> Eccleston  <span class="dv">41</span>  <span class="fl">11.4</span></span>
+<span id="cb264-13"><a href="solutions.html#cb264-13" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">2</span>   Tennant  <span class="dv">35</span>  <span class="fl">62.2</span></span>
+<span id="cb264-14"><a href="solutions.html#cb264-14" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">3</span>     Smith  <span class="dv">28</span>  <span class="fl">60.9</span></span>
+<span id="cb264-15"><a href="solutions.html#cb264-15" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">4</span>   Capaldi  <span class="dv">55</span>  <span class="fl">62.3</span></span></code></pre></div>
+<p>Voir <a href="calculer.html#les-graines">Les graines</a> pour la fonction <code><a href="https://rdrr.io/r/base/Random.html">set.seed()</a></code>, <a href="programmer.html#cr%C3%A9er-un-jeu-de-donn%C3%A9es">Créer un jeu de données</a> pour <code><a href="https://rdrr.io/r/base/data.frame.html">data.frame()</a></code> et <a href="programmer.html#concat%C3%A9ner">Concaténer</a> pour les vecteurs en arguments, <a href="calculer.html#les-distributions">Les distributions</a> pour la fonction <code><a href="https://rdrr.io/r/stats/Uniform.html">runif()</a></code> ainsi que son aide <code><a href="https://rdrr.io/r/stats/Uniform.html">?runif</a></code> pour les arguments spécifiques. Les noms sont des <a href="programmer.html#les-cha%C3%AEnes-de-caract%C3%A8re">chaînes de caractère</a>.</p>
+</div>
+<div id="rédiger-une-fonction-calculant-lhypoténuse-dun-triangle-rectangle.-rappel-le-théorème-de-pythagore-est-c2a2b2." class="section level3" number="18.3.10">
+<h3>
+<span class="header-section-number">18.3.10</span> 7. Rédiger une fonction calculant l’hypoténuse d’un triangle rectangle. Rappel: le théorème de Pythagore est <span class="math inline">\(c^2=a^2+b^2\)</span>.<a class="anchor" aria-label="anchor" href="#r%C3%A9diger-une-fonction-calculant-lhypot%C3%A9nuse-dun-triangle-rectangle.-rappel-le-th%C3%A9or%C3%A8me-de-pythagore-est-c2a2b2."><i class="fas fa-link"></i></a>
+</h3>
 <p>En prenant <code>a</code> et <code>b</code> comme arguments.</p>
-<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="solutions.html#cb262-1" aria-hidden="true" tabindex="-1"></a>hypothenus <span class="ot">&lt;-</span> <span class="cf">function</span>(a, b){</span>
-<span id="cb262-2"><a href="solutions.html#cb262-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sqrt</span>(a<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> b<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb262-3"><a href="solutions.html#cb262-3" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb262-4"><a href="solutions.html#cb262-4" aria-hidden="true" tabindex="-1"></a><span class="fu">hypothenus</span>(<span class="dv">3</span>, <span class="dv">4</span>)</span>
-<span id="cb262-5"><a href="solutions.html#cb262-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">5</span></span></code></pre></div>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="solutions.html#cb265-1" aria-hidden="true" tabindex="-1"></a>hypothenus <span class="ot">&lt;-</span> <span class="cf">function</span>(a, b){</span>
+<span id="cb265-2"><a href="solutions.html#cb265-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sqrt</span>(a<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> b<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb265-3"><a href="solutions.html#cb265-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb265-4"><a href="solutions.html#cb265-4" aria-hidden="true" tabindex="-1"></a><span class="fu">hypothenus</span>(<span class="dv">3</span>, <span class="dv">4</span>)</span>
+<span id="cb265-5"><a href="solutions.html#cb265-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">5</span></span></code></pre></div>
 <p>Voir <a href="programmer.html#les-fonctions">Les fonctions</a> pour plus d’informations.</p>
-<blockquote>
-<ol start="8" style="list-style-type: decimal">
-<li>Rédiger une fonction calculant un score-<span class="math inline">\(z\)</span> pour une variable. Rappel: un score-<span class="math inline">\(z\)</span>, correspond à <span class="math inline">\(z=\frac{x-\mu}{\sigma}\)</span>.</li>
-</ol>
-</blockquote>
+</div>
+<div id="rédiger-une-fonction-calculant-un-score-z-pour-une-variable.-rappel-un-score-z-correspond-à-zfracx-musigma." class="section level3" number="18.3.11">
+<h3>
+<span class="header-section-number">18.3.11</span> 8. Rédiger une fonction calculant un score-<span class="math inline">\(z\)</span> pour une variable. Rappel: un score-<span class="math inline">\(z\)</span>, correspond à <span class="math inline">\(z=\frac{x-\mu}{\sigma}\)</span>.<a class="anchor" aria-label="anchor" href="#r%C3%A9diger-une-fonction-calculant-un-score-z-pour-une-variable.-rappel-un-score-z-correspond-%C3%A0-zfracx-musigma."><i class="fas fa-link"></i></a>
+</h3>
 <p>Deux possibilités ici. Soit <code>x</code> est un vecteur contenant plusieurs nombres ou il est un nombre et il faut ajouter la moyenne (<span class="math inline">\(\mu\)</span>) et l’écart type (<span class="math inline">\(\sigma\)</span>).</p>
-<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="solutions.html#cb263-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Premier cas</span></span>
-<span id="cb263-2"><a href="solutions.html#cb263-2" aria-hidden="true" tabindex="-1"></a>score.z <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
-<span id="cb263-3"><a href="solutions.html#cb263-3" aria-hidden="true" tabindex="-1"></a>  (x<span class="sc">-</span><span class="fu">mean</span>(x))<span class="sc">/</span><span class="fu">sd</span>(x)</span>
-<span id="cb263-4"><a href="solutions.html#cb263-4" aria-hidden="true" tabindex="-1"></a>} </span>
-<span id="cb263-5"><a href="solutions.html#cb263-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb263-6"><a href="solutions.html#cb263-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Deuxième cas</span></span>
-<span id="cb263-7"><a href="solutions.html#cb263-7" aria-hidden="true" tabindex="-1"></a>score.z <span class="ot">&lt;-</span> <span class="cf">function</span>(x, mu, sigma) {</span>
-<span id="cb263-8"><a href="solutions.html#cb263-8" aria-hidden="true" tabindex="-1"></a>  (x<span class="sc">-</span>mu)<span class="sc">/</span>sigma</span>
-<span id="cb263-9"><a href="solutions.html#cb263-9" aria-hidden="true" tabindex="-1"></a>} </span>
-<span id="cb263-10"><a href="solutions.html#cb263-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb263-11"><a href="solutions.html#cb263-11" aria-hidden="true" tabindex="-1"></a><span class="fu">score.z</span>(<span class="dv">130</span>, <span class="at">mu =</span> <span class="dv">100</span>, <span class="at">sigma =</span> <span class="dv">15</span>)</span>
-<span id="cb263-12"><a href="solutions.html#cb263-12" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">2</span></span></code></pre></div>
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="solutions.html#cb266-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Premier cas</span></span>
+<span id="cb266-2"><a href="solutions.html#cb266-2" aria-hidden="true" tabindex="-1"></a>score.z <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb266-3"><a href="solutions.html#cb266-3" aria-hidden="true" tabindex="-1"></a>  (x<span class="sc">-</span><span class="fu">mean</span>(x))<span class="sc">/</span><span class="fu">sd</span>(x)</span>
+<span id="cb266-4"><a href="solutions.html#cb266-4" aria-hidden="true" tabindex="-1"></a>} </span>
+<span id="cb266-5"><a href="solutions.html#cb266-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb266-6"><a href="solutions.html#cb266-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Deuxième cas</span></span>
+<span id="cb266-7"><a href="solutions.html#cb266-7" aria-hidden="true" tabindex="-1"></a>score.z <span class="ot">&lt;-</span> <span class="cf">function</span>(x, mu, sigma) {</span>
+<span id="cb266-8"><a href="solutions.html#cb266-8" aria-hidden="true" tabindex="-1"></a>  (x<span class="sc">-</span>mu)<span class="sc">/</span>sigma</span>
+<span id="cb266-9"><a href="solutions.html#cb266-9" aria-hidden="true" tabindex="-1"></a>} </span>
+<span id="cb266-10"><a href="solutions.html#cb266-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb266-11"><a href="solutions.html#cb266-11" aria-hidden="true" tabindex="-1"></a><span class="fu">score.z</span>(<span class="dv">130</span>, <span class="at">mu =</span> <span class="dv">100</span>, <span class="at">sigma =</span> <span class="dv">15</span>)</span>
+<span id="cb266-12"><a href="solutions.html#cb266-12" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">2</span></span></code></pre></div>
 <p>Le premier cas est l’équivalent de la fonction <code><a href="https://rdrr.io/r/base/scale.html">scale()</a></code> qui rempliera la même tâche.</p>
 <p>Voir <a href="programmer.html#les-fonctions">Les fonctions</a> pour plus d’informations. Les scores-<span class="math inline">\(z\)</span> sont abordés plus en profondeur à la section <a href="inf%C3%A9rer.html#inf%C3%A9rence-avec-la-distribution-normale-sur-une-unit%C3%A9">Inférence avec la distribution normale sur une unité</a>.</p>
-<blockquote>
-<ol start="9" style="list-style-type: decimal">
-<li>Rédiger une fonction calculant la médiane d’une variable (ne recopiez pas celle de ce livre).</li>
-</ol>
-</blockquote>
+</div>
+<div id="rédiger-une-fonction-calculant-la-médiane-dune-variable-ne-recopiez-pas-celle-de-ce-livre." class="section level3" number="18.3.12">
+<h3>
+<span class="header-section-number">18.3.12</span> 9. Rédiger une fonction calculant la médiane d’une variable (ne recopiez pas celle de ce livre).<a class="anchor" aria-label="anchor" href="#r%C3%A9diger-une-fonction-calculant-la-m%C3%A9diane-dune-variable-ne-recopiez-pas-celle-de-ce-livre."><i class="fas fa-link"></i></a>
+</h3>
 <p>Voici une autre fonction calculant une médiane d’un vecteur.</p>
-<div class="sourceCode" id="cb264"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb267"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mediane</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span></span>
 <span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
 <span>  <span class="va">longueur</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
@@ -245,31 +245,31 @@
 <span><span class="op">}</span></span></code></pre></div>
 <p>Encore une fois (il n’y a pas vraiment de façon de l’éviter), <code>%%2</code> permet de tester si pair (<code>FALSE</code>, car <code>0</code> si pair) ou impair (<code>TRUE</code>, car <code>1</code> si impair), puis de prendre la valeur à la position correspondante. Il y a plusieurs façons de tirer les éléments du vecteur.</p>
 <p>Voir <a href="programmer.html#les-fonctions">Les fonctions</a>, mais surtout <a href="calculer.html#la-m%C3%A9diane">La médiane</a>, pour plus d’informations.</p>
-<blockquote>
-<ol start="10" style="list-style-type: decimal">
-<li>Rédiger une fonction qui pivote une liste de <span class="math inline">\(k\)</span> éléments par <span class="math inline">\(n\)</span>. Par exemple, une liste de six (<span class="math inline">\(k=6\)</span> comme <span class="math inline">\([1,2,3,4,5,6]\)</span>) pivoté de deux (<span class="math inline">\(n=2\)</span>) devient (<span class="math inline">\([3,4,5,6,1,2]\)</span>).</li>
-</ol>
-</blockquote>
+</div>
+<div id="rédiger-une-fonction-qui-pivote-une-liste-de-k-éléments-par-n.-par-exemple-une-liste-de-six-k6-comme-123456-pivoté-de-deux-n2-devient-345612." class="section level3" number="18.3.13">
+<h3>
+<span class="header-section-number">18.3.13</span> 10. Rédiger une fonction qui pivote une liste de <span class="math inline">\(k\)</span> éléments par <span class="math inline">\(n\)</span>. Par exemple, une liste de six (<span class="math inline">\(k=6\)</span> comme <span class="math inline">\([1,2,3,4,5,6]\)</span>) pivoté de deux (<span class="math inline">\(n=2\)</span>) devient (<span class="math inline">\([3,4,5,6,1,2]\)</span>).<a class="anchor" aria-label="anchor" href="#r%C3%A9diger-une-fonction-qui-pivote-une-liste-de-k-%C3%A9l%C3%A9ments-par-n.-par-exemple-une-liste-de-six-k6-comme-123456-pivot%C3%A9-de-deux-n2-devient-345612."><i class="fas fa-link"></i></a>
+</h3>
 <p>Plusieurs solutions possibles dont en voici une.</p>
-<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="solutions.html#cb265-1" aria-hidden="true" tabindex="-1"></a>pivot <span class="ot">&lt;-</span> <span class="cf">function</span>(k, n){</span>
-<span id="cb265-2"><a href="solutions.html#cb265-2" aria-hidden="true" tabindex="-1"></a>  pivoter <span class="ot">&lt;-</span> <span class="fu">c</span>((n<span class="sc">+</span><span class="dv">1</span>)<span class="sc">:</span>k, <span class="dv">1</span><span class="sc">:</span>n)</span>
-<span id="cb265-3"><a href="solutions.html#cb265-3" aria-hidden="true" tabindex="-1"></a>  pivoter</span>
-<span id="cb265-4"><a href="solutions.html#cb265-4" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb265-5"><a href="solutions.html#cb265-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Original</span></span>
-<span id="cb265-6"><a href="solutions.html#cb265-6" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="dv">6</span></span>
-<span id="cb265-7"><a href="solutions.html#cb265-7" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span>k</span>
-<span id="cb265-8"><a href="solutions.html#cb265-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span> <span class="dv">4</span> <span class="dv">5</span> <span class="dv">6</span></span>
-<span id="cb265-9"><a href="solutions.html#cb265-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb265-10"><a href="solutions.html#cb265-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Pivoté</span></span>
-<span id="cb265-11"><a href="solutions.html#cb265-11" aria-hidden="true" tabindex="-1"></a><span class="fu">pivot</span>(<span class="at">k =</span> k, <span class="at">n =</span> <span class="dv">2</span>)</span>
-<span id="cb265-12"><a href="solutions.html#cb265-12" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">3</span> <span class="dv">4</span> <span class="dv">5</span> <span class="dv">6</span> <span class="dv">1</span> <span class="dv">2</span></span></code></pre></div>
-<blockquote>
-<ol start="11" style="list-style-type: decimal">
-<li>Rédiger une fonction pour générer une séquence de Fibonacci (chaque nombre est la somme des deux précédents) jusqu’à une certaine valeur, soit <span class="math inline">\(1, 1, 2, 3, 5, 8,...\)</span>.</li>
-</ol>
-</blockquote>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="solutions.html#cb268-1" aria-hidden="true" tabindex="-1"></a>pivot <span class="ot">&lt;-</span> <span class="cf">function</span>(k, n){</span>
+<span id="cb268-2"><a href="solutions.html#cb268-2" aria-hidden="true" tabindex="-1"></a>  pivoter <span class="ot">&lt;-</span> <span class="fu">c</span>((n<span class="sc">+</span><span class="dv">1</span>)<span class="sc">:</span>k, <span class="dv">1</span><span class="sc">:</span>n)</span>
+<span id="cb268-3"><a href="solutions.html#cb268-3" aria-hidden="true" tabindex="-1"></a>  pivoter</span>
+<span id="cb268-4"><a href="solutions.html#cb268-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb268-5"><a href="solutions.html#cb268-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Original</span></span>
+<span id="cb268-6"><a href="solutions.html#cb268-6" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="dv">6</span></span>
+<span id="cb268-7"><a href="solutions.html#cb268-7" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span>k</span>
+<span id="cb268-8"><a href="solutions.html#cb268-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span> <span class="dv">4</span> <span class="dv">5</span> <span class="dv">6</span></span>
+<span id="cb268-9"><a href="solutions.html#cb268-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb268-10"><a href="solutions.html#cb268-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Pivoté</span></span>
+<span id="cb268-11"><a href="solutions.html#cb268-11" aria-hidden="true" tabindex="-1"></a><span class="fu">pivot</span>(<span class="at">k =</span> k, <span class="at">n =</span> <span class="dv">2</span>)</span>
+<span id="cb268-12"><a href="solutions.html#cb268-12" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">3</span> <span class="dv">4</span> <span class="dv">5</span> <span class="dv">6</span> <span class="dv">1</span> <span class="dv">2</span></span></code></pre></div>
+</div>
+<div id="rédiger-une-fonction-pour-générer-une-séquence-de-fibonacci-chaque-nombre-est-la-somme-des-deux-précédents-jusquà-une-certaine-valeur-soit-1-1-2-3-5-8...." class="section level3" number="18.3.14">
+<h3>
+<span class="header-section-number">18.3.14</span> 11. Rédiger une fonction pour générer une séquence de Fibonacci (chaque nombre est la somme des deux précédents) jusqu’à une certaine valeur, soit <span class="math inline">\(1, 1, 2, 3, 5, 8,...\)</span>.<a class="anchor" aria-label="anchor" href="#r%C3%A9diger-une-fonction-pour-g%C3%A9n%C3%A9rer-une-s%C3%A9quence-de-fibonacci-chaque-nombre-est-la-somme-des-deux-pr%C3%A9c%C3%A9dents-jusqu%C3%A0-une-certaine-valeur-soit-1-1-2-3-5-8...."><i class="fas fa-link"></i></a>
+</h3>
 <p>Plusieurs solutions possibles dont en voici deux.</p>
-<div class="sourceCode" id="cb266"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb269"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fibonnaci1</span> <span class="op">&lt;-</span>  <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">{</span></span>
 <span>  <span class="co"># n est le nombre d'éléments de la série demandée.</span></span>
 <span>  <span class="co"># Création d'un vecteur de taille n ne contenant que des 1.</span></span>
@@ -289,7 +289,7 @@
 <span>  <span class="va">serie</span></span>
 <span><span class="op">}</span></span></code></pre></div>
 <p>En voici une autre en utilisant la récursion (une fonction qui s’appelle elle-même).</p>
-<div class="sourceCode" id="cb267"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb270"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fibonnaci2</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">{</span></span>
 <span>  <span class="kw">if</span><span class="op">(</span><span class="va">n</span> <span class="op">&lt;=</span> <span class="fl">2</span><span class="op">)</span><span class="op">{</span></span>
 <span>    <span class="co"># Si n est plus petit que 2, alors retourne 1</span></span>
@@ -300,11 +300,12 @@
 <span>  <span class="op">}</span></span>
 <span><span class="op">}</span></span></code></pre></div>
 <p>Les voici comparées.</p>
-<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="solutions.html#cb268-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">8</span></span>
-<span id="cb268-2"><a href="solutions.html#cb268-2" aria-hidden="true" tabindex="-1"></a><span class="fu">fibonnaci1</span>(n)</span>
-<span id="cb268-3"><a href="solutions.html#cb268-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>]  <span class="dv">1</span>  <span class="dv">1</span>  <span class="dv">2</span>  <span class="dv">3</span>  <span class="dv">5</span>  <span class="dv">8</span> <span class="dv">13</span> <span class="dv">21</span></span>
-<span id="cb268-4"><a href="solutions.html#cb268-4" aria-hidden="true" tabindex="-1"></a><span class="fu">fibonnaci2</span>(n)</span>
-<span id="cb268-5"><a href="solutions.html#cb268-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">21</span></span></code></pre></div>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="solutions.html#cb271-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">8</span></span>
+<span id="cb271-2"><a href="solutions.html#cb271-2" aria-hidden="true" tabindex="-1"></a><span class="fu">fibonnaci1</span>(n)</span>
+<span id="cb271-3"><a href="solutions.html#cb271-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>]  <span class="dv">1</span>  <span class="dv">1</span>  <span class="dv">2</span>  <span class="dv">3</span>  <span class="dv">5</span>  <span class="dv">8</span> <span class="dv">13</span> <span class="dv">21</span></span>
+<span id="cb271-4"><a href="solutions.html#cb271-4" aria-hidden="true" tabindex="-1"></a><span class="fu">fibonnaci2</span>(n)</span>
+<span id="cb271-5"><a href="solutions.html#cb271-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">21</span></span></code></pre></div>
+</div>
 </div>
 <div id="jeux-de-données" class="section level2 unnumbered">
 <h2>Jeux de données<a class="anchor" aria-label="anchor" href="#jeux-de-donn%C3%A9es"><i class="fas fa-link"></i></a>
@@ -313,13 +314,27 @@
 </div>
 </div>
   <div class="chapter-nav">
-<div class="prev"><a href="r%C3%A9duire.html"><span class="header-section-number">17</span> Réduire</a></div>
+<div class="prev"><a href="r%C3%A9duire.html"><span class="header-section-number">18</span> Réduire</a></div>
 <div class="next"><a href="r%C3%A9f%C3%A9rences.html">Références</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#solutions">Solutions</a></li>
-<li><a class="nav-link" href="#rudiments">Rudiments</a></li>
+<li>
+<a class="nav-link" href="#rudiments">Rudiments</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#quel-est-le-r%C3%A9sultat-de-mean---c1-2-3-pourquoi"><span class="header-section-number">18.3.4</span> 1. Quel est le résultat de mean &lt;- c(1, 2, 3)? Pourquoi?</a></li>
+<li><a class="nav-link" href="#quelle-est-la-diff%C3%A9rence-entre-caract%C3%A8re-et-caract%C3%A8re"><span class="header-section-number">18.3.5</span> 2. Quelle est la différence entre # Caractère et "Caractère"?</a></li>
+<li><a class="nav-link" href="#cr%C3%A9er-un-vecteur-contenant-les-valeurs-4-10-32.-calculer-la-moyenne-et-l%C3%A9cart-type-de-ce-vecteur."><span class="header-section-number">18.3.6</span> 3. Créer un vecteur contenant les valeurs \(4, 10, 32\). Calculer la moyenne et l’écart type de ce vecteur.</a></li>
+<li><a class="nav-link" href="#cr%C3%A9er-un-vecteur-contenant-les-valeurs-de-4-%C3%A0-11.-s%C3%A9lectionner-la-deuxi%C3%A8me-valeur-de-ce-vecteur-puis-additionner-100-%C3%A0-cette-valeur-et-remplacer-la-dans-le-vecteur."><span class="header-section-number">18.3.7</span> 4. Créer un vecteur contenant les valeurs de \(4\) à \(11\). Sélectionner la deuxième valeur de ce vecteur, puis additionner 100 à cette valeur et remplacer la dans le vecteur.</a></li>
+<li><a class="nav-link" href="#g%C3%A9n%C3%A9rer-10-valeurs-al%C3%A9atoires-distribu%C3%A9es-normalement-avec-une-moyenne-de-50-et-un-%C3%A9cart-type-de-4.-calculer-la-moyenne-la-m%C3%A9diane-et-la-variance."><span class="header-section-number">18.3.8</span> 5. Générer 10 valeurs aléatoires distribuées normalement avec une moyenne de 50 et un écart type de 4. Calculer la moyenne, la médiane et la variance.</a></li>
+<li><a class="nav-link" href="#cr%C3%A9er-un-jeu-de-donn%C3%A9es-contenant-quatre-sujets-avec-pour-chacun-leur-nom-de-famille-leur-%C3%A2ge-et-un-score-dappr%C3%A9ciation-tir%C3%A9-dune-distribution-uniforme-allant-de-0-%C3%A0-100."><span class="header-section-number">18.3.9</span> 6. Créer un jeu de données contenant quatre sujets avec, pour chacun, leur nom de famille, leur âge et un score d’appréciation tiré d’une distribution uniforme allant de 0 à 100.</a></li>
+<li><a class="nav-link" href="#r%C3%A9diger-une-fonction-calculant-lhypot%C3%A9nuse-dun-triangle-rectangle.-rappel-le-th%C3%A9or%C3%A8me-de-pythagore-est-c2a2b2."><span class="header-section-number">18.3.10</span> 7. Rédiger une fonction calculant l’hypoténuse d’un triangle rectangle. Rappel: le théorème de Pythagore est \(c^2=a^2+b^2\).</a></li>
+<li><a class="nav-link" href="#r%C3%A9diger-une-fonction-calculant-un-score-z-pour-une-variable.-rappel-un-score-z-correspond-%C3%A0-zfracx-musigma."><span class="header-section-number">18.3.11</span> 8. Rédiger une fonction calculant un score-\(z\) pour une variable. Rappel: un score-\(z\), correspond à \(z=\frac{x-\mu}{\sigma}\).</a></li>
+<li><a class="nav-link" href="#r%C3%A9diger-une-fonction-calculant-la-m%C3%A9diane-dune-variable-ne-recopiez-pas-celle-de-ce-livre."><span class="header-section-number">18.3.12</span> 9. Rédiger une fonction calculant la médiane d’une variable (ne recopiez pas celle de ce livre).</a></li>
+<li><a class="nav-link" href="#r%C3%A9diger-une-fonction-qui-pivote-une-liste-de-k-%C3%A9l%C3%A9ments-par-n.-par-exemple-une-liste-de-six-k6-comme-123456-pivot%C3%A9-de-deux-n2-devient-345612."><span class="header-section-number">18.3.13</span> 10. Rédiger une fonction qui pivote une liste de \(k\) éléments par \(n\). Par exemple, une liste de six (\(k=6\) comme \([1,2,3,4,5,6]\)) pivoté de deux (\(n=2\)) devient (\([3,4,5,6,1,2]\)).</a></li>
+<li><a class="nav-link" href="#r%C3%A9diger-une-fonction-pour-g%C3%A9n%C3%A9rer-une-s%C3%A9quence-de-fibonacci-chaque-nombre-est-la-somme-des-deux-pr%C3%A9c%C3%A9dents-jusqu%C3%A0-une-certaine-valeur-soit-1-1-2-3-5-8...."><span class="header-section-number">18.3.14</span> 11. Rédiger une fonction pour générer une séquence de Fibonacci (chaque nombre est la somme des deux précédents) jusqu’à une certaine valeur, soit \(1, 1, 2, 3, 5, 8,...\).</a></li>
+</ul>
+</li>
 <li><a class="nav-link" href="#jeux-de-donn%C3%A9es">Jeux de données</a></li>
 </ul>
 
@@ -338,7 +353,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-12-06.</p>
+    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-12-22.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

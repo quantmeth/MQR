@@ -47,6 +47,7 @@ Pour des variables centrées (non complètement standardisées), l'équation\ \@
 \begin{equation}
 \sigma^2_{x \times w} = \mu_{x}\mu_{w}((\frac{\sigma_{x}}{\mu_{x}})^2+
 2\rho_{xw}\frac{\sigma_{x}}{\mu_{x}}\frac{\sigma_{w}}{\mu_{w}} + (\frac{\sigma_{w}}{\mu_{w}})^2+\\(1+\rho^2)(\frac{\sigma_{x}}{\mu_{x}})^2(\frac{\sigma_{w}}{\mu_{w}})^2)
+(\#eq:prodvar)
 \end{equation}
 
 Celle-ci n'est pas des plus attrayante à l'oeil, surtout pour les arithmophobes. L'essentiel : il faut porter une attention particulière à la variance de $xw$ lorsque la variable $y$ est générée, car celle-ci est dépendante de la moyenne et de la variance de ces composantes.

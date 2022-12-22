@@ -193,7 +193,7 @@ Il existe deux techniques plus connues pour réaliser l'analyse factorielle expl
 
 La PAF tente de retrouver la matrice de corrélation originale sans bruit, c'est-à-dire la **matrice de corrélation réduite** dans laquelle la diagonale n'est pas constituée de $1$ soit `phi %*% t(phi)` $\Phi\Phi^\prime$. Elle se base sur l'ACP (la fonction maison ci-dessous utilise `eigen()`) avec quelques peaufinements en plus.
 
-La logique est de prendre les loadings $\phi$ d'un nombre arbitraire de ,$k$, facteurs, puis de calculer la communalité des variables, soit l'équation\ \@ref(eq:com) pour la variable $i$.
+La logique est de prendre les loadings $\phi$ d'un nombre arbitraire de $k$ facteurs, puis de calculer la communalité des variables, soit l'équation\ \@ref(eq:com) pour la variable $i$.
 
 \begin{equation}
 C_i = \sum_{i=1}^k \Phi_i^2
@@ -243,8 +243,8 @@ paf <- function(covmat,
     if (all(abs(diff) < converge)) break
     
     # Si non,
-    # Mettre à jour la nouvelle diagonale
-    # de la matrice
+    # mettre à jour la nouvelle diagonale
+    # de la matrice et continuer
     covmat <- covmat - diag(diff)
   }
   
@@ -271,4 +271,4 @@ phi%*%t(phi)
 paf(covmat = R, nfactors = 2)$covmat
 ```
 
-Les résultats sont toutefois légèrement différents pour les loadings. Cela est dû au fait que `factanal()` n'utilise pas la méthode PAF, mais bien le MLFA. Cette technique n'est pas détaillée ici. Elle est très similaire à PAF à l'exception qu'elle focalise sur l'estimation des loadings pour dériver les communalités, plutôt que d'utiliser seulement les communalités. Pour produire une fonction similaire, il faut passer par l'optimisation avec `optim()` (vu dans [Les calculs de l'analyse en composantes principales]).
+Les résultats sont toutefois légèrement différents pour les loadings. Cela est dû au fait que `factanal()` n'utilise pas la méthode PAF, mais bien le MLFA. Cette technique n'est pas détaillée ici. Elle est très similaire à PAF à l'exception qu'elle focalise sur l'estimation des loadings pour dériver les communalités, plutôt que d'utiliser seulement les communalités. Pour produire une fonction similaire, il faut passer par l'optimisation avec `optim()` (vue dans [Les calculs de l'analyse en composantes principales]).

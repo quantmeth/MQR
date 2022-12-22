@@ -4,16 +4,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title> 10 Simuler | Méthodes quantitatives avec R</title>
+<title> 11 Simuler | Méthodes quantitatives avec R</title>
 <meta name="author" content="P.-O. Caron">
 <meta name="description" content="Dans plusieurs contextes statistiques, les informations cruciales nécessaires pour réaliser une analyse statistique ou tirer des résultats spécifiques ne sont pas connues (par exemple, le chapitre...">
 <meta name="generator" content="bookdown 0.29 with bs4_book()">
-<meta property="og:title" content=" 10 Simuler | Méthodes quantitatives avec R">
+<meta property="og:title" content=" 11 Simuler | Méthodes quantitatives avec R">
 <meta property="og:type" content="book">
 <meta property="og:url" content="mqr.teluq.ca/simuler.html">
 <meta property="og:description" content="Dans plusieurs contextes statistiques, les informations cruciales nécessaires pour réaliser une analyse statistique ou tirer des résultats spécifiques ne sont pas connues (par exemple, le chapitre...">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content=" 10 Simuler | Méthodes quantitatives avec R">
+<meta name="twitter:title" content=" 11 Simuler | Méthodes quantitatives avec R">
 <meta name="twitter:description" content="Dans plusieurs contextes statistiques, les informations cruciales nécessaires pour réaliser une analyse statistique ou tirer des résultats spécifiques ne sont pas connues (par exemple, le chapitre...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -77,28 +77,29 @@
 <li><a class="" href="commencer.html"><span class="header-section-number">1</span> Commencer</a></li>
 <li><a class="" href="programmer.html"><span class="header-section-number">2</span> Programmer</a></li>
 <li><a class="" href="calculer.html"><span class="header-section-number">3</span> Calculer</a></li>
+<li><a class="" href="r%C3%A9diger.html"><span class="header-section-number">4</span> Rédiger</a></li>
 <li><a class="" href="exercice-rudiments.html">Exercices</a></li>
 <li class="book-part">Jeux de données</li>
-<li><a class="" href="entrer.html"><span class="header-section-number">4</span> Entrer</a></li>
-<li><a class="" href="importer.html"><span class="header-section-number">5</span> Importer</a></li>
-<li><a class="" href="manipuler.html"><span class="header-section-number">6</span> Manipuler</a></li>
-<li><a class="" href="visualiser.html"><span class="header-section-number">7</span> Visualiser</a></li>
+<li><a class="" href="entrer.html"><span class="header-section-number">5</span> Entrer</a></li>
+<li><a class="" href="importer.html"><span class="header-section-number">6</span> Importer</a></li>
+<li><a class="" href="manipuler.html"><span class="header-section-number">7</span> Manipuler</a></li>
+<li><a class="" href="visualiser.html"><span class="header-section-number">8</span> Visualiser</a></li>
 <li><a class="" href="exercice-gestion.html">Exercices</a></li>
 <li class="book-part">Statistiques</li>
-<li><a class="" href="inf%C3%A9rer.html"><span class="header-section-number">8</span> Inférer</a></li>
-<li><a class="" href="analyser.html"><span class="header-section-number">9</span> Analyser</a></li>
-<li><a class="active" href="simuler.html"><span class="header-section-number">10</span> Simuler</a></li>
+<li><a class="" href="inf%C3%A9rer.html"><span class="header-section-number">9</span> Inférer</a></li>
+<li><a class="" href="analyser.html"><span class="header-section-number">10</span> Analyser</a></li>
+<li><a class="active" href="simuler.html"><span class="header-section-number">11</span> Simuler</a></li>
 <li><a class="" href="exercice-analyse.html">Exercices</a></li>
 <li class="book-part">Modèles linéaires</li>
-<li><a class="" href="pr%C3%A9dire.html"><span class="header-section-number">11</span> Prédire</a></li>
-<li><a class="" href="cr%C3%A9er.html"><span class="header-section-number">12</span> Créer</a></li>
-<li><a class="" href="m%C3%A9dier.html"><span class="header-section-number">13</span> Médier</a></li>
-<li><a class="" href="mod%C3%A9rer.html"><span class="header-section-number">14</span> Modérer</a></li>
+<li><a class="" href="pr%C3%A9dire.html"><span class="header-section-number">12</span> Prédire</a></li>
+<li><a class="" href="cr%C3%A9er.html"><span class="header-section-number">13</span> Créer</a></li>
+<li><a class="" href="m%C3%A9dier.html"><span class="header-section-number">14</span> Médier</a></li>
+<li><a class="" href="mod%C3%A9rer.html"><span class="header-section-number">15</span> Modérer</a></li>
 <li><a class="" href="exercice-lineaire.html">Exercices</a></li>
 <li class="book-part">Analyses factorielles</li>
-<li><a class="" href="d%C3%A9composer.html"><span class="header-section-number">15</span> Décomposer</a></li>
-<li><a class="" href="explorer.html"><span class="header-section-number">16</span> Explorer</a></li>
-<li><a class="" href="r%C3%A9duire.html"><span class="header-section-number">17</span> Réduire</a></li>
+<li><a class="" href="d%C3%A9composer.html"><span class="header-section-number">16</span> Décomposer</a></li>
+<li><a class="" href="explorer.html"><span class="header-section-number">17</span> Explorer</a></li>
+<li><a class="" href="r%C3%A9duire.html"><span class="header-section-number">18</span> Réduire</a></li>
 <li class="book-part">Annexes</li>
 <li><a class="" href="solutions.html">Solutions</a></li>
 <li><a class="" href="r%C3%A9f%C3%A9rences.html">Références</a></li>
@@ -109,15 +110,15 @@
         </div>
       </nav>
 </div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="simuler" class="section level1" number="10">
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="simuler" class="section level1" number="11">
 <h1>
-<span class="header-section-number"> 10</span> Simuler<a class="anchor" aria-label="anchor" href="#simuler"><i class="fas fa-link"></i></a>
+<span class="header-section-number"> 11</span> Simuler<a class="anchor" aria-label="anchor" href="#simuler"><i class="fas fa-link"></i></a>
 </h1>
 <p>Dans plusieurs contextes statistiques, les informations cruciales nécessaires pour réaliser une analyse statistique ou tirer des résultats spécifiques ne sont pas connues (par exemple, le chapitre <a href="analyser.html#analyser">Analyser</a> présente des analyses soutenues par des théorèmes). Pire, parfois certains postulats sont violés rendant les démarches usuelles caduques. Enfin, dans certains contextes, une analyse formelle pourrait s’avérer fort complexe, voire irrésolvable, alors qu’une analyse plus empirique usant des techniques de rééchantillonnage résoudra ces problèmes simplement et immédiatement.</p>
 <p>Jusqu’à présent, les situations connues des analyses statistiques ont été présentées. Maintenant, les techniques de rééchantillonnage, comme le bootstrap et de simulations Monte-Carlo seront présentés.</p>
-<div id="les-simulations-monte-carlo" class="section level2" number="10.1">
+<div id="les-simulations-monte-carlo" class="section level2" number="11.1">
 <h2>
-<span class="header-section-number">10.1</span> Les simulations Monte-Carlo<a class="anchor" aria-label="anchor" href="#les-simulations-monte-carlo"><i class="fas fa-link"></i></a>
+<span class="header-section-number">11.1</span> Les simulations Monte-Carlo<a class="anchor" aria-label="anchor" href="#les-simulations-monte-carlo"><i class="fas fa-link"></i></a>
 </h2>
 <p>Les simulations Monte-Carlo sont une famille de méthode algorithmique qui permet de calculer une valeur numérique en utilisant des procédés aléatoires. Le nom provient du prestigieux casino de Monte-Carlo à Monaco sur la Côte d’Azur, où des jeux de hasard se jouent constamment, et ayant ainsi une connotation très forte avec le hasard et les nombres aléatoires.</p>
 <p>Une simulation de Monte-Carlo prédit une étendue de résultats possibles à partir d’un ensemble de valeurs d’entrée fixes et en tenant compte de l’incertitude inhérente de certaines variables. En d’autres termes, une simulation de Monte-Carlo produit les résultats possibles (sorties) d’un modèle à partir des entrées fixes et d’autres entrées variables. Ces sorties sont calculées encore et encore (des milliers de fois, parfois plus), en utilisant à chaque fois un ensemble différent de nombres aléatoires, générant des sorties probables, mais différentes à chaque fois. Les estimations (et leur tendance) obtenues peuvent alors être interprétées.</p>
@@ -129,19 +130,19 @@
 <li><p>Rouler les simulations de façon répétitive jusqu’à ce que suffisamment d’itérations soient produites et que les résultats convergent vers une solution.</p></li>
 </ol>
 <p>Maintenant, ces étapes sont mises en contexte avec un problème.</p>
-<div id="le-problème-de-monty-hall" class="section level3" number="10.1.1">
+<div id="le-problème-de-monty-hall" class="section level3" number="11.1.1">
 <h3>
-<span class="header-section-number">10.1.1</span> Le problème de Monty-Hall<a class="anchor" aria-label="anchor" href="#le-probl%C3%A8me-de-monty-hall"><i class="fas fa-link"></i></a>
+<span class="header-section-number">11.1.1</span> Le problème de Monty-Hall<a class="anchor" aria-label="anchor" href="#le-probl%C3%A8me-de-monty-hall"><i class="fas fa-link"></i></a>
 </h3>
 <p>Rien de mieux pour confronter le sens commun que d’être confronté à un problème contre-intuitif. Les simulations Monte-Carlo nous permettront de vérifier les résultats de façon empirique, parallèlement à ce qu’une analyse formelle fournit.</p>
 <p>Le problème de Monty Hall <span class="citation">(attribuables à <a href="r%C3%A9f%C3%A9rences.html#ref-Selvin75" role="doc-biblioref">Selvin, 1975</a>)</span> présente un joueur devant un présentateur (Monty Hall). Trois portes sont offertes au choix du joueur. Derrière l’une d’entre elles se retrouve un magnifique prix : une voiture <em>électrique</em> de luxe. Derrière chacune des deux autres portes se retrouvent un prix citron : une chèvre chacune. Le joueur ne sait pas ce qu’il y derrière les portes. Le joueur peut alors choisir une porte. Évidemment, à ce moment le joueur à une chance sur trois de choisir la voiture.</p>
 <div class="figure">
 <span style="display:block;" id="fig:MH"></span>
-<img src="10-Simuler_files/figure-html/MH-1.png" alt="Illustration du problème de Monty Hall" width="672"><p class="caption">
-Figure 10.1: Illustration du problème de Monty Hall
+<img src="11-Simuler_files/figure-html/MH-1.png" alt="Illustration du problème de Monty Hall" width="672"><p class="caption">
+Figure 11.1: Illustration du problème de Monty Hall
 </p>
 </div>
-<p>Par la suite, le présentateur, qui connaît le contenu derrière les portes, ouvre une porte qui (a) ne cache pas la voiture et (b) que le participant n’a pas choisie. Le joueur peut alors choisir (a) de conserver la porte choisie ou (b) de changer de porte. Quelle option, s’il y en a une, assurera la meilleure probabilité de choisir la voiture? Rester ou changer? Par exemple, suivant l’illustration de la Figure <a href="simuler.html#fig:MH">10.1</a>, le joueur choisit la porte 1, alors le présentateur doit ouvrir la porte 2 (non choisie et ne contient pas la voiture). Le joueur doit-il changer son choix? Ici, la réponse est évidente, car la réponse est connue. Qu’en est-il alors si le joueur avait choisi la porte 3 et le présentateur ouvre l’une des deux autres porte? <em>Le joueur doit-il changer ou rester?</em> La question sous-jacente est qu’elles sont les probabilités de rester et de changer respectivement. Sont-elles différentes?</p>
+<p>Par la suite, le présentateur, qui connaît le contenu derrière les portes, ouvre une porte qui (a) ne cache pas la voiture et (b) que le participant n’a pas choisie. Le joueur peut alors choisir (a) de conserver la porte choisie ou (b) de changer de porte. Quelle option, s’il y en a une, assurera la meilleure probabilité de choisir la voiture? Rester ou changer? Par exemple, suivant l’illustration de la Figure <a href="simuler.html#fig:MH">11.1</a>, le joueur choisit la porte 1, alors le présentateur doit ouvrir la porte 2 (non choisie et ne contient pas la voiture). Le joueur doit-il changer son choix? Ici, la réponse est évidente, car la réponse est connue. Qu’en est-il alors si le joueur avait choisi la porte 3 et le présentateur ouvre l’une des deux autres porte? <em>Le joueur doit-il changer ou rester?</em> La question sous-jacente est qu’elles sont les probabilités de rester et de changer respectivement. Sont-elles différentes?</p>
 <p>Comme le résultat n’est pas des plus intuitif (et sans divulgâcher le résultat), une petite simulation s’impose (ou une analyse formelle pour les lecteurs enclins mathématiquement). La situation sera recréée un millier de fois pour vérifier l’option (rester ou changer) qui maximise de gagner la voiture.</p>
 <p>En se référant aux trois points caractérisant une simulation Monte-Carlo susmentionné :</p>
 <ol style="list-style-type: decimal">
@@ -173,120 +174,120 @@ Figure 10.1: Illustration du problème de Monty Hall
 <li><p>La simulation enregistre s’il y a eu gain ou non et l’additionne au total de chacun.</p></li>
 <li><p>La simulation est reprise un nombre important de fois, ici, 1000 suffit, mais des situations compliquées peuvent demander beaucoup plus d’itérations.</p></li>
 </ol>
-<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="simuler.html#cb133-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulation du problème de Monty Hall</span></span>
-<span id="cb133-2"><a href="simuler.html#cb133-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Valeurs possibles des portes</span></span>
-<span id="cb133-3"><a href="simuler.html#cb133-3" aria-hidden="true" tabindex="-1"></a>portes <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Chèvre"</span>, <span class="st">"Chèvre"</span>, <span class="st">"Voiture"</span>)</span>
-<span id="cb133-4"><a href="simuler.html#cb133-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Nombre de répétitions</span></span>
-<span id="cb133-5"><a href="simuler.html#cb133-5" aria-hidden="true" tabindex="-1"></a>nreps <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
-<span id="cb133-6"><a href="simuler.html#cb133-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Pour la reproductibilité</span></span>
-<span id="cb133-7"><a href="simuler.html#cb133-7" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">7896</span>)</span>
-<span id="cb133-8"><a href="simuler.html#cb133-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb133-9"><a href="simuler.html#cb133-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Valeur initiale des gains</span></span>
-<span id="cb133-10"><a href="simuler.html#cb133-10" aria-hidden="true" tabindex="-1"></a>gain.rester <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb133-11"><a href="simuler.html#cb133-11" aria-hidden="true" tabindex="-1"></a>gain.changer <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb133-12"><a href="simuler.html#cb133-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb133-13"><a href="simuler.html#cb133-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Boucle pour répéter `nreps` fois le scénario</span></span>
-<span id="cb133-14"><a href="simuler.html#cb133-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>nreps){</span>
-<span id="cb133-15"><a href="simuler.html#cb133-15" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb133-16"><a href="simuler.html#cb133-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Arrangement initial des portes</span></span>
-<span id="cb133-17"><a href="simuler.html#cb133-17" aria-hidden="true" tabindex="-1"></a>  tirage <span class="ot">&lt;-</span> <span class="fu">sample</span>(portes)</span>
-<span id="cb133-18"><a href="simuler.html#cb133-18" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb133-19"><a href="simuler.html#cb133-19" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Trouver le prix</span></span>
-<span id="cb133-20"><a href="simuler.html#cb133-20" aria-hidden="true" tabindex="-1"></a>  prix <span class="ot">&lt;-</span> <span class="fu">which</span>(tirage <span class="sc">%in%</span> <span class="st">"Voiture"</span>)</span>
-<span id="cb133-21"><a href="simuler.html#cb133-21" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb133-22"><a href="simuler.html#cb133-22" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Choix aléatoire</span></span>
-<span id="cb133-23"><a href="simuler.html#cb133-23" aria-hidden="true" tabindex="-1"></a>  choix1 <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">length</span>(portes), <span class="at">size =</span> <span class="dv">1</span>)</span>
-<span id="cb133-24"><a href="simuler.html#cb133-24" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb133-25"><a href="simuler.html#cb133-25" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Sélectionner la porte avec la chèvre (pas un prix) et</span></span>
-<span id="cb133-26"><a href="simuler.html#cb133-26" aria-hidden="true" tabindex="-1"></a>  <span class="co"># qui n'est pas celle choisie (choix1)</span></span>
-<span id="cb133-27"><a href="simuler.html#cb133-27" aria-hidden="true" tabindex="-1"></a>  option <span class="ot">&lt;-</span> <span class="fu">c</span>(choix1, prix)</span>
-<span id="cb133-28"><a href="simuler.html#cb133-28" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb133-29"><a href="simuler.html#cb133-29" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(choix1 <span class="sc">!=</span> prix){</span>
-<span id="cb133-30"><a href="simuler.html#cb133-30" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb133-31"><a href="simuler.html#cb133-31" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Si une porte valide</span></span>
-<span id="cb133-32"><a href="simuler.html#cb133-32" aria-hidden="true" tabindex="-1"></a>    monty <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)[<span class="sc">-</span>option]</span>
-<span id="cb133-33"><a href="simuler.html#cb133-33" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb133-34"><a href="simuler.html#cb133-34" aria-hidden="true" tabindex="-1"></a>  }<span class="cf">else</span>{</span>
-<span id="cb133-35"><a href="simuler.html#cb133-35" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb133-36"><a href="simuler.html#cb133-36" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Si deux portes valides, en choisir une aléatoirement.</span></span>
-<span id="cb133-37"><a href="simuler.html#cb133-37" aria-hidden="true" tabindex="-1"></a>    monty <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)[<span class="sc">-</span>option], <span class="at">size =</span> <span class="dv">1</span>)</span>
-<span id="cb133-38"><a href="simuler.html#cb133-38" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb133-39"><a href="simuler.html#cb133-39" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb133-40"><a href="simuler.html#cb133-40" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb133-41"><a href="simuler.html#cb133-41" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Décision : Reste à choix1</span></span>
-<span id="cb133-42"><a href="simuler.html#cb133-42" aria-hidden="true" tabindex="-1"></a>  choix.rester <span class="ot">&lt;-</span> choix1</span>
-<span id="cb133-43"><a href="simuler.html#cb133-43" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb133-44"><a href="simuler.html#cb133-44" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Décision : Changer de choix changer</span></span>
-<span id="cb133-45"><a href="simuler.html#cb133-45" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Changer = ne pas prendre la porte initial, ni la porte ouverte</span></span>
-<span id="cb133-46"><a href="simuler.html#cb133-46" aria-hidden="true" tabindex="-1"></a>  choix.changer <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)[<span class="sc">-</span><span class="fu">c</span>(choix1, monty)]</span>
-<span id="cb133-47"><a href="simuler.html#cb133-47" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb133-48"><a href="simuler.html#cb133-48" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Enregistrement des gains</span></span>
-<span id="cb133-49"><a href="simuler.html#cb133-49" aria-hidden="true" tabindex="-1"></a>  gain.rester  <span class="ot">&lt;-</span> gain.rester  <span class="sc">+</span> </span>
-<span id="cb133-50"><a href="simuler.html#cb133-50" aria-hidden="true" tabindex="-1"></a>                   (tirage[choix.rester]  <span class="sc">==</span> <span class="st">"Voiture"</span>)</span>
-<span id="cb133-51"><a href="simuler.html#cb133-51" aria-hidden="true" tabindex="-1"></a>  gain.changer <span class="ot">&lt;-</span> gain.changer <span class="sc">+</span> </span>
-<span id="cb133-52"><a href="simuler.html#cb133-52" aria-hidden="true" tabindex="-1"></a>                   (tirage[choix.changer] <span class="sc">==</span> <span class="st">"Voiture"</span>)</span>
-<span id="cb133-53"><a href="simuler.html#cb133-53" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb133-54"><a href="simuler.html#cb133-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb133-55"><a href="simuler.html#cb133-55" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(gain.rester, gain.changer) <span class="sc">/</span> nreps</span>
-<span id="cb133-56"><a href="simuler.html#cb133-56" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>      gain.rester gain.changer</span>
-<span id="cb133-57"><a href="simuler.html#cb133-57" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>,]       <span class="fl">0.316</span>        <span class="fl">0.684</span></span></code></pre></div>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="simuler.html#cb136-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulation du problème de Monty Hall</span></span>
+<span id="cb136-2"><a href="simuler.html#cb136-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Valeurs possibles des portes</span></span>
+<span id="cb136-3"><a href="simuler.html#cb136-3" aria-hidden="true" tabindex="-1"></a>portes <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Chèvre"</span>, <span class="st">"Chèvre"</span>, <span class="st">"Voiture"</span>)</span>
+<span id="cb136-4"><a href="simuler.html#cb136-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Nombre de répétitions</span></span>
+<span id="cb136-5"><a href="simuler.html#cb136-5" aria-hidden="true" tabindex="-1"></a>nreps <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb136-6"><a href="simuler.html#cb136-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Pour la reproductibilité</span></span>
+<span id="cb136-7"><a href="simuler.html#cb136-7" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">7896</span>)</span>
+<span id="cb136-8"><a href="simuler.html#cb136-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb136-9"><a href="simuler.html#cb136-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Valeur initiale des gains</span></span>
+<span id="cb136-10"><a href="simuler.html#cb136-10" aria-hidden="true" tabindex="-1"></a>gain.rester <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb136-11"><a href="simuler.html#cb136-11" aria-hidden="true" tabindex="-1"></a>gain.changer <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb136-12"><a href="simuler.html#cb136-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb136-13"><a href="simuler.html#cb136-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Boucle pour répéter `nreps` fois le scénario</span></span>
+<span id="cb136-14"><a href="simuler.html#cb136-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>nreps){</span>
+<span id="cb136-15"><a href="simuler.html#cb136-15" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb136-16"><a href="simuler.html#cb136-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Arrangement initial des portes</span></span>
+<span id="cb136-17"><a href="simuler.html#cb136-17" aria-hidden="true" tabindex="-1"></a>  tirage <span class="ot">&lt;-</span> <span class="fu">sample</span>(portes)</span>
+<span id="cb136-18"><a href="simuler.html#cb136-18" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb136-19"><a href="simuler.html#cb136-19" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Trouver le prix</span></span>
+<span id="cb136-20"><a href="simuler.html#cb136-20" aria-hidden="true" tabindex="-1"></a>  prix <span class="ot">&lt;-</span> <span class="fu">which</span>(tirage <span class="sc">%in%</span> <span class="st">"Voiture"</span>)</span>
+<span id="cb136-21"><a href="simuler.html#cb136-21" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb136-22"><a href="simuler.html#cb136-22" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Choix aléatoire</span></span>
+<span id="cb136-23"><a href="simuler.html#cb136-23" aria-hidden="true" tabindex="-1"></a>  choix1 <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">length</span>(portes), <span class="at">size =</span> <span class="dv">1</span>)</span>
+<span id="cb136-24"><a href="simuler.html#cb136-24" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb136-25"><a href="simuler.html#cb136-25" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Sélectionner la porte avec la chèvre (pas un prix) et</span></span>
+<span id="cb136-26"><a href="simuler.html#cb136-26" aria-hidden="true" tabindex="-1"></a>  <span class="co"># qui n'est pas celle choisie (choix1)</span></span>
+<span id="cb136-27"><a href="simuler.html#cb136-27" aria-hidden="true" tabindex="-1"></a>  option <span class="ot">&lt;-</span> <span class="fu">c</span>(choix1, prix)</span>
+<span id="cb136-28"><a href="simuler.html#cb136-28" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb136-29"><a href="simuler.html#cb136-29" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(choix1 <span class="sc">!=</span> prix){</span>
+<span id="cb136-30"><a href="simuler.html#cb136-30" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb136-31"><a href="simuler.html#cb136-31" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Si une porte valide</span></span>
+<span id="cb136-32"><a href="simuler.html#cb136-32" aria-hidden="true" tabindex="-1"></a>    monty <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)[<span class="sc">-</span>option]</span>
+<span id="cb136-33"><a href="simuler.html#cb136-33" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb136-34"><a href="simuler.html#cb136-34" aria-hidden="true" tabindex="-1"></a>  }<span class="cf">else</span>{</span>
+<span id="cb136-35"><a href="simuler.html#cb136-35" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb136-36"><a href="simuler.html#cb136-36" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Si deux portes valides, en choisir une aléatoirement.</span></span>
+<span id="cb136-37"><a href="simuler.html#cb136-37" aria-hidden="true" tabindex="-1"></a>    monty <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)[<span class="sc">-</span>option], <span class="at">size =</span> <span class="dv">1</span>)</span>
+<span id="cb136-38"><a href="simuler.html#cb136-38" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb136-39"><a href="simuler.html#cb136-39" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb136-40"><a href="simuler.html#cb136-40" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb136-41"><a href="simuler.html#cb136-41" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Décision : Reste à choix1</span></span>
+<span id="cb136-42"><a href="simuler.html#cb136-42" aria-hidden="true" tabindex="-1"></a>  choix.rester <span class="ot">&lt;-</span> choix1</span>
+<span id="cb136-43"><a href="simuler.html#cb136-43" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb136-44"><a href="simuler.html#cb136-44" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Décision : Changer de choix changer</span></span>
+<span id="cb136-45"><a href="simuler.html#cb136-45" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Changer = ne pas prendre la porte initial, ni la porte ouverte</span></span>
+<span id="cb136-46"><a href="simuler.html#cb136-46" aria-hidden="true" tabindex="-1"></a>  choix.changer <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)[<span class="sc">-</span><span class="fu">c</span>(choix1, monty)]</span>
+<span id="cb136-47"><a href="simuler.html#cb136-47" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb136-48"><a href="simuler.html#cb136-48" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Enregistrement des gains</span></span>
+<span id="cb136-49"><a href="simuler.html#cb136-49" aria-hidden="true" tabindex="-1"></a>  gain.rester  <span class="ot">&lt;-</span> gain.rester  <span class="sc">+</span> </span>
+<span id="cb136-50"><a href="simuler.html#cb136-50" aria-hidden="true" tabindex="-1"></a>                   (tirage[choix.rester]  <span class="sc">==</span> <span class="st">"Voiture"</span>)</span>
+<span id="cb136-51"><a href="simuler.html#cb136-51" aria-hidden="true" tabindex="-1"></a>  gain.changer <span class="ot">&lt;-</span> gain.changer <span class="sc">+</span> </span>
+<span id="cb136-52"><a href="simuler.html#cb136-52" aria-hidden="true" tabindex="-1"></a>                   (tirage[choix.changer] <span class="sc">==</span> <span class="st">"Voiture"</span>)</span>
+<span id="cb136-53"><a href="simuler.html#cb136-53" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb136-54"><a href="simuler.html#cb136-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb136-55"><a href="simuler.html#cb136-55" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(gain.rester, gain.changer) <span class="sc">/</span> nreps</span>
+<span id="cb136-56"><a href="simuler.html#cb136-56" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>      gain.rester gain.changer</span>
+<span id="cb136-57"><a href="simuler.html#cb136-57" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>,]       <span class="fl">0.316</span>        <span class="fl">0.684</span></span></code></pre></div>
 <p>Une petite digression avant de poursuivre. <em>Il faut être naïf pour croire que le code fonctionne tel que prévu</em>. À cause d’un inconvénient de la fonction <code><a href="https://rdrr.io/r/base/sample.html">sample()</a></code>, une approche conditionnelle doit être utilisée. En fait, la fonction échantillonne les éléments de <code>x</code> (premier argument) jusqu’à obtenir <code>size</code> objets. Par contre, si une seule valeur est donnée à <code>x</code> et qu’elle est numérique, alors la fonction utilise les éléments de <code>1:x</code> pour rééchantillonner au lieu de retourner <code>x</code>. Ainsi, si le choix et le prix (porte 2) sont derrière des portes différentes (porte 1 et 2, par exemple), alors une seule valeur est retournée (3), et <code><a href="https://rdrr.io/r/base/sample.html">sample()</a></code> utilise <code>1:3</code> au lieu de <code>3</code>. Ces particularités expliquent et justifient l’utilisation d’une formule conditionnelle. En programmation, il faut toujours s’assurer que les fonctions s’accordent avec les attentes. Ce cas est documenté et délibéré (voir <code><a href="https://rdrr.io/r/base/sample.html">?sample</a></code>), mais surprend.</p>
 <p>Quelles sont les résultats de cette simulation? Le fait de <em>rester</em> sur le premier choix devrait obtenir 33% de chance de réussir, comme le joueur a initialement une chance sur trois d’avoir la bonne réponse. Qu’en est-il pour <em>changer</em>? Est-ce qu’ouvrir une porte <em>chèvre</em> modifie les probabilités? Les résultats de la simulation montre que <em>rester</em> gagne 31.6% et que <em>changer</em> gagne 68.4%. À long terme, il est plus avantageux de changer.</p>
 <p>Une explication simple est de dénombrer les possibilités. Dans le cas où le joueur ne change pas d’idée, il a une chance sur trois, soit : choisir la chèvre 1, et garder la chèvre 1; choisir la chèvre 2, et garder la chèvre 2; et choisir la voiture, et garder la voiture. Si le joueur change d’idée <strong>après l’ouverture des portes</strong>, les chances sont maintenant de deux sur trois, soit choisir la chèvre 1, changer pour le prix; choisir la chèvre 2 et changer pour le prix; ou choisir le prix et changer pour une chèvre.</p>
 <p>Une autre façon de rendre se problème plus intuitif est de considérer le problème avec 100 portes au lieu de 3. Le présentateur ouvre les 98 portes qui ne sont pas un prix. Si le joueur choisit une porte et garde, il a effectivement 1% de chance de remporter le prix. Par contre, s’il choisit une porte et que le présentateur lui ouvre toutes les autres portes chèvres, le joueur gagne à tout les coups s’il change, <strong>sauf</strong> s’il a choisi le prix au premier coup. C’est un peu comme si le participant ouvrait les 99 portent, sauf celle qu’il a choisit au début.</p>
 <p>Avec quelques modifications de la syntaxe précédente, le code suivant illustre le cas à 100 portes. À noter que l’usage du conditionnelle n’est plus nécessaire au bon fonctionnement de <code><a href="https://rdrr.io/r/base/sample.html">sample()</a></code>, car il y a maintenant plus de trois portes.</p>
-<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="simuler.html#cb134-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulation du problème de Monty Hall</span></span>
-<span id="cb134-2"><a href="simuler.html#cb134-2" aria-hidden="true" tabindex="-1"></a>portes <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Voiture"</span>, <span class="fu">rep</span>(<span class="st">"Chèvre"</span>, <span class="dv">99</span>))</span>
-<span id="cb134-3"><a href="simuler.html#cb134-3" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">length</span>(portes)</span>
-<span id="cb134-4"><a href="simuler.html#cb134-4" aria-hidden="true" tabindex="-1"></a>nreps <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
-<span id="cb134-5"><a href="simuler.html#cb134-5" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">7896</span>)</span>
-<span id="cb134-6"><a href="simuler.html#cb134-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb134-7"><a href="simuler.html#cb134-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Valeur initial des gains</span></span>
-<span id="cb134-8"><a href="simuler.html#cb134-8" aria-hidden="true" tabindex="-1"></a>gain.rester <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb134-9"><a href="simuler.html#cb134-9" aria-hidden="true" tabindex="-1"></a>gain.changer <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb134-10"><a href="simuler.html#cb134-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb134-11"><a href="simuler.html#cb134-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>nreps){</span>
-<span id="cb134-12"><a href="simuler.html#cb134-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Arrangement initial des portes</span></span>
-<span id="cb134-13"><a href="simuler.html#cb134-13" aria-hidden="true" tabindex="-1"></a>  tirage <span class="ot">&lt;-</span> <span class="fu">sample</span>(portes)</span>
-<span id="cb134-14"><a href="simuler.html#cb134-14" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb134-15"><a href="simuler.html#cb134-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Trouver le prix</span></span>
-<span id="cb134-16"><a href="simuler.html#cb134-16" aria-hidden="true" tabindex="-1"></a>  prix <span class="ot">&lt;-</span> <span class="fu">which</span>(tirage <span class="sc">%in%</span> <span class="st">"Voiture"</span>)</span>
-<span id="cb134-17"><a href="simuler.html#cb134-17" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb134-18"><a href="simuler.html#cb134-18" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Choix aléatoire</span></span>
-<span id="cb134-19"><a href="simuler.html#cb134-19" aria-hidden="true" tabindex="-1"></a>  choix1 <span class="ot">&lt;-</span> <span class="fu">sample</span>(n, <span class="at">size =</span> <span class="dv">1</span>)</span>
-<span id="cb134-20"><a href="simuler.html#cb134-20" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb134-21"><a href="simuler.html#cb134-21" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Sélectionner la porte avec la chèvre (pas un prix) et</span></span>
-<span id="cb134-22"><a href="simuler.html#cb134-22" aria-hidden="true" tabindex="-1"></a>  <span class="co"># qui n'est pas celle choisie (choix1)</span></span>
-<span id="cb134-23"><a href="simuler.html#cb134-23" aria-hidden="true" tabindex="-1"></a>  option <span class="ot">&lt;-</span> <span class="fu">c</span>(choix1, prix)</span>
-<span id="cb134-24"><a href="simuler.html#cb134-24" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb134-25"><a href="simuler.html#cb134-25" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Les autres portes</span></span>
-<span id="cb134-26"><a href="simuler.html#cb134-26" aria-hidden="true" tabindex="-1"></a>  monty <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span>n)[<span class="sc">-</span>option], <span class="at">size =</span> n <span class="sc">-</span> <span class="dv">2</span>)</span>
-<span id="cb134-27"><a href="simuler.html#cb134-27" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb134-28"><a href="simuler.html#cb134-28" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Décision : Reste à choix1</span></span>
-<span id="cb134-29"><a href="simuler.html#cb134-29" aria-hidden="true" tabindex="-1"></a>  choix.rester <span class="ot">&lt;-</span> choix1</span>
-<span id="cb134-30"><a href="simuler.html#cb134-30" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb134-31"><a href="simuler.html#cb134-31" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Décision : Changer de choix changer</span></span>
-<span id="cb134-32"><a href="simuler.html#cb134-32" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Changer = ne pas prendre la porte initial, ni la porte ouverte</span></span>
-<span id="cb134-33"><a href="simuler.html#cb134-33" aria-hidden="true" tabindex="-1"></a>  choix.changer <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span>n)[<span class="sc">-</span><span class="fu">c</span>(choix1, monty)]</span>
-<span id="cb134-34"><a href="simuler.html#cb134-34" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb134-35"><a href="simuler.html#cb134-35" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Enregistrement des gains</span></span>
-<span id="cb134-36"><a href="simuler.html#cb134-36" aria-hidden="true" tabindex="-1"></a>  gain.rester <span class="ot">&lt;-</span> gain.rester <span class="sc">+</span> </span>
-<span id="cb134-37"><a href="simuler.html#cb134-37" aria-hidden="true" tabindex="-1"></a>                  (tirage[choix.rester] <span class="sc">==</span> <span class="st">"Voiture"</span>)</span>
-<span id="cb134-38"><a href="simuler.html#cb134-38" aria-hidden="true" tabindex="-1"></a>  gain.changer <span class="ot">&lt;-</span> gain.changer <span class="sc">+</span> </span>
-<span id="cb134-39"><a href="simuler.html#cb134-39" aria-hidden="true" tabindex="-1"></a>                  (tirage[choix.changer] <span class="sc">==</span> <span class="st">"Voiture"</span>)</span>
-<span id="cb134-40"><a href="simuler.html#cb134-40" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb134-41"><a href="simuler.html#cb134-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb134-42"><a href="simuler.html#cb134-42" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(gain.rester,gain.changer)  <span class="sc">/</span> nreps</span>
-<span id="cb134-43"><a href="simuler.html#cb134-43" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>      gain.rester gain.changer</span>
-<span id="cb134-44"><a href="simuler.html#cb134-44" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>,]       <span class="fl">0.009</span>        <span class="fl">0.991</span></span></code></pre></div>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="simuler.html#cb137-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulation du problème de Monty Hall</span></span>
+<span id="cb137-2"><a href="simuler.html#cb137-2" aria-hidden="true" tabindex="-1"></a>portes <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Voiture"</span>, <span class="fu">rep</span>(<span class="st">"Chèvre"</span>, <span class="dv">99</span>))</span>
+<span id="cb137-3"><a href="simuler.html#cb137-3" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">length</span>(portes)</span>
+<span id="cb137-4"><a href="simuler.html#cb137-4" aria-hidden="true" tabindex="-1"></a>nreps <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb137-5"><a href="simuler.html#cb137-5" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">7896</span>)</span>
+<span id="cb137-6"><a href="simuler.html#cb137-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb137-7"><a href="simuler.html#cb137-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Valeur initial des gains</span></span>
+<span id="cb137-8"><a href="simuler.html#cb137-8" aria-hidden="true" tabindex="-1"></a>gain.rester <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb137-9"><a href="simuler.html#cb137-9" aria-hidden="true" tabindex="-1"></a>gain.changer <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb137-10"><a href="simuler.html#cb137-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb137-11"><a href="simuler.html#cb137-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>nreps){</span>
+<span id="cb137-12"><a href="simuler.html#cb137-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Arrangement initial des portes</span></span>
+<span id="cb137-13"><a href="simuler.html#cb137-13" aria-hidden="true" tabindex="-1"></a>  tirage <span class="ot">&lt;-</span> <span class="fu">sample</span>(portes)</span>
+<span id="cb137-14"><a href="simuler.html#cb137-14" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb137-15"><a href="simuler.html#cb137-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Trouver le prix</span></span>
+<span id="cb137-16"><a href="simuler.html#cb137-16" aria-hidden="true" tabindex="-1"></a>  prix <span class="ot">&lt;-</span> <span class="fu">which</span>(tirage <span class="sc">%in%</span> <span class="st">"Voiture"</span>)</span>
+<span id="cb137-17"><a href="simuler.html#cb137-17" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb137-18"><a href="simuler.html#cb137-18" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Choix aléatoire</span></span>
+<span id="cb137-19"><a href="simuler.html#cb137-19" aria-hidden="true" tabindex="-1"></a>  choix1 <span class="ot">&lt;-</span> <span class="fu">sample</span>(n, <span class="at">size =</span> <span class="dv">1</span>)</span>
+<span id="cb137-20"><a href="simuler.html#cb137-20" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb137-21"><a href="simuler.html#cb137-21" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Sélectionner la porte avec la chèvre (pas un prix) et</span></span>
+<span id="cb137-22"><a href="simuler.html#cb137-22" aria-hidden="true" tabindex="-1"></a>  <span class="co"># qui n'est pas celle choisie (choix1)</span></span>
+<span id="cb137-23"><a href="simuler.html#cb137-23" aria-hidden="true" tabindex="-1"></a>  option <span class="ot">&lt;-</span> <span class="fu">c</span>(choix1, prix)</span>
+<span id="cb137-24"><a href="simuler.html#cb137-24" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb137-25"><a href="simuler.html#cb137-25" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Les autres portes</span></span>
+<span id="cb137-26"><a href="simuler.html#cb137-26" aria-hidden="true" tabindex="-1"></a>  monty <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span>n)[<span class="sc">-</span>option], <span class="at">size =</span> n <span class="sc">-</span> <span class="dv">2</span>)</span>
+<span id="cb137-27"><a href="simuler.html#cb137-27" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb137-28"><a href="simuler.html#cb137-28" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Décision : Reste à choix1</span></span>
+<span id="cb137-29"><a href="simuler.html#cb137-29" aria-hidden="true" tabindex="-1"></a>  choix.rester <span class="ot">&lt;-</span> choix1</span>
+<span id="cb137-30"><a href="simuler.html#cb137-30" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb137-31"><a href="simuler.html#cb137-31" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Décision : Changer de choix changer</span></span>
+<span id="cb137-32"><a href="simuler.html#cb137-32" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Changer = ne pas prendre la porte initial, ni la porte ouverte</span></span>
+<span id="cb137-33"><a href="simuler.html#cb137-33" aria-hidden="true" tabindex="-1"></a>  choix.changer <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span>n)[<span class="sc">-</span><span class="fu">c</span>(choix1, monty)]</span>
+<span id="cb137-34"><a href="simuler.html#cb137-34" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb137-35"><a href="simuler.html#cb137-35" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Enregistrement des gains</span></span>
+<span id="cb137-36"><a href="simuler.html#cb137-36" aria-hidden="true" tabindex="-1"></a>  gain.rester <span class="ot">&lt;-</span> gain.rester <span class="sc">+</span> </span>
+<span id="cb137-37"><a href="simuler.html#cb137-37" aria-hidden="true" tabindex="-1"></a>                  (tirage[choix.rester] <span class="sc">==</span> <span class="st">"Voiture"</span>)</span>
+<span id="cb137-38"><a href="simuler.html#cb137-38" aria-hidden="true" tabindex="-1"></a>  gain.changer <span class="ot">&lt;-</span> gain.changer <span class="sc">+</span> </span>
+<span id="cb137-39"><a href="simuler.html#cb137-39" aria-hidden="true" tabindex="-1"></a>                  (tirage[choix.changer] <span class="sc">==</span> <span class="st">"Voiture"</span>)</span>
+<span id="cb137-40"><a href="simuler.html#cb137-40" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb137-41"><a href="simuler.html#cb137-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb137-42"><a href="simuler.html#cb137-42" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(gain.rester,gain.changer)  <span class="sc">/</span> nreps</span>
+<span id="cb137-43"><a href="simuler.html#cb137-43" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>      gain.rester gain.changer</span>
+<span id="cb137-44"><a href="simuler.html#cb137-44" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>,]       <span class="fl">0.009</span>        <span class="fl">0.991</span></span></code></pre></div>
 <p>La simulation montre que rester gagne 0.9% et que changer gagne 99.1%.</p>
 <p>Des situations fort plus compliquées pourraient être apportées en simulations Monte-Carlo. Le jeu de Black Jack en est un exemple, bien qu’il soit déjà résolu pour des résultats optimaux <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-Millman83" role="doc-biblioref">Millman, 1983</a>)</span>. Peu importe la situation à simuler, il suffit d’avoir la patience de la programmer pour confirmer les résultats analytiques.</p>
 <p>Sur le plan pratique pour l’expérimentateur, les simulations Monte-Carlo peuvent être utiles pour calculer des tailles d’échantillons pour des modèles complexes, comme des modèles par équations structurelles compliquées, multiniveaux ou de classes latentes. Il peut être utile également pour imiter des processus cognitifs ou comportementaux. Toutefois, une sous-famille est d’une importance significative pour l’expérimentateur, celle qui sera abordée maintenant, le bootstrap.</p>
 </div>
 </div>
-<div id="le-bootstrap" class="section level2" number="10.2">
+<div id="le-bootstrap" class="section level2" number="11.2">
 <h2>
-<span class="header-section-number">10.2</span> Le bootstrap<a class="anchor" aria-label="anchor" href="#le-bootstrap"><i class="fas fa-link"></i></a>
+<span class="header-section-number">11.2</span> Le bootstrap<a class="anchor" aria-label="anchor" href="#le-bootstrap"><i class="fas fa-link"></i></a>
 </h2>
 <p>Le <em>bootstrap</em> (dont il n’y a pas d’excellente traduction en français) est une des techniques de rééchantillonnage astucieuses permettant des inférences statistiques <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-Efron79" role="doc-biblioref">Efron &amp; Tibshriani, 1979</a>)</span>. Il fait partie de la famille des simulations Monte-Carlo, car il se base sur la réitération multiple d’une statistique à partir d’un jeu de données. Sans vouloir entrer dans les détails, il existe plusieurs types de techniques de bootstrap, qui font elles-mêmes parties d’une plus grande famille, les simulations stochastiques. Y est inclus les simulations de Monte-Carlo (dont le bootstrap fait parti) ou les méthodes numériques bayésiennes.</p>
 <p>Cet ouvrage insiste sur le bootstrap non paramétrique, impliquant que les distributions sous-jacentes aux échantillons ne soient pas spécifiées, bien qu’il existe du bootstrap paramétrique. Ce type de bootstrap est certainement la plus utile pour l’expérimentateur.</p>
@@ -306,7 +307,7 @@ Figure 10.1: Illustration du problème de Monty Hall
 <li><p>Réitérer les deux premières étapes un nombre élevé de fois.</p></li>
 </ol>
 <p>Ce processus hautement facilité par l’excellente performance des ordinateurs d’aujourd’hui, se réalise très facilement et rapidement. L’exemple suivant se base sur le rééchantillonnage (1000 fois) de la moyenne à partir d’une variable aléatoire tirée d’une distribution uniforme avec un minimum de 5 et d’une maximum de 15.</p>
-<div class="sourceCode" id="cb135"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb138"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">158</span><span class="op">)</span></span>
 <span><span class="co"># Nombre d'unités</span></span>
 <span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">30</span></span>
@@ -332,8 +333,8 @@ Figure 10.1: Illustration du problème de Monty Hall
 <span>  <span class="va">moyenne.X</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">nouveau.X</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
 <p>La fonction <code>sample(, replace = TRUE)</code> rééchantillonne avec remplacement les identifiants des unités. Par simplicité, il est possible d’éliminer la ligne <code>nouveau.X = X[id]</code> en utilisant <code>mean(X[id])</code> ou plus simplement <code>mean(sample(X, replace = TRUE))</code>. Cette utilisation se limite seulement au cas d’un vecteur de données. S’il s’agit d’un jeu de données avec plus d’une variable, alors <code>mean(X[id, ])</code> est utilisée. Noter l’usage de la <code>,</code> entre crochets. De cette façon, toutes les variables des unités identifiées par <code>id</code> sont extraites (voir <a href="manipuler.html#r%C3%A9f%C3%A9rer-%C3%A0-une-variable-dans-un-jeu-de-donn%C3%A9es">Référer à une variable dans un jeu de données</a>).</p>
-<p>À partir des informations obtenues, des inférences statistiques sont possibles. Toutes les estimations sont présentées comme un histogramme tel que l’illustre la Figure <a href="simuler.html#fig:histmh2">10.2</a>. Le code se retrouve ci-dessous. Quelques formules pour améliorer la présentation se retrouvent dans la syntaxe. L’utilisation simple de <code><a href="https://rdrr.io/r/graphics/hist.html">hist()</a></code> pourra convenir.</p>
-<div class="sourceCode" id="cb136"><pre class="downlit sourceCode r">
+<p>À partir des informations obtenues, des inférences statistiques sont possibles. Toutes les estimations sont présentées comme un histogramme tel que l’illustre la Figure <a href="simuler.html#fig:histmh2">11.2</a>. Le code se retrouve ci-dessous. Quelques formules pour améliorer la présentation se retrouvent dans la syntaxe. L’utilisation simple de <code><a href="https://rdrr.io/r/graphics/hist.html">hist()</a></code> pourra convenir.</p>
+<div class="sourceCode" id="cb139"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">moyenne.X</span>,              <span class="co"># Données</span></span>
 <span>     ylab <span class="op">=</span> <span class="st">" Frequence"</span>,    <span class="co"># Changer l'axe y</span></span>
 <span>     main <span class="op">=</span> <span class="st">""</span>,              <span class="co"># Retirer le titre</span></span>
@@ -342,80 +343,80 @@ Figure 10.1: Illustration du problème de Monty Hall
 <span><span class="op">)</span></span></code></pre></div>
 <div class="figure">
 <span style="display:block;" id="fig:histmh2"></span>
-<img src="10-Simuler_files/figure-html/histmh2-1.png" alt="Historgamme des estimations des échantillons" width="672"><p class="caption">
-Figure 10.2: Historgamme des estimations des échantillons
+<img src="11-Simuler_files/figure-html/histmh2-1.png" alt="Historgamme des estimations des échantillons" width="672"><p class="caption">
+Figure 11.2: Historgamme des estimations des échantillons
 </p>
 </div>
-<p>La distribution de la Figure <a href="simuler.html#fig:histmh2">10.2</a> se désigne comme la distribution d’échantillionnage, comme c’est le cas dans le chapitre sur les inférences <a href="inf%C3%A9rer.html#inf%C3%A9rer">Inférer</a>. Elle agit comme distribution de la <em>population</em> de l’indice. Elle permet d’avoir une estimation plus robuste de l’erreur standard, qui se trouve à être l’écart type des indices rééchantillonnés. Elle est également utilisée pour construire des intervalles de confiance et permet ainsi de faire des tests d’hypothèse comme : l’intervalle de confiance à <span class="math inline">\((1-\alpha) \times 100\)</span> % contient-elle la valeur 0? Comme il est fait avec une hypothèse nulle traditionnelle.</p>
+<p>La distribution de la Figure <a href="simuler.html#fig:histmh2">11.2</a> se désigne comme la distribution d’échantillionnage, comme c’est le cas dans le chapitre sur les inférences <a href="inf%C3%A9rer.html#inf%C3%A9rer">Inférer</a>. Elle agit comme distribution de la <em>population</em> de l’indice. Elle permet d’avoir une estimation plus robuste de l’erreur standard, qui se trouve à être l’écart type des indices rééchantillonnés. Elle est également utilisée pour construire des intervalles de confiance et permet ainsi de faire des tests d’hypothèse comme : l’intervalle de confiance à <span class="math inline">\((1-\alpha) \times 100\)</span> % contient-elle la valeur 0? Comme il est fait avec une hypothèse nulle traditionnelle.</p>
 <p>Le cas illustré est trivial au sens où, par le théorème central limite, la distribution des moyennes est déjà connue. Si l’exemple était plutôt sur la médiane, il faudrait obligatoirement procéder par bootstrap pour calculer son erreur type et ses intervalles de confiance, car aucune formule exacte ne permet sa dérivation (il existe bien des approximations cela dit). Le bootstrap est alors des plus appropriés pour calculer l’erreur type et en tirer des intervalles de confiances, voire même en faire des tests d’hypothèses. Plusieurs statistiques auront recours au bootstrap pour dériver ces informations, la plus utilisée étant le coefficient de détermination (voir le chapitre sur la <a href="pr%C3%A9dire.html#pr%C3%A9dire">régression</a>) ou la <a href="m%C3%A9dier.html#m%C3%A9dier">médiation</a> pour tester les effets indirects.</p>
 <p>À partir des informations obtenues auprès du rééchantillonnage, il est possible d’obtenir les éléments désirés. Comme le cas est trivial, les indices statistiques seront très similaires. Cela confirmera au lecteur qu’aucun principe ésotérique ne s’est déroulé devant ses yeux en plus de confirmer que les statistiques attendues se produisent effectivement.</p>
-<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="simuler.html#cb137-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Voici la moyenne et l'erreur standard originales</span></span>
-<span id="cb137-2"><a href="simuler.html#cb137-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(X) ; <span class="fu">sd</span>(X)<span class="sc">/</span><span class="fu">sqrt</span>(n)</span>
-<span id="cb137-3"><a href="simuler.html#cb137-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">10.2</span></span>
-<span id="cb137-4"><a href="simuler.html#cb137-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">0.485</span></span>
-<span id="cb137-5"><a href="simuler.html#cb137-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb137-6"><a href="simuler.html#cb137-6" aria-hidden="true" tabindex="-1"></a><span class="co"># La moyenne et l'erreur standard à partir des rééchantillons</span></span>
-<span id="cb137-7"><a href="simuler.html#cb137-7" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(moyenne.X)  ; <span class="fu">sd</span>(moyenne.X)</span>
-<span id="cb137-8"><a href="simuler.html#cb137-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">10.2</span></span>
-<span id="cb137-9"><a href="simuler.html#cb137-9" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">0.481</span></span></code></pre></div>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="simuler.html#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Voici la moyenne et l'erreur standard originales</span></span>
+<span id="cb140-2"><a href="simuler.html#cb140-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(X) ; <span class="fu">sd</span>(X)<span class="sc">/</span><span class="fu">sqrt</span>(n)</span>
+<span id="cb140-3"><a href="simuler.html#cb140-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">10.2</span></span>
+<span id="cb140-4"><a href="simuler.html#cb140-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">0.485</span></span>
+<span id="cb140-5"><a href="simuler.html#cb140-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb140-6"><a href="simuler.html#cb140-6" aria-hidden="true" tabindex="-1"></a><span class="co"># La moyenne et l'erreur standard à partir des rééchantillons</span></span>
+<span id="cb140-7"><a href="simuler.html#cb140-7" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(moyenne.X)  ; <span class="fu">sd</span>(moyenne.X)</span>
+<span id="cb140-8"><a href="simuler.html#cb140-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">10.2</span></span>
+<span id="cb140-9"><a href="simuler.html#cb140-9" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">0.481</span></span></code></pre></div>
 <p>La moyenne et l’erreur standard sont très près de la moyenne de l’échantillon et celle de la population (qui est de 10) et de l’erreur type attendue. Il est possible de créer des intervalles de confiances avec la fonction <code>quantile</code> qui prend en argument un vecteur de données et les probabilités désirées. Dans le cas de 95% pour une erreur de type I de 5%, soit <span class="math inline">\(\alpha=.05\)</span>, il s’agit de <span class="math inline">\(.05/2 = .025\)</span> et <span class="math inline">\(1-.05/2= .975\)</span>, laissant au total 5% aux extrémités.</p>
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="simuler.html#cb138-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Erreur de type I</span></span>
-<span id="cb138-2"><a href="simuler.html#cb138-2" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> .<span class="dv">05</span></span>
-<span id="cb138-3"><a href="simuler.html#cb138-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb138-4"><a href="simuler.html#cb138-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Valeurs critiques</span></span>
-<span id="cb138-5"><a href="simuler.html#cb138-5" aria-hidden="true" tabindex="-1"></a>crit <span class="ot">&lt;-</span> <span class="fu">c</span>(alpha<span class="sc">/</span><span class="dv">2</span>, (<span class="dv">1</span><span class="sc">-</span>alpha<span class="sc">/</span><span class="dv">2</span>))</span>
-<span id="cb138-6"><a href="simuler.html#cb138-6" aria-hidden="true" tabindex="-1"></a>tv <span class="ot">&lt;-</span> <span class="fu">qt</span>(crit, <span class="at">df =</span> n <span class="sc">-</span> <span class="dv">1</span>)</span>
-<span id="cb138-7"><a href="simuler.html#cb138-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb138-8"><a href="simuler.html#cb138-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Intervalles basés sur les indices de l'échantillon</span></span>
-<span id="cb138-9"><a href="simuler.html#cb138-9" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(X) <span class="sc">+</span> tv <span class="sc">*</span> <span class="fu">sd</span>(X)<span class="sc">/</span><span class="fu">sqrt</span>(n)</span>
-<span id="cb138-10"><a href="simuler.html#cb138-10" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>]  <span class="fl">9.2</span> <span class="fl">11.2</span></span>
-<span id="cb138-11"><a href="simuler.html#cb138-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb138-12"><a href="simuler.html#cb138-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Intervalles basés sur les indices du rééchantillonnage</span></span>
-<span id="cb138-13"><a href="simuler.html#cb138-13" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(moyenne.X) <span class="sc">+</span> tv <span class="sc">*</span> <span class="fu">sd</span>(moyenne.X)</span>
-<span id="cb138-14"><a href="simuler.html#cb138-14" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>]  <span class="fl">9.22</span> <span class="fl">11.18</span></span>
-<span id="cb138-15"><a href="simuler.html#cb138-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb138-16"><a href="simuler.html#cb138-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Intervalles sur le rééchantillonnage</span></span>
-<span id="cb138-17"><a href="simuler.html#cb138-17" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(moyenne.X, crit)</span>
-<span id="cb138-18"><a href="simuler.html#cb138-18" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>  <span class="fl">2.5</span><span class="sc">% 97.5%</span> </span>
-<span id="cb138-19"><a href="simuler.html#cb138-19" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span>  <span class="fl">9.26</span> <span class="fl">11.13</span></span></code></pre></div>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="simuler.html#cb141-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Erreur de type I</span></span>
+<span id="cb141-2"><a href="simuler.html#cb141-2" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> .<span class="dv">05</span></span>
+<span id="cb141-3"><a href="simuler.html#cb141-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb141-4"><a href="simuler.html#cb141-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Valeurs critiques</span></span>
+<span id="cb141-5"><a href="simuler.html#cb141-5" aria-hidden="true" tabindex="-1"></a>crit <span class="ot">&lt;-</span> <span class="fu">c</span>(alpha<span class="sc">/</span><span class="dv">2</span>, (<span class="dv">1</span><span class="sc">-</span>alpha<span class="sc">/</span><span class="dv">2</span>))</span>
+<span id="cb141-6"><a href="simuler.html#cb141-6" aria-hidden="true" tabindex="-1"></a>tv <span class="ot">&lt;-</span> <span class="fu">qt</span>(crit, <span class="at">df =</span> n <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb141-7"><a href="simuler.html#cb141-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb141-8"><a href="simuler.html#cb141-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Intervalles basés sur les indices de l'échantillon</span></span>
+<span id="cb141-9"><a href="simuler.html#cb141-9" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(X) <span class="sc">+</span> tv <span class="sc">*</span> <span class="fu">sd</span>(X)<span class="sc">/</span><span class="fu">sqrt</span>(n)</span>
+<span id="cb141-10"><a href="simuler.html#cb141-10" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>]  <span class="fl">9.2</span> <span class="fl">11.2</span></span>
+<span id="cb141-11"><a href="simuler.html#cb141-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb141-12"><a href="simuler.html#cb141-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Intervalles basés sur les indices du rééchantillonnage</span></span>
+<span id="cb141-13"><a href="simuler.html#cb141-13" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(moyenne.X) <span class="sc">+</span> tv <span class="sc">*</span> <span class="fu">sd</span>(moyenne.X)</span>
+<span id="cb141-14"><a href="simuler.html#cb141-14" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>]  <span class="fl">9.22</span> <span class="fl">11.18</span></span>
+<span id="cb141-15"><a href="simuler.html#cb141-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb141-16"><a href="simuler.html#cb141-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Intervalles sur le rééchantillonnage</span></span>
+<span id="cb141-17"><a href="simuler.html#cb141-17" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(moyenne.X, crit)</span>
+<span id="cb141-18"><a href="simuler.html#cb141-18" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>  <span class="fl">2.5</span><span class="sc">% 97.5%</span> </span>
+<span id="cb141-19"><a href="simuler.html#cb141-19" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span>  <span class="fl">9.26</span> <span class="fl">11.13</span></span></code></pre></div>
 <p>Pour réaliser le test d’hypothèse nulle, il suffit de constater si l’intervalle de confiance contient ou non 0. Dans le cas où l’intervalle contient 0, le test n’est pas significatif; l’hypotèse nulle n’est pas rejetée; il est vraisemblable que l’absence d’effet soit vraie. S’il ne contient pas 0, l’hypothèse nulle est rejetée, le test est significatif et il est vraisemblable qu’il y ait un effet. Dans cet exemple, la moyenne est clairement différente de 0, car elle ne contient pas cette valeur.</p>
-<div id="meilleures-pratiques" class="section level4" number="10.2.0.1">
+<div id="meilleures-pratiques" class="section level4" number="11.2.0.1">
 <h4>
-<span class="header-section-number">10.2.0.1</span> Meilleures pratiques<a class="anchor" aria-label="anchor" href="#meilleures-pratiques"><i class="fas fa-link"></i></a>
+<span class="header-section-number">11.2.0.1</span> Meilleures pratiques<a class="anchor" aria-label="anchor" href="#meilleures-pratiques"><i class="fas fa-link"></i></a>
 </h4>
 <p><strong>R</strong> n’est pas particulièrement efficace pour réaliser des boucles. Il existe une famille de fonctions <code>apply</code> qui permet d’appliquer une fonction sur une série de vecteurs (comme une liste, un jeu de données ou une matrice). L’appel à l’aide <code><a href="https://rdrr.io/r/base/apply.html">?apply</a></code> donne beaucoup d’informations à ce sujet.</p>
 <p>La fonction principale est <code><a href="https://rdrr.io/r/base/apply.html">apply()</a></code>. Elle nécessite le jeu de données (<code>X</code>) sur lequel appliqué la fonction (<code>FUN</code>) et un argument (<code>MARGIN</code>) pour identifier la dimension selon laquelle il faut appliquer la fonction, comme <code>MARGIN = 1</code> produit l’opération par lignes; <code>MARGIN = 2</code> produit l’opération par colonnes.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Il y a aussi des cas plus complexes lorsque le jeu possède plus de deux dimensions, comme &lt;code&gt;MARGIN = c(1,2)&lt;/code&gt; produit l’opération sur une matrice (lignes par colonnes) ou &lt;code&gt;MARGIN = n&lt;/code&gt; produit l’opération sur la n&lt;sup&gt;e&lt;/sup&gt; dimension.&lt;/p&gt;"><sup>6</sup></a></p>
-<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="simuler.html#cb139-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Il faut un vecteur de données `vec`, un nombre de répétitions `nreps`</span></span>
-<span id="cb139-2"><a href="simuler.html#cb139-2" aria-hidden="true" tabindex="-1"></a><span class="co"># et une fonction `theta` à calculer sur le vecteur</span></span>
-<span id="cb139-3"><a href="simuler.html#cb139-3" aria-hidden="true" tabindex="-1"></a>bootstrap <span class="ot">&lt;-</span> <span class="cf">function</span>(vec, nreps, theta){</span>
-<span id="cb139-4"><a href="simuler.html#cb139-4" aria-hidden="true" tabindex="-1"></a>  btsp.vec <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">sample</span>(vec, nreps <span class="sc">*</span> <span class="fu">length</span>(vec), <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb139-5"><a href="simuler.html#cb139-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">nrow =</span> nreps)</span>
-<span id="cb139-6"><a href="simuler.html#cb139-6" aria-hidden="true" tabindex="-1"></a>  btsp.res <span class="ot">&lt;-</span> <span class="fu">apply</span>(<span class="at">X =</span> btsp.vec, <span class="at">MARGIN =</span> <span class="dv">1</span>, <span class="at">FUN =</span> theta)</span>
-<span id="cb139-7"><a href="simuler.html#cb139-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(btsp.res)</span>
-<span id="cb139-8"><a href="simuler.html#cb139-8" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb139-9"><a href="simuler.html#cb139-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb139-10"><a href="simuler.html#cb139-10" aria-hidden="true" tabindex="-1"></a><span class="co"># En utilisant les données de l'exemple précédent</span></span>
-<span id="cb139-11"><a href="simuler.html#cb139-11" aria-hidden="true" tabindex="-1"></a>btsp <span class="ot">&lt;-</span> <span class="fu">bootstrap</span>(<span class="at">vec =</span> X, <span class="at">nreps =</span> nreps, <span class="at">theta =</span> mean)</span>
-<span id="cb139-12"><a href="simuler.html#cb139-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb139-13"><a href="simuler.html#cb139-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Pour fin de comparaison :</span></span>
-<span id="cb139-14"><a href="simuler.html#cb139-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Voici la moyenne et l'erreur standard de ce bootstrap</span></span>
-<span id="cb139-15"><a href="simuler.html#cb139-15" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(btsp)  ; <span class="fu">sd</span>(btsp)</span>
-<span id="cb139-16"><a href="simuler.html#cb139-16" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">10.2</span></span>
-<span id="cb139-17"><a href="simuler.html#cb139-17" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">0.484</span></span>
-<span id="cb139-18"><a href="simuler.html#cb139-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb139-19"><a href="simuler.html#cb139-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Voici la moyenne et l'erreur standard à partir du premier bootstrap</span></span>
-<span id="cb139-20"><a href="simuler.html#cb139-20" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(moyenne.X)  ; <span class="fu">sd</span>(moyenne.X)</span>
-<span id="cb139-21"><a href="simuler.html#cb139-21" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">10.2</span></span>
-<span id="cb139-22"><a href="simuler.html#cb139-22" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">0.481</span></span>
-<span id="cb139-23"><a href="simuler.html#cb139-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb139-24"><a href="simuler.html#cb139-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Et voici la moyenne et l'erreur standard originales</span></span>
-<span id="cb139-25"><a href="simuler.html#cb139-25" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(X) ; <span class="fu">sd</span>(X)<span class="sc">/</span><span class="fu">sqrt</span>(n)</span>
-<span id="cb139-26"><a href="simuler.html#cb139-26" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">10.2</span></span>
-<span id="cb139-27"><a href="simuler.html#cb139-27" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">0.485</span></span></code></pre></div>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="simuler.html#cb142-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Il faut un vecteur de données `vec`, un nombre de répétitions `nreps`</span></span>
+<span id="cb142-2"><a href="simuler.html#cb142-2" aria-hidden="true" tabindex="-1"></a><span class="co"># et une fonction `theta` à calculer sur le vecteur</span></span>
+<span id="cb142-3"><a href="simuler.html#cb142-3" aria-hidden="true" tabindex="-1"></a>bootstrap <span class="ot">&lt;-</span> <span class="cf">function</span>(vec, nreps, theta){</span>
+<span id="cb142-4"><a href="simuler.html#cb142-4" aria-hidden="true" tabindex="-1"></a>  btsp.vec <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">sample</span>(vec, nreps <span class="sc">*</span> <span class="fu">length</span>(vec), <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb142-5"><a href="simuler.html#cb142-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">nrow =</span> nreps)</span>
+<span id="cb142-6"><a href="simuler.html#cb142-6" aria-hidden="true" tabindex="-1"></a>  btsp.res <span class="ot">&lt;-</span> <span class="fu">apply</span>(<span class="at">X =</span> btsp.vec, <span class="at">MARGIN =</span> <span class="dv">1</span>, <span class="at">FUN =</span> theta)</span>
+<span id="cb142-7"><a href="simuler.html#cb142-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(btsp.res)</span>
+<span id="cb142-8"><a href="simuler.html#cb142-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb142-9"><a href="simuler.html#cb142-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb142-10"><a href="simuler.html#cb142-10" aria-hidden="true" tabindex="-1"></a><span class="co"># En utilisant les données de l'exemple précédent</span></span>
+<span id="cb142-11"><a href="simuler.html#cb142-11" aria-hidden="true" tabindex="-1"></a>btsp <span class="ot">&lt;-</span> <span class="fu">bootstrap</span>(<span class="at">vec =</span> X, <span class="at">nreps =</span> nreps, <span class="at">theta =</span> mean)</span>
+<span id="cb142-12"><a href="simuler.html#cb142-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb142-13"><a href="simuler.html#cb142-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Pour fin de comparaison :</span></span>
+<span id="cb142-14"><a href="simuler.html#cb142-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Voici la moyenne et l'erreur standard de ce bootstrap</span></span>
+<span id="cb142-15"><a href="simuler.html#cb142-15" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(btsp)  ; <span class="fu">sd</span>(btsp)</span>
+<span id="cb142-16"><a href="simuler.html#cb142-16" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">10.2</span></span>
+<span id="cb142-17"><a href="simuler.html#cb142-17" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">0.484</span></span>
+<span id="cb142-18"><a href="simuler.html#cb142-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb142-19"><a href="simuler.html#cb142-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Voici la moyenne et l'erreur standard à partir du premier bootstrap</span></span>
+<span id="cb142-20"><a href="simuler.html#cb142-20" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(moyenne.X)  ; <span class="fu">sd</span>(moyenne.X)</span>
+<span id="cb142-21"><a href="simuler.html#cb142-21" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">10.2</span></span>
+<span id="cb142-22"><a href="simuler.html#cb142-22" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">0.481</span></span>
+<span id="cb142-23"><a href="simuler.html#cb142-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb142-24"><a href="simuler.html#cb142-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Et voici la moyenne et l'erreur standard originales</span></span>
+<span id="cb142-25"><a href="simuler.html#cb142-25" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(X) ; <span class="fu">sd</span>(X)<span class="sc">/</span><span class="fu">sqrt</span>(n)</span>
+<span id="cb142-26"><a href="simuler.html#cb142-26" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">10.2</span></span>
+<span id="cb142-27"><a href="simuler.html#cb142-27" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">0.485</span></span></code></pre></div>
 </div>
-<div id="les-packages-1" class="section level3" number="10.2.1">
+<div id="les-packages-1" class="section level3" number="11.2.1">
 <h3>
-<span class="header-section-number">10.2.1</span> Les packages<a class="anchor" aria-label="anchor" href="#les-packages-1"><i class="fas fa-link"></i></a>
+<span class="header-section-number">11.2.1</span> Les packages<a class="anchor" aria-label="anchor" href="#les-packages-1"><i class="fas fa-link"></i></a>
 </h3>
 <p>Il existe plusieurs packages pour réaliser du bootstrap dans <strong>R</strong>. Il y a <code>bootstrap</code> <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-bootstrap" role="doc-biblioref">Tibshirani &amp; Leisch, 2019</a>)</span> et <code>boot</code> <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-Canty21" role="doc-biblioref">Canty &amp; Ripley, 2021</a>)</span>. Ajouter à cela que plusieurs fonctions <strong>R</strong> possèdent des options de bootstrap intégrées (qu’il faut commander dans les arguments). Plusieurs analyses statistiques recourant aux bootstraps sont déjà implantées. L’aperçu donné dans ce chapitre devrait convaincre le lecteur que, s’il a besoin de bootstrap, il est assez rudimentaire de l’implanter soi-même.</p>
 </div>
@@ -423,24 +424,24 @@ Figure 10.2: Historgamme des estimations des échantillons
 </div>
 
   <div class="chapter-nav">
-<div class="prev"><a href="analyser.html"><span class="header-section-number">9</span> Analyser</a></div>
+<div class="prev"><a href="analyser.html"><span class="header-section-number">10</span> Analyser</a></div>
 <div class="next"><a href="exercice-analyse.html">Exercices</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#simuler"><span class="header-section-number">10</span> Simuler</a></li>
+<li><a class="nav-link" href="#simuler"><span class="header-section-number">11</span> Simuler</a></li>
 <li>
-<a class="nav-link" href="#les-simulations-monte-carlo"><span class="header-section-number">10.1</span> Les simulations Monte-Carlo</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#le-probl%C3%A8me-de-monty-hall"><span class="header-section-number">10.1.1</span> Le problème de Monty-Hall</a></li></ul>
+<a class="nav-link" href="#les-simulations-monte-carlo"><span class="header-section-number">11.1</span> Les simulations Monte-Carlo</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#le-probl%C3%A8me-de-monty-hall"><span class="header-section-number">11.1.1</span> Le problème de Monty-Hall</a></li></ul>
 </li>
 <li>
-<a class="nav-link" href="#le-bootstrap"><span class="header-section-number">10.2</span> Le bootstrap</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#les-packages-1"><span class="header-section-number">10.2.1</span> Les packages</a></li></ul>
+<a class="nav-link" href="#le-bootstrap"><span class="header-section-number">11.2</span> Le bootstrap</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#les-packages-1"><span class="header-section-number">11.2.1</span> Les packages</a></li></ul>
 </li>
 </ul>
 
       <div class="book-extra">
         <ul class="list-unstyled">
-<li><a id="book-source" href="https://github.com/quantmeth/MQR/blob/master/10-Simuler.Rmd">View source <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="https://github.com/quantmeth/MQR/edit/master/10-Simuler.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+<li><a id="book-source" href="https://github.com/quantmeth/MQR/blob/master/11-Simuler.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/quantmeth/MQR/edit/master/11-Simuler.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
         </ul>
 </div>
     </nav>
@@ -452,7 +453,7 @@ Figure 10.2: Historgamme des estimations des échantillons
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-12-06.</p>
+    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-12-22.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
