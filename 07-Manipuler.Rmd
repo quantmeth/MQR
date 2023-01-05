@@ -4,11 +4,11 @@ library(rstatix)
 
 # Manipuler
 
-Avec **R**, il ne faut jamais manipuler directement le fichier contenant les données. **Cette pratique est déconseillée**. Il vaut mieux préserver le fichier original intact, ce qui évite de nombreuses complications, comme la compatibilité entre les versions, la reproductibilité des bases, la maintenance, etc. Toutes les manipulations doivent être conservées dans un fichier script. Cela favorise le suivi des modifications apportées en comparant tout simplement les traces dans les syntaxes, mais aussi le partage entre collègues. 
+Avec **R**, il ne faut jamais manipuler directement le fichier contenant les données. **Cette pratique est déconseillée**. Il vaut mieux préserver le fichier original intact, ce qui évite de nombreuses complications liées à la compatibilité entre les versions, la reproductibilité des analyses et la maintenance des fichiers. Toutes les manipulations doivent être conservées dans un fichier script. Cela favorise le suivi des modifications apportées en comparant tout simplement les traces dans les syntaxes, mais aussi le partage entre collègues. 
 
-En pratique, l'expérimentateur aura le jeu de données officiel (final) avec lequel travailler. Il doit l'importer à chaque début de séance, tel que précisé dans la section [Importer]. Par la suite, il ne lui reste qu'à mettre en place le nettoyage et la préparation du jeu de données ou bien, si cela est déjà fait, de rouler les scripts des séances précédentes, ce qui se fait facilement en quelques cliques. 
+En pratique, l'expérimentateur aura le jeu de données officiel (final) avec lequel travailler. Il doit l'[importer] à chaque début de séance. Par la suite, il ne lui reste qu'à mettre en place le nettoyage et la préparation du jeu de données ou bien, si cela est déjà fait, de rouler les scripts des séances précédentes, ce qui se fait facilement en quelques cliques. 
 
-Il existe plusieurs méthodes pour gèrer des données; il ne faut pas s'étonner de voir d'autres ouvrages aborder la gestion de données d'une autre façon. Au final, la meilleure méthode est celle qui m'est l'utilisateur à son aise.
+Il existe plusieurs méthodes pour gérer des données; il ne faut pas s'étonner de voir d'autres ouvrages aborder la gestion de données d'une autre façon. Au final, la meilleure méthode est celle qui m'est l'utilisateur à son aise.
 
 Dans la première section, les manipulations rudimentaires d'un jeu de données sont expliquées. Dans la seconde section, la philosophie `tidyverse` est présentée, car elle permet une manipulation assez intuitive des jeux de données^[Le présent ouvrage tente de montrer une approche intuitive et simple, mais il ne faut pas en faire un dogme. La manipulation *traditionnelle* ou d'autres philosophies existent également].
 
@@ -253,7 +253,9 @@ jd <- starwars %>%
   mutate(IMC = mass / height^2)  
 ```
 
-Une fois le jeu de données prêt, il est possible d'obtenir les informations sommaires. Ici, la moyenne, l'écart type, la valeur minimale et maximale ainsi que le nombre de données sont demandés en fonction du sexe. À cette étape, l'avantage d'embrasser la philosophie `tidyverse` apparaît, en quelques lignes rudimentaires, les cinq statistiques demandées sont affichées, et ce, par groupes.
+## Décrire et analyser en tidyverse
+
+Une fois le jeu de données prêt, il est possible d'obtenir les informations sommaires. Ici, la moyenne, l'écart type, la valeur minimale et maximale ainsi que le nombre de données sont demandés en fonction du sexe. À cette étape, l'avantage d'embrasser la philosophie `tidyverse` apparaît, en quelques lignes rudimentaires, les cinq statistiques demandées (`mean()`,`sd()`,`min()`,`max()`,`length()`) sont affichées, et ce, par groupes (`group_by()`) l'aide de la fonction `summarise()`.
 
 ```{r}
 jd %>% 
@@ -261,7 +263,7 @@ jd %>%
   summarise(mean(IMC), sd(IMC), min(IMC), max(IMC), length(IMC)) 
 ```
 
-Le jeu de données issu de ces opérations peut être utilisée normalement pour réaliser des analyses statistiques. Il existe des packages afin de demeurer dans le `tidyverse` comme `rstatix` où il est possible de faire des test-$t$ avec `test_t()` ou des corrélations avec `cor_test()`, par exemple. Voir la documentation complète du package pour une vue d'ensemble de ce qu'il est possible d'accomplir avec `rstatix`. Cela dit, l'utilisateur préférera probablement utiliser d'autres méthodes lorsque des analyses statistiques seront nécessaires.
+Le jeu de données issu de ces opérations peut être utilisé normalement pour réaliser des analyses statistiques. Cela sera abordé dans les prochains chapitres. Il existe toutefois des packages comme `rstatix` avec lequel il est possible de faire des test-$t$ avec `test_t()` ou des corrélations avec `cor_test()` tout en demeurant dans le `tidyverse`^[Voir la documentation complète du package pour une vue d'ensemble de ce qu'il est possible d'accomplir avec `rstatix`.]. Cela dit, l'utilisateur préférera probablement utiliser d'autres méthodes lorsque des analyses statistiques seront nécessaires.
 
 ```{r, warning = FALSE, message=FALSE}
 library(rstatix)
@@ -275,3 +277,5 @@ jd %>%
   select(IMC, mass, height) %>% 
   cor_test() 
 ```
+
+Pour le test-$t$ avec `t_test()`, il faut demander la variable dépendante à gauche et la variable de groupement à gauche. Les deux variables sont séparées par le `~` (tilde, voir [L’analyse de régression avec R] pour plus de renseignements). Pour la corrélation avec `cor_test()`, il faut s'assurer de sélectionner uniquement les variables ayant une échelle continue.

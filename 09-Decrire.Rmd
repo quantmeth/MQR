@@ -1,0 +1,65 @@
+# (PART) Statistiques {-}
+
+# Décrire
+
+En se basant sur les chapitres [Calculer] et [Manipuler], l'utilisateur possède les fondements pour obtenir les informations sommaires d'un jeu de données. Il voudra régulièrement réaliser des analyses descriptives sur ce dernier. 
+
+## Les variables à échelles continues
+
+Une méthode simple et efficace pour obtenir des indices statistiques pour des variables à échelle continue est de passer par le package `psych` [@psych] qui offre deux fonctions intéressantes : `describe()` et `describeBy()`. En mettant simplement en argument le jeu de données, ces fonctions retournent la plupart des statistiques descriptives désirables, comme la moyenne, la médiane, l'étendue, le minimum, le maximum, l'écart type et la taille. Comme la sortie est un jeu de données, celle-ci peut être manipulée pour retirer les statistiques qui ne sont pas désirées.
+
+Voici un exemple avec le jeu de données `ToothGrowth` inclus avec **R**.
+
+```{r}
+psych::describe(ToothGrowth)[,-c(1,5)]
+```
+
+Il est possible de conserver ou retirer les colonnes non désirées en les spécifiant (voir [Référer à des sous-éléments]).
+
+```{r}
+# Enregistrer les analyses descriptives
+descriptif <- psych::describe(ToothGrowth)
+# Conserver mean et sd
+descriptif[,c("mean","sd")]
+
+# Ou encore
+# Retier n (1), 
+# trimmed, mad, min, max, range (6:10),
+# et se (13)
+descriptif[,-c(1, 6:10, 13)]
+```
+
+Il est possible de retirer les colonnes non désirées en les spécifiant (voir [Référer à des sous-éléments]).
+
+```{r}
+# Retier n (1), 
+# trimmed, mad, min, max, range (6:10),
+# et se (13)
+descriptif[,-c(1, 6:10, 13)]
+```
+
+La fonction `describeBy()` permet de faire ces analyses en fonction d'une variable de groupement. Par exemple, le groupement est `supp`. 
+
+```{r}
+psych::describe.by(ToothGrowth, group = "supp")
+```
+
+Enfin, il faut porter attention, car `describe()` et `describeBy()` transforment les variables ordinales^[Définis en facteurs.] et nominales en variables continues. Les indices statistiques rapportées pourraient n'avoir aucun intérêt. Il faudra alors retirer ces lignes (comme c'est fait avec les colonnes ci-haut).
+
+## Les variables à échelles nominales
+
+Pour les variables nominales et ordinale, la fonction `table()` qui permet de compter la fréquence des éléments contenus dans une variable.
+
+```{r}
+table(ToothGrowth$supp)
+```
+
+La fonction `count()` de `dplyr` produit le même résultats, mais sa sortie est toutefois plus intéressante à [Manipuler].
+
+```{r}
+dplyr::count(ToothGrowth, supp)
+```
+
+Dans les deux cas, ajouter plus d'une variable génère une table de contingence (voir [Le $\chi^2$ pour table de contingence] pour plus d'informations), c'est-à-dire l'association entre les deux variables.
+
+

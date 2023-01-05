@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title> 9 Décrire | Méthodes quantitatives avec R</title>
+<meta name="author" content="P.-O. Caron">
+<meta name="description" content="En se basant sur les chapitres Calculer et Manipuler, l’utilisateur possède les fondements pour obtenir les informations sommaires d’un jeu de données. Il voudra régulièrement réaliser des...">
+<meta name="generator" content="bookdown 0.31 with bs4_book()">
+<meta property="og:title" content=" 9 Décrire | Méthodes quantitatives avec R">
+<meta property="og:type" content="book">
+<meta property="og:url" content="mqr.teluq.ca/décrire.html">
+<meta property="og:description" content="En se basant sur les chapitres Calculer et Manipuler, l’utilisateur possède les fondements pour obtenir les informations sommaires d’un jeu de données. Il voudra régulièrement réaliser des...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content=" 9 Décrire | Méthodes quantitatives avec R">
+<meta name="twitter:description" content="En se basant sur les chapitres Calculer et Manipuler, l’utilisateur possède les fondements pour obtenir les informations sommaires d’un jeu de données. Il voudra régulièrement réaliser des...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.0/transition.js"></script><script src="libs/bs3compat-0.4.0/tabs.js"></script><script src="libs/bs3compat-0.4.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<!-- 
+    \(
+    \newcommand{\EX}{\mathbb{E}}
+    \)
+    --><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+<link rel="stylesheet" href="bs4_style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Méthodes quantitatives avec R</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Bienvenue!</a></li>
+<li><a class="" href="pr%C3%A9face.html">Préface</a></li>
+<li class="book-part">Rudiments</li>
+<li><a class="" href="commencer.html"><span class="header-section-number">1</span> Commencer</a></li>
+<li><a class="" href="programmer.html"><span class="header-section-number">2</span> Programmer</a></li>
+<li><a class="" href="calculer.html"><span class="header-section-number">3</span> Calculer</a></li>
+<li><a class="" href="r%C3%A9diger.html"><span class="header-section-number">4</span> Rédiger</a></li>
+<li><a class="" href="exercice-rudiments.html">Exercices</a></li>
+<li class="book-part">Jeux de données</li>
+<li><a class="" href="entrer.html"><span class="header-section-number">5</span> Entrer</a></li>
+<li><a class="" href="importer.html"><span class="header-section-number">6</span> Importer</a></li>
+<li><a class="" href="manipuler.html"><span class="header-section-number">7</span> Manipuler</a></li>
+<li><a class="" href="visualiser.html"><span class="header-section-number">8</span> Visualiser</a></li>
+<li><a class="" href="exercice-gestion.html">Exercices</a></li>
+<li class="book-part">Statistiques</li>
+<li><a class="active" href="d%C3%A9crire.html"><span class="header-section-number">9</span> Décrire</a></li>
+<li><a class="" href="inf%C3%A9rer.html"><span class="header-section-number">10</span> Inférer</a></li>
+<li><a class="" href="analyser.html"><span class="header-section-number">11</span> Analyser</a></li>
+<li><a class="" href="simuler.html"><span class="header-section-number">12</span> Simuler</a></li>
+<li><a class="" href="exercice-analyse.html">Exercices</a></li>
+<li class="book-part">Modèles linéaires</li>
+<li><a class="" href="pr%C3%A9dire.html"><span class="header-section-number">13</span> Prédire</a></li>
+<li><a class="" href="cr%C3%A9er.html"><span class="header-section-number">14</span> Créer</a></li>
+<li><a class="" href="m%C3%A9dier.html"><span class="header-section-number">15</span> Médier</a></li>
+<li><a class="" href="mod%C3%A9rer.html"><span class="header-section-number">16</span> Modérer</a></li>
+<li><a class="" href="exercice-lineaire.html">Exercices</a></li>
+<li class="book-part">Analyses factorielles</li>
+<li><a class="" href="d%C3%A9composer.html"><span class="header-section-number">17</span> Décomposer</a></li>
+<li><a class="" href="explorer.html"><span class="header-section-number">18</span> Explorer</a></li>
+<li><a class="" href="r%C3%A9duire.html"><span class="header-section-number">19</span> Réduire</a></li>
+<li class="book-part">Annexes</li>
+<li><a class="" href="solutions.html">Solutions</a></li>
+<li><a class="" href="r%C3%A9f%C3%A9rences.html">Références</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/quantmeth/MQR">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="décrire" class="section level1" number="9">
+<h1>
+<span class="header-section-number"> 9</span> Décrire<a class="anchor" aria-label="anchor" href="#d%C3%A9crire"><i class="fas fa-link"></i></a>
+</h1>
+<p>En se basant sur les chapitres <a href="calculer.html#calculer">Calculer</a> et <a href="manipuler.html#manipuler">Manipuler</a>, l’utilisateur possède les fondements pour obtenir les informations sommaires d’un jeu de données. Il voudra régulièrement réaliser des analyses descriptives sur ce dernier.</p>
+<div id="les-variables-à-échelles-continues" class="section level2" number="9.1">
+<h2>
+<span class="header-section-number">9.1</span> Les variables à échelles continues<a class="anchor" aria-label="anchor" href="#les-variables-%C3%A0-%C3%A9chelles-continues"><i class="fas fa-link"></i></a>
+</h2>
+<p>Une méthode simple et efficace pour obtenir des indices statistiques pour des variables à échelle continue est de passer par le package <code>psych</code> <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-psych" role="doc-biblioref">Revelle, 2021</a>)</span> qui offre deux fonctions intéressantes : <code>describe()</code> et <code>describeBy()</code>. En mettant simplement en argument le jeu de données, ces fonctions retournent la plupart des statistiques descriptives désirables, comme la moyenne, la médiane, l’étendue, le minimum, le maximum, l’écart type et la taille. Comme la sortie est un jeu de données, celle-ci peut être manipulée pour retirer les statistiques qui ne sont pas désirées.</p>
+<p>Voici un exemple avec le jeu de données <code>ToothGrowth</code> inclus avec <strong>R</strong>.</p>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="d%C3%A9crire.html#cb107-1" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe</span>(ToothGrowth)[,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">5</span>)]</span>
+<span id="cb107-2"><a href="d%C3%A9crire.html#cb107-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>        n  mean   sd trimmed  mad min  max range  skew</span>
+<span id="cb107-3"><a href="d%C3%A9crire.html#cb107-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> len   <span class="dv">60</span> <span class="fl">18.81</span> <span class="fl">7.65</span>   <span class="fl">18.95</span> <span class="fl">9.04</span> <span class="fl">4.2</span> <span class="fl">33.9</span>  <span class="fl">29.7</span> <span class="sc">-</span><span class="fl">0.14</span></span>
+<span id="cb107-4"><a href="d%C3%A9crire.html#cb107-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> supp<span class="sc">*</span> <span class="dv">60</span>  <span class="fl">1.50</span> <span class="fl">0.50</span>    <span class="fl">1.50</span> <span class="fl">0.74</span> <span class="fl">1.0</span>  <span class="fl">2.0</span>   <span class="fl">1.0</span>  <span class="fl">0.00</span></span>
+<span id="cb107-5"><a href="d%C3%A9crire.html#cb107-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> dose  <span class="dv">60</span>  <span class="fl">1.17</span> <span class="fl">0.63</span>    <span class="fl">1.15</span> <span class="fl">0.74</span> <span class="fl">0.5</span>  <span class="fl">2.0</span>   <span class="fl">1.5</span>  <span class="fl">0.37</span></span>
+<span id="cb107-6"><a href="d%C3%A9crire.html#cb107-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>       kurtosis   se</span>
+<span id="cb107-7"><a href="d%C3%A9crire.html#cb107-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> len      <span class="sc">-</span><span class="fl">1.04</span> <span class="fl">0.99</span></span>
+<span id="cb107-8"><a href="d%C3%A9crire.html#cb107-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> supp<span class="sc">*</span>    <span class="sc">-</span><span class="fl">2.03</span> <span class="fl">0.07</span></span>
+<span id="cb107-9"><a href="d%C3%A9crire.html#cb107-9" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> dose     <span class="sc">-</span><span class="fl">1.55</span> <span class="fl">0.08</span></span></code></pre></div>
+<p>Il est possible de conserver ou retirer les colonnes non désirées en les spécifiant (voir <a href="programmer.html#r%C3%A9f%C3%A9rer-%C3%A0-des-sous-%C3%A9l%C3%A9ments">Référer à des sous-éléments</a>).</p>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="d%C3%A9crire.html#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Enregistrer les analyses descriptives</span></span>
+<span id="cb108-2"><a href="d%C3%A9crire.html#cb108-2" aria-hidden="true" tabindex="-1"></a>descriptif <span class="ot">&lt;-</span> psych<span class="sc">::</span><span class="fu">describe</span>(ToothGrowth)</span>
+<span id="cb108-3"><a href="d%C3%A9crire.html#cb108-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Conserver mean et sd</span></span>
+<span id="cb108-4"><a href="d%C3%A9crire.html#cb108-4" aria-hidden="true" tabindex="-1"></a>descriptif[,<span class="fu">c</span>(<span class="st">"mean"</span>,<span class="st">"sd"</span>)]</span>
+<span id="cb108-5"><a href="d%C3%A9crire.html#cb108-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>        mean   sd</span>
+<span id="cb108-6"><a href="d%C3%A9crire.html#cb108-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> len   <span class="fl">18.81</span> <span class="fl">7.65</span></span>
+<span id="cb108-7"><a href="d%C3%A9crire.html#cb108-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> supp<span class="sc">*</span>  <span class="fl">1.50</span> <span class="fl">0.50</span></span>
+<span id="cb108-8"><a href="d%C3%A9crire.html#cb108-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> dose   <span class="fl">1.17</span> <span class="fl">0.63</span></span>
+<span id="cb108-9"><a href="d%C3%A9crire.html#cb108-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb108-10"><a href="d%C3%A9crire.html#cb108-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Ou encore</span></span>
+<span id="cb108-11"><a href="d%C3%A9crire.html#cb108-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Retier n (1), </span></span>
+<span id="cb108-12"><a href="d%C3%A9crire.html#cb108-12" aria-hidden="true" tabindex="-1"></a><span class="co"># trimmed, mad, min, max, range (6:10),</span></span>
+<span id="cb108-13"><a href="d%C3%A9crire.html#cb108-13" aria-hidden="true" tabindex="-1"></a><span class="co"># et se (13)</span></span>
+<span id="cb108-14"><a href="d%C3%A9crire.html#cb108-14" aria-hidden="true" tabindex="-1"></a>descriptif[,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">6</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">13</span>)]</span>
+<span id="cb108-15"><a href="d%C3%A9crire.html#cb108-15" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>        n  mean   sd median  skew kurtosis</span>
+<span id="cb108-16"><a href="d%C3%A9crire.html#cb108-16" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> len   <span class="dv">60</span> <span class="fl">18.81</span> <span class="fl">7.65</span>   <span class="fl">19.2</span> <span class="sc">-</span><span class="fl">0.14</span>    <span class="sc">-</span><span class="fl">1.04</span></span>
+<span id="cb108-17"><a href="d%C3%A9crire.html#cb108-17" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> supp<span class="sc">*</span> <span class="dv">60</span>  <span class="fl">1.50</span> <span class="fl">0.50</span>    <span class="fl">1.5</span>  <span class="fl">0.00</span>    <span class="sc">-</span><span class="fl">2.03</span></span>
+<span id="cb108-18"><a href="d%C3%A9crire.html#cb108-18" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> dose  <span class="dv">60</span>  <span class="fl">1.17</span> <span class="fl">0.63</span>    <span class="fl">1.0</span>  <span class="fl">0.37</span>    <span class="sc">-</span><span class="fl">1.55</span></span></code></pre></div>
+<p>Il est possible de retirer les colonnes non désirées en les spécifiant (voir <a href="programmer.html#r%C3%A9f%C3%A9rer-%C3%A0-des-sous-%C3%A9l%C3%A9ments">Référer à des sous-éléments</a>).</p>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="d%C3%A9crire.html#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Retier n (1), </span></span>
+<span id="cb109-2"><a href="d%C3%A9crire.html#cb109-2" aria-hidden="true" tabindex="-1"></a><span class="co"># trimmed, mad, min, max, range (6:10),</span></span>
+<span id="cb109-3"><a href="d%C3%A9crire.html#cb109-3" aria-hidden="true" tabindex="-1"></a><span class="co"># et se (13)</span></span>
+<span id="cb109-4"><a href="d%C3%A9crire.html#cb109-4" aria-hidden="true" tabindex="-1"></a>descriptif[,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">6</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">13</span>)]</span>
+<span id="cb109-5"><a href="d%C3%A9crire.html#cb109-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>        n  mean   sd median  skew kurtosis</span>
+<span id="cb109-6"><a href="d%C3%A9crire.html#cb109-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> len   <span class="dv">60</span> <span class="fl">18.81</span> <span class="fl">7.65</span>   <span class="fl">19.2</span> <span class="sc">-</span><span class="fl">0.14</span>    <span class="sc">-</span><span class="fl">1.04</span></span>
+<span id="cb109-7"><a href="d%C3%A9crire.html#cb109-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> supp<span class="sc">*</span> <span class="dv">60</span>  <span class="fl">1.50</span> <span class="fl">0.50</span>    <span class="fl">1.5</span>  <span class="fl">0.00</span>    <span class="sc">-</span><span class="fl">2.03</span></span>
+<span id="cb109-8"><a href="d%C3%A9crire.html#cb109-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> dose  <span class="dv">60</span>  <span class="fl">1.17</span> <span class="fl">0.63</span>    <span class="fl">1.0</span>  <span class="fl">0.37</span>    <span class="sc">-</span><span class="fl">1.55</span></span></code></pre></div>
+<p>La fonction <code>describeBy()</code> permet de faire ces analyses en fonction d’une variable de groupement. Par exemple, le groupement est <code>supp</code>.</p>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="d%C3%A9crire.html#cb110-1" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe.by</span>(ToothGrowth, <span class="at">group =</span> <span class="st">"supp"</span>)</span>
+<span id="cb110-2"><a href="d%C3%A9crire.html#cb110-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Warning<span class="sc">:</span> describe.by is deprecated. Please use the</span>
+<span id="cb110-3"><a href="d%C3%A9crire.html#cb110-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> describeBy <span class="cf">function</span></span>
+<span id="cb110-4"><a href="d%C3%A9crire.html#cb110-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb110-5"><a href="d%C3%A9crire.html#cb110-5" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span>  Descriptive statistics by group </span>
+<span id="cb110-6"><a href="d%C3%A9crire.html#cb110-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> supp<span class="sc">:</span> OJ</span>
+<span id="cb110-7"><a href="d%C3%A9crire.html#cb110-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>       vars  n  mean   sd median trimmed  mad min  max range</span>
+<span id="cb110-8"><a href="d%C3%A9crire.html#cb110-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> len      <span class="dv">1</span> <span class="dv">30</span> <span class="fl">20.66</span> <span class="fl">6.61</span>   <span class="fl">22.7</span>   <span class="fl">21.04</span> <span class="fl">5.49</span> <span class="fl">8.2</span> <span class="fl">30.9</span>  <span class="fl">22.7</span></span>
+<span id="cb110-9"><a href="d%C3%A9crire.html#cb110-9" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> supp<span class="sc">*</span>    <span class="dv">2</span> <span class="dv">30</span>  <span class="fl">1.00</span> <span class="fl">0.00</span>    <span class="fl">1.0</span>    <span class="fl">1.00</span> <span class="fl">0.00</span> <span class="fl">1.0</span>  <span class="fl">1.0</span>   <span class="fl">0.0</span></span>
+<span id="cb110-10"><a href="d%C3%A9crire.html#cb110-10" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> dose     <span class="dv">3</span> <span class="dv">30</span>  <span class="fl">1.17</span> <span class="fl">0.63</span>    <span class="fl">1.0</span>    <span class="fl">1.15</span> <span class="fl">0.74</span> <span class="fl">0.5</span>  <span class="fl">2.0</span>   <span class="fl">1.5</span></span>
+<span id="cb110-11"><a href="d%C3%A9crire.html#cb110-11" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>        skew kurtosis   se</span>
+<span id="cb110-12"><a href="d%C3%A9crire.html#cb110-12" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> len   <span class="sc">-</span><span class="fl">0.52</span>    <span class="sc">-</span><span class="fl">1.03</span> <span class="fl">1.21</span></span>
+<span id="cb110-13"><a href="d%C3%A9crire.html#cb110-13" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> supp<span class="sc">*</span>   <span class="cn">NaN</span>      <span class="cn">NaN</span> <span class="fl">0.00</span></span>
+<span id="cb110-14"><a href="d%C3%A9crire.html#cb110-14" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> dose   <span class="fl">0.36</span>    <span class="sc">-</span><span class="fl">1.60</span> <span class="fl">0.12</span></span>
+<span id="cb110-15"><a href="d%C3%A9crire.html#cb110-15" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="sc">---------------------------------------------</span> </span>
+<span id="cb110-16"><a href="d%C3%A9crire.html#cb110-16" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> supp<span class="sc">:</span> VC</span>
+<span id="cb110-17"><a href="d%C3%A9crire.html#cb110-17" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>       vars  n  mean   sd median trimmed  mad min  max range</span>
+<span id="cb110-18"><a href="d%C3%A9crire.html#cb110-18" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> len      <span class="dv">1</span> <span class="dv">30</span> <span class="fl">16.96</span> <span class="fl">8.27</span>   <span class="fl">16.5</span>   <span class="fl">16.58</span> <span class="fl">9.27</span> <span class="fl">4.2</span> <span class="fl">33.9</span>  <span class="fl">29.7</span></span>
+<span id="cb110-19"><a href="d%C3%A9crire.html#cb110-19" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> supp<span class="sc">*</span>    <span class="dv">2</span> <span class="dv">30</span>  <span class="fl">2.00</span> <span class="fl">0.00</span>    <span class="fl">2.0</span>    <span class="fl">2.00</span> <span class="fl">0.00</span> <span class="fl">2.0</span>  <span class="fl">2.0</span>   <span class="fl">0.0</span></span>
+<span id="cb110-20"><a href="d%C3%A9crire.html#cb110-20" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> dose     <span class="dv">3</span> <span class="dv">30</span>  <span class="fl">1.17</span> <span class="fl">0.63</span>    <span class="fl">1.0</span>    <span class="fl">1.15</span> <span class="fl">0.74</span> <span class="fl">0.5</span>  <span class="fl">2.0</span>   <span class="fl">1.5</span></span>
+<span id="cb110-21"><a href="d%C3%A9crire.html#cb110-21" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>       skew kurtosis   se</span>
+<span id="cb110-22"><a href="d%C3%A9crire.html#cb110-22" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> len   <span class="fl">0.28</span>    <span class="sc">-</span><span class="fl">0.93</span> <span class="fl">1.51</span></span>
+<span id="cb110-23"><a href="d%C3%A9crire.html#cb110-23" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> supp<span class="sc">*</span>  <span class="cn">NaN</span>      <span class="cn">NaN</span> <span class="fl">0.00</span></span>
+<span id="cb110-24"><a href="d%C3%A9crire.html#cb110-24" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> dose  <span class="fl">0.36</span>    <span class="sc">-</span><span class="fl">1.60</span> <span class="fl">0.12</span></span></code></pre></div>
+<p>Enfin, il faut porter attention, car <code>describe()</code> et <code>describeBy()</code> transforment les variables ordinales<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Définis en facteurs.&lt;/p&gt;"><sup>8</sup></a> et nominales en variables continues. Les indices statistiques rapportées pourraient n’avoir aucun intérêt. Il faudra alors retirer ces lignes (comme c’est fait avec les colonnes ci-haut).</p>
+</div>
+<div id="les-variables-à-échelles-nominales" class="section level2" number="9.2">
+<h2>
+<span class="header-section-number">9.2</span> Les variables à échelles nominales<a class="anchor" aria-label="anchor" href="#les-variables-%C3%A0-%C3%A9chelles-nominales"><i class="fas fa-link"></i></a>
+</h2>
+<p>Pour les variables nominales et ordinale, la fonction <code><a href="https://rdrr.io/r/base/table.html">table()</a></code> qui permet de compter la fréquence des éléments contenus dans une variable.</p>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="d%C3%A9crire.html#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(ToothGrowth<span class="sc">$</span>supp)</span>
+<span id="cb111-2"><a href="d%C3%A9crire.html#cb111-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb111-3"><a href="d%C3%A9crire.html#cb111-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> OJ VC </span>
+<span id="cb111-4"><a href="d%C3%A9crire.html#cb111-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">30</span> <span class="dv">30</span></span></code></pre></div>
+<p>La fonction <code><a href="https://dplyr.tidyverse.org/reference/count.html">count()</a></code> de <code>dplyr</code> produit le même résultats, mais sa sortie est toutefois plus intéressante à <a href="manipuler.html#manipuler">Manipuler</a>.</p>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="d%C3%A9crire.html#cb112-1" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">count</span>(ToothGrowth, supp)</span>
+<span id="cb112-2"><a href="d%C3%A9crire.html#cb112-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>   supp  n</span>
+<span id="cb112-3"><a href="d%C3%A9crire.html#cb112-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">1</span>   OJ <span class="dv">30</span></span>
+<span id="cb112-4"><a href="d%C3%A9crire.html#cb112-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">2</span>   VC <span class="dv">30</span></span></code></pre></div>
+<p>Dans les deux cas, ajouter plus d’une variable génère une table de contingence (voir <a href="analyser.html#le-chi2-pour-table-de-contingence">Le <span class="math inline">\(\chi^2\)</span> pour table de contingence</a> pour plus d’informations), c’est-à-dire l’association entre les deux variables.</p>
+
+<!-- # (PART) Statistiques {-} -->
+</div>
+</div>
+
+  <div class="chapter-nav">
+<div class="prev"><a href="exercice-gestion.html">Exercices</a></div>
+<div class="next"><a href="inf%C3%A9rer.html"><span class="header-section-number">10</span> Inférer</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#d%C3%A9crire"><span class="header-section-number">9</span> Décrire</a></li>
+<li><a class="nav-link" href="#les-variables-%C3%A0-%C3%A9chelles-continues"><span class="header-section-number">9.1</span> Les variables à échelles continues</a></li>
+<li><a class="nav-link" href="#les-variables-%C3%A0-%C3%A9chelles-nominales"><span class="header-section-number">9.2</span> Les variables à échelles nominales</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/quantmeth/MQR/blob/master/09-Decrire.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/quantmeth/MQR/edit/master/09-Decrire.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2023-01-05.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

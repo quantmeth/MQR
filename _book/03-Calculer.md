@@ -255,13 +255,85 @@ sd(x)
 ```
 
 
+## L'asymétrie
+
+L'asymétrie (*skewness*) est une mesure couramment utilisée de symétrie d'une distribution. Une distribution *symétrique*, comme la distribution normale, implique que la densité des observations est approximativement égale des deux côtés de la moyenne (valeurs plus hautes et plus basses). 
+Une asymétrie négative indique que la distribution est asymétrique à gauche et que la moyenne des données (moyenne) est inférieure à la valeur médiane. Une asymétrie positive indique l'inverse, c'est-à-dire qu'une distribution est asymétrique à droite. Une distribution asymétrique droite est biaisée vers les valeurs les plus élevées, de sorte que la moyenne de la distribution est supérieure à la médiane de la distribution.
+
+Le calcul d'asymétrie correspond au ratio entre le troisième moment (écarts au cube) de la distribution par rapport à la racine carré du deuxième moment au cube. Plus simplement, le calcul peut aussi se voir comme le ratio entre la moyenne des écarts centrés au cube par rapport à l'écart type au cube.
+
+$$
+\gamma_1 = \frac{\sum_{i=1}^n(x_i-\bar{x})^3}{\Big(\sqrt{\sum_{i=1}^n(x_i-\bar{x})^2}\Big)^3}
+$$
+
+Et en code **R**.
+
+
+```r
+asymetrie <- function(x){
+  n <- length(x)           # Nombre de données
+  x <- x - mean(x)         # Centrer les données
+  skew <- sum(x^3) /       # Écarts au cube divisés par
+          sqrt(sum(x^2))^3 # n fois l'écart type au cube
+  return(skew)
+}
+```
+
+**R** de base ne contient pas de fonction permettant de calculer l'asymétrie. Il faut utiliser le package `moments` pour obtenir la fonction requise, `moments::skewness()` ou `psych` avec `psych::skew()`. Plusieurs autres packages offrent des fonctions.
+
+
+```r
+moments::skewness(x)
+psych::skew(x)
+```
+
+## L'aplatissement
+
+L'aplatissement (*kurtosis*) est une mesure de la propension d'une distribution à produire des valeurs éloignées de la moyenne. Souvent erronément référée comme une mesure de la pointe (*peakedness*; planéité, pointu ou modalité), l'aplatissement réfère à l'épaisseur des queues de la distribution [@Westfall14]. Plus elles sont épaisses, et plus les valeurs ont tendances à être éloignées (les valeurs extrêmes sont fréquentes). Plus elles sont minces, plus les valeurs ont tendances à être près de la moyenne (les valeurs extrêmes sont rares).
+
+Comme l'asymétrie, le calcul se base sur le ratio du quatrième moment (écarts bicarrés^[De degré $4$.]) sur la racine du deuxième moment des écarts bicarrés. Plus simplement, il s'agit du ratio de la moyenne des écarts centrés de degré 4 divisée par la racine carré des écarts 
+
+$$
+\beta_2 = \frac{\sum_{i=1}^n(x_i-\bar{x})^4}{\Big(\sqrt{\sum_{i=1}^n(x_i-\bar{x})^2}\Big)^4}
+$$
+
+Comme la valeur de l'aplatissement tend vers 3, les statisticiens soustraient cette valeur à l'aplatissement $\beta_2$ pour la centrer sur $0$.
+
+$$
+\gamma_2 = \beta_2-3
+$$
+L'aplatissement $\beta_2$ représente l'**aplatissement régulier** et l'aplatissement $\gamma_2$ correspond à l'**aplatissement excessif**.
+
+En code **R**.
+
+
+```r
+aplatissement <- function(x){
+  n <- length(x)            # Nombre de données
+  x <- x - mean(x)          # Centrer les données
+  kurt <- mean(x^4) /       # Écarts bicarrés divisés par
+          sqrt(mean(x^2))^4 # 
+  return(kurt)
+}
+```
+
+**R** de base ne contient pas de fonction permettant de calculer l'aplatissement. Il faut utiliser le package `moments` pour obtenir la fonction requise `moments::kurtosis()` ou `psych` avec `psych::kurtosi()`. Il faut noter que `moments` calcule l'aplatissement régulier et que, dans le cas de `psych`, il y a plusieurs types d'aplatissement, le plus commun étant le type `1` (aplatissement excessif). Le type `3` est toutefois plus désirables comme il n'est pas biaisé. Plusieurs autres packages offrent des fonctions pour calculer l'aplatissement.
+
+
+```r
+moments::kurtosis(x) - 3
+psych::kurtosi(x, type = 1)
+```
+
 ## Les graines
 
 Par souci de reproductibilité, il est possible de déclarer une valeur de départ aux variables pseudoaléatoires, ce que l'on nomme une graine ou *seed* en anglais. Cela permet de toujours d'obtenir les mêmes valeurs à plusieurs reprises, ce qui est très utile lors d'élaboration de simulations complexes ou lorsque des étudiants essaient de répliquer résultat tiré d'un ouvrage pédagogique.
 
+
 ```r
 set.seed("nombre")
 ```
+
 Il suffit de spécifier cette commande (en remplaçant `nombre` par un nombre) en début de syntaxe pour définir la séquence de nombre. Cette fonction sera utilisée à plusieurs reprises dans le but de reproduire les mêmes sorties.
 
 Cette fonction est présentée, car elle reviendra régulièrement dans ce livre pour qu'il soit possible de reproduire et obtenir exactement les mêmes résultats.
@@ -271,7 +343,7 @@ Cette fonction est présentée, car elle reviendra régulièrement dans ce livre
 Il existe plusieurs distributions statistiques déjà programmées avec **R**. Voici les principales utilisées dans cet ouvrage.
 
 <table class=" lightable-classic table" style='font-family: "Arial Narrow", "Source Sans Pro", sans-serif; width: auto !important; margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto;'>
-<caption>(\#tab:unnamed-chunk-14)Noms des distributions, fonctions et leurs arguments</caption>
+<caption>(\#tab:unnamed-chunk-18)Noms des distributions, fonctions et leurs arguments</caption>
  <thead>
   <tr>
    <th style="text-align:center;"> Distribution </th>

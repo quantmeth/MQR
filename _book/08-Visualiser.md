@@ -251,76 +251,23 @@ Il existe une multitudes de livres, de sites web, de tutoriels en ligne et d'ate
 
 # Exercices {#exercice-gestion .unnumbered}
 
-TODO
-
-ENTRER
-
 1. À l'aide de `data_edit()` du package `DataEditR`, créez un jeu données contenant trois participants ayant les caractéristiques suivantes, `nom = Alexandre, Samuel et Vincent` et `age = 20, 22 et 31`.
 
+2. Prendre le jeu de données `cars`, sélectionner la variable `dist` et transformer la en mètre, plutôt qu'en pieds. Rappel: un mètre égale 3.2808 pieds.
 
-```r
-# Installer et appeler le package DataEditR, si ce n'est fait
-jd <- DataEditR::data_edit()
-```
+3. Dans le jeu de données `iris`, calculer la moyenne et l'écart type de la longueur de sépale (`Petal.Length`) en fonction de l'espèce (`species`). Représenter ensuite la moyenne à l'aide d'un diagramme à barre
 
+4. Prenez le jeu de données `mtcars` et produisez un diagramme de dispersion montrant la puissance brute (en chevaux) (`hp`) par rapport à consommation en km/l (basé sur `mpg`) tout en soulignant l'effet du nombre de cylindres (`cyl`). **Attention** la fonction `as_factor` permettra d'utiliser `cyl` en facteur et le rapprt mpg vers kml approximativement $.425$.
 
-IMPORTER
+5. Avec le même jeu de données et objectif que la question précédente, ajouter une droite de prédiction avec `geom_smooth()` selon un modèle linéare (`lm`) et sans erreur standard (`se`).
 
-MANIPULER
+6. Avec le jeu de données `chickwts`, produire une boîte à moustache du poids des poulets en fonction de leur alimentation.
 
-Prenez le jeu de données `cars`, sélectionner la variable `dist` et transformer la en mètre, plutôt qu'en pieds. Rappel: un mètre égale 3.2808 pieds.
+7. Prenez le jeu de données `mtcars` et produisez un histogramme montrant la variabilité de la consommation `mpg` par rapport à la transmission (`am`). **Attention** la fonction `as_factor` permettra d'utiliser `am` en facteur.
 
-VISUALISER
+8. Prendre le jeu de données `msleep` et produire un diagramme à barres pour observer la fréquence des régimes alimentaires.
 
-1. Prenez le jeu de données `mtcars` et produisez un diagramme de dispersion montrant la puissance brute (en chevaux) (`hp`) par rapport à consommation en km/l (basé sur `mpg`) tout en soulignant l'effet du nombre de cylindres (`cyl`). **Attention** la fonction `as_factor` permettra d'utiliser `cyl` en facteur.
+9. Prendre le jeu de données `msleep` et produisez une boîte à moustache pour observer le temps total de sommeil (`sleep_total`) moyen par rapport aux régimes (`vore`). **Attention** aux données manquantes.
 
-2. Prenez le jeu de données `mtcars` et produisez un histogramme montrant la variabilité de la consommation `mpg` par rapport à la transmission (`am`). **Attention** la fonction `as_factor` permettra d'utiliser `am` en facteur.
+10. Avec le jeu de données `chickwts`, produire un diagramme à barres du poids moyen des poulets par rapport à leur alimentation en ne conservant que les graines de tournesols et les fèveroles. 
 
-3. Prenez le jeu de données `msleep` et produisez un diagramme à bâton pour observer la fréquence de différents type de régime (`vore`). **Attention** aux données manquantes.
-
-4. Prendez le jeu de données `msleep` et produisez une boîte à moustache pour observer le temps total de sommeil (`sleep_total`) par rapport aux régimes (`vore`). **Attention** aux données manquantes.
-
-<!-- # Travail pratique cours 5 -->
-<!-- # Importer la base de données #### -->
-<!-- # donnees_tp4.csv (sur moodle) -->
-
-<!-- # Créer une variable d'IMC #### -->
-<!-- # IMC = poids / taille^2 -->
-
-<!-- # Extraire le sommaire des statistiques descriptives #### -->
-<!-- # moyenne, écart type, minimum, maximum, taille -->
-<!-- # pour taille, poids et IMC -->
-
-<!-- # Faire un test t #### -->
-<!-- # entre sexe et taille -->
-
-<!-- # Faire une anova  #### -->
-<!-- # entre scolarite et poids -->
-
-<!-- # Faire une corrélation #### -->
-<!-- # entre pas et IMC -->
-
-<!-- # Faire une boîte à moustache #### -->
-<!-- # avec taille pas rapport à sexe -->
-
-<!-- # Faire un histogramme #### -->
-<!-- # pour poids -->
-
-<!-- # Faire un diagramme de dispersion#### -->
-<!-- # avec pas et IMC -->
-
-<!-- # Travail pratique cours 5 -->
-<!-- # Importer la base de données #### -->
-<!-- # donnees_tp4.csv (sur moodle) -->
-
-<!-- # Créer une variable d'IMC #### -->
-<!-- # IMC = poids / taille^2 -->
-
-<!-- # Faire un test t #### -->
-<!-- # entre sexe et taille -->
-
-<!-- # Faire une anova  #### -->
-<!-- # entre scolarite et poids -->
-
-<!-- # Faire une corrélation #### -->
-<!-- # entre pas, taille, poids, et IMC -->

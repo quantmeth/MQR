@@ -3,7 +3,7 @@ fig:ConsoleR
 fig:ConsoleRStudio
 tab:unnamed-chunk-27
 eq:var
-tab:unnamed-chunk-14
+tab:unnamed-chunk-18
 fig:distex
 fig:rediger1
 fig:rediger2
@@ -147,6 +147,15 @@ fig:kaiser
 fig:scree2
 fig:scree3
 fig:screenest
+fig:unnamed-chunk-16
+fig:unnamed-chunk-17
+fig:unnamed-chunk-18
+fig:unnamed-chunk-19
+fig:unnamed-chunk-20
+fig:unnamed-chunk-21
+fig:unnamed-chunk-22
+fig:unnamed-chunk-23
+fig:unnamed-chunk-24
 commencer
 r
 pourquoi-r
@@ -184,6 +193,8 @@ la-moyenne
 la-médiane
 la-variance
 lécart-type
+lasymétrie
+laplatissement
 les-graines
 les-distributions
 rédiger
@@ -198,6 +209,7 @@ les-tableaux
 les-équations
 référer-à-des-variables-de-r-dans-le-texte
 formater-du-texte
+ajouter-un-hyperlien
 les-commentaires-dans-le-texte
 pour-aller-plus-loin
 entrer
@@ -239,6 +251,7 @@ transformer-et-créer-des-variables
 sommariser-les-informations-pertinentes
 autres-fonctions
 mise-en-situation
+décrire-et-analyser-en-tidyverse
 visualiser
 ggplot2
 diagramme-de-dispersion
@@ -246,6 +259,9 @@ boîte-à-moustache
 histogramme
 les-barres-derreurs
 pour-aller-plus-loin-1
+décrire
+les-variables-à-échelles-continues
+les-variables-à-échelles-nominales
 inférer
 le-théorème-central-limite
 inférence-avec-la-distribution-normale-sur-une-unité
@@ -265,6 +281,7 @@ analyse
 lassociation-linéaire
 la-covariance
 la-corrélation
+rapporter-une-corrélation
 les-données-nominales
 le-chi2-pour-table-de-contingence
 simuler
@@ -345,14 +362,3 @@ le-test-de-kaiser
 lanalyse-parallèle-de-horn
 le-test-séquentiel-de-la-valeur-propre-suivante-dachim
 le-package-rnest
-quel-est-le-résultat-de-mean---c1-2-3-pourquoi
-quelle-est-la-différence-entre-caractère-et-caractère
-créer-un-vecteur-contenant-les-valeurs-4-10-32.-calculer-la-moyenne-et-lécart-type-de-ce-vecteur.
-créer-un-vecteur-contenant-les-valeurs-de-4-à-11.-sélectionner-la-deuxième-valeur-de-ce-vecteur-puis-additionner-100-à-cette-valeur-et-remplacer-la-dans-le-vecteur.
-générer-10-valeurs-aléatoires-distribuées-normalement-avec-une-moyenne-de-50-et-un-écart-type-de-4.-calculer-la-moyenne-la-médiane-et-la-variance.
-créer-un-jeu-de-données-contenant-quatre-sujets-avec-pour-chacun-leur-nom-de-famille-leur-âge-et-un-score-dappréciation-tiré-dune-distribution-uniforme-allant-de-0-à-100.
-rédiger-une-fonction-calculant-lhypoténuse-dun-triangle-rectangle.-rappel-le-théorème-de-pythagore-est-c2a2b2.
-rédiger-une-fonction-calculant-un-score-z-pour-une-variable.-rappel-un-score-z-correspond-à-zfracx-musigma.
-rédiger-une-fonction-calculant-la-médiane-dune-variable-ne-recopiez-pas-celle-de-ce-livre.
-rédiger-une-fonction-qui-pivote-une-liste-de-k-éléments-par-n.-par-exemple-une-liste-de-six-k6-comme-123456-pivoté-de-deux-n2-devient-345612.
-rédiger-une-fonction-pour-générer-une-séquence-de-fibonacci-chaque-nombre-est-la-somme-des-deux-précédents-jusquà-une-certaine-valeur-soit-1-1-2-3-5-8....

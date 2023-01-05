@@ -1,7 +1,3 @@
-<!-- # (PART) Les analyses bivariées {-} -->
-
-<!-- # Introduction {#analyse-intro .unnumbered} -->
-
 # Analyser
 
 En continuation de l'introduction des théories des tests d'hypothèses (voir [Inférer]) et l'aperçu donnée par [le test-$t$ à échantillon unique], cette section poursuit la présentation en introduisant des analyses statistiques de bases comme les différences de moyennes, l'association linéaire et les tests pour données nominales. Les tests-$t$ indépendant et dépendant, l'analyse de variables, la covariance, la corrélation ainsi que le test du $\chi2$ pour table de contingence sont présentées. 
@@ -11,8 +7,6 @@ En continuation de l'introduction des théories des tests d'hypothèses (voir [I
 ### Le test-$t$ indépendant
 
 En général, l'expérimentateur ne s'intéresse pas à comparer une moyenne à une valeur arbitraire, comme c'était le cas avec [le test-$t$ à échantillon unique]. Cela peut lui être assez trivial. Il s'intéresse plutôt à comparer une moyenne à une autre moyenne, soit une différence entre deux groupes indépendants, par exemple, quelle est la différence entre un groupe traitement et un groupe contrôle?
-
-<!-- , c'est-à-dire que les participants sont différents entre les deux groupes. ou encore pré et post traitement seront pour l'expérimentateur des analyses indispensables. -->
 
 En se basant sur le test $t$ à échantillon unique, la valeur-$t$ pour deux moyennes se calcule selon l'équation \@ref(eq:test2)
 
@@ -162,6 +156,17 @@ text(x = res$valeur.t, y = .32, labels = "Echantillon")
 
 La Figure \@ref(fig:disttt) illustre où se situe la moyenne de l'échantillon par rapport à la distribution d'échantillonnage de l'hypothèse nulle. Comme la valeur se retrouve dans la zone de rejet ou, de façon équivalente, la valeur-$p$ est plus petite que la valeur $\alpha$ fixée à .05, on rejette l'hypothèse nulle, il y a vraisemblablement une différence entre les groupes. C'est bien l'intention derrière la création des données.
 
+Voici comment il est possible de rapporter les résultats.
+
+```{r, echo = FALSE}
+res <- t.test(gr0, gr1)
+p1 <- ifelse(res$p.value<.001,
+             "< .001", 
+             paste("= ", round(res$p.value,3)))
+```
+
+> La présente étude compare deux groupes sur une échelle de mesure psychologique. Le test-$t$ indépendant suggère que la différence entre les groupes est significative, $t(`r res$parameter`) =`r res$statistic`, p `r p1`$.
+
 ### Le test-$t$ dépendant
 
 Un autre test-$t$ est celui permettant de comparer deux de temps de mesure sur les mêmes participants. L'hypothèse est de vérifier si $\mu_1 = \mu_2$, soit la moyenne du temps\ 1 est égale à la moyenne du temps\ 2. Une habile manipulation mathématique permet de poser cette hypothèse en hypothèse nulle, $\mu_1-\mu_2=0$. Il est intéressant de noter que la différence entre deux variables est normalement distribuée si la variance est connue ou distribuée en $t$ si la variance est inconnue.
@@ -238,6 +243,17 @@ text(x = res$valeur.t-.3, y = .22, labels = "Echantillon")
 ```
 
 La Figure \@ref(fig:testtttt) montre où se situe la différence de moyenne par rapport à la distribution d'échantillonnage de l'hypothèse nulle. Comme la valeur se retrouve dans la valeur-$p$ est plus petite que la valeur $\alpha$ fixée à .05, on rejette l'hypothèse nulle; il y a vraisemblablement une différence entre les temps de mesure, ce qui était l'intention derrière la création des données.
+
+Voici comment rapporter dans un article.
+
+```{r, echo = FALSE}
+res <- t.test(temps1, temps2, paired = TRUE)
+p2 <- ifelse(res$p.value<.001,
+             "< .001", 
+             paste("= ", round(res$p.value,3)))
+```
+
+> Un groupe de participants est mesuré à deux reprises sur une même mesure psychologique. Le test-$t$ dépendant suggère que la différence entre les temps de mesure est significative, $t(`r res$parameter`) =`r res$statistic`, p `r p1`$.
 
 ### L'analyse de variance à un facteur
 
@@ -675,6 +691,41 @@ t_{n-2} = \frac{r}{(\frac{\sqrt{1-r^2}}{\sqrt{n-2}})} = \frac{r\sqrt{n-2}}{\sqrt
 \end{equation}
 
 L'équation\ \@ref(eq:r2t) a l'avantage de montrer la relation entre l'estimateur et l'erreur type alors que l'équation\ \@ref(eq:r2t2) est moins encombrante.
+
+### Rapporter une corrélation
+
+Voici comment rapporter la corrélation dans un article. Plusieurs options sont possibles. Pour une seule corrélation, **R** permet d'obtenir la corrélation et la valeur-$p$ avec la fonction `cor.test()`. Il est possible de rédiger la syntaxe ainsi.
+
+```{r, eval = FALSE}
+cor.test(donnees$x, donnees$y)
+```
+ou encore comme ceci.
+
+```{r}
+cor.test(~ y + x, data = donnees)
+```
+
+En général, la matrice corrélation complète est intéressante à rapporter. Cela se fait rapidement et simplement avec la fonction `cor()`. Toutefois, elle ne rapporte pas les valeurs-$p$ et n'est pas agrémentée d'étoiles scintillantes. Plusieurs packages et fonctions sont envisageables, mais `psych` avec sa fonction `corr.test` est l'une des plus pertinentes. Voici un exemple avec le jeu de données `mtcars` (disponible dans **R** de base). 
+
+```{r}
+psych::corr.test(mtcars)
+```
+La syntaxe retourne les corrélations, la taille d'échantillon et les valeurs-$p$. La sortie contient encore plus d'informations, mais elle n'imprime que les usuelles. Il ne reste qu'à rédiger les corrélations les plus pertinents à rapporter (selon la théorie du domaine concerné).
+
+```{r, echo = FALSE}
+res2 <- psych::corr.test(mtcars)
+rr <- round(res2$r,2)
+rn <- res2$n
+rp <- round(res2$p,3)
+
+pqm <- ifelse(rr["qsec","mpg"]<.001,
+             "< .001", 
+             paste("= ", round(rr["qsec","mpg"],3)))
+
+```
+
+> La matrice de corrélation des variables présentés. Parmi les corrélations d'intérêt, un lien remarquable est celui entre `qsec` et `mpg` qui est significatif, $r(`r n`) = `r rr["qsec","mpg"]`, p `pqm`$.
+
 
 ## Les données nominales 
 

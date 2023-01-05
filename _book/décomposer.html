@@ -4,16 +4,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title> 16 Décomposer | Méthodes quantitatives avec R</title>
+<title> 17 Décomposer | Méthodes quantitatives avec R</title>
 <meta name="author" content="P.-O. Caron">
 <meta name="description" content="Prédire une variable dépendante à partir de variables indépendantes n’est pas la seule façon de décortiquer des données. Il existe des techniques statistiques qui réorganisent l’information (les...">
-<meta name="generator" content="bookdown 0.29 with bs4_book()">
-<meta property="og:title" content=" 16 Décomposer | Méthodes quantitatives avec R">
+<meta name="generator" content="bookdown 0.31 with bs4_book()">
+<meta property="og:title" content=" 17 Décomposer | Méthodes quantitatives avec R">
 <meta property="og:type" content="book">
 <meta property="og:url" content="mqr.teluq.ca/décomposer.html">
 <meta property="og:description" content="Prédire une variable dépendante à partir de variables indépendantes n’est pas la seule façon de décortiquer des données. Il existe des techniques statistiques qui réorganisent l’information (les...">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content=" 16 Décomposer | Méthodes quantitatives avec R">
+<meta name="twitter:title" content=" 17 Décomposer | Méthodes quantitatives avec R">
 <meta name="twitter:description" content="Prédire une variable dépendante à partir de variables indépendantes n’est pas la seule façon de décortiquer des données. Il existe des techniques statistiques qui réorganisent l’information (les...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -86,20 +86,21 @@
 <li><a class="" href="visualiser.html"><span class="header-section-number">8</span> Visualiser</a></li>
 <li><a class="" href="exercice-gestion.html">Exercices</a></li>
 <li class="book-part">Statistiques</li>
-<li><a class="" href="inf%C3%A9rer.html"><span class="header-section-number">9</span> Inférer</a></li>
-<li><a class="" href="analyser.html"><span class="header-section-number">10</span> Analyser</a></li>
-<li><a class="" href="simuler.html"><span class="header-section-number">11</span> Simuler</a></li>
+<li><a class="" href="d%C3%A9crire.html"><span class="header-section-number">9</span> Décrire</a></li>
+<li><a class="" href="inf%C3%A9rer.html"><span class="header-section-number">10</span> Inférer</a></li>
+<li><a class="" href="analyser.html"><span class="header-section-number">11</span> Analyser</a></li>
+<li><a class="" href="simuler.html"><span class="header-section-number">12</span> Simuler</a></li>
 <li><a class="" href="exercice-analyse.html">Exercices</a></li>
 <li class="book-part">Modèles linéaires</li>
-<li><a class="" href="pr%C3%A9dire.html"><span class="header-section-number">12</span> Prédire</a></li>
-<li><a class="" href="cr%C3%A9er.html"><span class="header-section-number">13</span> Créer</a></li>
-<li><a class="" href="m%C3%A9dier.html"><span class="header-section-number">14</span> Médier</a></li>
-<li><a class="" href="mod%C3%A9rer.html"><span class="header-section-number">15</span> Modérer</a></li>
+<li><a class="" href="pr%C3%A9dire.html"><span class="header-section-number">13</span> Prédire</a></li>
+<li><a class="" href="cr%C3%A9er.html"><span class="header-section-number">14</span> Créer</a></li>
+<li><a class="" href="m%C3%A9dier.html"><span class="header-section-number">15</span> Médier</a></li>
+<li><a class="" href="mod%C3%A9rer.html"><span class="header-section-number">16</span> Modérer</a></li>
 <li><a class="" href="exercice-lineaire.html">Exercices</a></li>
 <li class="book-part">Analyses factorielles</li>
-<li><a class="active" href="d%C3%A9composer.html"><span class="header-section-number">16</span> Décomposer</a></li>
-<li><a class="" href="explorer.html"><span class="header-section-number">17</span> Explorer</a></li>
-<li><a class="" href="r%C3%A9duire.html"><span class="header-section-number">18</span> Réduire</a></li>
+<li><a class="active" href="d%C3%A9composer.html"><span class="header-section-number">17</span> Décomposer</a></li>
+<li><a class="" href="explorer.html"><span class="header-section-number">18</span> Explorer</a></li>
+<li><a class="" href="r%C3%A9duire.html"><span class="header-section-number">19</span> Réduire</a></li>
 <li class="book-part">Annexes</li>
 <li><a class="" href="solutions.html">Solutions</a></li>
 <li><a class="" href="r%C3%A9f%C3%A9rences.html">Références</a></li>
@@ -110,61 +111,61 @@
         </div>
       </nav>
 </div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="décomposer" class="section level1" number="16">
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="décomposer" class="section level1" number="17">
 <h1>
-<span class="header-section-number"> 16</span> Décomposer<a class="anchor" aria-label="anchor" href="#d%C3%A9composer"><i class="fas fa-link"></i></a>
+<span class="header-section-number"> 17</span> Décomposer<a class="anchor" aria-label="anchor" href="#d%C3%A9composer"><i class="fas fa-link"></i></a>
 </h1>
 <p>Prédire une variable dépendante à partir de variables indépendantes n’est pas la seule façon de décortiquer des données. Il existe des techniques statistiques qui réorganisent l’information (les corrélations) des variables. Il s’agit des <strong>analyses factorielles</strong>. Elles s’intéressent plus à la <em>structure</em> des corrélations qu’aux <em>systèmes</em> qui les lient. Bien qu’il s’agisse de nuances sur le plan statistique, les deux côtés d’une même médaille, les différences sont importantes sur le plan théorique. Plutôt que de parler de <em>cause</em> à <em>effet</em>, ce sera plutôt la structure sous-tendant les variables qui sera d’intérêt.</p>
-<p>À titre d’illustration, la Figure <a href="d%C3%A9composer.html#fig:regaf">16.1</a> présente à gauche la régression, <span class="math inline">\(x_1\)</span> prédit <span class="math inline">\(x_2\)</span>, et à droite le facteur <span class="math inline">\(F\)</span> qui est la source de <span class="math inline">\(x_1\)</span> et <span class="math inline">\(x_2\)</span>.</p>
+<p>À titre d’illustration, la Figure <a href="d%C3%A9composer.html#fig:regaf">17.1</a> présente à gauche la régression, <span class="math inline">\(x_1\)</span> prédit <span class="math inline">\(x_2\)</span>, et à droite le facteur <span class="math inline">\(F\)</span> qui est la source de <span class="math inline">\(x_1\)</span> et <span class="math inline">\(x_2\)</span>.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:regaf"></span>
 <img src="image/reg_af.png" alt="Représentations de la régression et l'analyse factorielle" width="75%" height="75%"><p class="caption">
-Figure 16.1: Représentations de la régression et l’analyse factorielle
+Figure 17.1: Représentations de la régression et l’analyse factorielle
 </p>
 </div>
-<p>Plusieurs éléments permettent de mieux mettre en évidence les différences entre les deux modèles. Les <strong>variables manifestes</strong> <span class="math inline">\(x_i\)</span> sont des mesures empiriques mesurées auprès d’unités d’observations. Elles sont représentées pas des rectangles. Le facteur <span class="math inline">\(F\)</span> est représenté par un cercle. Il s’agit d’une <strong>variable latente</strong>, une variable non observée et inférée à partir des variables manifestes. Par exemple, les habiletés de lecture <span class="math inline">\(x_1\)</span> sont liées aux habiletés en mathématiques <span class="math inline">\(x_2\)</span>. D’un côté, mieux le participant lit, plus il répond rapidement et exactement aux questions de mathématiques. De l’autre côté, les habiletés de mathématiques et de lectures peuvent aussi être liées à un facteur commun : l’intelligence. Les habiletés de mathématiques et de lectures sont observables par des évaluations, mais l’intelligence s’infère à partir de ces tests<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Il est particulièrement important d’identifier le facteur comme variable latente. Autrement, le modèle à droite pourrait également représenté une &lt;strong&gt;variable confondante&lt;/strong&gt;, une variable qui cause &lt;em&gt;accidentellement&lt;/em&gt; la corrélation entre deux autres. Par exemple, le lien entre l’intelligence et la grandeur des pieds provient de l’effet de l’âge.&lt;/p&gt;"><sup>19</sup></a>. C’est là que les analyses factorielles entre en jeu.</p>
+<p>Plusieurs éléments permettent de mieux mettre en évidence les différences entre les deux modèles. Les <strong>variables manifestes</strong> <span class="math inline">\(x_i\)</span> sont des mesures empiriques mesurées auprès d’unités d’observations. Elles sont représentées pas des rectangles. Le facteur <span class="math inline">\(F\)</span> est représenté par un cercle. Il s’agit d’une <strong>variable latente</strong>, une variable non observée et inférée à partir des variables manifestes. Par exemple, les habiletés de lecture <span class="math inline">\(x_1\)</span> sont liées aux habiletés en mathématiques <span class="math inline">\(x_2\)</span>. D’un côté, mieux le participant lit, plus il répond rapidement et exactement aux questions de mathématiques. De l’autre côté, les habiletés de mathématiques et de lectures peuvent aussi être liées à un facteur commun : l’intelligence. Les habiletés de mathématiques et de lectures sont observables par des évaluations, mais l’intelligence s’infère à partir de ces tests<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Il est particulièrement important d’identifier le facteur comme variable latente. Autrement, le modèle à droite pourrait également représenté une &lt;strong&gt;variable confondante&lt;/strong&gt;, une variable qui cause &lt;em&gt;accidentellement&lt;/em&gt; la corrélation entre deux autres. Par exemple, le lien entre l’intelligence et la grandeur des pieds provient de l’effet de l’âge.&lt;/p&gt;"><sup>23</sup></a>. C’est là que les analyses factorielles entre en jeu.</p>
 <p>Les analyses factorielles sont utilisés, par exemple, lors de la création d’un test psychométrique. Le psychométricien s’intéresse à connaître quels items (variables manifestes) sont liés sur quelle dimension et à quel degré. Les items communs sont liés sur certains facteurs et peu ou pas sur les autres. Le facteur à un fort potentiel explicatif pour les items qui lui sont fortement liés, voire même représente un concept, thème ou construit théorique commun partagé entre ces items.</p>
 <!-- L'ACP a une optique d'utilisation beaucoup plus grande que l'analyse factorielle exploratoire. L'expérimentateur pourrait s'intéresser à seulement réorganiser la variance sans aucune visée *factorielle*. Il pourrait vouloir identifier l'ensemble des meilleurs prédicteurs ou encore résumer l'information de façon à générer des figures qui seraient autrement trop complexes. Enfin, l'ACP peut aussi être conceptualisé comme une forme de compression comme en informatique. Puisque l'information se trouve dans les premières composantes, les moins informatives peuvent être discartées afin de résumer un maximum d'informations sur les données avec le minimum de facteurs. -->
 <p>Dans ce livre, deux types d’analyse factorielle sont abordées : l’<strong>analyse en composantes principales</strong> et l’<strong>analyse factorielle</strong>. La première est un modèle athéorique (sans hypothèses sous-jacentes) à la structure des données, alors que la seconde présuppose, comme hypothèse, un ou des facteurs latents communs. Sur le plan computationnel, l’analyse en composantes principales réorganise tous les facteurs, alors que l’analyse factorielle extrait un nombre donné de facteurs. Les analyses factorielles se distinguent également en deux catégories : <strong>exploratoire</strong> et <strong>confirmatoire</strong>. Ces termes distinguent si l’analyse contraint ou non la structure factorielle. Tout cela sera abordé plus en détails dans les prochains chapitres.</p>
-<div id="lanalyse-en-composantes-principales" class="section level2" number="16.1">
+<div id="lanalyse-en-composantes-principales" class="section level2" number="17.1">
 <h2>
-<span class="header-section-number">16.1</span> L’analyse en composantes principales<a class="anchor" aria-label="anchor" href="#lanalyse-en-composantes-principales"><i class="fas fa-link"></i></a>
+<span class="header-section-number">17.1</span> L’analyse en composantes principales<a class="anchor" aria-label="anchor" href="#lanalyse-en-composantes-principales"><i class="fas fa-link"></i></a>
 </h2>
 <p>L’analyse en composantes principales (ACP) fait partie de la famille des analyses factorielle exploratoire. Elle consiste à réorganiser des variables corrélées (une matrice de covariance) en nouvelles variables orthogonales (décorrélées) les unes des autres. Ces nouvelles <em>variables</em> sont des composantes principales, axes principaux ou encore des dimensions. Il s’agit d’une technique à la fois géométrique et statistique dont les champs d’application vont de la psychologie, la sociologie, la biologie, la chimie à la physique quantique jusqu’aux mathématiques pures. Elle ne se limite donc pas qu’à la psychométrie.</p>
-<p>L’ACP prend comme base la matrice de corrélation<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Afin de simplifier le propos, seule l’analyse en composantes principales sur une matrice corrélation sera présentée.&lt;/p&gt;"><sup>20</sup></a> et la réorganisation (essentiellement une rotation géométrique) afin que les nouvelles dimensions soient indépendantes l’une de l’autre. L’ACP procure trois informations cruciales sur une matrice de corrélation, les valeurs propres et les vecteurs propres, desquels les <em>loadings</em><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Souvent traduit par &lt;em&gt;charge&lt;/em&gt;, mais le terme loading semble plus approprié.&lt;/p&gt;"><sup>21</sup></a> sont calculables.</p>
-<div id="les-valeurs-propres" class="section level3" number="16.1.1">
+<p>L’ACP prend comme base la matrice de corrélation<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Afin de simplifier le propos, seule l’analyse en composantes principales sur une matrice corrélation sera présentée.&lt;/p&gt;"><sup>24</sup></a> et la réorganisation (essentiellement une rotation géométrique) afin que les nouvelles dimensions soient indépendantes l’une de l’autre. L’ACP procure trois informations cruciales sur une matrice de corrélation, les valeurs propres et les vecteurs propres, desquels les <em>loadings</em><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Souvent traduit par &lt;em&gt;charge&lt;/em&gt;, mais le terme loading semble plus approprié.&lt;/p&gt;"><sup>25</sup></a> sont calculables.</p>
+<div id="les-valeurs-propres" class="section level3" number="17.1.1">
 <h3>
-<span class="header-section-number">16.1.1</span> Les valeurs propres<a class="anchor" aria-label="anchor" href="#les-valeurs-propres"><i class="fas fa-link"></i></a>
+<span class="header-section-number">17.1.1</span> Les valeurs propres<a class="anchor" aria-label="anchor" href="#les-valeurs-propres"><i class="fas fa-link"></i></a>
 </h3>
 <p>Les <strong>valeurs propres</strong> (<em>eigenvalues</em>) représentent l’aspect crucial de l’ACP, soit l’importance de chaque composante à représenter les variables. Plus les variables sont liées sur un même axe (en nombre et en poids), plus la valeur propre de cet axe sera élevée. Mathématiquement, les valeurs propres sont représentées par un vecteur <span class="math inline">\(\Lambda\)</span> ou une matrice diagonale <span class="math inline">\(\text{diag}(\Lambda) = \mathbf{\Lambda}\)</span>.</p>
 <p>La somme des valeurs propres égale la somme des variances, ce qui équivaut en matrice de corrélation à <span class="math inline">\(p\)</span>, le nombre de variables. Comme il s’agit du potentiel maximal de ce qui peut être expliqué et que les valeurs sont une part de ce total, il est possible de calculer leur importance relative par des pourcentage. Par exemple une valeur propre de 5 sur un total de <span class="math inline">\(p=10\)</span> variables signifie que l’axe correspondant explique <span class="math inline">\(5/10 \times 100 = 50\)</span>% de la variance de la matrice de corrélation. En d’autres termes, la valeur propre est une bonne métrique de l’importance d’une dimension.</p>
-<p>En identifiant les composantes principales, l’ACP révèle du même coup l’importance de chacune d’elle. Il devient tout naturel de les classer en ordre décroissant<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Bien que leur ordre soit arbitraire en principe.&lt;/p&gt;"><sup>22</sup></a>.</p>
+<p>En identifiant les composantes principales, l’ACP révèle du même coup l’importance de chacune d’elle. Il devient tout naturel de les classer en ordre décroissant<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Bien que leur ordre soit arbitraire en principe.&lt;/p&gt;"><sup>26</sup></a>.</p>
 </div>
-<div id="les-vecteurs-propres" class="section level3" number="16.1.2">
+<div id="les-vecteurs-propres" class="section level3" number="17.1.2">
 <h3>
-<span class="header-section-number">16.1.2</span> Les vecteurs propres<a class="anchor" aria-label="anchor" href="#les-vecteurs-propres"><i class="fas fa-link"></i></a>
+<span class="header-section-number">17.1.2</span> Les vecteurs propres<a class="anchor" aria-label="anchor" href="#les-vecteurs-propres"><i class="fas fa-link"></i></a>
 </h3>
 <p>Les vecteurs propres (<em>eigenvectors</em>) sont les axes d’orientation des valeurs propres dans le plan de la matrice de corrélation originale. Chaque axe représenté est orthogonal (indépendant) aux autres. Ils sont également normalisés, c’est-à-dire des vecteurs unitaires (la somme de leur carré égale 1). Mathématiquement, les vecteurs propres sont représentés par une matrice <span class="math inline">\(\mathbf{V}\)</span>.</p>
 </div>
-<div id="les-loadings" class="section level3" number="16.1.3">
+<div id="les-loadings" class="section level3" number="17.1.3">
 <h3>
-<span class="header-section-number">16.1.3</span> Les loadings<a class="anchor" aria-label="anchor" href="#les-loadings"><i class="fas fa-link"></i></a>
+<span class="header-section-number">17.1.3</span> Les loadings<a class="anchor" aria-label="anchor" href="#les-loadings"><i class="fas fa-link"></i></a>
 </h3>
-<p>Les vecteurs propres avec les valeurs propres permettent de calculer les loadings. Ils correspondent au lien entre chaque axe et les variables. En d’autres termes, les loadings correspondent au degré selon lequel une variable corrèle avec un facteur. C’est l’importance relative de chaque variable sur chaque axe. Par exemple, les variables très associées avec un certain axe ont de très forts loadings en lien avec cet axe, mais des loadings beaucoup plus faibles avec les axes avec lesquels ils sont moins associés. L’équation <a href="d%C3%A9composer.html#eq:loadings">(16.1)</a> détaille l’équation.</p>
+<p>Les vecteurs propres avec les valeurs propres permettent de calculer les loadings. Ils correspondent au lien entre chaque axe et les variables. En d’autres termes, les loadings correspondent au degré selon lequel une variable corrèle avec un facteur. C’est l’importance relative de chaque variable sur chaque axe. Par exemple, les variables très associées avec un certain axe ont de très forts loadings en lien avec cet axe, mais des loadings beaucoup plus faibles avec les axes avec lesquels ils sont moins associés. L’équation <a href="d%C3%A9composer.html#eq:loadings">(17.1)</a> détaille l’équation.</p>
 <p><span class="math display" id="eq:loadings">\[\begin{equation}
 \mathbf{L} =\mathbf{V}\mathbf{\Lambda^{\frac{1}{2}}}
-\tag{16.1}
+\tag{17.1}
 \end{equation}\]</span></p>
-<p>Lorsque dérivés d’une matrice de corrélations, les loadings sont les corrélations entre l’axe et la variable. C’est la force des liens allant de <span class="math inline">\(F\)</span> aux <span class="math inline">\(x\)</span> dans la Figure <a href="d%C3%A9composer.html#fig:regaf">16.1</a>. En termes d’analyse factorielle, il s’agit de scores factoriels.</p>
+<p>Lorsque dérivés d’une matrice de corrélations, les loadings sont les corrélations entre l’axe et la variable. C’est la force des liens allant de <span class="math inline">\(F\)</span> aux <span class="math inline">\(x\)</span> dans la Figure <a href="d%C3%A9composer.html#fig:regaf">17.1</a>. En termes d’analyse factorielle, il s’agit de scores factoriels.</p>
 <p>Pour mieux illustrer, les valeurs propres, les vecteurs propres, les loadings, mais surtout la décomposition en axes principaux, la section suivante présente un exemple pour mettre le tout en commun.</p>
 </div>
 </div>
-<div id="création-de-données-1" class="section level2" number="16.2">
+<div id="création-de-données-1" class="section level2" number="17.2">
 <h2>
-<span class="header-section-number">16.2</span> Création de données<a class="anchor" aria-label="anchor" href="#cr%C3%A9ation-de-donn%C3%A9es-1"><i class="fas fa-link"></i></a>
+<span class="header-section-number">17.2</span> Création de données<a class="anchor" aria-label="anchor" href="#cr%C3%A9ation-de-donn%C3%A9es-1"><i class="fas fa-link"></i></a>
 </h2>
 <p>La création de données pour une ACP est très simple. Il suffit de créer une matrice de covariance ou de corrélation. Dans cet exemple, 10 participants sont mesurés sur deux variables ayant une corrélation de .80 entre elles.</p>
-<div class="sourceCode" id="cb217"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb229"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Pour la reproductibilité</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">42</span><span class="op">)</span></span>
 <span></span>
@@ -181,102 +182,102 @@ Figure 16.1: Représentations de la régression et l’analyse factorielle
 <span>                        Sigma <span class="op">=</span> <span class="va">S</span>, </span>
 <span>                        empirical <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p>L’argument <code>empirical = TRUE</code> assure que la matrice de corrélation de la population est identique à celle de l’équation, <span class="math inline">\(\mathbf{\Sigma} = \mathbf{S}\)</span>, ce qui facilite l’interprétation de cet exemple.</p>
-<p>La Figure <a href="d%C3%A9composer.html#fig:plotacp">16.2</a> illustre la répartition des 10 participants par rapport aux variables 1 et 2. La ligne pointillée désigne la droite de régression qui les relient, soit la pente <span class="math inline">\(\beta = .8\)</span>.</p>
+<p>La Figure <a href="d%C3%A9composer.html#fig:plotacp">17.2</a> illustre la répartition des 10 participants par rapport aux variables 1 et 2. La ligne pointillée désigne la droite de régression qui les relient, soit la pente <span class="math inline">\(\beta = .8\)</span>.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:plotacp"></span>
-<img src="16-Decomposer_files/figure-html/plotacp-1.png" alt="Présentation des données (`jd.acp`)" width="75%" height="75%"><p class="caption">
-Figure 16.2: Présentation des données (<code>jd.acp</code>)
+<img src="17-Decomposer_files/figure-html/plotacp-1.png" alt="Présentation des données (`jd.acp`)" width="75%" height="75%"><p class="caption">
+Figure 17.2: Présentation des données (<code>jd.acp</code>)
 </p>
 </div>
 </div>
-<div id="analyse-1" class="section level2" number="16.3">
+<div id="analyse-1" class="section level2" number="17.3">
 <h2>
-<span class="header-section-number">16.3</span> Analyse<a class="anchor" aria-label="anchor" href="#analyse-1"><i class="fas fa-link"></i></a>
+<span class="header-section-number">17.3</span> Analyse<a class="anchor" aria-label="anchor" href="#analyse-1"><i class="fas fa-link"></i></a>
 </h2>
 <p>Il existe plusieurs fonctions dans <strong>R</strong>, mais aussi dans des packages, pour réaliser l’ACP. L’analyse en soi n’a rien de sorcier (en autant que les statisticiens ne font pas de la magie), c’est surtout l’emballage (arguments, graphiques et sorties) qui change de l’une à l’autre des méthodes. Ces fonctions précalculent et extraient les statistiques désirées, rien que l’utilisateur ne peut faire lui-même.</p>
 <p>Il existe quatre fonctions de base <strong>R</strong> pour faire l’analyse en composantes principales. Les deux principales, <code><a href="https://rdrr.io/r/base/eigen.html">eigen()</a></code> et <code><a href="https://rdrr.io/r/base/svd.html">svd()</a></code>, fournissent des résultats virtuellement identiques, mais se distinguent sur leur limite de ce qu’elles peuvent accomplir. Les deux autres, <code>princomp</code> et <code><a href="https://rdrr.io/r/stats/prcomp.html">prcomp()</a></code>, sont leur emballage respectif. Les détails des calculs seront présentées dans une autre section, la section sur <a href="d%C3%A9composer.html#les-calculs-de-lanalyse-en-composantes-principales">Les calculs de l’analyse en composantes principales</a>.</p>
-<div id="eigen" class="section level3" number="16.3.1">
+<div id="eigen" class="section level3" number="17.3.1">
 <h3>
-<span class="header-section-number">16.3.1</span> <code>eigen()</code><a class="anchor" aria-label="anchor" href="#eigen"><i class="fas fa-link"></i></a>
+<span class="header-section-number">17.3.1</span> <code>eigen()</code><a class="anchor" aria-label="anchor" href="#eigen"><i class="fas fa-link"></i></a>
 </h3>
 <p>La fonction <code><a href="https://rdrr.io/r/base/eigen.html">eigen()</a></code> est celle des puristes. Rudimentaire, elle prend en argument une matrice de covariance ou de corrélation et calculent les valeurs propres (<code>values</code>) et les vecteurs propres (<code>vectors</code>).</p>
-<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="d%C3%A9composer.html#cb218-1" aria-hidden="true" tabindex="-1"></a><span class="co"># L'analyse de la matrice de corrélation </span></span>
-<span id="cb218-2"><a href="d%C3%A9composer.html#cb218-2" aria-hidden="true" tabindex="-1"></a>res.eig <span class="ot">&lt;-</span> <span class="fu">eigen</span>(<span class="fu">cor</span>(jd.acp))</span>
-<span id="cb218-3"><a href="d%C3%A9composer.html#cb218-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb218-4"><a href="d%C3%A9composer.html#cb218-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Les valeurs propres</span></span>
-<span id="cb218-5"><a href="d%C3%A9composer.html#cb218-5" aria-hidden="true" tabindex="-1"></a>res.eig<span class="sc">$</span>values</span>
-<span id="cb218-6"><a href="d%C3%A9composer.html#cb218-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">1.8</span> <span class="fl">0.2</span></span>
-<span id="cb218-7"><a href="d%C3%A9composer.html#cb218-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb218-8"><a href="d%C3%A9composer.html#cb218-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Les vecteurs propres</span></span>
-<span id="cb218-9"><a href="d%C3%A9composer.html#cb218-9" aria-hidden="true" tabindex="-1"></a>res.eig<span class="sc">$</span>vectors</span>
-<span id="cb218-10"><a href="d%C3%A9composer.html#cb218-10" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>       [,<span class="dv">1</span>]   [,<span class="dv">2</span>]</span>
-<span id="cb218-11"><a href="d%C3%A9composer.html#cb218-11" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>,] <span class="fl">0.707</span> <span class="sc">-</span><span class="fl">0.707</span></span>
-<span id="cb218-12"><a href="d%C3%A9composer.html#cb218-12" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">2</span>,] <span class="fl">0.707</span>  <span class="fl">0.707</span></span>
-<span id="cb218-13"><a href="d%C3%A9composer.html#cb218-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb218-14"><a href="d%C3%A9composer.html#cb218-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Les loadings</span></span>
-<span id="cb218-15"><a href="d%C3%A9composer.html#cb218-15" aria-hidden="true" tabindex="-1"></a>res.eig<span class="sc">$</span>vectors <span class="sc">%*%</span> <span class="fu">diag</span>(<span class="fu">sqrt</span>(res.eig<span class="sc">$</span>values))</span>
-<span id="cb218-16"><a href="d%C3%A9composer.html#cb218-16" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>       [,<span class="dv">1</span>]   [,<span class="dv">2</span>]</span>
-<span id="cb218-17"><a href="d%C3%A9composer.html#cb218-17" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>,] <span class="fl">0.949</span> <span class="sc">-</span><span class="fl">0.316</span></span>
-<span id="cb218-18"><a href="d%C3%A9composer.html#cb218-18" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">2</span>,] <span class="fl">0.949</span>  <span class="fl">0.316</span></span></code></pre></div>
+<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="d%C3%A9composer.html#cb230-1" aria-hidden="true" tabindex="-1"></a><span class="co"># L'analyse de la matrice de corrélation </span></span>
+<span id="cb230-2"><a href="d%C3%A9composer.html#cb230-2" aria-hidden="true" tabindex="-1"></a>res.eig <span class="ot">&lt;-</span> <span class="fu">eigen</span>(<span class="fu">cor</span>(jd.acp))</span>
+<span id="cb230-3"><a href="d%C3%A9composer.html#cb230-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb230-4"><a href="d%C3%A9composer.html#cb230-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Les valeurs propres</span></span>
+<span id="cb230-5"><a href="d%C3%A9composer.html#cb230-5" aria-hidden="true" tabindex="-1"></a>res.eig<span class="sc">$</span>values</span>
+<span id="cb230-6"><a href="d%C3%A9composer.html#cb230-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">1.8</span> <span class="fl">0.2</span></span>
+<span id="cb230-7"><a href="d%C3%A9composer.html#cb230-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb230-8"><a href="d%C3%A9composer.html#cb230-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Les vecteurs propres</span></span>
+<span id="cb230-9"><a href="d%C3%A9composer.html#cb230-9" aria-hidden="true" tabindex="-1"></a>res.eig<span class="sc">$</span>vectors</span>
+<span id="cb230-10"><a href="d%C3%A9composer.html#cb230-10" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>       [,<span class="dv">1</span>]   [,<span class="dv">2</span>]</span>
+<span id="cb230-11"><a href="d%C3%A9composer.html#cb230-11" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>,] <span class="fl">0.707</span> <span class="sc">-</span><span class="fl">0.707</span></span>
+<span id="cb230-12"><a href="d%C3%A9composer.html#cb230-12" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">2</span>,] <span class="fl">0.707</span>  <span class="fl">0.707</span></span>
+<span id="cb230-13"><a href="d%C3%A9composer.html#cb230-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb230-14"><a href="d%C3%A9composer.html#cb230-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Les loadings</span></span>
+<span id="cb230-15"><a href="d%C3%A9composer.html#cb230-15" aria-hidden="true" tabindex="-1"></a>res.eig<span class="sc">$</span>vectors <span class="sc">%*%</span> <span class="fu">diag</span>(<span class="fu">sqrt</span>(res.eig<span class="sc">$</span>values))</span>
+<span id="cb230-16"><a href="d%C3%A9composer.html#cb230-16" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>       [,<span class="dv">1</span>]   [,<span class="dv">2</span>]</span>
+<span id="cb230-17"><a href="d%C3%A9composer.html#cb230-17" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>,] <span class="fl">0.949</span> <span class="sc">-</span><span class="fl">0.316</span></span>
+<span id="cb230-18"><a href="d%C3%A9composer.html#cb230-18" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">2</span>,] <span class="fl">0.949</span>  <span class="fl">0.316</span></span></code></pre></div>
 <p>La fonction <code><a href="https://rdrr.io/r/base/eigen.html">eigen()</a></code> ne fonctionne qu’avec des matrices carrées et est donc très robuste afin d’éviter de mauvais arguments.</p>
 </div>
-<div id="svd" class="section level3" number="16.3.2">
+<div id="svd" class="section level3" number="17.3.2">
 <h3>
-<span class="header-section-number">16.3.2</span> <code>svd()</code><a class="anchor" aria-label="anchor" href="#svd"><i class="fas fa-link"></i></a>
+<span class="header-section-number">17.3.2</span> <code>svd()</code><a class="anchor" aria-label="anchor" href="#svd"><i class="fas fa-link"></i></a>
 </h3>
 <p>L’analyse de décomposition en valeurs singulières (<em>singular value decomposition</em>, SVD) est généralement recommandée, car elle est computationnellement plus robuste que <code><a href="https://rdrr.io/r/base/eigen.html">eigen()</a></code>. Un puriste <strong>R</strong> choisirait probablement la fonction <code><a href="https://rdrr.io/r/base/eigen.html">eigen()</a></code>, car la fonction est plus <em>robuste</em> aux erreurs de l’utilisateur.</p>
-<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="d%C3%A9composer.html#cb219-1" aria-hidden="true" tabindex="-1"></a><span class="co"># L'analyse de la matrice de corrélation</span></span>
-<span id="cb219-2"><a href="d%C3%A9composer.html#cb219-2" aria-hidden="true" tabindex="-1"></a>res.svd <span class="ot">=</span> <span class="fu">svd</span>(<span class="fu">cor</span>(jd.acp))</span>
-<span id="cb219-3"><a href="d%C3%A9composer.html#cb219-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb219-4"><a href="d%C3%A9composer.html#cb219-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Les valeurs propres</span></span>
-<span id="cb219-5"><a href="d%C3%A9composer.html#cb219-5" aria-hidden="true" tabindex="-1"></a>res.svd<span class="sc">$</span>d</span>
-<span id="cb219-6"><a href="d%C3%A9composer.html#cb219-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">1.8</span> <span class="fl">0.2</span></span>
-<span id="cb219-7"><a href="d%C3%A9composer.html#cb219-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb219-8"><a href="d%C3%A9composer.html#cb219-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Les vecteurs propres</span></span>
-<span id="cb219-9"><a href="d%C3%A9composer.html#cb219-9" aria-hidden="true" tabindex="-1"></a>res.svd<span class="sc">$</span>v</span>
-<span id="cb219-10"><a href="d%C3%A9composer.html#cb219-10" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>        [,<span class="dv">1</span>]   [,<span class="dv">2</span>]</span>
-<span id="cb219-11"><a href="d%C3%A9composer.html#cb219-11" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>,] <span class="sc">-</span><span class="fl">0.707</span> <span class="sc">-</span><span class="fl">0.707</span></span>
-<span id="cb219-12"><a href="d%C3%A9composer.html#cb219-12" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">2</span>,] <span class="sc">-</span><span class="fl">0.707</span>  <span class="fl">0.707</span></span>
-<span id="cb219-13"><a href="d%C3%A9composer.html#cb219-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb219-14"><a href="d%C3%A9composer.html#cb219-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Les loadings</span></span>
-<span id="cb219-15"><a href="d%C3%A9composer.html#cb219-15" aria-hidden="true" tabindex="-1"></a>res.svd<span class="sc">$</span>v <span class="sc">%*%</span> <span class="fu">diag</span>(<span class="fu">sqrt</span>(res.svd<span class="sc">$</span>d))</span>
-<span id="cb219-16"><a href="d%C3%A9composer.html#cb219-16" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>        [,<span class="dv">1</span>]   [,<span class="dv">2</span>]</span>
-<span id="cb219-17"><a href="d%C3%A9composer.html#cb219-17" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>,] <span class="sc">-</span><span class="fl">0.949</span> <span class="sc">-</span><span class="fl">0.316</span></span>
-<span id="cb219-18"><a href="d%C3%A9composer.html#cb219-18" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">2</span>,] <span class="sc">-</span><span class="fl">0.949</span>  <span class="fl">0.316</span></span></code></pre></div>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="d%C3%A9composer.html#cb231-1" aria-hidden="true" tabindex="-1"></a><span class="co"># L'analyse de la matrice de corrélation</span></span>
+<span id="cb231-2"><a href="d%C3%A9composer.html#cb231-2" aria-hidden="true" tabindex="-1"></a>res.svd <span class="ot">=</span> <span class="fu">svd</span>(<span class="fu">cor</span>(jd.acp))</span>
+<span id="cb231-3"><a href="d%C3%A9composer.html#cb231-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb231-4"><a href="d%C3%A9composer.html#cb231-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Les valeurs propres</span></span>
+<span id="cb231-5"><a href="d%C3%A9composer.html#cb231-5" aria-hidden="true" tabindex="-1"></a>res.svd<span class="sc">$</span>d</span>
+<span id="cb231-6"><a href="d%C3%A9composer.html#cb231-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">1.8</span> <span class="fl">0.2</span></span>
+<span id="cb231-7"><a href="d%C3%A9composer.html#cb231-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb231-8"><a href="d%C3%A9composer.html#cb231-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Les vecteurs propres</span></span>
+<span id="cb231-9"><a href="d%C3%A9composer.html#cb231-9" aria-hidden="true" tabindex="-1"></a>res.svd<span class="sc">$</span>v</span>
+<span id="cb231-10"><a href="d%C3%A9composer.html#cb231-10" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>        [,<span class="dv">1</span>]   [,<span class="dv">2</span>]</span>
+<span id="cb231-11"><a href="d%C3%A9composer.html#cb231-11" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>,] <span class="sc">-</span><span class="fl">0.707</span> <span class="sc">-</span><span class="fl">0.707</span></span>
+<span id="cb231-12"><a href="d%C3%A9composer.html#cb231-12" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">2</span>,] <span class="sc">-</span><span class="fl">0.707</span>  <span class="fl">0.707</span></span>
+<span id="cb231-13"><a href="d%C3%A9composer.html#cb231-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb231-14"><a href="d%C3%A9composer.html#cb231-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Les loadings</span></span>
+<span id="cb231-15"><a href="d%C3%A9composer.html#cb231-15" aria-hidden="true" tabindex="-1"></a>res.svd<span class="sc">$</span>v <span class="sc">%*%</span> <span class="fu">diag</span>(<span class="fu">sqrt</span>(res.svd<span class="sc">$</span>d))</span>
+<span id="cb231-16"><a href="d%C3%A9composer.html#cb231-16" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>        [,<span class="dv">1</span>]   [,<span class="dv">2</span>]</span>
+<span id="cb231-17"><a href="d%C3%A9composer.html#cb231-17" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>,] <span class="sc">-</span><span class="fl">0.949</span> <span class="sc">-</span><span class="fl">0.316</span></span>
+<span id="cb231-18"><a href="d%C3%A9composer.html#cb231-18" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">2</span>,] <span class="sc">-</span><span class="fl">0.949</span>  <span class="fl">0.316</span></span></code></pre></div>
 <p>Les résultats sont identiques à la fonction <code><a href="https://rdrr.io/r/base/eigen.html">eigen()</a></code>. Le lecteur attentif aura toutefois remarqué que <code>res.svd$v</code> n’égale pas exactement <code>res.eig$vectors</code> à cause des signes négatifs du premier vecteur propre. Toutefois, il convient d’affirmer que c’est seulement la polarité qui est différente, comme si un vecteur propre indiquait le nord et l’autre le sud, alors que les deux sont dos à dos, exactement à <span class="math inline">\(180^{\circ}\)</span>.</p>
 <p>La fonction <code><a href="https://rdrr.io/r/base/svd.html">svd()</a></code> est plus générale et peut utiliser des matrices rectangulaires. Il faut faire attention de ne pas lui fournir le jeu de données et bien la matrice de covariance ou de corrélation.</p>
-<p>Il convient également d’ajouter que, comme <span class="math inline">\(\mathbf{\Sigma} = \mathbf{S}\)</span> (à l’aide de l’argument <code>empirical = TRUE</code> de <code><a href="https://rdrr.io/pkg/MASS/man/mvrnorm.html">MASS::mvrnorm()</a></code>), il n’était pas nécessaire de générer de données à proprement parler pour réaliser les analyses, car <code>svd(S)</code> ou <code>eigen(S)</code> offre les mêmes résultats. C’est la matrice de corrélation qui est décomposée et non les participants. Remarquez d’ailleurs comment l’ACP est indépendante de la taille d’échantillon<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;La taille d’échantillon a des conséquences sur la matrice de corrélation, mais l’ACP en est techniquement indépendante.&lt;/p&gt;"><sup>23</sup></a>.</p>
+<p>Il convient également d’ajouter que, comme <span class="math inline">\(\mathbf{\Sigma} = \mathbf{S}\)</span> (à l’aide de l’argument <code>empirical = TRUE</code> de <code><a href="https://rdrr.io/pkg/MASS/man/mvrnorm.html">MASS::mvrnorm()</a></code>), il n’était pas nécessaire de générer de données à proprement parler pour réaliser les analyses, car <code>svd(S)</code> ou <code>eigen(S)</code> offre les mêmes résultats. C’est la matrice de corrélation qui est décomposée et non les participants. Remarquez d’ailleurs comment l’ACP est indépendante de la taille d’échantillon<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;La taille d’échantillon a des conséquences sur la matrice de corrélation, mais l’ACP en est techniquement indépendante.&lt;/p&gt;"><sup>27</sup></a>.</p>
 </div>
 </div>
-<div id="représentations-des-résultats" class="section level2" number="16.4">
+<div id="représentations-des-résultats" class="section level2" number="17.4">
 <h2>
-<span class="header-section-number">16.4</span> Représentations des résultats<a class="anchor" aria-label="anchor" href="#repr%C3%A9sentations-des-r%C3%A9sultats"><i class="fas fa-link"></i></a>
+<span class="header-section-number">17.4</span> Représentations des résultats<a class="anchor" aria-label="anchor" href="#repr%C3%A9sentations-des-r%C3%A9sultats"><i class="fas fa-link"></i></a>
 </h2>
-<p>La Figure <a href="d%C3%A9composer.html#fig:acpsuj">16.3</a> montre à gauche les données originales sur les axes représentées par les deux variables (une reprise de la Figure <a href="d%C3%A9composer.html#fig:plotacp">16.2</a>). À droite, il s’agit de la rotation trouvée par l’ACP (<code><a href="https://rdrr.io/r/base/eigen.html">eigen()</a></code> ou <code><a href="https://rdrr.io/r/base/svd.html">svd()</a></code>). Les participants conservent entre eux les mêmes distances par rapport aux autres, mais aussi par rapport aux axes originaux représentées par des lignes pointillées. C’est vraiment l’orientation du plan qui change<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Tout problème de distance, s’il y a lieu, est dû à l’échelle des figures.&lt;/p&gt;"><sup>24</sup></a>.</p>
+<p>La Figure <a href="d%C3%A9composer.html#fig:acpsuj">17.3</a> montre à gauche les données originales sur les axes représentées par les deux variables (une reprise de la Figure <a href="d%C3%A9composer.html#fig:plotacp">17.2</a>). À droite, il s’agit de la rotation trouvée par l’ACP (<code><a href="https://rdrr.io/r/base/eigen.html">eigen()</a></code> ou <code><a href="https://rdrr.io/r/base/svd.html">svd()</a></code>). Les participants conservent entre eux les mêmes distances par rapport aux autres, mais aussi par rapport aux axes originaux représentées par des lignes pointillées. C’est vraiment l’orientation du plan qui change<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Tout problème de distance, s’il y a lieu, est dû à l’échelle des figures.&lt;/p&gt;"><sup>28</sup></a>.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:acpsuj"></span>
-<img src="16-Decomposer_files/figure-html/acpsuj-1.png" alt="Représentations des participants selon les variables (gauche) ou les composantes principales (droite)." width="75%" height="75%"><p class="caption">
-Figure 16.3: Représentations des participants selon les variables (gauche) ou les composantes principales (droite).
+<img src="17-Decomposer_files/figure-html/acpsuj-1.png" alt="Représentations des participants selon les variables (gauche) ou les composantes principales (droite)." width="75%" height="75%"><p class="caption">
+Figure 17.3: Représentations des participants selon les variables (gauche) ou les composantes principales (droite).
 </p>
 </div>
-<p>La première composante retrouvée correspond (approximative) à la droite de régression de la Figure <a href="d%C3%A9composer.html#fig:plotacp">16.2</a>. Il s’agit de l’information partagée par les deux variables : c’est leur axe commun. L’erreur résiduelle correspond au deuxième axe (l’axe vertical). Cette intuition est fondamentale : une valeur propre élevée implique une dimension où de la variance est partagée entre les variables, alors qu’une valeur propre plus faible aura tendance a représenté une dimension de résidus, et par définition, d’informations non partagées.</p>
-<p>La Figure <a href="d%C3%A9composer.html#fig:varacp">16.4</a> offre une vue de l’agencement des variables sur les deux axes. Il s’agit des loadings des variables dans l’espace des composantes. Cette représentation est assez triviale pour deux variables, mais peut devenir très pertinente lorsque plusieurs variables (ou items) sont concernées. Il est possible d’observer alors des regroupements d’items sur les facteurs. Elle se limite toutefois à une ou deux composantes étant donné la complexité de réaliser et d’interpréter des figures de trois dimensions et plus.</p>
+<p>La première composante retrouvée correspond (approximative) à la droite de régression de la Figure <a href="d%C3%A9composer.html#fig:plotacp">17.2</a>. Il s’agit de l’information partagée par les deux variables : c’est leur axe commun. L’erreur résiduelle correspond au deuxième axe (l’axe vertical). Cette intuition est fondamentale : une valeur propre élevée implique une dimension où de la variance est partagée entre les variables, alors qu’une valeur propre plus faible aura tendance a représenté une dimension de résidus, et par définition, d’informations non partagées.</p>
+<p>La Figure <a href="d%C3%A9composer.html#fig:varacp">17.4</a> offre une vue de l’agencement des variables sur les deux axes. Il s’agit des loadings des variables dans l’espace des composantes. Cette représentation est assez triviale pour deux variables, mais peut devenir très pertinente lorsque plusieurs variables (ou items) sont concernées. Il est possible d’observer alors des regroupements d’items sur les facteurs. Elle se limite toutefois à une ou deux composantes étant donné la complexité de réaliser et d’interpréter des figures de trois dimensions et plus.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:varacp"></span>
-<img src="16-Decomposer_files/figure-html/varacp-1.png" alt="Représentations des vraiables selon les composantes principales." width="75%" height="75%"><p class="caption">
-Figure 16.4: Représentations des vraiables selon les composantes principales.
+<img src="17-Decomposer_files/figure-html/varacp-1.png" alt="Représentations des vraiables selon les composantes principales." width="75%" height="75%"><p class="caption">
+Figure 17.4: Représentations des vraiables selon les composantes principales.
 </p>
 </div>
 </div>
-<div id="les-calculs-de-lanalyse-en-composantes-principales" class="section level2" number="16.5">
+<div id="les-calculs-de-lanalyse-en-composantes-principales" class="section level2" number="17.5">
 <h2>
-<span class="header-section-number">16.5</span> Les calculs de l’analyse en composantes principales<a class="anchor" aria-label="anchor" href="#les-calculs-de-lanalyse-en-composantes-principales"><i class="fas fa-link"></i></a>
+<span class="header-section-number">17.5</span> Les calculs de l’analyse en composantes principales<a class="anchor" aria-label="anchor" href="#les-calculs-de-lanalyse-en-composantes-principales"><i class="fas fa-link"></i></a>
 </h2>
-<p>Il existe plusieurs techniques mathématiques pour retrouver les valeurs propres. Elles ont leur forces et avantages. Elles ont certainement tous en commun que, plus le nombre de variables augmente, plus le désir de les calculer par ordinateur est grand. Ici, une technique est présentée dans l’optique de bien vérifier qu’aucun sortilège computationnel n’opère derrière le logiciel<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Et non de rendre le lecteur un expert en algèbre matricielle.&lt;/p&gt;"><sup>25</sup></a>.</p>
-<p>Une des méthodes pour réaliser l’ACP est de résoudre le polynôme caractéristique. Autrement dit, il s’agit de retrouver tous les inconnus <span class="math inline">\(\lambda\)</span> (les valeurs propres) du polynôme caractéristique, soit l’équation <a href="d%C3%A9composer.html#eq:polnom">(16.2)</a></p>
+<p>Il existe plusieurs techniques mathématiques pour retrouver les valeurs propres. Elles ont leur forces et avantages. Elles ont certainement tous en commun que, plus le nombre de variables augmente, plus le désir de les calculer par ordinateur est grand. Ici, une technique est présentée dans l’optique de bien vérifier qu’aucun sortilège computationnel n’opère derrière le logiciel<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Et non de rendre le lecteur un expert en algèbre matricielle.&lt;/p&gt;"><sup>29</sup></a>.</p>
+<p>Une des méthodes pour réaliser l’ACP est de résoudre le polynôme caractéristique. Autrement dit, il s’agit de retrouver tous les inconnus <span class="math inline">\(\lambda\)</span> (les valeurs propres) du polynôme caractéristique, soit l’équation <a href="d%C3%A9composer.html#eq:polnom">(17.2)</a></p>
 <p><span class="math display" id="eq:polnom">\[\begin{equation}
 |\mathbf{S} - \lambda \mathbf{I}| = 0
-\tag{16.2}
+\tag{17.2}
 \end{equation}\]</span></p>
 <p>qui représente le déterminant (indiqué par les <span class="math inline">\(||\)</span>) nul de la matrice pour différent <span class="math inline">\(\lambda\)</span>.</p>
 <p>En conservant l’exemple précédent, on remplace la matrice symétrique</p>
@@ -288,7 +289,7 @@ Figure 16.4: Représentations des vraiables selon les composantes principales.
 \end{array}
 \right)
 \]</span></p>
-<p>dans l’équation <a href="d%C3%A9composer.html#eq:polnom">(16.2)</a>, ce qui donne,</p>
+<p>dans l’équation <a href="d%C3%A9composer.html#eq:polnom">(17.2)</a>, ce qui donne,</p>
 <p><span class="math display">\[
 \left| \left(
 \begin{array}{cc}
@@ -326,29 +327,29 @@ Figure 16.4: Représentations des vraiables selon les composantes principales.
 \right)
 \right| = 0
 \]</span></p>
-<p>Le polynôme caractéristique est retrouvé en calculant le déterminant de la matrice, soit le produit de la diagonale moins le produit des valeurs hors diagonale<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Dans le cas d’une matrice &lt;span class="math inline"&gt;\(2 \times 2\)&lt;/span&gt;. C’est beaucoup compliqué pour de plus grande matrice.&lt;/p&gt;'><sup>26</sup></a>,</p>
+<p>Le polynôme caractéristique est retrouvé en calculant le déterminant de la matrice, soit le produit de la diagonale moins le produit des valeurs hors diagonale<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Dans le cas d’une matrice &lt;span class="math inline"&gt;\(2 \times 2\)&lt;/span&gt;. C’est beaucoup compliqué pour de plus grande matrice.&lt;/p&gt;'><sup>30</sup></a>,</p>
 <p><span class="math display">\[
 (1-\lambda)(1-\lambda) - (.8)(.8) = 0
 \]</span></p>
 <p>ce qui donne</p>
 <p><span class="math display" id="eq:polycar2">\[\begin{equation}
 \lambda^2 - 2 \lambda +.36 = 0
-\tag{16.3}
+\tag{17.3}
 \end{equation}\]</span></p>
-<p>où il est maintenant possible de résoudre <span class="math inline">\(\lambda\)</span> avec la très célèbre équation <a href="d%C3%A9composer.html#eq:sec">(16.4)</a>.</p>
+<p>où il est maintenant possible de résoudre <span class="math inline">\(\lambda\)</span> avec la très célèbre équation <a href="d%C3%A9composer.html#eq:sec">(17.4)</a>.</p>
 <p><span class="math display" id="eq:sec">\[\begin{equation}
 a\lambda^2+b\lambda+c=0 \implies \lambda=\frac{-b \pm \sqrt{b^2-4ac}}{2a}
-\tag{16.4}
+\tag{17.4}
 \end{equation}\]</span></p>
-<p>Les solutions sont <span class="math inline">\(.2\)</span> et <span class="math inline">\(1.8\)</span>. Graphiquement, la Figure <a href="d%C3%A9composer.html#fig:polycarf">16.5</a> illustre l’équation polynomiale caractéristique <a href="d%C3%A9composer.html#eq:polycar2">(16.3)</a>.</p>
+<p>Les solutions sont <span class="math inline">\(.2\)</span> et <span class="math inline">\(1.8\)</span>. Graphiquement, la Figure <a href="d%C3%A9composer.html#fig:polycarf">17.5</a> illustre l’équation polynomiale caractéristique <a href="d%C3%A9composer.html#eq:polycar2">(17.3)</a>.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:polycarf"></span>
-<img src="16-Decomposer_files/figure-html/polycarf-1.png" alt="L'équation du polynôme caractéristique" width="75%" height="75%"><p class="caption">
-Figure 16.5: L’équation du polynôme caractéristique
+<img src="17-Decomposer_files/figure-html/polycarf-1.png" alt="L'équation du polynôme caractéristique" width="75%" height="75%"><p class="caption">
+Figure 17.5: L’équation du polynôme caractéristique
 </p>
 </div>
-<p>Cela fait beaucoup de mathématiques. Est-il possible d’y arriver plus simplement avec <strong>R</strong>? Le package <code>pracma</code> <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-pracma" role="doc-biblioref">Borchers, 2022</a>)</span> offre une fonction <code>charpoly()</code> qui permet de trouver le polynôme caractéristique d’une matrice. <strong>R</strong> de base a aussi une fonction permettant de résoudre des polynômes, <code><a href="https://rdrr.io/r/base/polyroot.html">polyroot()</a></code>. Avec ces deux fonctions, il est possible de refaire toute la présente section. Il faut toutefois noter que les coefficients polynomiaux donnés par <code>charpoly()</code> doivent être inversés pour <code><a href="https://rdrr.io/r/base/polyroot.html">polyroot()</a></code>. À noter également, l’ajout de la fonction<code><a href="https://rdrr.io/r/base/complex.html">Re()</a></code> assure que les valeurs propres sont des nombres réels et non imaginaires<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Par exemple, &lt;span class="math inline"&gt;\(i=\sqrt{-1}\)&lt;/span&gt; est imaginaire&lt;/p&gt;'><sup>27</sup></a>. Par convention, les valeurs propres sont ordonnées de façon décroissantes, bien qu’elle n’est originalement pas d’ordre particulier.</p>
-<div class="sourceCode" id="cb220"><pre class="downlit sourceCode r">
+<p>Cela fait beaucoup de mathématiques. Est-il possible d’y arriver plus simplement avec <strong>R</strong>? Le package <code>pracma</code> <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-pracma" role="doc-biblioref">Borchers, 2022</a>)</span> offre une fonction <code>charpoly()</code> qui permet de trouver le polynôme caractéristique d’une matrice. <strong>R</strong> de base a aussi une fonction permettant de résoudre des polynômes, <code><a href="https://rdrr.io/r/base/polyroot.html">polyroot()</a></code>. Avec ces deux fonctions, il est possible de refaire toute la présente section. Il faut toutefois noter que les coefficients polynomiaux donnés par <code>charpoly()</code> doivent être inversés pour <code><a href="https://rdrr.io/r/base/polyroot.html">polyroot()</a></code>. À noter également, l’ajout de la fonction<code><a href="https://rdrr.io/r/base/complex.html">Re()</a></code> assure que les valeurs propres sont des nombres réels et non imaginaires<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Par exemple, &lt;span class="math inline"&gt;\(i=\sqrt{-1}\)&lt;/span&gt; est imaginaire&lt;/p&gt;'><sup>31</sup></a>. Par convention, les valeurs propres sont ordonnées de façon décroissantes, bien qu’elle n’est originalement pas d’ordre particulier.</p>
+<div class="sourceCode" id="cb232"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Trouver les coefficients polynomiaux</span></span>
 <span><span class="va">coef.poly</span> <span class="op">&lt;-</span> <span class="fu">pracma</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pracma/man/charpoly.html">charpoly</a></span><span class="op">(</span><span class="va">S</span><span class="op">)</span></span>
 <span></span>
@@ -364,10 +365,10 @@ Figure 16.5: L’équation du polynôme caractéristique
 <span><span class="co"># Résultats</span></span>
 <span><span class="va">E</span></span></code></pre></div>
 <p>Et voilà! Les valeurs propres sont retrouvées. Pour les vecteurs propres, c’est un peu plus compliqué.</p>
-<p>L’objectif est de trouver pour chaque valeur propre la solution de l’équation <a href="d%C3%A9composer.html#eq:vec11">(16.5)</a></p>
+<p>L’objectif est de trouver pour chaque valeur propre la solution de l’équation <a href="d%C3%A9composer.html#eq:vec11">(17.5)</a></p>
 <p><span class="math display" id="eq:vec11">\[\begin{equation}
 \left(\mathbf{S} - \lambda_i \mathbf{I} \right) v_i= 0
-\tag{16.5}
+\tag{17.5}
 \end{equation}\]</span></p>
 <p>soit pour <span class="math inline">\(\lambda = 1.8\)</span> :</p>
 <p><span class="math display">\[\left[ \left(
@@ -457,7 +458,7 @@ v_{22} = -1
 1 &amp; 1 \\
 1 &amp; -1
 \end{array} \right]\]</span></p>
-<p>Il ne reste qu’à normaliser les colonnes (vecteurs) pour que leur longueur soit l’unité<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;La somme des carrés des éléments du vecteur égale 1&lt;/p&gt;"><sup>28</sup></a>. Pour ce faire, il faut diviser chaque élément du vecteur et le diviser par racine carré de la somme des carrés des éléments du vecteur.</p>
+<p>Il ne reste qu’à normaliser les colonnes (vecteurs) pour que leur longueur soit l’unité<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;La somme des carrés des éléments du vecteur égale 1&lt;/p&gt;"><sup>32</sup></a>. Pour ce faire, il faut diviser chaque élément du vecteur et le diviser par racine carré de la somme des carrés des éléments du vecteur.</p>
 <p><span class="math display">\[
 \mathbf{V_{ij}} = \frac{v_{ij}}{ \sqrt{\sum_{i = 1}^p v_{i}}}
 \]</span>
@@ -470,10 +471,10 @@ ce qui donne</p>
 \end{array} \right]
 \]</span>
 Les résultats sont reproduits.</p>
-<p>Pour un grand nombre de variables, il est préférable d’utiliser une fonction d’optimisation. La logique demeure similaire. En fixant un élément du vecteur propre, la fonction tente de trouver la meilleure solution pour résoudre l’équation <a href="d%C3%A9composer.html#eq:vec11">(16.5)</a>. Comme ces valeurs dépendent entièrement de la valeur fixée (qui peut être n’importe quelle valeur pour n’importe quel élément du vecteur), cela justifie la normalisation à la dernière étape.</p>
+<p>Pour un grand nombre de variables, il est préférable d’utiliser une fonction d’optimisation. La logique demeure similaire. En fixant un élément du vecteur propre, la fonction tente de trouver la meilleure solution pour résoudre l’équation <a href="d%C3%A9composer.html#eq:vec11">(17.5)</a>. Comme ces valeurs dépendent entièrement de la valeur fixée (qui peut être n’importe quelle valeur pour n’importe quel élément du vecteur), cela justifie la normalisation à la dernière étape.</p>
 <p>Pour ce faire, à chaque vecteur propre, la fonction reçoit la valeur propre associée, la matrice de corrélation et une série d’estimateur (le vecteur propre) à trouver.</p>
-<p>La fonction maison <code>cherche.vecteur()</code> calcule la somme (<code><a href="https://rdrr.io/r/base/sum.html">sum()</a></code> des écarts absolus (<code><a href="https://rdrr.io/r/base/MathFun.html">abs()</a></code>) entre les estimateurs et la valeur cible de 0 de l’équation <a href="d%C3%A9composer.html#eq:vec11">(16.5)</a>. La fonction <strong>R</strong> <code><a href="https://rdrr.io/r/stats/optim.html">optim()</a></code> prend cette fonction et tente de minimiser les distances, c’est-à-dire d’arriver au résultats de 0 en variant les estimateurs. Noter comment un estimateur est déjà fixé à 1 dans <code>matrix(c(1, est))</code> qui correspond à <span class="math inline">\(v_j\)</span> où <span class="math inline">\(v_{1j}=1\)</span>. La fonction <code><a href="https://rdrr.io/r/stats/optim.html">optim()</a></code> prend un argument d’estimateur <code>par</code>, les paramètres à trouver et <code>fn</code> la fonction à optimiser et une méthode d’optimisation appropriée, <code>method = "BDGS</code> dans ce cas-ci. Les deux autres arguments sont pour la fonction à optimiser <code>cherche.vecteur()</code>, soit la matrice de covariance et la valeur propre.</p>
-<div class="sourceCode" id="cb221"><pre class="downlit sourceCode r">
+<p>La fonction maison <code>cherche.vecteur()</code> calcule la somme (<code><a href="https://rdrr.io/r/base/sum.html">sum()</a></code> des écarts absolus (<code><a href="https://rdrr.io/r/base/MathFun.html">abs()</a></code>) entre les estimateurs et la valeur cible de 0 de l’équation <a href="d%C3%A9composer.html#eq:vec11">(17.5)</a>. La fonction <strong>R</strong> <code><a href="https://rdrr.io/r/stats/optim.html">optim()</a></code> prend cette fonction et tente de minimiser les distances, c’est-à-dire d’arriver au résultats de 0 en variant les estimateurs. Noter comment un estimateur est déjà fixé à 1 dans <code>matrix(c(1, est))</code> qui correspond à <span class="math inline">\(v_j\)</span> où <span class="math inline">\(v_{1j}=1\)</span>. La fonction <code><a href="https://rdrr.io/r/stats/optim.html">optim()</a></code> prend un argument d’estimateur <code>par</code>, les paramètres à trouver et <code>fn</code> la fonction à optimiser et une méthode d’optimisation appropriée, <code>method = "BDGS</code> dans ce cas-ci. Les deux autres arguments sont pour la fonction à optimiser <code>cherche.vecteur()</code>, soit la matrice de covariance et la valeur propre.</p>
+<div class="sourceCode" id="cb233"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Fonction à optimiser</span></span>
 <span><span class="va">cherche.vecteur</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">est</span>, <span class="va">Ep</span>, <span class="va">M</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="co"># est = estimateur</span></span>
@@ -499,7 +500,7 @@ Les résultats sont reproduits.</p>
 <span><span class="co"># Normaliser les vecteurs</span></span>
 <span><span class="va">V</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">V</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colSums.html">colSums</a></span><span class="op">(</span><span class="va">V</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Il suffit maintenant de jumeler la syntaxe pour trouver les valeur propre et celle ci-haut pour créer sa propre fonction d’analyse en composantes principales.</p>
-<div class="sourceCode" id="cb222"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb234"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">acp.maison</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">S</span><span class="op">)</span><span class="op">{</span></span>
 <span>  <span class="co"># Trouver les coefficients polynomiaux</span></span>
 <span><span class="va">coef.poly</span> <span class="op">&lt;-</span> <span class="fu">pracma</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pracma/man/charpoly.html">charpoly</a></span><span class="op">(</span><span class="va">S</span><span class="op">)</span></span>
@@ -540,14 +541,14 @@ Les résultats sont reproduits.</p>
 <span></span>
 <span><span class="op">}</span></span></code></pre></div>
 <p>Pour terminer, la fonction est mis à l’épreuve.</p>
-<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="d%C3%A9composer.html#cb223-1" aria-hidden="true" tabindex="-1"></a><span class="fu">acp.maison</span>(S)</span>
-<span id="cb223-2"><a href="d%C3%A9composer.html#cb223-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="er">$</span>valeur.propre</span>
-<span id="cb223-3"><a href="d%C3%A9composer.html#cb223-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">1.8</span> <span class="fl">0.2</span></span>
-<span id="cb223-4"><a href="d%C3%A9composer.html#cb223-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
-<span id="cb223-5"><a href="d%C3%A9composer.html#cb223-5" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="er">$</span>vecteur.propre</span>
-<span id="cb223-6"><a href="d%C3%A9composer.html#cb223-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>       [,<span class="dv">1</span>]   [,<span class="dv">2</span>]</span>
-<span id="cb223-7"><a href="d%C3%A9composer.html#cb223-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>,] <span class="fl">0.707</span>  <span class="fl">0.707</span></span>
-<span id="cb223-8"><a href="d%C3%A9composer.html#cb223-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">2</span>,] <span class="fl">0.707</span> <span class="sc">-</span><span class="fl">0.707</span></span></code></pre></div>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="d%C3%A9composer.html#cb235-1" aria-hidden="true" tabindex="-1"></a><span class="fu">acp.maison</span>(S)</span>
+<span id="cb235-2"><a href="d%C3%A9composer.html#cb235-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="er">$</span>valeur.propre</span>
+<span id="cb235-3"><a href="d%C3%A9composer.html#cb235-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">1.8</span> <span class="fl">0.2</span></span>
+<span id="cb235-4"><a href="d%C3%A9composer.html#cb235-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb235-5"><a href="d%C3%A9composer.html#cb235-5" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="er">$</span>vecteur.propre</span>
+<span id="cb235-6"><a href="d%C3%A9composer.html#cb235-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>       [,<span class="dv">1</span>]   [,<span class="dv">2</span>]</span>
+<span id="cb235-7"><a href="d%C3%A9composer.html#cb235-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>,] <span class="fl">0.707</span>  <span class="fl">0.707</span></span>
+<span id="cb235-8"><a href="d%C3%A9composer.html#cb235-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">2</span>,] <span class="fl">0.707</span> <span class="sc">-</span><span class="fl">0.707</span></span></code></pre></div>
 <p>Les résultats sont virtuellement identiques.</p>
 <!-- ### Décomposition QR -->
 <!-- ## Créer des données à partir de valeur propres -->
@@ -565,33 +566,33 @@ Les résultats sont reproduits.</p>
 
   <div class="chapter-nav">
 <div class="prev"><a href="exercice-lineaire.html">Exercices</a></div>
-<div class="next"><a href="explorer.html"><span class="header-section-number">17</span> Explorer</a></div>
+<div class="next"><a href="explorer.html"><span class="header-section-number">18</span> Explorer</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#d%C3%A9composer"><span class="header-section-number">16</span> Décomposer</a></li>
+<li><a class="nav-link" href="#d%C3%A9composer"><span class="header-section-number">17</span> Décomposer</a></li>
 <li>
-<a class="nav-link" href="#lanalyse-en-composantes-principales"><span class="header-section-number">16.1</span> L’analyse en composantes principales</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#les-valeurs-propres"><span class="header-section-number">16.1.1</span> Les valeurs propres</a></li>
-<li><a class="nav-link" href="#les-vecteurs-propres"><span class="header-section-number">16.1.2</span> Les vecteurs propres</a></li>
-<li><a class="nav-link" href="#les-loadings"><span class="header-section-number">16.1.3</span> Les loadings</a></li>
+<a class="nav-link" href="#lanalyse-en-composantes-principales"><span class="header-section-number">17.1</span> L’analyse en composantes principales</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#les-valeurs-propres"><span class="header-section-number">17.1.1</span> Les valeurs propres</a></li>
+<li><a class="nav-link" href="#les-vecteurs-propres"><span class="header-section-number">17.1.2</span> Les vecteurs propres</a></li>
+<li><a class="nav-link" href="#les-loadings"><span class="header-section-number">17.1.3</span> Les loadings</a></li>
 </ul>
 </li>
-<li><a class="nav-link" href="#cr%C3%A9ation-de-donn%C3%A9es-1"><span class="header-section-number">16.2</span> Création de données</a></li>
+<li><a class="nav-link" href="#cr%C3%A9ation-de-donn%C3%A9es-1"><span class="header-section-number">17.2</span> Création de données</a></li>
 <li>
-<a class="nav-link" href="#analyse-1"><span class="header-section-number">16.3</span> Analyse</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#eigen"><span class="header-section-number">16.3.1</span> eigen()</a></li>
-<li><a class="nav-link" href="#svd"><span class="header-section-number">16.3.2</span> svd()</a></li>
+<a class="nav-link" href="#analyse-1"><span class="header-section-number">17.3</span> Analyse</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#eigen"><span class="header-section-number">17.3.1</span> eigen()</a></li>
+<li><a class="nav-link" href="#svd"><span class="header-section-number">17.3.2</span> svd()</a></li>
 </ul>
 </li>
-<li><a class="nav-link" href="#repr%C3%A9sentations-des-r%C3%A9sultats"><span class="header-section-number">16.4</span> Représentations des résultats</a></li>
-<li><a class="nav-link" href="#les-calculs-de-lanalyse-en-composantes-principales"><span class="header-section-number">16.5</span> Les calculs de l’analyse en composantes principales</a></li>
+<li><a class="nav-link" href="#repr%C3%A9sentations-des-r%C3%A9sultats"><span class="header-section-number">17.4</span> Représentations des résultats</a></li>
+<li><a class="nav-link" href="#les-calculs-de-lanalyse-en-composantes-principales"><span class="header-section-number">17.5</span> Les calculs de l’analyse en composantes principales</a></li>
 </ul>
 
       <div class="book-extra">
         <ul class="list-unstyled">
-<li><a id="book-source" href="https://github.com/quantmeth/MQR/blob/master/16-Decomposer.Rmd">View source <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="https://github.com/quantmeth/MQR/edit/master/16-Decomposer.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+<li><a id="book-source" href="https://github.com/quantmeth/MQR/blob/master/17-Decomposer.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/quantmeth/MQR/edit/master/17-Decomposer.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
         </ul>
 </div>
     </nav>
@@ -603,7 +604,7 @@ Les résultats sont reproduits.</p>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2022-12-22.</p>
+    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2023-01-05.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
