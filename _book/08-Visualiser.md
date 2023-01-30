@@ -217,7 +217,7 @@ La première étape est de tirer les statistiques sommaires, moyennes, écart ty
 
 
 ```r
-jd = ToothGrowth %>% 
+stat.descr <- ToothGrowth %>% 
   group_by(dose, supp) %>% 
   summarise(mlen = mean(len),
             sdlen = sd(len),
@@ -226,7 +226,7 @@ jd = ToothGrowth %>%
             ci = qt(.975, df = n()-1) * se,
             .groups = "drop")
 
-jd %>% 
+stat.descr %>% 
   ggplot(aes(x = dose,
              y = mlen, 
              shape = supp),

@@ -162,7 +162,7 @@ La Figure \@ref(fig:erreurbar) illustre les différences entre moyennes avec des
 La première étape est de tirer les statistiques sommaires, moyennes, écart type, tailles des groupes. La syntaxe tire profit de `groupe_by()` pour tirer les groupes et en faire le sommaire. Le sommaire `summarise` permet d'obtenir les statistiques, notamment la moyenne, l'erreur standard (`se`) pour en calculer l'intervalle autour de la moyenne `ci`.
 
 ```{r erreurbar, fig.cap="Les effets de la vitamine C sur les cochons d'inde", fig.align='center', out.height="75%", out.width="75%"}
-jd = ToothGrowth %>% 
+stat.descr <- ToothGrowth %>% 
   group_by(dose, supp) %>% 
   summarise(mlen = mean(len),
             sdlen = sd(len),
@@ -171,7 +171,7 @@ jd = ToothGrowth %>%
             ci = qt(.975, df = n()-1) * se,
             .groups = "drop")
 
-jd %>% 
+stat.descr %>% 
   ggplot(aes(x = dose,
              y = mlen, 
              shape = supp),
