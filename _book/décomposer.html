@@ -165,7 +165,7 @@ Figure 17.1: Représentations de la régression et l’analyse factorielle
 <span class="header-section-number">17.2</span> Création de données<a class="anchor" aria-label="anchor" href="#cr%C3%A9ation-de-donn%C3%A9es-1"><i class="fas fa-link"></i></a>
 </h2>
 <p>La création de données pour une ACP est très simple. Il suffit de créer une matrice de covariance ou de corrélation. Dans cet exemple, 10 participants sont mesurés sur deux variables ayant une corrélation de .80 entre elles.</p>
-<div class="sourceCode" id="cb229"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb230"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Pour la reproductibilité</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">42</span><span class="op">)</span></span>
 <span></span>
@@ -201,24 +201,24 @@ Figure 17.2: Présentation des données (<code>jd.acp</code>)
 <span class="header-section-number">17.3.1</span> <code>eigen()</code><a class="anchor" aria-label="anchor" href="#eigen"><i class="fas fa-link"></i></a>
 </h3>
 <p>La fonction <code><a href="https://rdrr.io/r/base/eigen.html">eigen()</a></code> est celle des puristes. Rudimentaire, elle prend en argument une matrice de covariance ou de corrélation et calculent les valeurs propres (<code>values</code>) et les vecteurs propres (<code>vectors</code>).</p>
-<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="d%C3%A9composer.html#cb230-1" aria-hidden="true" tabindex="-1"></a><span class="co"># L'analyse de la matrice de corrélation </span></span>
-<span id="cb230-2"><a href="d%C3%A9composer.html#cb230-2" aria-hidden="true" tabindex="-1"></a>res.eig <span class="ot">&lt;-</span> <span class="fu">eigen</span>(<span class="fu">cor</span>(jd.acp))</span>
-<span id="cb230-3"><a href="d%C3%A9composer.html#cb230-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb230-4"><a href="d%C3%A9composer.html#cb230-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Les valeurs propres</span></span>
-<span id="cb230-5"><a href="d%C3%A9composer.html#cb230-5" aria-hidden="true" tabindex="-1"></a>res.eig<span class="sc">$</span>values</span>
-<span id="cb230-6"><a href="d%C3%A9composer.html#cb230-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">1.8</span> <span class="fl">0.2</span></span>
-<span id="cb230-7"><a href="d%C3%A9composer.html#cb230-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb230-8"><a href="d%C3%A9composer.html#cb230-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Les vecteurs propres</span></span>
-<span id="cb230-9"><a href="d%C3%A9composer.html#cb230-9" aria-hidden="true" tabindex="-1"></a>res.eig<span class="sc">$</span>vectors</span>
-<span id="cb230-10"><a href="d%C3%A9composer.html#cb230-10" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>       [,<span class="dv">1</span>]   [,<span class="dv">2</span>]</span>
-<span id="cb230-11"><a href="d%C3%A9composer.html#cb230-11" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>,] <span class="fl">0.707</span> <span class="sc">-</span><span class="fl">0.707</span></span>
-<span id="cb230-12"><a href="d%C3%A9composer.html#cb230-12" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">2</span>,] <span class="fl">0.707</span>  <span class="fl">0.707</span></span>
-<span id="cb230-13"><a href="d%C3%A9composer.html#cb230-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb230-14"><a href="d%C3%A9composer.html#cb230-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Les loadings</span></span>
-<span id="cb230-15"><a href="d%C3%A9composer.html#cb230-15" aria-hidden="true" tabindex="-1"></a>res.eig<span class="sc">$</span>vectors <span class="sc">%*%</span> <span class="fu">diag</span>(<span class="fu">sqrt</span>(res.eig<span class="sc">$</span>values))</span>
-<span id="cb230-16"><a href="d%C3%A9composer.html#cb230-16" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>       [,<span class="dv">1</span>]   [,<span class="dv">2</span>]</span>
-<span id="cb230-17"><a href="d%C3%A9composer.html#cb230-17" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>,] <span class="fl">0.949</span> <span class="sc">-</span><span class="fl">0.316</span></span>
-<span id="cb230-18"><a href="d%C3%A9composer.html#cb230-18" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">2</span>,] <span class="fl">0.949</span>  <span class="fl">0.316</span></span></code></pre></div>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="d%C3%A9composer.html#cb231-1" aria-hidden="true" tabindex="-1"></a><span class="co"># L'analyse de la matrice de corrélation </span></span>
+<span id="cb231-2"><a href="d%C3%A9composer.html#cb231-2" aria-hidden="true" tabindex="-1"></a>res.eig <span class="ot">&lt;-</span> <span class="fu">eigen</span>(<span class="fu">cor</span>(jd.acp))</span>
+<span id="cb231-3"><a href="d%C3%A9composer.html#cb231-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb231-4"><a href="d%C3%A9composer.html#cb231-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Les valeurs propres</span></span>
+<span id="cb231-5"><a href="d%C3%A9composer.html#cb231-5" aria-hidden="true" tabindex="-1"></a>res.eig<span class="sc">$</span>values</span>
+<span id="cb231-6"><a href="d%C3%A9composer.html#cb231-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">1.8</span> <span class="fl">0.2</span></span>
+<span id="cb231-7"><a href="d%C3%A9composer.html#cb231-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb231-8"><a href="d%C3%A9composer.html#cb231-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Les vecteurs propres</span></span>
+<span id="cb231-9"><a href="d%C3%A9composer.html#cb231-9" aria-hidden="true" tabindex="-1"></a>res.eig<span class="sc">$</span>vectors</span>
+<span id="cb231-10"><a href="d%C3%A9composer.html#cb231-10" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>       [,<span class="dv">1</span>]   [,<span class="dv">2</span>]</span>
+<span id="cb231-11"><a href="d%C3%A9composer.html#cb231-11" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>,] <span class="fl">0.707</span> <span class="sc">-</span><span class="fl">0.707</span></span>
+<span id="cb231-12"><a href="d%C3%A9composer.html#cb231-12" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">2</span>,] <span class="fl">0.707</span>  <span class="fl">0.707</span></span>
+<span id="cb231-13"><a href="d%C3%A9composer.html#cb231-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb231-14"><a href="d%C3%A9composer.html#cb231-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Les loadings</span></span>
+<span id="cb231-15"><a href="d%C3%A9composer.html#cb231-15" aria-hidden="true" tabindex="-1"></a>res.eig<span class="sc">$</span>vectors <span class="sc">%*%</span> <span class="fu">diag</span>(<span class="fu">sqrt</span>(res.eig<span class="sc">$</span>values))</span>
+<span id="cb231-16"><a href="d%C3%A9composer.html#cb231-16" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>       [,<span class="dv">1</span>]   [,<span class="dv">2</span>]</span>
+<span id="cb231-17"><a href="d%C3%A9composer.html#cb231-17" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>,] <span class="fl">0.949</span> <span class="sc">-</span><span class="fl">0.316</span></span>
+<span id="cb231-18"><a href="d%C3%A9composer.html#cb231-18" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">2</span>,] <span class="fl">0.949</span>  <span class="fl">0.316</span></span></code></pre></div>
 <p>La fonction <code><a href="https://rdrr.io/r/base/eigen.html">eigen()</a></code> ne fonctionne qu’avec des matrices carrées et est donc très robuste afin d’éviter de mauvais arguments.</p>
 </div>
 <div id="svd" class="section level3" number="17.3.2">
@@ -226,24 +226,24 @@ Figure 17.2: Présentation des données (<code>jd.acp</code>)
 <span class="header-section-number">17.3.2</span> <code>svd()</code><a class="anchor" aria-label="anchor" href="#svd"><i class="fas fa-link"></i></a>
 </h3>
 <p>L’analyse de décomposition en valeurs singulières (<em>singular value decomposition</em>, SVD) est généralement recommandée, car elle est computationnellement plus robuste que <code><a href="https://rdrr.io/r/base/eigen.html">eigen()</a></code>. Un puriste <strong>R</strong> choisirait probablement la fonction <code><a href="https://rdrr.io/r/base/eigen.html">eigen()</a></code>, car la fonction est plus <em>robuste</em> aux erreurs de l’utilisateur.</p>
-<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="d%C3%A9composer.html#cb231-1" aria-hidden="true" tabindex="-1"></a><span class="co"># L'analyse de la matrice de corrélation</span></span>
-<span id="cb231-2"><a href="d%C3%A9composer.html#cb231-2" aria-hidden="true" tabindex="-1"></a>res.svd <span class="ot">=</span> <span class="fu">svd</span>(<span class="fu">cor</span>(jd.acp))</span>
-<span id="cb231-3"><a href="d%C3%A9composer.html#cb231-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb231-4"><a href="d%C3%A9composer.html#cb231-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Les valeurs propres</span></span>
-<span id="cb231-5"><a href="d%C3%A9composer.html#cb231-5" aria-hidden="true" tabindex="-1"></a>res.svd<span class="sc">$</span>d</span>
-<span id="cb231-6"><a href="d%C3%A9composer.html#cb231-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">1.8</span> <span class="fl">0.2</span></span>
-<span id="cb231-7"><a href="d%C3%A9composer.html#cb231-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb231-8"><a href="d%C3%A9composer.html#cb231-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Les vecteurs propres</span></span>
-<span id="cb231-9"><a href="d%C3%A9composer.html#cb231-9" aria-hidden="true" tabindex="-1"></a>res.svd<span class="sc">$</span>v</span>
-<span id="cb231-10"><a href="d%C3%A9composer.html#cb231-10" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>        [,<span class="dv">1</span>]   [,<span class="dv">2</span>]</span>
-<span id="cb231-11"><a href="d%C3%A9composer.html#cb231-11" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>,] <span class="sc">-</span><span class="fl">0.707</span> <span class="sc">-</span><span class="fl">0.707</span></span>
-<span id="cb231-12"><a href="d%C3%A9composer.html#cb231-12" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">2</span>,] <span class="sc">-</span><span class="fl">0.707</span>  <span class="fl">0.707</span></span>
-<span id="cb231-13"><a href="d%C3%A9composer.html#cb231-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb231-14"><a href="d%C3%A9composer.html#cb231-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Les loadings</span></span>
-<span id="cb231-15"><a href="d%C3%A9composer.html#cb231-15" aria-hidden="true" tabindex="-1"></a>res.svd<span class="sc">$</span>v <span class="sc">%*%</span> <span class="fu">diag</span>(<span class="fu">sqrt</span>(res.svd<span class="sc">$</span>d))</span>
-<span id="cb231-16"><a href="d%C3%A9composer.html#cb231-16" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>        [,<span class="dv">1</span>]   [,<span class="dv">2</span>]</span>
-<span id="cb231-17"><a href="d%C3%A9composer.html#cb231-17" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>,] <span class="sc">-</span><span class="fl">0.949</span> <span class="sc">-</span><span class="fl">0.316</span></span>
-<span id="cb231-18"><a href="d%C3%A9composer.html#cb231-18" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">2</span>,] <span class="sc">-</span><span class="fl">0.949</span>  <span class="fl">0.316</span></span></code></pre></div>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="d%C3%A9composer.html#cb232-1" aria-hidden="true" tabindex="-1"></a><span class="co"># L'analyse de la matrice de corrélation</span></span>
+<span id="cb232-2"><a href="d%C3%A9composer.html#cb232-2" aria-hidden="true" tabindex="-1"></a>res.svd <span class="ot">=</span> <span class="fu">svd</span>(<span class="fu">cor</span>(jd.acp))</span>
+<span id="cb232-3"><a href="d%C3%A9composer.html#cb232-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb232-4"><a href="d%C3%A9composer.html#cb232-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Les valeurs propres</span></span>
+<span id="cb232-5"><a href="d%C3%A9composer.html#cb232-5" aria-hidden="true" tabindex="-1"></a>res.svd<span class="sc">$</span>d</span>
+<span id="cb232-6"><a href="d%C3%A9composer.html#cb232-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">1.8</span> <span class="fl">0.2</span></span>
+<span id="cb232-7"><a href="d%C3%A9composer.html#cb232-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb232-8"><a href="d%C3%A9composer.html#cb232-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Les vecteurs propres</span></span>
+<span id="cb232-9"><a href="d%C3%A9composer.html#cb232-9" aria-hidden="true" tabindex="-1"></a>res.svd<span class="sc">$</span>v</span>
+<span id="cb232-10"><a href="d%C3%A9composer.html#cb232-10" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>        [,<span class="dv">1</span>]   [,<span class="dv">2</span>]</span>
+<span id="cb232-11"><a href="d%C3%A9composer.html#cb232-11" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>,] <span class="sc">-</span><span class="fl">0.707</span> <span class="sc">-</span><span class="fl">0.707</span></span>
+<span id="cb232-12"><a href="d%C3%A9composer.html#cb232-12" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">2</span>,] <span class="sc">-</span><span class="fl">0.707</span>  <span class="fl">0.707</span></span>
+<span id="cb232-13"><a href="d%C3%A9composer.html#cb232-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb232-14"><a href="d%C3%A9composer.html#cb232-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Les loadings</span></span>
+<span id="cb232-15"><a href="d%C3%A9composer.html#cb232-15" aria-hidden="true" tabindex="-1"></a>res.svd<span class="sc">$</span>v <span class="sc">%*%</span> <span class="fu">diag</span>(<span class="fu">sqrt</span>(res.svd<span class="sc">$</span>d))</span>
+<span id="cb232-16"><a href="d%C3%A9composer.html#cb232-16" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>        [,<span class="dv">1</span>]   [,<span class="dv">2</span>]</span>
+<span id="cb232-17"><a href="d%C3%A9composer.html#cb232-17" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>,] <span class="sc">-</span><span class="fl">0.949</span> <span class="sc">-</span><span class="fl">0.316</span></span>
+<span id="cb232-18"><a href="d%C3%A9composer.html#cb232-18" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">2</span>,] <span class="sc">-</span><span class="fl">0.949</span>  <span class="fl">0.316</span></span></code></pre></div>
 <p>Les résultats sont identiques à la fonction <code><a href="https://rdrr.io/r/base/eigen.html">eigen()</a></code>. Le lecteur attentif aura toutefois remarqué que <code>res.svd$v</code> n’égale pas exactement <code>res.eig$vectors</code> à cause des signes négatifs du premier vecteur propre. Toutefois, il convient d’affirmer que c’est seulement la polarité qui est différente, comme si un vecteur propre indiquait le nord et l’autre le sud, alors que les deux sont dos à dos, exactement à <span class="math inline">\(180^{\circ}\)</span>.</p>
 <p>La fonction <code><a href="https://rdrr.io/r/base/svd.html">svd()</a></code> est plus générale et peut utiliser des matrices rectangulaires. Il faut faire attention de ne pas lui fournir le jeu de données et bien la matrice de covariance ou de corrélation.</p>
 <p>Il convient également d’ajouter que, comme <span class="math inline">\(\mathbf{\Sigma} = \mathbf{S}\)</span> (à l’aide de l’argument <code>empirical = TRUE</code> de <code><a href="https://rdrr.io/pkg/MASS/man/mvrnorm.html">MASS::mvrnorm()</a></code>), il n’était pas nécessaire de générer de données à proprement parler pour réaliser les analyses, car <code>svd(S)</code> ou <code>eigen(S)</code> offre les mêmes résultats. C’est la matrice de corrélation qui est décomposée et non les participants. Remarquez d’ailleurs comment l’ACP est indépendante de la taille d’échantillon<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;La taille d’échantillon a des conséquences sur la matrice de corrélation, mais l’ACP en est techniquement indépendante.&lt;/p&gt;"><sup>27</sup></a>.</p>
@@ -349,7 +349,7 @@ Figure 17.5: L’équation du polynôme caractéristique
 </p>
 </div>
 <p>Cela fait beaucoup de mathématiques. Est-il possible d’y arriver plus simplement avec <strong>R</strong>? Le package <code>pracma</code> <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-pracma" role="doc-biblioref">Borchers, 2022</a>)</span> offre une fonction <code>charpoly()</code> qui permet de trouver le polynôme caractéristique d’une matrice. <strong>R</strong> de base a aussi une fonction permettant de résoudre des polynômes, <code><a href="https://rdrr.io/r/base/polyroot.html">polyroot()</a></code>. Avec ces deux fonctions, il est possible de refaire toute la présente section. Il faut toutefois noter que les coefficients polynomiaux donnés par <code>charpoly()</code> doivent être inversés pour <code><a href="https://rdrr.io/r/base/polyroot.html">polyroot()</a></code>. À noter également, l’ajout de la fonction<code><a href="https://rdrr.io/r/base/complex.html">Re()</a></code> assure que les valeurs propres sont des nombres réels et non imaginaires<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Par exemple, &lt;span class="math inline"&gt;\(i=\sqrt{-1}\)&lt;/span&gt; est imaginaire&lt;/p&gt;'><sup>31</sup></a>. Par convention, les valeurs propres sont ordonnées de façon décroissantes, bien qu’elle n’est originalement pas d’ordre particulier.</p>
-<div class="sourceCode" id="cb232"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb233"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Trouver les coefficients polynomiaux</span></span>
 <span><span class="va">coef.poly</span> <span class="op">&lt;-</span> <span class="fu">pracma</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pracma/man/charpoly.html">charpoly</a></span><span class="op">(</span><span class="va">S</span><span class="op">)</span></span>
 <span></span>
@@ -474,7 +474,7 @@ Les résultats sont reproduits.</p>
 <p>Pour un grand nombre de variables, il est préférable d’utiliser une fonction d’optimisation. La logique demeure similaire. En fixant un élément du vecteur propre, la fonction tente de trouver la meilleure solution pour résoudre l’équation <a href="d%C3%A9composer.html#eq:vec11">(17.5)</a>. Comme ces valeurs dépendent entièrement de la valeur fixée (qui peut être n’importe quelle valeur pour n’importe quel élément du vecteur), cela justifie la normalisation à la dernière étape.</p>
 <p>Pour ce faire, à chaque vecteur propre, la fonction reçoit la valeur propre associée, la matrice de corrélation et une série d’estimateur (le vecteur propre) à trouver.</p>
 <p>La fonction maison <code>cherche.vecteur()</code> calcule la somme (<code><a href="https://rdrr.io/r/base/sum.html">sum()</a></code> des écarts absolus (<code><a href="https://rdrr.io/r/base/MathFun.html">abs()</a></code>) entre les estimateurs et la valeur cible de 0 de l’équation <a href="d%C3%A9composer.html#eq:vec11">(17.5)</a>. La fonction <strong>R</strong> <code><a href="https://rdrr.io/r/stats/optim.html">optim()</a></code> prend cette fonction et tente de minimiser les distances, c’est-à-dire d’arriver au résultats de 0 en variant les estimateurs. Noter comment un estimateur est déjà fixé à 1 dans <code>matrix(c(1, est))</code> qui correspond à <span class="math inline">\(v_j\)</span> où <span class="math inline">\(v_{1j}=1\)</span>. La fonction <code><a href="https://rdrr.io/r/stats/optim.html">optim()</a></code> prend un argument d’estimateur <code>par</code>, les paramètres à trouver et <code>fn</code> la fonction à optimiser et une méthode d’optimisation appropriée, <code>method = "BDGS</code> dans ce cas-ci. Les deux autres arguments sont pour la fonction à optimiser <code>cherche.vecteur()</code>, soit la matrice de covariance et la valeur propre.</p>
-<div class="sourceCode" id="cb233"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb234"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Fonction à optimiser</span></span>
 <span><span class="va">cherche.vecteur</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">est</span>, <span class="va">Ep</span>, <span class="va">M</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="co"># est = estimateur</span></span>
@@ -500,7 +500,7 @@ Les résultats sont reproduits.</p>
 <span><span class="co"># Normaliser les vecteurs</span></span>
 <span><span class="va">V</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">V</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colSums.html">colSums</a></span><span class="op">(</span><span class="va">V</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Il suffit maintenant de jumeler la syntaxe pour trouver les valeur propre et celle ci-haut pour créer sa propre fonction d’analyse en composantes principales.</p>
-<div class="sourceCode" id="cb234"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb235"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">acp.maison</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">S</span><span class="op">)</span><span class="op">{</span></span>
 <span>  <span class="co"># Trouver les coefficients polynomiaux</span></span>
 <span><span class="va">coef.poly</span> <span class="op">&lt;-</span> <span class="fu">pracma</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pracma/man/charpoly.html">charpoly</a></span><span class="op">(</span><span class="va">S</span><span class="op">)</span></span>
@@ -541,14 +541,14 @@ Les résultats sont reproduits.</p>
 <span></span>
 <span><span class="op">}</span></span></code></pre></div>
 <p>Pour terminer, la fonction est mis à l’épreuve.</p>
-<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="d%C3%A9composer.html#cb235-1" aria-hidden="true" tabindex="-1"></a><span class="fu">acp.maison</span>(S)</span>
-<span id="cb235-2"><a href="d%C3%A9composer.html#cb235-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="er">$</span>valeur.propre</span>
-<span id="cb235-3"><a href="d%C3%A9composer.html#cb235-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">1.8</span> <span class="fl">0.2</span></span>
-<span id="cb235-4"><a href="d%C3%A9composer.html#cb235-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
-<span id="cb235-5"><a href="d%C3%A9composer.html#cb235-5" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="er">$</span>vecteur.propre</span>
-<span id="cb235-6"><a href="d%C3%A9composer.html#cb235-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>       [,<span class="dv">1</span>]   [,<span class="dv">2</span>]</span>
-<span id="cb235-7"><a href="d%C3%A9composer.html#cb235-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>,] <span class="fl">0.707</span>  <span class="fl">0.707</span></span>
-<span id="cb235-8"><a href="d%C3%A9composer.html#cb235-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">2</span>,] <span class="fl">0.707</span> <span class="sc">-</span><span class="fl">0.707</span></span></code></pre></div>
+<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="d%C3%A9composer.html#cb236-1" aria-hidden="true" tabindex="-1"></a><span class="fu">acp.maison</span>(S)</span>
+<span id="cb236-2"><a href="d%C3%A9composer.html#cb236-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="er">$</span>valeur.propre</span>
+<span id="cb236-3"><a href="d%C3%A9composer.html#cb236-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">1.8</span> <span class="fl">0.2</span></span>
+<span id="cb236-4"><a href="d%C3%A9composer.html#cb236-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb236-5"><a href="d%C3%A9composer.html#cb236-5" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="er">$</span>vecteur.propre</span>
+<span id="cb236-6"><a href="d%C3%A9composer.html#cb236-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>       [,<span class="dv">1</span>]   [,<span class="dv">2</span>]</span>
+<span id="cb236-7"><a href="d%C3%A9composer.html#cb236-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>,] <span class="fl">0.707</span>  <span class="fl">0.707</span></span>
+<span id="cb236-8"><a href="d%C3%A9composer.html#cb236-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">2</span>,] <span class="fl">0.707</span> <span class="sc">-</span><span class="fl">0.707</span></span></code></pre></div>
 <p>Les résultats sont virtuellement identiques.</p>
 <!-- ### Décomposition QR -->
 <!-- ## Créer des données à partir de valeur propres -->
@@ -604,7 +604,7 @@ Les résultats sont reproduits.</p>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2023-01-05.</p>
+    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2023-01-30.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

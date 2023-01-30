@@ -37,7 +37,7 @@ descriptif[,c("mean","sd")]
 > dose   1.17 0.63
 
 # Ou encore
-# Retier n (1), 
+# Retirer n (1), 
 # trimmed, mad, min, max, range (6:10),
 # et se (13)
 descriptif[,-c(1, 6:10, 13)]
@@ -51,7 +51,7 @@ Il est possible de retirer les colonnes non désirées en les spécifiant (voir 
 
 
 ```r
-# Retier n (1), 
+# Retirer n (1), 
 # trimmed, mad, min, max, range (6:10),
 # et se (13)
 descriptif[,-c(1, 6:10, 13)]
@@ -95,7 +95,7 @@ Enfin, il faut porter attention, car `describe()` et `describeBy()` transforment
 
 ## Les variables à échelles nominales
 
-Pour les variables nominales et ordinale, la fonction `table()` qui permet de compter la fréquence des éléments contenus dans une variable.
+Pour les variables nominales et ordinales, la fonction `table()` qui permet de compter la fréquence des éléments contenus dans une variable.
 
 
 ```r

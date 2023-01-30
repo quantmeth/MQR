@@ -274,7 +274,7 @@ asymetrie <- function(x){
   n <- length(x)           # Nombre de données
   x <- x - mean(x)         # Centrer les données
   skew <- sum(x^3) /       # Écarts au cube divisés par
-          sqrt(sum(x^2))^3 # n fois l'écart type au cube
+          sqrt(sum(x^2))^3 # l'écart type au cube
   return(skew)
 }
 ```
@@ -312,7 +312,7 @@ aplatissement <- function(x){
   n <- length(x)            # Nombre de données
   x <- x - mean(x)          # Centrer les données
   kurt <- mean(x^4) /       # Écarts bicarrés divisés par
-          sqrt(mean(x^2))^4 # 
+          sqrt(mean(x^2))^4 # l'écart type au bicarré
   return(kurt)
 }
 ```
@@ -327,7 +327,7 @@ psych::kurtosi(x, type = 1)
 
 ## Les graines
 
-Par souci de reproductibilité, il est possible de déclarer une valeur de départ aux variables pseudoaléatoires, ce que l'on nomme une graine ou *seed* en anglais. Cela permet de toujours d'obtenir les mêmes valeurs à plusieurs reprises, ce qui est très utile lors d'élaboration de simulations complexes ou lorsque des étudiants essaient de répliquer résultat tiré d'un ouvrage pédagogique.
+Par souci de reproductibilité, il est possible de déclarer une valeur de départ aux variables pseudoaléatoires, ce que l'on nomme une graine ou *seed* en anglais. Cela permet de toujours d'obtenir les mêmes valeurs à plusieurs reprises, ce qui est très utile lors d'élaboration de simulations complexes ou lorsque des étudiants essaient de répliquer les résultats tirés d'un ouvrage pédagogique.
 
 
 ```r

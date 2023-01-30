@@ -117,11 +117,21 @@
 </h1>
 <p><strong>R</strong> et <strong>RStudio</strong> offrent un environnement pour rédiger des rapports de recherche. Le package <code>Rmarkdown</code> <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-R-rmarkdown" role="doc-biblioref">Allaire et al., 2021</a>)</span> intègre les fonctions pour ce faire. Plus, <strong>R</strong> et <strong>RStudio</strong> permettent de faire des articles, des livres (comme celui-ci), des sites, des applications, etc. Pour ce faire, ils intègrent différents langages de programmation. Cette section insiste sur la production de rapports de recherche simple. La philosophie étant, si <strong>Rmarkdown</strong> ne le fait pas, c’est superflu. Il demeure possible de personnaliser plusieurs éléments de ces textes, mais souvent cela sera inutile pour l’utilisateur débutant.</p>
 <p>L’avantage principal de rédiger dans <strong>R</strong> est certainement le fait de tenir dans un projet, toute la syntaxe, le jeu de données, les graphiques ainsi que le texte rapportant le tout dans un seul fichier.</p>
-<div id="ouvrir-un-document" class="section level2" number="4.1">
+<div id="préliminaires" class="section level2" number="4.1">
 <h2>
-<span class="header-section-number">4.1</span> Ouvrir un document<a class="anchor" aria-label="anchor" href="#ouvrir-un-document"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.1</span> Préliminaires<a class="anchor" aria-label="anchor" href="#pr%C3%A9liminaires"><i class="fas fa-link"></i></a>
 </h2>
-<p>La première à s’assurer est que le package <code>Rmarkdown</code> soit bien installé (voir <a href="m%C3%A9dier.html#les-packages-2">Les packages</a>. Il est préférable d’utiliser <strong>R</strong>Studio: l’environnement y est plus agréable et facilite l’expérience de l’utilisateur. Une fois installé, il faut faire <code>File -&gt; New File -&gt; Rmarkdown</code> pour ouvrir un nouveau document. La boîte de dialogue affichée à la Figure <a href="r%C3%A9diger.html#fig:rediger1">4.1</a> demande quatre éléments : le titre, le nom de l’auteur, la date et le format du rapport (html, pdf ou word). Les deux premiers sont les plus utilisés. Une fois rempli, il faut cliquer sur OK.</p>
+<p>Pour la toute première utilisation, il faut s’assurer est que le package <code>Rmarkdown</code> soit bien installé (voir <a href="m%C3%A9dier.html#les-packages-2">Les packages</a>). Il est préférable d’utiliser <strong>R</strong>Studio: l’environnement y est plus agréable et facilite l’expérience de l’utilisateur.</p>
+<p>Une seconde étape, si l’utilisateur veut produire des pdf, est d’installer un éditeur <span class="math inline">\(\LaTeX\)</span>. Cela peut se faire facilement avec la commande suivante.</p>
+<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">tinytex</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tinytex/man/install_tinytex.html">install_tinytex</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p>Il suffit de le faire une fois à la première utilisation ou pour d’éventuelles mises à jour. Maintenant, tout est prêt!</p>
+</div>
+<div id="ouvrir-un-document" class="section level2" number="4.2">
+<h2>
+<span class="header-section-number">4.2</span> Ouvrir un document<a class="anchor" aria-label="anchor" href="#ouvrir-un-document"><i class="fas fa-link"></i></a>
+</h2>
+<p>Une fois tout installé, il faut faire <code>File -&gt; New File -&gt; Rmarkdown</code> pour ouvrir un nouveau document. La boîte de dialogue affichée à la Figure <a href="r%C3%A9diger.html#fig:rediger1">4.1</a> demande quatre éléments : le titre, le nom de l’auteur, la date et le format du rapport (html, pdf ou word). Les deux premiers sont les plus utilisés. Une fois rempli, il faut cliquer sur OK.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:rediger1"></span>
 <img src="image/rediger1.PNG" alt="Boîte de dialogue de Rmarkdown" width="50%" height="50%"><p class="caption">
@@ -137,13 +147,13 @@ Figure 4.2: Exemple de Rmarkdown
 </div>
 <p>Il est possible de voir immédiatement le résultat final de ce script en cliquant sur <code>Knit</code> (<em>tricoter</em>) au milieu en haut (le symbole de pelote de laine avec une aiguille). À chaque que l’utilisateur désirer produire le rapport, il faudra le *tricoter en cliquant sur cet icône.</p>
 </div>
-<div id="les-éléments-importants" class="section level2" number="4.2">
+<div id="les-éléments-importants" class="section level2" number="4.3">
 <h2>
-<span class="header-section-number">4.2</span> Les éléments importants<a class="anchor" aria-label="anchor" href="#les-%C3%A9l%C3%A9ments-importants"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.3</span> Les éléments importants<a class="anchor" aria-label="anchor" href="#les-%C3%A9l%C3%A9ments-importants"><i class="fas fa-link"></i></a>
 </h2>
-<div id="lentête" class="section level3" number="4.2.1">
+<div id="lentête" class="section level3" number="4.3.1">
 <h3>
-<span class="header-section-number">4.2.1</span> L’entête<a class="anchor" aria-label="anchor" href="#lent%C3%AAte"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.3.1</span> L’entête<a class="anchor" aria-label="anchor" href="#lent%C3%AAte"><i class="fas fa-link"></i></a>
 </h3>
 <p>L’entête est la zone qui conserve les éléments du texte, permet la personnalisation et l’ajout de composante, le cas échéant. Cet espace se nomme YAML pour <em>Yet Another Markdown Language</em>. Pour l’instant, les renseignements initiaux s’y retrouvent (titre, nom, date et format).</p>
 <div class="figure" style="text-align: center">
@@ -153,15 +163,15 @@ Figure 4.3: Entête ou YAML
 </p>
 </div>
 </div>
-<div id="les-niveaux-de-titre" class="section level3" number="4.2.2">
+<div id="les-niveaux-de-titre" class="section level3" number="4.3.2">
 <h3>
-<span class="header-section-number">4.2.2</span> Les niveaux de titre<a class="anchor" aria-label="anchor" href="#les-niveaux-de-titre"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.3.2</span> Les niveaux de titre<a class="anchor" aria-label="anchor" href="#les-niveaux-de-titre"><i class="fas fa-link"></i></a>
 </h3>
-<p>Pour les titres de section, les <code>#</code> permette d’indiquer qu’il s’agit effectivement d’un titre et leur nombre permette d’indiquer leur niveau, comme <code>#</code> est de niveau 1, <code>##</code> est de niveau 2, etc. Dans l’exemple, il y a deux titres de sections de niveau 2.</p>
+<p>Pour les titres de section, les <code>#</code> permette d’indiquer qu’il s’agit effectivement d’un titre et leur nombre permette d’indiquer leur niveau, comme <code>#</code> est de niveau 1, <code>##</code> est de niveau 2, <code>###</code> est le niveau 3, etc. Dans l’exemple, il y a deux titres de sections de niveau 2.</p>
 </div>
-<div id="les-chunks" class="section level3" number="4.2.3">
+<div id="les-chunks" class="section level3" number="4.3.3">
 <h3>
-<span class="header-section-number">4.2.3</span> Les chunks<a class="anchor" aria-label="anchor" href="#les-chunks"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.3.3</span> Les chunks<a class="anchor" aria-label="anchor" href="#les-chunks"><i class="fas fa-link"></i></a>
 </h3>
 <p>Comme le texte est rédiger dans <strong>R</strong>, il sera utile d’employer du code de ce langage dans le rapport. Ainsi, les rapports servent à jumeler, textes, analyses et graphiques. Pour déterminer le texte du code à lire, la syntaxe à rouler est inscrite dans un <strong>chunk</strong> (morceau en français). Les chunks sont délimités par trois accents graves (<em>backticks</em> en anglais), puis un accolade indiquant le langage utilisé dans le chunk (<code>r</code> en général), et se termine par trois autre accents grave. La Figure <a href="r%C3%A9diger.html#fig:chunk1">4.4</a> montre un chunk.</p>
 <div class="figure" style="text-align: center">
@@ -170,46 +180,47 @@ Figure 4.3: Entête ou YAML
 Figure 4.4: Un chunk
 </p>
 </div>
-<p>Pour accélérer l’écriture au clavier, il est possible de faire <strong>Ctrl + Alt + I</strong> pour ouvrir un <em>chunk</em> complet automatiquement. C’est beaucoup plus efficace que de le taper caractère par caractère.</p>
+<p>Pour accélérer l’écriture au clavier, il est possible de faire <strong>Ctrl + Alt + I</strong> (pour Windows) ou <strong>Option + Cmd + I</strong> (pour Mac) pour ouvrir un <em>chunk</em> complet automatiquement. C’est beaucoup plus efficace que de le taper caractère par caractère.</p>
 <p>Le code peut être présenté avec <code>echo = TRUE</code> (par défaut) ou caché <code>echo = FALSE</code> au besoin.</p>
 <p>Le code est automatiquement exécuté. S’il y a un chunk, le code est roulé. Cela se modifie avec <code>eval = TRUE</code> (par défaut) pour exécuter le code ou ne pas exécuter le code <code>echo = FALSE</code>. Il va sans dire que s’il y a une erreur de code dans un chunk, <strong>R</strong> ne produira pas le rapport.</p>
 <p>Ces arguments <code>echo</code> et <code>eval</code> doivent être spécifier dans les accolades du chunk. Il est possible de combiner les deux selon les besoins.</p>
 </div>
-<div id="les-figures" class="section level3" number="4.2.4">
+<div id="les-figures" class="section level3" number="4.3.4">
 <h3>
-<span class="header-section-number">4.2.4</span> Les figures<a class="anchor" aria-label="anchor" href="#les-figures"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.3.4</span> Les figures<a class="anchor" aria-label="anchor" href="#les-figures"><i class="fas fa-link"></i></a>
 </h3>
-<p>Pour inclure une figure, il suffit de la programmer dans un chunk. Dans l’exemple, le graphique du jeu de <code>pressure</code> est présenté avec <code>plot(pressure)</code> dans un chunk, voir la Figure <a href="r%C3%A9diger.html#fig:rediger3">4.5</a>. Noter dans les accolades la présence de <code>echo=FALSE</code> qui retire le code pour produire l’image du document final (le chunk n’est pas rapporté). Seule la figure est affichée.</p>
+<p>Pour inclure une figure, il faut la programmer dans un chunk. Dans l’exemple, le graphique du jeu de <code>pressure</code> est présenté avec <code>plot(pressure)</code> dans un chunk, voir la Figure <a href="r%C3%A9diger.html#fig:rediger3">4.5</a>. Noter dans les accolades la présence de <code>echo=FALSE</code> qui, au moment de produire l’image, n’affichera pas le code source dans le document final (le chunk n’est pas rapporté). Seule la figure est affichée.</p>
 <div class="figure">
 <span style="display:block;" id="fig:rediger3"></span>
 <img src="image/rediger3.PNG" alt="Ajouter une figure" width="50%" height="50%"><p class="caption">
 Figure 4.5: Ajouter une figure
 </p>
 </div>
-<p>Une autre option est utile pour les figure est de leur ajouter une légende (<em>caption</em> en anglais). Pour ce faire, il faut ajouter dans les accolades du chunk l’argument <code>fig.cap = L'égende de la figure</code>.</p>
+<p>Une autre option est utile pour les figure est de leur ajouter une légende (<em>caption</em> en anglais). Pour ce faire, il faut ajouter dans les accolades du chunk l’argument <code>fig.cap = 'Légende de la figure'</code>.</p>
+<p>Un souci qui arrive à l’occasion est la taille des figures dans le document final. Il est possible de contrôler la taille avec les arguments <code>out.height="50%"</code> et <code>out.width="50%"</code> (en changeant le <code>50%</code> par le pourcentage désiré) dans les accolades du chunk.</p>
 </div>
-<div id="les-images-externes" class="section level3" number="4.2.5">
+<div id="les-images-externes" class="section level3" number="4.3.5">
 <h3>
-<span class="header-section-number">4.2.5</span> Les images externes<a class="anchor" aria-label="anchor" href="#les-images-externes"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.3.5</span> Les images externes<a class="anchor" aria-label="anchor" href="#les-images-externes"><i class="fas fa-link"></i></a>
 </h3>
-<p>Pour ajouter une image, il est possible de l’ajouter simplement avec la syntaxe suivante.</p>
-<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
+<p>Pour ajouter une image, il est possible de l’ajouter simplement avec la syntaxe suivante dans un chunk. Comme <a href="r%C3%A9diger.html#les-figures">les figures</a>, il possible de leur donner une légende et de gérer leur taille.</p>
+<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html">include_graphics</a></span><span class="op">(</span><span class="st">"chemin_vers_l_image/image.extension"</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="les-tableaux" class="section level3" number="4.2.6">
+<div id="les-tableaux" class="section level3" number="4.3.6">
 <h3>
-<span class="header-section-number">4.2.6</span> Les tableaux<a class="anchor" aria-label="anchor" href="#les-tableaux"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.3.6</span> Les tableaux<a class="anchor" aria-label="anchor" href="#les-tableaux"><i class="fas fa-link"></i></a>
 </h3>
 <p>Pour ajouter un tableau, il est possible de passer par la fonction <code>kable()</code> de <code>knitr</code>. Le premier argument est le tableau à présenter. Dans cet exemple, il s’agit des six premières lignes (avec la fonction <code><a href="https://rdrr.io/r/utils/head.html">head()</a></code>) du jeu de données <code>cars</code>. Les autres options sont pour la présentation. L’argument <code>caption =</code> spécifie le titre, l’argument <code>align =</code> permet de centrer (avec <code>"c"</code>) les éléments dans les cellules et <code>booktabs = TRUE</code> retire la majorité du grillage du tableau.</p>
 <p>Il importe pour chaque tableau de s’assurer que la variable contient le <code>data.frame</code> ou la <code>matrix</code> disposé tel que l’utilisateur le souhaite (voir <a href="programmer.html#concat%C3%A9ner">Concaténer</a> pour créer ces objets).</p>
-<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">cars</span><span class="op">)</span>, </span>
 <span>             caption <span class="op">=</span> <span class="st">"Titre du tableau"</span>, </span>
 <span>             align <span class="op">=</span> <span class="st">"c"</span>, </span>
 <span>             booktabs <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-table"><table class="table table-sm">
 <caption>
-<span id="tab:unnamed-chunk-1">Table 4.1: </span>Titre du tableau
+<span id="tab:unnamed-chunk-2">Table 4.1: </span>Titre du tableau
 </caption>
 <thead><tr>
 <th style="text-align:center;">
@@ -271,47 +282,47 @@ dist
 </tbody>
 </table></div>
 </div>
-<div id="les-équations" class="section level3" number="4.2.7">
+<div id="les-équations" class="section level3" number="4.3.7">
 <h3>
-<span class="header-section-number">4.2.7</span> Les équations<a class="anchor" aria-label="anchor" href="#les-%C3%A9quations"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.3.7</span> Les équations<a class="anchor" aria-label="anchor" href="#les-%C3%A9quations"><i class="fas fa-link"></i></a>
 </h3>
 <p>Il arrive qu’il soit nécessaire d’ajouter des équations dans un rapport. Pour ce faire, <strong>R</strong> utilise latex, un très puissant langage de programmation pour la rédaction de texte. Toute équation commence et termine avec le signe de dollars $. Par exemple, l’équation <span class="math inline">\(2+2=4\)</span> s’écrit <code>$2+2=4$</code>. Il est possible d’ajouter des exposants avec <code>^</code> ou des indices avec <code>_</code>. Les lettres grecques s’écrivent avec une barre oblique, par exemple, <span class="math inline">\(\beta\)</span>, s’écrit <code>$\beta$</code> ou la variance <span class="math inline">\(\sigma^2\)</span>, s’écrit <code>$\sigma^2$</code>.</p>
 <p>S’il faut utiliser les vrais symboles, par exemple $ et %, alors il faut ajouter un <code>\</code> devant, comme <code>\$</code> ou <code>\%</code>. Également, l’utilisation de la barre oblique devant un espace permet de créer un espace insécable.</p>
 </div>
-<div id="référer-à-des-variables-de-r-dans-le-texte" class="section level3" number="4.2.8">
+<div id="référer-à-des-variables-de-r-dans-le-texte" class="section level3" number="4.3.8">
 <h3>
-<span class="header-section-number">4.2.8</span> Référer à des variables de <strong>R</strong> dans le texte<a class="anchor" aria-label="anchor" href="#r%C3%A9f%C3%A9rer-%C3%A0-des-variables-de-r-dans-le-texte"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.3.8</span> Référer à des variables de <strong>R</strong> dans le texte<a class="anchor" aria-label="anchor" href="#r%C3%A9f%C3%A9rer-%C3%A0-des-variables-de-r-dans-le-texte"><i class="fas fa-link"></i></a>
 </h3>
 <p>Pour référer à des variables de l’environnement du rapport, il est possible d’appeler ces valeurs des accents graves. Voici un exemple.</p>
-<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">moyenne</span> <span class="op">&lt;-</span> <span class="fl">10</span></span></code></pre></div>
 <p>Pour rapporter la variable <code>moyenne</code> dans le texte, il faut recourir à <code>`r moyenne`</code>, c’est-à-dire un accent grave, l’appel à <code>r</code> pour indiquer que la suite est du code <strong>R</strong>, le nom de la variable et un autre accent grave pour indiquer la fin. Ainsi, <code>`r moyenne`</code> produit le contenu de 10.</p>
 </div>
-<div id="formater-du-texte" class="section level3" number="4.2.9">
+<div id="formater-du-texte" class="section level3" number="4.3.9">
 <h3>
-<span class="header-section-number">4.2.9</span> Formater du texte<a class="anchor" aria-label="anchor" href="#formater-du-texte"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.3.9</span> Formater du texte<a class="anchor" aria-label="anchor" href="#formater-du-texte"><i class="fas fa-link"></i></a>
 </h3>
 <p>Plutôt que d’utiliser des onglets et des options pour modifier le texte, il faut utiliser la syntaxe <code>Markdown</code> (un langage de programmation de texte) pour altérer le texte. Ainsi, entourer un ou des mots avec une étoile de chaque côté met le texte en italique, comme ceci : <code>*italique*</code> donne <em>italique</em>; deux étoiles mettent en gras, <code>**gras**</code> donne <strong>gras</strong>, pour ajouter des éléments de code, il faut entourer le mot d’accent grave, <code>`code`</code> donne <code>code</code>. Pour souligner il faut passer par du latex pour les pdf, avec <code>\underline{souligné}</code>, ou par <code>&lt;u&gt;souligné&lt;/u&gt;</code> en html, ce qui donne <u>souligné</u>.</p>
 </div>
-<div id="ajouter-un-hyperlien" class="section level3" number="4.2.10">
+<div id="ajouter-un-hyperlien" class="section level3" number="4.3.10">
 <h3>
-<span class="header-section-number">4.2.10</span> Ajouter un hyperlien<a class="anchor" aria-label="anchor" href="#ajouter-un-hyperlien"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.3.10</span> Ajouter un hyperlien<a class="anchor" aria-label="anchor" href="#ajouter-un-hyperlien"><i class="fas fa-link"></i></a>
 </h3>
-<p>Pour ajouter un hyperlien, il faut l’écrire entre crochet avec le préfixe <code>http://</code>, comme : <code>&lt;http://mqr.teluq.ca&gt;</code>, ce qui donne <a href="http://mqr.teluq.ca" class="uri">http://mqr.teluq.ca</a>. Si l’utilisateur préfère caché le lien sous un mot ou une phrase comme ceci : <a href="http://mqr.teluq.ca">ce livre</a>, il doit écrire : <code>[ce livre](http://mqr.teluq.ca)</code>.</p>
+<p>Pour ajouter un hyperlien, il faut l’écrire entre crochet avec le préfixe <code>http://</code>, comme : <code>&lt;http://mqr.teluq.ca&gt;</code>, ce qui donne <a href="http://mqr.teluq.ca" class="uri">http://mqr.teluq.ca</a>. Si l’utilisateur préfère cacher le lien sous un mot ou une phrase comme ceci : <a href="http://mqr.teluq.ca">ce livre</a>, il doit écrire : <code>[ce livre](http://mqr.teluq.ca)</code>.</p>
 </div>
-<div id="les-commentaires-dans-le-texte" class="section level3" number="4.2.11">
+<div id="les-commentaires-dans-le-texte" class="section level3" number="4.3.11">
 <h3>
-<span class="header-section-number">4.2.11</span> Les commentaires dans le texte<a class="anchor" aria-label="anchor" href="#les-commentaires-dans-le-texte"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.3.11</span> Les commentaires dans le texte<a class="anchor" aria-label="anchor" href="#les-commentaires-dans-le-texte"><i class="fas fa-link"></i></a>
 </h3>
 <p>Un commentaire dans le texte permet de délimiter une section de texte qui ne sera par exécuté lorsque le texte sera rendu. Cela permet de retirer du texte ou du code qui n’est pas présentement utile tout en le conservant dans le fichier.</p>
 <p>Pour commenter dans un fichier <code>.Rmd</code>, il faut entourer le texte de <code>&lt;!---</code> et <code>---&gt;</code>, comme ceci <code>&lt;!-- Commentaires --&gt;</code>. Pour être plus efficace, plutôt que d’écrire tout au long, il est possible de sélectionner le texte puis <strong>Ctrl + Shift + C</strong>, ce qui commentera tout le texte sélectionné.</p>
 </div>
 </div>
-<div id="pour-aller-plus-loin" class="section level2" number="4.3">
+<div id="pour-aller-plus-loin" class="section level2" number="4.4">
 <h2>
-<span class="header-section-number">4.3</span> Pour aller plus loin<a class="anchor" aria-label="anchor" href="#pour-aller-plus-loin"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.4</span> Pour aller plus loin<a class="anchor" aria-label="anchor" href="#pour-aller-plus-loin"><i class="fas fa-link"></i></a>
 </h2>
-<p>Cette section n’est qu’un survol des possibilités. Pour aller plus loin, il y a beaucoup de documentation sur le web pouvant aider à maîtrise la création d’équation, des spécifier sur la gestion des figures, ou les façons de formater les figures. Et comme c’est la communauté de <strong>R</strong> qui crée le contenu, il y a plus d’une bonne manière de faire la même chose.</p>
+<p>Cette section n’est qu’un survol des possibilités. Pour aller plus loin, il y a de la documentation sur le web pouvant aider à maîtriser la création d’équation, des spécifier sur la gestion des figures, ou les façons de formater les figures. Et comme c’est la communauté de <strong>R</strong> qui crée le contenu, il y a plus d’une bonne manière de faire la même chose.</p>
 </div>
 </div>
   <div class="chapter-nav">
@@ -321,23 +332,24 @@ dist
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#r%C3%A9diger"><span class="header-section-number">4</span> Rédiger</a></li>
-<li><a class="nav-link" href="#ouvrir-un-document"><span class="header-section-number">4.1</span> Ouvrir un document</a></li>
+<li><a class="nav-link" href="#pr%C3%A9liminaires"><span class="header-section-number">4.1</span> Préliminaires</a></li>
+<li><a class="nav-link" href="#ouvrir-un-document"><span class="header-section-number">4.2</span> Ouvrir un document</a></li>
 <li>
-<a class="nav-link" href="#les-%C3%A9l%C3%A9ments-importants"><span class="header-section-number">4.2</span> Les éléments importants</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#lent%C3%AAte"><span class="header-section-number">4.2.1</span> L’entête</a></li>
-<li><a class="nav-link" href="#les-niveaux-de-titre"><span class="header-section-number">4.2.2</span> Les niveaux de titre</a></li>
-<li><a class="nav-link" href="#les-chunks"><span class="header-section-number">4.2.3</span> Les chunks</a></li>
-<li><a class="nav-link" href="#les-figures"><span class="header-section-number">4.2.4</span> Les figures</a></li>
-<li><a class="nav-link" href="#les-images-externes"><span class="header-section-number">4.2.5</span> Les images externes</a></li>
-<li><a class="nav-link" href="#les-tableaux"><span class="header-section-number">4.2.6</span> Les tableaux</a></li>
-<li><a class="nav-link" href="#les-%C3%A9quations"><span class="header-section-number">4.2.7</span> Les équations</a></li>
-<li><a class="nav-link" href="#r%C3%A9f%C3%A9rer-%C3%A0-des-variables-de-r-dans-le-texte"><span class="header-section-number">4.2.8</span> Référer à des variables de R dans le texte</a></li>
-<li><a class="nav-link" href="#formater-du-texte"><span class="header-section-number">4.2.9</span> Formater du texte</a></li>
-<li><a class="nav-link" href="#ajouter-un-hyperlien"><span class="header-section-number">4.2.10</span> Ajouter un hyperlien</a></li>
-<li><a class="nav-link" href="#les-commentaires-dans-le-texte"><span class="header-section-number">4.2.11</span> Les commentaires dans le texte</a></li>
+<a class="nav-link" href="#les-%C3%A9l%C3%A9ments-importants"><span class="header-section-number">4.3</span> Les éléments importants</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#lent%C3%AAte"><span class="header-section-number">4.3.1</span> L’entête</a></li>
+<li><a class="nav-link" href="#les-niveaux-de-titre"><span class="header-section-number">4.3.2</span> Les niveaux de titre</a></li>
+<li><a class="nav-link" href="#les-chunks"><span class="header-section-number">4.3.3</span> Les chunks</a></li>
+<li><a class="nav-link" href="#les-figures"><span class="header-section-number">4.3.4</span> Les figures</a></li>
+<li><a class="nav-link" href="#les-images-externes"><span class="header-section-number">4.3.5</span> Les images externes</a></li>
+<li><a class="nav-link" href="#les-tableaux"><span class="header-section-number">4.3.6</span> Les tableaux</a></li>
+<li><a class="nav-link" href="#les-%C3%A9quations"><span class="header-section-number">4.3.7</span> Les équations</a></li>
+<li><a class="nav-link" href="#r%C3%A9f%C3%A9rer-%C3%A0-des-variables-de-r-dans-le-texte"><span class="header-section-number">4.3.8</span> Référer à des variables de R dans le texte</a></li>
+<li><a class="nav-link" href="#formater-du-texte"><span class="header-section-number">4.3.9</span> Formater du texte</a></li>
+<li><a class="nav-link" href="#ajouter-un-hyperlien"><span class="header-section-number">4.3.10</span> Ajouter un hyperlien</a></li>
+<li><a class="nav-link" href="#les-commentaires-dans-le-texte"><span class="header-section-number">4.3.11</span> Les commentaires dans le texte</a></li>
 </ul>
 </li>
-<li><a class="nav-link" href="#pour-aller-plus-loin"><span class="header-section-number">4.3</span> Pour aller plus loin</a></li>
+<li><a class="nav-link" href="#pour-aller-plus-loin"><span class="header-section-number">4.4</span> Pour aller plus loin</a></li>
 </ul>
 
       <div class="book-extra">
@@ -355,7 +367,7 @@ dist
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2023-01-05.</p>
+    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2023-01-30.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

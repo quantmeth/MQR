@@ -43,7 +43,7 @@ Des idiosyncrasies computationnelles se retrouvent dans tous les logiciels. En p
  
 @Bennett10 montrent que les saumons de l’Atlantique décédés ont des cognitions sociales. Ils placent sous imagerie par résonance magnétique fonctionnelle (IRMf) le saumon pendant une tâche de reconnaissance des émotions chez les humains. La Figure \@ref(fig:saumon) montre le résultat de leur analyse. Soit ils sont tombés sur une découverte étonnante en termes de cognition ichtyologique post-mortem, soit quelque chose cloche en ce qui concerne l'approche statistique utilisée.
 
-```{r saumon, fig.cap="Cognitions sociales d'un saumon atlantique décédés. Tirés de Bennett et al. 2010, p.4",echo=FALSE, out.width="75%", fig.align="center"}
+```{r saumon, fig.cap="Cognitions sociales d'un saumon atlantique décédé. Tirés de Bennett et al. 2010, p.4",echo=FALSE, out.width="75%", fig.align="center"}
 knitr::include_graphics("image//saumon.PNG")
 ```
 
@@ -59,13 +59,11 @@ L'objectif de ce court texte n'est pas de discrédité les analyses statistiques
 
 Il est dit en partie, car le seconde, en filigrane de ce livre, repose sur la double approche d'apprentissage statistique et programmation. Il s'agit de la symbiose entre les deux. D'une part, rendre accessible et efficace des calculs parfois laborieux et ennuyants et, d'autre part, de fournir un objectif de programmation afin de susciter l'intérêt et l'engagement. En programmant des modèles statistiques, le lecteur a une plus grande emprise sur ceux-ci. Il peut mieux les utiliser, les étudier et les modifier. Il peut s'en servir pour connaître et apprendre davantage. Certaines boîtes noires resteront irrémédiablement des boîtes noires pour le lecteur, mais plus elles seront démystifiées, mieux il comprendra ce qui se cache derrière les algorithmes statistiques.
 
-TODO
+La première section de ce livre explique et justifie le logiciel **R**, montre comment l'installer ainsi que quelques rudiments statistiques qui seront fort utiles pour le reste de la lecteur. 
 
-La première section de ce livre justifie et explique le logiciel **R** et montre comment l'installer ainsi que quelques rudiments statistiques qui seront fort utiles pour le reste de la lecteur. 
+La seconde section couvre ce qui sera probablement le plus important pour l'utilisateur : , l'[entrer], l'importation ([Importer]), la gestion ([Manipuler]) et la visualisation ([Visualiser]) des données.
 
-La seconde section couvre ce qui sera probablement le plus important pour l'utilisateur : l'importation ([Importer]), la gestion ([Manipuler]) et la visualisation ([Visualiser]) des données.
-
-La troisième section porte sur l'inférence statistique avec les tests d'hypothèses ([Inférer]) pour par la suite développer les analyses de base ([Analyser]), comme le test $t$, l'ANOVA, la corrélation, et le test du $\chi^2$ carré. En parallèle, les méthodes pour créer des jeux de données propres aux analyses sont illustrées. La section se termine sur des exemples d'utilisation de R ([Simuler])à des fins plus empiriques, soit développer un simulation Monte-Carlo, mais surtout, les techniques de rééchantillonnage (c'est-à-dire, le *bootstrap*).
+La troisième section commence par les analyses statistiques descriptives ([Décrire]), mais porte principalement sur l'inférence statistique avec les tests d'hypothèses ([Inférer]) pour par la suite développer les analyses de base ([Analyser]), comme le test $t$, l'ANOVA, la corrélation, et le test du $\chi^2$ carré. En parallèle, les méthodes pour créer des jeux de données propres aux analyses sont illustrées. La section se termine sur des exemples d'utilisation de R ([Simuler]) à des fins plus empiriques, soit développer une simulation Monte-Carlo, mais surtout, les techniques de rééchantillonnage (le *bootstrap*).
 
 La quatrième section présente le modèle linéaire général, comme la régression ([Prédire]), la médiation ([Médier]) et la modération ([Modérer]). Comme auparavant, l'accent est mis sur la création de données correspondant à ces modèles, particulièrement au chapitre [Créer] qui montre en détails la création de modèle linéaire récursif.
 

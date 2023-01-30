@@ -4,9 +4,23 @@
 
 L'avantage principal de rédiger dans **R** est certainement le fait de tenir dans un projet, toute la syntaxe, le jeu de données, les graphiques ainsi que le texte rapportant le tout dans un seul fichier. 
 
+
+## Préliminaires
+
+Pour la toute première utilisation, il faut s'assurer est que le package `Rmarkdown` soit bien installé (voir [Les packages]). Il est préférable d'utiliser **R**Studio: l'environnement y est plus agréable et facilite l'expérience de l'utilisateur. 
+
+Une seconde étape, si l'utilisateur veut produire des pdf, est d'installer un éditeur $\LaTeX$. Cela peut se faire facilement avec la commande suivante.
+
+```{r, eval = FALSE}
+tinytex::install_tinytex()
+```
+
+
+Il suffit de le faire une fois à la première utilisation ou pour d'éventuelles mises à jour. Maintenant, tout est prêt!
+
 ## Ouvrir un document
 
-La première à s'assurer est que le package `Rmarkdown` soit bien installé (voir [Les packages]. Il est préférable d'utiliser **R**Studio: l'environnement y est plus agréable et facilite l'expérience de l'utilisateur. Une fois installé, il faut faire `File -> New File -> Rmarkdown` pour ouvrir un nouveau document. La boîte de dialogue affichée à la Figure\ \@ref(fig:rediger1) demande quatre éléments : le titre, le nom de l'auteur, la date et le format du rapport (html, pdf ou word). Les deux premiers sont les plus utilisés. Une fois rempli, il faut cliquer sur OK.
+Une fois tout installé, il faut faire `File -> New File -> Rmarkdown` pour ouvrir un nouveau document. La boîte de dialogue affichée à la Figure\ \@ref(fig:rediger1) demande quatre éléments : le titre, le nom de l'auteur, la date et le format du rapport (html, pdf ou word). Les deux premiers sont les plus utilisés. Une fois rempli, il faut cliquer sur OK.
 
 ```{r rediger1, fig.cap="Boîte de dialogue de Rmarkdown", fig.align='center', echo = FALSE,out.height="50%", out.width="50%"}
 knitr::include_graphics("image/rediger1.PNG")
@@ -32,7 +46,7 @@ knitr::include_graphics("image/entete.PNG")
 
 ### Les niveaux de titre
 
-Pour les titres de section, les `#` permette d'indiquer qu'il s'agit effectivement d'un titre et leur nombre permette d'indiquer leur niveau, comme `#` est de niveau\ 1, `##` est de niveau\ 2, etc. Dans l'exemple, il y a deux titres de sections de niveau\ 2.
+Pour les titres de section, les `#` permette d'indiquer qu'il s'agit effectivement d'un titre et leur nombre permette d'indiquer leur niveau, comme `#` est de niveau\ 1, `##` est de niveau\ 2, `###` est le niveau\ 3, etc. Dans l'exemple, il y a deux titres de sections de niveau\ 2.
 
 ### Les chunks
 
@@ -42,7 +56,7 @@ Comme le texte est rédiger dans **R**, il sera utile d'employer du code de ce l
 knitr::include_graphics("image/chunk1.PNG")
 ```
 
-Pour accélérer l'écriture au clavier, il est possible de faire **Ctrl + Alt + I** pour ouvrir un *chunk* complet automatiquement. C'est beaucoup plus efficace que de le taper caractère par caractère.
+Pour accélérer l'écriture au clavier, il est possible de faire **Ctrl + Alt + I** (pour Windows) ou  **Option + Cmd + I** (pour Mac) pour ouvrir un *chunk* complet automatiquement. C'est beaucoup plus efficace que de le taper caractère par caractère.
 
 Le code peut être présenté avec `echo = TRUE` (par défaut) ou caché `echo = FALSE` au besoin.
 
@@ -52,17 +66,19 @@ Ces arguments `echo`  et `eval` doivent être spécifier dans les accolades du c
 
 ### Les figures
 
-Pour inclure une figure, il suffit de la programmer dans un chunk. Dans l'exemple, le graphique du jeu de `pressure` est présenté avec `plot(pressure)` dans un chunk, voir la Figure\ \@ref(fig:rediger3). Noter dans les accolades la présence de `echo=FALSE` qui retire le code pour produire l'image du document final (le chunk n'est pas rapporté). Seule la figure est affichée.
+Pour inclure une figure, il faut la programmer dans un chunk. Dans l'exemple, le graphique du jeu de `pressure` est présenté avec `plot(pressure)` dans un chunk, voir la Figure\ \@ref(fig:rediger3). Noter dans les accolades la présence de `echo=FALSE` qui, au moment de produire l'image, n'affichera pas le code source dans le document final (le chunk n'est pas rapporté). Seule la figure est affichée.
 
 ```{r rediger3, fig.cap  = 'Ajouter une figure', echo = FALSE, out.height="50%", out.width="50%"}
 knitr::include_graphics("image/rediger3.PNG")
 ```
 
-Une autre option est utile pour les figure est de leur ajouter une légende (*caption* en anglais). Pour ce faire, il faut ajouter dans les accolades du chunk l'argument `fig.cap = L'égende de la figure`.
+Une autre option est utile pour les figure est de leur ajouter une légende (*caption* en anglais). Pour ce faire, il faut ajouter dans les accolades du chunk l'argument `fig.cap = 'Légende de la figure'`.
+
+Un souci qui arrive à l'occasion est la taille des figures dans le document final. Il est possible de contrôler la taille avec les arguments `out.height="50%"` et `out.width="50%"` (en changeant le `50%` par le pourcentage désiré) dans les accolades du chunk.
 
 ### Les images externes
 
-Pour ajouter une image, il est possible de l'ajouter simplement avec la syntaxe suivante.
+Pour ajouter une image, il est possible de l'ajouter simplement avec la syntaxe suivante dans un chunk. Comme [les figures], il possible de leur donner une légende et de gérer leur taille.
 
 ```{r ajouter_image, eval = FALSE}
 knitr::include_graphics("chemin_vers_l_image/image.extension")
@@ -101,7 +117,7 @@ Plutôt que d'utiliser des onglets et des options pour modifier le texte, il fau
 
 ### Ajouter un hyperlien
 
-Pour ajouter un hyperlien, il faut l'écrire entre crochet avec le préfixe `http://`, comme : `<http://mqr.teluq.ca>`, ce qui donne <http://mqr.teluq.ca>. Si l'utilisateur préfère caché le lien sous un mot ou une phrase comme ceci : [ce livre](http://mqr.teluq.ca), il doit écrire : `[ce livre](http://mqr.teluq.ca)`.
+Pour ajouter un hyperlien, il faut l'écrire entre crochet avec le préfixe `http://`, comme : `<http://mqr.teluq.ca>`, ce qui donne <http://mqr.teluq.ca>. Si l'utilisateur préfère cacher le lien sous un mot ou une phrase comme ceci : [ce livre](http://mqr.teluq.ca), il doit écrire : `[ce livre](http://mqr.teluq.ca)`.
 
 ### Les commentaires dans le texte
 
@@ -111,7 +127,7 @@ Pour commenter dans un fichier `.Rmd`, il faut entourer le texte de `<!---` et `
 
 ## Pour aller plus loin
 
-Cette section n'est qu'un survol des possibilités. Pour aller plus loin, il y a beaucoup de documentation sur le web pouvant aider à maîtrise la création d'équation, des spécifier sur la gestion des figures, ou les façons de formater les figures. Et comme c'est la communauté de **R** qui crée le contenu, il y a plus d'une bonne manière de faire la même chose.
+Cette section n'est qu'un survol des possibilités. Pour aller plus loin, il y a de la documentation sur le web pouvant aider à maîtriser la création d'équation, des spécifier sur la gestion des figures, ou les façons de formater les figures. Et comme c'est la communauté de **R** qui crée le contenu, il y a plus d'une bonne manière de faire la même chose.
 
 
 # Exercices {#exercice-rudiments .unnumbered}

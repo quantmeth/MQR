@@ -10,7 +10,7 @@ fig:rediger2
 fig:entete
 fig:chunk1
 fig:rediger3
-tab:unnamed-chunk-1
+tab:unnamed-chunk-2
 fig:dataentry
 fig:editr
 fig:ggplotseul
@@ -198,6 +198,7 @@ laplatissement
 les-graines
 les-distributions
 rédiger
+préliminaires
 ouvrir-un-document
 les-éléments-importants
 lentête

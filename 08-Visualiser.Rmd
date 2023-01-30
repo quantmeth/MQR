@@ -2,7 +2,7 @@
 
 La visualisation de données est l'un des deux objectifs fondamentaux de **R** (l'autre étant évidemment de faire des statistiques). Il existe plusieurs méthodes et packages pour produire rapidement et simplement des graphiques. Beaucoup de matériel se retrouve en ligne pour maîtriser les graphiques, mais surtout les personnaliser. L'objectif, bien modeste, de cette section n'est pas de rendre le lecteur maître de la production de figures, mais bien de lui faire faire ses premiers pas et de l'outiller pour qu'il puisse produire simplement et rapidement des graphiques de qualité.
 
-L'exemple de cette section est basé sur celle de la section [Manipuler]. Voici la syntaxe pour obtenir le jeu de données de nouveau.
+L'exemple de cette section est basé sur celui de la section [Manipuler]. Voici la syntaxe pour obtenir le jeu de données de nouveau.
 
 ```{r}
 jd <- starwars %>% 
