@@ -1,6 +1,6 @@
 # Analyser
 
-En continuation de l'introduction des théories des tests d'hypothèses (voir [Inférer]) et l'aperçu donnée par [le test-$t$ à échantillon unique], cette section poursuit la présentation en introduisant des analyses statistiques de bases comme les différences de moyennes, l'association linéaire et les tests pour données nominales. Les tests-$t$ indépendant et dépendant, l'analyse de variables, la covariance, la corrélation ainsi que le test du $\chi2$ pour table de contingence sont présentées. 
+En continuation de l'introduction des théories des tests d'hypothèses (voir [Inférer]) et l'aperçu donnée par [le test-$t$ à échantillon unique], cette section poursuit la présentation en introduisant des analyses statistiques de bases comme les différences de moyennes, l'association linéaire et les tests pour données nominales. Les tests-$t$ indépendant et dépendant, la covariance, la corrélation ainsi que le test du $\chi2$ pour table de contingence sont présentées. 
 
 ## Les différences de moyennes
 
@@ -192,7 +192,46 @@ Les sorties sont identiques.
 
 La Figure \@ref(fig:disttt) illustre où se situe la moyenne de l'échantillon par rapport à la distribution d'échantillonnage de l'hypothèse nulle. Comme la valeur se retrouve dans la zone de rejet ou, de façon équivalente, la valeur-$p$ est plus petite que la valeur $\alpha$ fixée à .05, on rejette l'hypothèse nulle, il y a vraisemblablement une différence entre les groupes. C'est bien l'intention derrière la création des données.
 
-Voici comment il est possible de rapporter les résultats.
+### Rapporter un test-$t$ indépendant
+
+Voici comment il est possible de rapporter les résultats. La syntaxe pour commander l'analyse est la suivante si les groupes sont dans deux vecteurs séparés.
+
+
+```r
+t.test(gr0, gr1) # Absence de l'argument var.equal = TRUE
+> 
+> 	Welch Two Sample t-test
+> 
+> data:  gr0 and gr1
+> t = 3, df = 27, p-value = 0.002
+> alternative hypothesis: true difference in means is not equal to 0
+> 95 percent confidence interval:
+>  0.539 2.182
+> sample estimates:
+> mean of x mean of y 
+>     1.332    -0.029
+```
+
+Il est également possible d'utiliser la formule si, dans le jeu de données, une variable permet de distinguer les deux groupes et que la variable continue (variable à comparer) se trouve dans une seule variable. 
+
+
+```r
+# Mettre les variables en jeu de données
+jd.ti <- data.frame(VD = c(gr0, gr1),
+                    VI = x1)
+t.test(VD ~ VI, data = jd.ti)
+> 
+> 	Welch Two Sample t-test
+> 
+> data:  VD by VI
+> t = 3, df = 27, p-value = 0.002
+> alternative hypothesis: true difference in means between group 0 and group 1 is not equal to 0
+> 95 percent confidence interval:
+>  0.539 2.182
+> sample estimates:
+> mean in group 0 mean in group 1 
+>           1.332          -0.029
+```
 
 
 
@@ -278,268 +317,72 @@ Les sorties sont identiques.
 
 La Figure \@ref(fig:testtttt) montre où se situe la différence de moyenne par rapport à la distribution d'échantillonnage de l'hypothèse nulle. Comme la valeur se retrouve dans la valeur-$p$ est plus petite que la valeur $\alpha$ fixée à .05, on rejette l'hypothèse nulle; il y a vraisemblablement une différence entre les temps de mesure, ce qui était l'intention derrière la création des données.
 
+
+#### Autres syntaxes possibles
+
+Il y a plusieurs façons
+
+
+```r
+# Technique précédent avec deux vecteurs
+t.test(x = temps1, y = temps2, paired = TRUE)
+> 
+> 	Paired t-test
+> 
+> data:  temps1 and temps2
+> t = -3, df = 24, p-value = 0.004
+> alternative hypothesis: true mean difference is not equal to 0
+> 95 percent confidence interval:
+>  -2.172 -0.465
+> sample estimates:
+> mean difference 
+>           -1.32
+
+# Avec la formule et les variables dans le même jeu de données
+jd.td <- data.frame(temps1 = temps1, 
+                    temps2 = temps2)
+t.test(Pair(temps1, temps2) ~ 1, data = jd.td)
+> 
+> 	Paired t-test
+> 
+> data:  Pair(temps1, temps2)
+> t = -3, df = 24, p-value = 0.004
+> alternative hypothesis: true mean difference is not equal to 0
+> 95 percent confidence interval:
+>  -2.172 -0.465
+> sample estimates:
+> mean difference 
+>           -1.32
+
+# Avec la différence des deux vecteurs
+t.test(temps2 - temps1)
+> 
+> 	One Sample t-test
+> 
+> data:  temps2 - temps1
+> t = 3, df = 24, p-value = 0.004
+> alternative hypothesis: true mean is not equal to 0
+> 95 percent confidence interval:
+>  0.465 2.172
+> sample estimates:
+> mean of x 
+>      1.32
+```
+
+La première option est celle décrite précédemment.
+
+La second option utilise la formule et le jeu de données. La fonction `Pair()` n'a que seule objectif d'informer la fonction `t.test()` que les vecteurs qu'elle inclut sont pairés, ce qui permet d'utiliser la formule `Pair(temps1, temps2) ~ 1`.
+
+Pour la troisième option, comme l'équation sur le test-$t$ dépendant le suggère, un test-$t$ dépendant revient à faire [un test-$t$ à échantillon unique][Le test-$t$ à échantillon unique] avec la différence entre les deux temps de mesure.
+
+
+### Rapporter un test-$t$ dépendant
+
 Voici comment rapporter dans un article.
 
 
 
 > Un groupe de participants est mesuré à deux reprises sur une même mesure psychologique. Le test-$t$ dépendant suggère que la différence entre les temps de mesure est significative, $t(24) =-3.188, p =  0.002$.
-
-### L'analyse de variance à un facteur
-
-L'analyse de variance, souvent appelée ANOVA (*ANalysis Of VAriance*), permet de comparer une variable continue sur plusieurs groupes ou traitements. Il s'agit d'une extension du test-$t$ indépendant qui compare une variable continue auprès de deux groupes. À plus de deux groupes, l'analyse de variance entre en jeu.
-
-**Attention!** Cette section se limite au cas où les groupes sont de tailles identiques (même nombre de participants par groupe, le symbole $n_k$ pour référer à cette quantité) afin d'en simplifier la présentation. 
-
-#### La logique de l'analyse de variance
-
-Comme il a été présenté dans la section sur [le test-$t$ indépendant], le modèle sous-jacent à l'analyse de variance à un facteur est une extension de ce modèle pour $k$ groupes. Chaque groupe est associé à une différence de moyennes $\mu_i$, pour $i = 1,2, ...k$ par rapport à la moyenne groupe référent, $\mu_0$. Les variables $x_i$ définissent l'appartenance au groupe $i$ par la valeur 1 et 0 pour les autres groupes (codage factice ou *dummy coding*).
-
-$$y = \mu_0 + \mu_1x_1 + \mu_2x_2+ ... +\mu_kx_k + \epsilon$$
-L'hypothèse nulle est la suivante. 
-$$\sigma^2_1=\sigma^2_2=...=\sigma^2_k$$
-L'analyse de variance est un test omnibus (global) qui ne teste pas où est la différence, mais bien *s'il y a au moins une différence* entre les groupes. L'hypothèse nulle peut s'avérer fausse de plusieurs façons. Il peut y avoir une ou plusieurs inégalités pour rejeter l'hypothèse nulle. 
-
-La logique sous-jacente est basée sur l'idée selon laquelle les moyennes des groupes proviennent d'une même population. Elle compare les hypothèses suivantes : l'hypothèse nulle : les données (les moyennes) proviennent d'une même population; et l'hypothèse opposée : les données ne proviennent pas d'une même population. 
-
-Elle suggère ainsi deux types de variances (ou carré moyen, CM, dans ce contexte) : le CMI, carré moyen intergroupe, lorsque l'hypothèse nulle est vraie (la variabilité des moyennes); et le CMR, carré moyen résiduel, lorsque l'hypothèse nulle n'est ni vraie, ni fausse (la variabilité des données). 
-
-Pour calculer le CMI, la variance des moyennes des groupes est 
-$$s^2_{\bar{x}}=\sum_{i=1}^k\frac{(\bar{x_i}-\overline{\overline{x}})^2}{k-1}$$ 
-
-où $\overline{\overline{x}}$ est la grande moyenne (la moyenne de toutes les unités). Cette statistique se retrouve sur la plan des distributions d'échantillonnage (comment les moyennes se distribuent). Il faut ainsi multiplier cette valeur par $n_k$, le nombre d'unités par groupes, pour obtenir une estimation de la variance de la population. Ainsi, $\text{CMI} = s^2_{\bar{x}}n_k$.
-
-Il y a plusieurs méthodes pour calculer le CMR, comme le CMR est envisagé comme la moyenne des variances de groupes, il est pratique d'en référer le calcul à sa définition.  
-
-$$
-\text{CMR} = \bar{s^2} = \frac{1}{k}\sum_{i=k}^k\sigma_k^2 
-$$
-Lorsque l'hypothèse nulle est vraie, les variances des groupes sont traitées comme le résultat d'une étude sur une même population, comme si $k$ petites études avaient été réalisées. L'estimation du CMI est de l'ordre d'une distribution d'échantillonnage connue par le théorème central limite définissant le comportement des moyennes lorsqu'elles proviennent d'une même population (c'est ce que pose comme hypothèse l'analyse de variance). Toutefois, la valeur du CMI est relative au CMR, la quantité de bruit dans les données. 
-
-L'analyse de variance pose alors la question : la variance attribuable aux différentes moyennes des groupes est-elle supérieure à la variance résiduelle? Pour tester cette question, une possibilité est de tester le ratio $\frac{\text{CMI}}{\text{CMR}}$, ce qui donne une valeur-$F$. Le ratio de deux variances suit une distribution-$F_{dl_1, dl_2}$ avec deux degrés de liberté différents qui lui sont associés. Autrement dit, la distribution-$F$ est la distribution d'échantillonnage du ratio deux variances.
-
-$$F_{dl_1,dl_2} = \frac{n_ks^2_{\bar{x}}}{\bar{s^2}} = \frac{\text{CMI}}{\text{CMR}}$$
-où $dl_1 = k-1$, et $dl_2 = k(n_k-1)$. L'interprétation du ratio est ainsi :
-
-* si $\text{CMI}>\text{CMR}$, alors $\text{CMI}/\text{CMR}>1$;
-* si $\text{CMI}=\text{CMR}$, alors $\text{CMI}/\text{CMR}=1$;
-* si $\text{CMI}<\text{CMR}$, alors $\text{CMI}/\text{CMR}<1$.
-
-Plus les moyennes sont variables, plus la valeur du CMI est élevée. Plus les unités sont variables, plus le CMR est élevé. S'il existe au moins une différence entre les groupes, le ratio est en faveur du CMI. En fait, plus $F$ est élevée, toutes autres choses étant égales (les degrés de libertés, p. ex.), plus la probabilité de rejeter l'hypothèse nulle est grande. Ainsi, lorsque, la valeur-$F$ est obtenue, il est possible de calculer une valeur-$p$, et le test d'hypothèse se déroule tel qu'auparavant.
-
-#### La création de données
-
-Dans un jeu de données commun, une variable désigne les groupes et une autre leur score sur une certaine mesure. La syntaxe suivante montre trois façons pour créer une variable facteur.
-
-
-```r
-nk <- 5 # nombre d'unités par groupe
-k <- 4  # nombre de groupes
-# En ordre
-groupe1 <- rep(1:k, each = nk)
-# En alternance
-groupe2 <- rep(1:k, times = nk)
-# Aléatoire
-set.seed(765)
-groupe3 <- sample(x = 1:k, size = (k * nk), replace = TRUE)
-cbind(groupe1, groupe2, groupe3)
->       groupe1 groupe2 groupe3
->  [1,]       1       1       4
->  [2,]       1       2       2
->  [3,]       1       3       4
->  [4,]       1       4       3
->  [5,]       1       1       3
->  [6,]       2       2       4
->  [7,]       2       3       3
->  [8,]       2       4       1
->  [9,]       2       1       4
-> [10,]       2       2       3
-> [11,]       3       3       3
-> [12,]       3       4       2
-> [13,]       3       1       3
-> [14,]       3       2       3
-> [15,]       3       3       2
-> [16,]       4       4       4
-> [17,]       4       1       4
-> [18,]       4       2       2
-> [19,]       4       3       1
-> [20,]       4       4       1
-```
-
-Il est aussi possible de remplacer les arguments, `1:k` par des chaînes de caractères (des catégories au lieu de nombres).
-
-
-```r
-categorie <- c("char", "chat", "cheval", "chevalier", "chien")
-nk <- 2
-groupe <- as.factor(rep(categorie, each = nk)) # Déclarer comme facteur
-groupe
->  [1] char      char      chat      chat      cheval   
->  [6] cheval    chevalier chevalier chien     chien    
-> Levels: char chat cheval chevalier chien
-```
-Une bonne pratique dans le contexte des comparaisons de moyenne est de déclarer les variables catégorielles comme facteur avec `as.factor()`.
-
-Pour créer des valeurs à ces catégories, une stratégie simple est de créer des valeurs pour chacun des groupes et de les combiner. 
-
-
-```r
-# Pour la reproductibilité
-set.seed(2602)
-char      <- rnorm(n = nk, mean = 15, sd = 4) 
-chat      <- rnorm(n = nk, mean = 20, sd = 4) # Différences ici
-cheval    <- rnorm(n = nk, mean = 10, sd = 4) # et ici
-chevalier <- rnorm(n = nk, mean = 15, sd = 4)
-chien     <- rnorm(n = nk, mean = 15, sd = 4) 
-# Combinés
-score <- round(c(char, chat, cheval, chevalier, chien))
-# Conserver toutes les informations en un jeu de données
-donnees <- data.frame(groupe, score)
-head(donnees)
->   groupe score
-> 1   char    14
-> 2   char    12
-> 3   chat    17
-> 4   chat    21
-> 5 cheval    14
-> 6 cheval    10
-```
-
-#### Codage factice
-
-La plupart du temps, les variables de regroupement, les variables identifiant l'appartenance aux groupes, sont construites avec une variable de type facteur, c'est-à-dire une colonne avec différentes valeurs ou libellés. C'est d'ailleurs ce qui a été fait dans l'exemple précédent. Cette méthode d'identification de groupement implique une programmation plus intensive, surtout pour la création de valeurs. En termes de programmation, il est plus élégant de recourir à une fonction de codage factice (*dummy coding*). Cela permettra de représenter fidèlement le modèle sous-jacent. Étrangement, il n'y a pas de fonction de base avec **R** pour du codage factice. Une fonction maison permettra d'automatiser la réassignation des groupes (en une seule variable) sur plusieurs variables désignant leur appartenance.
-
-
-```r
-dummy.coding <- function(x){
-  # Retourne un codage factice de x
-  # avec les facteurs en ordre alphabétique
-  W <- sapply(unique(x), 
-              USE.NAMES = TRUE,
-              FUN = function(v) {x == v}) * 1 
-  return(W)
-}
-```
-
-
-La plupart du temps, les variables de regroupement, les variables identifiant l'appartenance aux groupes, sont construites avec une variable de type facteur, c'est-à-dire une colonne avec différentes valeurs ou libellés. C'est d'ailleurs ce qui a été fait dans l'exemple précédent. Cette méthode d'identification de groupement implique une programmation plus intensive, surtout pour la création de valeurs. En termes de programmation, il est plus élégant de recourir à une fonction de codage factice. Cela permettra de représenter fidèlement le modèle sous-jacent. Étrangement, il n'y a pas de fonction de base avec **R** pour du codage factice. Une fonction maison permettra d'automatiser la réassignation des groupes (en une seule variable) sur plusieurs variables désignant leur appartenance.
-
-<!-- ```{r} -->
-<!-- dummy.coding <- function(x){ -->
-<!--   # Retourne un codage factice de x -->
-<!--   # avec les facteurs en ordre alphabétique -->
-
-<!--   tab <- table(x)    # Extraire une table -->
-<!--   k <- length(tab)   # Nombre de groupes -->
-<!--   n <- length(x)     # Nombre d'unités -->
-<!--   X <- matrix(0, nrow = n, ncol = k) # Création d'une nouvelle variable  -->
-<!--   xlev <- as.factor(x) -->
-<!--   for (i in 1:n) { -->
-<!--     X[i, xlev[i]] <- 1 # Identification des groupes -->
-<!--   } -->
-<!--   colnames(X) <- names(tab) -->
-<!--   return(X) -->
-<!-- } -->
-<!-- ``` -->
-
-La fonction maison retourne un codage factice pour les $k$ groupes. **Attention**, le codage factice est fait en ordre alphabétique. Comme il est redondant d'avoir $k$ groupes (identifier $k$ groupes nécessite $k-1$ variables), un groupe référent est désigné. Ce dernier aura 0 sur tous les scores. Pour retirer un groupe, l'utilisation des crochets et une valeur négative associés à la colonne du groupe référent feront l'affaire, p. ex. `dummy.coding(x)[,-k]` déclare le $k$^e^ groupe comme le groupe référent.
-
-
-```r
-# Pour la reproductibilité
-set.seed(2602)
-
-# Facteur de groupe
-k <- length(categorie)
-nk <- 2
-groupe <- rep(categorie, each = nk)
-
-# Groupement
-X <- dummy.coding(groupe)[,-5] # groupe 4 "chien" comme référent
-
-# Spécifications des paramètres
-mu0 <- 15
-mu <- c(0, 5, -5, 0)
-e <- rnorm(n = k * nk, sd = 4)
-
-# Création des scores
-score <- round(mu0 + X %*% mu + e)
-
-# Comparaison des valeurs
-cbind(donnees, score)
->       groupe score score
-> 1       char    14    14
-> 2       char    12    12
-> 3       chat    17    17
-> 4       chat    21    21
-> 5     cheval    14    14
-> 6     cheval    10    10
-> 7  chevalier    12    12
-> 8  chevalier    17    17
-> 9      chien    21    21
-> 10     chien    18    18
-```
-
-L'expression `X %*% mu` est une multiplication d'algèbre matricielle qui multiplie la matrice $n \times p$ de codage factice $X$ à une matrice $p\times 1$ de moyennes $\mu$. L'opération multiple les $p$ éléments d'une ligne de $X$ à la colonne $p$ correspondante de $\mu$. En algèbre matricielle Le résultat est une matrice $n \times 1$ qui contient les différences de moyennes pour chaque unité. Dans la même ligne de syntaxe, la moyenne de la population (groupe référent), $\mu_0$ est ajoutée et la variation individuelle, $\epsilon$.
-
-Les scores produits sont identiques. Dans cet exemple par contre, l'origine des différences entre groupes est plus évidente, spécialement en comparant le modèle sous-jacent à l'analyse de variance. La source d'erreur est visible ainsi que les différences de moyennes. La force de cette deuxième méthode est qu'elle peut facilement être automatisée pour créer des jeux de données, alors que la première est plus compliquée. La seconde méthode nécessite six arguments ($n_k$, $\mu_0$, $\mu_{1:k}$, et $\sigma_{e}$ en plus de catégories et définir le groupe référent), la première aurait de la difficulté à spécifier tous les arrangements de différence de moyennes automatiquement, quoiqu'elles sont plus personnalisables.
-
-#### Analyse
-
-
-
-À toute fin pratique, un jeu de données est recréé avec les catégories et paramètres précédents, mais avec $n_k=20$ unités par groupe. La fonction **R** de base est `aov()`. Elle prend comme argument une formule, de forme `VD ~ VI` (variable dépendante prédite par variable indépendante) et un jeu de données duquel prendre les variables. Il existe également une fonction `anova()`, une fonction un peu plus complexe que `aov()`. Pour obtenir toute l'information désirée de la sortie de la fonction, il faut demander un sommaire de la sortie avec `summary()`.
-
-
-```r
-# Anova de base
-res <- aov(score ~ groupe, data = donnees)
-summary(res)
->             Df Sum Sq Mean Sq F value  Pr(>F)    
-> groupe       4    834   208.4      14 5.1e-09 ***
-> Residuals   95   1414    14.9                    
-> ---
-> Signif. codes:  
-> 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-# Fonction maison
-gr <- table(donnees$groupe)
-k  <- length(gr)          # Nombre de groupes
-nk <- dim(donnees)[1] / k # Nombre de participants par groupe
-
-# Moyennes et variance par (`by()`) groupes
-moyenne  <- by(donnees$score, donnees$groupe, mean)
-variance <- by(donnees$score, donnees$groupe, var)
-
-# Statistiques
-CMI <- nk * var(moyenne)
-CMR <- mean(variance)
-dl1 <- k - 1
-dl2 <- k * (nk - 1)
-vf <- CMI / CMR 
-vp <- (1 - pf(vf, df1 = dl1, df2 = dl2)) 
-
-# Création du tableau
-resultats <- matrix(0,2,5) # Tableau vide
-
-# Ajouter noms
-colnames(resultats)  <- c("dl", "SS", "CM", "F", "p")
-row.names(resultats) <- c("groupe", "residu")
-
-# Ajouter valeurs
-resultats[1,] <- c(dl1, CMI * dl1, CMI, vf, vp)
-resultats[2,] <- c(dl2, CMR * dl2, CMR, 0, 0)
-resultats
->        dl   SS    CM  F        p
-> groupe  4  834 208.4 14 5.15e-09
-> residu 95 1414  14.9  0 0.00e+00
-```
-
-Les résultats sont identiques, les seules différences étant dues à l'arrondissement. Comme la valeur-$p$ est de 5.145\times 10^{-9}, ce qui est extrêmement plus petit que l'usuel .05 (ou un autre taux d'erreur de type I fixé à l'avance), l'hypothèse nulle est rejetée, il y a vraisemblablement une différence entre les groupes, ce qui est déjà connu. La Figure\ \@ref(fig:ft) illustre très bien la rareté d'un tel jeu de données sous l'hypothèse nulle.
-
-<div class="figure">
-<img src="11-Analyser_files/figure-html/ft-1.png" alt="Valeur-$F$ de la comparaison des moyennes" width="672" />
-<p class="caption">(\#fig:ft)Valeur-$F$ de la comparaison des moyennes</p>
-</div>
 
 ## L'association linéaire
 
@@ -847,7 +690,7 @@ La syntaxe retourne les corrélations, la taille d'échantillon et les valeurs-$
 
 
 
-> La matrice de corrélation des variables présentés. Parmi les corrélations d'intérêt, un lien remarquable est celui entre `qsec` et `mpg` qui est significatif, $r(10) = 0.42, p `pqm`$.
+> La matrice de corrélation des variables présentés. Parmi les corrélations d'intérêt, un lien remarquable est celui entre `qsec` et `mpg` qui est significatif, $r(10) = 0.42, p\ =\ =  0.42$.
 
 
 ## Les données nominales 
@@ -934,7 +777,7 @@ $$ \chi^2_v = \sum_{i=1}^{l}\sum_{j=1}^c(\frac{(o_{ij}-t_{ij})^2}{t_{ij}})$$
 où $o$ correspond aux valeurs observées, $t$ réfère aux valeurs théoriques, $v$ représente les degrés de liberté et $i$ et $j$ les lignes et colonnes respectivement. Le degré de liberté est 
 $$v = (n_{\text{ligne}}-1)(n_{\text{colonne}}-1)$$
 
-Si l'hypothèse nulle est vraie, les valeurs observées et théoriques devraient être très près. Le carré permet de calculer une distance euclidienne et le dénominateur pondère la distance. Comme l'[analyse de variance][Analyse de variance à un facteur], le test de $\chi^2$ pour table de contingence est global, il n'informe pas d'où provient la dépendance, mais bien s'il y a au moins une dépendance.
+Si l'hypothèse nulle est vraie, les valeurs observées et théoriques devraient être très près. Le carré permet de calculer une distance euclidienne et le dénominateur pondère la distance. Comme l'[analyse de variance][Comparer], le test de $\chi^2$ pour table de contingence est global, il n'informe pas d'où provient la dépendance, mais bien s'il y a au moins une dépendance.
 
 
 ```r
@@ -995,7 +838,7 @@ La fonction `table()` de **R** génère une table de contingence. La fonction ma
 
 Le test du $\chi^2$ est sujet à certains problèmes qu'il est important de considérer sans quoi l'interprétation peut être faussée. Si la taille d'échantillon (le nombre d'unités d'observation observées est trop faible), alors le test est biaisé. Par exemple, trois lancers de pile ou face ne sont pas suffisants pour tester une hypothèse de khi-carré, le nombre de résultats différents est de 2, ce qui ne donne pas une approximation satisfaisante de la distribution d'échantillonnage. La convention est de dire qu'une fréquence théorique est trop petite si elle est plus petite que 5. Si ce n'est pas cas, des corrections ou d'autres options doivent être considérées.
 
-Dans le présent exemple, bien que les fréquences attendues respectent les critères usuels, il peut être utile d'envisager un test plus robuste comme le test exact de Fisher ou le $\chi^2$ avec correction de continuité. Le premier se commande avec la fonction `fisher.test()` et le second est la fonction par défaut de `chisq.test()`.  Pour montrer l'équivalent entre la fonction `chisq.test()` et la fonction maison, l'option de correction est désactivée avec l'argument `correct = FALSE`.
+Dans le présent exemple, bien que les fréquences attendues respectent les critères usuels, il peut être utile d'envisager un test plus robuste comme le test exact de Fisher ou le $\chi^2$ avec correction de continuité. Le premier se commande avec la fonction `fisher.test()` et le second est la fonction par défaut de `chisq.test()`. C'est deux fonctions prennet comme argument une table de contigence (la sortir de `table()`) ou deux variables nominales. Pour montrer l'équivalence entre la fonction `chisq.test()` et la fonction maison, l'option de correction est désactivée avec l'argument `correct = FALSE`.
 
 
 ```r
@@ -1021,11 +864,14 @@ summary(TC)
 
 # Autre fonction de base
 resultat <- chisq.test(TC, correct = FALSE)
+# ou encore
+resultat <- chisq.test(donnees$sexe, donnees$tabac, correct = FALSE)
+# Leur sortie
 resultat
 > 
 > 	Pearson's Chi-squared test
 > 
-> data:  TC
+> data:  donnees$sexe and donnees$tabac
 > X-squared = 2, df = 1, p-value = 0.1
 
 # Et pour plus de précision...
@@ -1037,11 +883,14 @@ resultat$p.value
 
 # Le test exact de Fisher
 resultat.fisher <- fisher.test(TC)
+# ou encore
+resultat.fisher <- fisher.test(donnees$sexe, donnees$tabac)
+# Leur sortie
 resultat.fisher
 > 
 > 	Fisher's Exact Test for Count Data
 > 
-> data:  TC
+> data:  donnees$sexe and donnees$tabac
 > p-value = 0.2
 > alternative hypothesis: true odds ratio is not equal to 1
 > 95 percent confidence interval:
@@ -1053,5 +902,35 @@ resultat.fisher$p.value
 > [1] 0.216
 ```
 
+### Rapporter un $\chi^2$
+
+Voici comment rapporter un test de $\chi^2$ dans un article. Comme il a été vu ci-haut, plusieurs options sont possibles
+
+
+```r
+# Pour le khi carré de Pearson
+chisq.test(donnees$sexe, donnees$tabac, correct = FALSE)
+> 
+> 	Pearson's Chi-squared test
+> 
+> data:  donnees$sexe and donnees$tabac
+> X-squared = 2, df = 1, p-value = 0.1
+
+# Pour le test exact de Fisher
+fisher.test(donnees$sexe, donnees$tabac)
+> 
+> 	Fisher's Exact Test for Count Data
+> 
+> data:  donnees$sexe and donnees$tabac
+> p-value = 0.2
+> alternative hypothesis: true odds ratio is not equal to 1
+> 95 percent confidence interval:
+>   0.641 12.731
+> sample estimates:
+> odds ratio 
+>       2.61
+```
+
+> La relation entre le sexe et le consommation de tabac est investiguée. Il appert que cette relation n'est pas statistiquement significative avec une seuil $\alpha = .05$, $chi^2(1) = 2.345$,\ $p = 0.126$. Le test exact de Fisher est calculé également et, pareillement,  ne rejette pas l'hypothèse nulle, $p =0.216$.
 
 

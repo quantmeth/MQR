@@ -92,15 +92,16 @@
 <li><a class="" href="simuler.html"><span class="header-section-number">12</span> Simuler</a></li>
 <li><a class="" href="exercice-analyse.html">Exercices</a></li>
 <li class="book-part">Modèles linéaires</li>
-<li><a class="" href="pr%C3%A9dire.html"><span class="header-section-number">13</span> Prédire</a></li>
-<li><a class="" href="cr%C3%A9er.html"><span class="header-section-number">14</span> Créer</a></li>
-<li><a class="" href="m%C3%A9dier.html"><span class="header-section-number">15</span> Médier</a></li>
-<li><a class="" href="mod%C3%A9rer.html"><span class="header-section-number">16</span> Modérer</a></li>
+<li><a class="" href="comparer.html"><span class="header-section-number">13</span> Comparer</a></li>
+<li><a class="" href="pr%C3%A9dire.html"><span class="header-section-number">14</span> Prédire</a></li>
+<li><a class="" href="cr%C3%A9er.html"><span class="header-section-number">15</span> Créer</a></li>
+<li><a class="" href="m%C3%A9dier.html"><span class="header-section-number">16</span> Médier</a></li>
+<li><a class="" href="mod%C3%A9rer.html"><span class="header-section-number">17</span> Modérer</a></li>
 <li><a class="" href="exercice-lineaire.html">Exercices</a></li>
 <li class="book-part">Analyses factorielles</li>
-<li><a class="" href="d%C3%A9composer.html"><span class="header-section-number">17</span> Décomposer</a></li>
-<li><a class="" href="explorer.html"><span class="header-section-number">18</span> Explorer</a></li>
-<li><a class="" href="r%C3%A9duire.html"><span class="header-section-number">19</span> Réduire</a></li>
+<li><a class="" href="d%C3%A9composer.html"><span class="header-section-number">18</span> Décomposer</a></li>
+<li><a class="" href="explorer.html"><span class="header-section-number">19</span> Explorer</a></li>
+<li><a class="" href="r%C3%A9duire.html"><span class="header-section-number">20</span> Réduire</a></li>
 <li class="book-part">Annexes</li>
 <li><a class="" href="solutions.html">Solutions</a></li>
 <li><a class="" href="r%C3%A9f%C3%A9rences.html">Références</a></li>
@@ -284,7 +285,7 @@ Figure 8.8: Histogrammes de l’IMC par rapport au sexe
 </h2>
 <p>Les barres d’erreur sont une représentation géométrique à part entière. La fonction pour les commandées est <code><a href="https://ggplot2.tidyverse.org/reference/geom_linerange.html">geom_errorbar()</a></code>. Elle nécessite deux arguments, soit l’intervalle de confiance maximale et minimale autour des moyennes à afficher.</p>
 <p>La Figure <a href="visualiser.html#fig:erreurbar">8.9</a> illustre les différences entre moyennes avec des barres d’erreur à partir de la base de données <code>ToothGrowth</code>, une étude de l’effet de la vitamine C (<code>dose</code>) selon leur administration (jus ou supplément <code>supp</code>) sur la longueur des dents des cochons d’inde. Il y a deux facteurs et une variable continue.</p>
-<p>La première étape est de tirer les statistiques sommaires, moyennes, écart type, tailles des groupes. La syntaxe tire profit de <code>groupe_by()</code> pour tirer les groupes et en faire le sommaire. Le sommaire <code>summarise</code> permet d’obtenir les statistiques, notamment la moyenne, l’erreur standard (<code>se</code>) pour en calculer l’intervalle autour de la moyenne <code>ci</code>.</p>
+<p>La première étape est de tirer les statistiques sommaires, moyennes, écart type, tailles des groupes. La syntaxe tire profit de <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> pour tirer les groupes et en faire le sommaire. Le sommaire <code>summarise</code> permet d’obtenir les statistiques, notamment la moyenne, l’erreur standard (<code>se</code>) pour en calculer l’intervalle autour de la moyenne <code>ci</code>.</p>
 <div class="sourceCode" id="cb107"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">stat.descr</span> <span class="op">&lt;-</span> <span class="va">ToothGrowth</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">dose</span>, <span class="va">supp</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
@@ -350,7 +351,7 @@ Figure 8.9: Les effets de la vitamine C sur les cochons d’inde
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2023-01-30.</p>
+    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2023-02-27.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

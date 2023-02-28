@@ -12,11 +12,12 @@ Qu'est-ce que la réduction de dimension? La réduction de dimension ou la déte
 
 La compression d'images, en informatique, est un exemple de réduction dimensionnelle dont il est possible d'illustrer visuellement. La réduction de dimension permet de résumer l'information afin d'en réduire la taille pour ne conserver que le signifiant. Ainsi, les mêmes techniques permettant d'identifier les facteurs psychologiques peuvent être utilisées pour les images, l'identification des thèmes de films et bien d'autres.
 
-La Figure \@ref(fig:Pigeon) montre un exemple de compression d'une image de pigeon^[Tirée de https://pixnio.com/fr/faune-animaux/des-oiseaux-fr/pigeons-photos/oiseau-pigeon-tumbler-pigeon-mouche-animal-animal, License CC0]. Elle montre à différents niveaux factoriels de compression la même image. À trois dimensions, le pigeon est difficilement perceptible. Progressivement, le pigeon est plus facilement reconnaissable, mais surtout, à un certain seuil (deuxième et troisième lignes de la Figure \@ref(fig:Pigeon), par exemple), l'image gagne en clarté. Trente dimensions conviennent, les plus difficiles désireront peut-être retenir 125 dimensions. L'image à ce stade est très bien. Nonobstant ces nombres, ce sera toujours mieux, en termes de compression, que les 526 dimensions possibles (de l'image originale). Ainsi, à `r 125/526*100` % des dimensions, l'image est claire et le pigeon reconnaissable. Cette logique s'applique également pour les facteurs psychologiques.
+La Figure \@ref(fig:Pigeon) montre un exemple de compression d'une image de pigeon^[Tirée de https://pixnio.com/fr/faune-animaux/des-oiseaux-fr/pigeons-photos/oiseau-pigeon-tumbler-pigeon-mouche-animal-animal, License CC0]. Elle montre à différents niveaux factoriels de compression la même image. À trois dimensions, le pigeon est difficilement perceptible. Progressivement, le pigeon est plus facilement reconnaissable, mais surtout, à un certain seuil (deuxième et troisième lignes de la Figure \@ref(fig:Pigeon), par exemple), l'image gagne en clarté. Trente dimensions conviennent, les plus difficiles désireront peut-être retenir 125 dimensions. L'image à ce stade est très bien. Nonobstant ces nombres, ce sera toujours mieux, en termes de compression, que les 526 dimensions possibles (de l'image originale). Ainsi, à 23.764 % des dimensions, l'image est claire et le pigeon reconnaissable. Cette logique s'applique également pour les facteurs psychologiques.
 
-```{r Pigeon, fig.cap="Pigeon compressé à divers niveaux de dimension $k$",echo=FALSE, fig.align="center", out.height='75%', out.width='75%'}
-knitr::include_graphics("image//Pigeon.png")
-```
+<div class="figure" style="text-align: center">
+<img src="image//Pigeon.png" alt="Pigeon compressé à divers niveaux de dimension $k$" width="75%" height="75%" />
+<p class="caption">(\#fig:Pigeon)Pigeon compressé à divers niveaux de dimension $k$</p>
+</div>
 
 ## Importance d'une dimension
 
@@ -24,7 +25,8 @@ Une technique pour connaître l'importance d'une dimension est d'afficher les va
 
 La structure factorielle et le jeu de données du chapitre [Explorer] est repris afin d'illustrer le propos.
 
-```{r}
+
+```r
 # Pour la reproductibilité
 set.seed(44)
 
@@ -51,17 +53,20 @@ jd <- MASS::mvrnorm(n = 50,
 
 Voici l'analyse en composante principale.
 
-```{r}
+
+```r
 # L'ACP
 res <- eigen(cor(jd))
 
 # Les valeurs propres
 res$values
+> [1] 2.576 1.699 0.771 0.421 0.328 0.205
 ```
 
 Une façon d'illustrer les valeurs propres graphiquement est d’utiliser un graphique nommé *scree plot* ou *graphique des éboulis*. La Figure\ \@ref(fig:scree) peut être produite avec la syntaxe ci-dessous. Il s'agit de mettre en axe des $x$ la séquence (`Position`) des valeurs propres (leur ordre) par rapport à la valeur propre en axe des $y$. Ce graphique se produit simplement avec `plot()` ou `ggplot()` (voir [Visualiser]).
 
-```{r scree, fig.cap="Les valeurs propres en fonctions de la position de l'axe",fig.align="center", out.height='75%', out.width='75%'}
+
+```r
 Position <-  1:p
 vp <- data.frame(Position = Position ,
                  Valeurs.propres = c(res$values),
@@ -76,13 +81,18 @@ ggplot(data = vp,
   ylab("Valeur propre") +
   theme(legend.position = c(0.8, 0.8))
 ```
+
+<div class="figure" style="text-align: center">
+<img src="20-Reduire_files/figure-html/scree-1.png" alt="Les valeurs propres en fonctions de la position de l'axe" width="75%" height="75%" />
+<p class="caption">(\#fig:scree)Les valeurs propres en fonctions de la position de l'axe</p>
+</div>
 La Figure\ \@ref(fig:scree) est une bonne représentation visuelle des valeurs propres. Elle ne répond pas à la question d'intérêt : combien y a-t-il de dimensions *importantes*? Elle donne toutefois une idée. Probablement 2 ou 3? La première est indubitable; la valeur propre est très élevée. Les 4^e^, 5^e^ et 6^e^ sont quant à elles très petites et sont très près. Comment déterminer avec plus de rigueur le nombre de dimensions? C'est là que les règles d'arrêt entre en jeu.
 
 ## Les règles d'arrêt
 
 La question est de savoir combien de dimensions faut-il retenir pour rendre adéquatement compte des données. Dès lors, l'ACP devient une technique de réduction des dimension. Or, les analyses exploratoires (comme l'[ACP][Décomposer] ou [l'analyse factorielle exploire][Explorer] ne répondent pas explicitement à cette question. Le statisticien use de techniques complémentaires, des **règles d'arrêts** (*stopping rules*), pour déterminer le nombre de dimensions à retenir.
 
-Ces règles d'arrêt sont en général un *bricolage* du statisticien pour répondre à la question. Bricolage n'est pas à prendre péjorativement, mais seulement comme rappel à la réalité que ces techniques sont souvent créées sans dérivation analytique. Il n'est pas possible de leur faire aveuglément confiance (il ne faudrait jamais faire cela de toute façon). Elles ont une pertinence pratique, mais les conditions selon lesquelles elles flanchent ne sont pas ou peu connues. Il existe probablement des centaines de techniques ayant leurs avantages et inconvénients ou bien des scénarios dans lesquels elles sont plus efficaces que les autres. Il en apparaît des nouvelles chaque année depuis 1950. Comme ces techniques sont des bricolages et qu'elles sont taillées différemment, elles ne s'accordent pas toujours sur la même conclusion. Faire l'étalage de ces règles d'arrêt serait bien inutile. Ainsi, trois techniques seront présentées, le test de Kaiser, l'analyse parallèle (*parallel analysis*) et une troisième méthode ayant montré un excellent rendement sera présentée, soit le test séquentiel de la prochaine valeur propre (*Next eigenvalue sequence test*). Ces trois règles représentent une même ligne évolutive.
+Ces règles d'arrêt sont en général un *bricolage* du statisticien pour répondre à la question. Bricolage n'est pas à prendre péjorativement, mais seulement comme rappel à la réalité que ces techniques sont souvent créées sans dérivation analytique. Il n'est pas possible de leur faire aveuglément confiance (il ne faudrait jamais faire cela de toute façon). Elles ont une pertinence pratique, mais les conditions selon lesquelles elles flanchent ne sont pas ou peu connues. Il existe probablement des centaines de techniques ayant leurs avantages et inconvénients ou bien des scénarios dans lesquels elles sont plus efficaces que les autres. Il en apparaît des nouvelles chaque année depuis 1950. Comme ces techniques sont des bricolages et qu'elles sont taillées différemment, elles ne s'accordent pas toujours sur la même conclusion. Faire l'étalage de ces règles d'arrêt serait bien inutile. Ainsi, trois techniques seront présentées, le test de Kaiser, l'analyse parallèle (*parallel analysis*) et une troisième méthode ayant montré un excellent rendement sera présentée, soit le test de suffisance de la prochaine valeur propre (*Next eigenvalue sufficiency test*). Ces trois règles représentent une même ligne évolutive.
 
 ### Le test de Kaiser
 
@@ -92,27 +102,47 @@ Le test de Kaiser se fonde sur l'idée selon laquelle, si les variables ne sont 
 
 À titre illustratif, une matrice de corrélation sans aucune corrélation est une matrice d'identité.
 
-```{r}
+
+```r
 mat.cor <- diag(6)
 mat.cor
+>      [,1] [,2] [,3] [,4] [,5] [,6]
+> [1,]    1    0    0    0    0    0
+> [2,]    0    1    0    0    0    0
+> [3,]    0    0    1    0    0    0
+> [4,]    0    0    0    1    0    0
+> [5,]    0    0    0    0    1    0
+> [6,]    0    0    0    0    0    1
 ```
 Les valeurs propres de cette matrice sont toutes égalent à 1.
 
-```{r}
+
+```r
 eigen(mat.cor)$values
+> [1] 1 1 1 1 1 1
 ```
 Si une seule corrélation est ajoutée, aussi petite soit-elle, alors toutes les plus grandes valeurs propres tendent à capitaliser sur cette variance partagée.
 
-```{r}
+
+```r
 mat.cor[1, 6] <- mat.cor[6,1] <- .1
 mat.cor
+>      [,1] [,2] [,3] [,4] [,5] [,6]
+> [1,]  1.0    0    0    0    0  0.1
+> [2,]  0.0    1    0    0    0  0.0
+> [3,]  0.0    0    1    0    0  0.0
+> [4,]  0.0    0    0    1    0  0.0
+> [5,]  0.0    0    0    0    1  0.0
+> [6,]  0.1    0    0    0    0  1.0
 eigen(mat.cor)$values
+> [1] 1.1 1.0 1.0 1.0 1.0 0.9
 ```
 Autrement dit, si une valeur propre est supérieure à 1, c'est qu'il y a un facteur.
 
 La Figure\ \@ref(fig:kaiser) illustre le test de Kaiser avec le présent exemple qui suggère deux facteurs (comme simulé).
 
-```{r kaiser, fig.cap="Les valeurs propres en fonctions de la position de l'axe",fig.align="center", out.height='75%', out.width='75%'}
+
+```r
 vp <- rbind(vp,
       data.frame(Position = Position,
                  Valeurs.propres = 1,
@@ -129,9 +159,15 @@ ggplot(data = vp,
   theme(legend.position = c(0.8, 0.8))
 ```
 
+<div class="figure" style="text-align: center">
+<img src="20-Reduire_files/figure-html/kaiser-1.png" alt="Les valeurs propres en fonctions de la position de l'axe" width="75%" height="75%" />
+<p class="caption">(\#fig:kaiser)Les valeurs propres en fonctions de la position de l'axe</p>
+</div>
+
 Voici un une fonction maison simple pour programmer le test de Kaiser.
 
-```{r}
+
+```r
 kaiser <- function(jd){
   # Obtenir la matrice de corrélation
   R <- cor(jd)
@@ -153,7 +189,8 @@ La solution proposée par @Horn65 est alors de tenir compte de cette erreur d'é
 Le rééchantillonnage est réitéré sur des milliers de jeu de données artificiels. À chaque fois, les valeurs propres sont enregistrées. Des valeurs critiques (moyennes ou percentiles) en sont retirées à la toute fin. Il s'agit du critère auquel l'hypothèse nulle est rejetée. De la première à la dernière, chaque valeur propre cible est comparée à la valeur propre moyenne correspondante. Si la cible est plus élevée, il s'agit d'une dimension à retenir. Dès que la cible est inférieure, le test est arrêté. Le nombre de valeurs propres supérieures aux valeurs propres artificielles correspond au nombre de dimensions à retenir. 
 Dans la syntaxe ci-dessous, les mêmes caractéristiques que le jeu de données précédent sont utilisés, soit $p = 6$ et $n = 5000$. À la fin, il sera possible de comparer s'il y a effectivement deux facteurs selon l'analyse parallèle. 
 
-```{r}
+
+```r
 # Pour la reproductibilité
 set.seed(1019)
 p <- 6        # Nombre de variables
@@ -183,30 +220,37 @@ for(i in 1:nreps) {
 
 # Une moyenne par ligne (valeur propres)
 rowMeans(valeurs.propres)
+> [1] 1.495 1.242 1.057 0.899 0.739 0.568
 
 # Le 95e percentile (si préféré)
 apply(X = valeurs.propres, 
       FUN = quantile,
       MARGIN = 1,
       probs = .95)
+> [1] 1.723 1.388 1.163 0.998 0.858 0.700
 ```
 
 Pour connaître le nombre de dimension, il suffit de tester les valeurs propres empiriques et les comparer aux valeurs propres simulées (moyenne ou 95^e^ percentile). Le nombre de valeur propre empirique supérieur aux valeurs propres simulés correspond au nombre de composantes à retenir.
 
-```{r}
+
+```r
 # Les valeurs propres empiriques
 res$values
+> [1] 2.576 1.699 0.771 0.421 0.328 0.205
 
 # La moyenne des valeurs propres simulées
 rowMeans(valeurs.propres)
+> [1] 1.495 1.242 1.057 0.899 0.739 0.568
 
 # Nombre de valeurs propres empiriques supérieures aux simulées
 sum(res$values > rowMeans(valeurs.propres))
+> [1] 2
 ```
 
-Ainsi, `r sum(res$values > rowMeans(valeurs.propres))` facteurs sont à retenir. Une façon d'illustrer les résultats de l'analyse parallèle est d'utiliser le graphique de éboulis en y représentant les valeurs propres empiriques comparativement aux simulées. Le nombre de valeurs propres empiriques supérieures aux simulées est le nombre de dimensions à retenir. Ce graphique est produit à la Figure \@ref(fig:scree2). Voici la syntaxe pour produire ce graphique avec `ggplot2`. La première étape est de mettre en commun les résultats obtenus dans un jeu de données. La variable `Index` indique l'index de la valeur propres, `valeurs.propres` contient les valeurs propres et `Type` indique s'il s'agit de valeurs propres empiriques ou simulées de l'analyse parallèle. Pour le reste, il s'agit de recourir à `ggplot()`.
+Ainsi, 2 facteurs sont à retenir. Une façon d'illustrer les résultats de l'analyse parallèle est d'utiliser le graphique de éboulis en y représentant les valeurs propres empiriques comparativement aux simulées. Le nombre de valeurs propres empiriques supérieures aux simulées est le nombre de dimensions à retenir. Ce graphique est produit à la Figure \@ref(fig:scree2). Voici la syntaxe pour produire ce graphique avec `ggplot2`. La première étape est de mettre en commun les résultats obtenus dans un jeu de données. La variable `Index` indique l'index de la valeur propres, `valeurs.propres` contient les valeurs propres et `Type` indique s'il s'agit de valeurs propres empiriques ou simulées de l'analyse parallèle. Pour le reste, il s'agit de recourir à `ggplot()`.
 
-```{r scree2, fig.cap="Comparaison des valeurs propres empiriques et simulées",fig.align="center", out.height='75%', out.width='75%'}
+
+```r
 vp <- rbind(vp,
       data.frame(Position = Position,
                  Valeurs.propres = rowMeans(valeurs.propres),
@@ -222,9 +266,15 @@ ggplot(data = vp,
   ylab("Valeur propre") +
   theme(legend.position = c(0.8, 0.8))
 ```
+
+<div class="figure" style="text-align: center">
+<img src="20-Reduire_files/figure-html/scree2-1.png" alt="Comparaison des valeurs propres empiriques et simulées" width="75%" height="75%" />
+<p class="caption">(\#fig:scree2)Comparaison des valeurs propres empiriques et simulées</p>
+</div>
 Voici une fonction pour programmer l'analyse parallèle.
 
-```{r}
+
+```r
 analyse.parallele <- function(jd, 
                               p = ncol(jd), 
                               n = nrow(jd), 
@@ -266,7 +316,7 @@ sum(eig > vp.crit)
 }
 ```
 
-### Le test séquentiel de la valeur propre suivante d'Achim
+### Test de suffisance de la prochaine valeur propre d'Achim
 
 L'un des problèmes de l'analyse parallèle est que, bien qu'elle tient compte de l'erreur d'échantillonnage, elle ne tient pas compte de la logique séquentielle des tests d'hypothèses des valeurs propres [@Turner98; @Beauducel01]. Précisément, le test d'hypothèses sous-jacent, en termes de $k$ dimensions à retenir, est 
 $$
@@ -277,7 +327,7 @@ $$
 
 Autrement dit, il n'y a pas de facteurs, ou bien il y a plus d'un facteur. Une fois la première dimension déterminée par l'analyse parallèle, il est inadéquat de tester les suivantes avec la même matrice de corrélation. Il faut tenir compte de cette nouvelle information : il y a au moins $k$ dimensions.
 
-Le **Test séquentiel de la valeur propre suivante** (*Next Eigenvalue Sequential Test*, NEST) développé par Achim [-@Achim17;-@Achim20] est le dernier cri en termes d'estimation du nombre de composantes à retenir. En plus de tenir compte pour l'erreur d'échantillonnage, comme l'analyse parallèle, il tient compte aussi de la logique séquentielle du test d'hypothèse. Plus précisément, le test utilise une matrice de corrélation contenant les $k$ dimensions déterminées auparavant. Lorsque $k=0$, le test est équivalent à l'analyse parallèle, mais uniquement pour la première valeur propre. Une fois l'hypothèse nulle rejetée, $k$ est incrémenté, une nouvelle matrice de corrélation basée sur ces $k$ facteurs est calculées, et un nouveau rééchantillonnage des valeurs propres est entrepris. Le test s'arrête lorsque la $k+1$ valeur propre (l'hypothèse nulle) n'est pas rejetée, pour donner $k$ dimensions.
+Le **Test de suffisance de la prochaine valeur propre** (*Next Eigenvalue Sufficiency Test*, NEST) développé par Achim [-@Achim17;-@Achim20] est le dernier cri en termes d'estimation du nombre de composantes à retenir. En plus de tenir compte pour l'erreur d'échantillonnage, comme l'analyse parallèle, il tient compte aussi de la logique séquentielle du test d'hypothèse. Plus précisément, le test utilise une matrice de corrélation contenant les $k$ dimensions déterminées auparavant. Lorsque $k=0$, le test est équivalent à l'analyse parallèle, mais uniquement pour la première valeur propre. Une fois l'hypothèse nulle rejetée, $k$ est incrémenté, une nouvelle matrice de corrélation basée sur ces $k$ facteurs est calculées, et un nouveau rééchantillonnage des valeurs propres est entrepris. Le test s'arrête lorsque la $k+1$ valeur propre (l'hypothèse nulle) n'est pas rejetée, pour donner $k$ dimensions.
 
 La syntaxe suivante illustre de façon simplifier le test NEST. Elle utilise plusieurs éléments déjà présentées. 
 
@@ -287,7 +337,8 @@ La syntaxe suivante illustre de façon simplifier le test NEST. Elle utilise plu
  
 * Elle utilise `factanal()` (voir [Explorer]) pour reconstruire la matrice de corrélation à $k$ facteurs.
 
-```{r}
+
+```r
 mat.cor <- cor(jd)  # Matrice de corrélation du jeu de données
 p <- ncol(mat.cor)  # Nombre de variables (6)
 n <- nrow(jd)       # Nombre de participants (50)
@@ -346,20 +397,20 @@ La sortie ici, `nfactors`  représente le nombre de dimensions à retenir.
 
 #### Le package Rnest
 
-```{r, eval = FALSE, message = FALSE, warning = FALSE, comment=FALSE, include = FALSE}
-remotes::install_github(repo = "quantmeth/Rnest")
-```
+
 
 
 Il existe une version préliminaire d'un package permettant de réaliser facilement NEST en plus de fournir quelques fonctions utiles. Le package est `Rnest` [@Rnest]. Il est disponible par GitHub et est importable sur **R** avec la syntaxe suivante.
 
-```{r, eval = FALSE}
+
+```r
 remotes::install_github(repo = "quantmeth/Rnest")
 ```
 
 Comme à l'habitude, il faut l'appeller dans l'environnement.
 
-```{r, message = FALSE, warning = FALSE, comment=FALSE}
+
+```r
 library(Rnest)
 ```
 
@@ -367,12 +418,15 @@ La fonction principale est `nest()`. Elle prend en argument un jeu de donnée ou
 
 Voici la fonction avec le présent exemple.
 
-```{r}
+
+```r
 nest(jd)
+> At 95% confidence, NEST suggests 2 factors.
 ```
 Voici la sortie des valeurs propres comparées aux deux autres règles d'arrêt illustrée à la Figure\ \@ref(fig:scree3).
 
-```{r scree3, fig.cap="Comparaison des valeurs propres empiriques et simulées (analyses parallèle et nest)",fig.align="center", out.height='75%', out.width='75%'}
+
+```r
 # Réorganisation des jeu de données contenant
 # les valeurs propres
 vp.nest <- plot(nest(jd))$data[-(1:p),]
@@ -390,11 +444,22 @@ ggplot(data = vp,
   theme(legend.position = c(0.8, 0.8))
 ```
 
+<div class="figure" style="text-align: center">
+<img src="20-Reduire_files/figure-html/scree3-1.png" alt="Comparaison des valeurs propres empiriques et simulées (analyses parallèle et nest)" width="75%" height="75%" />
+<p class="caption">(\#fig:scree3)Comparaison des valeurs propres empiriques et simulées (analyses parallèle et nest)</p>
+</div>
+
 Un bel avantage du package est sa possibilité de créer un graphique pour différentes valeurs critiques `alpha`. La Figure\ \@ref(fig:screenest) illustre la sortie.
 
-```{r screenest, fig.align="center", out.height='75%', out.width='75%', fig.cap="Graphique produit par `nest` de `Rnest`"}
+
+```r
 plot(nest(jd, alpha = c(.01, .025, .05, .10)))
 ```
+
+<div class="figure" style="text-align: center">
+<img src="20-Reduire_files/figure-html/screenest-1.png" alt="Graphique produit par `nest` de `Rnest`" width="75%" height="75%" />
+<p class="caption">(\#fig:screenest)Graphique produit par `nest` de `Rnest`</p>
+</div>
 
 <!-- ### Comparaisons des règles d'arrêts -->
 

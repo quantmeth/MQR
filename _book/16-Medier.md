@@ -1,28 +1,7 @@
 # Médier
-```{r beta2cov, include = FALSE}
-beta2cov = function(B, V = NULL){
-  
-  p = dim(B)[1]                 # Nombre de variables
-  
-  if(is.null(V)){               # Si V est nulle, alors V est une
-    S = diag(p)                 # matrice diagonale d'identité,
-  }else{                        # autrement il s'agit d'une matrice
-    S = diag(V)                 # avec les variances en diagonale
-  }  
-  
-  # Boucle de calcul pour la covariance de la variable i (i = 2:p)
-  for(i in 2:p){
-    COV = B[(i), (1:(i-1))] %*% S[1:(i-1), 1:(i-1)]
-    S[i, 1:(i-1)] = COV
-    S[1:(i-1), i] = COV
-  }
-  
-  return(S)
-  
-}
-```
 
-Outre les *liens directs* entre deux variables (ce qu'une [régression][Prédire] permet de découvrir), il existe également des *liens indirects*, une relation sous-jacente entre une variable indépendante et une variable dépendante expliquée par l'inclusion d'une troisième variable. L'attrait d'une telle analyse est patent : les chercheurs  s'intéressent souvent à expliquer les mécanismes biologiques, psychologiques, cognitifs, etc., qui sous-tendent la relation entre deux variables. 
+
+Outre les *liens directs* entre deux variables (ce qu'une [régression][Prédire] permet de découvrir), il existe également des *liens indirects*, une relation sous-jacente entre une variable indépendante et une variable dépendante expliquée par l'inclusion d'une troisième variable. L'attrait d'une telle analyse est patent : les expérimentateurs  s'intéressent souvent à expliquer les mécanismes biologiques, psychologiques, cognitifs, etc., qui sous-tendent la relation entre deux variables. 
 
 L'analyse de médiation permet de découvrir et tester des liens indirect. Elle est une analyse statistique de plus en plus populaire parmi les expérimentateurs, peu importe leur discipline, puisqu'elle quantifie le degré selon lequel une variable participe à la transmission du changement d'une *cause* vers son *effet*. L'analyse de médiation peut contribuer à mieux comprendre la relation entre une variable indépendante et une variable dépendante lorsque ces variables n'ont pas de lien direct évident. 
 
@@ -36,9 +15,10 @@ Pour les fins de ce chapitre^[La section est partiellement basée sur @Caron18.]
 
 La Figure\ \@ref(fig:simplemed) présente le diagramme de trajectoire correspondant au modèle de médiation simple (un seul médiateur) dans le panneau supérieur. 
 
-```{r simplemed, fig.cap="Modèle de médiation simple",echo=FALSE, fig.align="center",out.height="75%" , out.width="75%"}
-knitr::include_graphics("image//simplemed.png")
-```
+<div class="figure" style="text-align: center">
+<img src="image//simplemed.png" alt="Modèle de médiation simple" width="75%" height="75%" />
+<p class="caption">(\#fig:simplemed)Modèle de médiation simple</p>
+</div>
 
 Le cadran supérieur devrait être familier aux lecteurs, car il a été abordé dans le chapitre [Créer], dans une orientation légèrement différente. La Figure\ \@ref(fig:simplemed) peut également être représentée avec une matrice de coefficients de régression $\mathbf{B}$ dans laquelle se retrouvent les coefficients de régression qui relient les variables.
 
@@ -77,7 +57,7 @@ Qu'en est-il du test d'hypothèse de l'effet indirect? Il existe trois méthodes
 
 ### La méthode d'étape causale
 
-La méthode d'étape causale aussi connue sous le nom de test de Baron-Kenny est un test séquentiel d'hypothèse afin de vérifier l'existence du lien indirect. Ce test est présenté à des fins historiques uniquement (certains chercheurs l'exigent et l'utilisent encore!). Par contre, dans la littérature méthodologique, il n'est plus recommandé, étant rejeté en faveur d'autres méthodes plus adéquates tant sur le plan statistique que conceptuel. La méthode provenant des années 80 lorsque les ordinateurs personnels n'étaient pas encore dans toutes les chaumières a certainement du mérite pour l'époque, mais n'est plus nécessaire aujourd'hui. En plus, c'est un bon exercice d'extraction de résultats avec **R**.
+La méthode d'étape causale aussi connue sous le nom de test de Baron-Kenny est un test séquentiel d'hypothèse afin de vérifier l'existence du lien indirect. Ce test est présenté à des fins historiques uniquement (certains expérimentateurs l'exigent et l'utilisent encore!). Par contre, dans la littérature méthodologique, il n'est plus recommandé, étant rejeté en faveur d'autres méthodes plus adéquates tant sur le plan statistique que conceptuel. La méthode provenant des années 80 lorsque les ordinateurs personnels n'étaient pas encore dans toutes les chaumières a certainement du mérite pour l'époque, mais n'est plus nécessaire aujourd'hui. En plus, c'est un bon exercice d'extraction de résultats avec **R**.
 
 Pour réaliser le test en bonne et due forme, trois tests d'hypothèse sont réalisés en séries. 
 
@@ -89,7 +69,7 @@ Pour réaliser le test en bonne et due forme, trois tests d'hypothèse sont réa
 
 Les étapes 2 et 3 visent à vérifier si le médiateur a bel et bien un rôle à jouer entre la variable indépendante et dépendante. Le rejet de l'une ou l'autre de ces trois hypothèses mènerait certainement à un statisticien à douter d'une relation entre les variables. Comment pourrait-il y avoir un lien indirect, si l'un de ces liens n'était pas soutenu par les données.
 
-En guise de quatrième test, les chercheurs suivant cette tradition testent si la médiation est *complète* ou *partielle*. La **médiation complète** signifie que l'entièreté du lien total entre $x$ et $y$ est maintenant attribuable à l'ajout de $m$. Ce résultat s'observe lorsque le lien direct entre $x$ et $y$ (lorsque $m$ est inclus pour prédire $y$) n'est pas significatif en comparaison à la première étape où le lien total, lui, était significatif. Si le lien direct entre $x$ et $y$ est toujours significatif, même après avoir ajouté le $m$ dans la prédiction de $y$, alors la **médiation est partielle**.
+En guise de quatrième test, les expérimentateurs suivant cette tradition testent si la médiation est *complète* ou *partielle*. La **médiation complète** signifie que l'entièreté du lien total entre $x$ et $y$ est maintenant attribuable à l'ajout de $m$. Ce résultat s'observe lorsque le lien direct entre $x$ et $y$ (lorsque $m$ est inclus pour prédire $y$) n'est pas significatif en comparaison à la première étape où le lien total, lui, était significatif. Si le lien direct entre $x$ et $y$ est toujours significatif, même après avoir ajouté le $m$ dans la prédiction de $y$, alors la **médiation est partielle**.
 
 La syntaxe montre comment la méthode d'étape causale pourrait être programmée dans **R**. Il y a trois régressions (`lm()`), une pour chaque test d'hypothèse et quatre étapes sous forme de conditionnel (les trois hypothèses plus le type de médiation). 
 
@@ -97,7 +77,8 @@ Si une des conditions (`if`) n'est pas respectée, le test retourne l'hypothèse
 
 Pour chaque régression, il faut extraire la valeur-$p$ de l'estimateur concerné. La valeur-$p$ se trouve dans le sommaire (`summary()`) du résultat de la régression (`etape`) dans la liste `coefficients`. Dans cette liste, il faut identifier la ligne (`"estimateur"`) à la colonne `"Pr(>|t|)"` qui correspond aux valeurs-$p$. Au final, l'extraction se commande  `summary(etape)$coefficients["estimateur", "Pr(>|t|)"]`. Pour bien fonctionner, les variables du jeu de données doivent se nommer `x`, `m` et `y`. 
 
-```{r BK}
+
+```r
 BK <- function(donnees, alpha = .05){
   # alpha est l'erreur de type I
   
@@ -148,7 +129,7 @@ BK <- function(donnees, alpha = .05){
 }
 ```
 
-Plusieurs raisons suggèrent de ne pas utiliser la méthode d'étape causale. D'abord, comme une série de tests d'hypothèse est réalisée, l'erreur de type\ I est différente de celle fixée. Il y a trois hypothèses nulles à rejeter, chacune ayant un seuil $\alpha$. La vraie erreur de type I est égale la probabilité de rejeter toutes ces hypothèses nulles accidentellement. Cela correspond à $\alpha^3$. Avec $\alpha=.05$, cela signifie que le taux est de $\alpha^3=.05^3= `r .05^3`$, ce qui est  bien plus stricte que l'erreur de type\ I fixée. Cela entraîne une perte de puissance, c'est-à-dire de trouver des effets indirects lorsqu'ils sont vrais.
+Plusieurs raisons suggèrent de ne pas utiliser la méthode d'étape causale. D'abord, comme une série de tests d'hypothèse est réalisée, l'erreur de type\ I est différente de celle fixée. Il y a trois hypothèses nulles à rejeter, chacune ayant un seuil $\alpha$. La vraie erreur de type I est égale la probabilité de rejeter toutes ces hypothèses nulles accidentellement. Cela correspond à $\alpha^3$. Avec $\alpha=.05$, cela signifie que le taux est de $\alpha^3=.05^3= 1.25\times 10^{-4}$, ce qui est  bien plus stricte que l'erreur de type\ I fixée. Cela entraîne une perte de puissance, c'est-à-dire de trouver des effets indirects lorsqu'ils sont vrais.
 
 Une seconde raison est que l'absence d'effet total entre la variable indépendante et dépendante n'est pas une hypothèse obligatoire. Autrement dit, la première étape, tester si $x$ est lié à $y$ sans tenir de compte de $m$, n'est pas recommander. Il peut exister des effets indirects théoriquement valides sans effets totaux. De plus, les deux autres hypothèses (étapes) ne sont pas obligatoire non plus (quoi qu'elles sont un peu plus dures à justifier) d'ailleurs. Il est tout à fait possible d'avoir des effets indirects significatifs dont les effets directs qui le compose sont non-significatifs^[Quoique dans ces cas, les effets directs sont souvent près d'être significatifs.]. 
 
@@ -167,7 +148,8 @@ où $z$ signifie qu'il s'agit d'un score-$z$, les $\beta$ sont les coefficients 
 
 La syntaxe suivante illustre une fonction qui calcule l'équation\ \@ref(eq:sobel). La syntaxe calcule deux régressions `m ~ x` et `m ~ x`. Du sommaire des résultats, elle extrait, les deux coefficients de régressions et leur erreur standard respective. Elle calcule enfin le score $z$ de l'équation\ \@ref(eq:sobel) avec la valeur-$p$ associée. Pour bien fonctionner avec cette fonction, les variables du jeu de données doivent se nommer `x`, `m` et `y`. 
 
-```{r mdm}
+
+```r
 mdm <- function(donnees, alpha = 0.05){
   # alpha est l'erreur de type I
   
@@ -199,9 +181,10 @@ mdm <- function(donnees, alpha = 0.05){
 }
 ```
 
-La raison selon laquelle il ne faut pas recourir au test de Sobel est que le calcul est asymptotique. En fait, la distribution de l'effet indirect tend vers la normalité lorsque la taille d'échantillon est grande. Cela a poussé les chercheurs à développer des corrections pour ce test afin de l'amélioré. La distribution des effets indirects peut facilement se programmer avec **R**. En se basant sur le chapitre [Simuler], il est possible de construire une petite illustration. D'abord, il faut créer une fonction qui crée des jeux de données, ici, `gen.ind.effect()` qui prend une matrice de covariance `Sigma` et une taille d'échantillon `n`. La fonction extrait ensuite les deux coefficients de régression et les multiplie. Noter la fonction `coef()` qui permet d'extraire plus simplement les coefficients de régression d'une sortie de `lm()` et `unname()` qui dénomme le résultat (facultatif, mais plus élégant pour la sortie)^[**R** conserve étrangement le nom des variables dans ce cas.]. 
+La raison selon laquelle il ne faut pas recourir au test de Sobel est que le calcul est asymptotique. En fait, la distribution de l'effet indirect tend vers la normalité lorsque la taille d'échantillon est grande. Cela a poussé les statisciens à développer des corrections pour ce test afin de l'amélioré. La distribution des effets indirects peut facilement se programmer avec **R**. En se basant sur le chapitre [Simuler], il est possible de construire une petite illustration. D'abord, il faut créer une fonction qui crée des jeux de données, ici, `gen.ind.effect()` qui prend une matrice de covariance `Sigma` et une taille d'échantillon `n`. La fonction extrait ensuite les deux coefficients de régression et les multiplie. Noter la fonction `coef()` qui permet d'extraire plus simplement les coefficients de régression d'une sortie de `lm()` et `unname()` qui dénomme le résultat (facultatif, mais plus élégant pour la sortie)^[**R** conserve étrangement le nom des variables dans ce cas.]. 
 
-```{r, cache = TRUE}
+
+```r
 # Pour la reproductibilité
 set.seed(1442)
 
@@ -230,15 +213,12 @@ gen.ind.effect <- function(Sigma, n){
 }
 ```
 
-```{r, cache = TRUE, echo = FALSE}
-# Répliquer 5000 la fonction `gen.ind.effect`
-test.ind <- replicate(n = 5000, 
-                      expr = gen.ind.effect(Sigma, n = 50))
-```
+
 
 Par la suite, la fonction `replicate()` permet de répéter `n` fois la fonction `expr`. Il faut bien distinguer le `n` (nombre de participants) de `gen.ind.effect()` de celui de `replicate()` (nombre de réplications). Enfin, un histogramme est produit pour présenter les résultats.
 
-```{r, eval = FALSE}
+
+```r
 # Répliquer 5000 la fonction `gen.ind.effect`
 test.ind <- replicate(n = 5000, expr = gen.ind.effect(Sigma, n = 50))
 
@@ -246,23 +226,12 @@ test.ind <- replicate(n = 5000, expr = gen.ind.effect(Sigma, n = 50))
 hist(test.ind, prob = TRUE)
 ```
 
-La Figure\ \@ref(fig:sobelhist) montre la distribution des effets indirects obtenus avec la simulation. La ligne correspond à la distribution gaussienne sous-jacente au test de Sobel. Dans le cas `n = 50` testé, il appert évident que les effets ne suivent pas exactement la distribution attendue. La distribution est centrée sur la bonne valeur $`r Sigma[2,1]` \times `r Sigma[3,2]` = `r prod(Sigma[c(2,6)])`$. La distribution est toutefois asymétrique.
+La Figure\ \@ref(fig:sobelhist) montre la distribution des effets indirects obtenus avec la simulation. La ligne correspond à la distribution gaussienne sous-jacente au test de Sobel. Dans le cas `n = 50` testé, il appert évident que les effets ne suivent pas exactement la distribution attendue. La distribution est centrée sur la bonne valeur $0.2 \times 0.3 = 0.06$. La distribution est toutefois asymétrique.
 
-```{r sobelhist, echo = FALSE, cache = TRUE, fig.cap="Distribution de l'effet indirect", fig.align='center'}
-beta_21 <- Sigma[2,1]
-beta_32 <- Sigma[3,2]
-SEa <- sqrt((1-beta_21^2)/50)
-SEb <- sqrt((1-beta_32^2)/50)
-SE <- sqrt(beta_21^2 * SEb^2 + beta_32^2 * SEa^2)
-ab <- beta_21 * beta_32
-hist(test.ind, 
-     prob=TRUE,
-     xlab = "Effets indirects", 
-     ylab = "Densite",
-     main = "", ylim=c(0,8), 
-     breaks = 30)
-lines(x <- seq(-.10,.75, by = .01), y = dnorm(x, mean = ab, sd = SE))
-```
+<div class="figure" style="text-align: center">
+<img src="16-Medier_files/figure-html/sobelhist-1.png" alt="Distribution de l'effet indirect" width="672" />
+<p class="caption">(\#fig:sobelhist)Distribution de l'effet indirect</p>
+</div>
 
 Le chapitre [Simuler] présente une technique statistique toute désignée lorsque la disbribution statistique n'est pas connue^[Celle des produits de variables aléatoires est connues, simplement fort complexe et soivent difficilement calculables [@Cui].], il s'agit du [bootstrap][Le bootstrap].
 
@@ -280,7 +249,8 @@ La technique la plus recommandée dans la littérature méthodologique est la m�
 
 Le test d'hypothèse de l'effet indirect n'échappe pas à cette logique.
 
-```{r}
+
+```r
 boot <- function(donnees, alpha = .05, nreps = 5000){
   # alpha est l'erreur de type I
   # nreps  est le nombre de répétitions
@@ -348,7 +318,8 @@ Pour l'exemple, $\mathbf{B}$ spécifie les coefficients de régression.
 
 
 
-```{r}
+
+```r
 # Pour la reproductibilité
 set.seed(1102)
 
@@ -405,10 +376,18 @@ Le jeu de données est créé en suivant les étapes de chapitre  [Créer]. Main
 
 Comme les fonctions maisons pour la méthode d'étape causale (`BK()`), la méthode delta multivarié (`mdm()`) et la méthode bootstrap (`boot()`), il est possible de les utiliser pour vérifier l'effet indirect.
 
-```{r testfonction}
+
+```r
 BK(donnees = jd)
+> L'effet indirect est significatif 
+>           et la médiation est partielle
+> [1] TRUE
 mdm(donnees = jd)
+> L'effet indirect est significatif
+> [1] TRUE
 boot(donnees = jd)
+> L'effet indirect est significatif
+> [1] TRUE
 ```
 
 Toutes les analyses confirment la présence d'un effet indirect.
@@ -421,7 +400,8 @@ Le défaut des fonctions maison (`BK()`, `mdm()` et `boot()`) est certainement q
 
 La fonction suivante extrait tous les coefficients de régression d'un modèle récursif. L'ordre des variables est ici d'une énorme importance, puisque c'est l'ordre des variables dans le jeu de données qui détermine l'ordre *causal* des variables: la première étant la *cause* de toutes, et la dernière l'*effet* de toutes.
 
-```{r analc}
+
+```r
 indirect <-  function(donnees){
   COV <- cov(donnees)   # Matrice de covariance
   p <- ncol(COV)        # Nombre de variables
@@ -494,7 +474,8 @@ indirect <-  function(donnees){
 
 Pour tester ce code, il vaut la peine de tester chacune des étapes de la syntaxe précédente avec une matrice de covariance.
 
-```{r}
+
+```r
 # Nombre de variables
 p <- 4
 
@@ -508,12 +489,18 @@ rownames(COV) <- letters[1:p]
 
 # Normalement, celle-ci serait obtenue d'un échantillon
 COV
+>   a b c d
+> a 3 2 1 4
+> b 2 6 2 5
+> c 1 2 5 1
+> d 4 5 1 4
 ```
 
 
 1. Transformer la matrice de covariance en matrice de coefficient de régression.
 
-```{r}
+
+```r
 # Les prochaines calcules la matrice de coefficients
 # régression. Le lecteur assidu aura reconnu 
 # la fonction `cov2beta()`
@@ -523,19 +510,33 @@ for(i in 1:(p-1)){
   BETA[i+1, 1:i] <- R
 }
 BETA
+>       [,1]  [,2]   [,3] [,4]
+> [1,] 0.000 0.000  0.000    0
+> [2,] 0.667 0.000  0.000    0
+> [3,] 0.143 0.286  0.000    0
+> [4,] 1.033 0.567 -0.233    0
 ```
 
 2. Vectoriser `BETA`. 
 
-```{r}
+
+```r
 # Extraire les coefficients de régression en vecteur
 est <- as.matrix(BETA[lower.tri(BETA)])
 est
+>        [,1]
+> [1,]  0.667
+> [2,]  0.143
+> [3,]  1.033
+> [4,]  0.286
+> [5,]  0.567
+> [6,] -0.233
 ```
 
 3. Libeller les effets directs.
 
-```{r}
+
+```r
 # Libellés des effets directs
 name <- colnames(COV)
 label <- matrix(name[combn(p, 2)], (p * (p-1) / 2), 2, byrow = TRUE)
@@ -545,11 +546,19 @@ row.names(est) <- rname
 # Beaucoup de syntaxe pour au final bien peu, mais
 # le résultat est élégant
 est
+>           [,1]
+> a -> b   0.667
+> a -> c   0.143
+> a -> d   1.033
+> b -> c   0.286
+> b -> d   0.567
+> c -> d  -0.233
 ```
 
 4. Lister tous les effets indirects possibles
 
-```{r}
+
+```r
 # Lister tous les effets indirects possibles
 if(p != 3){
   # S'il y a plus de 3 variables, identifier les niveaux supérieurs
@@ -560,13 +569,26 @@ if(p != 3){
   listeffects <- list((matrix(1:3, 3, 1)))
 }
 listeffects
+> [[1]]
+>      [,1] [,2] [,3] [,4]
+> [1,]    1    1    1    2
+> [2,]    2    2    3    3
+> [3,]    3    4    4    4
+> 
+> [[2]]
+>      [,1]
+> [1,]    1
+> [2,]    2
+> [3,]    3
+> [4,]    4
 ```
 
 Dans cet exemple, il y a deux niveaux d'effets indirects : un niveau à trois variables dont il y a quatre combinaisons possibles et un second niveau à quatre variables dont il n'y a qu'une combinaison.
 
 5. Extraire tous les effets indirects et les libeller adéquatement.
 
-```{r}
+
+```r
 # Extraire tous les effets indirects
 for(i in 1:length(listeffects)){    # Nombre de niveaux d'effet indirect
   J <- ncol(listeffects[[i]])       # Nombre d'effet du niveau i
@@ -581,11 +603,24 @@ for(i in 1:length(listeffects)){    # Nombre de niveaux d'effet indirect
   }
 }
 est
+>                     [,1]
+> a -> b            0.6667
+> a -> c            0.1429
+> a -> d            1.0333
+> b -> c            0.2857
+> b -> d            0.5667
+> c -> d           -0.2333
+> a -> b -> c       0.1905
+> a -> b -> d       0.3778
+> a -> c -> d      -0.0333
+> b -> c -> d      -0.0667
+> a -> b -> c -> d -0.0444
 ```
 
 6. Calculer les effets totaux de la première variable et mettre le tout en commun.
 
-```{r}
+
+```r
 # Ajout les effets totaux
 # Calculs
 totald <-  as.matrix(solve(COV[1,1], COV[p, 1]))
@@ -604,13 +639,28 @@ rownames(totald) <- paste("total effect",
 # Mettre le tout en commun
 estimates <- rbind(est, totali, totald)
 estimates
+>                          [,1]
+> a -> b                 0.6667
+> a -> c                 0.1429
+> a -> d                 1.0333
+> b -> c                 0.2857
+> b -> d                 0.5667
+> c -> d                -0.2333
+> a -> b -> c            0.1905
+> a -> b -> d            0.3778
+> a -> c -> d           -0.0333
+> b -> c -> d           -0.0667
+> a -> b -> c -> d      -0.0444
+> total indirect a -> d  0.3000
+> total effect a -> d    1.3333
 ```
 
 Magnifique! Toutefois, le statisticien ne s'intéresse rarement qu'aux coefficients de régression. Il aime aussi connaître l'erreur type (erreur standard), la valeur-$p$, ou peut-être même souhaite-t-il calculer un intervalle de confiance. Une solution bien simple qui ne nécessitera que peu de syntaxe, en plus de respecter les postulats sous-jacents à l'analyse de médiation est le bootstrap. Les éléments fondamentaux du bootstrap sont toujours les mêmes : prendre un jeu de données avec des unités rééchantillonnées aléatoirement avec remplacement, calculer les indices désirés, et réitérer un nombre élevé de fois.
 
 Avantageusement la fonction maison `indirect()` calcule tous les indices statistiques pertinents. Il ne reste que le rééchantillonnage et les réplications à programmer.
 
-```{r}
+
+```r
 # Le bootstrap de `indirect()` pour le 
 # jeu de données en exemple (trois variables)
 # Informations préliminaires
@@ -643,30 +693,104 @@ Resultats <- data.frame(
   CI.sup = apply(Est, 1, FUN = quantile, probs = 1-alpha/2)
 )
 Resultats
+>                       Estimates   S.E. CI.inf CI.sup
+> x -> m                    0.336 0.0930 0.1602  0.521
+> x -> y                    0.312 0.0616 0.1974  0.442
+> m -> y                    0.625 0.0731 0.4786  0.765
+> x -> m -> y               0.210 0.0608 0.0976  0.333
+> total indirect x -> y     0.210 0.0608 0.0976  0.333
+> total effect x -> y       0.521 0.0843 0.3641  0.691
 ```
 
 La variable `Resultats` contient tous les résultats pertinents. La colonne `Resultats$Estimates` retourne tous les coefficients de régression avec leur erreur type (erreur standard ou *standard error*) en deuxième colonne. Les dernières colonnes donnent les intervalles de confiance inférieurs et supérieurs. Comme aucune ne contient la valeur 0 au sein de son intervalle, alors elles sont toutes significatives.
 
-```{r resmed, fig.cap="Résultats de l'analyse de  médiation",echo=FALSE, fig.align="center",out.height="75%" , out.width="75%"}
-knitr::include_graphics("image//resmed.png")
-```
+<div class="figure" style="text-align: center">
+<img src="image//resmed.png" alt="Résultats de l'analyse de  médiation" width="75%" height="75%" />
+<p class="caption">(\#fig:resmed)Résultats de l'analyse de  médiation</p>
+</div>
 
 Les résultats sont illustrés dans la Figure\ \@ref(fig:resmed). Les coefficients sont ajoutés à leurs trajectoires respectivement. Par bonnes mesures, des étoiles de significativité, *, l'ultime symbole de découvertes scientifiques,  sont ajoutés aux trajectoires dont les intervalles de confiance n'incluent pas 0. Il ne reste qu'à rapporter l'effet indirect dans le texte ou un tableau d'un article scientifique, comme le tableau \@ref(tab:res).
 
-```{r res, echo = FALSE}
-kbl(Resultats, align = "c", booktabs=TRUE, caption = "Résultats de l'analyse de médiation") %>%  
-  kable_classic(full_width = FALSE)  %>%  
-  kable_styling(position = "center", latex_options = "HOLD_position")
-```
+<table class=" lightable-classic table" style='font-family: "Arial Narrow", "Source Sans Pro", sans-serif; width: auto !important; margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto;'>
+<caption>(\#tab:res)Résultats de l'analyse de médiation</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;">   </th>
+   <th style="text-align:center;"> Estimates </th>
+   <th style="text-align:center;"> S.E. </th>
+   <th style="text-align:center;"> CI.inf </th>
+   <th style="text-align:center;"> CI.sup </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> x -&gt; m </td>
+   <td style="text-align:center;"> 0.336 </td>
+   <td style="text-align:center;"> 0.093 </td>
+   <td style="text-align:center;"> 0.160 </td>
+   <td style="text-align:center;"> 0.521 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> x -&gt; y </td>
+   <td style="text-align:center;"> 0.312 </td>
+   <td style="text-align:center;"> 0.062 </td>
+   <td style="text-align:center;"> 0.197 </td>
+   <td style="text-align:center;"> 0.442 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> m -&gt; y </td>
+   <td style="text-align:center;"> 0.625 </td>
+   <td style="text-align:center;"> 0.073 </td>
+   <td style="text-align:center;"> 0.479 </td>
+   <td style="text-align:center;"> 0.765 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> x -&gt; m -&gt; y </td>
+   <td style="text-align:center;"> 0.210 </td>
+   <td style="text-align:center;"> 0.061 </td>
+   <td style="text-align:center;"> 0.098 </td>
+   <td style="text-align:center;"> 0.333 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> total indirect x -&gt; y </td>
+   <td style="text-align:center;"> 0.210 </td>
+   <td style="text-align:center;"> 0.061 </td>
+   <td style="text-align:center;"> 0.098 </td>
+   <td style="text-align:center;"> 0.333 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> total effect x -&gt; y </td>
+   <td style="text-align:center;"> 0.521 </td>
+   <td style="text-align:center;"> 0.084 </td>
+   <td style="text-align:center;"> 0.364 </td>
+   <td style="text-align:center;"> 0.691 </td>
+  </tr>
+</tbody>
+</table>
 
 Calculer les valeurs-$t$ et valeurs-$p$ est envisageable en utilisant les résultats déjà recueillis. La valeur-$t$ est le ratio entre l'estimateur et son erreur type, la valeur-$p$ est la rareté d'observer cette valeur-$t$ ou une valeur plus rare par rapport à l'hypothèse nulle avec un degré de liberté de `dl = n - p`, soit plus exactement le nombre d'unités moins le nombre de variables indépendantes.
 
-```{r}
+
+```r
 Resultats$t.value <- Resultats$Estimates / Resultats$S.E.
 Resultats$p.value <- (1 - pt(abs(Resultats$t.value), df = n - p)) * 2
 
 # Résultats arrondis à 2 décimales
 round(Resultats, 2)
+>                       Estimates S.E. CI.inf CI.sup t.value
+> x -> m                     0.34 0.09   0.16   0.52    3.61
+> x -> y                     0.31 0.06   0.20   0.44    5.06
+> m -> y                     0.63 0.07   0.48   0.76    8.55
+> x -> m -> y                0.21 0.06   0.10   0.33    3.45
+> total indirect x -> y      0.21 0.06   0.10   0.33    3.45
+> total effect x -> y        0.52 0.08   0.36   0.69    6.19
+>                       p.value
+> x -> m                      0
+> x -> y                      0
+> m -> y                      0
+> x -> m -> y                 0
+> total indirect x -> y       0
+> total effect x -> y         0
 ```
 
 Si les coefficients de régression standardisés sont préférés, ceux-ci s'obtiennent simplement en standardisant le jeu de données, puis en roulant l'analyse de médiation de nouveau. Pour standardiser rapidement, `z.donnees = apply(donnees, MARGIN = 2, FUN = scale)` applique (`apply()`) la fonction `FUN = scale` qui standardise les données (`donnees`) par colonne `MARGIN = 2`. 

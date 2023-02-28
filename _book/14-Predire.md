@@ -1,7 +1,6 @@
-# (PART) Modèles linéaires {-}
 # Prédire
 
-Un objectif des chercheurs est généralement de développer des modèles afin de faire des prédictions à partir d'un échantillon. Les statistiques sont des outils idéaux pour développer ces modèles. La régression est l'une des analyses fondamentales pour réaliser cette objectif et constitue en quelques sortes les fondements de biens des méthodes récentes (comme l'apprentissage machine). 
+Un objectif des expérimentateurs est généralement de développer des modèles afin de faire des prédictions à partir d'un échantillon. Les statistiques sont des outils idéaux pour développer ces modèles. La régression est l'une des analyses fondamentales pour réaliser cette objectif et constitue en quelques sortes les fondements de biens des méthodes récentes (comme l'apprentissage machine). 
 
 L'objectif de la régression est de décrire la relation entre un variable dépendante et un ensemble de variables indépendantes. Un aperçu est donnée à la section sur [l'association linéaire] dans le chapitre [Analyser]. Ce présent chapitre débute avec la notion de covariance et l'étend jusqu'à celle de régression. Des techniques rudimentaires de création de données sont présentées. Par la suite, les mathématiques et la programmation sous-jacente au modèle linéaire sont illustrées. 
 
@@ -34,7 +33,8 @@ s_{x_j,x_k}=\frac{1}{n-1}\sum_{i=1}^n(x_{i,j})(x_{i,k})
 
 Avantageusement, lorsque $j=k$, les équations \@ref(eq:cov2) et \@ref(eq:cov3) calculent la variance de la variable correspondante. En syntaxe **R,** ces équations s'écrivent dans une fonction comme la suivante. Pour rappel, la fonction `cov()` dans laquelle une matrice de données est passée comme argument fournit la matrice de covariance.
 
-```{r, id = "covlin", eval = FALSE}
+
+```r
 covariance1 <- function(X){ 
   # X est un jeu de données
   Xc <- scale(X, scale = FALSE)  # Centrées les variables
@@ -62,62 +62,16 @@ Dans le code **R** ci-dessus, les fonctions `ncol()` et `nrow()` extraient le no
 Il est relativement aisé d'exprimer graphiquement la covariance bivariée. L'équation\ \@ref(eq:cov3) rappelle l'aire d'un rectangle. Pour chaque paire $(x_i,y_i)$, un rectangle peut être dessiner à partir du centre $(0, 0)$ jusqu'au $(x_i,y_i)$. La Figure\ \@ref(fig:covfig) montre quatre exemples de ces rectangles. Lorsque la moyenne d'une variable est soustraite, les données deviennent centrées sur le point $(0, 0)$. L'expression $xy$ ou $x_ix_j$ rappelle le calcul de l'aire d'un rectangle. C'est effectivement ce qui se produit pour la covariance. L'équation calcule l'aire du rectangle formé par les points $(0,0)$ et $(x_i,y_i)$. En fait, l'équation\ \@ref(eq:cov1) calcule le rectangle *moyen* dont la somme des produits est divisée par le nombre de rectangles moins 1, soit $(n-1)$.
 
 
-```{r covfig, echo = FALSE, fig.cap = "Illustration de la covariance", out.height="75%", out.width="75%", fig.align="center"}
-
-point = data.frame(Variable1 = c(-1, 1, 2, -2), 
-                   Variable2 = c(2, -2, 1, -2), 
-                   Type = c("negatif","negatif","positif","positif"))
-point %>% 
-  ggplot(aes(Variable1, Variable2)) + 
-  geom_rect(mapping = aes(xmin = c(0,0,0,0), 
-                          ymin = c(0,0,0,0), 
-                          xmax = Variable1, 
-                          ymax = Variable2, 
-                          fill = Type),
-            color = "black",
-            alpha = 1) +
-  scale_fill_manual(values = c("black", "white")) +
-  geom_point()+  
-  geom_vline(xintercept = 0) +
-  geom_hline(yintercept = 0) +
-  theme(panel.border = element_blank()) +
-  annotate("text", 
-           x = c(-1.25,1.25), 
-           y = c(-1.25,1.25), 
-           label = "+", size = 20) +
-  annotate("text", 
-           x = c(-1.25,1.25), 
-           y = c(1.25,-1.25), 
-           label = "-", size = 20)
-
-```
+<div class="figure" style="text-align: center">
+<img src="14-Predire_files/figure-html/covfig-1.png" alt="Illustration de la covariance" width="75%" height="75%" />
+<p class="caption">(\#fig:covfig)Illustration de la covariance</p>
+</div>
 
 
-```{r covfig2, echo = FALSE, fig.cap = "Illustration des produits (rectangles) pour différentes valeurs de covariance", fig.align="center"}
-set.seed(1515)
-#par(nrow = 5)
-s = c(-5, -3,-1,1, 3, 5)
-DATA = as.numeric()
-for(i in 1:length(s)){
-  S = matrix(c(7, s[i], s[i],7), 2, 2)
-  X = MASS::mvrnorm(n = 30, Sigma = S, mu = c(0, 0))
-  DATA = rbind(DATA,cbind(X,s[i]))
-}
-DATA = data.frame(DATA)
-colnames(DATA) = c("Variable1", "Variable2", "Covariance")
-DATA %>% 
-  mutate(Type = ifelse((Variable1*Variable2) >= 0,
-                       "Positif", "Negatif")) %>% 
-  ggplot(aes(Variable1, Variable2)) + 
-  geom_rect(mapping = aes(xmin = rep(0,dim(DATA)[1]), 
-                          ymin = rep(0,dim(DATA)[1]), 
-                          xmax = Variable1, 
-                          ymax = Variable2, 
-                          fill = Type)) +
-  scale_fill_manual(values = alpha(c("black", "white"),c(.5,1))) +
-  geom_point(size=.5, alpha =.5) +
-  facet_wrap(~Covariance, labeller = label_bquote(Covariance == .(Covariance)))
-```
+<div class="figure" style="text-align: center">
+<img src="14-Predire_files/figure-html/covfig2-1.png" alt="Illustration des produits (rectangles) pour différentes valeurs de covariance" width="672" />
+<p class="caption">(\#fig:covfig2)Illustration des produits (rectangles) pour différentes valeurs de covariance</p>
+</div>
 
 Les Figures\ \@ref(fig:covfig)\ et\ \@ref(fig:covfig2) permettent d'inférer quelques propriétés de la covariance.
 
@@ -134,30 +88,7 @@ Les Figures\ \@ref(fig:covfig)\ et\ \@ref(fig:covfig2) permettent d'inférer que
 * Le paramètre de la corrélation de la population peut être conceptualisé comme un carré déformé en rectangle à cause de l'erreur de mesure des axes.
 
 
-```{r covfig3, eval = FALSE, echo = FALSE, fig.cap = "Illustration de l'information et du résidu", out.height="75%", out.width="75%", fig.align = "center"}
-# À terminer
-point = data.frame(Variable1 = c(1), 
-                   Variable2 = c(2))
-point %>% 
-  ggplot(aes(Variable1, Variable2)) + 
-  geom_rect(mapping = aes(xmin = c(0), 
-                          ymin = c(0), 
-                          xmax = Variable1, 
-                          ymax = Variable2),
-            color = "black",
-            linetype = "dotted", alpha =0
-  ) +
-  geom_rect(mapping = aes(xmin = c(0), 
-                          ymin = c(0), 
-                          xmax = 1, 
-                          ymax = 1,
-                          color = "black",alpha = 0))+
-  xlim(-1,2) +
-  ylim(-1,3) + 
-  geom_vline(xintercept = 0) +
-  geom_hline(yintercept = 0) +
-  geom_abline(slope = 1, intercept = 0)
-```
+
 
 
 ### La covariance en termes d'algèbre matricielle
@@ -211,7 +142,8 @@ x_{n,1} & x_{n,2} \\
 
 L'équation \@ref(eq:covmat2) illustre l'équation \@ref(eq:covmat1) qui sont toutes les deux équivalentes à \@ref(eq:cov3). En termes de syntaxe **R**, elles peuvent être traduites comme suit.
 
-```{r, eval = FALSE, id = "covmat"}
+
+```r
 covariance2 = function(X){
   # X est une jeu de données ou matrice de n sujets par p variables
   n <- nrow(X)
@@ -250,7 +182,8 @@ Pour transformer la matrice de covariance en matrice de corrélation, trois tech
 
 La première est de standardiser $\mathbf{X}$ préalablement au calcul de la covariance.
 
-```{r, eval=FALSE}
+
+```r
 Xz <- scale(X)
 n <- nrow(x)
 cor.X <- t(Xz) %*% Xz / (n - 1)
@@ -288,7 +221,8 @@ Le calcul complet de l'équation\ \@ref(eq:obtD1) en ajoutant \@ref(eq:obtD2) es
 \end{equation}
 
 En code **R**, l'équation \@ref(eq:cov2cor) se traduit ainsi. 
-```{r, eval = FALSE}
+
+```r
 R = solve(diag(sqrt(diag(S)))) %*% S %*% solve(diag(sqrt(diag(S))))
 ```
 
@@ -338,24 +272,10 @@ Le ratio $\frac{\sigma^2_{\epsilon}}{\sigma^2_y}$ représente la proportion de v
 Pour aller un peu plus loin, dans un modèle bivarié, le coefficient de détermination correspond au coefficient de corrélation au carré, $r^2$, la force du lien entre $x$ et $y$. La valeur $1-r^2$ correspond donc la variance des résidus standardisés, $\sigma^2_{\epsilon}$.
 
 
-```{r modlinf, fig.cap="Diagramme de dispersion", fig.align="center", out.height="80%",out.width="80%", cache = TRUE, echo = FALSE}
-set.seed(2)
-R = matrix(c(1,.9,.9,1), 2, 2)
-X = data.frame((MASS::mvrnorm(n = 10, mu = c(0,2), Sigma = R)))
-colnames(X) = c("x","y")
-res.lm <- lm(y~x, X)
-res <- coef(res.lm)
-plot(X, pch = 19 , bty = "n",lwd = 2, xlim = c(-1, 2), ylim = c(-1,5), yaxs="i")
-segments(x0 = -3, y0 = 0, x1 = 3, y1 = 0, col = "grey")
-segments(x0 =  0, y0 = -1, x1 = 0, y1 = 5, col = "grey")
-segments(x0 = -4, y0 = res[1]+res[2]*-4, x1 = 3, y1 = res[1]+res[2]*3, lwd = 2, lty = "dashed")
-segments(x0 = 0, y0 = 0, x1 = 0, y1 = res[1],lwd = 2, lty = "dashed")
-segments(x0 = X$x, y0 = predict(res.lm), x1 = X$x, y1 = X$y, col = "grey", lwd = 1)
-text(x = 1, y = 3.6, labels = expression(beta[1]))
-text(x = .15, y = 1, labels = expression(beta[0]))
-text(x = .75, y = 2.15, labels = expression(epsilon[i]))
-text(x = .80, y = 1.6, labels = expression(paste("(",x[i],", ",y[i],")")))
-```
+<div class="figure" style="text-align: center">
+<img src="14-Predire_files/figure-html/modlinf-1.png" alt="Diagramme de dispersion" width="80%" height="80%" />
+<p class="caption">(\#fig:modlinf)Diagramme de dispersion</p>
+</div>
 
 
 ### L'analyse de régression
@@ -403,7 +323,8 @@ Le ratio $\frac{B}{\text{se}_B} \sim t_{n-p-1}$, soit le quotient d'un estimateu
 
 Quelques détails sont importants à considérer pour la programmation. Afin d'ajouter l'intercepte (pour estimer $\beta_0$), la solution la plus simple est d'ajouter un vecteur d'unité (un vecteur ne contenant que des $1$) à la matrice $\mathbf{X}$. En programmation **R**, l'inversion de matrice se fait par la fonction `solve()` et non pas avec un signe d'exposant. En syntaxe **R**, la régression s'écrit comme ceci.
 
-```{r}
+
+```r
 regression <- function(y, X){
   # Taille d'échantillon et nombre de variables
   n <- nrow(X)
@@ -444,7 +365,8 @@ Le modèle linéaire peut aussi contenir des variables nominales dans la mesure 
 
 Une façon simple et efficace de créer des données à ce stade est la package `MASS` dont un aperçu a été donné dans le chapitre [Analyser].
 
-```{r, eval = FALSE}
+
+```r
 # Création de la matrice de covariance pour p = 3
 p <- 3   # Nombre de variables
 Sigma <- matrix(c(s11, s12, s13,
@@ -475,7 +397,8 @@ Il convient d'écrire $\mathbf{\Sigma}$ (sigma majuscule) et $\sigma$ (sigma min
 
 Une autre façon de créer des données en fonction d'un modèle linéaire plutôt qu'à partir de la matrice de corrélation (comme avec `MASS`) est de reprendre l'équation \@ref(eq:modlin) et de spécifier les paramètres libre. D'abord, il faut  remplacer les paramètres du modèle par des valeurs, $\beta_0$ et $\beta_1$, pour ensuite créer deux variables aléatoires de taille $n$ (la taille d'échantillon), une première pour $x$ et une seconde pour $\epsilon$. Les hypothèses sous-jacentes aux modèles linéaires assument que l'erreur ($\epsilon$) est distribuée normalement (avec implicitement une moyenne de 0), la fonction `rnorm()` pourra jouer le rôle. Pour $x$, il n'y a pas de distribution à respecter, mais une distribution normale fait très bien l'affaire. Voici un exemple de code **R**. En spécifiant une taille d'échantillon très grande `n = 10000`, l'erreur échantillonnalle est considérablement réduite.
 
-```{r}
+
+```r
 n <- 10000 # Taille d'échantillon
 # Les betas
 beta0 <- 5
@@ -500,7 +423,7 @@ Cette méthode de création de données possède toutefois des limites. Principa
 (\#eq:eqrho)
 \end{equation}
 
-Certaines valeurs sont déjà connues, car préspécifiées par l'utilisateur, $\beta_1 = `r beta1`$ et $\sigma_x = 1$. Qu'en est-il de $\sigma_y$? L'utilisateur n'a pas spécifié la valeur de la variance de $y$, il a plutôt choisi la valeur de la variance de l'erreur résiduelle, $\sigma^2_{\epsilon}$. [La loi de la somme des variances] permet de calculer cette valeur. Pour le lecteur intéressé, les réponses sont $\sigma^2_y = \beta_1^2\sigma^2_x+\sigma^2_{\epsilon} = 10$ et donc $\rho_{x,y} = \frac{\beta_1 \sigma_x}{\sigma_y} = `r beta1/sqrt(10)`$ (les détails sont présentés dans le chapitre [Créer]).
+Certaines valeurs sont déjà connues, car préspécifiées par l'utilisateur, $\beta_1 = 1$ et $\sigma_x = 1$. Qu'en est-il de $\sigma_y$? L'utilisateur n'a pas spécifié la valeur de la variance de $y$, il a plutôt choisi la valeur de la variance de l'erreur résiduelle, $\sigma^2_{\epsilon}$. [La loi de la somme des variances] permet de calculer cette valeur. Pour le lecteur intéressé, les réponses sont $\sigma^2_y = \beta_1^2\sigma^2_x+\sigma^2_{\epsilon} = 10$ et donc $\rho_{x,y} = \frac{\beta_1 \sigma_x}{\sigma_y} = 0.316$ (les détails sont présentés dans le chapitre [Créer]).
 
 La limite liée à la méthode de création de données est maintenant flagrante. En plus de ne pas connaître la corrélation entre les variables, la variance de $y$ n'est pas connue a priori. La stratégie de spécification est ainsi de choisir des valeurs et d'espérer qu'elles soient conformes aux attentes. Pire, s'il y avait plusieurs variables indépendantes, elles seraient toutes non corrélées entre elles, alors que l'utilisateur pourrait vouloir autrement, mais cette première technique ne le permet pas.
 
@@ -524,7 +447,8 @@ où l'équation \@ref(eq:modling) correspond à la généralisation de l'équati
 
 où $\mathbf{R}$ est la matrice de corrélation et $\mathbf{B}$ est le vecteur contenant tous les $\beta$ standardisés. Pour assurer un scénario standardisé $\sigma^2_y = 1$. La seule condition sous-jacente à l'équation \@ref(eq:emat) est de s'assurer que $\sigma^2_{\epsilon} > 0$, c'est-à-dire en vérifiant que $\mathbf{B}^{\prime}\mathbf{R}\mathbf{B} < \sigma^2_y$, autrement la variance est négative, ce qui est impossible. En termes de syntaxe **R**, l'équation \@ref(eq:emat) correspond à ceci.
 
-```{r , eval = FALSE}
+
+```r
 # Cacluler la variance de epsilon
 var_e = var_y - t(B) %*% R %*% B
 ```
@@ -544,7 +468,8 @@ $$
 $$
 Une fois les données de $\mathbf{X}$ créées, avec la fonction `MASS::mvrnorm()`, comme il a été fait précédemment, il suffit de multiplier $\mathbf{X}$ avec $\mathbf{B}$ et d'ajouter la variable aléatoire $\epsilon$ avec la variance appropriée pour obtenir la variable dépendante $y$.
 
-```{r}
+
+```r
 set.seed(42)  # Pour reproductibilité
 n <- 1000      # Taille d'échantillon
 k <- 3         # Nombre de variables indépendantes
@@ -575,13 +500,26 @@ jd <- data.frame(y = y, X = X)
 # Quelques vérifications
 # Les données
 head(jd)
+>        y    X.1    X.2     X.3
+> 1  0.635 -0.956 -2.567  0.3239
+> 2 -0.264  0.672 -0.172  0.5200
+> 3  0.341  0.885 -1.369 -0.6387
+> 4 -0.602  0.778 -1.104 -1.2678
+> 5  0.401  0.360  0.286 -1.4336
+> 6 -1.076 -0.210  0.621 -0.0399
 
 # La matrice de corrélation entre les variables indépendantes
 # Très près des valeurs choisies à la troisième décimale
 cor(X)
+>       [,1]  [,2]  [,3]
+> [1,] 1.000 0.188 0.279
+> [2,] 0.188 1.000 0.136
+> [3,] 0.279 0.136 1.000
 
 # La variance de y (encore une fois très près)
 var(y)
+>      [,1]
+> [1,] 1.03
 ```
 
 Maintenant, il est possible de *déstandardisé* `X` et `y` en additionnant des moyennes ou multipliant par des écarts types à chaque variable.
@@ -602,42 +540,10 @@ Les deux premiers points sont davantage méthodologiques que statistiques bien q
 
 Les deux autres considérations, qui sont elles d'ordre statistique, concernent les résidus (l'écart entre la prédiction et les valeurs réelles de $y$). Les distributions des variables n'ont pas à être normales;  elles peuvent suivre différentes distributions de probabilités. Par contre, l'erreur résiduelle, elle, doit être normalement distribuées. Il s'agit d'un postulat de l'estimation des moindres carrés. La dernière hypothèse concerne la variance résiduelle homoscédastique, c'est-à-dire que l'écart entre les résidus et les valeurs prédites restent *constantes,* peu importe le niveau sur la droite de régression. Si ce n'est pas le cas pour l'une ou l'autre, c'est qu'une variable théorique important est vraisemblablement négligée ou qu'une des relations n'est pas linéaire entre les variables. 
 
-```{r courbe, echo = FALSE, fig.cap = "Différentes formes de relation", fig.align="center", out.height="80%",out.width="80%",message=FALSE,warning=FALSE}
-
-set.seed(42)
-x1 = -100:100
-n = length(x1)
-y = -x1^2 
-y1 = scale(y) + rnorm(n, sd = .5)
-x1 = scale(x1)
-x2 = rnorm(n)
-y2 = .9 * x2 + sqrt(1-.9^2) * rnorm(n)
-y3 = x2^3 - 2 * x2 + rnorm(n, sd = .5)
-c1 = cov(x1,y1)
-c2 = cov(x2,y2)
-c3 = cov(x2,y3)
-
-x = c(x1, x2, x2)
-y = c(y1, y2, y3)
-id = rep(c("Curvilineaire (2e)","Lineaire (1er)","Curvilineaire (3e)"), each = n)
-
-courbe = tibble(x = x,
-                y = y,
-                id = forcats::as_factor(id))
-
-courbe %>% 
-  mutate(y = case_when(
-    (y < -2) ~ -2+y/10,
-    y > 2 ~ 2+y/10,
-    TRUE ~ y
-  )) %>% 
-  ggplot(mapping = aes(x = x, y = y), label = label) +
-  geom_point(color ="grey") + 
-  geom_smooth(method=lm, se = FALSE, linetype = "dashed", color = "black") +
-  facet_wrap(~id) + 
-  papaja::theme_apa() + 
-  ggpubr::stat_cor(aes(label = ..r.label..), r.digits = 3)
-```
+<div class="figure" style="text-align: center">
+<img src="14-Predire_files/figure-html/courbe-1.png" alt="Différentes formes de relation" width="80%" height="80%" />
+<p class="caption">(\#fig:courbe)Différentes formes de relation</p>
+</div>
 
 
 ### L'analyse de régression avec **R**
@@ -653,16 +559,45 @@ courbe %>%
 
 Pour écrire le modèle en syntaxe **R**, il faut remplacer les $x$ par le nom des variables dans le jeu de données, utiliser le `~` (tilde) pour délimiter les variables dépendantes à gauche des variables indépendantes à droite. Les variables indépendantes sont délimitées, comme dans l'équation \@ref(eq:modling), par des signes d'addition `+`. Il est aussi de définir des effets d'interaction (modération) avec le signe de multiplication `*` (la section [Modérer] approfondie davantage ce sujet). Les symboles `-` (soustraction) et `/` (division) ne fonctionnent pas. L'intercepte ($\beta_0$) est ajouté par défaut. La fonction n'exige pas de mettre la formule entre guillemets^[Il faudrait le faire par contre si la formule est utilisée comme variable, par exemple, `formule = "y ~ x1 + x2 + x3" ` pour indiquer qu'il s'agit de texte.].
 
-```{r, cache=TRUE}
+
+```r
 # Créer un jeu de données à partir 
 # des variables de la syntaxe précédente
 res.lm <- lm(formula = y ~ X.1 + X.2 + X.3, data = jd)
 
 # Les résultats
 res.lm
+> 
+> Call:
+> lm(formula = y ~ X.1 + X.2 + X.3, data = jd)
+> 
+> Coefficients:
+> (Intercept)          X.1          X.2          X.3  
+>     -0.0171       0.2139      -0.5520       0.3095
 
 # Sommaire des résultats
 summary(res.lm)
+> 
+> Call:
+> lm(formula = y ~ X.1 + X.2 + X.3, data = jd)
+> 
+> Residuals:
+>     Min      1Q  Median      3Q     Max 
+> -2.5227 -0.5546 -0.0119  0.5513  2.5762 
+> 
+> Coefficients:
+>             Estimate Std. Error t value Pr(>|t|)    
+> (Intercept)  -0.0171     0.0253   -0.68      0.5    
+> X.1           0.2139     0.0266    8.03  2.7e-15 ***
+> X.2          -0.5520     0.0258  -21.42  < 2e-16 ***
+> X.3           0.3095     0.0263   11.76  < 2e-16 ***
+> ---
+> Signif. codes:  
+> 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+> 
+> Residual standard error: 0.8 on 996 degrees of freedom
+> Multiple R-squared:  0.383,	Adjusted R-squared:  0.381 
+> F-statistic:  206 on 3 and 996 DF,  p-value: <2e-16
 ```
 
 Pour ajouter une variable, il suffit de `VD ~ VI1 + VI2`; pour ajouter un effet d'interaction, il est possible de faire `VD ~ VI1 * VI2`. Pour ajouter une variable nominale (catégorielle), il suffit d'ajouter la variable comme n'importe quelles autres `x`, mais en s'assurant bien qu'elle soit désignée comme un facteur dans le jeu de données. Si ce n'était pas le cas, la fonction `as.factor()` corrige la situation.
@@ -673,24 +608,29 @@ Tous les éléments peuvent être extraits avec `summary(res.lm)$...` en rempla�
 
 Les résultats de `lm()` sont comparables avec la fonction maison `regression()` expliquée auparavant à la section [L’analyse de régression].
 
-```{r}
+
+```r
 regression(y = jd$y, X = jd[ ,2:4])
+>           Estimate Std.Error t.value  p.value
+> intercept  -0.0171    0.0253  -0.677 4.99e-01
+> X.1         0.2139    0.0266   8.034 2.66e-15
+> X.2        -0.5520    0.0258 -21.417 5.52e-84
+> X.3         0.3095    0.0263  11.757 5.63e-30
 ```
 
 
-```{r, echo = FALSE}
-ss = summary(res.lm)
-```
+
 
 Un manuscrit rapporte les résultats à peu prêt comme ceci.
 
-> Le modèle tester obtient un coefficient de détermination de $R^2(`r ss$df[2]`) = `r ss$r.squared`, p < .001$. Les trois prédicteurs sont liés significativement à la variable dépendante, respectivement $X_1: \beta_1 = `r ss$coefficients[2, "Estimate"]`$, $p = < .001$, $X_2: \beta_2 = `r ss$coefficients[2, "Estimate"]`$, $p = < .001$, $X_3: \beta_3 = `r ss$coefficients[4, "Estimate"]`$, $p = < .001$. 
+> Le modèle tester obtient un coefficient de détermination de $R^2(996) = 0.383, p < .001$. Les trois prédicteurs sont liés significativement à la variable dépendante, respectivement $X_1: \beta_1 = 0.214$, $p = < .001$, $X_2: \beta_2 = 0.214$, $p = < .001$, $X_3: \beta_3 = 0.31$, $p = < .001$. 
 
 Évidemment, comme l'exemple est artificiel, il y a peu de chose à dire sans devoir fabriquer de toutes pièces des interprétations alambiquées bien que cela s'avère bénéfique pour la carrière de certains.
 
 Pour vérifier la qualité des résultats, il faut vérifier la distribution des résidus. Pour ce faire, il faut extraire les résidus et les valeurs prédites. Pour la création de graphiques, il est plus simple d'ajouter ces scores au jeu de données. Les fonctions `resid()` et `predict()` extraient les résidus et les prédictions en y insérant comme argument le sommaire de la fonction `lm()` obtenu avec les données.
 
-```{r}
+
+```r
 # Ajouter les résidus et scores prédits à la base de données
 # avec la fonction `resid()`
 jd$residu <- resid(res.lm)
@@ -699,23 +639,35 @@ jd$predit <- predict(res.lm)
 
 Une fois ces valeurs extraites, le package `ggplot2` permet de réaliser rapidement des graphiques (voir  [Visualiser]), comme le diagramme de dispersion à la Figure\ \@ref(fig:respred) ou l'histogramme des résidus à la Figure\ \@ref(fig:reshist). Dans les meilleures situations, les résidus sont distribués normalement dans l'histogramme et aucune tendance n'est discernable dans le diagramme de dispersion. Si ce n'est pas le cas, il faut étudier davantage la situation, par exemple, une relation non linéaire imprévue. Les Figures\ \@ref(fig:respred)\ et\ \@ref(fig:reshist) ne signalent aucun problème, ce qui est attendu considérant la création des données employées.
 
-```{r respred, fig.cap = "Relation entre prédicitons et résidus", fig.align="center", out.height="75%",out.width="75%" }
+
+```r
 # Diagramme de dispersion prédits par résidus
 jd %>% 
   ggplot(mapping = aes(x = predit, y = residu)) + 
   geom_point() 
 ```
 
-```{r reshist, fig.cap = "Histogramme des résidus", fig.align="center", out.height="75%",out.width="75%", warning = FALSE, message = FALSE}
+<div class="figure" style="text-align: center">
+<img src="14-Predire_files/figure-html/respred-1.png" alt="Relation entre prédicitons et résidus" width="75%" height="75%" />
+<p class="caption">(\#fig:respred)Relation entre prédicitons et résidus</p>
+</div>
+
+
+```r
 # Histogramme des résidus
 jd %>% 
   ggplot(mapping = aes(x = residu)) + 
   geom_histogram()
 ```
 
+<div class="figure" style="text-align: center">
+<img src="14-Predire_files/figure-html/reshist-1.png" alt="Histogramme des résidus" width="75%" height="75%" />
+<p class="caption">(\#fig:reshist)Histogramme des résidus</p>
+</div>
+
 ## La matrice de corrélation partielle et semi partielle
 
-En plus de la matrice de corrélation, deux autres types de corrélation peuvent intéressés le chercheur : les corrélations partielles et les corrélations semi partielles. La présentation est faite en terme d'algèbre matricielle, ce qui facilite substantiellement les calculs et la programmation.
+En plus de la matrice de corrélation, deux autres types de corrélation peuvent intéressés l'expérimentateur : les corrélations partielles et les corrélations semi partielles. La présentation est faite en terme d'algèbre matricielle, ce qui facilite substantiellement les calculs et la programmation.
 
 ### Les corrélations partielles
 
@@ -728,7 +680,8 @@ La corrélation partielle mesure le degré d'association *symétrique* entre deu
 
 La formule pour calculer $\mathbf{D}_{\mathbf{S}^{-1}}$ est la même que l'équation\ \@ref(eq:obtD2), mais où $\mathbf{S}$ est remplacée par $\mathbf{S}^{-1}$. En code **R**, l'équation\ \@ref(eq:partielle) devient la syntaxe suivante.
 
-```{r, eval = FALSE}
+
+```r
 # La matrice de corrélation partielle
 Rp <- -cov2cor(solve(S))
 ```
@@ -748,7 +701,8 @@ Le calcul de la matrice de corrélation semi partielle part de la matrice de cor
 
 Voici l'équation en code **R**.
 
-```{r, eval = FALSE}
+
+```r
 # La matrice de corrélation semi partielle
 iS <- solve(S)
 Rsp <- -cov2cor(iS) / 
@@ -773,7 +727,8 @@ La section suivante développe un exemple afin de comparer la corrélation parti
 
 Le code suivant calcule la matrice de corrélation partielle et semi partielle en fonction des équations\ \@ref(eq:partielle)\ et\ \@ref(eq:semipartielle).
 
-```{r}
+
+```r
 # Créer une matrice de covariance
 # avec des libellées
 Sigma <- matrix(c( 1, .2,  0,
@@ -795,10 +750,18 @@ diag(Rsp) <- 1
 
 # Sortie
 Rp
+>        x     y      z
+> x  1.000 0.333 -0.272
+> y  0.333 1.000  0.816
+> z -0.272 0.816  1.000
 Rsp
+>        x     y      z
+> x  1.000 0.333 -0.267
+> y  0.200 1.000  0.800
+> z -0.163 0.816  1.000
 ```
 
-Les matrices `Rp` et `Rsp` se lisent comme suit : La ligne (variable indépendante) prédit la colonne (variable dépendante). Cette distinction n'est pas importante pour la matrice `Rp` (corrélations partielles), car les variables sont symétriques, mais est très importantes pour la matrice `Rsp` (corrélations semi partielles), car la relation est asymétrique. Par exemple, la corrélation semi partielle de $x$ prédit $y$ est de `r Rsp[1,2]`, mais l'inverse est de `r Rsp[2,1]`.
+Les matrices `Rp` et `Rsp` se lisent comme suit : La ligne (variable indépendante) prédit la colonne (variable dépendante). Cette distinction n'est pas importante pour la matrice `Rp` (corrélations partielles), car les variables sont symétriques, mais est très importantes pour la matrice `Rsp` (corrélations semi partielles), car la relation est asymétrique. Par exemple, la corrélation semi partielle de $x$ prédit $y$ est de 0.333, mais l'inverse est de 0.2.
 
 Plusieurs observations sont possibles.
 
@@ -806,15 +769,16 @@ Pour une même paire de variable, une même corrélation partielle et semi parti
 
 Pour une même paire de variable, la corrélation partielle est toujours plus grande ou égale que la corrélation semi partielle.
 
-La matrice de corrélation partielle est symétrique alors que la matrice de corrélation semi partielle ne l'est pas. Cela s'explique du fait que la corrélation semi partielle attribue un rôle (indépendant et dépendant) pour une paire de variable. La contribution des autres variables est retirée de la variable dépendante, puis c'est l'ajout de la variable indépendante qui est d'intérêt. Par exemple, l'effet de la variable `x` prédite par `y` en contrôlant par `x` est de `r Rsp[2,1]`. Ce lien est limité à cause de l'effet de `z` sur `x`. 
+La matrice de corrélation partielle est symétrique alors que la matrice de corrélation semi partielle ne l'est pas. Cela s'explique du fait que la corrélation semi partielle attribue un rôle (indépendant et dépendant) pour une paire de variable. La contribution des autres variables est retirée de la variable dépendante, puis c'est l'ajout de la variable indépendante qui est d'intérêt. Par exemple, l'effet de la variable `x` prédite par `y` en contrôlant par `x` est de 0.2. Ce lien est limité à cause de l'effet de `z` sur `x`. 
 
 Une dernière observation : Les explications basées sur les diagrammes de Venn pour distinguer les corrélations partielles et semi partielles portent plus souvent à confusion (à long terme) qu'elles n'apportent d'éclaircissement (à court terme), bien qu'elles se retrouvent abondamment dans les manuels. 
 
-```{r venn, fig.cap="Diagramme représentant l'agencement des variables",echo=FALSE, fig.align="center",out.height="75%" , out.width="75%"}
-knitr::include_graphics("image//venn.png")
-```
+<div class="figure" style="text-align: center">
+<img src="image//venn.png" alt="Diagramme représentant l'agencement des variables" width="75%" height="75%" />
+<p class="caption">(\#fig:venn)Diagramme représentant l'agencement des variables</p>
+</div>
 
-Dans la Figure\ \@ref(fig:venn), tirée de l'exemple avec `Sigma` ci-haut, la zone $a$ illustre la covariance entre $x$ et $y$ au carré^[Il faut mettre les corrélations partielles, semi partielles et les covariances au carré pour expliquer en termes d'aire.], soit $\sigma_{xy}^2 = a$, et de façon équivalente, $\sigma^2_{yz} = .8^2$ et $\sigma^2_{xz} = 0$. Chaque cercle possède une aire de 1, par exemple, l'aire du cercle en bas à gauche est $a+x=.2^2+.96 =1$. Par simplicité, les autres aires sont précalculées. Les ouvrages indiquent souvent que la corrélation partielle au carré entre $x$ vers $y$ est égale à $a/(a+y)=.2^2/(.2^2+.32)=.111$ dont la racine carré donne $.333$, comme prévu. L'inverse, la corrélation partielle au carré entre $y$ vers $x$, devrait être $a/(a+x)$, mais cela donne $a/(a+x)=.2^2/(.2^2+.96)=.04$. La racine carré donne $.2$... la corrélation semi partielle!? L'équation calcule plutôt la corrélation semi partielle et non la partielle. En plus, des zones comme la corrélation semi partielles entre $x$ vers $z$, qui est de `r Rsp[1,3]` et au carré donne `r Rsp[1,3]^2`, ne sont étrangement pas illustrées. Où est la zone d'aire correspondante? Le pire est certainement que les ouvrages utilisent souvent des agencements de variables plus compliquées que celui-ci, un modèle simple avec deux variables non-corrélées, qui cache réduit les potentielles ambiguïtés.
+Dans la Figure\ \@ref(fig:venn), tirée de l'exemple avec `Sigma` ci-haut, la zone $a$ illustre la covariance entre $x$ et $y$ au carré^[Il faut mettre les corrélations partielles, semi partielles et les covariances au carré pour expliquer en termes d'aire.], soit $\sigma_{xy}^2 = a$, et de façon équivalente, $\sigma^2_{yz} = .8^2$ et $\sigma^2_{xz} = 0$. Chaque cercle possède une aire de 1, par exemple, l'aire du cercle en bas à gauche est $a+x=.2^2+.96 =1$. Par simplicité, les autres aires sont précalculées. Les ouvrages indiquent souvent que la corrélation partielle au carré entre $x$ vers $y$ est égale à $a/(a+y)=.2^2/(.2^2+.32)=.111$ dont la racine carré donne $.333$, comme prévu. L'inverse, la corrélation partielle au carré entre $y$ vers $x$, devrait être $a/(a+x)$, mais cela donne $a/(a+x)=.2^2/(.2^2+.96)=.04$. La racine carré donne $.2$... la corrélation semi partielle!? L'équation calcule plutôt la corrélation semi partielle et non la partielle. En plus, des zones comme la corrélation semi partielles entre $x$ vers $z$, qui est de -0.267 et au carré donne 0.071, ne sont étrangement pas illustrées. Où est la zone d'aire correspondante? Le pire est certainement que les ouvrages utilisent souvent des agencements de variables plus compliquées que celui-ci, un modèle simple avec deux variables non-corrélées, qui cache réduit les potentielles ambiguïtés.
 
 Qu'est-ce qui explique ces divergences? Il revient au fait que les corrélations partielles et semi partielles se basent sur l'inverse de la matrice de covariance, $\mathbf{\Sigma}^{-1}$ ou `solve(Sigma)`, la matrice de précisions. Elles se retrouvent dans un espace différent de celle de la matrice de covariance qui, elle, est bien illustrée dans le diagramme de Venn. 
 

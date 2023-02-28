@@ -325,7 +325,7 @@ quantile(moyenne.X, crit)
 
 Pour réaliser le test d'hypothèse nulle, il suffit de constater si l'intervalle de confiance contient ou non 0. Dans le cas où l'intervalle contient 0, le test n'est pas significatif; l'hypotèse nulle n'est pas rejetée; il est vraisemblable que l'absence d'effet soit vraie. S'il ne contient pas 0, l'hypothèse nulle est rejetée, le test est significatif et il est vraisemblable qu'il y ait un effet. Dans cet exemple, la moyenne est clairement différente de 0, car elle ne contient pas cette valeur.
 
-#### Meilleures pratiques
+### Meilleures pratiques
 
 **R** n'est pas particulièrement efficace pour réaliser des boucles. Il existe une famille de fonctions `apply` qui permet d'appliquer une fonction sur une série de vecteurs (comme une liste, un jeu de données ou une matrice). L'appel à l'aide `?apply` donne beaucoup d'informations à ce sujet. 
 
