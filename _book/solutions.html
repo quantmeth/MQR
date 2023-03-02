@@ -125,9 +125,9 @@
 <li>Quel est le résultat de <code>mean &lt;- c(1, 2, 3)</code>? Pourquoi?</li>
 </ol>
 <p>Le résultat est <span class="math inline">\(1, 2, 3\)</span>. Le fait d’assigner une valeur à une fonction (ou variable) écrase cette dernière.</p>
-<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="solutions.html#cb282-1" aria-hidden="true" tabindex="-1"></a>mean <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
-<span id="cb282-2"><a href="solutions.html#cb282-2" aria-hidden="true" tabindex="-1"></a>mean</span>
-<span id="cb282-3"><a href="solutions.html#cb282-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span></span></code></pre></div>
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="solutions.html#cb289-1" aria-hidden="true" tabindex="-1"></a>mean <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb289-2"><a href="solutions.html#cb289-2" aria-hidden="true" tabindex="-1"></a>mean</span>
+<span id="cb289-3"><a href="solutions.html#cb289-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span></span></code></pre></div>
 <p>Voir <a href="programmer.html#les-variables">Les variables</a> pour plus de renseignements.</p>
 </div>
 <div id="question-2" class="section level3 unnumbered">
@@ -144,11 +144,11 @@
 <ol start="3" style="list-style-type: decimal">
 <li>Créer un vecteur contenant les valeurs <span class="math inline">\(4, 10, 32\)</span>. Calculer la moyenne et l’écart type de ce vecteur.</li>
 </ol>
-<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="solutions.html#cb283-1" aria-hidden="true" tabindex="-1"></a>vecteur <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">10</span>, <span class="dv">32</span>)</span>
-<span id="cb283-2"><a href="solutions.html#cb283-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(vecteur)</span>
-<span id="cb283-3"><a href="solutions.html#cb283-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">15.3</span></span>
-<span id="cb283-4"><a href="solutions.html#cb283-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(vecteur)</span>
-<span id="cb283-5"><a href="solutions.html#cb283-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">14.7</span></span></code></pre></div>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="solutions.html#cb290-1" aria-hidden="true" tabindex="-1"></a>vecteur <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">10</span>, <span class="dv">32</span>)</span>
+<span id="cb290-2"><a href="solutions.html#cb290-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(vecteur)</span>
+<span id="cb290-3"><a href="solutions.html#cb290-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">15.3</span></span>
+<span id="cb290-4"><a href="solutions.html#cb290-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(vecteur)</span>
+<span id="cb290-5"><a href="solutions.html#cb290-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">14.7</span></span></code></pre></div>
 <p>Voir <a href="programmer.html#concat%C3%A9ner">Concaténer</a> pour créer un vecteur et <a href="calculer.html#la-moyenne">la moyenne</a> et <a href="calculer.html#l%C3%A9cart-type">l’écart type</a> pour plus d’informations.</p>
 </div>
 <div id="question-4" class="section level3 unnumbered">
@@ -157,7 +157,7 @@
 <ol start="4" style="list-style-type: decimal">
 <li>Créer un vecteur contenant les valeurs de <span class="math inline">\(4\)</span> à <span class="math inline">\(11\)</span>. Sélectionner la deuxième valeur de ce vecteur, puis additionner 100 à cette valeur et remplacer la dans le vecteur.</li>
 </ol>
-<div class="sourceCode" id="cb284"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb291"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">vecteur</span> <span class="op">&lt;-</span> <span class="fl">4</span><span class="op">:</span><span class="fl">11</span> <span class="co"># ou seq(4, 11)</span></span>
 <span><span class="va">vecteur</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">vecteur</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span> <span class="op">+</span> <span class="fl">100</span></span></code></pre></div>
 <p>Voir <a href="programmer.html#concat%C3%A9ner">Concaténer</a> pour créer un vecteur et <a href="programmer.html#r%C3%A9f%C3%A9rer-%C3%A0-des-sous-%C3%A9l%C3%A9ments">Référer à des sous-éléments</a> pour choisir un élément.</p>
@@ -168,19 +168,19 @@
 <ol start="5" style="list-style-type: decimal">
 <li>Générer 10 valeurs aléatoires distribuées normalement avec une moyenne de 50 et un écart type de 4. Calculer la moyenne, la médiane et la variance.</li>
 </ol>
-<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="solutions.html#cb285-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pour la reproductibilité</span></span>
-<span id="cb285-2"><a href="solutions.html#cb285-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
-<span id="cb285-3"><a href="solutions.html#cb285-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb285-4"><a href="solutions.html#cb285-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Créer</span></span>
-<span id="cb285-5"><a href="solutions.html#cb285-5" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">10</span>, <span class="at">mean =</span> <span class="dv">50</span>, <span class="at">sd =</span> <span class="dv">4</span>)</span>
-<span id="cb285-6"><a href="solutions.html#cb285-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb285-7"><a href="solutions.html#cb285-7" aria-hidden="true" tabindex="-1"></a><span class="co"># La moyenne, la médiane et la variance</span></span>
-<span id="cb285-8"><a href="solutions.html#cb285-8" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x)</span>
-<span id="cb285-9"><a href="solutions.html#cb285-9" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">52.2</span></span>
-<span id="cb285-10"><a href="solutions.html#cb285-10" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(x)</span>
-<span id="cb285-11"><a href="solutions.html#cb285-11" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">51.5</span></span>
-<span id="cb285-12"><a href="solutions.html#cb285-12" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(x)</span>
-<span id="cb285-13"><a href="solutions.html#cb285-13" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">11.2</span></span></code></pre></div>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="solutions.html#cb292-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pour la reproductibilité</span></span>
+<span id="cb292-2"><a href="solutions.html#cb292-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb292-3"><a href="solutions.html#cb292-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb292-4"><a href="solutions.html#cb292-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Créer</span></span>
+<span id="cb292-5"><a href="solutions.html#cb292-5" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">10</span>, <span class="at">mean =</span> <span class="dv">50</span>, <span class="at">sd =</span> <span class="dv">4</span>)</span>
+<span id="cb292-6"><a href="solutions.html#cb292-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb292-7"><a href="solutions.html#cb292-7" aria-hidden="true" tabindex="-1"></a><span class="co"># La moyenne, la médiane et la variance</span></span>
+<span id="cb292-8"><a href="solutions.html#cb292-8" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x)</span>
+<span id="cb292-9"><a href="solutions.html#cb292-9" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">52.2</span></span>
+<span id="cb292-10"><a href="solutions.html#cb292-10" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(x)</span>
+<span id="cb292-11"><a href="solutions.html#cb292-11" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">51.5</span></span>
+<span id="cb292-12"><a href="solutions.html#cb292-12" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(x)</span>
+<span id="cb292-13"><a href="solutions.html#cb292-13" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">11.2</span></span></code></pre></div>
 <p>Voir <a href="calculer.html#les-graines">Les graines</a> pour la fonction <code><a href="https://rdrr.io/r/base/Random.html">set.seed()</a></code>, <a href="calculer.html#les-distributions">Les distributions</a> pour la fonction <code><a href="https://rdrr.io/r/stats/Normal.html">rnorm()</a></code> ainsi que son aide <code><a href="https://rdrr.io/r/stats/Normal.html">?rnorm</a></code> pour les arguments spécifiques, et <a href="calculer.html#la-moyenne">la moyenne</a>, <a href="calculer.html#la-m%C3%A9diane">la médiane</a> et <a href="calculer.html#la-variance">la variance</a> pour plus d’informations.</p>
 </div>
 <div id="question-6" class="section level3 unnumbered">
@@ -189,21 +189,21 @@
 <ol start="6" style="list-style-type: decimal">
 <li>Créer un jeu de données contenant quatre sujets avec, pour chacun, leur nom de famille, leur âge et un score d’appréciation tiré d’une distribution uniforme allant de 0 à 100.</li>
 </ol>
-<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="solutions.html#cb286-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pour la reproductibilité</span></span>
-<span id="cb286-2"><a href="solutions.html#cb286-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
-<span id="cb286-3"><a href="solutions.html#cb286-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb286-4"><a href="solutions.html#cb286-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Créer</span></span>
-<span id="cb286-5"><a href="solutions.html#cb286-5" aria-hidden="true" tabindex="-1"></a>jd <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">nom =</span> <span class="fu">c</span>(<span class="st">"Eccleston"</span>, <span class="st">"Tennant"</span>, <span class="st">"Smith"</span>, <span class="st">"Capaldi"</span>),</span>
-<span id="cb286-6"><a href="solutions.html#cb286-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">age =</span> <span class="fu">c</span>(<span class="dv">41</span>, <span class="dv">35</span>, <span class="dv">28</span>, <span class="dv">55</span>),</span>
-<span id="cb286-7"><a href="solutions.html#cb286-7" aria-hidden="true" tabindex="-1"></a>                 <span class="at">score =</span> <span class="fu">runif</span>(<span class="at">n =</span> <span class="dv">4</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">100</span>))</span>
-<span id="cb286-8"><a href="solutions.html#cb286-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb286-9"><a href="solutions.html#cb286-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Imprimer le jeu dans la console</span></span>
-<span id="cb286-10"><a href="solutions.html#cb286-10" aria-hidden="true" tabindex="-1"></a>jd</span>
-<span id="cb286-11"><a href="solutions.html#cb286-11" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>         nom age score</span>
-<span id="cb286-12"><a href="solutions.html#cb286-12" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">1</span> Eccleston  <span class="dv">41</span>  <span class="fl">11.4</span></span>
-<span id="cb286-13"><a href="solutions.html#cb286-13" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">2</span>   Tennant  <span class="dv">35</span>  <span class="fl">62.2</span></span>
-<span id="cb286-14"><a href="solutions.html#cb286-14" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">3</span>     Smith  <span class="dv">28</span>  <span class="fl">60.9</span></span>
-<span id="cb286-15"><a href="solutions.html#cb286-15" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">4</span>   Capaldi  <span class="dv">55</span>  <span class="fl">62.3</span></span></code></pre></div>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="solutions.html#cb293-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pour la reproductibilité</span></span>
+<span id="cb293-2"><a href="solutions.html#cb293-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb293-3"><a href="solutions.html#cb293-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb293-4"><a href="solutions.html#cb293-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Créer</span></span>
+<span id="cb293-5"><a href="solutions.html#cb293-5" aria-hidden="true" tabindex="-1"></a>jd <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">nom =</span> <span class="fu">c</span>(<span class="st">"Eccleston"</span>, <span class="st">"Tennant"</span>, <span class="st">"Smith"</span>, <span class="st">"Capaldi"</span>),</span>
+<span id="cb293-6"><a href="solutions.html#cb293-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">age =</span> <span class="fu">c</span>(<span class="dv">41</span>, <span class="dv">35</span>, <span class="dv">28</span>, <span class="dv">55</span>),</span>
+<span id="cb293-7"><a href="solutions.html#cb293-7" aria-hidden="true" tabindex="-1"></a>                 <span class="at">score =</span> <span class="fu">runif</span>(<span class="at">n =</span> <span class="dv">4</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">100</span>))</span>
+<span id="cb293-8"><a href="solutions.html#cb293-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb293-9"><a href="solutions.html#cb293-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Imprimer le jeu dans la console</span></span>
+<span id="cb293-10"><a href="solutions.html#cb293-10" aria-hidden="true" tabindex="-1"></a>jd</span>
+<span id="cb293-11"><a href="solutions.html#cb293-11" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>         nom age score</span>
+<span id="cb293-12"><a href="solutions.html#cb293-12" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">1</span> Eccleston  <span class="dv">41</span>  <span class="fl">11.4</span></span>
+<span id="cb293-13"><a href="solutions.html#cb293-13" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">2</span>   Tennant  <span class="dv">35</span>  <span class="fl">62.2</span></span>
+<span id="cb293-14"><a href="solutions.html#cb293-14" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">3</span>     Smith  <span class="dv">28</span>  <span class="fl">60.9</span></span>
+<span id="cb293-15"><a href="solutions.html#cb293-15" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">4</span>   Capaldi  <span class="dv">55</span>  <span class="fl">62.3</span></span></code></pre></div>
 <p>Voir <a href="calculer.html#les-graines">Les graines</a> pour la fonction <code><a href="https://rdrr.io/r/base/Random.html">set.seed()</a></code>, <a href="programmer.html#cr%C3%A9er-un-jeu-de-donn%C3%A9es">Créer un jeu de données</a> pour <code><a href="https://rdrr.io/r/base/data.frame.html">data.frame()</a></code> et <a href="programmer.html#concat%C3%A9ner">Concaténer</a> pour les vecteurs en arguments, <a href="calculer.html#les-distributions">Les distributions</a> pour la fonction <code><a href="https://rdrr.io/r/stats/Uniform.html">runif()</a></code> ainsi que son aide <code><a href="https://rdrr.io/r/stats/Uniform.html">?runif</a></code> pour les arguments spécifiques. Les noms sont des <a href="programmer.html#les-cha%C3%AEnes-de-caract%C3%A8re">chaînes de caractère</a>.</p>
 </div>
 <div id="question-7" class="section level3 unnumbered">
@@ -213,11 +213,11 @@
 <li>Rédiger une fonction calculant l’hypoténuse d’un triangle rectangle. Rappel: le théorème de Pythagore est <span class="math inline">\(c^2=a^2+b^2\)</span>.</li>
 </ol>
 <p>En prenant <code>a</code> et <code>b</code> comme arguments.</p>
-<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="solutions.html#cb287-1" aria-hidden="true" tabindex="-1"></a>hypothenus <span class="ot">&lt;-</span> <span class="cf">function</span>(a, b){</span>
-<span id="cb287-2"><a href="solutions.html#cb287-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sqrt</span>(a<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> b<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb287-3"><a href="solutions.html#cb287-3" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb287-4"><a href="solutions.html#cb287-4" aria-hidden="true" tabindex="-1"></a><span class="fu">hypothenus</span>(<span class="dv">3</span>, <span class="dv">4</span>)</span>
-<span id="cb287-5"><a href="solutions.html#cb287-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">5</span></span></code></pre></div>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="solutions.html#cb294-1" aria-hidden="true" tabindex="-1"></a>hypothenus <span class="ot">&lt;-</span> <span class="cf">function</span>(a, b){</span>
+<span id="cb294-2"><a href="solutions.html#cb294-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sqrt</span>(a<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> b<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb294-3"><a href="solutions.html#cb294-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb294-4"><a href="solutions.html#cb294-4" aria-hidden="true" tabindex="-1"></a><span class="fu">hypothenus</span>(<span class="dv">3</span>, <span class="dv">4</span>)</span>
+<span id="cb294-5"><a href="solutions.html#cb294-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">5</span></span></code></pre></div>
 <p>Voir <a href="programmer.html#les-fonctions">Les fonctions</a> pour plus d’informations.</p>
 </div>
 <div id="question-8" class="section level3 unnumbered">
@@ -227,18 +227,18 @@
 <li>Rédiger une fonction calculant un score-<span class="math inline">\(z\)</span> pour une variable. Rappel: un score-<span class="math inline">\(z\)</span>, correspond à <span class="math inline">\(z=\frac{x-\mu}{\sigma}\)</span>.</li>
 </ol>
 <p>Deux possibilités ici. Soit <code>x</code> est un vecteur contenant plusieurs nombres ou il est un nombre et il faut ajouter la moyenne (<span class="math inline">\(\mu\)</span>) et l’écart type (<span class="math inline">\(\sigma\)</span>).</p>
-<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="solutions.html#cb288-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Premier cas</span></span>
-<span id="cb288-2"><a href="solutions.html#cb288-2" aria-hidden="true" tabindex="-1"></a>score.z <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
-<span id="cb288-3"><a href="solutions.html#cb288-3" aria-hidden="true" tabindex="-1"></a>  (x<span class="sc">-</span><span class="fu">mean</span>(x))<span class="sc">/</span><span class="fu">sd</span>(x)</span>
-<span id="cb288-4"><a href="solutions.html#cb288-4" aria-hidden="true" tabindex="-1"></a>} </span>
-<span id="cb288-5"><a href="solutions.html#cb288-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb288-6"><a href="solutions.html#cb288-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Deuxième cas</span></span>
-<span id="cb288-7"><a href="solutions.html#cb288-7" aria-hidden="true" tabindex="-1"></a>score.z <span class="ot">&lt;-</span> <span class="cf">function</span>(x, mu, sigma) {</span>
-<span id="cb288-8"><a href="solutions.html#cb288-8" aria-hidden="true" tabindex="-1"></a>  (x<span class="sc">-</span>mu)<span class="sc">/</span>sigma</span>
-<span id="cb288-9"><a href="solutions.html#cb288-9" aria-hidden="true" tabindex="-1"></a>} </span>
-<span id="cb288-10"><a href="solutions.html#cb288-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb288-11"><a href="solutions.html#cb288-11" aria-hidden="true" tabindex="-1"></a><span class="fu">score.z</span>(<span class="dv">130</span>, <span class="at">mu =</span> <span class="dv">100</span>, <span class="at">sigma =</span> <span class="dv">15</span>)</span>
-<span id="cb288-12"><a href="solutions.html#cb288-12" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">2</span></span></code></pre></div>
+<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="solutions.html#cb295-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Premier cas</span></span>
+<span id="cb295-2"><a href="solutions.html#cb295-2" aria-hidden="true" tabindex="-1"></a>score.z <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb295-3"><a href="solutions.html#cb295-3" aria-hidden="true" tabindex="-1"></a>  (x<span class="sc">-</span><span class="fu">mean</span>(x))<span class="sc">/</span><span class="fu">sd</span>(x)</span>
+<span id="cb295-4"><a href="solutions.html#cb295-4" aria-hidden="true" tabindex="-1"></a>} </span>
+<span id="cb295-5"><a href="solutions.html#cb295-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb295-6"><a href="solutions.html#cb295-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Deuxième cas</span></span>
+<span id="cb295-7"><a href="solutions.html#cb295-7" aria-hidden="true" tabindex="-1"></a>score.z <span class="ot">&lt;-</span> <span class="cf">function</span>(x, mu, sigma) {</span>
+<span id="cb295-8"><a href="solutions.html#cb295-8" aria-hidden="true" tabindex="-1"></a>  (x<span class="sc">-</span>mu)<span class="sc">/</span>sigma</span>
+<span id="cb295-9"><a href="solutions.html#cb295-9" aria-hidden="true" tabindex="-1"></a>} </span>
+<span id="cb295-10"><a href="solutions.html#cb295-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb295-11"><a href="solutions.html#cb295-11" aria-hidden="true" tabindex="-1"></a><span class="fu">score.z</span>(<span class="dv">130</span>, <span class="at">mu =</span> <span class="dv">100</span>, <span class="at">sigma =</span> <span class="dv">15</span>)</span>
+<span id="cb295-12"><a href="solutions.html#cb295-12" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">2</span></span></code></pre></div>
 <p>Le premier cas est l’équivalent de la fonction <code><a href="https://rdrr.io/r/base/scale.html">scale()</a></code> qui rempliera la même tâche.</p>
 <p>Voir <a href="programmer.html#les-fonctions">Les fonctions</a> pour plus d’informations. Les scores-<span class="math inline">\(z\)</span> sont abordés plus en profondeur à la section <a href="inf%C3%A9rer.html#inf%C3%A9rence-avec-la-distribution-normale-sur-une-unit%C3%A9">Inférence avec la distribution normale sur une unité</a>.</p>
 </div>
@@ -249,7 +249,7 @@
 <li>Rédiger une fonction calculant la médiane d’une variable (ne recopiez pas celle de ce livre).</li>
 </ol>
 <p>Voici une autre fonction calculant une médiane d’un vecteur.</p>
-<div class="sourceCode" id="cb289"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb296"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mediane</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span></span>
 <span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
 <span>  <span class="va">longueur</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
@@ -273,27 +273,27 @@
 <li>Rédiger une fonction qui pivote une liste de <span class="math inline">\(k\)</span> éléments par <span class="math inline">\(n\)</span>. Par exemple, une liste de six (<span class="math inline">\(k=6\)</span> comme <span class="math inline">\([1,2,3,4,5,6]\)</span>) pivoté de deux (<span class="math inline">\(n=2\)</span>) devient (<span class="math inline">\([3,4,5,6,1,2]\)</span>).</li>
 </ol>
 <p>Plusieurs solutions possibles dont en voici une.</p>
-<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="solutions.html#cb290-1" aria-hidden="true" tabindex="-1"></a>pivot <span class="ot">&lt;-</span> <span class="cf">function</span>(k, n){</span>
-<span id="cb290-2"><a href="solutions.html#cb290-2" aria-hidden="true" tabindex="-1"></a>  pivoter <span class="ot">&lt;-</span> <span class="fu">c</span>((n<span class="sc">+</span><span class="dv">1</span>)<span class="sc">:</span>k, <span class="dv">1</span><span class="sc">:</span>n)</span>
-<span id="cb290-3"><a href="solutions.html#cb290-3" aria-hidden="true" tabindex="-1"></a>  pivoter</span>
-<span id="cb290-4"><a href="solutions.html#cb290-4" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb290-5"><a href="solutions.html#cb290-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Original</span></span>
-<span id="cb290-6"><a href="solutions.html#cb290-6" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="dv">6</span></span>
-<span id="cb290-7"><a href="solutions.html#cb290-7" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span>k</span>
-<span id="cb290-8"><a href="solutions.html#cb290-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span> <span class="dv">4</span> <span class="dv">5</span> <span class="dv">6</span></span>
-<span id="cb290-9"><a href="solutions.html#cb290-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb290-10"><a href="solutions.html#cb290-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Pivoté</span></span>
-<span id="cb290-11"><a href="solutions.html#cb290-11" aria-hidden="true" tabindex="-1"></a><span class="fu">pivot</span>(<span class="at">k =</span> k, <span class="at">n =</span> <span class="dv">2</span>)</span>
-<span id="cb290-12"><a href="solutions.html#cb290-12" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">3</span> <span class="dv">4</span> <span class="dv">5</span> <span class="dv">6</span> <span class="dv">1</span> <span class="dv">2</span></span></code></pre></div>
+<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="solutions.html#cb297-1" aria-hidden="true" tabindex="-1"></a>pivot <span class="ot">&lt;-</span> <span class="cf">function</span>(k, n){</span>
+<span id="cb297-2"><a href="solutions.html#cb297-2" aria-hidden="true" tabindex="-1"></a>  pivoter <span class="ot">&lt;-</span> <span class="fu">c</span>((n<span class="sc">+</span><span class="dv">1</span>)<span class="sc">:</span>k, <span class="dv">1</span><span class="sc">:</span>n)</span>
+<span id="cb297-3"><a href="solutions.html#cb297-3" aria-hidden="true" tabindex="-1"></a>  pivoter</span>
+<span id="cb297-4"><a href="solutions.html#cb297-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb297-5"><a href="solutions.html#cb297-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Original</span></span>
+<span id="cb297-6"><a href="solutions.html#cb297-6" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="dv">6</span></span>
+<span id="cb297-7"><a href="solutions.html#cb297-7" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span>k</span>
+<span id="cb297-8"><a href="solutions.html#cb297-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span> <span class="dv">4</span> <span class="dv">5</span> <span class="dv">6</span></span>
+<span id="cb297-9"><a href="solutions.html#cb297-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb297-10"><a href="solutions.html#cb297-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Pivoté</span></span>
+<span id="cb297-11"><a href="solutions.html#cb297-11" aria-hidden="true" tabindex="-1"></a><span class="fu">pivot</span>(<span class="at">k =</span> k, <span class="at">n =</span> <span class="dv">2</span>)</span>
+<span id="cb297-12"><a href="solutions.html#cb297-12" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">3</span> <span class="dv">4</span> <span class="dv">5</span> <span class="dv">6</span> <span class="dv">1</span> <span class="dv">2</span></span></code></pre></div>
 </div>
 <div id="question-11" class="section level3 unnumbered">
 <h3>Question 11<a class="anchor" aria-label="anchor" href="#question-11"><i class="fas fa-link"></i></a>
 </h3>
 <ol start="11" style="list-style-type: decimal">
-<li>Rédiger une fonction pour générer une séquence de Fibonacci (chaque nombre est la somme des deux précédents) jusqu’à une certaine valeur, soit <span class="math inline">\(1, 1, 2, 3, 5, 8,...\)</span>.</li>
+<li>Rédiger une fonction pour générer une séquence de Fibonacci (chaque nombre est la somme des deux précédents) jusqu’à une certaine valeur, soit <span class="math inline">\(1, 1, 2, 3, 5, 8,...\)</span>. (Question difficile)</li>
 </ol>
 <p>Plusieurs solutions possibles dont en voici deux.</p>
-<div class="sourceCode" id="cb291"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb298"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fibonnaci1</span> <span class="op">&lt;-</span>  <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">{</span></span>
 <span>  <span class="co"># n est le nombre d'éléments de la série demandée.</span></span>
 <span>  <span class="co"># Création d'un vecteur de taille n ne contenant que des 1.</span></span>
@@ -313,7 +313,7 @@
 <span>  <span class="va">serie</span></span>
 <span><span class="op">}</span></span></code></pre></div>
 <p>En voici une autre en utilisant la récursion (une fonction qui s’appelle elle-même).</p>
-<div class="sourceCode" id="cb292"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb299"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fibonnaci2</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">{</span></span>
 <span>  <span class="kw">if</span><span class="op">(</span><span class="va">n</span> <span class="op">&lt;=</span> <span class="fl">2</span><span class="op">)</span><span class="op">{</span></span>
 <span>    <span class="co"># Si n est plus petit que 2, alors retourne 1</span></span>
@@ -324,11 +324,11 @@
 <span>  <span class="op">}</span></span>
 <span><span class="op">}</span></span></code></pre></div>
 <p>Les voici comparées.</p>
-<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="solutions.html#cb293-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">8</span></span>
-<span id="cb293-2"><a href="solutions.html#cb293-2" aria-hidden="true" tabindex="-1"></a><span class="fu">fibonnaci1</span>(n)</span>
-<span id="cb293-3"><a href="solutions.html#cb293-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>]  <span class="dv">1</span>  <span class="dv">1</span>  <span class="dv">2</span>  <span class="dv">3</span>  <span class="dv">5</span>  <span class="dv">8</span> <span class="dv">13</span> <span class="dv">21</span></span>
-<span id="cb293-4"><a href="solutions.html#cb293-4" aria-hidden="true" tabindex="-1"></a><span class="fu">fibonnaci2</span>(n)</span>
-<span id="cb293-5"><a href="solutions.html#cb293-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">21</span></span></code></pre></div>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="solutions.html#cb300-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">8</span></span>
+<span id="cb300-2"><a href="solutions.html#cb300-2" aria-hidden="true" tabindex="-1"></a><span class="fu">fibonnaci1</span>(n)</span>
+<span id="cb300-3"><a href="solutions.html#cb300-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>]  <span class="dv">1</span>  <span class="dv">1</span>  <span class="dv">2</span>  <span class="dv">3</span>  <span class="dv">5</span>  <span class="dv">8</span> <span class="dv">13</span> <span class="dv">21</span></span>
+<span id="cb300-4"><a href="solutions.html#cb300-4" aria-hidden="true" tabindex="-1"></a><span class="fu">fibonnaci2</span>(n)</span>
+<span id="cb300-5"><a href="solutions.html#cb300-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">21</span></span></code></pre></div>
 </div>
 </div>
 <div id="jeux-de-données" class="section level2 unnumbered">
@@ -340,7 +340,7 @@
 <ol style="list-style-type: decimal">
 <li>À l’aide de <code><a href="https://rdrr.io/pkg/DataEditR/man/data_edit.html">data_edit()</a></code> du package <code>DataEditR</code>, créez un jeu données contenant trois participants ayant les caractéristiques suivantes, <code>nom = Alexandre, Samuel et Vincent</code> et <code>age = 20, 22 et 31</code>.</li>
 </ol>
-<div class="sourceCode" id="cb294"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb301"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Installer et appeler le package DataEditR, si ce n'est fait</span></span>
 <span><span class="va">jd</span> <span class="op">&lt;-</span> <span class="fu">DataEditR</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/DataEditR/man/data_edit.html">data_edit</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>La Figure @ref(fig:data_ed) montre le résultat dans le tableur.</p>
@@ -357,17 +357,17 @@
 <li>Prendre le jeu de données <code>cars</code>, sélectionner la variable <code>dist</code> et transformer la en mètre, plutôt qu’en pieds. Rappel: un mètre égale 3.2808 pieds.</li>
 </ol>
 <p>Avec le <code>tidyverse</code> de télécharger.</p>
-<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="solutions.html#cb295-1" aria-hidden="true" tabindex="-1"></a>cars <span class="sc">%&gt;%</span>                               <span class="co"># Le jeu de données</span></span>
-<span id="cb295-2"><a href="solutions.html#cb295-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(dist) <span class="sc">%&gt;%</span>                     <span class="co"># Sélectionner</span></span>
-<span id="cb295-3"><a href="solutions.html#cb295-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">dist_m =</span> dist <span class="sc">/</span> <span class="fl">3.2808</span>)  <span class="sc">%&gt;%</span>  <span class="co"># Transformer</span></span>
-<span id="cb295-4"><a href="solutions.html#cb295-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()                               <span class="co"># Montrer les 6 premières lignes</span></span>
-<span id="cb295-5"><a href="solutions.html#cb295-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>   dist dist_m</span>
-<span id="cb295-6"><a href="solutions.html#cb295-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">1</span>    <span class="dv">2</span>   <span class="fl">0.61</span></span>
-<span id="cb295-7"><a href="solutions.html#cb295-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">2</span>   <span class="dv">10</span>   <span class="fl">3.05</span></span>
-<span id="cb295-8"><a href="solutions.html#cb295-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">3</span>    <span class="dv">4</span>   <span class="fl">1.22</span></span>
-<span id="cb295-9"><a href="solutions.html#cb295-9" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">4</span>   <span class="dv">22</span>   <span class="fl">6.71</span></span>
-<span id="cb295-10"><a href="solutions.html#cb295-10" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">5</span>   <span class="dv">16</span>   <span class="fl">4.88</span></span>
-<span id="cb295-11"><a href="solutions.html#cb295-11" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">6</span>   <span class="dv">10</span>   <span class="fl">3.05</span></span></code></pre></div>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="solutions.html#cb302-1" aria-hidden="true" tabindex="-1"></a>cars <span class="sc">%&gt;%</span>                               <span class="co"># Le jeu de données</span></span>
+<span id="cb302-2"><a href="solutions.html#cb302-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(dist) <span class="sc">%&gt;%</span>                     <span class="co"># Sélectionner</span></span>
+<span id="cb302-3"><a href="solutions.html#cb302-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">dist_m =</span> dist <span class="sc">/</span> <span class="fl">3.2808</span>)  <span class="sc">%&gt;%</span>  <span class="co"># Transformer</span></span>
+<span id="cb302-4"><a href="solutions.html#cb302-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()                               <span class="co"># Montrer les 6 premières lignes</span></span>
+<span id="cb302-5"><a href="solutions.html#cb302-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>   dist dist_m</span>
+<span id="cb302-6"><a href="solutions.html#cb302-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">1</span>    <span class="dv">2</span>   <span class="fl">0.61</span></span>
+<span id="cb302-7"><a href="solutions.html#cb302-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">2</span>   <span class="dv">10</span>   <span class="fl">3.05</span></span>
+<span id="cb302-8"><a href="solutions.html#cb302-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">3</span>    <span class="dv">4</span>   <span class="fl">1.22</span></span>
+<span id="cb302-9"><a href="solutions.html#cb302-9" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">4</span>   <span class="dv">22</span>   <span class="fl">6.71</span></span>
+<span id="cb302-10"><a href="solutions.html#cb302-10" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">5</span>   <span class="dv">16</span>   <span class="fl">4.88</span></span>
+<span id="cb302-11"><a href="solutions.html#cb302-11" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">6</span>   <span class="dv">10</span>   <span class="fl">3.05</span></span></code></pre></div>
 <p>La fonction <code><a href="https://rdrr.io/r/utils/head.html">head()</a></code> permet d’afficher seulement les six premières lignes au lieu des 50 du jeu de données.</p>
 </div>
 <div id="question-3-1" class="section level3 unnumbered">
@@ -377,18 +377,18 @@
 <li>Dans le jeu de données <code>iris</code>, calculer la moyenne et l’écart type de la longueur de sépale (<code>Petal.Length</code>) en fonction de l’espèce (<code>species</code>). Représenter ensuite la moyenne à l’aide d’un diagramme à barre</li>
 </ol>
 <p>Avec le <code>tidyverse</code> de télécharger.</p>
-<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="solutions.html#cb296-1" aria-hidden="true" tabindex="-1"></a>iris <span class="sc">%&gt;%</span> </span>
-<span id="cb296-2"><a href="solutions.html#cb296-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Species) <span class="sc">%&gt;%</span> </span>
-<span id="cb296-3"><a href="solutions.html#cb296-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">M =</span> <span class="fu">mean</span>(Petal.Length), <span class="at">ET =</span> <span class="fu">sd</span>(Petal.Length))</span>
-<span id="cb296-4"><a href="solutions.html#cb296-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># A tibble: 3 × 3</span></span>
-<span id="cb296-5"><a href="solutions.html#cb296-5" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span>   Species        M    ET</span>
-<span id="cb296-6"><a href="solutions.html#cb296-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>   <span class="er">&lt;</span>fct<span class="sc">&gt;</span>      <span class="er">&lt;</span>dbl<span class="sc">&gt;</span> <span class="er">&lt;</span>dbl<span class="sc">&gt;</span></span>
-<span id="cb296-7"><a href="solutions.html#cb296-7" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="dv">1</span> setosa      <span class="fl">1.46</span> <span class="fl">0.174</span></span>
-<span id="cb296-8"><a href="solutions.html#cb296-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">2</span> versicolor  <span class="fl">4.26</span> <span class="fl">0.470</span></span>
-<span id="cb296-9"><a href="solutions.html#cb296-9" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">3</span> virginica   <span class="fl">5.55</span> <span class="fl">0.552</span></span></code></pre></div>
+<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="solutions.html#cb303-1" aria-hidden="true" tabindex="-1"></a>iris <span class="sc">%&gt;%</span> </span>
+<span id="cb303-2"><a href="solutions.html#cb303-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Species) <span class="sc">%&gt;%</span> </span>
+<span id="cb303-3"><a href="solutions.html#cb303-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">M =</span> <span class="fu">mean</span>(Petal.Length), <span class="at">ET =</span> <span class="fu">sd</span>(Petal.Length))</span>
+<span id="cb303-4"><a href="solutions.html#cb303-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># A tibble: 3 × 3</span></span>
+<span id="cb303-5"><a href="solutions.html#cb303-5" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span>   Species        M    ET</span>
+<span id="cb303-6"><a href="solutions.html#cb303-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>   <span class="er">&lt;</span>fct<span class="sc">&gt;</span>      <span class="er">&lt;</span>dbl<span class="sc">&gt;</span> <span class="er">&lt;</span>dbl<span class="sc">&gt;</span></span>
+<span id="cb303-7"><a href="solutions.html#cb303-7" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="dv">1</span> setosa      <span class="fl">1.46</span> <span class="fl">0.174</span></span>
+<span id="cb303-8"><a href="solutions.html#cb303-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">2</span> versicolor  <span class="fl">4.26</span> <span class="fl">0.470</span></span>
+<span id="cb303-9"><a href="solutions.html#cb303-9" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">3</span> virginica   <span class="fl">5.55</span> <span class="fl">0.552</span></span></code></pre></div>
 <p>Voir <a href="calculer.html#la-moyenne">La moyenne</a>, <a href="calculer.html#l%C3%A9cart-type">L’écart type</a> et <a href="manipuler.html#manipuler">Manipuler</a>. Il est aussi possible d’utiliser <code>psych::describeBy(iris, group = "Species")</code> (voir <a href="d%C3%A9crire.html#d%C3%A9crire">Décrire</a>), mais cela offre plus que demandé.</p>
 <p>Pour la figure, il faut prendre le résultat de la manipulation précédente et utiliser <code>ggplot2</code> avec la représentation géométrique <code><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col()</a></code> et la cartographie <code>mapping = aes(x = Species, y = M)</code>, ce qui donne l’espèce à l’abscisse et la moyenne (<code>M</code>) à l’ordonnée.</p>
-<div class="sourceCode" id="cb297"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb304"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">Species</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>M <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">Petal.Length</span><span class="op">)</span>, ET <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">Petal.Length</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
@@ -407,7 +407,7 @@ Figure 20.7: M par Espèce (question 3)
 <ol start="4" style="list-style-type: decimal">
 <li>Prenez le jeu de données <code>mtcars</code> et produisez un diagramme de dispersion montrant la puissance brute (en chevaux) (<code>hp</code>) par rapport à consommation en km/l (basé sur <code>mpg</code>) tout en soulignant l’effet du nombre de cylindres (<code>cyl</code>). <strong>Attention</strong> la fonction <code>as_factor</code> permettra d’utiliser <code>cyl</code> en facteur et le rapprt mpg vers kml approximativement <span class="math inline">\(.425\)</span>.</li>
 </ol>
-<div class="sourceCode" id="cb298"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb305"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>kml <span class="op">=</span> <span class="fl">.425</span> <span class="op">*</span> <span class="va">mpg</span>,</span>
 <span>         cyl <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/as_factor.html">as_factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
@@ -426,13 +426,13 @@ Figure 20.8: Visualiation de kml par hp en fonction de cyl (question 4)
 <ol start="5" style="list-style-type: decimal">
 <li>Avec le même jeu de données et objectif que la question précédente, ajouter une droite de prédiction avec <code><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth()</a></code> selon un modèle linéare (<code>lm</code>) et sans erreur standard (<code>se</code>).</li>
 </ol>
-<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="solutions.html#cb299-1" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">%&gt;%</span> </span>
-<span id="cb299-2"><a href="solutions.html#cb299-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">kml =</span> .<span class="dv">425</span> <span class="sc">*</span> mpg,</span>
-<span id="cb299-3"><a href="solutions.html#cb299-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">cyl =</span> <span class="fu">as_factor</span>(cyl)) <span class="sc">%&gt;%</span> </span>
-<span id="cb299-4"><a href="solutions.html#cb299-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> hp, <span class="at">y =</span> kml, <span class="at">color =</span> cyl)) <span class="sc">+</span> </span>
-<span id="cb299-5"><a href="solutions.html#cb299-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb299-6"><a href="solutions.html#cb299-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb299-7"><a href="solutions.html#cb299-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="st">`</span><span class="at">geom_smooth()</span><span class="st">`</span> using formula <span class="ot">=</span> <span class="st">'y ~ x'</span></span></code></pre></div>
+<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="solutions.html#cb306-1" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">%&gt;%</span> </span>
+<span id="cb306-2"><a href="solutions.html#cb306-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">kml =</span> .<span class="dv">425</span> <span class="sc">*</span> mpg,</span>
+<span id="cb306-3"><a href="solutions.html#cb306-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">cyl =</span> <span class="fu">as_factor</span>(cyl)) <span class="sc">%&gt;%</span> </span>
+<span id="cb306-4"><a href="solutions.html#cb306-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> hp, <span class="at">y =</span> kml, <span class="at">color =</span> cyl)) <span class="sc">+</span> </span>
+<span id="cb306-5"><a href="solutions.html#cb306-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb306-6"><a href="solutions.html#cb306-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb306-7"><a href="solutions.html#cb306-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="st">`</span><span class="at">geom_smooth()</span><span class="st">`</span> using formula <span class="ot">=</span> <span class="st">'y ~ x'</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:unnamed-chunk-18"></span>
 <img src="21-Solutions_files/figure-html/unnamed-chunk-18-1.png" alt="Visualiation de kml par hp en fonction de cyl (question 5)" width="40%" height="40%"><p class="caption">
@@ -446,7 +446,7 @@ Figure 20.9: Visualiation de kml par hp en fonction de cyl (question 5)
 <ol start="6" style="list-style-type: decimal">
 <li>Avec le jeu de données <code>chickwts</code>, produire une boîte à moustache du poids des poulets en fonction de leur alimentation.</li>
 </ol>
-<div class="sourceCode" id="cb300"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb307"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">chickwts</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">feed</span>, y <span class="op">=</span> <span class="va">weight</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
@@ -464,7 +464,7 @@ Figure 20.10: Visualiation de weight par feed (question 6)
 <ol start="7" style="list-style-type: decimal">
 <li>Prenez le jeu de données <code>mtcars</code> et produisez un histogramme montrant la variabilité de la consommation <code>mpg</code> par rapport à la transmission (<code>am</code>). <strong>Attention</strong> la fonction <code>as_factor</code> permettra d’utiliser <code>am</code> en facteur.</li>
 </ol>
-<div class="sourceCode" id="cb301"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb308"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>am <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/as_factor.html">as_factor</a></span><span class="op">(</span><span class="va">am</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">mpg</span>, fill <span class="op">=</span> <span class="va">am</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
@@ -477,7 +477,7 @@ Figure 20.11: Histogramme de mpg par am (question 7-1)
 </div>
 <p>Noter que <code>bins = 12</code> ne sert qu’à éviter un avertissement.</p>
 <p>Pour avoir les histogrammes dans des cadrans différents, la fonction <code><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap()</a></code> est utile.</p>
-<div class="sourceCode" id="cb302"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb309"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>am <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/as_factor.html">as_factor</a></span><span class="op">(</span><span class="va">am</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">mpg</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
@@ -496,8 +496,9 @@ Figure 20.12: Histogramme de mpg par am (question 7-2)
 <ol start="8" style="list-style-type: decimal">
 <li>Prendre le jeu de données <code>msleep</code> et produire un diagramme à barres pour observer la fréquence des régimes alimentaires.</li>
 </ol>
-<div class="sourceCode" id="cb303"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">msleep</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<div class="sourceCode" id="cb310"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># msleep fait parti du package `ggplot2`</span></span>
+<span><span class="va">msleep</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">vore</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
@@ -513,7 +514,7 @@ Figure 20.13: Diagramme à barre du régime alimentaire (question 8)
 <ol start="9" style="list-style-type: decimal">
 <li>Prendre le jeu de données <code>msleep</code> et produisez une boîte à moustache pour observer le temps total de sommeil (<code>sleep_total</code>) moyen par rapport aux régimes (<code>vore</code>). <strong>Attention</strong> aux données manquantes.</li>
 </ol>
-<div class="sourceCode" id="cb304"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb311"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">msleep</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html">na.omit</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">vore</span>, y<span class="op">=</span> <span class="va">sleep_total</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
@@ -531,7 +532,7 @@ Figure 20.14: Diagramme à barre du régime alimentaire (question 8)
 <ol start="10" style="list-style-type: decimal">
 <li>Avec le jeu de données <code>chickwts</code>, produire un diagramme à barres du poids moyen des poulets par rapport à leur alimentation en ne conservant que les graines de tournesols et les fèveroles.</li>
 </ol>
-<div class="sourceCode" id="cb305"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb312"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">chickwts</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">feed</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"horsebean"</span>, <span class="st">"sunflower"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">feed</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
@@ -549,63 +550,258 @@ Figure 20.15: Visualiation de weight par feed (question 10)
 <div id="statistiques" class="section level2 unnumbered">
 <h2>Statistiques<a class="anchor" aria-label="anchor" href="#statistiques"><i class="fas fa-link"></i></a>
 </h2>
-<p>TODO</p>
-<!-- Décrire -->
-<!-- Inférer -->
-<!-- Analyser -->
-<!-- Simuler -->
-<!-- 1. Créer une table de valeur-$t$ critique pour $dl = 1,2,3 ,... ,30$ et $\alpha=.05$ unilatérale. -->
-<!-- 2. Comparer la puissance de la distribution-$t$ par rapport à une distribution normale centrée réduite. La différence par rapport à l'hypothèse nulle est 2 et l'écart type est 1, l'$\alpha = .05$ bilatérale. Tester pour différentes valeurs de $n$. -->
-<!-- 1. Créer un jeu de données pour test-$t$ dépendant avec une corrélation de .3 entre les temps de mesure, des variances de 1, une différence de moyenne de 1 et une taille d'échantillon $n = 20$. Analyser ce jeu de données : vérifier la corrélation et la différence. -->
-<!-- 2. Calculer la puissance d'une corrélation de $\rho = .30$ pour une taille d'échantillon $n=80$ et $alpha = .05$ bilatérale. -->
-<!-- 3. Comparer l'erreur de type I du test-$t$ indépendant avec équivalence versus non-équivalence des variances pour une différence de moyennes de 1 et des variances de $.25$ pour le groupe 1 et $1$ pour le groupe 2 pour une taille d'échantillon de 30 séparé également entre les groupes. -->
-<!-- # L'objectif de ce tp est de réaliser un bootstrap -->
-<!-- # Pour cet exercice, vous utiliserez la base de données `cars` -->
-<!-- #1. #### -->
-<!-- # Calculer la corrélation entre `speed` et `dist` -->
-<!-- #2. #### -->
-<!-- # Calculer le coefficient de détermination (corrélation au carré) -->
-<!-- # Enregister cette variable comme `R2` -->
-<!-- # Faites attention de ne sortir que le coefficient et non toute la matrice! -->
-<!-- #3. #### -->
-<!-- # Créer une variable vide libellée `R2` avec `as.numeric()` -->
-<!-- #4. #### -->
-<!-- # Avec la fonction `dim()`, extrayer le nombre d'unités et -->
-<!-- # enregister cette valeur dans une variable libellée `n`. -->
-<!-- # Utiliser les crochets [] à la suite de la fonction pour -->
-<!-- # indiquer la dimension -->
-<!-- #5. #### -->
-<!-- # Créer avec la fonction `sample()` un vecteur de nombre aléatoire -->
-<!-- # de taille `n` avec remise et enregister ce résultats sous la variable -->
-<!-- # `index` -->
-<!-- #6. #### -->
-<!-- # Avec `index`, sorter de `jd` les unités choisies avec toutes leurs colonnes. -->
-<!-- # Vous aurez besoin des crochets [] -->
-<!-- # Enregistrer ces valeurs dans une variable `D` -->
-<!-- #7. #### -->
-<!-- # Créer une variable libellée `reps` contenant le nombre d'itération (1000) -->
-<!-- #8. #### -->
-<!-- # Mettre le tout en commun -->
-<!-- # Certaines étapes ont été faites précédemment, il reste à les mettre en commun -->
-<!-- # Créer une variable libellée `reps` contenant le nombre d'itération (1000) -->
-<!-- # Créer une variable libellée `n` contenant le nombre d'unité dans `jd` -->
-<!-- # Créer une variable libellée `R2` vide avec `as.numeric()` -->
-<!-- # Déclarer une boucle (for) où `i` prend les valeurs de 1 à `reps` -->
-<!-- # Dans cette boucle, -->
-<!-- ### Créer un vecteur de nombre aléatoire de taille `n` avec remise libellé `index` -->
-<!-- ### Créer une variable libellée `D` contenant les unités de jd avec leur colonne choisies par index -->
-<!-- ### Calculer le coefficient de détermination et enregister le dans la variable `R2` à la `i`e position -->
-<!-- # Le bootstrap est terminé, vous pouvez rouler cette syntaxe -->
-<!-- #9. #### -->
-<!-- # Calculer la moyenne et l'écart type de la variable "bootstrapée" -->
-<!-- #10. #### -->
-<!-- # Réaliser un histogramme de la variable "bootstrapée" -->
-<!-- #11. #### -->
-<!-- # Avec la fonction `quantile(x = , probs = ), calculer les intervalles de confiance à 95% -->
-<!-- # x correspond à la base de données et probs aux % désirés (dans un seul vecteur) -->
+<div id="question-1-2" class="section level3 unnumbered">
+<h3>Question 1<a class="anchor" aria-label="anchor" href="#question-1-2"><i class="fas fa-link"></i></a>
+</h3>
+<ol style="list-style-type: decimal">
+<li>Avec le jeu de données <code>mtcars</code>, réaliser une analyse descriptive complète. Ne conservez que la moyenne, l’écart type, l’asymétrie et l’aplatissement.</li>
+</ol>
+<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="solutions.html#cb313-1" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe</span>(mtcars)[<span class="fu">c</span>(<span class="st">"mean"</span>,<span class="st">"sd"</span>,<span class="st">"skew"</span>,<span class="st">"kurtosis"</span>)]</span>
+<span id="cb313-2"><a href="solutions.html#cb313-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>        mean     sd  skew kurtosis</span>
+<span id="cb313-3"><a href="solutions.html#cb313-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> mpg   <span class="fl">20.09</span>   <span class="fl">6.03</span>  <span class="fl">0.61</span>    <span class="sc">-</span><span class="fl">0.37</span></span>
+<span id="cb313-4"><a href="solutions.html#cb313-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> cyl    <span class="fl">6.19</span>   <span class="fl">1.79</span> <span class="sc">-</span><span class="fl">0.17</span>    <span class="sc">-</span><span class="fl">1.76</span></span>
+<span id="cb313-5"><a href="solutions.html#cb313-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> disp <span class="fl">230.72</span> <span class="fl">123.94</span>  <span class="fl">0.38</span>    <span class="sc">-</span><span class="fl">1.21</span></span>
+<span id="cb313-6"><a href="solutions.html#cb313-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> hp   <span class="fl">146.69</span>  <span class="fl">68.56</span>  <span class="fl">0.73</span>    <span class="sc">-</span><span class="fl">0.14</span></span>
+<span id="cb313-7"><a href="solutions.html#cb313-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> drat   <span class="fl">3.60</span>   <span class="fl">0.53</span>  <span class="fl">0.27</span>    <span class="sc">-</span><span class="fl">0.71</span></span>
+<span id="cb313-8"><a href="solutions.html#cb313-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> wt     <span class="fl">3.22</span>   <span class="fl">0.98</span>  <span class="fl">0.42</span>    <span class="sc">-</span><span class="fl">0.02</span></span>
+<span id="cb313-9"><a href="solutions.html#cb313-9" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> qsec  <span class="fl">17.85</span>   <span class="fl">1.79</span>  <span class="fl">0.37</span>     <span class="fl">0.34</span></span>
+<span id="cb313-10"><a href="solutions.html#cb313-10" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> vs     <span class="fl">0.44</span>   <span class="fl">0.50</span>  <span class="fl">0.24</span>    <span class="sc">-</span><span class="fl">2.00</span></span>
+<span id="cb313-11"><a href="solutions.html#cb313-11" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> am     <span class="fl">0.41</span>   <span class="fl">0.50</span>  <span class="fl">0.36</span>    <span class="sc">-</span><span class="fl">1.92</span></span>
+<span id="cb313-12"><a href="solutions.html#cb313-12" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> gear   <span class="fl">3.69</span>   <span class="fl">0.74</span>  <span class="fl">0.53</span>    <span class="sc">-</span><span class="fl">1.07</span></span>
+<span id="cb313-13"><a href="solutions.html#cb313-13" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> carb   <span class="fl">2.81</span>   <span class="fl">1.62</span>  <span class="fl">1.05</span>     <span class="fl">1.26</span></span></code></pre></div>
+<p>Voir <a href="d%C3%A9crire.html#les-variables-%C3%A0-%C3%A9chelles-continues">Les variables à échelles continues</a> pour l’utilisation de <code><a href="https://rdrr.io/pkg/psych/man/describe.html">psych::describe()</a></code> et <a href="programmer.html#r%C3%A9f%C3%A9rer-%C3%A0-des-sous-%C3%A9l%C3%A9ments">Référer à des sous-éléments</a> pour l’extraction des colonnes <code>[c("mean","sd","skew","kurtosis")]</code>.</p>
+</div>
+<div id="question-2-2" class="section level3 unnumbered">
+<h3>Question 2<a class="anchor" aria-label="anchor" href="#question-2-2"><i class="fas fa-link"></i></a>
+</h3>
+<ol start="2" style="list-style-type: decimal">
+<li>Avec le jeu de données <code>CO2</code>, faire une table de contingence entre <code>Treatment</code> et <code>Type</code>.</li>
+</ol>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="solutions.html#cb314-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(CO2[<span class="fu">c</span>(<span class="st">"Type"</span>,<span class="st">"Treatment"</span>)])</span>
+<span id="cb314-2"><a href="solutions.html#cb314-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>              Treatment</span>
+<span id="cb314-3"><a href="solutions.html#cb314-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Type          nonchilled chilled</span>
+<span id="cb314-4"><a href="solutions.html#cb314-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>   Quebec              <span class="dv">21</span>      <span class="dv">21</span></span>
+<span id="cb314-5"><a href="solutions.html#cb314-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>   Mississippi         <span class="dv">21</span>      <span class="dv">21</span></span></code></pre></div>
+<p>Voir <a href="d%C3%A9crire.html#les-variables-%C3%A0-%C3%A9chelles-nominales">Les variables à échelles nominales</a> pour l’utilisation de <code><a href="https://rdrr.io/r/base/table.html">table()</a></code> et <a href="programmer.html#r%C3%A9f%C3%A9rer-%C3%A0-des-sous-%C3%A9l%C3%A9ments">Référer à des sous-éléments</a> pour l’extraction des colonnes <code>[c("Type","Treatment")]</code> du jeu de données.</p>
+</div>
+<div id="question-3-2" class="section level3 unnumbered">
+<h3>Question 3<a class="anchor" aria-label="anchor" href="#question-3-2"><i class="fas fa-link"></i></a>
+</h3>
+<ol start="3" style="list-style-type: decimal">
+<li>Produire les valeurs-<span class="math inline">\(t\)</span> critiques pour <span class="math inline">\(dl = 1,2,3 ,... ,30\)</span> et <span class="math inline">\(\alpha=.05\)</span> unilatérale.</li>
+</ol>
+<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="solutions.html#cb315-1" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> .<span class="dv">05</span></span>
+<span id="cb315-2"><a href="solutions.html#cb315-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qt</span>(<span class="dv">1</span> <span class="sc">-</span> alpha, <span class="at">df =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">30</span>) <span class="co"># ou qt(alpha, df = 1:30, lower.tail = FALSE) </span></span>
+<span id="cb315-3"><a href="solutions.html#cb315-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>  [<span class="dv">1</span>] <span class="fl">6.31</span> <span class="fl">2.92</span> <span class="fl">2.35</span> <span class="fl">2.13</span> <span class="fl">2.02</span> <span class="fl">1.94</span> <span class="fl">1.89</span> <span class="fl">1.86</span> <span class="fl">1.83</span> <span class="fl">1.81</span> <span class="fl">1.80</span></span>
+<span id="cb315-4"><a href="solutions.html#cb315-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">12</span>] <span class="fl">1.78</span> <span class="fl">1.77</span> <span class="fl">1.76</span> <span class="fl">1.75</span> <span class="fl">1.75</span> <span class="fl">1.74</span> <span class="fl">1.73</span> <span class="fl">1.73</span> <span class="fl">1.72</span> <span class="fl">1.72</span> <span class="fl">1.72</span></span>
+<span id="cb315-5"><a href="solutions.html#cb315-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">23</span>] <span class="fl">1.71</span> <span class="fl">1.71</span> <span class="fl">1.71</span> <span class="fl">1.71</span> <span class="fl">1.70</span> <span class="fl">1.70</span> <span class="fl">1.70</span> <span class="fl">1.70</span></span></code></pre></div>
+</div>
+<div id="question-4-2" class="section level3 unnumbered">
+<h3>Question 4<a class="anchor" aria-label="anchor" href="#question-4-2"><i class="fas fa-link"></i></a>
+</h3>
+<ol start="4" style="list-style-type: decimal">
+<li>Comparer la puissance de la distribution-<span class="math inline">\(t\)</span> avec 20 degrés de liberté par rapport à une distribution normale centrée réduite avec une <span class="math inline">\(\alpha = .05\)</span> bilatérale. L’hypothèse alternative est distribuée normalement et fixée à une moyenne de 2 et l’écart type est de 1.</li>
+</ol>
+<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="solutions.html#cb316-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fixer l'alpha</span></span>
+<span id="cb316-2"><a href="solutions.html#cb316-2" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> .<span class="dv">05</span></span>
+<span id="cb316-3"><a href="solutions.html#cb316-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb316-4"><a href="solutions.html#cb316-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Valeurs critiques pour t et z, bilatérale (alpha/2)</span></span>
+<span id="cb316-5"><a href="solutions.html#cb316-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Côté supérieur avec `lower.tail = FALSE`</span></span>
+<span id="cb316-6"><a href="solutions.html#cb316-6" aria-hidden="true" tabindex="-1"></a>crit.t <span class="ot">&lt;-</span> <span class="fu">qt</span>(alpha<span class="sc">/</span><span class="dv">2</span>, <span class="at">df =</span> <span class="dv">20</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb316-7"><a href="solutions.html#cb316-7" aria-hidden="true" tabindex="-1"></a>crit.z <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(alpha<span class="sc">/</span><span class="dv">2</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb316-8"><a href="solutions.html#cb316-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb316-9"><a href="solutions.html#cb316-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculer la puissance pour les deux valeurs critiques</span></span>
+<span id="cb316-10"><a href="solutions.html#cb316-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Fixer la moyenne à 2</span></span>
+<span id="cb316-11"><a href="solutions.html#cb316-11" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="fu">c</span>(crit.t, crit.z), <span class="at">mean =</span> <span class="dv">2</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb316-12"><a href="solutions.html#cb316-12" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">0.466</span> <span class="fl">0.516</span></span></code></pre></div>
+</div>
+<div id="question-5-2" class="section level3 unnumbered">
+<h3>Question 5<a class="anchor" aria-label="anchor" href="#question-5-2"><i class="fas fa-link"></i></a>
+</h3>
+<ol start="5" style="list-style-type: decimal">
+<li>Calculer la puissance d’une corrélation de <span class="math inline">\(\rho = .30\)</span> avec 80 participants et un <span class="math inline">\(alpha = .05\)</span> bilatérale. Rappel : une corrélation peut se <em>standardiser</em> avec la tangente hyperbolique inverse, soit <code><a href="https://rdrr.io/r/base/Hyperbolic.html">atanh()</a></code>, et en multipliant par l’erreur type, <span class="math inline">\(\sqrt{n-3}\)</span><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Ce calcul est approximatif et non exact.&lt;/p&gt;"><sup>38</sup></a>. (Question difficile)</li>
+</ol>
+<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="solutions.html#cb317-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fixer les paramètres</span></span>
+<span id="cb317-2"><a href="solutions.html#cb317-2" aria-hidden="true" tabindex="-1"></a>r <span class="ot">&lt;-</span> .<span class="dv">30</span></span>
+<span id="cb317-3"><a href="solutions.html#cb317-3" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> .<span class="dv">05</span></span>
+<span id="cb317-4"><a href="solutions.html#cb317-4" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">80</span></span>
+<span id="cb317-5"><a href="solutions.html#cb317-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb317-6"><a href="solutions.html#cb317-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Standardiser la corrélation</span></span>
+<span id="cb317-7"><a href="solutions.html#cb317-7" aria-hidden="true" tabindex="-1"></a>r.std <span class="ot">&lt;-</span> <span class="fu">atanh</span>(r) <span class="sc">*</span> (<span class="fu">sqrt</span>(n<span class="dv">-3</span>))</span>
+<span id="cb317-8"><a href="solutions.html#cb317-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb317-9"><a href="solutions.html#cb317-9" aria-hidden="true" tabindex="-1"></a><span class="co">#trouver la valeur critique de rejet</span></span>
+<span id="cb317-10"><a href="solutions.html#cb317-10" aria-hidden="true" tabindex="-1"></a>r.crit <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(alpha<span class="sc">/</span><span class="dv">2</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb317-11"><a href="solutions.html#cb317-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb317-12"><a href="solutions.html#cb317-12" aria-hidden="true" tabindex="-1"></a><span class="co">#Calculer la puissance</span></span>
+<span id="cb317-13"><a href="solutions.html#cb317-13" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(r.crit, <span class="at">mean =</span> r.std, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb317-14"><a href="solutions.html#cb317-14" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">0.775</span></span></code></pre></div>
+<p>L’équation <a href="analyser.html#eq:r2t">(11.5)</a> de la section sur <a href="analyser.html#la-corr%C3%A9lation">la corrélation</a> permet de transformer ,</p>
+</div>
+<div id="question-6-2" class="section level3 unnumbered">
+<h3>Question 6<a class="anchor" aria-label="anchor" href="#question-6-2"><i class="fas fa-link"></i></a>
+</h3>
+<ol start="6" style="list-style-type: decimal">
+<li>Avec le jeu de données <code>ToothGrowth</code>, réaliser un test-<span class="math inline">\(t\)</span> afin de comparer les <code>supp</code> par rapport à la longueur des dents (<code>len</code>).</li>
+</ol>
+<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="solutions.html#cb318-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(len <span class="sc">~</span> supp, <span class="at">data =</span> ToothGrowth)</span>
+<span id="cb318-2"><a href="solutions.html#cb318-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb318-3"><a href="solutions.html#cb318-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span>   Welch Two Sample t<span class="sc">-</span>test</span>
+<span id="cb318-4"><a href="solutions.html#cb318-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb318-5"><a href="solutions.html#cb318-5" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> data<span class="sc">:</span>  len by supp</span>
+<span id="cb318-6"><a href="solutions.html#cb318-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> t <span class="ot">=</span> <span class="dv">2</span>, df <span class="ot">=</span> <span class="dv">55</span>, p<span class="sc">-</span>value <span class="ot">=</span> <span class="fl">0.06</span></span>
+<span id="cb318-7"><a href="solutions.html#cb318-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> alternative hypothesis<span class="sc">:</span> true difference <span class="cf">in</span> means between group OJ and group VC is not equal to <span class="dv">0</span></span>
+<span id="cb318-8"><a href="solutions.html#cb318-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">95</span> percent confidence interval<span class="sc">:</span></span>
+<span id="cb318-9"><a href="solutions.html#cb318-9" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span>  <span class="sc">-</span><span class="fl">0.171</span>  <span class="fl">7.571</span></span>
+<span id="cb318-10"><a href="solutions.html#cb318-10" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> sample estimates<span class="sc">:</span></span>
+<span id="cb318-11"><a href="solutions.html#cb318-11" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> mean <span class="cf">in</span> group OJ mean <span class="cf">in</span> group VC </span>
+<span id="cb318-12"><a href="solutions.html#cb318-12" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>             <span class="fl">20.7</span>             <span class="fl">17.0</span></span></code></pre></div>
+</div>
+<div id="question-7-2" class="section level3 unnumbered">
+<h3>Question 7<a class="anchor" aria-label="anchor" href="#question-7-2"><i class="fas fa-link"></i></a>
+</h3>
+<ol start="7" style="list-style-type: decimal">
+<li>Avec le jeu de données <code>sleep</code>, faire un test-<span class="math inline">\(t\)</span> permettant de comparer les deux temps de mesure nommés <code>group</code> par rapport à la variable dépendante <code>extra</code>.</li>
+</ol>
+<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="solutions.html#cb319-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(extra <span class="sc">~</span> group, <span class="at">data =</span> sleep, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb319-2"><a href="solutions.html#cb319-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb319-3"><a href="solutions.html#cb319-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span>   Paired t<span class="sc">-</span>test</span>
+<span id="cb319-4"><a href="solutions.html#cb319-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb319-5"><a href="solutions.html#cb319-5" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> data<span class="sc">:</span>  extra by group</span>
+<span id="cb319-6"><a href="solutions.html#cb319-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> t <span class="ot">=</span> <span class="sc">-</span><span class="dv">4</span>, df <span class="ot">=</span> <span class="dv">9</span>, p<span class="sc">-</span>value <span class="ot">=</span> <span class="fl">0.003</span></span>
+<span id="cb319-7"><a href="solutions.html#cb319-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> alternative hypothesis<span class="sc">:</span> true mean difference is not equal to <span class="dv">0</span></span>
+<span id="cb319-8"><a href="solutions.html#cb319-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">95</span> percent confidence interval<span class="sc">:</span></span>
+<span id="cb319-9"><a href="solutions.html#cb319-9" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span>  <span class="sc">-</span><span class="fl">2.46</span> <span class="sc">-</span><span class="fl">0.70</span></span>
+<span id="cb319-10"><a href="solutions.html#cb319-10" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> sample estimates<span class="sc">:</span></span>
+<span id="cb319-11"><a href="solutions.html#cb319-11" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> mean difference </span>
+<span id="cb319-12"><a href="solutions.html#cb319-12" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>           <span class="sc">-</span><span class="fl">1.58</span></span></code></pre></div>
+</div>
+<div id="question-8-2" class="section level3 unnumbered">
+<h3>Question 8<a class="anchor" aria-label="anchor" href="#question-8-2"><i class="fas fa-link"></i></a>
+</h3>
+<ol start="8" style="list-style-type: decimal">
+<li>Réaliser une simulation. Calculer la probabilité de gagner au jeu du roche-papier-ciseau pour chacune des options.</li>
+</ol>
+<p>Plusieurs simulations sont possibles. Voici un exemple.</p>
+<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="solutions.html#cb320-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Énumérer les choix</span></span>
+<span id="cb320-2"><a href="solutions.html#cb320-2" aria-hidden="true" tabindex="-1"></a>choix <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"roche"</span>, <span class="st">"papier"</span>, <span class="st">"ciseau"</span>)</span>
+<span id="cb320-3"><a href="solutions.html#cb320-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb320-4"><a href="solutions.html#cb320-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Créer la matrice de résultats possibles</span></span>
+<span id="cb320-5"><a href="solutions.html#cb320-5" aria-hidden="true" tabindex="-1"></a>Resultats <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(.<span class="dv">5</span>, <span class="dv">0</span>, <span class="dv">1</span>,</span>
+<span id="cb320-6"><a href="solutions.html#cb320-6" aria-hidden="true" tabindex="-1"></a>                      <span class="dv">1</span>, .<span class="dv">5</span>, <span class="dv">0</span>,</span>
+<span id="cb320-7"><a href="solutions.html#cb320-7" aria-hidden="true" tabindex="-1"></a>                      <span class="dv">0</span>, <span class="dv">1</span>, .<span class="dv">5</span>), </span>
+<span id="cb320-8"><a href="solutions.html#cb320-8" aria-hidden="true" tabindex="-1"></a>                    <span class="at">ncol =</span> <span class="dv">3</span>, <span class="at">nrow =</span> <span class="dv">3</span>,</span>
+<span id="cb320-9"><a href="solutions.html#cb320-9" aria-hidden="true" tabindex="-1"></a>                    <span class="at">byrow =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb320-10"><a href="solutions.html#cb320-10" aria-hidden="true" tabindex="-1"></a>                    <span class="at">dimnames =</span> <span class="fu">list</span>(choix, choix))</span>
+<span id="cb320-11"><a href="solutions.html#cb320-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb320-12"><a href="solutions.html#cb320-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialiser les gains pour chaque choix</span></span>
+<span id="cb320-13"><a href="solutions.html#cb320-13" aria-hidden="true" tabindex="-1"></a>gain <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">roche =</span> <span class="dv">0</span>, <span class="at">papier =</span> <span class="dv">0</span>, <span class="at">ciseau =</span> <span class="dv">0</span>)</span>
+<span id="cb320-14"><a href="solutions.html#cb320-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb320-15"><a href="solutions.html#cb320-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Paramètres de la u</span></span>
+<span id="cb320-16"><a href="solutions.html#cb320-16" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">73</span>)</span>
+<span id="cb320-17"><a href="solutions.html#cb320-17" aria-hidden="true" tabindex="-1"></a>nreps <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
+<span id="cb320-18"><a href="solutions.html#cb320-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb320-19"><a href="solutions.html#cb320-19" aria-hidden="true" tabindex="-1"></a><span class="co"># La boucle</span></span>
+<span id="cb320-20"><a href="solutions.html#cb320-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb320-21"><a href="solutions.html#cb320-21" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>nreps){</span>
+<span id="cb320-22"><a href="solutions.html#cb320-22" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Les joueurs des joueurs</span></span>
+<span id="cb320-23"><a href="solutions.html#cb320-23" aria-hidden="true" tabindex="-1"></a>  joueur1 <span class="ot">&lt;-</span> <span class="fu">sample</span>(choix, <span class="at">size =</span> <span class="dv">1</span>)</span>
+<span id="cb320-24"><a href="solutions.html#cb320-24" aria-hidden="true" tabindex="-1"></a>  joueur2 <span class="ot">&lt;-</span> <span class="fu">sample</span>(choix, <span class="at">size =</span> <span class="dv">1</span>)</span>
+<span id="cb320-25"><a href="solutions.html#cb320-25" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb320-26"><a href="solutions.html#cb320-26" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Enregistrer les gains</span></span>
+<span id="cb320-27"><a href="solutions.html#cb320-27" aria-hidden="true" tabindex="-1"></a>  gain[joueur1] <span class="ot">&lt;-</span> gain[joueur1] <span class="sc">+</span> Resultats[joueur1, joueur2]</span>
+<span id="cb320-28"><a href="solutions.html#cb320-28" aria-hidden="true" tabindex="-1"></a>  gain[joueur2] <span class="ot">&lt;-</span> gain[joueur2] <span class="sc">+</span> Resultats[joueur2, joueur1]</span>
+<span id="cb320-29"><a href="solutions.html#cb320-29" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb320-30"><a href="solutions.html#cb320-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Probabilités (en pourcentage)</span></span>
+<span id="cb320-31"><a href="solutions.html#cb320-31" aria-hidden="true" tabindex="-1"></a>gain <span class="sc">/</span> nreps</span>
+<span id="cb320-32"><a href="solutions.html#cb320-32" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>  roche papier ciseau </span>
+<span id="cb320-33"><a href="solutions.html#cb320-33" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>  <span class="fl">0.331</span>  <span class="fl">0.330</span>  <span class="fl">0.340</span></span></code></pre></div>
+</div>
+<div id="question-9-2" class="section level3 unnumbered">
+<h3>Question 9<a class="anchor" aria-label="anchor" href="#question-9-2"><i class="fas fa-link"></i></a>
+</h3>
+<ol start="9" style="list-style-type: decimal">
+<li>Réaliser une simulation. Trouver la valeur critique (<code>c.vrit</code>) pour un <span class="math inline">\(alpha = .025\)</span> unilatérale d’une distribution normale centrée sur <span class="math inline">\(0\)</span> et un écart type de <span class="math inline">\(1/\sqrt{n}\)</span>. Le scénario : tirer aléatoirement un échantillon de <span class="math inline">\(n=30\)</span> participants à partir d’une distribution normale de moyenne <span class="math inline">\(.5\)</span> et un écart type de 1. Calculer la moyenne de cet échantillon. Pour chaque scénario, additionner chaque occasion où cette moyenne est plus élevée que la valeur critique. Répéter ce scénario 1000 fois. Calculer la probabilité (en pourcentage) d’occurrence selon laquelle la moyenne de l’échantillon est plus élevée que la valeur critique.</li>
+</ol>
+<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb321-1"><a href="solutions.html#cb321-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fixer les paramètres</span></span>
+<span id="cb321-2"><a href="solutions.html#cb321-2" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> .<span class="dv">025</span></span>
+<span id="cb321-3"><a href="solutions.html#cb321-3" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">30</span></span>
+<span id="cb321-4"><a href="solutions.html#cb321-4" aria-hidden="true" tabindex="-1"></a>mu1 <span class="ot">&lt;-</span> .<span class="dv">5</span></span>
+<span id="cb321-5"><a href="solutions.html#cb321-5" aria-hidden="true" tabindex="-1"></a>v.crit <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="dv">1</span> <span class="sc">-</span> alpha, <span class="at">sd =</span> <span class="dv">1</span><span class="sc">/</span><span class="fu">sqrt</span>(n)) <span class="co"># ou qnorm(alpha, lower.tail = FALSE)</span></span>
+<span id="cb321-6"><a href="solutions.html#cb321-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb321-7"><a href="solutions.html#cb321-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialiser</span></span>
+<span id="cb321-8"><a href="solutions.html#cb321-8" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">101</span>)</span>
+<span id="cb321-9"><a href="solutions.html#cb321-9" aria-hidden="true" tabindex="-1"></a>nreps <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb321-10"><a href="solutions.html#cb321-10" aria-hidden="true" tabindex="-1"></a>somme <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb321-11"><a href="solutions.html#cb321-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb321-12"><a href="solutions.html#cb321-12" aria-hidden="true" tabindex="-1"></a><span class="co"># La boucle</span></span>
+<span id="cb321-13"><a href="solutions.html#cb321-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>nreps){</span>
+<span id="cb321-14"><a href="solutions.html#cb321-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Créer un échantillon</span></span>
+<span id="cb321-15"><a href="solutions.html#cb321-15" aria-hidden="true" tabindex="-1"></a>  echant <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> n, <span class="at">mean =</span> mu1)</span>
+<span id="cb321-16"><a href="solutions.html#cb321-16" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb321-17"><a href="solutions.html#cb321-17" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Calculer la moyenne</span></span>
+<span id="cb321-18"><a href="solutions.html#cb321-18" aria-hidden="true" tabindex="-1"></a>  moyenne <span class="ot">&lt;-</span> <span class="fu">mean</span>(echant)</span>
+<span id="cb321-19"><a href="solutions.html#cb321-19" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Enregister si la moyenne est plus élevée que la valeur critique</span></span>
+<span id="cb321-20"><a href="solutions.html#cb321-20" aria-hidden="true" tabindex="-1"></a>  somme <span class="ot">&lt;-</span> somme <span class="sc">+</span> (moyenne <span class="sc">&gt;=</span> v.crit)</span>
+<span id="cb321-21"><a href="solutions.html#cb321-21" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb321-22"><a href="solutions.html#cb321-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb321-23"><a href="solutions.html#cb321-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Probabilités (en pourcentage)</span></span>
+<span id="cb321-24"><a href="solutions.html#cb321-24" aria-hidden="true" tabindex="-1"></a>somme<span class="sc">/</span>nreps</span>
+<span id="cb321-25"><a href="solutions.html#cb321-25" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">0.792</span></span></code></pre></div>
+<p>Avec les renseignements précédents, calculer la puissance.</p>
+<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="solutions.html#cb322-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(v.crit, <span class="at">mean =</span> mu1, <span class="at">sd =</span> <span class="dv">1</span><span class="sc">/</span><span class="fu">sqrt</span>(n), <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb322-2"><a href="solutions.html#cb322-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">0.782</span></span></code></pre></div>
+</div>
+<div id="question-10-2" class="section level3 unnumbered">
+<h3>Question 10<a class="anchor" aria-label="anchor" href="#question-10-2"><i class="fas fa-link"></i></a>
+</h3>
+<ol start="10" style="list-style-type: decimal">
+<li>Réaliser un bootstrap la corrélation entre <code>sleep_total</code> (temps de sommeil total) et <code>bodywt</code> (poids du corps) dans le jeu de données <code>msleep</code> (du package <code>ggplot2</code>). Produire la moyenne et l’écart type des échantillons <em>bootstrapées</em> ainsi que l’intervalle de confiance à 95%.</li>
+</ol>
+<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb323-1"><a href="solutions.html#cb323-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialiser </span></span>
+<span id="cb323-2"><a href="solutions.html#cb323-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2018</span>)</span>
+<span id="cb323-3"><a href="solutions.html#cb323-3" aria-hidden="true" tabindex="-1"></a>nreps <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb323-4"><a href="solutions.html#cb323-4" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="fu">nrow</span>(msleep)</span>
+<span id="cb323-5"><a href="solutions.html#cb323-5" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span>  <span class="dv">1</span><span class="fl">-.95</span></span>
+<span id="cb323-6"><a href="solutions.html#cb323-6" aria-hidden="true" tabindex="-1"></a>correl <span class="ot">&lt;-</span> <span class="fu">numeric</span>()</span>
+<span id="cb323-7"><a href="solutions.html#cb323-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb323-8"><a href="solutions.html#cb323-8" aria-hidden="true" tabindex="-1"></a><span class="co"># La boucle</span></span>
+<span id="cb323-9"><a href="solutions.html#cb323-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>nreps){</span>
+<span id="cb323-10"><a href="solutions.html#cb323-10" aria-hidden="true" tabindex="-1"></a>  idx <span class="ot">&lt;-</span> <span class="fu">sample</span>(N, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb323-11"><a href="solutions.html#cb323-11" aria-hidden="true" tabindex="-1"></a>  D <span class="ot">&lt;-</span> msleep[idx, ]</span>
+<span id="cb323-12"><a href="solutions.html#cb323-12" aria-hidden="true" tabindex="-1"></a>  correl[i] <span class="ot">&lt;-</span> <span class="fu">cor</span>(D<span class="sc">$</span>sleep_total, D<span class="sc">$</span>bodywt)</span>
+<span id="cb323-13"><a href="solutions.html#cb323-13" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb323-14"><a href="solutions.html#cb323-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb323-15"><a href="solutions.html#cb323-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Les statistiques</span></span>
+<span id="cb323-16"><a href="solutions.html#cb323-16" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(correl)</span>
+<span id="cb323-17"><a href="solutions.html#cb323-17" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="sc">-</span><span class="fl">0.364</span></span>
+<span id="cb323-18"><a href="solutions.html#cb323-18" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(correl)</span>
+<span id="cb323-19"><a href="solutions.html#cb323-19" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">0.0694</span></span>
+<span id="cb323-20"><a href="solutions.html#cb323-20" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(correl, <span class="at">probs =</span> <span class="fu">c</span>(alpha<span class="sc">/</span><span class="dv">2</span>, <span class="dv">1</span><span class="sc">-</span>alpha<span class="sc">/</span><span class="dv">2</span>))</span>
+<span id="cb323-21"><a href="solutions.html#cb323-21" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>   <span class="fl">2.5</span><span class="sc">%  97.5%</span> </span>
+<span id="cb323-22"><a href="solutions.html#cb323-22" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="sc">-</span><span class="fl">0.528</span> <span class="sc">-</span><span class="fl">0.255</span></span></code></pre></div>
+</div>
+</div>
+<div id="modèles-linéaires" class="section level2 unnumbered">
+<h2>Modèles linéaires<a class="anchor" aria-label="anchor" href="#mod%C3%A8les-lin%C3%A9aires"><i class="fas fa-link"></i></a>
+</h2>
+<!-- ### Question 1 {-} -->
+<!-- faire une anova -->
+<!-- ### Question 2 {-} -->
+<!-- faire une régression -->
+<!-- ### Question 3 {-} -->
+<!-- créer un modèle -->
+<!-- ### Question 4 {-} -->
+<!-- créer un modèle -->
+<!-- ### Question 5 {-} -->
+<!-- créer un modèle -->
+<!-- ### Question 6 {-} -->
+<!-- mediaiton -->
+<!-- ### Question 7 {-} -->
+<!-- moderation -->
 
 </div>
 </div>
+
   <div class="chapter-nav">
 <div class="prev"><a href="r%C3%A9duire.html"><span class="header-section-number">20</span> Réduire</a></div>
 <div class="next"><a href="r%C3%A9f%C3%A9rences.html">Références</a></div>
@@ -642,7 +838,21 @@ Figure 20.15: Visualiation de weight par feed (question 10)
 <li><a class="nav-link" href="#question-10-1">Question 10</a></li>
 </ul>
 </li>
-<li><a class="nav-link" href="#statistiques">Statistiques</a></li>
+<li>
+<a class="nav-link" href="#statistiques">Statistiques</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#question-1-2">Question 1</a></li>
+<li><a class="nav-link" href="#question-2-2">Question 2</a></li>
+<li><a class="nav-link" href="#question-3-2">Question 3</a></li>
+<li><a class="nav-link" href="#question-4-2">Question 4</a></li>
+<li><a class="nav-link" href="#question-5-2">Question 5</a></li>
+<li><a class="nav-link" href="#question-6-2">Question 6</a></li>
+<li><a class="nav-link" href="#question-7-2">Question 7</a></li>
+<li><a class="nav-link" href="#question-8-2">Question 8</a></li>
+<li><a class="nav-link" href="#question-9-2">Question 9</a></li>
+<li><a class="nav-link" href="#question-10-2">Question 10</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#mod%C3%A8les-lin%C3%A9aires">Modèles linéaires</a></li>
 </ul>
 
       <div class="book-extra">
@@ -660,7 +870,7 @@ Figure 20.15: Visualiation de weight par feed (question 10)
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2023-02-27.</p>
+    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2023-03-02.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -677,11 +677,27 @@ regression(y = jd$y, X = jd[ ,2:4])
 ```
 
 
+### Rapporter la régression
+
+
 ```{r, echo = FALSE}
 ss = summary(res.lm)
 ```
 
-Un manuscrit rapporte les résultats à peu prêt comme ceci.
+Suite à l'analyse qui se commande, comme mentionné ci-haut, avec la syntaxe suivante.
+
+```{r, cache = TRUE}
+# La régression
+res.lm <- lm(formula = y ~ X.1 + X.2 + X.3, data = jd)
+
+# Les résultats
+res.lm
+
+# Sommaire des résultats
+summary(res.lm)
+```
+
+Un article scientifique rapporte les résultats à peu près comme ceci.
 
 > Le modèle tester obtient un coefficient de détermination de $R^2(`r ss$df[2]`) = `r ss$r.squared`, p < .001$. Les trois prédicteurs sont liés significativement à la variable dépendante, respectivement $X_1: \beta_1 = `r ss$coefficients[2, "Estimate"]`$, $p = < .001$, $X_2: \beta_2 = `r ss$coefficients[2, "Estimate"]`$, $p = < .001$, $X_3: \beta_3 = `r ss$coefficients[4, "Estimate"]`$, $p = < .001$. 
 

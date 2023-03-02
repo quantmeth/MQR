@@ -191,7 +191,7 @@ pivot(k = k, n = 2)
 ```
 ### Question 11 {-}
 
-11. Rédiger une fonction pour générer une séquence de Fibonacci (chaque nombre est la somme des deux précédents) jusqu'à une certaine valeur, soit $1, 1, 2, 3, 5, 8,...$.
+11. Rédiger une fonction pour générer une séquence de Fibonacci (chaque nombre est la somme des deux précédents) jusqu'à une certaine valeur, soit $1, 1, 2, 3, 5, 8,...$. (Question difficile)
 
 Plusieurs solutions possibles dont en voici deux.
 
@@ -416,6 +416,7 @@ mtcars %>%
 
 
 ```r
+# msleep fait parti du package `ggplot2`
 msleep %>% 
   ggplot(mapping = aes(x = vore)) + 
   geom_bar()
@@ -463,100 +464,265 @@ chickwts %>%
 
 ## Statistiques {-}
 
-TODO
+### Question 1 {-}
 
-<!-- Décrire -->
-<!-- Inférer -->
-<!-- Analyser -->
-<!-- Simuler -->
-
-<!-- 1. Créer une table de valeur-$t$ critique pour $dl = 1,2,3 ,... ,30$ et $\alpha=.05$ unilatérale. -->
-
-<!-- 2. Comparer la puissance de la distribution-$t$ par rapport à une distribution normale centrée réduite. La différence par rapport à l'hypothèse nulle est 2 et l'écart type est 1, l'$\alpha = .05$ bilatérale. Tester pour différentes valeurs de $n$. -->
+1. Avec le jeu de données `mtcars`, réaliser une analyse descriptive complète. Ne conservez que la moyenne, l'écart type, l'asymétrie et l'aplatissement.
 
 
-<!-- 1. Créer un jeu de données pour test-$t$ dépendant avec une corrélation de .3 entre les temps de mesure, des variances de 1, une différence de moyenne de 1 et une taille d'échantillon $n = 20$. Analyser ce jeu de données : vérifier la corrélation et la différence. -->
+```r
+psych::describe(mtcars)[c("mean","sd","skew","kurtosis")]
+>        mean     sd  skew kurtosis
+> mpg   20.09   6.03  0.61    -0.37
+> cyl    6.19   1.79 -0.17    -1.76
+> disp 230.72 123.94  0.38    -1.21
+> hp   146.69  68.56  0.73    -0.14
+> drat   3.60   0.53  0.27    -0.71
+> wt     3.22   0.98  0.42    -0.02
+> qsec  17.85   1.79  0.37     0.34
+> vs     0.44   0.50  0.24    -2.00
+> am     0.41   0.50  0.36    -1.92
+> gear   3.69   0.74  0.53    -1.07
+> carb   2.81   1.62  1.05     1.26
+```
 
-<!-- 2. Calculer la puissance d'une corrélation de $\rho = .30$ pour une taille d'échantillon $n=80$ et $alpha = .05$ bilatérale. -->
+Voir [Les variables à échelles continues] pour l'utilisation de `psych::describe()` et [Référer à des sous-éléments] pour l'extraction des colonnes `[c("mean","sd","skew","kurtosis")]`.
 
-<!-- 3. Comparer l'erreur de type I du test-$t$ indépendant avec équivalence versus non-équivalence des variances pour une différence de moyennes de 1 et des variances de $.25$ pour le groupe 1 et $1$ pour le groupe 2 pour une taille d'échantillon de 30 séparé également entre les groupes. -->
+### Question 2 {-}
 
-<!-- # L'objectif de ce tp est de réaliser un bootstrap -->
-<!-- # Pour cet exercice, vous utiliserez la base de données `cars` -->
-<!-- #1. #### -->
-<!-- # Calculer la corrélation entre `speed` et `dist` -->
-
-
-<!-- #2. #### -->
-<!-- # Calculer le coefficient de détermination (corrélation au carré) -->
-<!-- # Enregister cette variable comme `R2` -->
-<!-- # Faites attention de ne sortir que le coefficient et non toute la matrice! -->
-
-
-<!-- #3. #### -->
-<!-- # Créer une variable vide libellée `R2` avec `as.numeric()` -->
-
-
-
-<!-- #4. #### -->
-<!-- # Avec la fonction `dim()`, extrayer le nombre d'unités et -->
-<!-- # enregister cette valeur dans une variable libellée `n`. -->
-<!-- # Utiliser les crochets [] à la suite de la fonction pour -->
-<!-- # indiquer la dimension -->
+2. Avec le jeu de données `CO2`, faire une table de contingence entre `Treatment` et `Type`.
 
 
-<!-- #5. #### -->
-<!-- # Créer avec la fonction `sample()` un vecteur de nombre aléatoire -->
-<!-- # de taille `n` avec remise et enregister ce résultats sous la variable -->
-<!-- # `index` -->
+```r
+table(CO2[c("Type","Treatment")])
+>              Treatment
+> Type          nonchilled chilled
+>   Quebec              21      21
+>   Mississippi         21      21
+```
+
+Voir [Les variables à échelles nominales] pour l'utilisation de `table()` et [Référer à des sous-éléments] pour l'extraction des colonnes `[c("Type","Treatment")]` du jeu de données.
+
+### Question 3 {-}
+
+3. Produire les valeurs-$t$ critiques pour $dl = 1,2,3 ,... ,30$ et $\alpha=.05$ unilatérale.
 
 
+```r
+alpha <- .05
+qt(1 - alpha, df = 1:30) # ou qt(alpha, df = 1:30, lower.tail = FALSE) 
+>  [1] 6.31 2.92 2.35 2.13 2.02 1.94 1.89 1.86 1.83 1.81 1.80
+> [12] 1.78 1.77 1.76 1.75 1.75 1.74 1.73 1.73 1.72 1.72 1.72
+> [23] 1.71 1.71 1.71 1.71 1.70 1.70 1.70 1.70
+```
 
-<!-- #6. #### -->
-<!-- # Avec `index`, sorter de `jd` les unités choisies avec toutes leurs colonnes. -->
-<!-- # Vous aurez besoin des crochets [] -->
-<!-- # Enregistrer ces valeurs dans une variable `D` -->
+### Question 4 {-}
 
-
-
-<!-- #7. #### -->
-<!-- # Créer une variable libellée `reps` contenant le nombre d'itération (1000) -->
-
-
-
-<!-- #8. #### -->
-<!-- # Mettre le tout en commun -->
-<!-- # Certaines étapes ont été faites précédemment, il reste à les mettre en commun -->
-<!-- # Créer une variable libellée `reps` contenant le nombre d'itération (1000) -->
-<!-- # Créer une variable libellée `n` contenant le nombre d'unité dans `jd` -->
-<!-- # Créer une variable libellée `R2` vide avec `as.numeric()` -->
-<!-- # Déclarer une boucle (for) où `i` prend les valeurs de 1 à `reps` -->
-<!-- # Dans cette boucle, -->
-<!-- ### Créer un vecteur de nombre aléatoire de taille `n` avec remise libellé `index` -->
-<!-- ### Créer une variable libellée `D` contenant les unités de jd avec leur colonne choisies par index -->
-<!-- ### Calculer le coefficient de détermination et enregister le dans la variable `R2` à la `i`e position -->
-<!-- # Le bootstrap est terminé, vous pouvez rouler cette syntaxe -->
+4. Comparer la puissance de la distribution-$t$ avec 20 degrés de liberté par rapport à une distribution normale centrée réduite avec une $\alpha = .05$ bilatérale. L'hypothèse alternative est distribuée normalement et fixée à une moyenne de 2 et l'écart type est de 1.
 
 
+```r
+# Fixer l'alpha
+alpha <- .05
+
+# Valeurs critiques pour t et z, bilatérale (alpha/2)
+# Côté supérieur avec `lower.tail = FALSE`
+crit.t <- qt(alpha/2, df = 20, lower.tail = FALSE)
+crit.z <- qnorm(alpha/2, lower.tail = FALSE)
+
+# Calculer la puissance pour les deux valeurs critiques
+# Fixer la moyenne à 2
+pnorm(c(crit.t, crit.z), mean = 2, lower.tail = FALSE)
+> [1] 0.466 0.516
+```
+
+### Question 5 {-}
+
+5. Calculer la puissance d'une corrélation de $\rho = .30$ avec 80 participants et un $alpha = .05$ bilatérale. Rappel : une corrélation peut se *standardiser* avec la tangente hyperbolique inverse, soit `atanh()`, et en multipliant par l'erreur type, $\sqrt{n-3}$^[Ce calcul est approximatif et non exact.]. (Question difficile)
 
 
+```r
+# Fixer les paramètres
+r <- .30
+alpha <- .05
+n <- 80
+
+# Standardiser la corrélation
+r.std <- atanh(r) * (sqrt(n-3))
+
+#trouver la valeur critique de rejet
+r.crit <- qnorm(alpha/2, lower.tail = FALSE)
+
+#Calculer la puissance
+pnorm(r.crit, mean = r.std, lower.tail = FALSE)
+> [1] 0.775
+```
+
+L'équation \@ref(eq:r2t) de la section sur [la corrélation] permet de transformer ,
+
+### Question 6 {-}
+
+6. Avec le jeu de données `ToothGrowth`, réaliser un test-$t$ afin de comparer les `supp` par rapport à la longueur des dents (`len`).
 
 
+```r
+t.test(len ~ supp, data = ToothGrowth)
+> 
+> 	Welch Two Sample t-test
+> 
+> data:  len by supp
+> t = 2, df = 55, p-value = 0.06
+> alternative hypothesis: true difference in means between group OJ and group VC is not equal to 0
+> 95 percent confidence interval:
+>  -0.171  7.571
+> sample estimates:
+> mean in group OJ mean in group VC 
+>             20.7             17.0
+```
+
+### Question 7 {-}
+
+7. Avec le jeu de données `sleep`, faire un test-$t$ permettant de comparer les deux temps de mesure nommés `group` par rapport à la variable dépendante `extra`. 
 
 
+```r
+t.test(extra ~ group, data = sleep, paired = TRUE)
+> 
+> 	Paired t-test
+> 
+> data:  extra by group
+> t = -4, df = 9, p-value = 0.003
+> alternative hypothesis: true mean difference is not equal to 0
+> 95 percent confidence interval:
+>  -2.46 -0.70
+> sample estimates:
+> mean difference 
+>           -1.58
+```
+
+### Question 8 {-}
+8. Réaliser une simulation. Calculer la probabilité de gagner au jeu du roche-papier-ciseau pour chacune des options. 
+
+Plusieurs simulations sont possibles. Voici un exemple.
 
 
-<!-- #9. #### -->
-<!-- # Calculer la moyenne et l'écart type de la variable "bootstrapée" -->
+```r
+# Énumérer les choix
+choix <- c("roche", "papier", "ciseau")
+
+# Créer la matrice de résultats possibles
+Resultats <- matrix(c(.5, 0, 1,
+                      1, .5, 0,
+                      0, 1, .5), 
+                    ncol = 3, nrow = 3,
+                    byrow = TRUE,
+                    dimnames = list(choix, choix))
+
+# Initialiser les gains pour chaque choix
+gain <- c(roche = 0, papier = 0, ciseau = 0)
+
+# Paramètres de la u
+set.seed(73)
+nreps <- 10000
+
+# La boucle
+
+for(i in 1:nreps){
+  # Les joueurs des joueurs
+  joueur1 <- sample(choix, size = 1)
+  joueur2 <- sample(choix, size = 1)
+  
+  # Enregistrer les gains
+  gain[joueur1] <- gain[joueur1] + Resultats[joueur1, joueur2]
+  gain[joueur2] <- gain[joueur2] + Resultats[joueur2, joueur1]
+}
+# Probabilités (en pourcentage)
+gain / nreps
+>  roche papier ciseau 
+>  0.331  0.330  0.340
+```
 
 
-<!-- #10. #### -->
-<!-- # Réaliser un histogramme de la variable "bootstrapée" -->
+### Question 9 {-}
+
+9. Réaliser une simulation. Trouver la valeur critique (`c.vrit`) pour un $alpha = .025$ unilatérale d'une distribution normale centrée sur $0$ et un écart type de $1/\sqrt{n}$. Le scénario : tirer aléatoirement un échantillon de $n=30$ participants à partir d'une distribution normale de moyenne $.5$ et un écart type de 1. Calculer la moyenne de cet échantillon. Pour chaque scénario, additionner chaque occasion où cette moyenne est plus élevée que la valeur critique. Répéter ce scénario 1000 fois. Calculer la probabilité (en pourcentage) d'occurrence selon laquelle la moyenne de l'échantillon est plus élevée que la valeur critique.
 
 
-<!-- #11. #### -->
-<!-- # Avec la fonction `quantile(x = , probs = ), calculer les intervalles de confiance à 95% -->
-<!-- # x correspond à la base de données et probs aux % désirés (dans un seul vecteur) -->
+```r
+# Fixer les paramètres
+alpha <- .025
+n <- 30
+mu1 <- .5
+v.crit <- qnorm(1 - alpha, sd = 1/sqrt(n)) # ou qnorm(alpha, lower.tail = FALSE)
+
+# Initialiser
+set.seed(101)
+nreps <- 1000
+somme <- 0
+
+# La boucle
+for(i in 1:nreps){
+  # Créer un échantillon
+  echant <- rnorm(n = n, mean = mu1)
+  
+  #Calculer la moyenne
+  moyenne <- mean(echant)
+  # Enregister si la moyenne est plus élevée que la valeur critique
+  somme <- somme + (moyenne >= v.crit)
+}
+
+# Probabilités (en pourcentage)
+somme/nreps
+> [1] 0.792
+```
+Avec les renseignements précédents, calculer la puissance.
 
 
+```r
+pnorm(v.crit, mean = mu1, sd = 1/sqrt(n), lower.tail = FALSE)
+> [1] 0.782
+```
 
+### Question 10 {-}
+10. Réaliser un bootstrap la corrélation entre `sleep_total` (temps de sommeil total) et `bodywt` (poids du corps) dans le jeu de données `msleep` (du package `ggplot2`). Produire la moyenne et l'écart type des échantillons *bootstrapées* ainsi que l'intervalle de confiance à 95%.
+
+
+```r
+# Initialiser 
+set.seed(2018)
+nreps <- 1000
+N <- nrow(msleep)
+alpha <-  1-.95
+correl <- numeric()
+
+# La boucle
+for(i in 1:nreps){
+  idx <- sample(N, replace = TRUE)
+  D <- msleep[idx, ]
+  correl[i] <- cor(D$sleep_total, D$bodywt)
+}
+
+# Les statistiques
+mean(correl)
+> [1] -0.364
+sd(correl)
+> [1] 0.0694
+quantile(correl, probs = c(alpha/2, 1-alpha/2))
+>   2.5%  97.5% 
+> -0.528 -0.255
+```
+
+## Modèles linéaires {-}
+<!-- ### Question 1 {-} -->
+<!-- faire une anova -->
+<!-- ### Question 2 {-} -->
+<!-- faire une régression -->
+<!-- ### Question 3 {-} -->
+<!-- créer un modèle -->
+<!-- ### Question 4 {-} -->
+<!-- créer un modèle -->
+<!-- ### Question 5 {-} -->
+<!-- créer un modèle -->
+<!-- ### Question 6 {-} -->
+<!-- mediaiton -->
+<!-- ### Question 7 {-} -->
+<!-- moderation -->

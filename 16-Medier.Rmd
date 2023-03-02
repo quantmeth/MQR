@@ -671,8 +671,56 @@ round(Resultats, 2)
 
 Si les coefficients de régression standardisés sont préférés, ceux-ci s'obtiennent simplement en standardisant le jeu de données, puis en roulant l'analyse de médiation de nouveau. Pour standardiser rapidement, `z.donnees = apply(donnees, MARGIN = 2, FUN = scale)` applique (`apply()`) la fonction `FUN = scale` qui standardise les données (`donnees`) par colonne `MARGIN = 2`. 
 
+
 ## Les packages
 
-Le présent chapitre ne fait que gratter la surface de ce qu'il est possible de faire avec l'analyse de médiation. Des articles comme @Caron18 et @Lemardeletsoumis donnent des exemples de syntaxe **R** en plus d'approfondir l'analyse. Il existe plusieurs packages **R** pour réaliser l'analyse de médiation, comme `mediation` [@mediation] et `Rmediation` [@Rmediation], tous les deux ayant leur propre documentation. Pour des analyses plus compliquées, les packages comme `lavaan` [@lavaan] permettent de faire des analyses de médiation avec la modélisation par équations structurelles, Toutefois, ce chapitre espère avoir convaincu le lecteur que l'analyse peut être relativement aisément *fait maison*.
+Le présent chapitre ne fait que gratter la surface de ce qu'il est possible de faire avec l'analyse de médiation. Des articles comme @Caron18 et @Lemardeletsoumis donnent des exemples de syntaxe **R** en plus d'approfondir l'analyse. Il existe plusieurs packages **R** pour réaliser l'analyse de médiation, comme `mediation` [@mediation] et `Rmediation` [@Rmediation], tous les deux ayant leur propre documentation. Pour des analyses plus compliquées, les packages comme `lavaan` [@lavaan] permetten*t* de faire des analyses de médiation avec la modélisation par équations structurelles, Toutefois, ce chapitre espère avoir convaincu le lecteur que l'analyse peut être relativement aisément *fait maison*.
+
+## Rapporter l'analyse de médiation
+
+```{r, eval = FALSE, message = FALSE, warning = FALSE, comment=FALSE, include = FALSE}
+# Import the package "pathanalysis"
+remotes::install_github(repo = "quantmeth/pathanalysis")
+```
+
+Il existe une version préliminaire d’un package permettant de réaliser facilement l'analyse de médiation. Le package est `pathanalysis` [@CaronPA]. Il est disponible par GitHub et est importable sur **R** avec la syntaxe suivante.
+
+```{r, eval = FALSE}
+remotes::install_github(repo = "quantmeth/Rnest")
+```
+
+Comme à l'habitude, si le package est déjà téléchargé, il faut l’appeler dans l'environnement.
+
+```{r}
+library(pathanalysis)
+```
+
+Le package `pathanalysis` fourni la fonction `mediation()` qui permet d'obtenir le modèle saturé de l'analyse de médiation. Pour commander, le modèle désiré, il faut ordonner les variables de cette façon\ : des **variables endogènes** qui ne prédisent aucune variable, les variables endogènes qui prédisent des variables, jusqu'au **variables exogènes** (celles qui ne sont prédites par aucune variable). Il faut délimiter chaque variable avec le symbole `~`.
+
+L'exemple suivant, basé sur le jeu de données `mtcars`, teste le lien indirect de `wt` (variable exogène) à `mpg` (variable endogène) par l'intermédiaire de `hp`. Les résultats standardisés sont demandés avec l'argument `standardized = TRUE`.
+
+```{r, cache = TRUE}
+mediation(model = mpg ~  hp ~ wt, 
+          data = mtcars, 
+          standardized = TRUE)
+```
+
+Voici comment ces résultats peuvent être rapportés dans un article scientifique.
+
+```{r, echo = FALSE, cache = TRUE}
+rm <- mediation(model = mpg ~ hp ~ wt, 
+          data = mtcars, 
+          standardized = TRUE)
+icl <- rm$`CI Lower 95 %`[4]
+icu <- rm$`CI Upper 95 %`[4]
+eee <- rm$Estimate[4]
+```
+
+
+> Une analyse de médiation avec bootstrap est effectuée pour tester le lien indirect le lien indirect de `wt` à `mpg` par l'intermédiaire de `hp`. Les résultats montrent un lien indirect significatif de `r eee`, [95%IC\ `r icl`,\ `r icu`]. La Figure\ \@ref(fig:metmed) présente les résultats.
+
+```{r mtmed, fig.cap="Résultats de l'analyse de  médiation",echo=FALSE, fig.align="center",out.height="75%" , out.width="75%"}
+knitr::include_graphics("image//mtcars_med.png")
+```
 
 <!-- ## TODO EXTENSION MATRICIELLE -->

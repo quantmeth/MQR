@@ -117,6 +117,7 @@ fig:sobelhist
 eq:Bex
 fig:resmed
 tab:res
+fig:mtmed
 eq:moderation
 fig:mod
 eq:moderation2
@@ -310,6 +311,7 @@ lanalyse-de-régression
 la-création-de-données-1
 conditions-dapplication-de-la-régression
 lanalyse-de-régression-avec-r
+rapporter-la-régression
 la-matrice-de-corrélation-partielle-et-semi-partielle
 les-corrélations-partielles
 les-corrélation-semi-partielles
@@ -334,6 +336,7 @@ la-technique-du-bootstrap
 la-création-de-données-2
 analyse-complète
 les-packages-2
+rapporter-lanalyse-de-médiation
 modérer
 lanalyse-de-modération
 création-de-données
@@ -363,6 +366,7 @@ deuxième-technique
 lanalyse-en-composantes-principales-1
 analyse-factorielle-exploratoire
 calculs-de-lanalyse-factorielle-exploratoire
+rapporter-lanalyse-factorielle
 réduire
 illustration
 importance-dune-dimension

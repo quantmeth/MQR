@@ -795,8 +795,69 @@ round(Resultats, 2)
 
 Si les coefficients de régression standardisés sont préférés, ceux-ci s'obtiennent simplement en standardisant le jeu de données, puis en roulant l'analyse de médiation de nouveau. Pour standardiser rapidement, `z.donnees = apply(donnees, MARGIN = 2, FUN = scale)` applique (`apply()`) la fonction `FUN = scale` qui standardise les données (`donnees`) par colonne `MARGIN = 2`. 
 
+
 ## Les packages
 
-Le présent chapitre ne fait que gratter la surface de ce qu'il est possible de faire avec l'analyse de médiation. Des articles comme @Caron18 et @Lemardeletsoumis donnent des exemples de syntaxe **R** en plus d'approfondir l'analyse. Il existe plusieurs packages **R** pour réaliser l'analyse de médiation, comme `mediation` [@mediation] et `Rmediation` [@Rmediation], tous les deux ayant leur propre documentation. Pour des analyses plus compliquées, les packages comme `lavaan` [@lavaan] permettent de faire des analyses de médiation avec la modélisation par équations structurelles, Toutefois, ce chapitre espère avoir convaincu le lecteur que l'analyse peut être relativement aisément *fait maison*.
+Le présent chapitre ne fait que gratter la surface de ce qu'il est possible de faire avec l'analyse de médiation. Des articles comme @Caron18 et @Lemardeletsoumis donnent des exemples de syntaxe **R** en plus d'approfondir l'analyse. Il existe plusieurs packages **R** pour réaliser l'analyse de médiation, comme `mediation` [@mediation] et `Rmediation` [@Rmediation], tous les deux ayant leur propre documentation. Pour des analyses plus compliquées, les packages comme `lavaan` [@lavaan] permetten*t* de faire des analyses de médiation avec la modélisation par équations structurelles, Toutefois, ce chapitre espère avoir convaincu le lecteur que l'analyse peut être relativement aisément *fait maison*.
+
+## Rapporter l'analyse de médiation
+
+
+
+Il existe une version préliminaire d’un package permettant de réaliser facilement l'analyse de médiation. Le package est `pathanalysis` [@CaronPA]. Il est disponible par GitHub et est importable sur **R** avec la syntaxe suivante.
+
+
+```r
+remotes::install_github(repo = "quantmeth/Rnest")
+```
+
+Comme à l'habitude, si le package est déjà téléchargé, il faut l’appeler dans l'environnement.
+
+
+```r
+library(pathanalysis)
+> 
+> Attachement du package : 'pathanalysis'
+> Les objets suivants sont masqués _par_ '.GlobalEnv':
+> 
+>     beta2cov, boot
+```
+
+Le package `pathanalysis` fourni la fonction `mediation()` qui permet d'obtenir le modèle saturé de l'analyse de médiation. Pour commander, le modèle désiré, il faut ordonner les variables de cette façon\ : des **variables endogènes** qui ne prédisent aucune variable, les variables endogènes qui prédisent des variables, jusqu'au **variables exogènes** (celles qui ne sont prédites par aucune variable). Il faut délimiter chaque variable avec le symbole `~`.
+
+L'exemple suivant, basé sur le jeu de données `mtcars`, teste le lien indirect de `wt` (variable exogène) à `mpg` (variable endogène) par l'intermédiaire de `hp`. Les résultats standardisés sont demandés avec l'argument `standardized = TRUE`.
+
+
+```r
+mediation(model = mpg ~  hp ~ wt, 
+          data = mtcars, 
+          standardized = TRUE)
+>                          Estimate   S.E. CI Lower 95 %
+> wt -> hp                    0.659 0.0991         0.524
+> wt -> mpg                  -0.630 0.1153        -0.874
+> hp -> mpg                  -0.361 0.0872        -0.558
+> wt -> hp -> mpg            -0.238 0.0650        -0.393
+> total indirect wt -> mpg   -0.238 0.0650        -0.393
+> total effect wt -> mpg     -0.868 0.1152        -1.135
+>                          CI Upper 95 %  p-value
+> wt -> hp                         0.916 3.03e-11
+> wt -> mpg                       -0.414 4.76e-08
+> hp -> mpg                       -0.224 3.41e-05
+> wt -> hp -> mpg                 -0.138 2.51e-04
+> total indirect wt -> mpg        -0.138 2.51e-04
+> total effect wt -> mpg          -0.680 5.08e-14
+```
+
+Voici comment ces résultats peuvent être rapportés dans un article scientifique.
+
+
+
+
+> Une analyse de médiation avec bootstrap est effectuée pour tester le lien indirect le lien indirect de `wt` à `mpg` par l'intermédiaire de `hp`. Les résultats montrent un lien indirect significatif de -0.238, [95%IC\ -0.397,\ -0.137]. La Figure\ \@ref(fig:metmed) présente les résultats.
+
+<div class="figure" style="text-align: center">
+<img src="image//mtcars_med.png" alt="Résultats de l'analyse de  médiation" width="75%" height="75%" />
+<p class="caption">(\#fig:mtmed)Résultats de l'analyse de  médiation</p>
+</div>
 
 <!-- ## TODO EXTENSION MATRICIELLE -->

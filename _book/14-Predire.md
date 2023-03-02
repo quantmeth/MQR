@@ -619,9 +619,54 @@ regression(y = jd$y, X = jd[ ,2:4])
 ```
 
 
+### Rapporter la régression
 
 
-Un manuscrit rapporte les résultats à peu prêt comme ceci.
+
+
+Suite à l'analyse qui se commande, comme mentionné ci-haut, avec la syntaxe suivante.
+
+
+```r
+# La régression
+res.lm <- lm(formula = y ~ X.1 + X.2 + X.3, data = jd)
+
+# Les résultats
+res.lm
+> 
+> Call:
+> lm(formula = y ~ X.1 + X.2 + X.3, data = jd)
+> 
+> Coefficients:
+> (Intercept)          X.1          X.2          X.3  
+>     -0.0171       0.2139      -0.5520       0.3095
+
+# Sommaire des résultats
+summary(res.lm)
+> 
+> Call:
+> lm(formula = y ~ X.1 + X.2 + X.3, data = jd)
+> 
+> Residuals:
+>     Min      1Q  Median      3Q     Max 
+> -2.5227 -0.5546 -0.0119  0.5513  2.5762 
+> 
+> Coefficients:
+>             Estimate Std. Error t value Pr(>|t|)    
+> (Intercept)  -0.0171     0.0253   -0.68      0.5    
+> X.1           0.2139     0.0266    8.03  2.7e-15 ***
+> X.2          -0.5520     0.0258  -21.42  < 2e-16 ***
+> X.3           0.3095     0.0263   11.76  < 2e-16 ***
+> ---
+> Signif. codes:  
+> 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+> 
+> Residual standard error: 0.8 on 996 degrees of freedom
+> Multiple R-squared:  0.383,	Adjusted R-squared:  0.381 
+> F-statistic:  206 on 3 and 996 DF,  p-value: <2e-16
+```
+
+Un article scientifique rapporte les résultats à peu près comme ceci.
 
 > Le modèle tester obtient un coefficient de détermination de $R^2(996) = 0.383, p < .001$. Les trois prédicteurs sont liés significativement à la variable dépendante, respectivement $X_1: \beta_1 = 0.214$, $p = < .001$, $X_2: \beta_2 = 0.214$, $p = < .001$, $X_3: \beta_3 = 0.31$, $p = < .001$. 
 

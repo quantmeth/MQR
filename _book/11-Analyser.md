@@ -320,7 +320,7 @@ La Figure \@ref(fig:testtttt) montre où se situe la différence de moyenne par 
 
 #### Autres syntaxes possibles
 
-Il y a plusieurs façons
+Il y a plusieurs façons de réaliser un test-$t$ dépendant. La première option est celle décrite précédemment.
 
 
 ```r
@@ -337,9 +337,13 @@ t.test(x = temps1, y = temps2, paired = TRUE)
 > sample estimates:
 > mean difference 
 >           -1.32
+```
+La second option utilise la formule et le jeu de données. La fonction `Pair()` n'a que seule objectif d'informer la fonction `t.test()` que les vecteurs qu'elle inclut sont pairés, ce qui permet d'utiliser la formule `Pair(temps1, temps2) ~ 1`.
 
+
+```r
 # Avec la formule et les variables dans le même jeu de données
-jd.td <- data.frame(temps1 = temps1, 
+jd.td <- data.frame(temps1 = temps1,
                     temps2 = temps2)
 t.test(Pair(temps1, temps2) ~ 1, data = jd.td)
 > 
@@ -353,7 +357,12 @@ t.test(Pair(temps1, temps2) ~ 1, data = jd.td)
 > sample estimates:
 > mean difference 
 >           -1.32
+```
 
+Pour la troisième option, comme l'équation sur le test-$t$ dépendant le suggère, un test-$t$ dépendant revient à faire [un test-$t$ à échantillon unique][Le test-$t$ à échantillon unique] avec la différence entre les deux temps de mesure.
+
+
+```r
 # Avec la différence des deux vecteurs
 t.test(temps2 - temps1)
 > 
@@ -368,13 +377,27 @@ t.test(temps2 - temps1)
 > mean of x 
 >      1.32
 ```
+Une quatrième option, si le temps est une colonne dans le jeu de données, alors le même style de formule peut être utilisé comme [Le test-$t$ indépendant] toujours en indiquant `paired = TRUE`.
 
-La première option est celle décrite précédemment.
 
-La second option utilise la formule et le jeu de données. La fonction `Pair()` n'a que seule objectif d'informer la fonction `t.test()` que les vecteurs qu'elle inclut sont pairés, ce qui permet d'utiliser la formule `Pair(temps1, temps2) ~ 1`.
-
-Pour la troisième option, comme l'équation sur le test-$t$ dépendant le suggère, un test-$t$ dépendant revient à faire [un test-$t$ à échantillon unique][Le test-$t$ à échantillon unique] avec la différence entre les deux temps de mesure.
-
+```r
+# Avec la formule et les variables dans le même jeu de données
+# Le temps est une seule variable
+jd.td2 <- data.frame(mesure = c(temps1, temps2),
+               temps = rep(1:2, each = 25))
+t.test(mesure ~ temps, data = jd.td2, paired = TRUE)
+> 
+> 	Paired t-test
+> 
+> data:  mesure by temps
+> t = -3, df = 24, p-value = 0.004
+> alternative hypothesis: true mean difference is not equal to 0
+> 95 percent confidence interval:
+>  -2.172 -0.465
+> sample estimates:
+> mean difference 
+>           -1.32
+```
 
 ### Rapporter un test-$t$ dépendant
 

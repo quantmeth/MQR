@@ -490,3 +490,7 @@ paf(covmat = R, nfactors = 2)$covmat
 ```
 
 Les résultats sont toutefois légèrement différents pour les loadings. Cela est dû au fait que `factanal()` n'utilise pas la méthode PAF, mais bien le MLFA. Cette technique n'est pas détaillée ici. Elle est très similaire à PAF à l'exception qu'elle focalise sur l'estimation des loadings pour dériver les communalités, plutôt que d'utiliser seulement les communalités. Pour produire une fonction similaire, il faut passer par l'optimisation avec `optim()` (vue dans [Les calculs de l'analyse en composantes principales]).
+
+## Rapporter l'analyse factorielle
+
+

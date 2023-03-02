@@ -316,24 +316,26 @@ La fonction `TukeyHSD()` est aussi lié à une figure qu'il est possible de comm
 
 
 ```r
-par(mar = c(3, 15, 3, 3))
 plot(TukeyHSD(res))
 ```
 
-<div class="figure">
+<div class="figure" style="text-align: center">
 <img src="13-Comparer_files/figure-html/tukey-1.png" alt="Illustration du test de comparaisons multiples de Tukey" width="50%" height="50%" />
 <p class="caption">(\#fig:tukey)Illustration du test de comparaisons multiples de Tukey</p>
 </div>
 
 Malheureusement la Figure\ \@ref(fig:tukey) n'est pas parfaite, car elle n'affiche pas toutes les libellées de chaque ligne. Toutefois, chaque ligne de la Figure\ \@ref(fig:tukey) correspond à une ligne de la figure. Avec le package `ggplot2`(voir [Visualier]), il est possible de remédier à la situation.
 
-D'abord, il faut importer `ggplot2` et `dplyr`^[ou le `tidyverse]. Ensuite, la prochaine étape consiste à extraire les résultats de `TukeyHSD()`, de les transformer en jeu de données avec `as.data.frame()` et de rendre le nom des lignes manipulables avec `add_rownames()`^[Merci `dplyr`.]. Comme pour toutes les figures, il faut indiquer l'abscisse et l'ordonnée, ici le nom des lignes (`x`) et la différence entre les groupes(`y`), respectivement. Ensuite, comme la figure avec [les barres d'erreurs], il faut associer dans `geom_errorbar` les intervalles de confiance `lwr` et `upr` à `ymin` et `ymax`. Enfin, il est possible d'ajouter la moyenne sous forme de point (`geom_point()` et de tourner la figure avec `coord_flip`, ce qui permet de répliquer la figure originale.
+
+
+
+D'abord, il faut importer le `tidyverse`. Ensuite, la prochaine étape consiste à extraire les résultats de `TukeyHSD()`, de les transformer en jeu de données avec `as.data.frame()` et de rendre le nom des lignes manipulables avec `add_rownames_to_column()`. Comme pour toutes les figures, il faut indiquer l'abscisse et l'ordonnée, ici le nom des lignes (`x`) et la différence entre les groupes(`y`), respectivement. Ensuite, comme la figure avec [les barres d'erreurs], il faut associer dans `geom_errorbar` les intervalles de confiance `lwr` et `upr` à `ymin` et `ymax`. Enfin, il est possible d'ajouter la moyenne sous forme de point (`geom_point()` et de tourner la figure avec `coord_flip`, ce qui permet de répliquer la figure originale.
 
 
 ```r
 TukeyHSD(res)[[1]] %>%   # Extraire les résultats
   as.data.frame() %>%    # Transformer en jeu de données
-  add_rownames() %>%     # Ajouter les noms des lignes
+  rownames_to_column() %>%     # Ajouter les noms des lignes
   ggplot(mapping = aes(x = rowname, 
                        y = diff)) + 
   geom_errorbar(aes(ymin = lwr,
@@ -341,11 +343,9 @@ TukeyHSD(res)[[1]] %>%   # Extraire les résultats
                 width = .25) + 
   geom_point() + 
   coord_flip()
-> Warning: `add_rownames()` was deprecated in dplyr 1.0.0.
-> ℹ Please use `tibble::rownames_to_column()` instead.
 ```
 
-<div class="figure">
+<div class="figure" style="text-align: center">
 <img src="13-Comparer_files/figure-html/tukey2-1.png" alt="Illustration corrigée du test de comparaisons multiples de Tukey" width="50%" height="50%" />
 <p class="caption">(\#fig:tukey2)Illustration corrigée du test de comparaisons multiples de Tukey</p>
 </div>
