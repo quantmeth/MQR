@@ -124,8 +124,6 @@ BK <- function(donnees, alpha = .05){
     }
   }
   cat(interpretation)
-  return(decision)
-  
 }
 ```
 
@@ -177,7 +175,6 @@ mdm <- function(donnees, alpha = 0.05){
     cat("L'effet indirect n'est pas significatif")  
     decision = FALSE
   }
-  return(decision)
 }
 ```
 
@@ -293,9 +290,6 @@ boot <- function(donnees, alpha = .05, nreps = 5000){
     decision = FALSE
     
   }
-  
-  return(decision)
-  
 }
 ```
 
@@ -381,20 +375,15 @@ Comme les fonctions maisons pour la méthode d'étape causale (`BK()`), la méth
 BK(donnees = jd)
 > L'effet indirect est significatif 
 >           et la médiation est partielle
-> [1] TRUE
 mdm(donnees = jd)
 > L'effet indirect est significatif
-> [1] TRUE
 boot(donnees = jd)
 > L'effet indirect est significatif
-> [1] TRUE
 ```
 
 Toutes les analyses confirment la présence d'un effet indirect.
 
-Le défaut des fonctions maison (`BK()`, `mdm()` et `boot()`) est certainement qu'elles ne font que tester les effets indirects. Une fonction plus intéressante serait d'afficher toutes les sorties, soit les coefficients de régressions, leur erreur type, leur intervalle de confiance ou toutes autres informations jugées pertinentes.
-
-<!-- ## TODO RAPPORTER RÉSULTATS -->
+Le défaut des fonctions maison (`BK()`, `mdm()` et `boot()`) est certainement qu'elles ne font que rapporter **la décision** du tests des effets indirects. Une fonction plus intéressante serait d'afficher toutes les sorties, soit les coefficients de régressions, leur erreur type, leur intervalle de confiance ou toutes autres informations jugées pertinentes.
 
 ## Analyse complète
 
@@ -808,7 +797,7 @@ Il existe une version préliminaire d’un package permettant de réaliser facil
 
 
 ```r
-remotes::install_github(repo = "quantmeth/Rnest")
+remotes::install_github(repo = "quantmeth/pathanalysis")
 ```
 
 Comme à l'habitude, si le package est déjà téléchargé, il faut l’appeler dans l'environnement.
@@ -816,11 +805,6 @@ Comme à l'habitude, si le package est déjà téléchargé, il faut l’appeler
 
 ```r
 library(pathanalysis)
-> 
-> Attachement du package : 'pathanalysis'
-> Les objets suivants sont masqués _par_ '.GlobalEnv':
-> 
->     beta2cov, boot
 ```
 
 Le package `pathanalysis` fourni la fonction `mediation()` qui permet d'obtenir le modèle saturé de l'analyse de médiation. Pour commander, le modèle désiré, il faut ordonner les variables de cette façon\ : des **variables endogènes** qui ne prédisent aucune variable, les variables endogènes qui prédisent des variables, jusqu'au **variables exogènes** (celles qui ne sont prédites par aucune variable). Il faut délimiter chaque variable avec le symbole `~`.
@@ -853,11 +837,13 @@ Voici comment ces résultats peuvent être rapportés dans un article scientifiq
 
 
 
-> Une analyse de médiation avec bootstrap est effectuée pour tester le lien indirect le lien indirect de `wt` à `mpg` par l'intermédiaire de `hp`. Les résultats montrent un lien indirect significatif de -0.238, [95%IC\ -0.397,\ -0.137]. La Figure\ \@ref(fig:metmed) présente les résultats.
+> Une analyse de médiation avec bootstrap est effectuée pour tester le lien indirect le lien indirect de `wt` à `mpg` par l'intermédiaire de `hp`. Les résultats montrent un lien indirect significatif de -0.238, [95%IC\ -0.397,\ -0.137]. La Figure\ \@ref(fig:mtmed) présente les résultats.
 
 <div class="figure" style="text-align: center">
 <img src="image//mtcars_med.png" alt="Résultats de l'analyse de  médiation" width="75%" height="75%" />
 <p class="caption">(\#fig:mtmed)Résultats de l'analyse de  médiation</p>
 </div>
+
+En plus de cette information primordiale, certains domaines de recherche demanderont, en plus, de rapporter les deux régressions réalisées (voir [Rapporter la régression]), soit les liens directs pertinents et les modèles de régression, et également, l'aspect partiel ou complet de la médiation^[Même si cela n'est pas approprié].
 
 <!-- ## TODO EXTENSION MATRICIELLE -->

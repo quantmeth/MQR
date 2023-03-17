@@ -316,8 +316,8 @@ iris %>%
 ```
 
 <div class="figure" style="text-align: center">
-<img src="21-Solutions_files/figure-html/unnamed-chunk-16-1.png" alt="M par Espèce (question 3)" width="40%" height="40%" />
-<p class="caption">(\#fig:unnamed-chunk-16)M par Espèce (question 3)</p>
+<img src="21-Solutions_files/figure-html/unnamed-chunk-13-1.png" alt="M par Espèce (question 3)" width="40%" height="40%" />
+<p class="caption">(\#fig:unnamed-chunk-13)M par Espèce (question 3)</p>
 </div>
 
 ### Question 4 {-}
@@ -334,8 +334,8 @@ mtcars %>%
 ```
 
 <div class="figure" style="text-align: center">
-<img src="21-Solutions_files/figure-html/unnamed-chunk-17-1.png" alt="Visualiation de kml par hp en fonction de cyl (question 4)" width="40%" height="40%" />
-<p class="caption">(\#fig:unnamed-chunk-17)Visualiation de kml par hp en fonction de cyl (question 4)</p>
+<img src="21-Solutions_files/figure-html/unnamed-chunk-14-1.png" alt="Visualiation de kml par hp en fonction de cyl (question 4)" width="40%" height="40%" />
+<p class="caption">(\#fig:unnamed-chunk-14)Visualiation de kml par hp en fonction de cyl (question 4)</p>
 </div>
 
 ### Question 5 {-}
@@ -354,8 +354,8 @@ mtcars %>%
 ```
 
 <div class="figure" style="text-align: center">
-<img src="21-Solutions_files/figure-html/unnamed-chunk-18-1.png" alt="Visualiation de kml par hp en fonction de cyl (question 5)" width="40%" height="40%" />
-<p class="caption">(\#fig:unnamed-chunk-18)Visualiation de kml par hp en fonction de cyl (question 5)</p>
+<img src="21-Solutions_files/figure-html/unnamed-chunk-15-1.png" alt="Visualiation de kml par hp en fonction de cyl (question 5)" width="40%" height="40%" />
+<p class="caption">(\#fig:unnamed-chunk-15)Visualiation de kml par hp en fonction de cyl (question 5)</p>
 </div>
 
 ### Question 6 {-}
@@ -370,8 +370,8 @@ chickwts %>%
 ```
 
 <div class="figure" style="text-align: center">
-<img src="21-Solutions_files/figure-html/unnamed-chunk-19-1.png" alt="Visualiation de weight par feed (question 6)" width="40%" height="40%" />
-<p class="caption">(\#fig:unnamed-chunk-19)Visualiation de weight par feed (question 6)</p>
+<img src="21-Solutions_files/figure-html/unnamed-chunk-16-1.png" alt="Visualiation de weight par feed (question 6)" width="40%" height="40%" />
+<p class="caption">(\#fig:unnamed-chunk-16)Visualiation de weight par feed (question 6)</p>
 </div>
 
 
@@ -390,8 +390,8 @@ mtcars %>%
 ```
 
 <div class="figure" style="text-align: center">
-<img src="21-Solutions_files/figure-html/unnamed-chunk-20-1.png" alt="Histogramme de mpg par am (question 7-1)" width="40%" height="40%" />
-<p class="caption">(\#fig:unnamed-chunk-20)Histogramme de mpg par am (question 7-1)</p>
+<img src="21-Solutions_files/figure-html/unnamed-chunk-17-1.png" alt="Histogramme de mpg par am (question 7-1)" width="40%" height="40%" />
+<p class="caption">(\#fig:unnamed-chunk-17)Histogramme de mpg par am (question 7-1)</p>
 </div>
 Noter que `bins = 12` ne sert qu'à éviter un avertissement.
 
@@ -407,8 +407,8 @@ mtcars %>%
 ```
 
 <div class="figure" style="text-align: center">
-<img src="21-Solutions_files/figure-html/unnamed-chunk-21-1.png" alt="Histogramme de mpg par am (question 7-2)" width="40%" height="40%" />
-<p class="caption">(\#fig:unnamed-chunk-21)Histogramme de mpg par am (question 7-2)</p>
+<img src="21-Solutions_files/figure-html/unnamed-chunk-18-1.png" alt="Histogramme de mpg par am (question 7-2)" width="40%" height="40%" />
+<p class="caption">(\#fig:unnamed-chunk-18)Histogramme de mpg par am (question 7-2)</p>
 </div>
 ### Question 8 {-}
 
@@ -423,8 +423,8 @@ msleep %>%
 ```
 
 <div class="figure" style="text-align: center">
-<img src="21-Solutions_files/figure-html/unnamed-chunk-22-1.png" alt="Diagramme à barre du régime alimentaire (question 8)" width="40%" height="40%" />
-<p class="caption">(\#fig:unnamed-chunk-22)Diagramme à barre du régime alimentaire (question 8)</p>
+<img src="21-Solutions_files/figure-html/unnamed-chunk-19-1.png" alt="Diagramme à barre du régime alimentaire (question 8)" width="40%" height="40%" />
+<p class="caption">(\#fig:unnamed-chunk-19)Diagramme à barre du régime alimentaire (question 8)</p>
 </div>
 
 ### Question 9 {-}
@@ -440,8 +440,8 @@ msleep %>%
 ```
 
 <div class="figure" style="text-align: center">
-<img src="21-Solutions_files/figure-html/unnamed-chunk-23-1.png" alt="Diagramme à barre du régime alimentaire (question 8)" width="40%" height="40%" />
-<p class="caption">(\#fig:unnamed-chunk-23)Diagramme à barre du régime alimentaire (question 8)</p>
+<img src="21-Solutions_files/figure-html/unnamed-chunk-20-1.png" alt="Diagramme à barre du régime alimentaire (question 8)" width="40%" height="40%" />
+<p class="caption">(\#fig:unnamed-chunk-20)Diagramme à barre du régime alimentaire (question 8)</p>
 </div>
 ### Question 10 {-}
 
@@ -458,8 +458,8 @@ chickwts %>%
 ```
 
 <div class="figure" style="text-align: center">
-<img src="21-Solutions_files/figure-html/unnamed-chunk-24-1.png" alt="Visualiation de weight par feed (question 10)" width="40%" height="40%" />
-<p class="caption">(\#fig:unnamed-chunk-24)Visualiation de weight par feed (question 10)</p>
+<img src="21-Solutions_files/figure-html/unnamed-chunk-21-1.png" alt="Visualiation de weight par feed (question 10)" width="40%" height="40%" />
+<p class="caption">(\#fig:unnamed-chunk-21)Visualiation de weight par feed (question 10)</p>
 </div>
 
 ## Statistiques {-}

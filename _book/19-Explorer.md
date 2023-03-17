@@ -343,6 +343,26 @@ res2
 
 Les mêmes statistiques, mais pour deux facteurs, sont obtenues. Les résultats sont très près de la structure originale. La valeur-$p$ n'est plus significative, ce qui suggère que le modèle semble bien de deux facteurs. 
 
+### Extraire les scores
+
+Une fois le nombre de facteurs déterminé (voir [Réduire] à ce sujet), les scores factoriels des participants peuvent être utilisés. Pour les obtenir, il faut commander de nouveau l'analyse factorielle en y indiquant le type désiré de scores, soit `regression` ou `Bartlett`. Cela ajoutera les scores dans la liste de sortie de la fonction sous l'appellation `scores`. Voici un exemple.
+
+
+```r
+# Commander l'analyse avec l'argument scores = "regression"
+res2 <- factanal(jd2, factors = 2, scores = "regression")
+
+# Les scores factoriels se retouvent dans la sortie
+head(res2$scores)
+>      Factor1 Factor2
+> [1,]  -0.244  1.7256
+> [2,]  -1.259 -0.4500
+> [3,]  -1.588 -1.5611
+> [4,]   0.384 -0.2586
+> [5,]  -0.399 -0.0404
+> [6,]   0.667  0.7026
+```
+
 ## Calculs de l'analyse factorielle exploratoire
 
 Il existe deux techniques plus connues pour réaliser l'analyse factorielle exploratoire : la **factorisation en axes principaux** (PAF; *principal axis factoring*) et l'**analyse factorielle par maximum de vraisemblance** (MLFA; *maximum likelihood factor analysis*). 

@@ -1,6 +1,6 @@
 # Prédire
 
-Un objectif des expérimentateurs est généralement de développer des modèles afin de faire des prédictions à partir d'un échantillon. Les statistiques sont des outils idéaux pour développer ces modèles. La régression est l'une des analyses fondamentales pour réaliser cette objectif et constitue en quelques sortes les fondements de biens des méthodes récentes (comme l'apprentissage machine). 
+Un objectif des expérimentateurs est généralement de développer des modèles afin de faire des prédictions à partir d'un échantillon. Les statistiques sont des outils idéaux pour développer ces modèles. La régression est l'une des analyses fondamentales pour réaliser cet objectif et constitue en quelques sortes les fondements de biens des méthodes récentes (comme l'apprentissage machine). 
 
 L'objectif de la régression est de décrire la relation entre un variable dépendante et un ensemble de variables indépendantes. Un aperçu est donnée à la section sur [l'association linéaire] dans le chapitre [Analyser]. Ce présent chapitre débute avec la notion de covariance et l'étend jusqu'à celle de régression. Des techniques rudimentaires de création de données sont présentées. Par la suite, les mathématiques et la programmation sous-jacente au modèle linéaire sont illustrées. 
 
@@ -326,13 +326,18 @@ Quelques détails sont importants à considérer pour la programmation. Afin d'a
 
 ```r
 regression <- function(y, X){
-  # Taille d'échantillon et nombre de variables
+  # Taille d'échantillon 
   n <- nrow(X)
-  p <- ncol(X) + 1
+  
+  # Centrer la matrice
+  X <- scale(X, scale = FALSE)
+
   
   # Joindre un intercepte
   X <- cbind(intercept = 1, X)
   X <- as.matrix(X)
+  
+  # Nombre de variables
   p <- ncol(X)
   
   # Calculer les coefficients de régression
@@ -449,8 +454,8 @@ où $\mathbf{R}$ est la matrice de corrélation et $\mathbf{B}$ est le vecteur c
 
 
 ```r
-# Cacluler la variance de epsilon
-var_e = var_y - t(B) %*% R %*% B
+# Calculer la variance de epsilon
+var_e <-  var_y - t(B) %*% R %*% B
 ```
 
 L'avantage de cette technique est (a) de pouvoir spécifier les corrélations entre les variables indépendantes avec la matrice $\mathbf{R}$; (b) de déterminer à l'avance la variance de $y$ et (c) que le vecteur $\mathbf{B}$ contient les $\beta$ standardisés qui sont dans ce contexte les corrélations partielles qui relient chacune des variables indépendantes à la variable dépendante (des tailles d'effet) en contrôlant pour chacune d'elles. 
@@ -488,7 +493,7 @@ B <- c(beta1 = .2, beta2 = -.5, beta3 = .3)
 var_e <- 1 - t(B) %*% R %*% B
 
 # Créations des variables aléatoires
-X <-  MASS::mvrnorm(n = n, mu = mu, Sigma = R)
+X <- MASS::mvrnorm(n = n, mu = mu, Sigma = R)
 e <- rnorm(n = n, sd = sqrt(var_e))
 
 # Création de la variable dépendante
@@ -612,10 +617,10 @@ Les résultats de `lm()` sont comparables avec la fonction maison `regression()`
 ```r
 regression(y = jd$y, X = jd[ ,2:4])
 >           Estimate Std.Error t.value  p.value
-> intercept  -0.0171    0.0253  -0.677 4.99e-01
-> X.1         0.2139    0.0266   8.034 2.66e-15
-> X.2        -0.5520    0.0258 -21.417 5.52e-84
-> X.3         0.3095    0.0263  11.757 5.63e-30
+> intercept   -0.018    0.0253  -0.713 4.76e-01
+> X.1          0.214    0.0266   8.034 2.66e-15
+> X.2         -0.552    0.0258 -21.417 5.52e-84
+> X.3          0.310    0.0263  11.757 5.63e-30
 ```
 
 

@@ -143,8 +143,6 @@ BK <- function(donnees, alpha = .05){
     }
   }
   cat(interpretation)
-  return(decision)
-  
 }
 ```
 
@@ -195,7 +193,6 @@ mdm <- function(donnees, alpha = 0.05){
     cat("L'effet indirect n'est pas significatif")  
     decision = FALSE
   }
-  return(decision)
 }
 ```
 
@@ -323,9 +320,6 @@ boot <- function(donnees, alpha = .05, nreps = 5000){
     decision = FALSE
     
   }
-  
-  return(decision)
-  
 }
 ```
 
@@ -413,9 +407,7 @@ boot(donnees = jd)
 
 Toutes les analyses confirment la présence d'un effet indirect.
 
-Le défaut des fonctions maison (`BK()`, `mdm()` et `boot()`) est certainement qu'elles ne font que tester les effets indirects. Une fonction plus intéressante serait d'afficher toutes les sorties, soit les coefficients de régressions, leur erreur type, leur intervalle de confiance ou toutes autres informations jugées pertinentes.
-
-<!-- ## TODO RAPPORTER RÉSULTATS -->
+Le défaut des fonctions maison (`BK()`, `mdm()` et `boot()`) est certainement qu'elles ne font que rapporter **la décision** du tests des effets indirects. Une fonction plus intéressante serait d'afficher toutes les sorties, soit les coefficients de régressions, leur erreur type, leur intervalle de confiance ou toutes autres informations jugées pertinentes.
 
 ## Analyse complète
 
@@ -686,12 +678,12 @@ remotes::install_github(repo = "quantmeth/pathanalysis")
 Il existe une version préliminaire d’un package permettant de réaliser facilement l'analyse de médiation. Le package est `pathanalysis` [@CaronPA]. Il est disponible par GitHub et est importable sur **R** avec la syntaxe suivante.
 
 ```{r, eval = FALSE}
-remotes::install_github(repo = "quantmeth/Rnest")
+remotes::install_github(repo = "quantmeth/pathanalysis")
 ```
 
 Comme à l'habitude, si le package est déjà téléchargé, il faut l’appeler dans l'environnement.
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 library(pathanalysis)
 ```
 
@@ -717,10 +709,12 @@ eee <- rm$Estimate[4]
 ```
 
 
-> Une analyse de médiation avec bootstrap est effectuée pour tester le lien indirect le lien indirect de `wt` à `mpg` par l'intermédiaire de `hp`. Les résultats montrent un lien indirect significatif de `r eee`, [95%IC\ `r icl`,\ `r icu`]. La Figure\ \@ref(fig:metmed) présente les résultats.
+> Une analyse de médiation avec bootstrap est effectuée pour tester le lien indirect le lien indirect de `wt` à `mpg` par l'intermédiaire de `hp`. Les résultats montrent un lien indirect significatif de `r eee`, [95%IC\ `r icl`,\ `r icu`]. La Figure\ \@ref(fig:mtmed) présente les résultats.
 
 ```{r mtmed, fig.cap="Résultats de l'analyse de  médiation",echo=FALSE, fig.align="center",out.height="75%" , out.width="75%"}
 knitr::include_graphics("image//mtcars_med.png")
 ```
+
+En plus de cette information primordiale, certains domaines de recherche demanderont, en plus, de rapporter les deux régressions réalisées (voir [Rapporter la régression]), soit les liens directs pertinents et les modèles de régression, et également, l'aspect partiel ou complet de la médiation^[Même si cela n'est pas approprié].
 
 <!-- ## TODO EXTENSION MATRICIELLE -->

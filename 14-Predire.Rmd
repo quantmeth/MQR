@@ -1,6 +1,6 @@
 # Prédire
 
-Un objectif des expérimentateurs est généralement de développer des modèles afin de faire des prédictions à partir d'un échantillon. Les statistiques sont des outils idéaux pour développer ces modèles. La régression est l'une des analyses fondamentales pour réaliser cette objectif et constitue en quelques sortes les fondements de biens des méthodes récentes (comme l'apprentissage machine). 
+Un objectif des expérimentateurs est généralement de développer des modèles afin de faire des prédictions à partir d'un échantillon. Les statistiques sont des outils idéaux pour développer ces modèles. La régression est l'une des analyses fondamentales pour réaliser cet objectif et constitue en quelques sortes les fondements de biens des méthodes récentes (comme l'apprentissage machine). 
 
 L'objectif de la régression est de décrire la relation entre un variable dépendante et un ensemble de variables indépendantes. Un aperçu est donnée à la section sur [l'association linéaire] dans le chapitre [Analyser]. Ce présent chapitre débute avec la notion de covariance et l'étend jusqu'à celle de régression. Des techniques rudimentaires de création de données sont présentées. Par la suite, les mathématiques et la programmation sous-jacente au modèle linéaire sont illustrées. 
 
@@ -404,13 +404,18 @@ Quelques détails sont importants à considérer pour la programmation. Afin d'a
 
 ```{r}
 regression <- function(y, X){
-  # Taille d'échantillon et nombre de variables
+  # Taille d'échantillon 
   n <- nrow(X)
-  p <- ncol(X) + 1
+  
+  # Centrer la matrice
+  X <- scale(X, scale = FALSE)
+
   
   # Joindre un intercepte
   X <- cbind(intercept = 1, X)
   X <- as.matrix(X)
+  
+  # Nombre de variables
   p <- ncol(X)
   
   # Calculer les coefficients de régression
@@ -524,8 +529,8 @@ où l'équation \@ref(eq:modling) correspond à la généralisation de l'équati
 où $\mathbf{R}$ est la matrice de corrélation et $\mathbf{B}$ est le vecteur contenant tous les $\beta$ standardisés. Pour assurer un scénario standardisé $\sigma^2_y = 1$. La seule condition sous-jacente à l'équation \@ref(eq:emat) est de s'assurer que $\sigma^2_{\epsilon} > 0$, c'est-à-dire en vérifiant que $\mathbf{B}^{\prime}\mathbf{R}\mathbf{B} < \sigma^2_y$, autrement la variance est négative, ce qui est impossible. En termes de syntaxe **R**, l'équation \@ref(eq:emat) correspond à ceci.
 
 ```{r , eval = FALSE}
-# Cacluler la variance de epsilon
-var_e = var_y - t(B) %*% R %*% B
+# Calculer la variance de epsilon
+var_e <-  var_y - t(B) %*% R %*% B
 ```
 
 L'avantage de cette technique est (a) de pouvoir spécifier les corrélations entre les variables indépendantes avec la matrice $\mathbf{R}$; (b) de déterminer à l'avance la variance de $y$ et (c) que le vecteur $\mathbf{B}$ contient les $\beta$ standardisés qui sont dans ce contexte les corrélations partielles qui relient chacune des variables indépendantes à la variable dépendante (des tailles d'effet) en contrôlant pour chacune d'elles. 
@@ -562,7 +567,7 @@ B <- c(beta1 = .2, beta2 = -.5, beta3 = .3)
 var_e <- 1 - t(B) %*% R %*% B
 
 # Créations des variables aléatoires
-X <-  MASS::mvrnorm(n = n, mu = mu, Sigma = R)
+X <- MASS::mvrnorm(n = n, mu = mu, Sigma = R)
 e <- rnorm(n = n, sd = sqrt(var_e))
 
 # Création de la variable dépendante
