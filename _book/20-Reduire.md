@@ -1,16 +1,16 @@
 # Réduire
 
-Comme mentionné d'entrée de jeu, l'analyse en composantes principales (ACP) n'est pas une technique de réduction des dimensions. S'il y a $p$ variables, l'ACP produit $p$ dimensions. Toutefois, comme les valeurs propres sont des indices de partage commun entre les variables, elle peut être utilisée de cette façon. En fait, l'ACP est presque toujours utiliser pour réduire la dimension d'un jeu de donnée.
+Comme mentionné d'entrée de jeu, l'analyse en composantes principales (ACP) n'est pas une technique de réduction des dimensions. S'il y a $p$ variables, l'ACP produit $p$ dimensions. Toutefois, comme les valeurs propres sont des indices de partage commun entre les variables, elle peut être utilisée de cette façon. En fait, l'ACP est presque toujours utilisée pour réduire la dimension d'un jeu de données.
 
-Parallèlement, l'[analyse factorielle exploratoire] permet de dériver un indice de suffisance du nombre de dimensions (le $\chi^2$), toutefois, il existe de meilleurs techniques pour déterminer le nombre de dimensions à retenir dans une analyse exploratoire.
+Parallèlement, l'[analyse factorielle exploratoire] permet de dériver un indice de suffisance du nombre de dimensions (le $\chi^2$), toutefois, il existe de meilleures techniques pour déterminer le nombre de dimensions à retenir dans une analyse exploratoire.
 
 Cette section porte sur les méthodes afin d'identifier le nombre de dimensions à retenir. C'est un sujet très complexe dont seulement quelques brides seront abordées.
 
 ## Illustration
 
-Qu'est-ce que la réduction de dimension? La réduction de dimension ou la détermination du nombre de dimension se retrouvent dans tous les domaines, que ce soit en psychologie, en biologie, en informatique ou en physique. Cela peut être autant pratique que théorique. En psychologie, les chercheurs s'intéressent à déterminer le nombre de dimensions d'un test psychométrique. En écologie, les chercheurs peuvent tenter de représenter la variabilité inter-espère d'un habitat. En ingénierie, les ingénieurs en télécommunication peuvent vouloir extraire informations pertinentes des capteurs électroniques.
+Qu'est-ce que la réduction de dimensions? La réduction de dimensions ou la détermination du nombre de dimensions se retrouvent dans tous les domaines, que ce soit en psychologie, en biologie, en informatique ou en physique. Cela peut être autant pratique que théorique. En psychologie, les chercheurs s'intéressent à déterminer le nombre de dimensions d'un test psychométrique. En écologie, les chercheurs peuvent tenter de représenter la variabilité inter-espèces d'un habitat. En ingénierie, les ingénieurs en télécommunication peuvent vouloir extraire l'information pertinente des capteurs électroniques.
 
-La compression d'images, en informatique, est un exemple de réduction dimensionnelle dont il est possible d'illustrer visuellement. La réduction de dimension permet de résumer l'information afin d'en réduire la taille pour ne conserver que le signifiant. Ainsi, les mêmes techniques permettant d'identifier les facteurs psychologiques peuvent être utilisées pour les images, l'identification des thèmes de films et bien d'autres.
+La compression d'images, en informatique, est un exemple de réduction dimensionnelle dont il est possible d'illustrer visuellement. La réduction de dimensions permet de résumer l'information afin d'en réduire la taille pour ne conserver que le signifiant. Ainsi, les mêmes techniques permettant d'identifier les facteurs psychologiques peuvent être utilisées pour les images, l'identification des thèmes de films et bien d'autres.
 
 La Figure \@ref(fig:Pigeon) montre un exemple de compression d'une image de pigeon^[Tirée de https://pixnio.com/fr/faune-animaux/des-oiseaux-fr/pigeons-photos/oiseau-pigeon-tumbler-pigeon-mouche-animal-animal, License CC0]. Elle montre à différents niveaux factoriels de compression la même image. À trois dimensions, le pigeon est difficilement perceptible. Progressivement, le pigeon est plus facilement reconnaissable, mais surtout, à un certain seuil (deuxième et troisième lignes de la Figure \@ref(fig:Pigeon), par exemple), l'image gagne en clarté. Trente dimensions conviennent, les plus difficiles désireront peut-être retenir 125 dimensions. L'image à ce stade est très bien. Nonobstant ces nombres, ce sera toujours mieux, en termes de compression, que les 526 dimensions possibles (de l'image originale). Ainsi, à 23.764 % des dimensions, l'image est claire et le pigeon reconnaissable. Cette logique s'applique également pour les facteurs psychologiques.
 
@@ -21,9 +21,9 @@ La Figure \@ref(fig:Pigeon) montre un exemple de compression d'une image de pige
 
 ## Importance d'une dimension
 
-Une technique pour connaître l'importance d'une dimension est d'afficher les valeurs propres. Les valeurs propres les plus élevées impliquent qu'elle sont les plus importantes (les premières) alors que de petites valeurs signalent les moins importantes (du bruit, des résidus, soit les dernières). Il est toutefois plus ardu de déterminer le seuil entre important et non important.
+Une technique pour connaître l'importance d'une dimension est d'afficher les valeurs propres. Les valeurs propres les plus élevées impliquent qu'elles sont les plus importantes (les premières) alors que de petites valeurs signalent les moins importantes (du bruit, des résidus, soit les dernières). Il est toutefois plus ardu de déterminer le seuil entre important et non important.
 
-La structure factorielle et le jeu de données du chapitre [Explorer] est repris afin d'illustrer le propos.
+La structure factorielle et le jeu de données du chapitre [Explorer] sont repris afin d'illustrer le propos.
 
 
 ```r
@@ -63,7 +63,7 @@ res$values
 > [1] 2.576 1.699 0.771 0.421 0.328 0.205
 ```
 
-Une façon d'illustrer les valeurs propres graphiquement est d’utiliser un graphique nommé *scree plot* ou *graphique des éboulis*. La Figure\ \@ref(fig:scree) peut être produite avec la syntaxe ci-dessous. Il s'agit de mettre en axe des $x$ la séquence (`Position`) des valeurs propres (leur ordre) par rapport à la valeur propre en axe des $y$. Ce graphique se produit simplement avec `plot()` ou `ggplot()` (voir [Visualiser]).
+Une façon d'illustrer les valeurs propres graphiquement est d'utiliser un graphique nommé *scree plot* ou *graphique des éboulis*. La Figure\ \@ref(fig:scree) peut être produite avec la syntaxe ci-dessous. Il s'agit de mettre en axe des $x$ la séquence (`Position`) des valeurs propres (leur ordre) par rapport à la valeur propre en axe des $y$. Ce graphique se produit simplement avec `plot()` ou `ggplot()` (voir [Visualiser]).
 
 
 ```r
@@ -83,20 +83,20 @@ ggplot(data = vp,
 ```
 
 <div class="figure" style="text-align: center">
-<img src="20-Reduire_files/figure-html/scree-1.png" alt="Les valeurs propres en fonctions de la position de l'axe" width="75%" height="75%" />
-<p class="caption">(\#fig:scree)Les valeurs propres en fonctions de la position de l'axe</p>
+<img src="20-Reduire_files/figure-html/scree-1.png" alt="Les valeurs propres en fonction de la position de l'axe" width="75%" height="75%" />
+<p class="caption">(\#fig:scree)Les valeurs propres en fonction de la position de l'axe</p>
 </div>
 La Figure\ \@ref(fig:scree) est une bonne représentation visuelle des valeurs propres. Elle ne répond pas à la question d'intérêt : combien y a-t-il de dimensions *importantes*? Elle donne toutefois une idée. Probablement 2 ou 3? La première est indubitable; la valeur propre est très élevée. Les 4^e^, 5^e^ et 6^e^ sont quant à elles très petites et sont très près. Comment déterminer avec plus de rigueur le nombre de dimensions? C'est là que les règles d'arrêt entre en jeu.
 
 ## Les règles d'arrêt
 
-La question est de savoir combien de dimensions faut-il retenir pour rendre adéquatement compte des données. Dès lors, l'ACP devient une technique de réduction des dimension. Or, les analyses exploratoires (comme l'[ACP][Décomposer] ou [l'analyse factorielle exploire][Explorer] ne répondent pas explicitement à cette question. Le statisticien use de techniques complémentaires, des **règles d'arrêts** (*stopping rules*), pour déterminer le nombre de dimensions à retenir.
+La question est de savoir combien de dimensions il faut retenir pour rendre adéquatement compte des données. Dès lors, l'ACP devient une technique de réduction des dimension. Or, les analyses exploratoires (comme l'[ACP][Décomposer] ou [l'analyse factorielle exploratoire][Explorer] ne répondent pas explicitement à cette question. Le statisticien use de techniques complémentaires, des **règles d'arrêts** (*stopping rules*), pour déterminer le nombre de dimensions à retenir.
 
-Ces règles d'arrêt sont en général un *bricolage* du statisticien pour répondre à la question. Bricolage n'est pas à prendre péjorativement, mais seulement comme rappel à la réalité que ces techniques sont souvent créées sans dérivation analytique. Il n'est pas possible de leur faire aveuglément confiance (il ne faudrait jamais faire cela de toute façon). Elles ont une pertinence pratique, mais les conditions selon lesquelles elles flanchent ne sont pas ou peu connues. Il existe probablement des centaines de techniques ayant leurs avantages et inconvénients ou bien des scénarios dans lesquels elles sont plus efficaces que les autres. Il en apparaît des nouvelles chaque année depuis 1950. Comme ces techniques sont des bricolages et qu'elles sont taillées différemment, elles ne s'accordent pas toujours sur la même conclusion. Faire l'étalage de ces règles d'arrêt serait bien inutile. Ainsi, trois techniques seront présentées, le test de Kaiser, l'analyse parallèle (*parallel analysis*) et une troisième méthode ayant montré un excellent rendement sera présentée, soit le test de suffisance de la prochaine valeur propre (*Next eigenvalue sufficiency test*). Ces trois règles représentent une même ligne évolutive.
+Ces règles d'arrêt sont en général un *bricolage* du statisticien pour répondre à la question. Bricolage n'est pas à prendre péjorativement, mais seulement comme un rappel à la réalité : ces techniques sont souvent créées sans aucune dérivation analytique. Il n'est pas possible de leur faire aveuglément confiance (il ne faudrait jamais faire cela de toute façon). Elles ont une pertinence pratique, mais les conditions selon lesquelles elles flanchent ne sont pas ou peu connues. Il existe probablement des centaines de techniques ayant leurs avantages et inconvénients ou bien des scénarios dans lesquels elles sont plus efficaces que les autres. Il en apparaît des nouvelles chaque année depuis 1950. Comme ces techniques sont des bricolages et qu'elles sont taillées différemment, elles ne s'accordent pas toujours sur la même conclusion. Faire l'étalage de ces règles d'arrêt serait bien inutile. Ainsi, trois techniques seront présentées, le test de Kaiser, l'analyse parallèle (*parallel analysis*) et le test de suffisance de la prochaine valeur propre (*Next eigenvalue sufficiency test*), une technique récente montrant un excellent rendement. Ces trois règles représentent une même ligne évolutive.
 
 ### Le test de Kaiser
 
-Historiquement, le premier test de celui du *test de Kaiser* [@Kaiser]. C'est le test utilisé par défaut dans la plupart des logiciels traditionnels. Cela lui permet d'être encore très répandue aujourd'hui, malgré qu'il soit discrédité depuis les années 60. [@Turner98;@Achim20;@Beauducel01]. 
+Historiquement, le premier test est le *test de Kaiser* [@Kaiser]. C'est la règle d'arrêt utilisée par défaut dans la plupart des logiciels traditionnels. Cela lui permet d'être encore très répandu aujourd'hui, malgré qu'il soit discrédité depuis les années 60 [@Turner98;@Achim20;@Beauducel01]. 
 
 Le test de Kaiser se fonde sur l'idée selon laquelle, si les variables ne sont pas corrélées entre elles (s'il n'y a pas de facteurs), les valeurs propres seront égales à 1. La logique du test est d'affirmer que, si une valeur propre est supérieure à 1, alors de l'information commune est nécessairement partagée entre deux ou plusieurs variables. Selon le test de Kaiser, le nombre de composantes à retenir correspond au nombre de valeurs propres supérieures à 1. 
 
@@ -114,7 +114,7 @@ mat.cor
 > [5,]    0    0    0    0    1    0
 > [6,]    0    0    0    0    0    1
 ```
-Les valeurs propres de cette matrice sont toutes égalent à 1.
+Les valeurs propres de cette matrice sont toutes égales à 1.
 
 
 ```r
@@ -164,7 +164,7 @@ ggplot(data = vp,
 <p class="caption">(\#fig:kaiser)Les valeurs propres en fonctions de la position de l'axe</p>
 </div>
 
-Voici un une fonction maison simple pour programmer le test de Kaiser.
+Voici un exemple d'une fonction maison simple pour programmer le test de Kaiser.
 
 
 ```r
@@ -182,9 +182,9 @@ kaiser <- function(jd){
 
 ### L'analyse parallèle de Horn
 
-Asymptotiquement parlant, si $n \to \infty$, le test est vraie. Par contre, l'ordre des valeurs propres capitalise sur l'erreur, ce qui introduit l'idée selon laquelle les corrélations accidentelles se retrouvent dans les premières dimensions. Même s'il n'y a pas de corrélation sur le plan de la population, il y aura accidentellement des corrélations dans un échantillon. Conséquemment, les premiers axes sont surestimés, alors que les derniers sont sous-estimées.   
+Asymptotiquement parlant, si $n \to \infty$, le test est vrai. Par contre, l'ordre des valeurs propres capitalise sur l'erreur, ce qui introduit l'idée selon laquelle les corrélations accidentelles se retrouvent dans les premières dimensions. Même s'il n'y a pas de corrélation sur le plan de la population, il y aura accidentellement des corrélations dans un échantillon. Conséquemment, les premiers axes sont surestimés, alors que les derniers sont sous-estimés.   
 
-La solution proposée par @Horn65 est alors de tenir compte de cette erreur d'échantillonnage accidentelle. Pour ce faire, il propose de rééchantillonner les valeurs propres d'un jeu de données sans aucun facteur (aucune corrélation entre les variables) ayant les mêmes caractéristiques que le jeu de données cible (même nombre de variables et de participants). Le jeu de données cible correspond au jeu de données de l'expérimentateur. 
+La solution proposée par @Horn65 est alors de tenir compte de cette erreur d'échantillonnage accidentelle. Pour ce faire, il propose de rééchantillonner les valeurs propres d'un jeu de données sans aucun facteur (aucune corrélation entre les variables) ayant les mêmes caractéristiques que le jeu de données cible (mêmes nombres de variables et de participants). Le jeu de données cible correspond au jeu de données de l'expérimentateur. 
 
 Le rééchantillonnage est réitéré sur des milliers de jeu de données artificiels. À chaque fois, les valeurs propres sont enregistrées. Des valeurs critiques (moyennes ou percentiles) en sont retirées à la toute fin. Il s'agit du critère auquel l'hypothèse nulle est rejetée. De la première à la dernière, chaque valeur propre cible est comparée à la valeur propre moyenne correspondante. Si la cible est plus élevée, il s'agit d'une dimension à retenir. Dès que la cible est inférieure, le test est arrêté. Le nombre de valeurs propres supérieures aux valeurs propres artificielles correspond au nombre de dimensions à retenir. 
 Dans la syntaxe ci-dessous, les mêmes caractéristiques que le jeu de données précédent sont utilisés, soit $p = 6$ et $n = 5000$. À la fin, il sera possible de comparer s'il y a effectivement deux facteurs selon l'analyse parallèle. 
@@ -218,7 +218,7 @@ for(i in 1:nreps) {
 # Une fois les valeurs propres obtenues,
 # les moyennes et quantiles sont calculables
 
-# Une moyenne par ligne (valeur propres)
+# Une moyenne par ligne (valeurs propres)
 rowMeans(valeurs.propres)
 > [1] 1.495 1.242 1.057 0.899 0.739 0.568
 
@@ -230,7 +230,7 @@ apply(X = valeurs.propres,
 > [1] 1.723 1.388 1.163 0.998 0.858 0.700
 ```
 
-Pour connaître le nombre de dimension, il suffit de tester les valeurs propres empiriques et les comparer aux valeurs propres simulées (moyenne ou 95^e^ percentile). Le nombre de valeur propre empirique supérieur aux valeurs propres simulés correspond au nombre de composantes à retenir.
+Pour connaître le nombre de dimensions, il suffit de tester les valeurs propres empiriques et les comparer aux valeurs propres simulées (moyenne ou 95^e^ percentile). Le nombre de valeur propre empirique supérieur aux valeurs propres simulés correspond au nombre de composantes à retenir.
 
 
 ```r
@@ -247,7 +247,7 @@ sum(res$values > rowMeans(valeurs.propres))
 > [1] 2
 ```
 
-Ainsi, 2 facteurs sont à retenir. Une façon d'illustrer les résultats de l'analyse parallèle est d'utiliser le graphique de éboulis en y représentant les valeurs propres empiriques comparativement aux simulées. Le nombre de valeurs propres empiriques supérieures aux simulées est le nombre de dimensions à retenir. Ce graphique est produit à la Figure \@ref(fig:scree2). Voici la syntaxe pour produire ce graphique avec `ggplot2`. La première étape est de mettre en commun les résultats obtenus dans un jeu de données. La variable `Index` indique l'index de la valeur propres, `valeurs.propres` contient les valeurs propres et `Type` indique s'il s'agit de valeurs propres empiriques ou simulées de l'analyse parallèle. Pour le reste, il s'agit de recourir à `ggplot()`.
+Ainsi, 2 facteurs sont à retenir. Une façon d'illustrer les résultats de l'analyse parallèle est d'utiliser le graphique des éboulis en y représentant les valeurs propres empiriques comparativement aux simulées. Le nombre de valeurs propres empiriques supérieures aux simulées est le nombre de dimensions à retenir. Ce graphique est produit à la Figure \@ref(fig:scree2). Voici la syntaxe pour produire ce graphique avec `ggplot2`. La première étape est de mettre en commun les résultats obtenus dans un jeu de données. La variable `Position` indique l'ordre de la valeur propre, `valeurs.propres` contient les valeurs propres et `Test` indique s'il s'agit de valeurs propres empiriques ou simulées de l'analyse parallèle. Pour le reste, il s'agit de recourir à `ggplot()`.
 
 
 ```r
@@ -329,7 +329,7 @@ Autrement dit, il n'y a pas de facteurs, ou bien il y a plus d'un facteur. Une f
 
 Le **Test de suffisance de la prochaine valeur propre** (*Next Eigenvalue Sufficiency Test*, NEST) développé par Achim [-@Achim17;-@Achim20] est le dernier cri en termes d'estimation du nombre de composantes à retenir. En plus de tenir compte pour l'erreur d'échantillonnage, comme l'analyse parallèle, il tient compte aussi de la logique séquentielle du test d'hypothèse. Plus précisément, le test utilise une matrice de corrélation contenant les $k$ dimensions déterminées auparavant. Lorsque $k=0$, le test est équivalent à l'analyse parallèle, mais uniquement pour la première valeur propre. Une fois l'hypothèse nulle rejetée, $k$ est incrémenté, une nouvelle matrice de corrélation basée sur ces $k$ facteurs est calculées, et un nouveau rééchantillonnage des valeurs propres est entrepris. Le test s'arrête lorsque la $k+1$ valeur propre (l'hypothèse nulle) n'est pas rejetée, pour donner $k$ dimensions.
 
-La syntaxe suivante illustre de façon simplifier le test NEST. Elle utilise plusieurs éléments déjà présentées. 
+La syntaxe suivante illustre de façon simplifiée le test NEST. Elle utilise plusieurs éléments déjà présentés. 
 
 * Elle est basée sur [l'analyse parallèle][L'analyse parallèle de Horn]. Le changement principal est que la matrice de corrélation change pour différente valeur de $k$, alors qu'elle reste toujours identique pour l'analyse parallèle, `R = diag(p)`, peu importe $k$.
 
@@ -407,14 +407,14 @@ Il existe une version préliminaire d'un package permettant de réaliser facilem
 remotes::install_github(repo = "quantmeth/Rnest")
 ```
 
-Comme à l'habitude, il faut l'appeller dans l'environnement.
+Comme à l'habitude, il faut l'appeler dans l'environnement.
 
 
 ```r
 library(Rnest)
 ```
 
-La fonction principale est `nest()`. Elle prend en argument un jeu de donnée ou une matrice de corrélation avec le nombre de participants. D'autres options sont possibles, comme le seuil critique (`alpha`), le nombre de répétions (`nreps`), et la méthode d'extraction des dimensions (`"ml"`, *maximum likelihood*; `"paf"`, *principal axis factoring*; `"mrfa"`, *minimum rank factor analysis*)
+La fonction principale est `nest()`. Elle prend en argument un jeu de données ou une matrice de corrélation avec le nombre de participants. D'autres options sont possibles, comme le seuil critique (`alpha`), le nombre de répétitions (`nreps`), et la méthode d'extraction des dimensions (`"ml"`, *maximum likelihood*; `"paf"`, *principal axis factoring*; `"mrfa"`, *minimum rank factor analysis*)
 
 Voici la fonction avec le présent exemple.
 
@@ -427,7 +427,7 @@ Voici la sortie des valeurs propres comparées aux deux autres règles d'arrêt 
 
 
 ```r
-# Réorganisation des jeu de données contenant
+# Réorganisation du jeu de données contenant
 # les valeurs propres
 vp.nest <- plot(nest(jd))$data[-(1:p),]
 colnames(vp.nest) <- colnames(vp)

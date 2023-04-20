@@ -24,7 +24,7 @@ Si vous avez des commentaires ou des suggestions, n'hésitez pas à me les parta
 
 ## Remerciements {-}
 
-Les étudiants et étudiantes de la classe PSY7105 d'automne 2021.
+Les étudiants et étudiantes qui ont suivi des cours avec ce manuel et plus spécialement Catherine Meek-Bouchard pour ces commentaires.
 
 # Préface {-}
 

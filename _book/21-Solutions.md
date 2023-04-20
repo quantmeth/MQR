@@ -537,7 +537,7 @@ pnorm(c(crit.t, crit.z), mean = 2, lower.tail = FALSE)
 
 ### Question 5 {-}
 
-5. Calculer la puissance d'une corrélation de $\rho = .30$ avec 80 participants et un $alpha = .05$ bilatérale. Rappel : une corrélation peut se *standardiser* avec la tangente hyperbolique inverse, soit `atanh()`, et en multipliant par l'erreur type, $\sqrt{n-3}$^[Ce calcul est approximatif et non exact.]. (Question difficile)
+5. Calculer la puissance d'une corrélation de $\rho = .30$ avec 80 participants et un $\alpha = .05$ bilatérale. Rappel : une corrélation peut se *standardiser* avec la tangente hyperbolique inverse, soit `atanh()`, et en multipliant par l'erreur type, $\sqrt{n-3}$. (Question difficile)
 
 
 ```r
@@ -644,7 +644,7 @@ gain / nreps
 
 ### Question 9 {-}
 
-9. Réaliser une simulation. Trouver la valeur critique (`c.vrit`) pour un $alpha = .025$ unilatérale d'une distribution normale centrée sur $0$ et un écart type de $1/\sqrt{n}$. Le scénario : tirer aléatoirement un échantillon de $n=30$ participants à partir d'une distribution normale de moyenne $.5$ et un écart type de 1. Calculer la moyenne de cet échantillon. Pour chaque scénario, additionner chaque occasion où cette moyenne est plus élevée que la valeur critique. Répéter ce scénario 1000 fois. Calculer la probabilité (en pourcentage) d'occurrence selon laquelle la moyenne de l'échantillon est plus élevée que la valeur critique.
+9. Réaliser une simulation. Trouver la valeur critique (`c.vrit`) pour un $\alpha = .025$ unilatérale d'une distribution normale centrée sur $0$ et un écart type de $1/\sqrt{n}$. Le scénario : tirer aléatoirement un échantillon de $n=30$ participants à partir d'une distribution normale de moyenne $.5$ et un écart type de 1. Calculer la moyenne de cet échantillon. Pour chaque scénario, additionner chaque occasion où cette moyenne est plus élevée que la valeur critique. Répéter ce scénario 1000 fois. Calculer la probabilité (en pourcentage) d'occurrence selon laquelle la moyenne de l'échantillon est plus élevée que la valeur critique.
 
 
 ```r

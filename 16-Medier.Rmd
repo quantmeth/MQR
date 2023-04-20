@@ -666,7 +666,7 @@ Si les coefficients de régression standardisés sont préférés, ceux-ci s'obt
 
 ## Les packages
 
-Le présent chapitre ne fait que gratter la surface de ce qu'il est possible de faire avec l'analyse de médiation. Des articles comme @Caron18 et @Lemardeletsoumis donnent des exemples de syntaxe **R** en plus d'approfondir l'analyse. Il existe plusieurs packages **R** pour réaliser l'analyse de médiation, comme `mediation` [@mediation] et `Rmediation` [@Rmediation], tous les deux ayant leur propre documentation. Pour des analyses plus compliquées, les packages comme `lavaan` [@lavaan] permetten*t* de faire des analyses de médiation avec la modélisation par équations structurelles, Toutefois, ce chapitre espère avoir convaincu le lecteur que l'analyse peut être relativement aisément *fait maison*.
+Le présent chapitre ne fait que gratter la surface de ce qu'il est possible de faire avec l'analyse de médiation. Des articles comme @Caron18 et @Lemardeletsoumis donnent des exemples de syntaxe **R** en plus d'approfondir l'analyse. Il existe plusieurs packages **R** pour réaliser l'analyse de médiation, comme `mediation` [@mediation] et `Rmediation` [@Rmediation], tous les deux ayant leur propre documentation. Pour des analyses plus compliquées, les packages comme `lavaan` [@lavaan] permettent de faire des analyses de médiation avec la modélisation par équations structurelles, Toutefois, ce chapitre espère avoir convaincu le lecteur que l'analyse peut être relativement aisément *fait maison*.
 
 ## Rapporter l'analyse de médiation
 
@@ -692,7 +692,7 @@ Le package `pathanalysis` fourni la fonction `mediation()` qui permet d'obtenir 
 L'exemple suivant, basé sur le jeu de données `mtcars`, teste le lien indirect de `wt` (variable exogène) à `mpg` (variable endogène) par l'intermédiaire de `hp`. Les résultats standardisés sont demandés avec l'argument `standardized = TRUE`.
 
 ```{r, cache = TRUE}
-mediation(model = mpg ~  hp ~ wt, 
+mediation(model = mpg ~ hp ~ wt, 
           data = mtcars, 
           standardized = TRUE)
 ```
@@ -715,6 +715,6 @@ eee <- rm$Estimate[4]
 knitr::include_graphics("image//mtcars_med.png")
 ```
 
-En plus de cette information primordiale, certains domaines de recherche demanderont, en plus, de rapporter les deux régressions réalisées (voir [Rapporter la régression]), soit les liens directs pertinents et les modèles de régression, et également, l'aspect partiel ou complet de la médiation^[Même si cela n'est pas approprié].
+En plus de cets informations primordiales, certains domaines de recherche demanderont, en plus, de rapporter les deux régressions réalisées (voir [Rapporter la régression]), soit les liens directs pertinents et les modèles de régression, et également, l'aspect partiel ou complet de la médiation^[Même si cela n'est pas approprié].
 
 <!-- ## TODO EXTENSION MATRICIELLE -->

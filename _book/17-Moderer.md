@@ -1,11 +1,11 @@
 # Modérer
 
-En plus des relations linéaires, c'est-à-dire des effets selon lesquels plus une variable (ou diminue) plus une seconde variables augmente (ou diminue), il existe des variables qui interagissent de sorte à accentuer ou amenuiser la force d'un effet, voire même à altérer sa direction. Ce type d'effet, appelée modérateur, est analysé à l'aide d'analyse de modération, analyse statistique très populaire dans laquelle la relation entre la variable dépendante ($y$) et la variable indépendante ($x$) est altérée par une tierce variable, la variable modératrice ($w$). 
+En plus des relations linéaires, c'est-à-dire des effets selon lesquels plus une variable augmente (ou diminue) plus une seconde variables augmente (ou diminue), il existe des variables qui interagissent de sorte à accentuer ou amenuiser la force d'un effet, voire même à altérer sa direction. Ce type d'effet, appelée modérateur, est analysé à l'aide d'analyse de modération, analyse statistique très populaire dans laquelle la relation entre la variable dépendante ($y$) et la variable indépendante ($x$) est altérée par une tierce variable, la variable modératrice ($w$). 
 Bien que la modération ait son chapitre désigné, elle a déjà été rencontrée dans ce livre, notamment, au chapitre [Prédire]. L'analyse de modération dans son essence correspond à étudier un effet d'interaction dans un modèle linaire, ou autrement dit, la multiplication entre deux variables, ici $x \times w$. Ainsi, en recourant aux fonctions `lm()` ou `aov()`, la modération se commande en employant le symbole `*` comme `lm(y ~ x * w)` ou `aov(y ~ x * w)`. Toutefois, ayant ses défis qui lui sont propres en création de données et en interprétation, le chapitre suivant propose une description approfondie de la modération^[La section est partiellement basée sur @Caron20.].
 
 ## L'analyse de modération
 
-Sur le plan quantitatif, l'analyse de modération est un modèle linéaire général réalisé en une seule étape (soit une analyse de la variance ou une régression, en fonction des variables concernées) dans laquelle une variable dépendante, $y$, est prédite par trois variables, la variable variable indépendante, $x$, l'effet simple se la variable modératrice, $w$, et leur produit $x \times w=xw$. En termes du modèle linéaire général (ANOVA, régression), un modérateur se subsume à une interaction. Mathématiquement, la relation s'exprime comme l'équation \@ref(eq:moderation)
+Sur le plan quantitatif, l'analyse de modération est un modèle linéaire général réalisé en une seule étape (soit une analyse de la variance ou une régression, en fonction des variables concernées) dans laquelle une variable dépendante, $y$, est prédite par trois variables, la variable indépendante, $x$, l'effet simple de la variable modératrice, $w$, et leur produit $x \times w=xw$. En termes du modèle linéaire général (ANOVA, régression), un modérateur se subsume à une interaction. Mathématiquement, la relation s'exprime comme l'équation \@ref(eq:moderation)
 
 \begin{equation}
 y = \beta_0 + \beta_1 x + \beta_2 w + \beta_3 (x \times w) + \epsilon
@@ -55,7 +55,7 @@ Celle-ci n'est pas des plus attrayante à l'oeil, surtout pour les arithmophobes
 
 ### Un modérateur continu
 
-Dans le cas de deux variables continues (une variable indépendante $x$ et une modératrice $w$), celles-ci peuvent être créées par système d'équations ou bien avec la matrice de covariance (des deux variables). Une fois $x$ et $w$ générées, il faut les multiplier pour obtenir $xw$. C'est l'étape cruciale qui distingue la modération des autres analyses, car les deux variables doivent créer avant de créer l'interaction.
+Dans le cas de deux variables continues (une variable indépendante $x$ et une modératrice $w$), celles-ci peuvent être créées avec un système d'équations ou bien avec la matrice de covariance (des deux variables). Une fois $x$ et $w$ générées, il faut les multiplier pour obtenir $xw$. C'est l'étape cruciale qui distingue la modération des autres analyses, car les deux variables doivent être créer avant l'interaction.
 
 La variance de $xw$ suit l'équation \@ref(eq:prodvar) et les covariances avec les premières variables sont nulles dans la mesure où ces variables sont symétriques^[Si elles ne sont pas symétriques, il pourrait y avoir des corrélations causées par l'asymétrie]. La matrice de covariance (et de corrélation dans ce cas-ci) est ainsi calculable a priori.
 
@@ -132,7 +132,7 @@ jd.continue <- jd.continue[, c("x","w","y")]
 
 ### Un modérateur nominal
 
-Pour créer un jeu de données avec une variable indépendante continue et une variable modératrice nominale, la procédure sera similaire à celle de [l'analyse de variance][L'analyse de variance à un facteur] avec le [Codage factice] en combinaison avec la technique décrite ci-haut.
+Pour créer un jeu de données avec une variable indépendante continue et une variable modératrice nominale, la procédure sera similaire à celle de [l'analyse de variance][Comparer] avec le [Codage factice] en combinaison avec la technique décrite ci-haut.
 
 
 ```r
@@ -166,7 +166,7 @@ X = cbind(x = x,
           xw = x * W)
 ```
 
-En considérant $p_i = \frac{g_i}{n}$ comme la probabilité d'une unité d'être dans le groupe $i$, la variance d'un groupe, représentée par $w_i$, est $p_i(1-p_i)$, soit la variance d'une distribution binomiale pour une probabilité $p_i$. La covariance avec un autre groupe $j$ est de $-p_ip_j$, la probabilité d'être dans un groupe est négativement liée à celle d'être dans un autre groupe. Enfin, la variance d'une interaction est de $p_i$, car il s'agit du pourcentage de $x$ qui se retrouve dans l'interaction $xw_i$. En conséquence, comme il s'agit de la même information (à cause du multiple de 1 de la variable $w_i$, c'est-dire appartenir au groupe $i$), cela mène une covariance accidentelle de $p_i$ entre $x$ et $w_i$.
+En considérant $p_i = \frac{g_i}{n}$ comme la probabilité d'une unité d'être dans le groupe $i$, la variance d'un groupe, représentée par $w_i$, est $p_i(1-p_i)$, soit la variance d'une distribution binomiale pour une probabilité $p_i$. La covariance avec un autre groupe $j$ est de $-p_ip_j$, la probabilité d'être dans un groupe est négativement liée à celle d'être dans un autre groupe. Enfin, la variance d'une interaction est de $p_i$, car il s'agit du pourcentage de $x$ qui se retrouve dans l'interaction $xw_i$. En conséquence, comme il s'agit de la même information (à cause du multiple de 1 de la variable $w_i$, c'est-à-dire appartenir au groupe $i$), cela mène une covariance accidentelle de $p_i$ entre $x$ et $w_i$.
 
 
 ```r
@@ -272,15 +272,15 @@ jd.nominale <-  data.frame(x = x,
 
 ## Détecter l'effet de modération
 
-Pour détecter les effets modérateurs, l'analyse de modèle linéaire par `lm()` et `aov()` joueront parfaitement le rôle. Par contre, il faut noter une différence **cruciale** entre les deux fonctions. Le calcul de la somme des carrés est différent entre les deux : `lm()` utilise le type III et `aov()` utilise le type\ I.
+Pour détecter les effets modérateurs, l'analyse de modèle linéaire par `lm()` et `aov()` jouera parfaitement le rôle. Par contre, il faut noter une différence **cruciale** entre les deux fonctions. Le calcul de la somme des carrés est différent entre les deux : `lm()` utilise le type III et `aov()` utilise le type\ I.
 
 Le choix du type porte à controverse [@Herr86]. Pour choisir le type d'estimateur, de nombreux facteurs entrent en ligne de compte, le plus important étant l'hypothèse de recherche. Il n'y a donc pas de réponse claire; il y a bien quelques recommandations.
 
-Le type I teste séquentiellement le modèle $y = x + w + xw$, soit l'effet de $x$, puis l'effet de $w$ en tenant compte de $x$ (écrit $\text{SC}(w|x)$, soit la somme des carrés de $w$ considérant $x$), et enfin l'effet de $x\times w$ par $\text{SC}(xw|x,w)$. Il teste très bien les termes d'interaction, en plus, d'offrir un modèle alternatif si l'interaction n'est pas significative. Le type I ne traite pas les effets simples de façon égale. L'ordre importe!. Le type II contourne le traitement différentiel des effets simples en considérant simultanément des effets de même niveau, comme $\text{SC}(w|x)$ et $\text{SC}(x|w)$, ce qui est très bien pour tester les effets simples s'il n'y a pas de terme d'interaction. Le type III conditionne tous les effets, $x$, $w$ et $xw$, au même niveau, soit $\text{SC}(x|w,xw)$, $\text{SC}(w|x,xw)$ et $\text{SC}(xw|x,w)$. Tous les effets sont traités de façon équivalente. Le type IV, pour le mentionner, permet de tenir compte de combinaison de groupes nulle (ou vide). Il est équivalent au type III s'il y a au moins une valeur dans chaque groupe.
+Le type I teste séquentiellement le modèle $y = x + w + xw$, soit l'effet de $x$, puis l'effet de $w$ en tenant compte de $x$ (écrit $\text{SC}(w|x)$, soit la somme des carrés de $w$ considérant $x$), et enfin l'effet de $x\times w$ par $\text{SC}(xw|x,w)$. Il teste très bien les termes d'interaction, en plus, d'offrir un modèle alternatif si l'interaction n'est pas significative. Le type I ne traite pas les effets simples de façon égale. L'ordre importe! Le type II contourne le traitement différentiel des effets simples en considérant simultanément des effets de même niveau, comme $\text{SC}(w|x)$ et $\text{SC}(x|w)$, ce qui est très bien pour tester les effets simples s'il n'y a pas de terme d'interaction. Le type III conditionne tous les effets, $x$, $w$ et $xw$, au même niveau, soit $\text{SC}(x|w,xw)$, $\text{SC}(w|x,xw)$ et $\text{SC}(xw|x,w)$. Tous les effets sont traités de façon équivalente. Le type IV, pour le mentionner, permet de tenir compte de combinaison de groupes nulle (ou vide). Il est équivalent au type III s'il y a au moins une valeur dans chaque groupe.
 
-La controverse provient du fait que les hypothèses concernées ne sont pas très utiles pour les expérimentateurs puisqu'ils s'intéressent au terme d'interaction, et non aux effets principaux lorsqu'un terme d'interaction est présent. L'avantage du type I est de montrer les modèles possibles de façon hiérarchique, ce que ne fait pas le type III. Le type I oblige de la réflexion : la séquence des variables d'une part, mais aussi l'analyse des résultats hypothèses séquentielles.
+La controverse provient du fait que les hypothèses concernées ne sont pas très utiles pour les expérimentateurs puisqu'ils s'intéressent au terme d'interaction, et non aux effets principaux lorsqu'un terme d'interaction est présent. L'avantage du type I est de montrer les modèles possibles de façon hiérarchique, ce que ne fait pas le type III. Le type I oblige de la réflexion : la séquence théorique des variables d'une part, la séquence de des hypothèses d'intérêt d'autre part.
 
-S'il y a un effet d'interaction, alors les effets simples ne sont pas interprétés. Le type III est alors inutiles pour interpréter ces effets.
+S'il y a un effet d'interaction, alors les effets simples ne sont pas interprétés. Le type III est alors inutile pour interpréter ces effets.
 
 Les programmeurs de **R** championnent cette perspective en définissant l'option de type de sommes de carrés par défaut pour les fonctions `lm()` et `aov()`. Ils y vont de mots très durs à l'endroit des logiciels qui recourent automatiquement au type III. 
 
@@ -303,21 +303,21 @@ summary(res1.lm)
 > 
 > Residuals:
 >     Min      1Q  Median      3Q     Max 
-> -2.2439 -0.5929 -0.0253  0.6134  2.4367 
+> -3.1126 -0.6129  0.0249  0.6119  2.6796 
 > 
 > Coefficients:
 >             Estimate Std. Error t value Pr(>|t|)    
-> (Intercept)   0.0037     0.0436    0.08     0.93    
-> x             0.0168     0.0488    0.34     0.73    
-> w             0.2956     0.0460    6.42  3.1e-10 ***
-> x:w           0.3332     0.0363    9.18  < 2e-16 ***
+> (Intercept)   0.0306     0.0442    0.69     0.49    
+> x             0.0625     0.0450    1.39     0.17    
+> w             0.2724     0.0468    5.82  1.1e-08 ***
+> x:w           0.2953     0.0331    8.93  < 2e-16 ***
 > ---
 > Signif. codes:  
 > 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 > 
-> Residual standard error: 0.875 on 496 degrees of freedom
-> Multiple R-squared:  0.246,	Adjusted R-squared:  0.242 
-> F-statistic:   54 on 3 and 496 DF,  p-value: <2e-16
+> Residual standard error: 0.89 on 496 degrees of freedom
+> Multiple R-squared:  0.203,	Adjusted R-squared:  0.198 
+> F-statistic: 42.1 on 3 and 496 DF,  p-value: <2e-16
 
 # Pour comparer avec aov
 res1.aov <- aov(y ~ x * w, data = jd.continue)
@@ -325,11 +325,11 @@ res1.aov <- aov(y ~ x * w, data = jd.continue)
 # L'intercepte est inclus
 summary(res1.aov, intercept = TRUE)
 >              Df Sum Sq Mean Sq F value  Pr(>F)    
-> (Intercept)   1     17    16.7    21.8 3.9e-06 ***
-> x             1     19    18.9    24.7 9.4e-07 ***
-> w             1     41    40.6    52.9 1.4e-12 ***
-> x:w           1     65    64.6    84.3 < 2e-16 ***
-> Residuals   496    380     0.8                    
+> (Intercept)   1     16    16.1    20.3 8.2e-06 ***
+> x             1     16    16.2    20.5 7.5e-06 ***
+> w             1     21    20.8    26.2 4.4e-07 ***
+> x:w           1     63    63.2    79.7 < 2e-16 ***
+> Residuals   496    393     0.8                    
 > ---
 > Signif. codes:  
 > 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
@@ -339,7 +339,7 @@ Comme prévu, les résultats sont différents à cause des différentes sommes d
 
 Pour observer les résultats de `lm()` de la même façon que `aov` (avec une table d'analyse de variance), le code `anova(res1.lm)` produira la même sortie, signalant ainsi la différence des sommes de carré pour calculer les coefficients et celles pour produire la table.
 
-Pour obtenir l'analyse de variance avec le type III, il faut utiliser le package `car` et sa fonction `Anova()` en y spécifiant la sortie de la fonction `aov()` et type de somme de carrés demandée.
+Pour obtenir l'analyse de variance avec le type III, il faut utiliser le package `car` et sa fonction `Anova()` en y spécifiant la sortie de la fonction `aov()` et le type de somme de carrés demandé.
 
 
 ```r
@@ -349,11 +349,11 @@ res1.anova
 > 
 > Response: y
 >             Sum Sq  Df F value  Pr(>F)    
-> (Intercept)      0   1    0.01    0.93    
-> x                0   1    0.12    0.73    
-> w               32   1   41.27 3.1e-10 ***
-> x:w             65   1   84.33 < 2e-16 ***
-> Residuals      380 496                    
+> (Intercept)      0   1    0.48    0.49    
+> x                2   1    1.93    0.17    
+> w               27   1   33.85 1.1e-08 ***
+> x:w             63   1   79.69 < 2e-16 ***
+> Residuals      393 496                    
 > ---
 > Signif. codes:  
 > 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
@@ -363,7 +363,7 @@ Voilà! Les effets simples sont maintenant identiques à la sortie de `lm()`.
 
 
 
-Pour déterminer s'il y a présence de l'effet de modérateur, il faut se fier à la ligne `x:w` et la valeur-$p$, `Pr(>F)`, associée qui est ici de $3.269^{-16}$. Par contre, il n'est pas tout à fait clair comment interpréter ce résultat. Ce sera fait dans la section portant sur la représentation graphique de al modération.
+Pour déterminer s'il y a présence de l'effet de modérateur, il faut se fier à la ligne `x:w` et la valeur-$p$, `Pr(>F)`, associée qui est ici de $3.269^{-16}$. Par contre, il n'est pas tout à fait clair comment interpréter ce résultat. Ce sera fait dans la section portant sur la représentation graphique de la modération.
 
 ### Analyse d'un modérateur nominal
 
@@ -451,11 +451,11 @@ Pour réaliser ces graphiques, il faudra d'abord installer et importer le packag
 library(interactions)
 ```
 
-À noter que le package `interactions` dépend du package `sandwich` [@Zeileis] qu'il faut également installé. 
+À noter que le package `interactions` dépend du package `sandwich` [@Zeileis] qu'il faut également installer. 
 
 ### L'analyse des pentes simples
 
-La méthode *classique* de sonder d'approfondir un effet d'interaction consiste à calculer la pente du prédicteur à différentes valeurs du modérateur. Cette analyse se réfère à l'analyse des pentes simples. La fonction permettant de commander cette technique est `sim_slopes()`. Il faut y mettre en argument la sortie de `lm()`, désigner le prédicteur `pred = ` et le modérateur `modx = `. 
+La méthode *classique* pour sonder un effet d'interaction consiste à calculer la pente du prédicteur à différentes valeurs du modérateur. Cette analyse se réfère à l'analyse des pentes simples. La fonction permettant de commander cette technique est `sim_slopes()`. Il faut y mettre en argument la sortie de `lm()`, désigner le prédicteur `pred = ` et le modérateur `modx = `. 
 
 Cette analyse est faite avec l'exemple avec la variable de groupement, `jd.nominale`. L'argument `johnson_neyman = FALSE` évite simplement un message d'erreur, car le graphique éponyme ne peut être généré lorsque le modérateur est une variable de groupement.
 
@@ -505,7 +505,7 @@ interact_plot(model = res2.lm,
 
 Le code ci-dessus illustre ce patron de différences avec la Figure\ \@ref(fig:ip1). L'axe des $x$ et des $y$ montrent la relation entre les variables en fonction des groupes qui sont représentées par des lignes différentes. L'option `plot.point = TRUE` affiche optionnellement les données dans la figure. La Figure\ \@ref(fig:ip1) montre une tendance positive entre $x$ et $y$ pour le groupe de référence (`3`) qui s'accentue de façon importante pour le groupe\ (`1`), mais qui s'inverse pour le groupe\ `2`.
 
-Le graphique des pentes peut aussi être réalisé pour un modérateur continu. La\ Figure \@ref(fig:ip2) illustre ce graphique. Lorsque le modérateur représente des groupes, les niveaux sont clairement définis. Dans le cas d'un modérateur continu, des niveaux arbitraire doivent être sélectionnés.
+Le graphique des pentes peut aussi être réalisé pour un modérateur continu. La\ Figure \@ref(fig:ip2) illustre ce graphique. Lorsque le modérateur représente des groupes, les niveaux sont clairement définis. Dans le cas d'un modérateur continu, des niveaux arbitraires doivent être sélectionnés.
 
 
 ```r

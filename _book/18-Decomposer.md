@@ -1,5 +1,8 @@
 # (PART) Analyses factorielles {-}
 
+
+
+
 # Décomposer
 
 Prédire une variable dépendante à partir de variables indépendantes n'est pas la seule façon de décortiquer des données. Il existe des techniques statistiques qui réorganisent l'information (les corrélations) des variables. Il s'agit des **analyses factorielles**. Elles s'intéressent plus à la *structure* des corrélations qu'aux *systèmes* qui les lient. Bien qu'il s'agisse de nuances sur le plan statistique, les deux côtés d'une même médaille, les différences sont importantes sur le plan théorique. Plutôt que de parler de *cause* à *effet*, ce sera plutôt la structure sous-tendant les variables qui sera d'intérêt.
@@ -11,9 +14,9 @@ Prédire une variable dépendante à partir de variables indépendantes n'est pa
 <p class="caption">(\#fig:regaf)Représentations de la régression et l'analyse factorielle</p>
 </div>
 
-Plusieurs éléments permettent de mieux mettre en évidence les différences entre les deux modèles. Les **variables manifestes** $x_i$ sont des mesures empiriques mesurées auprès d'unités d'observations. Elles sont représentées pas des rectangles. Le facteur $F$ est représenté par un cercle. Il s'agit d'une **variable latente**, une variable non observée et inférée à partir des variables manifestes. Par exemple, les habiletés de lecture $x_1$ sont liées aux habiletés en mathématiques $x_2$. D'un côté, mieux le participant lit, plus il répond rapidement et exactement aux questions de mathématiques. De l'autre côté, les habiletés de mathématiques et de lectures peuvent aussi être liées à un facteur commun : l'intelligence. Les habiletés de mathématiques et de lectures sont observables par des évaluations, mais l'intelligence s'infère à partir de ces tests^[Il est particulièrement important d'identifier le facteur comme variable latente. Autrement, le modèle à droite pourrait également représenté une **variable confondante**, une variable qui cause *accidentellement* la corrélation entre deux autres. Par exemple, le lien entre l'intelligence et la grandeur des pieds provient de l'effet de l'âge.]. C'est là que les analyses factorielles entre en jeu.
+Plusieurs éléments permettent de mieux mettre en évidence les différences entre les deux modèles. Les **variables manifestes** $x_i$ sont des mesures empiriques mesurées auprès d'unités d'observations. Elles sont représentées par des rectangles. Le facteur $F$ est représenté par un cercle. Il s'agit d'une **variable latente**, une variable non observée et inférée à partir des variables manifestes. Par exemple, les habiletés de lecture $x_1$ sont liées aux habiletés en mathématiques $x_2$. D'un côté, mieux le participant lit, plus il répond rapidement et exactement aux questions de mathématiques. De l'autre côté, les habiletés de mathématiques et de lectures peuvent aussi être liées à un facteur commun : l'intelligence. Les habiletés de mathématiques et de lectures sont observables par des évaluations, mais l'intelligence s'infère à partir de ces tests^[Il est particulièrement important d'identifier le facteur comme variable latente. Autrement, le modèle à droite pourrait également représenté une **variable confondante**, une variable qui cause *accidentellement* la corrélation entre deux autres. Par exemple, le lien entre l'intelligence et la grandeur des pieds provient de l'effet de l'âge.]. C'est là que les analyses factorielles entrent en jeu.
 
-Les analyses factorielles sont utilisés, par exemple, lors de la création d'un test psychométrique. Le psychométricien s'intéresse à connaître quels items (variables manifestes) sont liés sur quelle dimension et à quel degré. Les items communs sont liés sur certains facteurs et peu ou pas sur les autres. Le facteur à un fort potentiel explicatif pour les items qui lui sont fortement liés, voire même représente un concept, thème ou construit théorique commun partagé entre ces items.
+Les analyses factorielles sont utilisées, par exemple, lors de la création d'un test psychométrique. Le psychométricien s'intéresse à connaître quels items (variables manifestes) sont liés sur quelle dimension et à quel degré. Les items communs sont liés sur certains facteurs et peu ou pas sur les autres. Le facteur à un fort potentiel explicatif pour les items qui lui sont fortement liés, voire même représente un concept, thème ou construit théorique commun partagé entre ces items.
 
 <!-- L'ACP a une optique d'utilisation beaucoup plus grande que l'analyse factorielle exploratoire. L'expérimentateur pourrait s'intéresser à seulement réorganiser la variance sans aucune visée *factorielle*. Il pourrait vouloir identifier l'ensemble des meilleurs prédicteurs ou encore résumer l'information de façon à générer des figures qui seraient autrement trop complexes. Enfin, l'ACP peut aussi être conceptualisé comme une forme de compression comme en informatique. Puisque l'information se trouve dans les premières composantes, les moins informatives peuvent être discartées afin de résumer un maximum d'informations sur les données avec le minimum de facteurs. -->
 
@@ -30,7 +33,7 @@ L'ACP prend comme base la matrice de corrélation^[Afin de simplifier le propos,
 
 Les **valeurs propres** (*eigenvalues*) représentent l'aspect crucial de l'ACP, soit l'importance de chaque composante à représenter les variables. Plus les variables sont liées sur un même axe (en nombre et en poids), plus la valeur propre de cet axe sera élevée. Mathématiquement, les valeurs propres sont représentées par un vecteur $\Lambda$ ou une matrice diagonale $\text{diag}(\Lambda) = \mathbf{\Lambda}$.
 
-La somme des valeurs propres égale la somme des variances, ce qui équivaut en matrice de corrélation à $p$, le nombre de variables. Comme il s'agit du potentiel maximal de ce qui peut être expliqué et que les valeurs sont une part de ce total, il est possible de calculer leur importance relative par des pourcentage. Par exemple une valeur propre de 5 sur un total de $p=10$ variables signifie que l'axe correspondant explique $5/10  \times 100 = 50$% de la variance de la matrice de corrélation. En d'autres termes, la valeur propre est une bonne métrique de l'importance d'une dimension.
+La somme des valeurs propres égale la somme des variances, ce qui équivaut en matrice de corrélation à $p$, le nombre de variables. Comme il s'agit du potentiel maximal de ce qui peut être expliqué et que les valeurs sont une part de ce total, il est possible de calculer leur importance relative par des pourcentages. Par exemple une valeur propre de 5 sur un total de $p=10$ variables signifie que l'axe correspondant explique $5/10  \times 100 = 50$% de la variance de la matrice de corrélation. En d'autres termes, la valeur propre est une bonne métrique de l'importance d'une dimension.
 
 En identifiant les composantes principales, l'ACP révèle du même coup l'importance de chacune d'elle. Il devient tout naturel de les classer en ordre décroissant^[Bien que leur ordre soit arbitraire en principe.].
 
@@ -76,7 +79,7 @@ jd.acp <- MASS::mvrnorm(n = n,
 
 L'argument `empirical = TRUE` assure que la matrice de corrélation de la population est identique à celle de l'équation, $\mathbf{\Sigma} = \mathbf{S}$, ce qui facilite l'interprétation de cet exemple.
 
-La Figure\ \@ref(fig:plotacp) illustre la répartition des 10 participants par rapport aux variables\ 1\ et\ 2. La ligne pointillée désigne la droite de régression qui les relient, soit la pente $\beta = .8$.
+La Figure\ \@ref(fig:plotacp) illustre la répartition des 10 participants par rapport aux variables\ 1\ et\ 2. La ligne pointillée désigne la droite de régression qui les relie, soit la pente $\beta = .8$.
 
 <div class="figure" style="text-align: center">
 <img src="18-Decomposer_files/figure-html/plotacp-1.png" alt="Présentation des données (`jd.acp`)" width="75%" height="75%" />
@@ -87,11 +90,11 @@ La Figure\ \@ref(fig:plotacp) illustre la répartition des 10 participants par r
 
 Il existe plusieurs fonctions dans **R**, mais aussi dans des packages, pour réaliser l'ACP. L'analyse en soi n'a rien de sorcier (en autant que les statisticiens ne font pas de la magie), c'est surtout l'emballage (arguments, graphiques et sorties) qui change de l'une à l'autre des méthodes. Ces fonctions précalculent et extraient les statistiques désirées, rien que l'utilisateur ne peut faire lui-même.
 
-Il existe quatre fonctions de base **R** pour faire l'analyse en composantes principales. Les deux principales, `eigen()` et `svd()`, fournissent des résultats virtuellement identiques, mais se distinguent sur leur limite de ce qu'elles peuvent accomplir. Les deux autres, `princomp` et  `prcomp()`, sont leur emballage respectif. Les détails des calculs seront présentées dans une autre section, la section sur [Les calculs de l'analyse en composantes principales].
+Il existe quatre fonctions de base **R** pour faire l'analyse en composantes principales. Les deux principales, `eigen()` et `svd()`, fournissent des résultats virtuellement identiques, mais se distinguent sur leur limite de ce qu'elles peuvent accomplir. Les deux autres, `princomp() et  `prcomp()`, sont leur emballage respectif. Les détails des calculs seront présentés dans une autre section, [Les calculs de l'analyse en composantes principales].
 
 ### `eigen()`
 
-La fonction `eigen()` est celle des puristes. Rudimentaire, elle prend en argument une matrice de covariance ou de corrélation et calculent les valeurs propres (`values`) et les vecteurs propres (`vectors`).
+La fonction `eigen()` est celle des puristes. Rudimentaire, elle prend en argument une matrice de covariance ou de corrélation et calcule les valeurs propres (`values`) et les vecteurs propres (`vectors`).
 
 
 ```r
@@ -152,14 +155,14 @@ Il convient également d'ajouter que, comme $\mathbf{\Sigma} = \mathbf{S}$ (à l
 
 ## Représentations des résultats
 
-La Figure\ \@ref(fig:acpsuj) montre à gauche les données originales sur les axes représentées par les deux variables (une reprise de la Figure\ \@ref(fig:plotacp)). À droite, il s'agit de la rotation trouvée par l'ACP (`eigen()` ou `svd()`). Les participants conservent entre eux les mêmes distances par rapport aux autres, mais aussi par rapport aux axes originaux représentées par des lignes pointillées. C'est vraiment l'orientation du plan qui change^[Tout problème de distance, s'il y a lieu, est dû à l'échelle des figures.].
+La Figure\ \@ref(fig:acpsuj) montre à gauche les données originales sur les axes représentés par les deux variables (une reprise de la Figure\ \@ref(fig:plotacp)). À droite, il s'agit de la rotation trouvée par l'ACP (`eigen()` ou `svd()`). Les participants conservent entre eux les mêmes distances par rapport aux autres, mais aussi par rapport aux axes originaux représentés par des lignes pointillées. C'est vraiment l'orientation du plan qui change^[Tout problème de distance, s'il y a lieu, est dû à l'échelle des figures.].
 
 <div class="figure" style="text-align: center">
 <img src="18-Decomposer_files/figure-html/acpsuj-1.png" alt="Représentations des participants selon les variables (gauche) ou les composantes principales (droite)." width="75%" height="75%" />
 <p class="caption">(\#fig:acpsuj)Représentations des participants selon les variables (gauche) ou les composantes principales (droite).</p>
 </div>
 
-La première composante retrouvée correspond (approximative) à la droite de régression de la Figure\ \@ref(fig:plotacp). Il s'agit de l'information partagée par les deux variables\ : c'est leur axe commun. L'erreur résiduelle correspond au deuxième axe (l'axe vertical). Cette intuition est fondamentale : une valeur propre élevée implique une dimension où de la variance est partagée entre les variables, alors qu'une valeur propre plus faible aura tendance a représenté une dimension de résidus, et par définition, d'informations non partagées. 
+La première composante retrouvée correspond (approximativement) à la droite de régression de la Figure\ \@ref(fig:plotacp). Il s'agit de l'information partagée par les deux variables\ : c'est leur axe commun. L'erreur résiduelle correspond au deuxième axe (l'axe vertical). Cette intuition est fondamentale : une valeur propre élevée implique une dimension où de la variance est partagée entre les variables, alors qu'une valeur propre plus faible aura tendance à représenter une dimension de résidus, et par définition, d'informations non partagées. 
 
 La Figure\ \@ref(fig:varacp) offre une vue de l'agencement des variables sur les deux axes. Il s'agit des loadings des variables dans l'espace des composantes. Cette représentation est assez triviale pour deux variables, mais peut devenir très pertinente lorsque plusieurs variables (ou items) sont concernées. Il est possible d'observer alors des regroupements d'items sur les facteurs. Elle se limite toutefois à une ou deux composantes étant donné la complexité de réaliser et d'interpréter des figures de trois dimensions et plus.
 
@@ -170,7 +173,7 @@ La Figure\ \@ref(fig:varacp) offre une vue de l'agencement des variables sur les
 
 ## Les calculs de l'analyse en composantes principales
 
-Il existe plusieurs techniques mathématiques pour retrouver les valeurs propres. Elles ont leur forces et avantages. Elles ont certainement tous en commun que, plus le nombre de variables augmente, plus le désir de les calculer par ordinateur est grand. Ici, une technique est présentée dans l'optique de bien vérifier qu'aucun sortilège computationnel n'opère derrière le logiciel^[Et non de rendre le lecteur un expert en algèbre matricielle.]. 
+Il existe plusieurs techniques mathématiques pour retrouver les valeurs propres. Elles ont différents avantages selon l'objectif visé. Elles ont certainement toutes en commun que, plus le nombre de variables augmente, plus le désir de les calculer par ordinateur est grand. Ici, une technique est présentée dans l'optique de bien vérifier qu'aucun sortilège computationnel n'opère derrière le logiciel^[Et non de rendre le lecteur un expert en algèbre matricielle.]. 
 
 Une des méthodes pour réaliser l'ACP est de résoudre le polynôme caractéristique. Autrement dit, il s'agit de retrouver tous les inconnus $\lambda$ (les valeurs propres) du polynôme caractéristique, soit l'équation\ \@ref(eq:polnom) 
 
@@ -263,7 +266,7 @@ Les solutions sont $.2$ et $1.8$. Graphiquement, la Figure\ \@ref(fig:polycarf) 
 <p class="caption">(\#fig:polycarf)L'équation du polynôme caractéristique</p>
 </div>
 
-Cela fait beaucoup de mathématiques. Est-il possible d'y arriver plus simplement avec **R**? Le package `pracma` [@pracma] offre une fonction `charpoly()` qui permet de trouver le polynôme caractéristique d'une matrice. **R** de base a aussi une fonction permettant de résoudre des polynômes, `polyroot()`. Avec ces deux fonctions, il est possible de refaire toute la présente section. Il faut toutefois noter que les coefficients polynomiaux donnés par `charpoly()` doivent être inversés pour `polyroot()`. À noter également, l'ajout de la fonction`Re()` assure que les valeurs propres sont des nombres réels et non imaginaires^[Par exemple, $i=\sqrt{-1}$ est imaginaire]. Par convention, les valeurs propres sont ordonnées de façon décroissantes, bien qu'elle n'est originalement pas d'ordre particulier.
+Cela fait beaucoup de mathématiques. Est-il possible d'y arriver plus simplement avec **R**? Le package `pracma` [@pracma] offre une fonction `charpoly()` qui permet de trouver le polynôme caractéristique d'une matrice. **R** de base a aussi une fonction permettant de résoudre des polynômes, `polyroot()`. Avec ces deux fonctions, il est possible de refaire toute la présente section. Il faut toutefois noter que les coefficients polynomiaux donnés par `charpoly()` doivent être inversés pour `polyroot()`. À noter également, l'ajout de la fonction`Re()` assure que les valeurs propres sont des nombres réels et non imaginaires^[Par exemple, $i=\sqrt{-1}$ est imaginaire]. Par convention, les valeurs propres sont ordonnées de façon décroissante, bien qu'elle n'est originalement pas d'ordre particulier.
 
 
 ```r
@@ -417,7 +420,7 @@ Pour un grand nombre de variables, il est préférable d'utiliser une fonction d
 
 Pour ce faire, à chaque vecteur propre, la fonction reçoit la valeur propre associée, la matrice de corrélation et une série d'estimateur (le vecteur propre) à trouver.
 
-La fonction maison `cherche.vecteur()` calcule la somme (`sum()` des écarts absolus (`abs()`) entre les estimateurs et la valeur cible de 0 de l'équation\ \@ref(eq:vec11). La fonction **R** `optim()` prend cette fonction et tente de minimiser les distances, c'est-à-dire d'arriver au résultats de 0 en variant les estimateurs. Noter comment un estimateur est déjà fixé à 1 dans `matrix(c(1, est))` qui correspond à $v_j$ où $v_{1j}=1$. La fonction `optim()` prend un argument d'estimateur `par`, les paramètres à trouver et `fn` la fonction à optimiser et une méthode d'optimisation appropriée, `method = "BDGS` dans ce cas-ci. Les deux autres arguments sont pour la fonction à optimiser `cherche.vecteur()`, soit la matrice de covariance et la valeur propre.
+La fonction maison `cherche.vecteur()` calcule la somme (`sum()` des écarts absolus (`abs()`) entre les estimateurs et la valeur cible de 0 de l'équation\ \@ref(eq:vec11). La fonction **R** `optim()` prend cette fonction et tente de minimiser les distances, c'est-à-dire d'arriver au résultat de 0 en variant les estimateurs. Noter comment un estimateur est déjà fixé à 1 dans `matrix(c(1, est))` qui correspond à $v_j$ où $v_{1j}=1$. La fonction `optim()` prend un argument d'estimateur `par`, les paramètres à trouver et `fn` la fonction à optimiser et une méthode d'optimisation appropriée, `method = "BDGS` dans ce cas-ci. Les deux autres arguments sont pour la fonction à optimiser `cherche.vecteur()`, soit la matrice de covariance et la valeur propre.
 
 
 ```r
@@ -429,8 +432,8 @@ cherche.vecteur <- function(est, Ep, M) {
   sum(abs((M - diag(Ep, nrow(M))) %*% matrix(c(1, est))))
 }
 
-# Variable pour enregistre les résultats
-V = matrix(0, nrow(S), ncol(S))
+# Variable pour enregistrer les résultats
+V <- matrix(0, nrow(S), ncol(S))
 
 # Boucle d'optimisation pour chaque
 # valeur propre
@@ -447,7 +450,7 @@ for (i in 1:length(E)) {
 V <- t(t(V) / sqrt(colSums(V^2)))
 ```
 
-Il suffit maintenant de jumeler la syntaxe pour trouver les valeur propre et celle ci-haut pour créer sa propre fonction d'analyse en composantes principales. 
+Il suffit maintenant de jumeler la syntaxe pour trouver les valeurs propres et celle ci-haut pour créer sa propre fonction d'analyse en composantes principales. 
 
 
 ```r
@@ -469,8 +472,8 @@ cherche.vecteur <- function(est, Ep, M) {
   sum(abs((M - diag(Ep, nrow(S))) %*% matrix(c(1, est))))
 }
 
-# Variable pour enregistre les vecteurs propres
-V = matrix(0, nrow(S), ncol(S))
+# Variable pour enregistrer les vecteurs propres
+V <- matrix(0, nrow(S), ncol(S))
 
 # Boucle d'optimisation pour chaque
 # valeur propre
@@ -492,7 +495,7 @@ return(list(valeur.propre = E,
 }
 ```
 
-Pour terminer, la fonction est mis à l'épreuve.
+Pour terminer, la fonction est mise à l'épreuve.
 
 
 ```r

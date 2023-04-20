@@ -787,7 +787,7 @@ Si les coefficients de régression standardisés sont préférés, ceux-ci s'obt
 
 ## Les packages
 
-Le présent chapitre ne fait que gratter la surface de ce qu'il est possible de faire avec l'analyse de médiation. Des articles comme @Caron18 et @Lemardeletsoumis donnent des exemples de syntaxe **R** en plus d'approfondir l'analyse. Il existe plusieurs packages **R** pour réaliser l'analyse de médiation, comme `mediation` [@mediation] et `Rmediation` [@Rmediation], tous les deux ayant leur propre documentation. Pour des analyses plus compliquées, les packages comme `lavaan` [@lavaan] permetten*t* de faire des analyses de médiation avec la modélisation par équations structurelles, Toutefois, ce chapitre espère avoir convaincu le lecteur que l'analyse peut être relativement aisément *fait maison*.
+Le présent chapitre ne fait que gratter la surface de ce qu'il est possible de faire avec l'analyse de médiation. Des articles comme @Caron18 et @Lemardeletsoumis donnent des exemples de syntaxe **R** en plus d'approfondir l'analyse. Il existe plusieurs packages **R** pour réaliser l'analyse de médiation, comme `mediation` [@mediation] et `Rmediation` [@Rmediation], tous les deux ayant leur propre documentation. Pour des analyses plus compliquées, les packages comme `lavaan` [@lavaan] permettent de faire des analyses de médiation avec la modélisation par équations structurelles, Toutefois, ce chapitre espère avoir convaincu le lecteur que l'analyse peut être relativement aisément *fait maison*.
 
 ## Rapporter l'analyse de médiation
 
@@ -813,23 +813,23 @@ L'exemple suivant, basé sur le jeu de données `mtcars`, teste le lien indirect
 
 
 ```r
-mediation(model = mpg ~  hp ~ wt, 
+mediation(model = mpg ~ hp ~ wt, 
           data = mtcars, 
           standardized = TRUE)
->                          Estimate   S.E. CI Lower 95 %
-> wt -> hp                    0.659 0.0991         0.524
-> wt -> mpg                  -0.630 0.1153        -0.874
-> hp -> mpg                  -0.361 0.0872        -0.558
-> wt -> hp -> mpg            -0.238 0.0650        -0.393
-> total indirect wt -> mpg   -0.238 0.0650        -0.393
-> total effect wt -> mpg     -0.868 0.1152        -1.135
->                          CI Upper 95 %  p-value
-> wt -> hp                         0.916 3.03e-11
-> wt -> mpg                       -0.414 4.76e-08
-> hp -> mpg                       -0.224 3.41e-05
-> wt -> hp -> mpg                 -0.138 2.51e-04
-> total indirect wt -> mpg        -0.138 2.51e-04
-> total effect wt -> mpg          -0.680 5.08e-14
+>                          Estimate  S.E. CI Lower 95 %
+> wt -> hp                    0.659 0.099         0.524
+> wt -> mpg                  -0.630 0.115        -0.874
+> hp -> mpg                  -0.361 0.087        -0.558
+> wt -> hp -> mpg            -0.238 0.065        -0.393
+> total indirect wt -> mpg   -0.238 0.065        -0.393
+> total effect wt -> mpg     -0.868 0.115        -1.135
+>                          CI Upper 95 % p-value
+> wt -> hp                         0.916       0
+> wt -> mpg                       -0.414       0
+> hp -> mpg                       -0.224       0
+> wt -> hp -> mpg                 -0.138       0
+> total indirect wt -> mpg        -0.138       0
+> total effect wt -> mpg          -0.680       0
 ```
 
 Voici comment ces résultats peuvent être rapportés dans un article scientifique.
@@ -844,6 +844,6 @@ Voici comment ces résultats peuvent être rapportés dans un article scientifiq
 <p class="caption">(\#fig:mtmed)Résultats de l'analyse de  médiation</p>
 </div>
 
-En plus de cette information primordiale, certains domaines de recherche demanderont, en plus, de rapporter les deux régressions réalisées (voir [Rapporter la régression]), soit les liens directs pertinents et les modèles de régression, et également, l'aspect partiel ou complet de la médiation^[Même si cela n'est pas approprié].
+En plus de cets informations primordiales, certains domaines de recherche demanderont, en plus, de rapporter les deux régressions réalisées (voir [Rapporter la régression]), soit les liens directs pertinents et les modèles de régression, et également, l'aspect partiel ou complet de la médiation^[Même si cela n'est pas approprié].
 
 <!-- ## TODO EXTENSION MATRICIELLE -->
