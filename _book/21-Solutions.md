@@ -254,11 +254,11 @@ fibonnaci2(n)
 jd <- DataEditR::data_edit()
 ```
 
-La Figure\ \@ref(fig:data_ed2) montre le résultat dans le tableur.
+La Figure\ \@ref(fig:dataed2) montre le résultat dans le tableur.
 
 <div class="figure" style="text-align: center">
 <img src="image/data_edit.PNG" alt="Entrée des données" width="50%" height="50%" />
-<p class="caption">(\#fig:data_ed2)Entrée des données</p>
+<p class="caption">(\#fig:dataed2)Entrée des données</p>
 </div>
 
 ### Question 2 {-}
@@ -840,7 +840,7 @@ jd <- MASS::mvrnorm(n = n,
                     mu = rep(0, ncol(S)),
                     Sigma = S)
 head(jd)
->        [,1]   [,2]    [,3]    [,4]
+>           x      y       w       z
 > [1,]  0.869  0.728  0.0987  0.0627
 > [2,] -3.291 -0.738  0.7189 -1.6190
 > [3,]  0.790 -1.245 -0.7083 -0.2671
@@ -858,7 +858,8 @@ Il existe plusieurs façona de faire l'analyse de l'analyse de médiation. Voici
 
 ```r
 # Vérifier que les variables ont bien des nom de colonnes
-colnames(jd) <- c("x", "y", "w", "z")
+# Pour s'en assurer
+# colnames(jd) <- c("x", "y", "w", "z")
 
 # La fonction `mediation()` du package `pathanalysis`
 mediation(z ~ w ~ y ~ x, data = jd, standardized = TRUE)

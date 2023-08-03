@@ -439,7 +439,7 @@ Figure 16.2: Distribution de l’effet indirect
 <span>                 m <span class="op">=</span> <span class="va">m</span>,</span>
 <span>                 y <span class="op">=</span> <span class="va">y</span><span class="op">)</span></span></code></pre></div>
 <p>Le jeu de données est créé en suivant les étapes de chapitre <a href="cr%C3%A9er.html#cr%C3%A9er">Créer</a>. Maintenant, il reste à déterminer l’effet indirect dans le jeu de données. Le jeu de données issu du système d’équations sera utilisé pour la suite.</p>
-<p>Comme les fonctions maisons pour la méthode d’étape causale (<code>BK()</code>), la méthode delta multivarié (<code>mdm()</code>) et la méthode bootstrap (<code><a href="https://rdrr.io/pkg/pathanalysis/man/boot.html">boot()</a></code>), il est possible de les utiliser pour vérifier l’effet indirect.</p>
+<p>Comme les fonctions maisons pour la méthode d’étape causale (<code><a href="https://rdrr.io/pkg/pathanalysis/man/BK.html">BK()</a></code>), la méthode delta multivarié (<code>mdm()</code>) et la méthode bootstrap (<code><a href="https://rdrr.io/pkg/pathanalysis/man/boot.html">boot()</a></code>), il est possible de les utiliser pour vérifier l’effet indirect.</p>
 <div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="m%C3%A9dier.html#cb217-1" aria-hidden="true" tabindex="-1"></a><span class="fu">BK</span>(<span class="at">donnees =</span> jd)</span>
 <span id="cb217-2"><a href="m%C3%A9dier.html#cb217-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> L<span class="st">'effet indirect est significatif </span></span>
 <span id="cb217-3"><a href="m%C3%A9dier.html#cb217-3" aria-hidden="true" tabindex="-1"></a><span class="st">&gt;           et la médiation est partielle</span></span>
@@ -448,7 +448,7 @@ Figure 16.2: Distribution de l’effet indirect
 <span id="cb217-6"><a href="m%C3%A9dier.html#cb217-6" aria-hidden="true" tabindex="-1"></a><span class="fu">boot</span>(<span class="at">donnees =</span> jd)</span>
 <span id="cb217-7"><a href="m%C3%A9dier.html#cb217-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> L<span class="st">'effet indirect est significatif</span></span></code></pre></div>
 <p>Toutes les analyses confirment la présence d’un effet indirect.</p>
-<p>Le défaut des fonctions maison (<code>BK()</code>, <code>mdm()</code> et <code><a href="https://rdrr.io/pkg/pathanalysis/man/boot.html">boot()</a></code>) est certainement qu’elles ne font que rapporter <strong>la décision</strong> du tests des effets indirects. Une fonction plus intéressante serait d’afficher toutes les sorties, soit les coefficients de régressions, leur erreur type, leur intervalle de confiance ou toutes autres informations jugées pertinentes.</p>
+<p>Le défaut des fonctions maison (<code><a href="https://rdrr.io/pkg/pathanalysis/man/BK.html">BK()</a></code>, <code>mdm()</code> et <code><a href="https://rdrr.io/pkg/pathanalysis/man/boot.html">boot()</a></code>) est certainement qu’elles ne font que rapporter <strong>la décision</strong> du tests des effets indirects. Une fonction plus intéressante serait d’afficher toutes les sorties, soit les coefficients de régressions, leur erreur type, leur intervalle de confiance ou toutes autres informations jugées pertinentes.</p>
 </div>
 <div id="analyse-complète" class="section level2" number="16.4">
 <h2>
@@ -965,7 +965,7 @@ Figure 16.4: Résultats de l’analyse de médiation
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2023-08-02.</p>
+    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2023-08-03.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

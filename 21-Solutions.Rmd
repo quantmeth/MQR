@@ -640,7 +640,8 @@ Il existe plusieurs façona de faire l'analyse de l'analyse de médiation. Voici
 
 ```{r}
 # Vérifier que les variables ont bien des nom de colonnes
-colnames(jd) <- c("x", "y", "w", "z")
+# Pour s'en assurer
+# colnames(jd) <- c("x", "y", "w", "z")
 
 # La fonction `mediation()` du package `pathanalysis`
 mediation(z ~ w ~ y ~ x, data = jd, standardized = TRUE)

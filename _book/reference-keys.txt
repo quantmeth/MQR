@@ -158,6 +158,7 @@ fig:screenest
 fig:structcp
 fig:scree4
 fig:structcp3
+fig:dataed2
 fig:unnamed-chunk-13
 fig:unnamed-chunk-14
 fig:unnamed-chunk-15
