@@ -22,6 +22,8 @@ fig:boxplot1
 fig:hist
 fig:hist2
 fig:erreurbar
+fig:erreurbar2
+fig:erreurbar3
 fig:lognormal
 fig:testn
 fig:regle
@@ -129,6 +131,9 @@ fig:ip1
 fig:ip2
 fig:ip3
 fig:jn1
+fig:modex1
+fig:modex2
+fig:modex3
 fig:regaf
 eq:loadings
 fig:plotacp
@@ -150,6 +155,9 @@ fig:kaiser
 fig:scree2
 fig:scree3
 fig:screenest
+fig:structcp
+fig:scree4
+fig:structcp3
 fig:unnamed-chunk-13
 fig:unnamed-chunk-14
 fig:unnamed-chunk-15
@@ -159,6 +167,7 @@ fig:unnamed-chunk-18
 fig:unnamed-chunk-19
 fig:unnamed-chunk-20
 fig:unnamed-chunk-21
+fig:moderation71
 commencer
 r
 pourquoi-r
@@ -262,6 +271,9 @@ diagramme-de-dispersion
 boîte-à-moustache
 histogramme
 les-barres-derreurs
+de-meilleures-barres-derreurs
+exporter-la-figure
+quelques-trucs-en-rafale
 pour-aller-plus-loin-1
 décrire
 les-variables-à-échelles-continues
@@ -348,6 +360,7 @@ analyse-dun-modérateur-nominal
 représentations-graphiques-dune-modération
 lanalyse-des-pentes-simples
 le-graphique-de-johnson-neyman
+rapport-lanalyse-de-modération
 décomposer
 lanalyse-en-composantes-principales
 les-valeurs-propres
@@ -376,3 +389,4 @@ le-test-de-kaiser
 lanalyse-parallèle-de-horn
 test-de-suffisance-de-la-prochaine-valeur-propre-dachim
 le-package-rnest
+comparaisons-des-règles-darrêts

@@ -204,20 +204,19 @@ Sans plus de préliminaire, la fonction `head()` donne un aperçu du jeu de donn
 ```r
 starwars[,1:6]
 > # A tibble: 87 × 6
->    name               height  mass hair_co…¹ skin_…² eye_c…³
->    <chr>               <int> <dbl> <chr>     <chr>   <chr>  
->  1 Luke Skywalker        172    77 blond     fair    blue   
->  2 C-3PO                 167    75 <NA>      gold    yellow 
->  3 R2-D2                  96    32 <NA>      white,… red    
->  4 Darth Vader           202   136 none      white   yellow 
->  5 Leia Organa           150    49 brown     light   brown  
->  6 Owen Lars             178   120 brown, g… light   blue   
->  7 Beru Whitesun lars    165    75 brown     light   blue   
->  8 R5-D4                  97    32 <NA>      white,… red    
->  9 Biggs Darklighter     183    84 black     light   brown  
-> 10 Obi-Wan Kenobi        182    77 auburn, … fair    blue-g…
-> # … with 77 more rows, and abbreviated variable names
-> #   ¹​hair_color, ²​skin_color, ³​eye_color
+>    name         height  mass hair_color skin_color eye_color
+>    <chr>         <int> <dbl> <chr>      <chr>      <chr>    
+>  1 Luke Skywal…    172    77 blond      fair       blue     
+>  2 C-3PO           167    75 <NA>       gold       yellow   
+>  3 R2-D2            96    32 <NA>       white, bl… red      
+>  4 Darth Vader     202   136 none       white      yellow   
+>  5 Leia Organa     150    49 brown      light      brown    
+>  6 Owen Lars       178   120 brown, gr… light      blue     
+>  7 Beru Whites…    165    75 brown      light      blue     
+>  8 R5-D4            97    32 <NA>       white, red red      
+>  9 Biggs Darkl…    183    84 black      light      brown    
+> 10 Obi-Wan Ken…    182    77 auburn, w… fair       blue-gray
+> # ℹ 77 more rows
 ```
 
 Pour obtenir de l'information sur ce jeu de données.
@@ -290,7 +289,7 @@ jd
 >  8 male      84   1.88 Human    23.8
 >  9 male      80   1.8  Human    24.7
 > 10 male      77   1.7  Human    26.6
-> # … with 12 more rows
+> # ℹ 12 more rows
 ```
 
 Les étapes de la syntaxe se lisent comme suit :
@@ -330,7 +329,7 @@ jd
 >  8 male      84   1.88 Human    23.8
 >  9 male      80   1.8  Human    24.7
 > 10 male      77   1.7  Human    26.6
-> # … with 12 more rows
+> # ℹ 12 more rows
 ```
 
 Le jeu de données est créé en autant de ligne de syntaxe. Par contre, la lecture n'est pas aussi intuitive qu'avec l'utilisation de l'opérateur `%>%` et des fonctions associées `select()`, `filter()`, `mutate()`. Il ne faut pas trop penser à quoi ressemblerait ces manipulations en une seule ligne de syntaxe.
@@ -347,11 +346,11 @@ jd %>%
   group_by(sex) %>% 
   summarise(mean(IMC), sd(IMC), min(IMC), max(IMC), length(IMC)) 
 > # A tibble: 2 × 6
->   sex    `mean(IMC)` `sd(IMC)` `min(IMC)` `max(IMC)` lengt…¹
->   <chr>        <dbl>     <dbl>      <dbl>      <dbl>   <int>
-> 1 female        22.0      5.51       16.5       27.5       3
-> 2 male          26.0      4.29       21.5       37.9      19
-> # … with abbreviated variable name ¹​`length(IMC)`
+>   sex    `mean(IMC)` `sd(IMC)` `min(IMC)` `max(IMC)`
+>   <chr>        <dbl>     <dbl>      <dbl>      <dbl>
+> 1 female        22.0      5.51       16.5       27.5
+> 2 male          26.0      4.29       21.5       37.9
+> # ℹ 1 more variable: `length(IMC)` <int>
 ```
 
 Le jeu de données issu de ces opérations peut être utilisé normalement pour réaliser des analyses statistiques. Cela sera abordé dans les prochains chapitres. Il existe toutefois des packages comme `rstatix` avec lequel il est possible de faire des test-$t$ avec `test_t()` ou des corrélations avec `cor_test()` tout en demeurant dans le `tidyverse`^[Voir la documentation complète du package pour une vue d'ensemble de ce qu'il est possible d'accomplir avec `rstatix`.]. Cela dit, l'utilisateur préférera probablement utiliser d'autres méthodes lorsque des analyses statistiques seront nécessaires.
@@ -373,19 +372,18 @@ jd %>%
   select(IMC, mass, height) %>% 
   cor_test() 
 > # A tibble: 9 × 8
->   var1   var2     cor    statistic         p conf.…¹ conf.…²
->   <chr>  <chr>  <dbl>        <dbl>     <dbl>   <dbl>   <dbl>
-> 1 IMC    IMC     1         2.12e+8 5.26e-155   1.00    1    
-> 2 IMC    mass    0.85      7.32e+0 4.47e-  7   0.674   0.938
-> 3 IMC    height  0.18      8.13e-1 4.26e-  1  -0.262   0.558
-> 4 mass   IMC     0.85      7.32e+0 4.47e-  7   0.674   0.938
-> 5 mass   mass    1         3.00e+8 5.13e-158   1       1    
-> 6 mass   height  0.65      3.84e+0 1.02e-  3   0.317   0.842
-> 7 height IMC     0.18      8.13e-1 4.26e-  1  -0.262   0.558
-> 8 height mass    0.65      3.84e+0 1.02e-  3   0.317   0.842
-> 9 height height  1       Inf       0           1       1    
-> # … with 1 more variable: method <chr>, and abbreviated
-> #   variable names ¹​conf.low, ²​conf.high
+>   var1   var2     cor statistic         p conf.low conf.high
+>   <chr>  <chr>  <dbl>     <dbl>     <dbl>    <dbl>     <dbl>
+> 1 IMC    IMC     1      2.12e+8 5.26e-155    1.00      1    
+> 2 IMC    mass    0.85   7.32e+0 4.47e-  7    0.674     0.938
+> 3 IMC    height  0.18   8.13e-1 4.26e-  1   -0.262     0.558
+> 4 mass   IMC     0.85   7.32e+0 4.47e-  7    0.674     0.938
+> 5 mass   mass    1      3.00e+8 5.13e-158    1         1    
+> 6 mass   height  0.65   3.84e+0 1.02e-  3    0.317     0.842
+> 7 height IMC     0.18   8.13e-1 4.26e-  1   -0.262     0.558
+> 8 height mass    0.65   3.84e+0 1.02e-  3    0.317     0.842
+> 9 height height  1    Inf       0            1         1    
+> # ℹ 1 more variable: method <chr>
 ```
 
 Pour le test-$t$ avec `t_test()`, il faut demander la variable dépendante à gauche et la variable de groupement à gauche. Les deux variables sont séparées par le `~` (tilde, voir [L’analyse de régression avec R] pour plus de renseignements). Pour la corrélation avec `cor_test()`, il faut s'assurer de sélectionner uniquement les variables ayant une échelle continue.

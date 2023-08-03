@@ -6,15 +6,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Exercices | Méthodes quantitatives avec R</title>
 <meta name="author" content="P.-O. Caron">
-<meta name="description" content="Bienvenue dans la version préliminaire et en ligne du livre Méthodes quantitatives avec R de P.-O. Caron. Le livre démystifie les mécanismes ésotériques derrière les logiciels statistiques et démocratise la programmation statistique avec R.">
-<meta name="generator" content="bookdown 0.31 with bs4_book()">
+<meta name="description" content="Question 1 Avec le jeu de données ToothGrowth, réaliser l’anova de len par rapport à l’interaction entre supp et dose. Consulter le sommaire.  Question 2 Avec le jeu de données ToothGrowth,...">
+<meta name="generator" content="bookdown 0.34 with bs4_book()">
 <meta property="og:title" content="Exercices | Méthodes quantitatives avec R">
 <meta property="og:type" content="book">
 <meta property="og:url" content="mqr.teluq.ca/exercice-lineaire.html">
-<meta property="og:description" content="Bienvenue dans la version préliminaire et en ligne du livre Méthodes quantitatives avec R de P.-O. Caron. Le livre démystifie les mécanismes ésotériques derrière les logiciels statistiques et démocratise la programmation statistique avec R.">
+<meta property="og:description" content="Question 1 Avec le jeu de données ToothGrowth, réaliser l’anova de len par rapport à l’interaction entre supp et dose. Consulter le sommaire.  Question 2 Avec le jeu de données ToothGrowth,...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Exercices | Méthodes quantitatives avec R">
-<meta name="twitter:description" content="Bienvenue dans la version préliminaire et en ligne du livre Méthodes quantitatives avec R de P.-O. Caron. Le livre démystifie les mécanismes ésotériques derrière les logiciels statistiques et démocratise la programmation statistique avec R.">
+<meta name="twitter:description" content="Question 1 Avec le jeu de données ToothGrowth, réaliser l’anova de len par rapport à l’interaction entre supp et dose. Consulter le sommaire.  Question 2 Avec le jeu de données ToothGrowth,...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.0/transition.js"></script><script src="libs/bs3compat-0.4.0/tabs.js"></script><script src="libs/bs3compat-0.4.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
@@ -102,6 +102,7 @@
 <li><a class="" href="d%C3%A9composer.html"><span class="header-section-number">18</span> Décomposer</a></li>
 <li><a class="" href="explorer.html"><span class="header-section-number">19</span> Explorer</a></li>
 <li><a class="" href="r%C3%A9duire.html"><span class="header-section-number">20</span> Réduire</a></li>
+<li><a class="" href="exercice-factoriel.html">Exercices</a></li>
 <li class="book-part">Annexes</li>
 <li><a class="" href="solutions.html">Solutions</a></li>
 <li><a class="" href="r%C3%A9f%C3%A9rences.html">Références</a></li>
@@ -115,7 +116,73 @@
   </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="exercice-lineaire" class="section level1 unnumbered">
 <h1>Exercices<a class="anchor" aria-label="anchor" href="#exercice-lineaire"><i class="fas fa-link"></i></a>
 </h1>
-
+<div id="question-1" class="section level3 unnumbered">
+<h3>Question 1<a class="anchor" aria-label="anchor" href="#question-1"><i class="fas fa-link"></i></a>
+</h3>
+<ol style="list-style-type: decimal">
+<li>Avec le jeu de données <code>ToothGrowth</code>, réaliser l’anova de <code>len</code> par rapport à l’interaction entre <code>supp</code> et <code>dose</code>. Consulter le sommaire.</li>
+</ol>
+</div>
+<div id="question-2" class="section level3 unnumbered">
+<h3>Question 2<a class="anchor" aria-label="anchor" href="#question-2"><i class="fas fa-link"></i></a>
+</h3>
+<ol start="2" style="list-style-type: decimal">
+<li>Avec le jeu de données <code>ToothGrowth</code>, réaliser le régression de <code>len</code> par rapport à l’interaction entre <code>supp</code> et <code>dose</code>. Consulter le sommaire.</li>
+</ol>
+</div>
+<div id="question-3" class="section level3 unnumbered">
+<h3>Question 3<a class="anchor" aria-label="anchor" href="#question-3"><i class="fas fa-link"></i></a>
+</h3>
+<ol start="3" style="list-style-type: decimal">
+<li>Créer un jeu de données pour la structure de la Figure <a href="exercice-lineaire.html#fig:modex1">17.7</a>. Le jeu de données est standardisé et contient 123 sujets.</li>
+</ol>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:modex1"></span>
+<img src="image/modex1.png" alt="Diagramme de trajectoire (Question 3)" width="50%" height="50%"><p class="caption">
+Figure 17.7: Diagramme de trajectoire (Question 3)
+</p>
+</div>
+</div>
+<div id="question-4" class="section level3 unnumbered">
+<h3>Question 4<a class="anchor" aria-label="anchor" href="#question-4"><i class="fas fa-link"></i></a>
+</h3>
+<ol start="4" style="list-style-type: decimal">
+<li>Créer un jeu de données pour la structure de la Figure <a href="exercice-lineaire.html#fig:modex2">17.8</a>. Le jeu de données est standardisé et contient 456 sujets.</li>
+</ol>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:modex2"></span>
+<img src="image/modex2.png" alt="Diagramme de trajectoire (Question 4)" width="50%" height="50%"><p class="caption">
+Figure 17.8: Diagramme de trajectoire (Question 4)
+</p>
+</div>
+</div>
+<div id="question-5" class="section level3 unnumbered">
+<h3>Question 5<a class="anchor" aria-label="anchor" href="#question-5"><i class="fas fa-link"></i></a>
+</h3>
+<ol start="5" style="list-style-type: decimal">
+<li>Créer un jeu de données pour la structure de la Figure <a href="exercice-lineaire.html#fig:modex3">17.9</a>. Le jeu de données est standardisé et contient 789 sujets.</li>
+</ol>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:modex3"></span>
+<img src="image/modex3.png" alt="Diagramme de trajectoire (Question 5)" width="50%" height="50%"><p class="caption">
+Figure 17.9: Diagramme de trajectoire (Question 5)
+</p>
+</div>
+</div>
+<div id="question-6" class="section level3 unnumbered">
+<h3>Question 6<a class="anchor" aria-label="anchor" href="#question-6"><i class="fas fa-link"></i></a>
+</h3>
+<ol start="6" style="list-style-type: decimal">
+<li>Avec le jeu de données de la Question 5, réaliser l’analyse de médiation.</li>
+</ol>
+</div>
+<div id="question-7" class="section level3 unnumbered">
+<h3>Question 7<a class="anchor" aria-label="anchor" href="#question-7"><i class="fas fa-link"></i></a>
+</h3>
+<ol start="7" style="list-style-type: decimal">
+<li>Avec le jeu de données <code>ToothGrowth</code>, analyser l’interaction entre <code>supp</code> et <code>dose</code> sur la variable dépendante <code>len</code>. Produire les graphiques</li>
+</ol>
+</div>
 </div>
 
 
@@ -125,7 +192,17 @@
 <div class="next"><a href="d%C3%A9composer.html"><span class="header-section-number">18</span> Décomposer</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
-      <ul class="nav navbar-nav"><li><a class="nav-link" href="#exercice-lineaire">Exercices</a></li></ul>
+      <ul class="nav navbar-nav"><li>
+<a class="nav-link" href="#exercice-lineaire">Exercices</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#question-1">Question 1</a></li>
+<li><a class="nav-link" href="#question-2">Question 2</a></li>
+<li><a class="nav-link" href="#question-3">Question 3</a></li>
+<li><a class="nav-link" href="#question-4">Question 4</a></li>
+<li><a class="nav-link" href="#question-5">Question 5</a></li>
+<li><a class="nav-link" href="#question-6">Question 6</a></li>
+<li><a class="nav-link" href="#question-7">Question 7</a></li>
+</ul>
+</li></ul>
 
       <div class="book-extra">
         <ul class="list-unstyled">
@@ -142,7 +219,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2023-04-20.</p>
+    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2023-08-02.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

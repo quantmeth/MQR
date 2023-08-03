@@ -398,6 +398,51 @@ La Figure \@ref(fig:jn1) montre le graphique Johnson-Neyman. La zone bleue indiq
 
 Dans cet exemple, plus l'unité à un niveau de modérateur élevé (en termes absolus), plus il accentue l'effet de la variable indépendante (zones bleues). Le modérateur joue donc un rôle très important dans ce modèle.
 
-<!-- ## TODO  AJOUTER INTERPÉTATION STAT -->
+## Rapport l'analyse de modération
+
+Pour rapporter l'analyse de modération, plusieurs éléments peuvent être pertinents à rapporter et varient en fonction des domaines. Il importe de rapporter le ou les effets d'interaction. Ensuite, l'ajout de graphique, comme le Johnson-Neyman ou celui des pentes simples permettent de mieux comprendre, mais surtout de mieux visualiser les interprétations qui auront été rapporter en texte dans l'article. C'est un appui primordial pour le lecteur qui devra lui aussi dégager les tendances des résultats, mais qui, contrairement aux auteurs, n'est pas nécessairement très familier avec le jeu de données. En plus de ces informations primordiales, certains domaines de recherche demanderont de rapporter le modèle de régression réalisé (voir [Rapporter la régression]).
 
 # Exercices {#exercice-lineaire .unnumbered}
+
+### Question 1 {-}
+
+1. Avec le jeu de données `ToothGrowth`, réaliser l'anova de `len` par rapport à l'interaction entre `supp` et `dose`. Consulter le sommaire.
+
+
+### Question 2 {-}
+
+2. Avec le jeu de données `ToothGrowth`, réaliser le régression de `len` par rapport à l'interaction entre `supp` et `dose`. Consulter le sommaire.
+
+### Question 3 {-}
+
+3. Créer un jeu de données pour la structure de la Figure\ \@ref(fig:modex1). Le jeu de données est standardisé et contient 123 sujets.
+
+```{r modex1, fig.cap = "Diagramme de trajectoire (Question 3)", echo = FALSE, out.height="50%", out.width="50%", fig.align = "center"}
+knitr::include_graphics("image//modex1.png")
+```
+
+### Question 4 {-}
+
+4. Créer un jeu de données pour la structure de la Figure\ \@ref(fig:modex2). Le jeu de données est standardisé et contient 456 sujets.
+
+```{r modex2, fig.cap = "Diagramme de trajectoire (Question 4)", echo = FALSE, out.height="50%", out.width="50%", fig.align = "center"}
+knitr::include_graphics("image//modex2.png")
+```
+
+### Question 5 {-}
+
+5. Créer un jeu de données pour la structure de la Figure\ \@ref(fig:modex3). Le jeu de données est standardisé et contient 789 sujets.
+
+```{r modex3, fig.cap = "Diagramme de trajectoire (Question 5)", echo = FALSE, out.height="50%", out.width="50%", fig.align = "center"}
+knitr::include_graphics("image//modex3.png")
+```
+
+### Question 6 {-}
+
+6. Avec le jeu de données de la Question\ 5, réaliser l'analyse de médiation.
+
+### Question 7 {-}
+
+7. Avec le jeu de données `ToothGrowth`, analyser l'interaction entre `supp` et `dose` sur la variable dépendante `len`. Produire les graphiques
+
+

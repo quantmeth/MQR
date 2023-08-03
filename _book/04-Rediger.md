@@ -141,6 +141,8 @@ knitr::kable(head(cars),
 </tbody>
 </table>
 
+
+
 ### Les équations
 
 Il arrive qu'il soit nécessaire d'ajouter des équations dans un rapport. Pour ce faire, **R** utilise latex, un très puissant langage de programmation pour la rédaction de texte. Toute équation commence et termine avec le signe de dollars \$. Par exemple, l'équation $2+2=4$ s'écrit `$2+2=4$`. Il est possible d'ajouter des exposants avec `^` ou des indices avec `_`. Les lettres grecques s'écrivent avec une barre oblique, par exemple, $\beta$, s'écrit `$\beta$` ou la variance $\sigma^2$, s'écrit `$\sigma^2$`. 

@@ -245,6 +245,161 @@ stat.descr %>%
 
 Une fois ces statistiques calculées et enregistrées dans le nouveau jeu de données `jd`, il est possible de créer le graphique avec les représentations géométriques désirées. Remarquez comment spécifier la cartographie dans le niveau `ggplot()` rend la syntaxe moins compliquée. Cette syntaxe produit un graphique avec `dose` à l'axe des $x$, `supp` comme pointeurs et les moyennes de `len` (longueur moyenne des dents). La fonction `geom_errorbar()` indique où placer les limites inférieures et supérieures des intervalles. Les arguments `size = 5` et `width = .05` sont ajoutés simplment pour l'esthétisme. L'argument `.groups = "drop"` de `summarise` permet d'éviter une avertissement expliquant qu'une variable de groupement est utilisé pour regrouper les résultats à la fin. Ajouter ou retirer cet argument ne change pas les calculs, ni la Figure\ \@ref(fig:erreurbar).
 
+###  De meilleures barres d'erreurs
+
+Il existe un package `superb` [@superb] qui permet d'obtenir des graphiques à barre d'erreur avec précision et facilement ajustable. Une fois installé et importé dans l'environnement, `superb` offre la fonction principale `superbPlot` permet la création de ces figures.
+
+La Figure \@ref(fig:erreurbar2) reproduit la Figure\ \@ref(fig:erreurbar). Dans le code, il faut préciser les facteurs intersujets (`BSFactors`) et la variable dépendante (`variable`). La fonction contrôle aussi le type de graphique avec `plotStyle`. 
+
+
+```r
+library(superb)
+superbPlot(ToothGrowth, 
+    BSFactors = c("dose","supp"), 
+    variables = "len",
+    plotStyle = "line")
+> superb::FYI: The variables will be plotted in that order: dose, supp (use factorOrder to change).
+```
+
+<div class="figure" style="text-align: center">
+<img src="08-Visualiser_files/figure-html/erreurbar2-1.png" alt="Les effets de la vitamine C sur les cochons d'inde avec `superb`" width="75%" height="75%" />
+<p class="caption">(\#fig:erreurbar2)Les effets de la vitamine C sur les cochons d'inde avec `superb`</p>
+</div>
+
+La fonction retourne souvent des messages d'avertissement pour préciser certaines décisions qu'elle peut avoir pris. Le code ci-dessus retourne le message : `superb::FYI: The variables will be plotted in that order: dose, supp (use factorOrder to change).`. C'est à l'utilisateur d'en prendre note et de s'assurer que c'était bien ce qui était désiré, ce qui est le cas ici.
+
+Il y a deux avantages principales a utilisé `superb`. La première est qu'elle permet des ajustements avec l'argument `adjustments` afin de préciser le type de barres d'erreurs^[Oui, oui, il en existe plusieurs!], comme `"single"`, `"difference"`, ou `"tryon"`. Généralement, ce sera l'option `purpose = "difference"` qui sera désirée. Deuxièmement, `superb` tient aussi compte des devis intrasujets avec l’argument `WSFactors`, ce qui permet l'utilisation de différentes techniques de décorrélation des temps de mesure comme `"CM"`, `"LM"`, `"CA"` ou `"none"`. Consultez la documentation pour en savoir plus sur son fonctionnement et ce qui conviendra le mieux à la situation qui se présent. Bref, la fonction produit de bien meilleurs graphiques à barres d'erreurs avec plus d'ajustement et de précision.
+
+Pour plus de flexibilité pour l'utilisateur, les statistiques descriptives peuvent être obtenues afin de produire personnellement les figures, comme cela avait été fait dans le premier exemple sur [Les barres d'erreurs].
+
+
+```r
+stat.descr <- superbData(ToothGrowth, 
+                         BSFactors = c("dose","supp"), 
+                         variables = "len")
+> superb::FYI: The variables will be plotted in that order: dose, supp (use factorOrder to change).
+stat.descr
+> $summaryStatistics
+>   dose supp center lowerwidth upperwidth
+> 1  0.5   OJ  13.23      -3.19       3.19
+> 2  0.5   VC   7.98      -1.96       1.96
+> 3    1   OJ  22.70      -2.80       2.80
+> 4    1   VC  16.77      -1.80       1.80
+> 5    2   OJ  26.06      -1.90       1.90
+> 6    2   VC  26.14      -3.43       3.43
+> 
+> $rawData
+>    dose supp id   DV
+> 1   0.5   VC  1  4.2
+> 2   0.5   VC  2 11.5
+> 3   0.5   VC  3  7.3
+> 4   0.5   VC  4  5.8
+> 5   0.5   VC  5  6.4
+> 6   0.5   VC  6 10.0
+> 7   0.5   VC  7 11.2
+> 8   0.5   VC  8 11.2
+> 9   0.5   VC  9  5.2
+> 10  0.5   VC 10  7.0
+> 11    1   VC 11 16.5
+> 12    1   VC 12 16.5
+> 13    1   VC 13 15.2
+> 14    1   VC 14 17.3
+> 15    1   VC 15 22.5
+> 16    1   VC 16 17.3
+> 17    1   VC 17 13.6
+> 18    1   VC 18 14.5
+> 19    1   VC 19 18.8
+> 20    1   VC 20 15.5
+> 21    2   VC 21 23.6
+> 22    2   VC 22 18.5
+> 23    2   VC 23 33.9
+> 24    2   VC 24 25.5
+> 25    2   VC 25 26.4
+> 26    2   VC 26 32.5
+> 27    2   VC 27 26.7
+> 28    2   VC 28 21.5
+> 29    2   VC 29 23.3
+> 30    2   VC 30 29.5
+> 31  0.5   OJ 31 15.2
+> 32  0.5   OJ 32 21.5
+> 33  0.5   OJ 33 17.6
+> 34  0.5   OJ 34  9.7
+> 35  0.5   OJ 35 14.5
+> 36  0.5   OJ 36 10.0
+> 37  0.5   OJ 37  8.2
+> 38  0.5   OJ 38  9.4
+> 39  0.5   OJ 39 16.5
+> 40  0.5   OJ 40  9.7
+> 41    1   OJ 41 19.7
+> 42    1   OJ 42 23.3
+> 43    1   OJ 43 23.6
+> 44    1   OJ 44 26.4
+> 45    1   OJ 45 20.0
+> 46    1   OJ 46 25.2
+> 47    1   OJ 47 25.8
+> 48    1   OJ 48 21.2
+> 49    1   OJ 49 14.5
+> 50    1   OJ 50 27.3
+> 51    2   OJ 51 25.5
+> 52    2   OJ 52 26.4
+> 53    2   OJ 53 22.4
+> 54    2   OJ 54 24.5
+> 55    2   OJ 55 24.8
+> 56    2   OJ 56 30.9
+> 57    2   OJ 57 26.4
+> 58    2   OJ 58 27.3
+> 59    2   OJ 59 29.4
+> 60    2   OJ 60 23.0
+```
+
+
+Attention! Cette variable est une liste contenant deux éléments, les statistiques descriptives (`$summaryStatistics`) et les données brutes (`$rawData`). Elle peuvent être extraites avec le signe `$`, comme `stat.descr$summaryStatistics`.
+
+Pour reproduire la Figure\ \@ref(fig:erreurbar) avec le jeu de données extrait de `superbData()`, il faut procéder à quelques ajustements, comme le nom des variables qui ne sont pas les mêmes, et le fait que la variable `dose` est maintenant traitée en variable nominale, alors qu'il est souhaitable qu'elle soit numérique pour utiliser la représentation géométrique `geom_line()`.
+
+
+```r
+stat.descr$summaryStatistics %>% 
+  ggplot(aes(x = as.numeric(dose),
+             y = center, 
+             shape = supp),
+         size = 5) + 
+    geom_errorbar(aes(ymin = center + lowerwidth,
+                      ymax = center + upperwidth), 
+                  width = .05) +
+    geom_line() +
+    geom_point()
+```
+
+<div class="figure" style="text-align: center">
+<img src="08-Visualiser_files/figure-html/erreurbar3-1.png" alt="Les effets de la vitamine C sur les cochons d'inde avec `superb`" width="75%" height="75%" />
+<p class="caption">(\#fig:erreurbar3)Les effets de la vitamine C sur les cochons d'inde avec `superb`</p>
+</div>
+
+## Exporter la figure
+
+Pour exporter une figure, `ggplot2` offre la très conviviale fonction `gggsave()` qui permet d'enregistrer la dernière figure produite en fichier. Celle-ci vient avec plusieurs options pour gérer l'enregistrement. 
+
+L'option `filename` gère le nom du fichier le nom et le type de fichier, comme les usuels `"pdf"`, `"jpeg"`, `"png"`, ou les moins fréquents, mais aussi pratiques `"bmp"`, `"eps"`, `"tiff"`, `"ps"`, `"tex"`, `"svg"` et `"wmf"`.
+
+Les options `width` (largeur), `height` (hauteur), et `units` (unités, comme `"in"`, pouce, `"cm"`, centimètre, `"mm"`, millimètre ou `"px"`, pixel) gère la taille de la figure.
+
+La taille de résolution de la figure est gérée avec l'argument `dpi`, ce qui peut être utile pour augmenter la qualité de la figure produite.
+
+Voici un exemple. 
+
+
+
+Il faudra éventuellement ajuster la taille et la qualité en fonction de la figure désirée. Quelques essais seront probablement nécessaires pour l'obtenir.
+
+## Quelques trucs en rafale
+
+Il est possible de renommer les axes avec `xlab()` et `ylab()`.
+
+Plusieurs ajustements des axes sont possibles avec `scale_y_continuous()` et `scale_x_continuous()` et leur équivalent nominal `scale_y_discrete()`, `scale_x_discrete()` , comme ajuster les limites (`limits`), les marqueurs (`breaks`) et les libellées des marqueurs  (`labels`).
+
+Il est possible de séparer une digure en différents cadran en spécifiant une variable de séparation avec `facet_wrap()` ou `facet_grid()`.
+
 ## Pour aller plus loin
 
 Il existe une multitudes de livres, de sites web, de tutoriels en ligne et d'atelier pour donner l'occasion au lecteur d'aller plus loin dans sa conception graphique. Voici quelques ouvrages de références : Le *R Graphics Cookbook* (Chang) repérable à https://r-graphics.org/, *ggplot2: elegant graphics for data analysis* (Wickham) repérable à https://ggplot2-book.org/  ou *R Graphics* (Murrel) repérable à https://www.stat.auckland.ac.nz/~paul/RG2e/.

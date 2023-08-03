@@ -421,7 +421,7 @@ Voici la fonction avec le présent exemple.
 
 ```r
 nest(jd)
-> At 95% confidence, NEST suggests 2 factors.
+> At 95% confidence, Nest Eigenvalue Sufficiency Test (NEST) suggests 2 factors.
 ```
 Voici la sortie des valeurs propres comparées aux deux autres règles d'arrêt illustrée à la Figure\ \@ref(fig:scree3).
 
@@ -461,50 +461,75 @@ plot(nest(jd, alpha = c(.01, .025, .05, .10)))
 <p class="caption">(\#fig:screenest)Graphique produit par `nest` de `Rnest`</p>
 </div>
 
-<!-- ### Comparaisons des règles d'arrêts -->
 
-<!-- À ce stage, les trois règles d'arrêt ont sorti le même nombre de facteurs. Elles semblent ne devenir qu'inutilement alambiqué. Il revient à l'exemple original d'être très simples : des loadings assez saillants, des valeurs propres élevées et une structure simple et orthogonale. Voici un exemple plus complexe. -->
+### Comparaisons des règles d'arrêts
 
-<!-- Le package `Rnest` founir une matrice de corrélation basée sur 4 facteurs corrélées. La matrice se nomme `ex_4factors_corr` et la Figure\ \@ref(fig:structcp) -->
+À ce stage, les trois règles d'arrêt ont sorti le même nombre de facteurs. Elles semblent ne devenir qu'inutilement alambiqué. Il revient à l'exemple original d'être très simples : des loadings assez saillants, des valeurs propres élevées et une structure simple et orthogonale. Voici un exemple plus complexe.
 
-<!-- ```{r structcp, fig.cap = "Structure factorielle de `ex_4factors_corr`", fig.ext = 'png', cache=TRUE, echo = FALSE, out.height="50%", out.width="50%", fig.align = "center"} -->
-<!-- knitr::include_graphics("image//factstruct2.png") -->
-<!-- ``` -->
+Le package `Rnest` founir une matrice de corrélation basée sur 4 facteurs corrélées. La matrice se nomme `ex_4factors_corr` et la Figure\ \@ref(fig:structcp) représente la structure factorielle sous-jacente de cette matrice de corrélation. Il s'agit de quatre facteurs avec trois items chacun avec des loadings respectif de .9, .9 et .3 et deux paires de corrélation interfacteur de .7.
 
-<!-- À partir de cette matrice, il est possible de créer un jeu de données pour 500 participants.  -->
+<div class="figure" style="text-align: center">
+<img src="image//factstruct3.png" alt="Structure factorielle de `ex_4factors_corr`" width="50%" height="50%" />
+<p class="caption">(\#fig:structcp)Structure factorielle de `ex_4factors_corr`</p>
+</div>
 
-<!-- ```{r} -->
-<!-- set.seed(42) -->
-<!-- jd2 <- MASS::mvrnorm(n = 500, -->
-<!--                      mu = rep(0, ncol(ex_4factors_corr)), -->
-<!--                      Sigma = ex_4factors_corr)  -->
-<!-- ``` -->
-
-<!-- La Figure\ \@ref(fig:scree4) les valeurs propres du jeu de données. -->
-
-<!-- ```{r scree4,echo = FALSE, fig.cap="Les valeurs propres de `ex_4factors_corr`"} -->
-<!-- res = eigen(cor(jd2), only.values = TRUE)$values -->
-<!-- vp <- data.frame(Position = 1:ncol(ex_4factors_corr) , -->
-<!--                  Valeurs.propres = res, -->
-<!--                  Test = rep("Empiriques", p)) -->
-
-<!-- ggplot(data = vp, -->
-<!--        mapping = aes(x = Position,  -->
-<!--                      y = Valeurs.propres)) + -->
-<!--   geom_line() +  -->
-<!--   geom_point() + -->
-<!--   ylab("Valeur propre") + -->
-<!--   scale_x_continuous(breaks = scales::pretty_breaks())+  -->
-<!--   theme(legend.position = c(0.8, 0.8)) -->
-<!-- ``` -->
-
-<!-- Voici les tests comparés. -->
-
-<!-- ```{r, cache = TRUE} -->
-<!-- kaiser(jd2) -->
-<!-- analyse.parallele(jd2) -->
-<!-- nest(jd2) -->
-<!-- ``` -->
+À partir de cette matrice, il est possible de créer un jeu de données pour 2500 participants.
 
 
+```r
+set.seed(1)
+jd2 <- MASS::mvrnorm(n = 2500,
+                     mu = rep(0, ncol(ex_4factors_corr)),
+                     Sigma = ex_4factors_corr)
+```
+
+La Figure\ \@ref(fig:scree4) les valeurs propres du jeu de données.
+
+<div class="figure">
+<img src="20-Reduire_files/figure-html/scree4-1.png" alt="Les valeurs propres de `ex_4factors_corr`" width="672" />
+<p class="caption">(\#fig:scree4)Les valeurs propres de `ex_4factors_corr`</p>
+</div>
+
+Il s'agit d'une structure très difficile pour les règles d'arrêt basées sur les valeurs propres, comme le test de Kaiser, l'analyse parallèle et NEST. Voici les tests comparés.
+
+
+```r
+kaiser(jd2)
+> [1] 3
+analyse.parallele(jd2)
+> [1] 2
+nest(jd2)$nfactors
+>     nfactors
+> 95%        4
+```
+Ici NEST montre clairement sa supériorité en étant sensible aux petites valeurs propres. Il trouve bien quatre facteurs, alors que le test en trouve *accidentellement* trois (à cause de l'erreur d'échantillonnage) et l'analyse parallèle en trouve deux.
+
+# Exercices {#exercice-factoriel .unnumbered}
+
+
+### Question 1 {-}
+1. Créer un jeu de données pour la structure de la Figure\ \@ref(fig:structcp3). Le jeu de données est standardisé et contient 584 sujets.
+
+<div class="figure" style="text-align: center">
+<img src="image//factstruct4.png" alt="Structure factorielle de `ex_4factors_corr`" width="50%" height="50%" />
+<p class="caption">(\#fig:structcp3)Structure factorielle de `ex_4factors_corr`</p>
+</div>
+
+### Question 2 {-}
+2. Utiliser la fonction `eigen()` pour extraire les valeurs propres, la variance expliquée de chacune d'elle et les loadings du jeu de données de la Question\ 1.
+
+
+### Question 3 {-}
+3. Créer une fonction maison pour le test de Kaiser et utiliser le jeu de données créé à la Question\ 1.
+
+### Question 4 {-}
+4. Créer une fonction maison pour l'analyse parallèle et utiliser le jeu de données créé à la Question\ 1.
+
+
+### Question 5 {-}
+5. Utiliser `Rnest` avec le jeu de données créé à la Question\ 1. Produire une graphique.
+
+
+### Question 6 {-}
+6. Utiliser `factanal()` pour 3 facteurs avec le jeu de données créé à la Question\ 1. Extraire les scores et les loadings.
 

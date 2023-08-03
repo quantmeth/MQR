@@ -399,7 +399,7 @@ Le jeu de données est créé en suivant les étapes de chapitre  [Créer]. Main
 
 Comme les fonctions maisons pour la méthode d'étape causale (`BK()`), la méthode delta multivarié (`mdm()`) et la méthode bootstrap (`boot()`), il est possible de les utiliser pour vérifier l'effet indirect.
 
-```{r testfonction}
+```{r testfonction, cache=TRUE}
 BK(donnees = jd)
 mdm(donnees = jd)
 boot(donnees = jd)
@@ -715,6 +715,6 @@ eee <- rm$Estimate[4]
 knitr::include_graphics("image//mtcars_med.png")
 ```
 
-En plus de cets informations primordiales, certains domaines de recherche demanderont, en plus, de rapporter les deux régressions réalisées (voir [Rapporter la régression]), soit les liens directs pertinents et les modèles de régression, et également, l'aspect partiel ou complet de la médiation^[Même si cela n'est pas approprié].
+En plus de ces informations primordiales, certains domaines de recherche demanderont, en plus, de rapporter les deux régressions réalisées (voir [Rapporter la régression]), soit les liens directs pertinents et les modèles de régression, et également, l'aspect partiel ou complet de la médiation^[Même si cela n'est pas approprié].
 
 <!-- ## TODO EXTENSION MATRICIELLE -->

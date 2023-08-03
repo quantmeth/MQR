@@ -41,7 +41,7 @@ descriptif[,-c(1, 6:10, 13)]
 La fonction `describeBy()` permet de faire ces analyses en fonction d'une variable de groupement. Par exemple, le groupement est `supp`. 
 
 ```{r}
-psych::describe.by(ToothGrowth, group = "supp")
+psych::describe.by(ToothGrowth, group = ToothGrowth$supp)
 ```
 
 Enfin, il faut porter attention, car `describe()` et `describeBy()` transforment les variables ordinales^[Définis en facteurs.] et nominales en variables continues. Les indices statistiques rapportées pourraient n'avoir aucun intérêt. Il faudra alors retirer ces lignes (comme c'est fait avec les colonnes ci-haut).

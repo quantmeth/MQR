@@ -7,7 +7,7 @@
 <title> 15 Créer | Méthodes quantitatives avec R</title>
 <meta name="author" content="P.-O. Caron">
 <meta name="description" content="Dans le chapitre sur la régression, les variables indépendantes sont créées simultanément à partir d’une matrice de corrélation, puis des coefficients de régressions sont utilisés pour créer la...">
-<meta name="generator" content="bookdown 0.31 with bs4_book()">
+<meta name="generator" content="bookdown 0.34 with bs4_book()">
 <meta property="og:title" content=" 15 Créer | Méthodes quantitatives avec R">
 <meta property="og:type" content="book">
 <meta property="og:url" content="mqr.teluq.ca/créer.html">
@@ -102,6 +102,7 @@
 <li><a class="" href="d%C3%A9composer.html"><span class="header-section-number">18</span> Décomposer</a></li>
 <li><a class="" href="explorer.html"><span class="header-section-number">19</span> Explorer</a></li>
 <li><a class="" href="r%C3%A9duire.html"><span class="header-section-number">20</span> Réduire</a></li>
+<li><a class="" href="exercice-factoriel.html">Exercices</a></li>
 <li class="book-part">Annexes</li>
 <li><a class="" href="solutions.html">Solutions</a></li>
 <li><a class="" href="r%C3%A9f%C3%A9rences.html">Références</a></li>
@@ -118,7 +119,7 @@
 </h1>
 <p>Dans le chapitre sur la <a href="pr%C3%A9dire.html#pr%C3%A9dire">régression</a>, les variables indépendantes sont créées simultanément à partir d’une matrice de corrélation, puis des coefficients de régressions sont utilisés pour créer la variable dépendante. Dans un modèle plus élaboré, plutôt que d’ignorer ces corrélations, les liens entre les variables prédictrices peuvent être explicitement modélisés. Cela revient à décrire un modèle de façon à ce qu’une première variable <em>cause</em> la seconde; la première et la seconde <em>causent</em> la troisième et ainsi de suite.</p>
 <p>La modélisation en système d’équations devient primordial dans les prochaines sections, notamment pour les analyses de trajectoires, de médiation, de modération, et plus. C’est le fondement de la modélisation par équations structurelles (SEM).</p>
-<p>Dans ce chapitre<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;La section est partiellement basée sur &lt;span class="citation"&gt;Caron &amp;amp; Lemardelet (&lt;a href="r%C3%A9f%C3%A9rences.html#ref-Caron21" role="doc-biblioref"&gt;2021&lt;/a&gt;)&lt;/span&gt;.&lt;/p&gt;'><sup>17</sup></a>, des techniques de modélisation avancées sont présentées. Elles s’appliquent à des modèles de trajectoires récursifs, c’est-à-dire que la <em>causalité</em> s’enchaîne dans une direction, de la première variable vers la dernière<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Il n’y a pas de boucle d’effet&lt;/p&gt;"><sup>18</sup></a>.</p>
+<p>Dans ce chapitre<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;La section est partiellement basée sur &lt;span class="citation"&gt;Caron &amp;amp; Lemardelet (&lt;a href="r%C3%A9f%C3%A9rences.html#ref-Caron21" role="doc-biblioref"&gt;2021&lt;/a&gt;)&lt;/span&gt;.&lt;/p&gt;'><sup>18</sup></a>, des techniques de modélisation avancées sont présentées. Elles s’appliquent à des modèles de trajectoires récursifs, c’est-à-dire que la <em>causalité</em> s’enchaîne dans une direction, de la première variable vers la dernière<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Il n’y a pas de boucle d’effet&lt;/p&gt;"><sup>19</sup></a>.</p>
 <div id="la-loi-de-la-somme-des-variances" class="section level2" number="15.1">
 <h2>
 <span class="header-section-number">15.1</span> La loi de la somme des variances<a class="anchor" aria-label="anchor" href="#la-loi-de-la-somme-des-variances"><i class="fas fa-link"></i></a>
@@ -134,7 +135,7 @@ y=x_1+x_2
 \tag{15.2}
 \end{equation}\]</span></p>
 <p>où <span class="math inline">\(\sigma^2\)</span> est le symbole habituel de la variance. La variance de la somme (ou de la différence) de deux variables indépendantes (non-corrélées) aléatoires est leur somme. En fait, la somme de <span class="math inline">\(p\)</span> variables indépendantes est la somme de leurs variances. En syntaxe <strong>R</strong>, ces équations ressemblent à ceci.</p>
-<div class="sourceCode" id="cb186"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb189"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">1155</span><span class="op">)</span>            <span class="co"># reproductibilité</span></span>
 <span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">100000</span>               <span class="co"># taille élevée pour la précision</span></span>
 <span><span class="va">s.x1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span>           <span class="co"># variance de 2 </span></span>
@@ -144,13 +145,13 @@ y=x_1+x_2
 <span><span class="va">x1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n <span class="op">=</span> <span class="va">n</span>, sd <span class="op">=</span> <span class="va">s.x1</span><span class="op">)</span> </span>
 <span><span class="va">x2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n <span class="op">=</span> <span class="va">n</span>, sd <span class="op">=</span> <span class="va">s.x2</span><span class="op">)</span>     </span></code></pre></div>
 <p>Dans cet exemple, les variances de <code>x1</code> et de <code>x3</code> sont égales à 2 et 3 respectivement. Si ces deux variables sont additionnées pour créer <code>y</code>, l’équation <a href="cr%C3%A9er.html#eq:eq2">(15.2)</a> implique que la variance est de <span class="math inline">\(\sigma^2_{x_{1}} + \sigma^2_{x_2} = 2 + 3= 5\)</span></p>
-<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="cr%C3%A9er.html#cb187-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> x1 <span class="sc">+</span> x2</span>
-<span id="cb187-2"><a href="cr%C3%A9er.html#cb187-2" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(y)</span>
-<span id="cb187-3"><a href="cr%C3%A9er.html#cb187-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">5</span></span>
-<span id="cb187-4"><a href="cr%C3%A9er.html#cb187-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb187-5"><a href="cr%C3%A9er.html#cb187-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Vérifier par</span></span>
-<span id="cb187-6"><a href="cr%C3%A9er.html#cb187-6" aria-hidden="true" tabindex="-1"></a>s.x1<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> s.x2<span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb187-7"><a href="cr%C3%A9er.html#cb187-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">5</span></span></code></pre></div>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="cr%C3%A9er.html#cb190-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> x1 <span class="sc">+</span> x2</span>
+<span id="cb190-2"><a href="cr%C3%A9er.html#cb190-2" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(y)</span>
+<span id="cb190-3"><a href="cr%C3%A9er.html#cb190-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">5</span></span>
+<span id="cb190-4"><a href="cr%C3%A9er.html#cb190-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb190-5"><a href="cr%C3%A9er.html#cb190-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Vérifier par</span></span>
+<span id="cb190-6"><a href="cr%C3%A9er.html#cb190-6" aria-hidden="true" tabindex="-1"></a>s.x1<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> s.x2<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb190-7"><a href="cr%C3%A9er.html#cb190-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">5</span></span></code></pre></div>
 <p>Le résultat concorde.</p>
 <p>En pratique, il est rare que les variables prédictrices soient non corrélées. Ici, aucune corrélation n’a été précisée entre <code>x1</code> et <code>x2</code>. En développant le cas général où les variables sont corrélées, si la covariance entre <span class="math inline">\(x_1\)</span> et <span class="math inline">\(x_2\)</span> est représentée par <span class="math inline">\(\sigma_{x_1,x_2}\)</span>, alors la loi de la somme des variances devient ceci.</p>
 <p><span class="math display" id="eq:eq3">\[\begin{equation}
@@ -158,29 +159,29 @@ y=x_1+x_2
 \tag{15.3}
 \end{equation}\]</span></p>
 <p>L’équation <a href="cr%C3%A9er.html#eq:eq2">(15.2)</a> est un cas particulier lorsque <span class="math inline">\(\sigma_{x_1 x_2}=0\)</span>. En syntaxe <strong>R</strong>, pour <span class="math inline">\(\rho = .5\)</span>, cela revient à programmer la syntaxe suivante.</p>
-<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="cr%C3%A9er.html#cb188-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Création de variables corrélées</span></span>
-<span id="cb188-2"><a href="cr%C3%A9er.html#cb188-2" aria-hidden="true" tabindex="-1"></a>rho <span class="ot">&lt;-</span> .<span class="dv">5</span>                          <span class="co"># corrélation de .5</span></span>
-<span id="cb188-3"><a href="cr%C3%A9er.html#cb188-3" aria-hidden="true" tabindex="-1"></a>s.x1x2 <span class="ot">&lt;-</span> rho <span class="sc">*</span> s.x1 <span class="sc">*</span> s.x2        <span class="co"># covariance de x et y</span></span>
-<span id="cb188-4"><a href="cr%C3%A9er.html#cb188-4" aria-hidden="true" tabindex="-1"></a>S <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(s.x1<span class="sc">^</span><span class="dv">2</span>, s.x1x2,      <span class="co"># matrice de covariance</span></span>
-<span id="cb188-5"><a href="cr%C3%A9er.html#cb188-5" aria-hidden="true" tabindex="-1"></a>             s.x1x2, s.x2<span class="sc">^</span><span class="dv">2</span>), <span class="at">ncol =</span>  <span class="dv">2</span>, <span class="at">nrow =</span> <span class="dv">2</span>)</span>
-<span id="cb188-6"><a href="cr%C3%A9er.html#cb188-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb188-7"><a href="cr%C3%A9er.html#cb188-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Création de variables</span></span>
-<span id="cb188-8"><a href="cr%C3%A9er.html#cb188-8" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> MASS<span class="sc">::</span><span class="fu">mvrnorm</span>(<span class="at">n =</span> n, <span class="at">Sigma =</span> S, <span class="at">mu =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), <span class="at">empirical =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb188-9"><a href="cr%C3%A9er.html#cb188-9" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> X[,<span class="dv">1</span>] ; x2 <span class="ot">&lt;-</span> X[,<span class="dv">2</span>]</span>
-<span id="cb188-10"><a href="cr%C3%A9er.html#cb188-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb188-11"><a href="cr%C3%A9er.html#cb188-11" aria-hidden="true" tabindex="-1"></a><span class="co"># La somme de deux variables corrélées</span></span>
-<span id="cb188-12"><a href="cr%C3%A9er.html#cb188-12" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> x1 <span class="sc">+</span> x2</span>
-<span id="cb188-13"><a href="cr%C3%A9er.html#cb188-13" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(y)</span>
-<span id="cb188-14"><a href="cr%C3%A9er.html#cb188-14" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">7.45</span></span>
-<span id="cb188-15"><a href="cr%C3%A9er.html#cb188-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb188-16"><a href="cr%C3%A9er.html#cb188-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Vérifier par</span></span>
-<span id="cb188-17"><a href="cr%C3%A9er.html#cb188-17" aria-hidden="true" tabindex="-1"></a>s.x1<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> s.x2<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span> <span class="sc">*</span> s.x1x2</span>
-<span id="cb188-18"><a href="cr%C3%A9er.html#cb188-18" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">7.45</span></span></code></pre></div>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="cr%C3%A9er.html#cb191-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Création de variables corrélées</span></span>
+<span id="cb191-2"><a href="cr%C3%A9er.html#cb191-2" aria-hidden="true" tabindex="-1"></a>rho <span class="ot">&lt;-</span> .<span class="dv">5</span>                          <span class="co"># corrélation de .5</span></span>
+<span id="cb191-3"><a href="cr%C3%A9er.html#cb191-3" aria-hidden="true" tabindex="-1"></a>s.x1x2 <span class="ot">&lt;-</span> rho <span class="sc">*</span> s.x1 <span class="sc">*</span> s.x2        <span class="co"># covariance de x et y</span></span>
+<span id="cb191-4"><a href="cr%C3%A9er.html#cb191-4" aria-hidden="true" tabindex="-1"></a>S <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(s.x1<span class="sc">^</span><span class="dv">2</span>, s.x1x2,      <span class="co"># matrice de covariance</span></span>
+<span id="cb191-5"><a href="cr%C3%A9er.html#cb191-5" aria-hidden="true" tabindex="-1"></a>             s.x1x2, s.x2<span class="sc">^</span><span class="dv">2</span>), <span class="at">ncol =</span>  <span class="dv">2</span>, <span class="at">nrow =</span> <span class="dv">2</span>)</span>
+<span id="cb191-6"><a href="cr%C3%A9er.html#cb191-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb191-7"><a href="cr%C3%A9er.html#cb191-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Création de variables</span></span>
+<span id="cb191-8"><a href="cr%C3%A9er.html#cb191-8" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> MASS<span class="sc">::</span><span class="fu">mvrnorm</span>(<span class="at">n =</span> n, <span class="at">Sigma =</span> S, <span class="at">mu =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), <span class="at">empirical =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb191-9"><a href="cr%C3%A9er.html#cb191-9" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> X[,<span class="dv">1</span>] ; x2 <span class="ot">&lt;-</span> X[,<span class="dv">2</span>]</span>
+<span id="cb191-10"><a href="cr%C3%A9er.html#cb191-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb191-11"><a href="cr%C3%A9er.html#cb191-11" aria-hidden="true" tabindex="-1"></a><span class="co"># La somme de deux variables corrélées</span></span>
+<span id="cb191-12"><a href="cr%C3%A9er.html#cb191-12" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> x1 <span class="sc">+</span> x2</span>
+<span id="cb191-13"><a href="cr%C3%A9er.html#cb191-13" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(y)</span>
+<span id="cb191-14"><a href="cr%C3%A9er.html#cb191-14" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">7.45</span></span>
+<span id="cb191-15"><a href="cr%C3%A9er.html#cb191-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb191-16"><a href="cr%C3%A9er.html#cb191-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Vérifier par</span></span>
+<span id="cb191-17"><a href="cr%C3%A9er.html#cb191-17" aria-hidden="true" tabindex="-1"></a>s.x1<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> s.x2<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span> <span class="sc">*</span> s.x1x2</span>
+<span id="cb191-18"><a href="cr%C3%A9er.html#cb191-18" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">7.45</span></span></code></pre></div>
 <p>Pour rappel, la corrélation s’obtient avec <span class="math inline">\(\rho_{x_1,x_2}=\sigma_{x_1,x_2}/(\sigma_{x_1} \sigma_{x_2})\)</span> et inversement la covariance est obtenue par <span class="math inline">\(\rho_{x_1,x_2} \sigma_{x_1} \sigma_{x_2}=\sigma_{x_1,x_2}\)</span>. En calculant la covariance d’abord, soit</p>
 <p><span class="math display">\[\sigma_{x_1,x_2} = \rho_{x_1,x_2} \sigma_{x_1} \sigma_{x_2} = 0.5 \times 1.414 \times 1.732 = 1.225\]</span>
 et confirmé par <strong>R</strong>.</p>
-<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="cr%C3%A9er.html#cb189-1" aria-hidden="true" tabindex="-1"></a>s.x1x2</span>
-<span id="cb189-2"><a href="cr%C3%A9er.html#cb189-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">1.22</span></span></code></pre></div>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="cr%C3%A9er.html#cb192-1" aria-hidden="true" tabindex="-1"></a>s.x1x2</span>
+<span id="cb192-2"><a href="cr%C3%A9er.html#cb192-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">1.22</span></span></code></pre></div>
 <p>L’équation <a href="cr%C3%A9er.html#eq:eq3">(15.3)</a> pour la variance de <code>y</code> mène à</p>
 <p><span class="math display">\[\sigma_y^2=\sigma_{x_1}^2+\sigma_{x_2}^2+2\sigma_{x_1,x_2}= 2+3 + 2 \times 1.225  = 7.449\]</span>
 très près du résultat simulé.</p>
@@ -201,8 +202,8 @@ Figure 15.1: Représentation des variables sous forme de triangles
 \tag{15.4}
 \end{equation}\]</span></p>
 <p>ce qui, en faisant la somme, conduit à l’équation <a href="cr%C3%A9er.html#eq:eq3">(15.3)</a>. Encore une fois, si <span class="math inline">\(\sigma_{x_1,x_2}=0\)</span>, alors l’équation <a href="cr%C3%A9er.html#eq:eq4">(15.4)</a> est égale à l’équation <a href="cr%C3%A9er.html#eq:eq2">(15.2)</a>. Cette formulation a l’avantage de montrer l’origine des deux covariances dans l’équation <a href="cr%C3%A9er.html#eq:eq3">(15.3)</a>. En code <strong>R</strong>, la syntaxe est dès plus rudimentaire.</p>
-<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="cr%C3%A9er.html#cb190-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(S)</span>
-<span id="cb190-2"><a href="cr%C3%A9er.html#cb190-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">7.45</span></span></code></pre></div>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="cr%C3%A9er.html#cb193-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(S)</span>
+<span id="cb193-2"><a href="cr%C3%A9er.html#cb193-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">7.45</span></span></code></pre></div>
 <p>Même si la notation matricielle peut sembler peu attrayante au départ, elle devient beaucoup plus intéressante lorsque le nombre de variables, <span class="math inline">\(p\)</span>, augmente, car il y a <span class="math inline">\(p(p-1)/2\)</span> éléments hors diagonale à ajouter aux <span class="math inline">\(p\)</span> variances. Elle deviendra même indispensable à la fin de ce chapitre.</p>
 <p>Pour un exemple à <span class="math inline">\(p=3\)</span>, l’équation <a href="cr%C3%A9er.html#eq:eq4">(15.4)</a> devient ceci.</p>
 <p><span class="math display" id="eq:eq5">\[\begin{equation}
@@ -227,10 +228,10 @@ Figure 15.1: Représentation des variables sous forme de triangles
 \tag{15.7}
 \end{equation}\]</span></p>
 <p>où <span class="math inline">\(1\)</span> est un vecteur de longueur <span class="math inline">\(p\)</span> contenant seulement des 1. Voici en syntaxe <strong>R</strong>.</p>
-<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="cr%C3%A9er.html#cb191-1" aria-hidden="true" tabindex="-1"></a>Un <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>)       <span class="co"># Création du vecteur 1</span></span>
-<span id="cb191-2"><a href="cr%C3%A9er.html#cb191-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t</span>(Un) <span class="sc">%*%</span> S <span class="sc">%*%</span> Un  <span class="co"># Grande somme</span></span>
-<span id="cb191-3"><a href="cr%C3%A9er.html#cb191-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>      [,<span class="dv">1</span>]</span>
-<span id="cb191-4"><a href="cr%C3%A9er.html#cb191-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>,] <span class="fl">7.45</span></span></code></pre></div>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="cr%C3%A9er.html#cb194-1" aria-hidden="true" tabindex="-1"></a>Un <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>)       <span class="co"># Création du vecteur 1</span></span>
+<span id="cb194-2"><a href="cr%C3%A9er.html#cb194-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t</span>(Un) <span class="sc">%*%</span> S <span class="sc">%*%</span> Un  <span class="co"># Grande somme</span></span>
+<span id="cb194-3"><a href="cr%C3%A9er.html#cb194-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>      [,<span class="dv">1</span>]</span>
+<span id="cb194-4"><a href="cr%C3%A9er.html#cb194-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>,] <span class="fl">7.45</span></span></code></pre></div>
 <p>Cette opération produit la somme de tous les éléments de <span class="math inline">\(\mathbf{\Sigma}\)</span> (<code>Sigma</code>). Cela sera utile pour dériver un cas plus général dans la section suivante.</p>
 <div id="ajout-des-constantes-déchelle-beta" class="section level3" number="15.1.1">
 <h3>
@@ -249,15 +250,15 @@ y=\beta x
 \tag{15.9}
 \end{equation}\]</span></p>
 <p>En termes de syntaxe <strong>R</strong>, cela se traduit (toujours avec le même exemple).</p>
-<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="cr%C3%A9er.html#cb192-1" aria-hidden="true" tabindex="-1"></a>beta <span class="ot">&lt;-</span> <span class="dv">4</span></span>
-<span id="cb192-2"><a href="cr%C3%A9er.html#cb192-2" aria-hidden="true" tabindex="-1"></a><span class="co"># La variance de x1 est toujours de 2</span></span>
-<span id="cb192-3"><a href="cr%C3%A9er.html#cb192-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> beta <span class="sc">*</span> x1</span>
-<span id="cb192-4"><a href="cr%C3%A9er.html#cb192-4" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(y)</span>
-<span id="cb192-5"><a href="cr%C3%A9er.html#cb192-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">32</span></span>
-<span id="cb192-6"><a href="cr%C3%A9er.html#cb192-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb192-7"><a href="cr%C3%A9er.html#cb192-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Vérifier par</span></span>
-<span id="cb192-8"><a href="cr%C3%A9er.html#cb192-8" aria-hidden="true" tabindex="-1"></a>beta<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> s.x1<span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb192-9"><a href="cr%C3%A9er.html#cb192-9" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">32</span></span></code></pre></div>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="cr%C3%A9er.html#cb195-1" aria-hidden="true" tabindex="-1"></a>beta <span class="ot">&lt;-</span> <span class="dv">4</span></span>
+<span id="cb195-2"><a href="cr%C3%A9er.html#cb195-2" aria-hidden="true" tabindex="-1"></a><span class="co"># La variance de x1 est toujours de 2</span></span>
+<span id="cb195-3"><a href="cr%C3%A9er.html#cb195-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> beta <span class="sc">*</span> x1</span>
+<span id="cb195-4"><a href="cr%C3%A9er.html#cb195-4" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(y)</span>
+<span id="cb195-5"><a href="cr%C3%A9er.html#cb195-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">32</span></span>
+<span id="cb195-6"><a href="cr%C3%A9er.html#cb195-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb195-7"><a href="cr%C3%A9er.html#cb195-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Vérifier par</span></span>
+<span id="cb195-8"><a href="cr%C3%A9er.html#cb195-8" aria-hidden="true" tabindex="-1"></a>beta<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> s.x1<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb195-9"><a href="cr%C3%A9er.html#cb195-9" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">32</span></span></code></pre></div>
 <p>L’équation <a href="cr%C3%A9er.html#eq:eq8">(15.9)</a> donne <span class="math inline">\(\sigma_y^2=\beta^2 \sigma_x^2=4^2 \times 2= 32\)</span>, ce qui est identique.</p>
 <p>L’étape suivante consiste à considérer un modèle avec deux variables et deux constantes d’échelles, ce qui rappelle de plus en plus la régression. Le modèle linéaire prend la forme suivante</p>
 <p><span class="math display" id="eq:eq9">\[\begin{equation}
@@ -277,17 +278,17 @@ y=\beta_1 x_1+\beta_2 x_2
 \tag{15.11}
 \end{equation}\]</span></p>
 <p>Dans ces équations, les <span class="math inline">\(\beta_i\)</span> mettent à l’échelle la variance et la covariance. Ces équations se vérifient avec <strong>R</strong> (toujours avec le même exemple).</p>
-<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="cr%C3%A9er.html#cb193-1" aria-hidden="true" tabindex="-1"></a><span class="co"># En suivant, l'exemple précédent</span></span>
-<span id="cb193-2"><a href="cr%C3%A9er.html#cb193-2" aria-hidden="true" tabindex="-1"></a>beta1 <span class="ot">&lt;-</span> <span class="dv">4</span></span>
-<span id="cb193-3"><a href="cr%C3%A9er.html#cb193-3" aria-hidden="true" tabindex="-1"></a>beta2 <span class="ot">&lt;-</span> <span class="dv">5</span></span>
-<span id="cb193-4"><a href="cr%C3%A9er.html#cb193-4" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> beta1 <span class="sc">*</span> x1 <span class="sc">+</span> beta2 <span class="sc">*</span> x2</span>
-<span id="cb193-5"><a href="cr%C3%A9er.html#cb193-5" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(y) </span>
-<span id="cb193-6"><a href="cr%C3%A9er.html#cb193-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">156</span></span>
-<span id="cb193-7"><a href="cr%C3%A9er.html#cb193-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb193-8"><a href="cr%C3%A9er.html#cb193-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Vérifier par</span></span>
-<span id="cb193-9"><a href="cr%C3%A9er.html#cb193-9" aria-hidden="true" tabindex="-1"></a>beta1<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> s.x1<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> beta2<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> s.x2<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> </span>
-<span id="cb193-10"><a href="cr%C3%A9er.html#cb193-10" aria-hidden="true" tabindex="-1"></a>  <span class="dv">2</span> <span class="sc">*</span> beta1 <span class="sc">*</span> beta2 <span class="sc">*</span> s.x1x2 </span>
-<span id="cb193-11"><a href="cr%C3%A9er.html#cb193-11" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">156</span></span></code></pre></div>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="cr%C3%A9er.html#cb196-1" aria-hidden="true" tabindex="-1"></a><span class="co"># En suivant, l'exemple précédent</span></span>
+<span id="cb196-2"><a href="cr%C3%A9er.html#cb196-2" aria-hidden="true" tabindex="-1"></a>beta1 <span class="ot">&lt;-</span> <span class="dv">4</span></span>
+<span id="cb196-3"><a href="cr%C3%A9er.html#cb196-3" aria-hidden="true" tabindex="-1"></a>beta2 <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb196-4"><a href="cr%C3%A9er.html#cb196-4" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> beta1 <span class="sc">*</span> x1 <span class="sc">+</span> beta2 <span class="sc">*</span> x2</span>
+<span id="cb196-5"><a href="cr%C3%A9er.html#cb196-5" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(y) </span>
+<span id="cb196-6"><a href="cr%C3%A9er.html#cb196-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">156</span></span>
+<span id="cb196-7"><a href="cr%C3%A9er.html#cb196-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb196-8"><a href="cr%C3%A9er.html#cb196-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Vérifier par</span></span>
+<span id="cb196-9"><a href="cr%C3%A9er.html#cb196-9" aria-hidden="true" tabindex="-1"></a>beta1<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> s.x1<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> beta2<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> s.x2<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> </span>
+<span id="cb196-10"><a href="cr%C3%A9er.html#cb196-10" aria-hidden="true" tabindex="-1"></a>  <span class="dv">2</span> <span class="sc">*</span> beta1 <span class="sc">*</span> beta2 <span class="sc">*</span> s.x1x2 </span>
+<span id="cb196-11"><a href="cr%C3%A9er.html#cb196-11" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">156</span></span></code></pre></div>
 <p>Le résultat est celui attendu par l’équation <a href="cr%C3%A9er.html#eq:eq12">(15.12)</a>.</p>
 <!-- check -->
 <p><span class="math display">\[
@@ -302,13 +303,13 @@ y=\beta_1 x_1+\beta_2 x_2
 \tag{15.12}
 \end{equation}\]</span></p>
 <p>où <span class="math inline">\(\mathbf{B}\)</span> (<span class="math inline">\(\beta\)</span> majuscule) est un vecteur contenant tous les coefficients de régression <span class="math inline">\(\beta_i\)</span> de longueur <span class="math inline">\(p\)</span> prédisant <span class="math inline">\(y\)</span> et s’appliquant à un nombre quelconque de prédicteurs <span class="math inline">\(x\)</span>. Le premier <span class="math inline">\(\prime\)</span> est le symbole de transposition, un opérateur qui pivote la matrice sur sa diagonale et, dans le cas d’un vecteur, retourne les colonnes en lignes et vice-versa (voir son implication dans l’équation <a href="cr%C3%A9er.html#eq:eq13">(15.13)</a> par exemple). Dans l’équation <a href="cr%C3%A9er.html#eq:eq12">(15.12)</a>, les deux vecteurs <span class="math inline">\(\mathbf{B}\)</span> revient à élever au carré <span class="math inline">\(\beta_i\)</span>. Si tous les éléments de <span class="math inline">\(\mathbf{B}\)</span> égalent 1, alors l’équation <a href="cr%C3%A9er.html#eq:eq12">(15.12)</a> est identique à la définition d’une grande somme, voir l’équation <a href="cr%C3%A9er.html#eq:GS">(15.7)</a>. En syntaxe <strong>R</strong>, l’équation <a href="cr%C3%A9er.html#eq:eq12">(15.12)</a> donne :</p>
-<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="cr%C3%A9er.html#cb194-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Joint beta1 et beta2 dans un vecteur</span></span>
-<span id="cb194-2"><a href="cr%C3%A9er.html#cb194-2" aria-hidden="true" tabindex="-1"></a>beta <span class="ot">&lt;-</span> <span class="fu">c</span>(beta1, beta2)</span>
-<span id="cb194-3"><a href="cr%C3%A9er.html#cb194-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb194-4"><a href="cr%C3%A9er.html#cb194-4" aria-hidden="true" tabindex="-1"></a><span class="co"># S est la matrice de covariance calculée auparavant.</span></span>
-<span id="cb194-5"><a href="cr%C3%A9er.html#cb194-5" aria-hidden="true" tabindex="-1"></a>beta <span class="sc">%*%</span> S <span class="sc">%*%</span> beta </span>
-<span id="cb194-6"><a href="cr%C3%A9er.html#cb194-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>      [,<span class="dv">1</span>]</span>
-<span id="cb194-7"><a href="cr%C3%A9er.html#cb194-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>,]  <span class="dv">156</span></span></code></pre></div>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="cr%C3%A9er.html#cb197-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Joint beta1 et beta2 dans un vecteur</span></span>
+<span id="cb197-2"><a href="cr%C3%A9er.html#cb197-2" aria-hidden="true" tabindex="-1"></a>beta <span class="ot">&lt;-</span> <span class="fu">c</span>(beta1, beta2)</span>
+<span id="cb197-3"><a href="cr%C3%A9er.html#cb197-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb197-4"><a href="cr%C3%A9er.html#cb197-4" aria-hidden="true" tabindex="-1"></a><span class="co"># S est la matrice de covariance calculée auparavant.</span></span>
+<span id="cb197-5"><a href="cr%C3%A9er.html#cb197-5" aria-hidden="true" tabindex="-1"></a>beta <span class="sc">%*%</span> S <span class="sc">%*%</span> beta </span>
+<span id="cb197-6"><a href="cr%C3%A9er.html#cb197-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>      [,<span class="dv">1</span>]</span>
+<span id="cb197-7"><a href="cr%C3%A9er.html#cb197-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>,]  <span class="dv">156</span></span></code></pre></div>
 <p>un code plus général et qui s’appliquera à toutes les situations (peu importe la valeur de <span class="math inline">\(p\)</span>, le nombre de variables).</p>
 <p>Il est intéressant de noter que l’équation <a href="cr%C3%A9er.html#eq:eq12">(15.12)</a> est la même que les coefficients de détermination, <span class="math inline">\(R^2\)</span> <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-Cohen03" role="doc-biblioref">Cohen et al., 2003</a>)</span>, lorsque toutes les variables et les coefficients de régression sont normalisés.</p>
 <p>Dans le modèle linéaire simple décrit dans l’équation <a href="cr%C3%A9er.html#eq:eq9">(15.10)</a>, l’équation <a href="cr%C3%A9er.html#eq:eq11">(15.11)</a> devient</p>
@@ -359,15 +360,15 @@ y=(\beta_1) x_1+(-\beta_2) x_2
 \tag{15.14}
 \end{equation}\]</span></p>
 <p>Comme prévu, la variance de la différence de deux variables aléatoires est la somme de leurs variances en soustrayant deux fois leur échelle de covariance par <span class="math inline">\(\beta\)</span>. Cela se vérifie avec <strong>R</strong>.</p>
-<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="cr%C3%A9er.html#cb195-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> beta1 <span class="sc">*</span> x1 <span class="sc">-</span> beta2 <span class="sc">*</span> x2</span>
-<span id="cb195-2"><a href="cr%C3%A9er.html#cb195-2" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(y)</span>
-<span id="cb195-3"><a href="cr%C3%A9er.html#cb195-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">58</span></span>
-<span id="cb195-4"><a href="cr%C3%A9er.html#cb195-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb195-5"><a href="cr%C3%A9er.html#cb195-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Vérifier par</span></span>
-<span id="cb195-6"><a href="cr%C3%A9er.html#cb195-6" aria-hidden="true" tabindex="-1"></a>beta <span class="ot">=</span> <span class="fu">c</span>(beta1, <span class="sc">-</span>beta2)   <span class="co"># Signe négatif, très important!</span></span>
-<span id="cb195-7"><a href="cr%C3%A9er.html#cb195-7" aria-hidden="true" tabindex="-1"></a>beta <span class="sc">%*%</span> S <span class="sc">%*%</span> beta       <span class="co"># Forme matricielle</span></span>
-<span id="cb195-8"><a href="cr%C3%A9er.html#cb195-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>      [,<span class="dv">1</span>]</span>
-<span id="cb195-9"><a href="cr%C3%A9er.html#cb195-9" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>,]   <span class="dv">58</span></span></code></pre></div>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="cr%C3%A9er.html#cb198-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> beta1 <span class="sc">*</span> x1 <span class="sc">-</span> beta2 <span class="sc">*</span> x2</span>
+<span id="cb198-2"><a href="cr%C3%A9er.html#cb198-2" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(y)</span>
+<span id="cb198-3"><a href="cr%C3%A9er.html#cb198-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">58</span></span>
+<span id="cb198-4"><a href="cr%C3%A9er.html#cb198-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb198-5"><a href="cr%C3%A9er.html#cb198-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Vérifier par</span></span>
+<span id="cb198-6"><a href="cr%C3%A9er.html#cb198-6" aria-hidden="true" tabindex="-1"></a>beta <span class="ot">=</span> <span class="fu">c</span>(beta1, <span class="sc">-</span>beta2)   <span class="co"># Signe négatif, très important!</span></span>
+<span id="cb198-7"><a href="cr%C3%A9er.html#cb198-7" aria-hidden="true" tabindex="-1"></a>beta <span class="sc">%*%</span> S <span class="sc">%*%</span> beta       <span class="co"># Forme matricielle</span></span>
+<span id="cb198-8"><a href="cr%C3%A9er.html#cb198-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>      [,<span class="dv">1</span>]</span>
+<span id="cb198-9"><a href="cr%C3%A9er.html#cb198-9" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>,]   <span class="dv">58</span></span></code></pre></div>
 </div>
 </div>
 <div id="implications-pour-la-modélisation" class="section level2" number="15.2">
@@ -515,7 +516,7 @@ Figure 15.2: Modèle à trois variables
 \tag{15.22}
 \end{equation}\]</span></p>
 <p>Afin de bâtir un exemple complet avec <strong>R</strong>, la syntaxe ci-dessous montre les paramètres arbitraires pour la création de données à parti du modèle de la figure <a href="cr%C3%A9er.html#fig:mod3">15.2</a>.</p>
-<div class="sourceCode" id="cb196"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb199"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Pour la reproductibilité</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">1448</span><span class="op">)</span>            </span>
 <span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">100000</span></span>
@@ -525,7 +526,7 @@ Figure 15.2: Modèle à trois variables
 <span><span class="va">beta31</span> <span class="op">&lt;-</span> <span class="fl">.4</span></span>
 <span><span class="va">beta32</span> <span class="op">&lt;-</span> <span class="op">-</span><span class="fl">.5</span></span></code></pre></div>
 <p>La première variable <span class="math inline">\(x_1\)</span> est <strong>exogène</strong>, c’est-à-dire qu’elle n’est prédite par aucune autre variable, et n’obtient aucune information d’aucune autre variable. Cela se perçoit notamment dans la matrice <span class="math inline">\(\mathbf{B}\)</span> avec la première ligne ne contenant que des 0. Pour créer <code>x1</code>, il suffit de connaître sa variance (1 dans un scénario standardisé). Il faudra en supplément un vecteur de variances (ici, toutes fixées à 1 par le scénario standardisé).</p>
-<div class="sourceCode" id="cb197"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb200"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Création de la première variable</span></span>
 <span><span class="va">x1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n <span class="op">=</span> <span class="va">n</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="co"># Variance de 1</span></span></code></pre></div>
 <p>À l’aide de la loi de la somme des variances, la création de <span class="math inline">\(x_2\)</span> est assez simple puisqu’il n’y a qu’un seul prédicteur.</p>
@@ -537,7 +538,7 @@ x_2 = \beta_{2,1}x_1+\epsilon_{x_2}
 \sigma^2_{\epsilon_{x_2}} = 1-\beta_{2,1}^2\sigma^2_{x_1}=1-\beta_{21}^2
 \]</span></p>
 <p>En code <strong>R</strong>, il est possible de procéder ainsi.</p>
-<div class="sourceCode" id="cb198"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb201"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Variance résiduelle</span></span>
 <span><span class="va">e_x2</span> <span class="op">&lt;-</span> <span class="fl">1</span> <span class="op">-</span> <span class="va">beta21</span><span class="op">^</span><span class="fl">2</span></span>
 <span></span>
@@ -555,7 +556,7 @@ x_3 = \beta_{3,1}x_1 + \beta_{3,2}x_2 + \epsilon_{x_3}
 \end{aligned}
 \]</span></p>
 <p>Elle occasionne toutefois un défi, car la covariance entre <span class="math inline">\(x_1\)</span> et <span class="math inline">\(x_2\)</span> n’est pas explicitement connue. Dans le cas d’une variable prédite exclusivement par une autre variable qui elle est exogène (sans prédicteur), leur covariance est égale au coefficient de régression, soit <span class="math inline">\(\beta_{21}\)</span>. Ce cas ne survient que dans cette situation précise. Il sera impératif de dégager une solution générale pour des modèles ayant plus de trois variables, la complexité du calcul de la covariance augmentant avec la croissance de <span class="math inline">\(p\)</span>. En <strong>R</strong>, <span class="math inline">\(x_3\)</span> se génère ainsi.</p>
-<div class="sourceCode" id="cb199"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb202"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Variance résiduelle</span></span>
 <span><span class="va">e_x3</span> <span class="op">&lt;-</span> <span class="fl">1</span> <span class="op">-</span> <span class="op">(</span><span class="va">beta31</span><span class="op">^</span><span class="fl">2</span> <span class="op">+</span> <span class="va">beta32</span><span class="op">^</span><span class="fl">2</span> <span class="op">+</span> </span>
 <span>               <span class="fl">2</span> <span class="op">*</span> <span class="va">beta31</span> <span class="op">*</span> <span class="va">beta32</span> <span class="op">*</span> <span class="va">beta21</span><span class="op">)</span></span>
@@ -564,43 +565,43 @@ x_3 = \beta_{3,1}x_1 + \beta_{3,2}x_2 + \epsilon_{x_3}
 <span><span class="va">x3</span> <span class="op">=</span> <span class="va">beta31</span> <span class="op">*</span> <span class="va">x1</span> <span class="op">+</span> <span class="va">beta32</span> <span class="op">*</span> </span>
 <span>  <span class="va">x2</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n <span class="op">=</span> <span class="va">n</span>, sd <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">e_x3</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Il est possible de vérifier les caractéristiques des trois modèles.</p>
-<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="cr%C3%A9er.html#cb200-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Création du jeu de données</span></span>
-<span id="cb200-2"><a href="cr%C3%A9er.html#cb200-2" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x1 =</span> x1,</span>
-<span id="cb200-3"><a href="cr%C3%A9er.html#cb200-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">x2 =</span> x2,</span>
-<span id="cb200-4"><a href="cr%C3%A9er.html#cb200-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">x3 =</span> x3)</span>
-<span id="cb200-5"><a href="cr%C3%A9er.html#cb200-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb200-6"><a href="cr%C3%A9er.html#cb200-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Comme il s'agit d'un scénario standardisé, la matrice de</span></span>
-<span id="cb200-7"><a href="cr%C3%A9er.html#cb200-7" aria-hidden="true" tabindex="-1"></a><span class="co"># corrélation est similaire à la matrice de covariance.</span></span>
-<span id="cb200-8"><a href="cr%C3%A9er.html#cb200-8" aria-hidden="true" tabindex="-1"></a><span class="fu">cov</span>(X)</span>
-<span id="cb200-9"><a href="cr%C3%A9er.html#cb200-9" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>       x1     x2     x3</span>
-<span id="cb200-10"><a href="cr%C3%A9er.html#cb200-10" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x1 <span class="fl">1.002</span>  <span class="fl">0.202</span>  <span class="fl">0.303</span></span>
-<span id="cb200-11"><a href="cr%C3%A9er.html#cb200-11" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x2 <span class="fl">0.202</span>  <span class="fl">1.004</span> <span class="sc">-</span><span class="fl">0.418</span></span>
-<span id="cb200-12"><a href="cr%C3%A9er.html#cb200-12" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x3 <span class="fl">0.303</span> <span class="sc">-</span><span class="fl">0.418</span>  <span class="fl">0.997</span></span>
-<span id="cb200-13"><a href="cr%C3%A9er.html#cb200-13" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(X)</span>
-<span id="cb200-14"><a href="cr%C3%A9er.html#cb200-14" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>       x1     x2     x3</span>
-<span id="cb200-15"><a href="cr%C3%A9er.html#cb200-15" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x1 <span class="fl">1.000</span>  <span class="fl">0.201</span>  <span class="fl">0.303</span></span>
-<span id="cb200-16"><a href="cr%C3%A9er.html#cb200-16" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x2 <span class="fl">0.201</span>  <span class="fl">1.000</span> <span class="sc">-</span><span class="fl">0.417</span></span>
-<span id="cb200-17"><a href="cr%C3%A9er.html#cb200-17" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x3 <span class="fl">0.303</span> <span class="sc">-</span><span class="fl">0.417</span>  <span class="fl">1.000</span></span>
-<span id="cb200-18"><a href="cr%C3%A9er.html#cb200-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb200-19"><a href="cr%C3%A9er.html#cb200-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Retrouver beta21</span></span>
-<span id="cb200-20"><a href="cr%C3%A9er.html#cb200-20" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(x2 <span class="sc">~</span> x1, <span class="at">data =</span> X)</span>
-<span id="cb200-21"><a href="cr%C3%A9er.html#cb200-21" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
-<span id="cb200-22"><a href="cr%C3%A9er.html#cb200-22" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Call<span class="sc">:</span></span>
-<span id="cb200-23"><a href="cr%C3%A9er.html#cb200-23" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">lm</span>(<span class="at">formula =</span> x2 <span class="sc">~</span> x1, <span class="at">data =</span> X)</span>
-<span id="cb200-24"><a href="cr%C3%A9er.html#cb200-24" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
-<span id="cb200-25"><a href="cr%C3%A9er.html#cb200-25" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Coefficients<span class="sc">:</span></span>
-<span id="cb200-26"><a href="cr%C3%A9er.html#cb200-26" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> (Intercept)           x1  </span>
-<span id="cb200-27"><a href="cr%C3%A9er.html#cb200-27" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>     <span class="fl">0.00148</span>      <span class="fl">0.20113</span></span>
-<span id="cb200-28"><a href="cr%C3%A9er.html#cb200-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb200-29"><a href="cr%C3%A9er.html#cb200-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Retrouver beta31 et beta32</span></span>
-<span id="cb200-30"><a href="cr%C3%A9er.html#cb200-30" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(x3 <span class="sc">~</span> x1 <span class="sc">+</span> x2, <span class="at">data =</span> X)</span>
-<span id="cb200-31"><a href="cr%C3%A9er.html#cb200-31" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
-<span id="cb200-32"><a href="cr%C3%A9er.html#cb200-32" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Call<span class="sc">:</span></span>
-<span id="cb200-33"><a href="cr%C3%A9er.html#cb200-33" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">lm</span>(<span class="at">formula =</span> x3 <span class="sc">~</span> x1 <span class="sc">+</span> x2, <span class="at">data =</span> X)</span>
-<span id="cb200-34"><a href="cr%C3%A9er.html#cb200-34" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
-<span id="cb200-35"><a href="cr%C3%A9er.html#cb200-35" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Coefficients<span class="sc">:</span></span>
-<span id="cb200-36"><a href="cr%C3%A9er.html#cb200-36" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> (Intercept)           x1           x2  </span>
-<span id="cb200-37"><a href="cr%C3%A9er.html#cb200-37" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>     <span class="fl">0.00578</span>      <span class="fl">0.40254</span>     <span class="sc">-</span><span class="fl">0.49663</span></span></code></pre></div>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="cr%C3%A9er.html#cb203-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Création du jeu de données</span></span>
+<span id="cb203-2"><a href="cr%C3%A9er.html#cb203-2" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x1 =</span> x1,</span>
+<span id="cb203-3"><a href="cr%C3%A9er.html#cb203-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">x2 =</span> x2,</span>
+<span id="cb203-4"><a href="cr%C3%A9er.html#cb203-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">x3 =</span> x3)</span>
+<span id="cb203-5"><a href="cr%C3%A9er.html#cb203-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb203-6"><a href="cr%C3%A9er.html#cb203-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Comme il s'agit d'un scénario standardisé, la matrice de</span></span>
+<span id="cb203-7"><a href="cr%C3%A9er.html#cb203-7" aria-hidden="true" tabindex="-1"></a><span class="co"># corrélation est similaire à la matrice de covariance.</span></span>
+<span id="cb203-8"><a href="cr%C3%A9er.html#cb203-8" aria-hidden="true" tabindex="-1"></a><span class="fu">cov</span>(X)</span>
+<span id="cb203-9"><a href="cr%C3%A9er.html#cb203-9" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>       x1     x2     x3</span>
+<span id="cb203-10"><a href="cr%C3%A9er.html#cb203-10" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x1 <span class="fl">1.002</span>  <span class="fl">0.202</span>  <span class="fl">0.303</span></span>
+<span id="cb203-11"><a href="cr%C3%A9er.html#cb203-11" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x2 <span class="fl">0.202</span>  <span class="fl">1.004</span> <span class="sc">-</span><span class="fl">0.418</span></span>
+<span id="cb203-12"><a href="cr%C3%A9er.html#cb203-12" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x3 <span class="fl">0.303</span> <span class="sc">-</span><span class="fl">0.418</span>  <span class="fl">0.997</span></span>
+<span id="cb203-13"><a href="cr%C3%A9er.html#cb203-13" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(X)</span>
+<span id="cb203-14"><a href="cr%C3%A9er.html#cb203-14" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>       x1     x2     x3</span>
+<span id="cb203-15"><a href="cr%C3%A9er.html#cb203-15" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x1 <span class="fl">1.000</span>  <span class="fl">0.201</span>  <span class="fl">0.303</span></span>
+<span id="cb203-16"><a href="cr%C3%A9er.html#cb203-16" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x2 <span class="fl">0.201</span>  <span class="fl">1.000</span> <span class="sc">-</span><span class="fl">0.417</span></span>
+<span id="cb203-17"><a href="cr%C3%A9er.html#cb203-17" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x3 <span class="fl">0.303</span> <span class="sc">-</span><span class="fl">0.417</span>  <span class="fl">1.000</span></span>
+<span id="cb203-18"><a href="cr%C3%A9er.html#cb203-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb203-19"><a href="cr%C3%A9er.html#cb203-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Retrouver beta21</span></span>
+<span id="cb203-20"><a href="cr%C3%A9er.html#cb203-20" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(x2 <span class="sc">~</span> x1, <span class="at">data =</span> X)</span>
+<span id="cb203-21"><a href="cr%C3%A9er.html#cb203-21" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb203-22"><a href="cr%C3%A9er.html#cb203-22" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Call<span class="sc">:</span></span>
+<span id="cb203-23"><a href="cr%C3%A9er.html#cb203-23" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">lm</span>(<span class="at">formula =</span> x2 <span class="sc">~</span> x1, <span class="at">data =</span> X)</span>
+<span id="cb203-24"><a href="cr%C3%A9er.html#cb203-24" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb203-25"><a href="cr%C3%A9er.html#cb203-25" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Coefficients<span class="sc">:</span></span>
+<span id="cb203-26"><a href="cr%C3%A9er.html#cb203-26" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> (Intercept)           x1  </span>
+<span id="cb203-27"><a href="cr%C3%A9er.html#cb203-27" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>     <span class="fl">0.00148</span>      <span class="fl">0.20113</span></span>
+<span id="cb203-28"><a href="cr%C3%A9er.html#cb203-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb203-29"><a href="cr%C3%A9er.html#cb203-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Retrouver beta31 et beta32</span></span>
+<span id="cb203-30"><a href="cr%C3%A9er.html#cb203-30" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(x3 <span class="sc">~</span> x1 <span class="sc">+</span> x2, <span class="at">data =</span> X)</span>
+<span id="cb203-31"><a href="cr%C3%A9er.html#cb203-31" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb203-32"><a href="cr%C3%A9er.html#cb203-32" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Call<span class="sc">:</span></span>
+<span id="cb203-33"><a href="cr%C3%A9er.html#cb203-33" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">lm</span>(<span class="at">formula =</span> x3 <span class="sc">~</span> x1 <span class="sc">+</span> x2, <span class="at">data =</span> X)</span>
+<span id="cb203-34"><a href="cr%C3%A9er.html#cb203-34" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb203-35"><a href="cr%C3%A9er.html#cb203-35" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Coefficients<span class="sc">:</span></span>
+<span id="cb203-36"><a href="cr%C3%A9er.html#cb203-36" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> (Intercept)           x1           x2  </span>
+<span id="cb203-37"><a href="cr%C3%A9er.html#cb203-37" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>     <span class="fl">0.00578</span>      <span class="fl">0.40254</span>     <span class="sc">-</span><span class="fl">0.49663</span></span></code></pre></div>
 <p>Comme il s’agit d’un scénario standardisé, la matrice de corrélation est similaire à la matrice de covariance. Notamment, les variances sont près de <span class="math inline">\(1\)</span>. Aussi, les résultats confirment que la covariance entre <span class="math inline">\(x_1\)</span> et <span class="math inline">\(x_2\)</span> est bel et bien le coefficient de régression, mais surtout, comme il était mentionné, qu’il s’agit du seul cas où cela est vrai. Les régressions effectuées par <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> retrouvent également les <span class="math inline">\(\beta\)</span> choisis pour l’exemple.</p>
 </div>
 <div id="cas-général" class="section level3" number="15.3.2">
@@ -634,79 +635,79 @@ x_3 = \beta_{3,1}x_1 + \beta_{3,2}x_2 + \epsilon_{x_3}
 \tag{15.24}
 \end{equation}\]</span></p>
 <p>Il faut à chaque étape s’assurer de faire le remplacement des valeurs obtenues sur chaque côté de la diagonale, ce pourquoi deux équations sont reproduites à l’équaiton <a href="cr%C3%A9er.html#eq:buildS">(15.24)</a> avec des indices différents pour <span class="math inline">\(\mathbf{\Sigma}\)</span>.</p>
-<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="cr%C3%A9er.html#cb201-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Matrice B</span></span>
-<span id="cb201-2"><a href="cr%C3%A9er.html#cb201-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Rappel : beta21 &lt;- .2; beta31 &lt;- .4; beta32 &lt;- -.5</span></span>
-<span id="cb201-3"><a href="cr%C3%A9er.html#cb201-3" aria-hidden="true" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(  <span class="dv">0</span>,     <span class="dv">0</span>,    <span class="dv">0</span>,</span>
-<span id="cb201-4"><a href="cr%C3%A9er.html#cb201-4" aria-hidden="true" tabindex="-1"></a>             beta21,   <span class="dv">0</span>,    <span class="dv">0</span>,</span>
-<span id="cb201-5"><a href="cr%C3%A9er.html#cb201-5" aria-hidden="true" tabindex="-1"></a>             beta31, beta32, <span class="dv">0</span>), </span>
-<span id="cb201-6"><a href="cr%C3%A9er.html#cb201-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">ncol  =</span> <span class="dv">3</span>, <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb201-7"><a href="cr%C3%A9er.html#cb201-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb201-8"><a href="cr%C3%A9er.html#cb201-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Vecteur de variances</span></span>
-<span id="cb201-9"><a href="cr%C3%A9er.html#cb201-9" aria-hidden="true" tabindex="-1"></a>V <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>)</span>
-<span id="cb201-10"><a href="cr%C3%A9er.html#cb201-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb201-11"><a href="cr%C3%A9er.html#cb201-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Montrer la matrice B</span></span>
-<span id="cb201-12"><a href="cr%C3%A9er.html#cb201-12" aria-hidden="true" tabindex="-1"></a>B</span>
-<span id="cb201-13"><a href="cr%C3%A9er.html#cb201-13" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>      [,<span class="dv">1</span>] [,<span class="dv">2</span>] [,<span class="dv">3</span>]</span>
-<span id="cb201-14"><a href="cr%C3%A9er.html#cb201-14" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>,]  <span class="fl">0.0</span>  <span class="fl">0.0</span>    <span class="dv">0</span></span>
-<span id="cb201-15"><a href="cr%C3%A9er.html#cb201-15" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">2</span>,]  <span class="fl">0.2</span>  <span class="fl">0.0</span>    <span class="dv">0</span></span>
-<span id="cb201-16"><a href="cr%C3%A9er.html#cb201-16" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">3</span>,]  <span class="fl">0.4</span> <span class="sc">-</span><span class="fl">0.5</span>    <span class="dv">0</span></span></code></pre></div>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="cr%C3%A9er.html#cb204-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Matrice B</span></span>
+<span id="cb204-2"><a href="cr%C3%A9er.html#cb204-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Rappel : beta21 &lt;- .2; beta31 &lt;- .4; beta32 &lt;- -.5</span></span>
+<span id="cb204-3"><a href="cr%C3%A9er.html#cb204-3" aria-hidden="true" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(  <span class="dv">0</span>,     <span class="dv">0</span>,    <span class="dv">0</span>,</span>
+<span id="cb204-4"><a href="cr%C3%A9er.html#cb204-4" aria-hidden="true" tabindex="-1"></a>             beta21,   <span class="dv">0</span>,    <span class="dv">0</span>,</span>
+<span id="cb204-5"><a href="cr%C3%A9er.html#cb204-5" aria-hidden="true" tabindex="-1"></a>             beta31, beta32, <span class="dv">0</span>), </span>
+<span id="cb204-6"><a href="cr%C3%A9er.html#cb204-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">ncol  =</span> <span class="dv">3</span>, <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb204-7"><a href="cr%C3%A9er.html#cb204-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb204-8"><a href="cr%C3%A9er.html#cb204-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Vecteur de variances</span></span>
+<span id="cb204-9"><a href="cr%C3%A9er.html#cb204-9" aria-hidden="true" tabindex="-1"></a>V <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb204-10"><a href="cr%C3%A9er.html#cb204-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb204-11"><a href="cr%C3%A9er.html#cb204-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Montrer la matrice B</span></span>
+<span id="cb204-12"><a href="cr%C3%A9er.html#cb204-12" aria-hidden="true" tabindex="-1"></a>B</span>
+<span id="cb204-13"><a href="cr%C3%A9er.html#cb204-13" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>      [,<span class="dv">1</span>] [,<span class="dv">2</span>] [,<span class="dv">3</span>]</span>
+<span id="cb204-14"><a href="cr%C3%A9er.html#cb204-14" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>,]  <span class="fl">0.0</span>  <span class="fl">0.0</span>    <span class="dv">0</span></span>
+<span id="cb204-15"><a href="cr%C3%A9er.html#cb204-15" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">2</span>,]  <span class="fl">0.2</span>  <span class="fl">0.0</span>    <span class="dv">0</span></span>
+<span id="cb204-16"><a href="cr%C3%A9er.html#cb204-16" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">3</span>,]  <span class="fl">0.4</span> <span class="sc">-</span><span class="fl">0.5</span>    <span class="dv">0</span></span></code></pre></div>
 <p>Voici pour l’exemple précédent les étapes de calcul de l’équation <a href="cr%C3%A9er.html#eq:buildS">(15.24)</a> décrites une à une. D’abord, il faut construire une matrice, <span class="math inline">\(\mathbf{\Sigma}\)</span> (<code>S</code> en code <strong>R</strong>) avec comme diagonale les variances. Puis, calculer l’équation <a href="cr%C3%A9er.html#eq:buildS">(15.24)</a>. Ensuite, il faut remplacer le résultat obtenu des deux côtés de la diagonale de façon à ce que <code>S</code> demeure symétrique. Ces étapes sont répétées pour <span class="math inline">\(i=2,...,p\)</span> (dans cet exemple, <span class="math inline">\(p=3\)</span>).</p>
-<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="cr%C3%A9er.html#cb202-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Créer une matrice de covariance préliminaire</span></span>
-<span id="cb202-2"><a href="cr%C3%A9er.html#cb202-2" aria-hidden="true" tabindex="-1"></a>S <span class="ot">&lt;-</span> <span class="fu">diag</span>(V)</span>
-<span id="cb202-3"><a href="cr%C3%A9er.html#cb202-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb202-4"><a href="cr%C3%A9er.html#cb202-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Aucune covariance n'est inscrite dans S</span></span>
-<span id="cb202-5"><a href="cr%C3%A9er.html#cb202-5" aria-hidden="true" tabindex="-1"></a>S</span>
-<span id="cb202-6"><a href="cr%C3%A9er.html#cb202-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>      [,<span class="dv">1</span>] [,<span class="dv">2</span>] [,<span class="dv">3</span>]</span>
-<span id="cb202-7"><a href="cr%C3%A9er.html#cb202-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>,]    <span class="dv">1</span>    <span class="dv">0</span>    <span class="dv">0</span></span>
-<span id="cb202-8"><a href="cr%C3%A9er.html#cb202-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">2</span>,]    <span class="dv">0</span>    <span class="dv">1</span>    <span class="dv">0</span></span>
-<span id="cb202-9"><a href="cr%C3%A9er.html#cb202-9" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">3</span>,]    <span class="dv">0</span>    <span class="dv">0</span>    <span class="dv">1</span></span>
-<span id="cb202-10"><a href="cr%C3%A9er.html#cb202-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb202-11"><a href="cr%C3%A9er.html#cb202-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Première étape</span></span>
-<span id="cb202-12"><a href="cr%C3%A9er.html#cb202-12" aria-hidden="true" tabindex="-1"></a>i <span class="ot">&lt;-</span> <span class="dv">2</span></span>
-<span id="cb202-13"><a href="cr%C3%A9er.html#cb202-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb202-14"><a href="cr%C3%A9er.html#cb202-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcul de la covariance entre x1 et x2</span></span>
-<span id="cb202-15"><a href="cr%C3%A9er.html#cb202-15" aria-hidden="true" tabindex="-1"></a>B[i, <span class="dv">1</span><span class="sc">:</span>(i<span class="dv">-1</span>)] <span class="sc">%*%</span> S[<span class="dv">1</span><span class="sc">:</span>(i<span class="dv">-1</span>),<span class="dv">1</span><span class="sc">:</span>(i<span class="dv">-1</span>)]</span>
-<span id="cb202-16"><a href="cr%C3%A9er.html#cb202-16" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>      [,<span class="dv">1</span>]</span>
-<span id="cb202-17"><a href="cr%C3%A9er.html#cb202-17" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>,]  <span class="fl">0.2</span></span>
-<span id="cb202-18"><a href="cr%C3%A9er.html#cb202-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb202-19"><a href="cr%C3%A9er.html#cb202-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcul de la covariance entre x1 et x2 assignée à COV</span></span>
-<span id="cb202-20"><a href="cr%C3%A9er.html#cb202-20" aria-hidden="true" tabindex="-1"></a>COV <span class="ot">&lt;-</span> B[i, <span class="dv">1</span><span class="sc">:</span>(i<span class="dv">-1</span>)] <span class="sc">%*%</span> S[<span class="dv">1</span><span class="sc">:</span>(i<span class="dv">-1</span>),<span class="dv">1</span><span class="sc">:</span>(i<span class="dv">-1</span>)]</span>
-<span id="cb202-21"><a href="cr%C3%A9er.html#cb202-21" aria-hidden="true" tabindex="-1"></a>S[i, <span class="dv">1</span><span class="sc">:</span>(i<span class="dv">-1</span>)] <span class="ot">&lt;-</span> COV</span>
-<span id="cb202-22"><a href="cr%C3%A9er.html#cb202-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb202-23"><a href="cr%C3%A9er.html#cb202-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Il faut remplacer ce résultat de chaque côté de la diagonale</span></span>
-<span id="cb202-24"><a href="cr%C3%A9er.html#cb202-24" aria-hidden="true" tabindex="-1"></a>S[<span class="dv">1</span><span class="sc">:</span>(i<span class="dv">-1</span>),i] <span class="ot">&lt;-</span> COV</span>
-<span id="cb202-25"><a href="cr%C3%A9er.html#cb202-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb202-26"><a href="cr%C3%A9er.html#cb202-26" aria-hidden="true" tabindex="-1"></a><span class="co"># La matrice est mise à jour pour i = 2</span></span>
-<span id="cb202-27"><a href="cr%C3%A9er.html#cb202-27" aria-hidden="true" tabindex="-1"></a>S</span>
-<span id="cb202-28"><a href="cr%C3%A9er.html#cb202-28" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>      [,<span class="dv">1</span>] [,<span class="dv">2</span>] [,<span class="dv">3</span>]</span>
-<span id="cb202-29"><a href="cr%C3%A9er.html#cb202-29" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>,]  <span class="fl">1.0</span>  <span class="fl">0.2</span>    <span class="dv">0</span></span>
-<span id="cb202-30"><a href="cr%C3%A9er.html#cb202-30" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">2</span>,]  <span class="fl">0.2</span>  <span class="fl">1.0</span>    <span class="dv">0</span></span>
-<span id="cb202-31"><a href="cr%C3%A9er.html#cb202-31" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">3</span>,]  <span class="fl">0.0</span>  <span class="fl">0.0</span>    <span class="dv">1</span></span>
-<span id="cb202-32"><a href="cr%C3%A9er.html#cb202-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb202-33"><a href="cr%C3%A9er.html#cb202-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Pour la seconde étape, l'équation est reprise pour i = 3</span></span>
-<span id="cb202-34"><a href="cr%C3%A9er.html#cb202-34" aria-hidden="true" tabindex="-1"></a>i <span class="ot">&lt;-</span> <span class="dv">3</span></span>
-<span id="cb202-35"><a href="cr%C3%A9er.html#cb202-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb202-36"><a href="cr%C3%A9er.html#cb202-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcul de la covariance entre x1 et x2 assignée à COV</span></span>
-<span id="cb202-37"><a href="cr%C3%A9er.html#cb202-37" aria-hidden="true" tabindex="-1"></a>COV <span class="ot">&lt;-</span> B[i, <span class="dv">1</span><span class="sc">:</span>(i<span class="dv">-1</span>)] <span class="sc">%*%</span> S[<span class="dv">1</span><span class="sc">:</span>(i<span class="dv">-1</span>), <span class="dv">1</span><span class="sc">:</span>(i<span class="dv">-1</span>)]</span>
-<span id="cb202-38"><a href="cr%C3%A9er.html#cb202-38" aria-hidden="true" tabindex="-1"></a>S[i, <span class="dv">1</span><span class="sc">:</span>(i<span class="dv">-1</span>)] <span class="ot">=</span> COV</span>
-<span id="cb202-39"><a href="cr%C3%A9er.html#cb202-39" aria-hidden="true" tabindex="-1"></a>S[<span class="dv">1</span><span class="sc">:</span>(i<span class="dv">-1</span>), i] <span class="ot">=</span> COV</span>
-<span id="cb202-40"><a href="cr%C3%A9er.html#cb202-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb202-41"><a href="cr%C3%A9er.html#cb202-41" aria-hidden="true" tabindex="-1"></a><span class="co"># La matrice est mise à jour pour i = 3</span></span>
-<span id="cb202-42"><a href="cr%C3%A9er.html#cb202-42" aria-hidden="true" tabindex="-1"></a>S</span>
-<span id="cb202-43"><a href="cr%C3%A9er.html#cb202-43" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>      [,<span class="dv">1</span>]  [,<span class="dv">2</span>]  [,<span class="dv">3</span>]</span>
-<span id="cb202-44"><a href="cr%C3%A9er.html#cb202-44" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>,]  <span class="fl">1.0</span>  <span class="fl">0.20</span>  <span class="fl">0.30</span></span>
-<span id="cb202-45"><a href="cr%C3%A9er.html#cb202-45" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">2</span>,]  <span class="fl">0.2</span>  <span class="fl">1.00</span> <span class="sc">-</span><span class="fl">0.42</span></span>
-<span id="cb202-46"><a href="cr%C3%A9er.html#cb202-46" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">3</span>,]  <span class="fl">0.3</span> <span class="sc">-</span><span class="fl">0.42</span>  <span class="fl">1.00</span></span>
-<span id="cb202-47"><a href="cr%C3%A9er.html#cb202-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb202-48"><a href="cr%C3%A9er.html#cb202-48" aria-hidden="true" tabindex="-1"></a><span class="co"># Elle est approximativement identique </span></span>
-<span id="cb202-49"><a href="cr%C3%A9er.html#cb202-49" aria-hidden="true" tabindex="-1"></a><span class="co"># aux données de l'exemple précédent</span></span>
-<span id="cb202-50"><a href="cr%C3%A9er.html#cb202-50" aria-hidden="true" tabindex="-1"></a><span class="fu">cov</span>(X)</span>
-<span id="cb202-51"><a href="cr%C3%A9er.html#cb202-51" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>       x1     x2     x3</span>
-<span id="cb202-52"><a href="cr%C3%A9er.html#cb202-52" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x1 <span class="fl">1.002</span>  <span class="fl">0.202</span>  <span class="fl">0.303</span></span>
-<span id="cb202-53"><a href="cr%C3%A9er.html#cb202-53" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x2 <span class="fl">0.202</span>  <span class="fl">1.004</span> <span class="sc">-</span><span class="fl">0.418</span></span>
-<span id="cb202-54"><a href="cr%C3%A9er.html#cb202-54" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x3 <span class="fl">0.303</span> <span class="sc">-</span><span class="fl">0.418</span>  <span class="fl">0.997</span></span></code></pre></div>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="cr%C3%A9er.html#cb205-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Créer une matrice de covariance préliminaire</span></span>
+<span id="cb205-2"><a href="cr%C3%A9er.html#cb205-2" aria-hidden="true" tabindex="-1"></a>S <span class="ot">&lt;-</span> <span class="fu">diag</span>(V)</span>
+<span id="cb205-3"><a href="cr%C3%A9er.html#cb205-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb205-4"><a href="cr%C3%A9er.html#cb205-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Aucune covariance n'est inscrite dans S</span></span>
+<span id="cb205-5"><a href="cr%C3%A9er.html#cb205-5" aria-hidden="true" tabindex="-1"></a>S</span>
+<span id="cb205-6"><a href="cr%C3%A9er.html#cb205-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>      [,<span class="dv">1</span>] [,<span class="dv">2</span>] [,<span class="dv">3</span>]</span>
+<span id="cb205-7"><a href="cr%C3%A9er.html#cb205-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>,]    <span class="dv">1</span>    <span class="dv">0</span>    <span class="dv">0</span></span>
+<span id="cb205-8"><a href="cr%C3%A9er.html#cb205-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">2</span>,]    <span class="dv">0</span>    <span class="dv">1</span>    <span class="dv">0</span></span>
+<span id="cb205-9"><a href="cr%C3%A9er.html#cb205-9" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">3</span>,]    <span class="dv">0</span>    <span class="dv">0</span>    <span class="dv">1</span></span>
+<span id="cb205-10"><a href="cr%C3%A9er.html#cb205-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb205-11"><a href="cr%C3%A9er.html#cb205-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Première étape</span></span>
+<span id="cb205-12"><a href="cr%C3%A9er.html#cb205-12" aria-hidden="true" tabindex="-1"></a>i <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb205-13"><a href="cr%C3%A9er.html#cb205-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb205-14"><a href="cr%C3%A9er.html#cb205-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcul de la covariance entre x1 et x2</span></span>
+<span id="cb205-15"><a href="cr%C3%A9er.html#cb205-15" aria-hidden="true" tabindex="-1"></a>B[i, <span class="dv">1</span><span class="sc">:</span>(i<span class="dv">-1</span>)] <span class="sc">%*%</span> S[<span class="dv">1</span><span class="sc">:</span>(i<span class="dv">-1</span>),<span class="dv">1</span><span class="sc">:</span>(i<span class="dv">-1</span>)]</span>
+<span id="cb205-16"><a href="cr%C3%A9er.html#cb205-16" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>      [,<span class="dv">1</span>]</span>
+<span id="cb205-17"><a href="cr%C3%A9er.html#cb205-17" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>,]  <span class="fl">0.2</span></span>
+<span id="cb205-18"><a href="cr%C3%A9er.html#cb205-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb205-19"><a href="cr%C3%A9er.html#cb205-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcul de la covariance entre x1 et x2 assignée à COV</span></span>
+<span id="cb205-20"><a href="cr%C3%A9er.html#cb205-20" aria-hidden="true" tabindex="-1"></a>COV <span class="ot">&lt;-</span> B[i, <span class="dv">1</span><span class="sc">:</span>(i<span class="dv">-1</span>)] <span class="sc">%*%</span> S[<span class="dv">1</span><span class="sc">:</span>(i<span class="dv">-1</span>),<span class="dv">1</span><span class="sc">:</span>(i<span class="dv">-1</span>)]</span>
+<span id="cb205-21"><a href="cr%C3%A9er.html#cb205-21" aria-hidden="true" tabindex="-1"></a>S[i, <span class="dv">1</span><span class="sc">:</span>(i<span class="dv">-1</span>)] <span class="ot">&lt;-</span> COV</span>
+<span id="cb205-22"><a href="cr%C3%A9er.html#cb205-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb205-23"><a href="cr%C3%A9er.html#cb205-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Il faut remplacer ce résultat de chaque côté de la diagonale</span></span>
+<span id="cb205-24"><a href="cr%C3%A9er.html#cb205-24" aria-hidden="true" tabindex="-1"></a>S[<span class="dv">1</span><span class="sc">:</span>(i<span class="dv">-1</span>),i] <span class="ot">&lt;-</span> COV</span>
+<span id="cb205-25"><a href="cr%C3%A9er.html#cb205-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb205-26"><a href="cr%C3%A9er.html#cb205-26" aria-hidden="true" tabindex="-1"></a><span class="co"># La matrice est mise à jour pour i = 2</span></span>
+<span id="cb205-27"><a href="cr%C3%A9er.html#cb205-27" aria-hidden="true" tabindex="-1"></a>S</span>
+<span id="cb205-28"><a href="cr%C3%A9er.html#cb205-28" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>      [,<span class="dv">1</span>] [,<span class="dv">2</span>] [,<span class="dv">3</span>]</span>
+<span id="cb205-29"><a href="cr%C3%A9er.html#cb205-29" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>,]  <span class="fl">1.0</span>  <span class="fl">0.2</span>    <span class="dv">0</span></span>
+<span id="cb205-30"><a href="cr%C3%A9er.html#cb205-30" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">2</span>,]  <span class="fl">0.2</span>  <span class="fl">1.0</span>    <span class="dv">0</span></span>
+<span id="cb205-31"><a href="cr%C3%A9er.html#cb205-31" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">3</span>,]  <span class="fl">0.0</span>  <span class="fl">0.0</span>    <span class="dv">1</span></span>
+<span id="cb205-32"><a href="cr%C3%A9er.html#cb205-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb205-33"><a href="cr%C3%A9er.html#cb205-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Pour la seconde étape, l'équation est reprise pour i = 3</span></span>
+<span id="cb205-34"><a href="cr%C3%A9er.html#cb205-34" aria-hidden="true" tabindex="-1"></a>i <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb205-35"><a href="cr%C3%A9er.html#cb205-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb205-36"><a href="cr%C3%A9er.html#cb205-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcul de la covariance entre x1 et x2 assignée à COV</span></span>
+<span id="cb205-37"><a href="cr%C3%A9er.html#cb205-37" aria-hidden="true" tabindex="-1"></a>COV <span class="ot">&lt;-</span> B[i, <span class="dv">1</span><span class="sc">:</span>(i<span class="dv">-1</span>)] <span class="sc">%*%</span> S[<span class="dv">1</span><span class="sc">:</span>(i<span class="dv">-1</span>), <span class="dv">1</span><span class="sc">:</span>(i<span class="dv">-1</span>)]</span>
+<span id="cb205-38"><a href="cr%C3%A9er.html#cb205-38" aria-hidden="true" tabindex="-1"></a>S[i, <span class="dv">1</span><span class="sc">:</span>(i<span class="dv">-1</span>)] <span class="ot">=</span> COV</span>
+<span id="cb205-39"><a href="cr%C3%A9er.html#cb205-39" aria-hidden="true" tabindex="-1"></a>S[<span class="dv">1</span><span class="sc">:</span>(i<span class="dv">-1</span>), i] <span class="ot">=</span> COV</span>
+<span id="cb205-40"><a href="cr%C3%A9er.html#cb205-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb205-41"><a href="cr%C3%A9er.html#cb205-41" aria-hidden="true" tabindex="-1"></a><span class="co"># La matrice est mise à jour pour i = 3</span></span>
+<span id="cb205-42"><a href="cr%C3%A9er.html#cb205-42" aria-hidden="true" tabindex="-1"></a>S</span>
+<span id="cb205-43"><a href="cr%C3%A9er.html#cb205-43" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>      [,<span class="dv">1</span>]  [,<span class="dv">2</span>]  [,<span class="dv">3</span>]</span>
+<span id="cb205-44"><a href="cr%C3%A9er.html#cb205-44" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>,]  <span class="fl">1.0</span>  <span class="fl">0.20</span>  <span class="fl">0.30</span></span>
+<span id="cb205-45"><a href="cr%C3%A9er.html#cb205-45" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">2</span>,]  <span class="fl">0.2</span>  <span class="fl">1.00</span> <span class="sc">-</span><span class="fl">0.42</span></span>
+<span id="cb205-46"><a href="cr%C3%A9er.html#cb205-46" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">3</span>,]  <span class="fl">0.3</span> <span class="sc">-</span><span class="fl">0.42</span>  <span class="fl">1.00</span></span>
+<span id="cb205-47"><a href="cr%C3%A9er.html#cb205-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb205-48"><a href="cr%C3%A9er.html#cb205-48" aria-hidden="true" tabindex="-1"></a><span class="co"># Elle est approximativement identique </span></span>
+<span id="cb205-49"><a href="cr%C3%A9er.html#cb205-49" aria-hidden="true" tabindex="-1"></a><span class="co"># aux données de l'exemple précédent</span></span>
+<span id="cb205-50"><a href="cr%C3%A9er.html#cb205-50" aria-hidden="true" tabindex="-1"></a><span class="fu">cov</span>(X)</span>
+<span id="cb205-51"><a href="cr%C3%A9er.html#cb205-51" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>       x1     x2     x3</span>
+<span id="cb205-52"><a href="cr%C3%A9er.html#cb205-52" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x1 <span class="fl">1.002</span>  <span class="fl">0.202</span>  <span class="fl">0.303</span></span>
+<span id="cb205-53"><a href="cr%C3%A9er.html#cb205-53" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x2 <span class="fl">0.202</span>  <span class="fl">1.004</span> <span class="sc">-</span><span class="fl">0.418</span></span>
+<span id="cb205-54"><a href="cr%C3%A9er.html#cb205-54" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x3 <span class="fl">0.303</span> <span class="sc">-</span><span class="fl">0.418</span>  <span class="fl">0.997</span></span></code></pre></div>
 <p>Avant de procéder, une courte digression sur une façon de réaliser en moins de lignes, mais avec une syntaxe plus complexe, la réassignation des valeurs dans <code>S</code>. Le code est présenté dans la syntaxe ci-dessous. Il appert qu’il n’est pas aussi intéressant à programmer pour sauver deux lignes.</p>
-<div class="sourceCode" id="cb203"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb206"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Une note pour indiquer que les valeurs à remplacer pourrait</span></span>
 <span><span class="co"># être fait en une seule ligne de syntaxe en bénéficiant du </span></span>
 <span><span class="co"># recyclage vectoriel de R, mais la solution n'est ni simple, </span></span>
@@ -714,37 +715,37 @@ x_3 = \beta_{3,1}x_1 + \beta_{3,2}x_2 + \epsilon_{x_3}
 <span><span class="va">remplacer</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="va">i</span>, <span class="va">i</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span>, <span class="fl">1</span><span class="op">:</span><span class="op">(</span><span class="va">i</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="op">(</span><span class="va">i</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="va">i</span>, <span class="va">i</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">S</span><span class="op">[</span><span class="va">remplacer</span><span class="op">]</span></span></code></pre></div>
 <p>Trêve de digression, une fois la matrice de covariance <code>S</code> calculée, la fonction <code><a href="https://rdrr.io/pkg/MASS/man/mvrnorm.html">MASS::mvrnorm()</a></code> peut être utilisée pour créer des données. Les résultats sont presque identiques pour les régressions.</p>
-<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="cr%C3%A9er.html#cb204-1" aria-hidden="true" tabindex="-1"></a><span class="co"># La même que l'exemple précédent</span></span>
-<span id="cb204-2"><a href="cr%C3%A9er.html#cb204-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1448</span>) </span>
-<span id="cb204-3"><a href="cr%C3%A9er.html#cb204-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb204-4"><a href="cr%C3%A9er.html#cb204-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Création de données</span></span>
-<span id="cb204-5"><a href="cr%C3%A9er.html#cb204-5" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> MASS<span class="sc">::</span><span class="fu">mvrnorm</span>(<span class="at">n =</span> n, <span class="at">mu =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>), <span class="at">Sigma =</span> S)</span>
-<span id="cb204-6"><a href="cr%C3%A9er.html#cb204-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb204-7"><a href="cr%C3%A9er.html#cb204-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Configurer en tableau de données (data.frame)</span></span>
-<span id="cb204-8"><a href="cr%C3%A9er.html#cb204-8" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(X)</span>
-<span id="cb204-9"><a href="cr%C3%A9er.html#cb204-9" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(X) <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"x1"</span>,<span class="st">"x2"</span>,<span class="st">"x3"</span>)</span>
-<span id="cb204-10"><a href="cr%C3%A9er.html#cb204-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb204-11"><a href="cr%C3%A9er.html#cb204-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Retrouver beta21</span></span>
-<span id="cb204-12"><a href="cr%C3%A9er.html#cb204-12" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(x2 <span class="sc">~</span> x1, <span class="at">data =</span> X)</span>
-<span id="cb204-13"><a href="cr%C3%A9er.html#cb204-13" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
-<span id="cb204-14"><a href="cr%C3%A9er.html#cb204-14" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Call<span class="sc">:</span></span>
-<span id="cb204-15"><a href="cr%C3%A9er.html#cb204-15" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">lm</span>(<span class="at">formula =</span> x2 <span class="sc">~</span> x1, <span class="at">data =</span> X)</span>
-<span id="cb204-16"><a href="cr%C3%A9er.html#cb204-16" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
-<span id="cb204-17"><a href="cr%C3%A9er.html#cb204-17" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Coefficients<span class="sc">:</span></span>
-<span id="cb204-18"><a href="cr%C3%A9er.html#cb204-18" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> (Intercept)           x1  </span>
-<span id="cb204-19"><a href="cr%C3%A9er.html#cb204-19" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>    <span class="sc">-</span><span class="fl">0.00219</span>      <span class="fl">0.20191</span></span>
-<span id="cb204-20"><a href="cr%C3%A9er.html#cb204-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb204-21"><a href="cr%C3%A9er.html#cb204-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Retrouver beta31 et beta32</span></span>
-<span id="cb204-22"><a href="cr%C3%A9er.html#cb204-22" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(x3 <span class="sc">~</span> x1 <span class="sc">+</span> x2, <span class="at">data =</span> X)</span>
-<span id="cb204-23"><a href="cr%C3%A9er.html#cb204-23" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
-<span id="cb204-24"><a href="cr%C3%A9er.html#cb204-24" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Call<span class="sc">:</span></span>
-<span id="cb204-25"><a href="cr%C3%A9er.html#cb204-25" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">lm</span>(<span class="at">formula =</span> x3 <span class="sc">~</span> x1 <span class="sc">+</span> x2, <span class="at">data =</span> X)</span>
-<span id="cb204-26"><a href="cr%C3%A9er.html#cb204-26" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
-<span id="cb204-27"><a href="cr%C3%A9er.html#cb204-27" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Coefficients<span class="sc">:</span></span>
-<span id="cb204-28"><a href="cr%C3%A9er.html#cb204-28" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> (Intercept)           x1           x2  </span>
-<span id="cb204-29"><a href="cr%C3%A9er.html#cb204-29" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>    <span class="sc">-</span><span class="fl">0.00579</span>      <span class="fl">0.40295</span>     <span class="sc">-</span><span class="fl">0.49899</span></span></code></pre></div>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="cr%C3%A9er.html#cb207-1" aria-hidden="true" tabindex="-1"></a><span class="co"># La même que l'exemple précédent</span></span>
+<span id="cb207-2"><a href="cr%C3%A9er.html#cb207-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1448</span>) </span>
+<span id="cb207-3"><a href="cr%C3%A9er.html#cb207-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb207-4"><a href="cr%C3%A9er.html#cb207-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Création de données</span></span>
+<span id="cb207-5"><a href="cr%C3%A9er.html#cb207-5" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> MASS<span class="sc">::</span><span class="fu">mvrnorm</span>(<span class="at">n =</span> n, <span class="at">mu =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>), <span class="at">Sigma =</span> S)</span>
+<span id="cb207-6"><a href="cr%C3%A9er.html#cb207-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb207-7"><a href="cr%C3%A9er.html#cb207-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Configurer en tableau de données (data.frame)</span></span>
+<span id="cb207-8"><a href="cr%C3%A9er.html#cb207-8" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(X)</span>
+<span id="cb207-9"><a href="cr%C3%A9er.html#cb207-9" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(X) <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"x1"</span>,<span class="st">"x2"</span>,<span class="st">"x3"</span>)</span>
+<span id="cb207-10"><a href="cr%C3%A9er.html#cb207-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb207-11"><a href="cr%C3%A9er.html#cb207-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Retrouver beta21</span></span>
+<span id="cb207-12"><a href="cr%C3%A9er.html#cb207-12" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(x2 <span class="sc">~</span> x1, <span class="at">data =</span> X)</span>
+<span id="cb207-13"><a href="cr%C3%A9er.html#cb207-13" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb207-14"><a href="cr%C3%A9er.html#cb207-14" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Call<span class="sc">:</span></span>
+<span id="cb207-15"><a href="cr%C3%A9er.html#cb207-15" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">lm</span>(<span class="at">formula =</span> x2 <span class="sc">~</span> x1, <span class="at">data =</span> X)</span>
+<span id="cb207-16"><a href="cr%C3%A9er.html#cb207-16" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb207-17"><a href="cr%C3%A9er.html#cb207-17" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Coefficients<span class="sc">:</span></span>
+<span id="cb207-18"><a href="cr%C3%A9er.html#cb207-18" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> (Intercept)           x1  </span>
+<span id="cb207-19"><a href="cr%C3%A9er.html#cb207-19" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>    <span class="sc">-</span><span class="fl">0.00219</span>      <span class="fl">0.20191</span></span>
+<span id="cb207-20"><a href="cr%C3%A9er.html#cb207-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb207-21"><a href="cr%C3%A9er.html#cb207-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Retrouver beta31 et beta32</span></span>
+<span id="cb207-22"><a href="cr%C3%A9er.html#cb207-22" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(x3 <span class="sc">~</span> x1 <span class="sc">+</span> x2, <span class="at">data =</span> X)</span>
+<span id="cb207-23"><a href="cr%C3%A9er.html#cb207-23" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb207-24"><a href="cr%C3%A9er.html#cb207-24" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Call<span class="sc">:</span></span>
+<span id="cb207-25"><a href="cr%C3%A9er.html#cb207-25" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">lm</span>(<span class="at">formula =</span> x3 <span class="sc">~</span> x1 <span class="sc">+</span> x2, <span class="at">data =</span> X)</span>
+<span id="cb207-26"><a href="cr%C3%A9er.html#cb207-26" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb207-27"><a href="cr%C3%A9er.html#cb207-27" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Coefficients<span class="sc">:</span></span>
+<span id="cb207-28"><a href="cr%C3%A9er.html#cb207-28" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> (Intercept)           x1           x2  </span>
+<span id="cb207-29"><a href="cr%C3%A9er.html#cb207-29" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>    <span class="sc">-</span><span class="fl">0.00579</span>      <span class="fl">0.40295</span>     <span class="sc">-</span><span class="fl">0.49899</span></span></code></pre></div>
 <p>Comme la formule est générale et qu’elle implique plusieurs itérations, il est envisageable de programmer ces calculs avec une boucle dans une fonction maison. La fonction maison <code>beta2cov()</code> permet, à partir d’une matrice de coefficient de régression et d’un vecteur de variance, d’obtenir la matrice de covariance.</p>
-<div class="sourceCode" id="cb205"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb208"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># De Beta vers covariance (beta 2 covariance)</span></span>
 <span><span class="va">beta2cov</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">B</span>, <span class="va">V</span> <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span><span class="op">{</span></span>
 <span>  </span>
@@ -775,7 +776,7 @@ x_3 = \beta_{3,1}x_1 + \beta_{3,2}x_2 + \epsilon_{x_3}
 \tag{15.25}
 \end{equation}\]</span></p>
 <p>L’équation <a href="cr%C3%A9er.html#eq:buildB">(15.25)</a> se transforme (relativement) aisément en fonction maison. Par rapport à <code>beta2cov()</code>, la boucle n’inclut pas la <span class="math inline">\(p\)</span><sup>e</sup> variable, mais bien la première.</p>
-<div class="sourceCode" id="cb206"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb209"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># De la covariance à Beta (cov2beta)</span></span>
 <span><span class="va">cov2beta</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">S</span><span class="op">)</span><span class="op">{</span></span>
 <span>  </span>
@@ -794,11 +795,11 @@ x_3 = \beta_{3,1}x_1 + \beta_{3,2}x_2 + \epsilon_{x_3}
 <span>  </span>
 <span><span class="op">}</span></span></code></pre></div>
 <p>La fonction maison <code>cov2beta()</code> est maintenant testée sur <code>S</code> pour évaluer si elle retourne bien la matrice <code>B</code> originale.</p>
-<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="cr%C3%A9er.html#cb207-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cov2beta</span>(S)</span>
-<span id="cb207-2"><a href="cr%C3%A9er.html#cb207-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>      [,<span class="dv">1</span>] [,<span class="dv">2</span>] [,<span class="dv">3</span>]</span>
-<span id="cb207-3"><a href="cr%C3%A9er.html#cb207-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>,]  <span class="fl">0.0</span>  <span class="fl">0.0</span>    <span class="dv">0</span></span>
-<span id="cb207-4"><a href="cr%C3%A9er.html#cb207-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">2</span>,]  <span class="fl">0.2</span>  <span class="fl">0.0</span>    <span class="dv">0</span></span>
-<span id="cb207-5"><a href="cr%C3%A9er.html#cb207-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">3</span>,]  <span class="fl">0.4</span> <span class="sc">-</span><span class="fl">0.5</span>    <span class="dv">0</span></span></code></pre></div>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="cr%C3%A9er.html#cb210-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cov2beta</span>(S)</span>
+<span id="cb210-2"><a href="cr%C3%A9er.html#cb210-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>      [,<span class="dv">1</span>] [,<span class="dv">2</span>] [,<span class="dv">3</span>]</span>
+<span id="cb210-3"><a href="cr%C3%A9er.html#cb210-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>,]  <span class="fl">0.0</span>  <span class="fl">0.0</span>    <span class="dv">0</span></span>
+<span id="cb210-4"><a href="cr%C3%A9er.html#cb210-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">2</span>,]  <span class="fl">0.2</span>  <span class="fl">0.0</span>    <span class="dv">0</span></span>
+<span id="cb210-5"><a href="cr%C3%A9er.html#cb210-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">3</span>,]  <span class="fl">0.4</span> <span class="sc">-</span><span class="fl">0.5</span>    <span class="dv">0</span></span></code></pre></div>
 <p>Ce qui est le cas.</p>
 <p>Une seule contrainte s’impose lors de la du calcul de la covariance à partir des coefficients de régression. Il s’agit de s’assurer que la matrice de covariance demeure <strong>positive semi-définie</strong> à chaque étape. Cela se manifeste notamment lorsque les coefficients de régression pour une variable dépendante sont si élevés que le coefficient de détermination surpasse la variance de la variable en question. Autrement dit, la variance de la variable n’est pas assez élevée pour le potentiel explicatif. Mathématiquement le problème est que <span class="math inline">\(1-R^2_X &lt; 0\)</span> ou plus généralement que <span class="math inline">\(\sigma^2_y-\mathbf{B^\prime\Sigma B}&lt;0\)</span>. Dans ces cas, la variance résiduelle négative, ce qui est impossible. L’une des corrections a apporté sont les suivantes, réduire les coefficients de régression <span class="math inline">\(\mathbf{B}\)</span> pour cette variable ou encore d’augmenter sa variance <span class="math inline">\(\sigma^2_y\)</span> de sorte que <span class="math inline">\(\sigma^2_y-\mathbf{B^\prime\Sigma B}&gt;=0\)</span> soit toujours vrai à chaque étape.</p>
 <p>Une dernière note, comme ces équations et syntaxes procèdent de <span class="math inline">\(i=2,...,p\)</span>, l’ordre des variables est primordiale et altérer leur ordre a des conséquences substantielles sur les résultats. Lorsque la matrice <span class="math inline">\(\mathbf{B}\)</span> est créées, il faut être sûr de l’ordre <em>déterministe</em> des variables, c’est-à-dire, quelle variable <em>cause</em> quelles autres variables, comme illustre à la Figure <a href="cr%C3%A9er.html#fig:mod3">15.2</a> par exemple. Changer ou retirer ne serait-ce qu’une variable change les coefficients de régression : les régressions ne sont plus identiques, la matrice de coefficients de régression ne sera pas retrouvée. Il ne faut pas être surpris donc, si les résultats changent dans cette situation. Nonobstant, changer ou retirer une variable peut être pertinent dans certains contextes, surtout pour l’étude de la <strong>misspécification</strong> (en anglais) des modèles, c’est-à-dire lorsqu’un modèle erroné est utilisé plutôt que le vrai modèle, ce qui entraîne notamment des biais. Les études à ce sujet emprunteront une méthode statistique similaire.</p>
@@ -848,7 +849,7 @@ x_3 = \beta_{3,1}x_1 + \beta_{3,2}x_2 + \epsilon_{x_3}
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2023-04-20.</p>
+    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2023-08-02.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

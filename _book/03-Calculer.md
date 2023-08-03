@@ -385,6 +385,8 @@ Il existe plusieurs distributions statistiques déjà programmées avec **R**. V
 </tbody>
 </table>
 
+
+
 Les libellés ci-dessus ne commanderont pas de fonction. Il faut joindre en préfixe à ces distributions l'une des quatre lettres suivantes : `d`, `p`,`q`, ou `r`. La plus simple est certainement `r` (*random*) qui génère `n` valeurs aléatoires de la distribution demandée selon les paramètres spécifiés. Les fonctions `q` (quantile) prennent un argument de 0 à 1 (100%), soit un percentile et retourne la valeur de la distribution. La fonction `p` (probabilité) retourne la probabilité cumulative (du minimum jusqu'à la valeur) d'une valeur de cette distribution. Enfin, la lettre `d` (densité) permet, notamment, d'obtenir les valeurs de densité de la distribution.
 
 Voici un exemple avec la distribution normale.

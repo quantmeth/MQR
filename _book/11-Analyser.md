@@ -748,6 +748,8 @@ Jusqu'à présent, deux types d'association de données ont été présenté : u
 </table>
 
 
+
+
 Le tableau \@ref(tab:TCCV) présente deux variables nominales (`climatosceptique`, à la verticale, et posséder une `voiture`, à l'horizontale) ayant chacune deux catégories (`oui` et `non`). Il montre les proportions **observées**. Ces variables sont-elles associées? Pour traiter cette question, les proportions attendues jouent un rôle crucial. En fait, l'hypothèse nulle sous la table de contingence postule que toutes les proportions du tableau de contingence sont indépendantes. Mathématiquement, il s'agit de postuler que les proportions d'une variable (en ligne ou en colonne) n'influencent pas celles de l'autre variable. Pour obtenir les proportions **théoriques**, les totaux des lignes et colonnes sont calculés ainsi que le grand total. La fréquence attendue d'une cellule est obtenue en calculant, pour chaque cellule, le produit de sa colonne et de sa ligne respective divisé par le grand total. 
 
 \begin{equation}
@@ -793,6 +795,8 @@ L'équation \@ref(eq:chi1) ci-dessus illustre l'idée sous-jacente à la proport
   </tr>
 </tbody>
 </table>
+
+
 
 ### Le $\chi^2$ pour table de contingence
 Maintenant que la question statistique et que l'hypothèse nulle sont posées, comment mesurer le degré selon lequel les données s'écartent des attentes *théoriques*. Le $\chi^2$ (khi-carré) permet de calculer une telle mesure. Le $\chi^2$ correspond à la distance entre une valeur observée et théorique au carré, pondérée par la valeur théorique.

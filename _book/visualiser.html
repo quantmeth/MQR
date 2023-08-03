@@ -7,7 +7,7 @@
 <title> 8 Visualiser | Méthodes quantitatives avec R</title>
 <meta name="author" content="P.-O. Caron">
 <meta name="description" content="La visualisation de données est l’un des deux objectifs fondamentaux de R (l’autre étant évidemment de faire des statistiques). Il existe plusieurs méthodes et packages pour produire rapidement et...">
-<meta name="generator" content="bookdown 0.31 with bs4_book()">
+<meta name="generator" content="bookdown 0.34 with bs4_book()">
 <meta property="og:title" content=" 8 Visualiser | Méthodes quantitatives avec R">
 <meta property="og:type" content="book">
 <meta property="og:url" content="mqr.teluq.ca/visualiser.html">
@@ -102,6 +102,7 @@
 <li><a class="" href="d%C3%A9composer.html"><span class="header-section-number">18</span> Décomposer</a></li>
 <li><a class="" href="explorer.html"><span class="header-section-number">19</span> Explorer</a></li>
 <li><a class="" href="r%C3%A9duire.html"><span class="header-section-number">20</span> Réduire</a></li>
+<li><a class="" href="exercice-factoriel.html">Exercices</a></li>
 <li class="book-part">Annexes</li>
 <li><a class="" href="solutions.html">Solutions</a></li>
 <li><a class="" href="r%C3%A9f%C3%A9rences.html">Références</a></li>
@@ -313,14 +314,151 @@ Figure 8.9: Les effets de la vitamine C sur les cochons d’inde
 </p>
 </div>
 <p>Une fois ces statistiques calculées et enregistrées dans le nouveau jeu de données <code>jd</code>, il est possible de créer le graphique avec les représentations géométriques désirées. Remarquez comment spécifier la cartographie dans le niveau <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code> rend la syntaxe moins compliquée. Cette syntaxe produit un graphique avec <code>dose</code> à l’axe des <span class="math inline">\(x\)</span>, <code>supp</code> comme pointeurs et les moyennes de <code>len</code> (longueur moyenne des dents). La fonction <code><a href="https://ggplot2.tidyverse.org/reference/geom_linerange.html">geom_errorbar()</a></code> indique où placer les limites inférieures et supérieures des intervalles. Les arguments <code>size = 5</code> et <code>width = .05</code> sont ajoutés simplment pour l’esthétisme. L’argument <code>.groups = "drop"</code> de <code>summarise</code> permet d’éviter une avertissement expliquant qu’une variable de groupement est utilisé pour regrouper les résultats à la fin. Ajouter ou retirer cet argument ne change pas les calculs, ni la Figure <a href="visualiser.html#fig:erreurbar">8.9</a>.</p>
+<div id="de-meilleures-barres-derreurs" class="section level3" number="8.5.1">
+<h3>
+<span class="header-section-number">8.5.1</span> De meilleures barres d’erreurs<a class="anchor" aria-label="anchor" href="#de-meilleures-barres-derreurs"><i class="fas fa-link"></i></a>
+</h3>
+<p>Il existe un package <code>superb</code> <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-superb" role="doc-biblioref">Cousineau et al., 2021</a>)</span> qui permet d’obtenir des graphiques à barre d’erreur avec précision et facilement ajustable. Une fois installé et importé dans l’environnement, <code>superb</code> offre la fonction principale <code>superbPlot</code> permet la création de ces figures.</p>
+<p>La Figure <a href="visualiser.html#fig:erreurbar2">8.10</a> reproduit la Figure <a href="visualiser.html#fig:erreurbar">8.9</a>. Dans le code, il faut préciser les facteurs intersujets (<code>BSFactors</code>) et la variable dépendante (<code>variable</code>). La fonction contrôle aussi le type de graphique avec <code>plotStyle</code>.</p>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="visualiser.html#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(superb)</span>
+<span id="cb108-2"><a href="visualiser.html#cb108-2" aria-hidden="true" tabindex="-1"></a><span class="fu">superbPlot</span>(ToothGrowth, </span>
+<span id="cb108-3"><a href="visualiser.html#cb108-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">BSFactors =</span> <span class="fu">c</span>(<span class="st">"dose"</span>,<span class="st">"supp"</span>), </span>
+<span id="cb108-4"><a href="visualiser.html#cb108-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">variables =</span> <span class="st">"len"</span>,</span>
+<span id="cb108-5"><a href="visualiser.html#cb108-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">plotStyle =</span> <span class="st">"line"</span>)</span>
+<span id="cb108-6"><a href="visualiser.html#cb108-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> superb<span class="sc">::</span>FYI<span class="sc">:</span> The variables will be plotted <span class="cf">in</span> that order<span class="sc">:</span> dose, <span class="fu">supp</span> (use factorOrder to change).</span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:erreurbar2"></span>
+<img src="08-Visualiser_files/figure-html/erreurbar2-1.png" alt="Les effets de la vitamine C sur les cochons d'inde avec `superb`" width="75%" height="75%"><p class="caption">
+Figure 8.10: Les effets de la vitamine C sur les cochons d’inde avec <code>superb</code>
+</p>
 </div>
-<div id="pour-aller-plus-loin-1" class="section level2" number="8.6">
+<p>La fonction retourne souvent des messages d’avertissement pour préciser certaines décisions qu’elle peut avoir pris. Le code ci-dessus retourne le message : <code>superb::FYI: The variables will be plotted in that order: dose, supp (use factorOrder to change).</code>. C’est à l’utilisateur d’en prendre note et de s’assurer que c’était bien ce qui était désiré, ce qui est le cas ici.</p>
+<p>Il y a deux avantages principales a utilisé <code>superb</code>. La première est qu’elle permet des ajustements avec l’argument <code>adjustments</code> afin de préciser le type de barres d’erreurs<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Oui, oui, il en existe plusieurs!&lt;/p&gt;"><sup>8</sup></a>, comme <code>"single"</code>, <code>"difference"</code>, ou <code>"tryon"</code>. Généralement, ce sera l’option <code>purpose = "difference"</code> qui sera désirée. Deuxièmement, <code>superb</code> tient aussi compte des devis intrasujets avec l’argument <code>WSFactors</code>, ce qui permet l’utilisation de différentes techniques de décorrélation des temps de mesure comme <code>"CM"</code>, <code>"LM"</code>, <code>"CA"</code> ou <code>"none"</code>. Consultez la documentation pour en savoir plus sur son fonctionnement et ce qui conviendra le mieux à la situation qui se présent. Bref, la fonction produit de bien meilleurs graphiques à barres d’erreurs avec plus d’ajustement et de précision.</p>
+<p>Pour plus de flexibilité pour l’utilisateur, les statistiques descriptives peuvent être obtenues afin de produire personnellement les figures, comme cela avait été fait dans le premier exemple sur <a href="visualiser.html#les-barres-derreurs">Les barres d’erreurs</a>.</p>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="visualiser.html#cb109-1" aria-hidden="true" tabindex="-1"></a>stat.descr <span class="ot">&lt;-</span> <span class="fu">superbData</span>(ToothGrowth, </span>
+<span id="cb109-2"><a href="visualiser.html#cb109-2" aria-hidden="true" tabindex="-1"></a>                         <span class="at">BSFactors =</span> <span class="fu">c</span>(<span class="st">"dose"</span>,<span class="st">"supp"</span>), </span>
+<span id="cb109-3"><a href="visualiser.html#cb109-3" aria-hidden="true" tabindex="-1"></a>                         <span class="at">variables =</span> <span class="st">"len"</span>)</span>
+<span id="cb109-4"><a href="visualiser.html#cb109-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> superb<span class="sc">::</span>FYI<span class="sc">:</span> The variables will be plotted <span class="cf">in</span> that order<span class="sc">:</span> dose, <span class="fu">supp</span> (use factorOrder to change).</span>
+<span id="cb109-5"><a href="visualiser.html#cb109-5" aria-hidden="true" tabindex="-1"></a>stat.descr</span>
+<span id="cb109-6"><a href="visualiser.html#cb109-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="er">$</span>summaryStatistics</span>
+<span id="cb109-7"><a href="visualiser.html#cb109-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>   dose supp center lowerwidth upperwidth</span>
+<span id="cb109-8"><a href="visualiser.html#cb109-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">1</span>  <span class="fl">0.5</span>   OJ  <span class="fl">13.23</span>      <span class="sc">-</span><span class="fl">3.19</span>       <span class="fl">3.19</span></span>
+<span id="cb109-9"><a href="visualiser.html#cb109-9" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">2</span>  <span class="fl">0.5</span>   VC   <span class="fl">7.98</span>      <span class="sc">-</span><span class="fl">1.96</span>       <span class="fl">1.96</span></span>
+<span id="cb109-10"><a href="visualiser.html#cb109-10" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">3</span>    <span class="dv">1</span>   OJ  <span class="fl">22.70</span>      <span class="sc">-</span><span class="fl">2.80</span>       <span class="fl">2.80</span></span>
+<span id="cb109-11"><a href="visualiser.html#cb109-11" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">4</span>    <span class="dv">1</span>   VC  <span class="fl">16.77</span>      <span class="sc">-</span><span class="fl">1.80</span>       <span class="fl">1.80</span></span>
+<span id="cb109-12"><a href="visualiser.html#cb109-12" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">5</span>    <span class="dv">2</span>   OJ  <span class="fl">26.06</span>      <span class="sc">-</span><span class="fl">1.90</span>       <span class="fl">1.90</span></span>
+<span id="cb109-13"><a href="visualiser.html#cb109-13" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">6</span>    <span class="dv">2</span>   VC  <span class="fl">26.14</span>      <span class="sc">-</span><span class="fl">3.43</span>       <span class="fl">3.43</span></span>
+<span id="cb109-14"><a href="visualiser.html#cb109-14" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb109-15"><a href="visualiser.html#cb109-15" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="er">$</span>rawData</span>
+<span id="cb109-16"><a href="visualiser.html#cb109-16" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>    dose supp id   DV</span>
+<span id="cb109-17"><a href="visualiser.html#cb109-17" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">1</span>   <span class="fl">0.5</span>   VC  <span class="dv">1</span>  <span class="fl">4.2</span></span>
+<span id="cb109-18"><a href="visualiser.html#cb109-18" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">2</span>   <span class="fl">0.5</span>   VC  <span class="dv">2</span> <span class="fl">11.5</span></span>
+<span id="cb109-19"><a href="visualiser.html#cb109-19" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">3</span>   <span class="fl">0.5</span>   VC  <span class="dv">3</span>  <span class="fl">7.3</span></span>
+<span id="cb109-20"><a href="visualiser.html#cb109-20" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">4</span>   <span class="fl">0.5</span>   VC  <span class="dv">4</span>  <span class="fl">5.8</span></span>
+<span id="cb109-21"><a href="visualiser.html#cb109-21" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">5</span>   <span class="fl">0.5</span>   VC  <span class="dv">5</span>  <span class="fl">6.4</span></span>
+<span id="cb109-22"><a href="visualiser.html#cb109-22" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">6</span>   <span class="fl">0.5</span>   VC  <span class="dv">6</span> <span class="fl">10.0</span></span>
+<span id="cb109-23"><a href="visualiser.html#cb109-23" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">7</span>   <span class="fl">0.5</span>   VC  <span class="dv">7</span> <span class="fl">11.2</span></span>
+<span id="cb109-24"><a href="visualiser.html#cb109-24" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">8</span>   <span class="fl">0.5</span>   VC  <span class="dv">8</span> <span class="fl">11.2</span></span>
+<span id="cb109-25"><a href="visualiser.html#cb109-25" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">9</span>   <span class="fl">0.5</span>   VC  <span class="dv">9</span>  <span class="fl">5.2</span></span>
+<span id="cb109-26"><a href="visualiser.html#cb109-26" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">10</span>  <span class="fl">0.5</span>   VC <span class="dv">10</span>  <span class="fl">7.0</span></span>
+<span id="cb109-27"><a href="visualiser.html#cb109-27" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">11</span>    <span class="dv">1</span>   VC <span class="dv">11</span> <span class="fl">16.5</span></span>
+<span id="cb109-28"><a href="visualiser.html#cb109-28" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">12</span>    <span class="dv">1</span>   VC <span class="dv">12</span> <span class="fl">16.5</span></span>
+<span id="cb109-29"><a href="visualiser.html#cb109-29" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">13</span>    <span class="dv">1</span>   VC <span class="dv">13</span> <span class="fl">15.2</span></span>
+<span id="cb109-30"><a href="visualiser.html#cb109-30" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">14</span>    <span class="dv">1</span>   VC <span class="dv">14</span> <span class="fl">17.3</span></span>
+<span id="cb109-31"><a href="visualiser.html#cb109-31" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">15</span>    <span class="dv">1</span>   VC <span class="dv">15</span> <span class="fl">22.5</span></span>
+<span id="cb109-32"><a href="visualiser.html#cb109-32" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">16</span>    <span class="dv">1</span>   VC <span class="dv">16</span> <span class="fl">17.3</span></span>
+<span id="cb109-33"><a href="visualiser.html#cb109-33" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">17</span>    <span class="dv">1</span>   VC <span class="dv">17</span> <span class="fl">13.6</span></span>
+<span id="cb109-34"><a href="visualiser.html#cb109-34" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">18</span>    <span class="dv">1</span>   VC <span class="dv">18</span> <span class="fl">14.5</span></span>
+<span id="cb109-35"><a href="visualiser.html#cb109-35" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">19</span>    <span class="dv">1</span>   VC <span class="dv">19</span> <span class="fl">18.8</span></span>
+<span id="cb109-36"><a href="visualiser.html#cb109-36" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">20</span>    <span class="dv">1</span>   VC <span class="dv">20</span> <span class="fl">15.5</span></span>
+<span id="cb109-37"><a href="visualiser.html#cb109-37" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">21</span>    <span class="dv">2</span>   VC <span class="dv">21</span> <span class="fl">23.6</span></span>
+<span id="cb109-38"><a href="visualiser.html#cb109-38" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">22</span>    <span class="dv">2</span>   VC <span class="dv">22</span> <span class="fl">18.5</span></span>
+<span id="cb109-39"><a href="visualiser.html#cb109-39" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">23</span>    <span class="dv">2</span>   VC <span class="dv">23</span> <span class="fl">33.9</span></span>
+<span id="cb109-40"><a href="visualiser.html#cb109-40" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">24</span>    <span class="dv">2</span>   VC <span class="dv">24</span> <span class="fl">25.5</span></span>
+<span id="cb109-41"><a href="visualiser.html#cb109-41" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">25</span>    <span class="dv">2</span>   VC <span class="dv">25</span> <span class="fl">26.4</span></span>
+<span id="cb109-42"><a href="visualiser.html#cb109-42" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">26</span>    <span class="dv">2</span>   VC <span class="dv">26</span> <span class="fl">32.5</span></span>
+<span id="cb109-43"><a href="visualiser.html#cb109-43" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">27</span>    <span class="dv">2</span>   VC <span class="dv">27</span> <span class="fl">26.7</span></span>
+<span id="cb109-44"><a href="visualiser.html#cb109-44" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">28</span>    <span class="dv">2</span>   VC <span class="dv">28</span> <span class="fl">21.5</span></span>
+<span id="cb109-45"><a href="visualiser.html#cb109-45" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">29</span>    <span class="dv">2</span>   VC <span class="dv">29</span> <span class="fl">23.3</span></span>
+<span id="cb109-46"><a href="visualiser.html#cb109-46" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">30</span>    <span class="dv">2</span>   VC <span class="dv">30</span> <span class="fl">29.5</span></span>
+<span id="cb109-47"><a href="visualiser.html#cb109-47" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">31</span>  <span class="fl">0.5</span>   OJ <span class="dv">31</span> <span class="fl">15.2</span></span>
+<span id="cb109-48"><a href="visualiser.html#cb109-48" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">32</span>  <span class="fl">0.5</span>   OJ <span class="dv">32</span> <span class="fl">21.5</span></span>
+<span id="cb109-49"><a href="visualiser.html#cb109-49" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">33</span>  <span class="fl">0.5</span>   OJ <span class="dv">33</span> <span class="fl">17.6</span></span>
+<span id="cb109-50"><a href="visualiser.html#cb109-50" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">34</span>  <span class="fl">0.5</span>   OJ <span class="dv">34</span>  <span class="fl">9.7</span></span>
+<span id="cb109-51"><a href="visualiser.html#cb109-51" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">35</span>  <span class="fl">0.5</span>   OJ <span class="dv">35</span> <span class="fl">14.5</span></span>
+<span id="cb109-52"><a href="visualiser.html#cb109-52" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">36</span>  <span class="fl">0.5</span>   OJ <span class="dv">36</span> <span class="fl">10.0</span></span>
+<span id="cb109-53"><a href="visualiser.html#cb109-53" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">37</span>  <span class="fl">0.5</span>   OJ <span class="dv">37</span>  <span class="fl">8.2</span></span>
+<span id="cb109-54"><a href="visualiser.html#cb109-54" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">38</span>  <span class="fl">0.5</span>   OJ <span class="dv">38</span>  <span class="fl">9.4</span></span>
+<span id="cb109-55"><a href="visualiser.html#cb109-55" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">39</span>  <span class="fl">0.5</span>   OJ <span class="dv">39</span> <span class="fl">16.5</span></span>
+<span id="cb109-56"><a href="visualiser.html#cb109-56" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">40</span>  <span class="fl">0.5</span>   OJ <span class="dv">40</span>  <span class="fl">9.7</span></span>
+<span id="cb109-57"><a href="visualiser.html#cb109-57" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">41</span>    <span class="dv">1</span>   OJ <span class="dv">41</span> <span class="fl">19.7</span></span>
+<span id="cb109-58"><a href="visualiser.html#cb109-58" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">42</span>    <span class="dv">1</span>   OJ <span class="dv">42</span> <span class="fl">23.3</span></span>
+<span id="cb109-59"><a href="visualiser.html#cb109-59" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">43</span>    <span class="dv">1</span>   OJ <span class="dv">43</span> <span class="fl">23.6</span></span>
+<span id="cb109-60"><a href="visualiser.html#cb109-60" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">44</span>    <span class="dv">1</span>   OJ <span class="dv">44</span> <span class="fl">26.4</span></span>
+<span id="cb109-61"><a href="visualiser.html#cb109-61" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">45</span>    <span class="dv">1</span>   OJ <span class="dv">45</span> <span class="fl">20.0</span></span>
+<span id="cb109-62"><a href="visualiser.html#cb109-62" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">46</span>    <span class="dv">1</span>   OJ <span class="dv">46</span> <span class="fl">25.2</span></span>
+<span id="cb109-63"><a href="visualiser.html#cb109-63" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">47</span>    <span class="dv">1</span>   OJ <span class="dv">47</span> <span class="fl">25.8</span></span>
+<span id="cb109-64"><a href="visualiser.html#cb109-64" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">48</span>    <span class="dv">1</span>   OJ <span class="dv">48</span> <span class="fl">21.2</span></span>
+<span id="cb109-65"><a href="visualiser.html#cb109-65" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">49</span>    <span class="dv">1</span>   OJ <span class="dv">49</span> <span class="fl">14.5</span></span>
+<span id="cb109-66"><a href="visualiser.html#cb109-66" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">50</span>    <span class="dv">1</span>   OJ <span class="dv">50</span> <span class="fl">27.3</span></span>
+<span id="cb109-67"><a href="visualiser.html#cb109-67" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">51</span>    <span class="dv">2</span>   OJ <span class="dv">51</span> <span class="fl">25.5</span></span>
+<span id="cb109-68"><a href="visualiser.html#cb109-68" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">52</span>    <span class="dv">2</span>   OJ <span class="dv">52</span> <span class="fl">26.4</span></span>
+<span id="cb109-69"><a href="visualiser.html#cb109-69" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">53</span>    <span class="dv">2</span>   OJ <span class="dv">53</span> <span class="fl">22.4</span></span>
+<span id="cb109-70"><a href="visualiser.html#cb109-70" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">54</span>    <span class="dv">2</span>   OJ <span class="dv">54</span> <span class="fl">24.5</span></span>
+<span id="cb109-71"><a href="visualiser.html#cb109-71" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">55</span>    <span class="dv">2</span>   OJ <span class="dv">55</span> <span class="fl">24.8</span></span>
+<span id="cb109-72"><a href="visualiser.html#cb109-72" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">56</span>    <span class="dv">2</span>   OJ <span class="dv">56</span> <span class="fl">30.9</span></span>
+<span id="cb109-73"><a href="visualiser.html#cb109-73" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">57</span>    <span class="dv">2</span>   OJ <span class="dv">57</span> <span class="fl">26.4</span></span>
+<span id="cb109-74"><a href="visualiser.html#cb109-74" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">58</span>    <span class="dv">2</span>   OJ <span class="dv">58</span> <span class="fl">27.3</span></span>
+<span id="cb109-75"><a href="visualiser.html#cb109-75" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">59</span>    <span class="dv">2</span>   OJ <span class="dv">59</span> <span class="fl">29.4</span></span>
+<span id="cb109-76"><a href="visualiser.html#cb109-76" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">60</span>    <span class="dv">2</span>   OJ <span class="dv">60</span> <span class="fl">23.0</span></span></code></pre></div>
+<p>Attention! Cette variable est une liste contenant deux éléments, les statistiques descriptives (<code>$summaryStatistics</code>) et les données brutes (<code>$rawData</code>). Elle peuvent être extraites avec le signe <code>$</code>, comme <code>stat.descr$summaryStatistics</code>.</p>
+<p>Pour reproduire la Figure <a href="visualiser.html#fig:erreurbar">8.9</a> avec le jeu de données extrait de <code>superbData()</code>, il faut procéder à quelques ajustements, comme le nom des variables qui ne sont pas les mêmes, et le fait que la variable <code>dose</code> est maintenant traitée en variable nominale, alors qu’il est souhaitable qu’elle soit numérique pour utiliser la représentation géométrique <code><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line()</a></code>.</p>
+<div class="sourceCode" id="cb110"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">stat.descr</span><span class="op">$</span><span class="va">summaryStatistics</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">dose</span><span class="op">)</span>,</span>
+<span>             y <span class="op">=</span> <span class="va">center</span>, </span>
+<span>             shape <span class="op">=</span> <span class="va">supp</span><span class="op">)</span>,</span>
+<span>         size <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_linerange.html">geom_errorbar</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>ymin <span class="op">=</span> <span class="va">center</span> <span class="op">+</span> <span class="va">lowerwidth</span>,</span>
+<span>                      ymax <span class="op">=</span> <span class="va">center</span> <span class="op">+</span> <span class="va">upperwidth</span><span class="op">)</span>, </span>
+<span>                  width <span class="op">=</span> <span class="fl">.05</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:erreurbar3"></span>
+<img src="08-Visualiser_files/figure-html/erreurbar3-1.png" alt="Les effets de la vitamine C sur les cochons d'inde avec `superb`" width="75%" height="75%"><p class="caption">
+Figure 8.11: Les effets de la vitamine C sur les cochons d’inde avec <code>superb</code>
+</p>
+</div>
+</div>
+</div>
+<div id="exporter-la-figure" class="section level2" number="8.6">
 <h2>
-<span class="header-section-number">8.6</span> Pour aller plus loin<a class="anchor" aria-label="anchor" href="#pour-aller-plus-loin-1"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.6</span> Exporter la figure<a class="anchor" aria-label="anchor" href="#exporter-la-figure"><i class="fas fa-link"></i></a>
+</h2>
+<p>Pour exporter une figure, <code>ggplot2</code> offre la très conviviale fonction <code>gggsave()</code> qui permet d’enregistrer la dernière figure produite en fichier. Celle-ci vient avec plusieurs options pour gérer l’enregistrement.</p>
+<p>L’option <code>filename</code> gère le nom du fichier le nom et le type de fichier, comme les usuels <code>"pdf"</code>, <code>"jpeg"</code>, <code>"png"</code>, ou les moins fréquents, mais aussi pratiques <code>"bmp"</code>, <code>"eps"</code>, <code>"tiff"</code>, <code>"ps"</code>, <code>"tex"</code>, <code>"svg"</code> et <code>"wmf"</code>.</p>
+<p>Les options <code>width</code> (largeur), <code>height</code> (hauteur), et <code>units</code> (unités, comme <code>"in"</code>, pouce, <code>"cm"</code>, centimètre, <code>"mm"</code>, millimètre ou <code>"px"</code>, pixel) gère la taille de la figure.</p>
+<p>La taille de résolution de la figure est gérée avec l’argument <code>dpi</code>, ce qui peut être utile pour augmenter la qualité de la figure produite.</p>
+<p>Voici un exemple.</p>
+<p>Il faudra éventuellement ajuster la taille et la qualité en fonction de la figure désirée. Quelques essais seront probablement nécessaires pour l’obtenir.</p>
+</div>
+<div id="quelques-trucs-en-rafale" class="section level2" number="8.7">
+<h2>
+<span class="header-section-number">8.7</span> Quelques trucs en rafale<a class="anchor" aria-label="anchor" href="#quelques-trucs-en-rafale"><i class="fas fa-link"></i></a>
+</h2>
+<p>Il est possible de renommer les axes avec <code><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab()</a></code> et <code><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab()</a></code>.</p>
+<p>Plusieurs ajustements des axes sont possibles avec <code><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous()</a></code> et <code><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous()</a></code> et leur équivalent nominal <code><a href="https://ggplot2.tidyverse.org/reference/scale_discrete.html">scale_y_discrete()</a></code>, <code><a href="https://ggplot2.tidyverse.org/reference/scale_discrete.html">scale_x_discrete()</a></code> , comme ajuster les limites (<code>limits</code>), les marqueurs (<code>breaks</code>) et les libellées des marqueurs (<code>labels</code>).</p>
+<p>Il est possible de séparer une digure en différents cadran en spécifiant une variable de séparation avec <code><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap()</a></code> ou <code><a href="https://ggplot2.tidyverse.org/reference/facet_grid.html">facet_grid()</a></code>.</p>
+</div>
+<div id="pour-aller-plus-loin-1" class="section level2" number="8.8">
+<h2>
+<span class="header-section-number">8.8</span> Pour aller plus loin<a class="anchor" aria-label="anchor" href="#pour-aller-plus-loin-1"><i class="fas fa-link"></i></a>
 </h2>
 <p>Il existe une multitudes de livres, de sites web, de tutoriels en ligne et d’atelier pour donner l’occasion au lecteur d’aller plus loin dans sa conception graphique. Voici quelques ouvrages de références : Le <em>R Graphics Cookbook</em> (Chang) repérable à <a href="https://r-graphics.org/" class="uri">https://r-graphics.org/</a>, <em>ggplot2: elegant graphics for data analysis</em> (Wickham) repérable à <a href="https://ggplot2-book.org/" class="uri">https://ggplot2-book.org/</a> ou <em>R Graphics</em> (Murrel) repérable à <a href="https://www.stat.auckland.ac.nz/~paul/RG2e/" class="uri">https://www.stat.auckland.ac.nz/~paul/RG2e/</a>.</p>
 </div>
 </div>
+
   <div class="chapter-nav">
 <div class="prev"><a href="manipuler.html"><span class="header-section-number">7</span> Manipuler</a></div>
 <div class="next"><a href="exercice-gestion.html">Exercices</a></div>
@@ -332,8 +470,12 @@ Figure 8.9: Les effets de la vitamine C sur les cochons d’inde
 <li><a class="nav-link" href="#diagramme-de-dispersion"><span class="header-section-number">8.2</span> Diagramme de dispersion</a></li>
 <li><a class="nav-link" href="#bo%C3%AEte-%C3%A0-moustache"><span class="header-section-number">8.3</span> Boîte à moustache</a></li>
 <li><a class="nav-link" href="#histogramme"><span class="header-section-number">8.4</span> Histogramme</a></li>
-<li><a class="nav-link" href="#les-barres-derreurs"><span class="header-section-number">8.5</span> Les barres d’erreurs</a></li>
-<li><a class="nav-link" href="#pour-aller-plus-loin-1"><span class="header-section-number">8.6</span> Pour aller plus loin</a></li>
+<li>
+<a class="nav-link" href="#les-barres-derreurs"><span class="header-section-number">8.5</span> Les barres d’erreurs</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#de-meilleures-barres-derreurs"><span class="header-section-number">8.5.1</span> De meilleures barres d’erreurs</a></li></ul>
+</li>
+<li><a class="nav-link" href="#exporter-la-figure"><span class="header-section-number">8.6</span> Exporter la figure</a></li>
+<li><a class="nav-link" href="#quelques-trucs-en-rafale"><span class="header-section-number">8.7</span> Quelques trucs en rafale</a></li>
+<li><a class="nav-link" href="#pour-aller-plus-loin-1"><span class="header-section-number">8.8</span> Pour aller plus loin</a></li>
 </ul>
 
       <div class="book-extra">
@@ -351,7 +493,7 @@ Figure 8.9: Les effets de la vitamine C sur les cochons d’inde
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2023-04-20.</p>
+    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2023-08-02.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -24,7 +24,7 @@ Si vous avez des commentaires ou des suggestions, n'hésitez pas à me les parta
 
 ## Remerciements {-}
 
-Les étudiants et étudiantes qui ont suivi des cours avec ce manuel et plus spécialement Catherine Meek-Bouchard pour ces commentaires.
+Les étudiants et étudiantes qui ont suivi des cours avec ce manuel et plus spécialement Catherine Meek-Bouchard pour ses commentaires.
 
 # Préface {-}
 
@@ -41,7 +41,7 @@ celui-ci retourne la réponse $-3$ à cause de la priorité des opérations, $-(
 
 Des idiosyncrasies computationnelles se retrouvent dans tous les logiciels. En pratique, le programmeur doit en avoir conscience et ce type de problème devrait rester trivial...
  
-@Bennett10 montrent que les saumons de l’Atlantique décédés ont des cognitions sociales. Ils placent sous imagerie par résonance magnétique fonctionnelle (IRMf) le saumon pendant une tâche de reconnaissance des émotions chez les humains. La Figure \@ref(fig:saumon) montre le résultat de leur analyse. Soit ils sont tombés sur une découverte étonnante en termes de cognition ichtyologique post-mortem, soit quelque chose cloche en ce qui concerne l'approche statistique utilisée.
+@Bennett10 montrent qu'un saumon de l’Atlantique décédé a des cognitions sociales. Ils placent sous imagerie par résonance magnétique fonctionnelle (IRMf) le saumon pendant une tâche de reconnaissance des émotions chez les humains. La Figure \@ref(fig:saumon) montre le résultat de leur analyse. Soit ils sont tombés sur une découverte étonnante en termes de cognition ichtyologique post-mortem, soit quelque chose cloche en ce qui concerne l'approche statistique utilisée.
 
 ```{r saumon, fig.cap="Cognitions sociales d'un saumon atlantique décédé. Tirés de Bennett et al. 2010, p.4",echo=FALSE, out.width="75%", fig.align="center"}
 knitr::include_graphics("image//saumon.PNG")

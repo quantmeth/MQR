@@ -65,12 +65,12 @@ La fonction `describeBy()` permet de faire ces analyses en fonction d'une variab
 
 
 ```r
-psych::describe.by(ToothGrowth, group = "supp")
-> Warning: describe.by is deprecated. Please use the
+psych::describe.by(ToothGrowth, group = ToothGrowth$supp)
+> Warning: describe.by is deprecated.  Please use the
 > describeBy function
 > 
 >  Descriptive statistics by group 
-> supp: OJ
+> group: OJ
 >       vars  n  mean   sd median trimmed  mad min  max range
 > len      1 30 20.66 6.61   22.7   21.04 5.49 8.2 30.9  22.7
 > supp*    2 30  1.00 0.00    1.0    1.00 0.00 1.0  1.0   0.0
@@ -80,7 +80,7 @@ psych::describe.by(ToothGrowth, group = "supp")
 > supp*   NaN      NaN 0.00
 > dose   0.36    -1.60 0.12
 > --------------------------------------------- 
-> supp: VC
+> group: VC
 >       vars  n  mean   sd median trimmed  mad min  max range
 > len      1 30 16.96 8.27   16.5   16.58 9.27 4.2 33.9  29.7
 > supp*    2 30  2.00 0.00    2.0    2.00 0.00 2.0  2.0   0.0

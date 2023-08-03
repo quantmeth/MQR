@@ -303,21 +303,21 @@ summary(res1.lm)
 > 
 > Residuals:
 >     Min      1Q  Median      3Q     Max 
-> -3.1126 -0.6129  0.0249  0.6119  2.6796 
+> -2.5461 -0.6119  0.0083  0.6115  2.8687 
 > 
 > Coefficients:
 >             Estimate Std. Error t value Pr(>|t|)    
-> (Intercept)   0.0306     0.0442    0.69     0.49    
-> x             0.0625     0.0450    1.39     0.17    
-> w             0.2724     0.0468    5.82  1.1e-08 ***
-> x:w           0.2953     0.0331    8.93  < 2e-16 ***
+> (Intercept)   0.0585     0.0471    1.24  0.21488    
+> x             0.1916     0.0483    3.97  8.4e-05 ***
+> w             0.1634     0.0467    3.50  0.00051 ***
+> x:w           0.2555     0.0380    6.71  5.2e-11 ***
 > ---
 > Signif. codes:  
 > 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 > 
-> Residual standard error: 0.89 on 496 degrees of freedom
-> Multiple R-squared:  0.203,	Adjusted R-squared:  0.198 
-> F-statistic: 42.1 on 3 and 496 DF,  p-value: <2e-16
+> Residual standard error: 0.936 on 496 degrees of freedom
+> Multiple R-squared:  0.157,	Adjusted R-squared:  0.152 
+> F-statistic: 30.8 on 3 and 496 DF,  p-value: <2e-16
 
 # Pour comparer avec aov
 res1.aov <- aov(y ~ x * w, data = jd.continue)
@@ -325,11 +325,11 @@ res1.aov <- aov(y ~ x * w, data = jd.continue)
 # L'intercepte est inclus
 summary(res1.aov, intercept = TRUE)
 >              Df Sum Sq Mean Sq F value  Pr(>F)    
-> (Intercept)   1     16    16.1    20.3 8.2e-06 ***
-> x             1     16    16.2    20.5 7.5e-06 ***
-> w             1     21    20.8    26.2 4.4e-07 ***
-> x:w           1     63    63.2    79.7 < 2e-16 ***
-> Residuals   496    393     0.8                    
+> (Intercept)   1     19    19.2   21.93 3.7e-06 ***
+> x             1     33    32.9   37.54 1.8e-09 ***
+> w             1      9     8.5    9.72  0.0019 ** 
+> x:w           1     40    39.5   45.08 5.2e-11 ***
+> Residuals   496    435     0.9                    
 > ---
 > Signif. codes:  
 > 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
@@ -349,11 +349,11 @@ res1.anova
 > 
 > Response: y
 >             Sum Sq  Df F value  Pr(>F)    
-> (Intercept)      0   1    0.48    0.49    
-> x                2   1    1.93    0.17    
-> w               27   1   33.85 1.1e-08 ***
-> x:w             63   1   79.69 < 2e-16 ***
-> Residuals      393 496                    
+> (Intercept)      1   1    1.54 0.21488    
+> x               14   1   15.73 8.4e-05 ***
+> w               11   1   12.24 0.00051 ***
+> x:w             40   1   45.08 5.2e-11 ***
+> Residuals      435 496                    
 > ---
 > Signif. codes:  
 > 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
@@ -588,6 +588,54 @@ La Figure \@ref(fig:jn1) montre le graphique Johnson-Neyman. La zone bleue indiq
 
 Dans cet exemple, plus l'unité à un niveau de modérateur élevé (en termes absolus), plus il accentue l'effet de la variable indépendante (zones bleues). Le modérateur joue donc un rôle très important dans ce modèle.
 
-<!-- ## TODO  AJOUTER INTERPÉTATION STAT -->
+## Rapport l'analyse de modération
+
+Pour rapporter l'analyse de modération, plusieurs éléments peuvent être pertinents à rapporter et varient en fonction des domaines. Il importe de rapporter le ou les effets d'interaction. Ensuite, l'ajout de graphique, comme le Johnson-Neyman ou celui des pentes simples permettent de mieux comprendre, mais surtout de mieux visualiser les interprétations qui auront été rapporter en texte dans l'article. C'est un appui primordial pour le lecteur qui devra lui aussi dégager les tendances des résultats, mais qui, contrairement aux auteurs, n'est pas nécessairement très familier avec le jeu de données. En plus de ces informations primordiales, certains domaines de recherche demanderont de rapporter le modèle de régression réalisé (voir [Rapporter la régression]).
 
 # Exercices {#exercice-lineaire .unnumbered}
+
+### Question 1 {-}
+
+1. Avec le jeu de données `ToothGrowth`, réaliser l'anova de `len` par rapport à l'interaction entre `supp` et `dose`. Consulter le sommaire.
+
+
+### Question 2 {-}
+
+2. Avec le jeu de données `ToothGrowth`, réaliser le régression de `len` par rapport à l'interaction entre `supp` et `dose`. Consulter le sommaire.
+
+### Question 3 {-}
+
+3. Créer un jeu de données pour la structure de la Figure\ \@ref(fig:modex1). Le jeu de données est standardisé et contient 123 sujets.
+
+<div class="figure" style="text-align: center">
+<img src="image//modex1.png" alt="Diagramme de trajectoire (Question 3)" width="50%" height="50%" />
+<p class="caption">(\#fig:modex1)Diagramme de trajectoire (Question 3)</p>
+</div>
+
+### Question 4 {-}
+
+4. Créer un jeu de données pour la structure de la Figure\ \@ref(fig:modex2). Le jeu de données est standardisé et contient 456 sujets.
+
+<div class="figure" style="text-align: center">
+<img src="image//modex2.png" alt="Diagramme de trajectoire (Question 4)" width="50%" height="50%" />
+<p class="caption">(\#fig:modex2)Diagramme de trajectoire (Question 4)</p>
+</div>
+
+### Question 5 {-}
+
+5. Créer un jeu de données pour la structure de la Figure\ \@ref(fig:modex3). Le jeu de données est standardisé et contient 789 sujets.
+
+<div class="figure" style="text-align: center">
+<img src="image//modex3.png" alt="Diagramme de trajectoire (Question 5)" width="50%" height="50%" />
+<p class="caption">(\#fig:modex3)Diagramme de trajectoire (Question 5)</p>
+</div>
+
+### Question 6 {-}
+
+6. Avec le jeu de données de la Question\ 5, réaliser l'analyse de médiation.
+
+### Question 7 {-}
+
+7. Avec le jeu de données `ToothGrowth`, analyser l'interaction entre `supp` et `dose` sur la variable dépendante `len`. Produire les graphiques
+
+

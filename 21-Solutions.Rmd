@@ -224,9 +224,9 @@ fibonnaci2(n)
 jd <- DataEditR::data_edit()
 ```
 
-La Figure\ \@ref(fig:data_ed) montre le résultat dans le tableur.
+La Figure\ \@ref(fig:dataed2) montre le résultat dans le tableur.
 
-```{r data_ed, fig.cap="Entrée des données", fig.align='center',echo = FALSE, out.height="50%", out.width="50%"}
+```{r, dataed2, fig.cap="Entrée des données", fig.align='center', echo = FALSE, out.height="50%", out.width="50%"}
 knitr::include_graphics("image/data_edit.PNG")
 ```
 
@@ -272,7 +272,7 @@ iris %>%
 
 4. Prenez le jeu de données `mtcars` et produisez un diagramme de dispersion montrant la puissance brute (en chevaux) (`hp`) par rapport à consommation en km/l (basé sur `mpg`) tout en soulignant l'effet du nombre de cylindres (`cyl`). **Attention** la fonction `as_factor` permettra d'utiliser `cyl` en facteur et le rapprt mpg vers kml approximativement $.425$.
 
-```{r,  fig.cap="Visualiation de kml par hp en fonction de cyl (question 4)", fig.align='center', out.height="40%", out.width="40%"}
+```{r,  fig.cap="Visualisation de kml par hp en fonction de cyl (question 4)", fig.align='center', out.height="40%", out.width="40%"}
 mtcars %>% 
   mutate(kml = .425 * mpg,
          cyl = as_factor(cyl)) %>% 
@@ -284,7 +284,7 @@ mtcars %>%
 
 5. Avec le même jeu de données et objectif que la question précédente, ajouter une droite de prédiction avec `geom_smooth()` selon un modèle linéare (`lm`) et sans erreur standard (`se`).
 
-```{r,  fig.cap="Visualiation de kml par hp en fonction de cyl (question 5)", fig.align='center', out.height="40%", out.width="40%"}
+```{r,  fig.cap="Visualisation de kml par hp en fonction de cyl (question 5)", fig.align='center', out.height="40%", out.width="40%"}
 mtcars %>% 
   mutate(kml = .425 * mpg,
          cyl = as_factor(cyl)) %>% 
@@ -550,17 +550,231 @@ quantile(correl, probs = c(alpha/2, 1-alpha/2))
 ```
 
 ## Modèles linéaires {-}
-<!-- ### Question 1 {-} -->
-<!-- faire une anova -->
-<!-- ### Question 2 {-} -->
-<!-- faire une régression -->
-<!-- ### Question 3 {-} -->
-<!-- créer un modèle -->
-<!-- ### Question 4 {-} -->
-<!-- créer un modèle -->
-<!-- ### Question 5 {-} -->
-<!-- créer un modèle -->
-<!-- ### Question 6 {-} -->
-<!-- mediaiton -->
-<!-- ### Question 7 {-} -->
-<!-- moderation -->
+
+### Question 1 {-}
+
+1. Avec le jeu de données `ToothGrowth`, réaliser l'anova de `len` par rapport à l'interaction entre `supp` et `dose`. Consulter le sommaire.
+
+```{r}
+res.aov <- aov(len ~ supp * dose, data = ToothGrowth)
+summary(res.aov)
+```
+
+### Question 2 {-}
+
+2. Avec le jeu de données `ToothGrowth`, réaliser le régression de `len` par rapport à l'interaction entre `supp` et `dose`. Consulter le sommaire.
+
+```{r}
+res.lm <- lm(len ~ supp * dose, data = ToothGrowth)
+summary(res.lm)
+```
+
+### Question 3 {-}
+
+3. Créer un jeu de données pour la structure de la Figure\ \@ref(fig:modex1). Le jeu de données est standardisé et contient 123 sujets.
+
+```{r}
+n <- 123
+set.seed(n)
+x <- rnorm(n)
+y <- .5 * x + sqrt(1-.5^2) * rnorm(n)
+z <- .5 * y + sqrt(1-.5^2) * rnorm(n)
+jd <- data.frame(x = x, y = y, z = z)
+head(jd)
+```
+
+### Question 4 {-}
+
+4. Créer un jeu de données pour la structure de la Figure\ \@ref(fig:modex2). Le jeu de données est standardisé et contient 456 sujets.
+
+```{r}
+n <- 456
+set.seed(n)
+q <- rnorm(n)
+w <- .7 * q + sqrt(1-(.7)^2) * rnorm(n)
+r <- -.7 * w + sqrt(1-(-.7)^2) * rnorm(n)
+e <- -.8 * q + sqrt(1-(-.8)^2) * rnorm(n)
+y <- .8 * e + sqrt(1-(.8)^2) * rnorm(n)
+jd <- data.frame(q = q, w = w, e = e, r = r,y = y)
+head(jd)
+```
+
+
+### Question 5 {-}
+
+5. Créer un jeu de données pour la structure de la Figure\ \@ref(fig:modex3). Le jeu de données est standardisé et contient 789 sujets.
+
+Pour faciliter la résolution de cette quesiton, il est beaucoup plus simplede passer par le [Cas général] de génération de données et d'utiliser la fonction maison `beta2cov` qui s'importe en collant la syntaxe directement dans l'environnement **R** ou qui est disponible dans le package `pathanalysis` vu dans la section [Rapporter l'analyse de médiation].
+
+```{r}
+library(pathanalysis)
+n <- 789
+set.seed(n)
+
+# Créer de la matrice de coefficients de régression
+B <- matrix(c(0,  0,  0, 0,
+             .3,  0,  0, 0,
+            -.3,  0,  0, 0,
+             .1, .4,-.4, 0),
+            ncol = 4, nrow = 4,
+            byrow = TRUE,
+            dimnames = list(c("x", "y", "w", "z"),
+                            c("x", "y", "w", "z")))
+# L'argument `dimnames` ne sert qu'à nommer les dimensions
+
+# Produire la matrice de covariance à partir de la  matrice Beta
+S <- beta2cov(B)
+
+# Générer les données
+jd <- MASS::mvrnorm(n = n,
+                    mu = rep(0, ncol(S)),
+                    Sigma = S)
+head(jd)
+```
+
+### Question 6 {-}
+
+6. Avec le jeu de données de la Question\ 5, réaliser l'analyse de médiation.
+
+Il existe plusieurs façona de faire l'analyse de l'analyse de médiation. Voici celle avec la fonction `mediation()` du package `pathanalysis`.
+
+```{r}
+# Vérifier que les variables ont bien des nom de colonnes
+colnames(jd) <- c("x", "y", "w", "z")
+
+# La fonction `mediation()` du package `pathanalysis`
+mediation(z ~ w ~ y ~ x, data = jd, standardized = TRUE)
+```
+
+
+### Question 7 {-}
+
+7. Avec le jeu de données `ToothGrowth`, analyser l'interaction entre `supp` et `dose` sur la variable dépendante `len`. Produire les graphiques
+
+```{r moderation7}
+res.lm <- lm(len ~ supp * dose, data = ToothGrowth)
+summary(res.lm)
+```
+
+Le graphique des pentes simples.
+
+```{r moderation71, fig.cap="Le graphique des pentes simples (question 7)", fig.align='center', out.height="40%", out.width="40%"}
+library(interactions)
+interact_plot(model = res.lm,
+              pred = dose,
+              modx = supp)
+```
+
+Le graphique de Johnson-Neyman.
+
+```{r moderation72, fig.cap="Le graphique de Johnson-Neyman (question 7)", fig.align='center', out.height="40%", out.width="40%"}
+sim_slopes(model = res.lm,
+           pred = dose,
+           modx = supp,
+           jnplot = TRUE)
+```
+
+## Analyses factorielles {-}
+
+### Question 1 {-}
+1. Créer un jeu de données pour la structure de la Figure\ \@ref(fig:structcp3). Le jeu de données est standardisé et contient 584 sujets.
+```{r}
+# Programmer la structure factorielle
+FS <- matrix(c(.5, .5, .3, .2,  0,  0,  0,  0,  0,
+                0,  0,  0, .7, .7, .7,  0,  0,  0,
+                0,  0,  0,  0,  0, .2, .3, .4, .3),
+             ncol = 3, nrow = 9,
+             dimnames = list(paste0("i",1:9),
+                             paste0("F",1:3)))
+# L'argument `dimnames` ne sert qu'à nommer les dimensions
+
+# Transformer ne matrice de corrélation
+R <- FS %*% t(FS)
+
+# Ajouter le bruit dans la diagonale
+diag(R) <- 1
+
+# Générer le jeu de données
+set.seed(584)
+jd <- MASS::mvrnorm(n = 584,
+                    mu = rep(0, ncol(R)),
+                    Sigma = R)
+
+# Voici les premières données.
+head(jd)
+```
+
+### Question 2 {-}
+2. Utiliser la fonction `eigen()` pour extraire les valeurs propres, la variance expliquée de chacune d'elle et les loadings du jeu de données de la Question\ 1.
+```{r}
+# L'analyse en composantes principales
+res.acp <- eigen(cor(jd))
+
+# Les valeurs propres
+res.acp$values
+
+# Leur variance expliquée
+res.acp$values / ncol(jd)
+
+# Les loadings
+res.acp$vectors %*% diag(sqrt(res.acp$values))
+```
+
+### Question 3 {-}
+3. Créer une fonction maison pour le test de Kaiser et utiliser le jeu de données créé à la Question\ 1.
+
+```{r}
+kaiser.maison <- function(eig, crit = 1){
+  return(sum(eig > crit))
+}
+kaiser.maison(eig = res.acp$values)
+```
+### Question 4 {-}
+4. Créer une fonction maison pour l'analyse parallèle et utiliser le jeu de données créé à la Question\ 1.
+
+```{r}
+parallel.maison <- function(eig, ns, nreps = 1000, percentile = .5){
+  # Répliquer (replicate) l'ACP (eigen) d'une matrice 
+  # de corrélation (cor) de données aléatoires (rnorm)
+  S.eig <- replicate(n = nreps, 
+                     eigen(cor(matrix(rnorm(length(eig)*ns), 
+                                      ncol = length(eig))))$values)
+  crit <- apply(X = S.eig,
+                FUN = quantile,
+                MARGIN = 1, 
+                probs = percentile)
+  return(min(which(eig < crit)) - 1)
+}
+parallel.maison(res.acp$values, ns = 584)
+```
+
+### Question 5 {-}
+5. Utiliser `Rnest` avec le jeu de données créé à la Question\ 1. Produire une graphique.
+```{r}
+library(Rnest)
+res <- nest(jd)
+res
+plot(res)
+```
+
+### Question 6 {-}
+6. Utiliser `factanal()` pour 3 facteurs avec le jeu de données créé à la Question\ 1. Extraire les scores et les loadings.
+
+```{r}
+# L'analyse factorielle
+res.fa <- factanal(jd,
+         factors = 3,
+         scores = "regression")
+res.fa
+
+# Extraire les scores
+res.fa$scores
+
+# Extraire les loadings
+loadings(res.fa)
+# ou pour voir tous les loadings
+res.fa$loadings[]
+```
+
+
+

@@ -757,6 +757,8 @@ Les résultats sont illustrés dans la Figure\ \@ref(fig:resmed). Les coefficien
 </tbody>
 </table>
 
+
+
 Calculer les valeurs-$t$ et valeurs-$p$ est envisageable en utilisant les résultats déjà recueillis. La valeur-$t$ est le ratio entre l'estimateur et son erreur type, la valeur-$p$ est la rareté d'observer cette valeur-$t$ ou une valeur plus rare par rapport à l'hypothèse nulle avec un degré de liberté de `dl = n - p`, soit plus exactement le nombre d'unités moins le nombre de variables indépendantes.
 
 
@@ -844,6 +846,6 @@ Voici comment ces résultats peuvent être rapportés dans un article scientifiq
 <p class="caption">(\#fig:mtmed)Résultats de l'analyse de  médiation</p>
 </div>
 
-En plus de cets informations primordiales, certains domaines de recherche demanderont, en plus, de rapporter les deux régressions réalisées (voir [Rapporter la régression]), soit les liens directs pertinents et les modèles de régression, et également, l'aspect partiel ou complet de la médiation^[Même si cela n'est pas approprié].
+En plus de ces informations primordiales, certains domaines de recherche demanderont, en plus, de rapporter les deux régressions réalisées (voir [Rapporter la régression]), soit les liens directs pertinents et les modèles de régression, et également, l'aspect partiel ou complet de la médiation^[Même si cela n'est pas approprié].
 
 <!-- ## TODO EXTENSION MATRICIELLE -->

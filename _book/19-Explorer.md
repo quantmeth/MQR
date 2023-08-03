@@ -513,4 +513,4 @@ Les résultats sont toutefois légèrement différents pour les loadings. Cela e
 
 ## Rapporter l'analyse factorielle
 
-
+Lorsqu'il faut rapporter l'analyse factorielle, plusieurs éléments peuvent être rapportés dont certains varient fonction des habitudes du domaine de recherche. Les informations cruciales qu'il faut fournir sont les variances expliquées par chacun des facteurs retenus (`Proportion Var` ou ` Cumulative Var` dans `factanal()` ou les communalités avec l'ACP). Le deuxième éléments sont les loadings de la structure finale avec ou sans les loadings *négligeables*, c'est-à-dire ceux de faible amplitude, comme le fait `factanal()` qui exclut les loadings de moins de .1 par défaut. Le tableau de loadings rapporté peut exclure les plus petits que .1, .3 ou .4, selon les recommandations psychométriques du domaine. Il est possible également de tous les conserver. Enfin, si une procédure de détermination du nombre de facteurs est utilisé (voir la prochaine section [Réduire]), la ou les méthodes sélectionnées ainsi que leur résultats sont rapportés. Autrement, il faut justifier le nombre de facteurs retenus.

@@ -471,6 +471,8 @@ Pour réaliser des opérations sous certaines conditions ou opérer des décisio
 </tbody>
 </table>
 
+
+
 **R** teste si les valeurs de la variable correspondent à l'opérateur logique en les déclarant comme vraies (`TRUE`) ou fausses (`FALSE`).
 
 
