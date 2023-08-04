@@ -1085,7 +1085,7 @@ Figure 20.20: Le graphique des pentes simples (question 7)
 <span id="cb340-10"><a href="solutions.html#cb340-10" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">0.2206</span> <span class="fl">0.1518</span> <span class="fl">0.1389</span> <span class="fl">0.1094</span> <span class="fl">0.0996</span> <span class="fl">0.0872</span> <span class="fl">0.0846</span> <span class="fl">0.0559</span></span>
 <span id="cb340-11"><a href="solutions.html#cb340-11" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">9</span>] <span class="fl">0.0520</span></span>
 <span id="cb340-12"><a href="solutions.html#cb340-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb340-13"><a href="solutions.html#cb340-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Les loadings</span></span>
+<span id="cb340-13"><a href="solutions.html#cb340-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Les loadings (pour toutes les dimensions)</span></span>
 <span id="cb340-14"><a href="solutions.html#cb340-14" aria-hidden="true" tabindex="-1"></a>res.acp<span class="sc">$</span>vectors <span class="sc">%*%</span> <span class="fu">diag</span>(<span class="fu">sqrt</span>(res.acp<span class="sc">$</span>values))</span>
 <span id="cb340-15"><a href="solutions.html#cb340-15" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>          [,<span class="dv">1</span>]    [,<span class="dv">2</span>]    [,<span class="dv">3</span>]     [,<span class="dv">4</span>]     [,<span class="dv">5</span>]    [,<span class="dv">6</span>]</span>
 <span id="cb340-16"><a href="solutions.html#cb340-16" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>  [<span class="dv">1</span>,] <span class="fl">0.15072</span> <span class="sc">-</span><span class="fl">0.6776</span>  <span class="fl">0.1101</span> <span class="sc">-</span><span class="fl">0.10901</span> <span class="sc">-</span><span class="fl">0.16094</span>  <span class="fl">0.6295</span></span>
@@ -1148,17 +1148,17 @@ Figure 20.20: Le graphique des pentes simples (question 7)
 <li>Utiliser <code>Rnest</code> avec le jeu de données créé à la Question 1. Produire une graphique.</li>
 </ol>
 <div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb343-1"><a href="solutions.html#cb343-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Rnest)</span>
-<span id="cb343-2"><a href="solutions.html#cb343-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
-<span id="cb343-3"><a href="solutions.html#cb343-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Attachement du package <span class="sc">:</span> <span class="st">'Rnest'</span></span>
-<span id="cb343-4"><a href="solutions.html#cb343-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> L<span class="st">'objet suivant est masqué depuis '</span>package<span class="sc">:</span>tidyr<span class="st">':</span></span>
-<span id="cb343-5"><a href="solutions.html#cb343-5" aria-hidden="true" tabindex="-1"></a><span class="st">&gt; </span></span>
-<span id="cb343-6"><a href="solutions.html#cb343-6" aria-hidden="true" tabindex="-1"></a><span class="st">&gt;     nest</span></span>
-<span id="cb343-7"><a href="solutions.html#cb343-7" aria-hidden="true" tabindex="-1"></a><span class="st">&gt; L'</span>objet suivant est masqué depuis <span class="st">'package:stats'</span><span class="sc">:</span></span>
-<span id="cb343-8"><a href="solutions.html#cb343-8" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> </span>
-<span id="cb343-9"><a href="solutions.html#cb343-9" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span>     loadings</span>
+<span id="cb343-2"><a href="solutions.html#cb343-2" aria-hidden="true" tabindex="-1"></a><span class="cn">FALSE</span> </span>
+<span id="cb343-3"><a href="solutions.html#cb343-3" aria-hidden="true" tabindex="-1"></a><span class="cn">FALSE</span> Attachement du package <span class="sc">:</span> <span class="st">'Rnest'</span></span>
+<span id="cb343-4"><a href="solutions.html#cb343-4" aria-hidden="true" tabindex="-1"></a><span class="cn">FALSE</span> L<span class="st">'objet suivant est masqué depuis '</span>package<span class="sc">:</span>tidyr<span class="st">':</span></span>
+<span id="cb343-5"><a href="solutions.html#cb343-5" aria-hidden="true" tabindex="-1"></a><span class="st">FALSE </span></span>
+<span id="cb343-6"><a href="solutions.html#cb343-6" aria-hidden="true" tabindex="-1"></a><span class="st">FALSE     nest</span></span>
+<span id="cb343-7"><a href="solutions.html#cb343-7" aria-hidden="true" tabindex="-1"></a><span class="st">FALSE L'</span>objet suivant est masqué depuis <span class="st">'package:stats'</span><span class="sc">:</span></span>
+<span id="cb343-8"><a href="solutions.html#cb343-8" aria-hidden="true" tabindex="-1"></a><span class="cn">FALSE</span> </span>
+<span id="cb343-9"><a href="solutions.html#cb343-9" aria-hidden="true" tabindex="-1"></a><span class="cn">FALSE</span>     loadings</span>
 <span id="cb343-10"><a href="solutions.html#cb343-10" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">nest</span>(jd)</span>
 <span id="cb343-11"><a href="solutions.html#cb343-11" aria-hidden="true" tabindex="-1"></a>res</span>
-<span id="cb343-12"><a href="solutions.html#cb343-12" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> At <span class="dv">95</span>% confidence, Nest Eigenvalue Sufficiency <span class="fu">Test</span> (NEST) suggests <span class="dv">3</span> factors.</span>
+<span id="cb343-12"><a href="solutions.html#cb343-12" aria-hidden="true" tabindex="-1"></a><span class="cn">FALSE</span> At <span class="dv">95</span>% confidence, Nest Eigenvalue Sufficiency <span class="fu">Test</span> (NEST) suggests <span class="dv">3</span> factors.</span>
 <span id="cb343-13"><a href="solutions.html#cb343-13" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(res)</span></code></pre></div>
 <div class="inline-figure"><img src="21-Solutions_files/figure-html/unnamed-chunk-39-1.png" width="672"></div>
 </div>
@@ -1810,17 +1810,14 @@ Figure 20.20: Le graphique des pentes simples (question 7)
 <span id="cb344-640"><a href="solutions.html#cb344-640" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Proportion Var   <span class="fl">0.166</span>   <span class="fl">0.065</span>   <span class="fl">0.047</span></span>
 <span id="cb344-641"><a href="solutions.html#cb344-641" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Cumulative Var   <span class="fl">0.166</span>   <span class="fl">0.232</span>   <span class="fl">0.278</span></span>
 <span id="cb344-642"><a href="solutions.html#cb344-642" aria-hidden="true" tabindex="-1"></a><span class="co"># ou pour voir tous les loadings</span></span>
-<span id="cb344-643"><a href="solutions.html#cb344-643" aria-hidden="true" tabindex="-1"></a>res.fa<span class="sc">$</span>loadings[]</span>
-<span id="cb344-644"><a href="solutions.html#cb344-644" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>     Factor1 Factor2  Factor3</span>
-<span id="cb344-645"><a href="solutions.html#cb344-645" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> i1  <span class="fl">0.02377</span>  <span class="fl">0.4743</span>  <span class="fl">0.06556</span></span>
-<span id="cb344-646"><a href="solutions.html#cb344-646" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> i2  <span class="fl">0.02849</span>  <span class="fl">0.3752</span> <span class="sc">-</span><span class="fl">0.04153</span></span>
-<span id="cb344-647"><a href="solutions.html#cb344-647" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> i3  <span class="fl">0.01940</span>  <span class="fl">0.4300</span>  <span class="fl">0.05369</span></span>
-<span id="cb344-648"><a href="solutions.html#cb344-648" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> i4  <span class="fl">0.71095</span>  <span class="fl">0.1527</span>  <span class="fl">0.00653</span></span>
-<span id="cb344-649"><a href="solutions.html#cb344-649" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> i5  <span class="fl">0.71632</span>  <span class="fl">0.0547</span> <span class="sc">-</span><span class="fl">0.17282</span></span>
-<span id="cb344-650"><a href="solutions.html#cb344-650" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> i6  <span class="fl">0.69060</span> <span class="sc">-</span><span class="fl">0.0862</span>  <span class="fl">0.22903</span></span>
-<span id="cb344-651"><a href="solutions.html#cb344-651" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> i7  <span class="fl">0.00348</span>  <span class="fl">0.0251</span>  <span class="fl">0.24697</span></span>
-<span id="cb344-652"><a href="solutions.html#cb344-652" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> i8 <span class="sc">-</span><span class="fl">0.01169</span> <span class="sc">-</span><span class="fl">0.0144</span>  <span class="fl">0.40274</span></span>
-<span id="cb344-653"><a href="solutions.html#cb344-653" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> i9  <span class="fl">0.02029</span>  <span class="fl">0.0302</span>  <span class="fl">0.32649</span></span></code></pre></div>
+<span id="cb344-643"><a href="solutions.html#cb344-643" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(res.fa<span class="sc">$</span>loadings[])</span>
+<span id="cb344-644"><a href="solutions.html#cb344-644" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>    Factor1 Factor2  Factor3</span>
+<span id="cb344-645"><a href="solutions.html#cb344-645" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> i1  <span class="fl">0.0238</span>  <span class="fl">0.4743</span>  <span class="fl">0.06556</span></span>
+<span id="cb344-646"><a href="solutions.html#cb344-646" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> i2  <span class="fl">0.0285</span>  <span class="fl">0.3752</span> <span class="sc">-</span><span class="fl">0.04153</span></span>
+<span id="cb344-647"><a href="solutions.html#cb344-647" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> i3  <span class="fl">0.0194</span>  <span class="fl">0.4300</span>  <span class="fl">0.05369</span></span>
+<span id="cb344-648"><a href="solutions.html#cb344-648" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> i4  <span class="fl">0.7109</span>  <span class="fl">0.1527</span>  <span class="fl">0.00653</span></span>
+<span id="cb344-649"><a href="solutions.html#cb344-649" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> i5  <span class="fl">0.7163</span>  <span class="fl">0.0547</span> <span class="sc">-</span><span class="fl">0.17282</span></span>
+<span id="cb344-650"><a href="solutions.html#cb344-650" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> i6  <span class="fl">0.6906</span> <span class="sc">-</span><span class="fl">0.0862</span>  <span class="fl">0.22903</span></span></code></pre></div>
 
 </div>
 </div>
@@ -1913,7 +1910,7 @@ Figure 20.20: Le graphique des pentes simples (question 7)
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2023-08-03.</p>
+    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2023-08-04.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

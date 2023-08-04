@@ -717,7 +717,7 @@ res.acp$values
 # Leur variance expliquée
 res.acp$values / ncol(jd)
 
-# Les loadings
+# Les loadings (pour toutes les dimensions)
 res.acp$vectors %*% diag(sqrt(res.acp$values))
 ```
 
@@ -751,7 +751,7 @@ parallel.maison(res.acp$values, ns = 584)
 
 ### Question 5 {-}
 5. Utiliser `Rnest` avec le jeu de données créé à la Question\ 1. Produire une graphique.
-```{r}
+```{r, warning=FALSE, comment=FALSE}
 library(Rnest)
 res <- nest(jd)
 res
@@ -774,7 +774,7 @@ res.fa$scores
 # Extraire les loadings
 loadings(res.fa)
 # ou pour voir tous les loadings
-res.fa$loadings[]
+head(res.fa$loadings[])
 ```
 
 

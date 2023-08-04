@@ -1026,7 +1026,7 @@ res.acp$values / ncol(jd)
 > [1] 0.2206 0.1518 0.1389 0.1094 0.0996 0.0872 0.0846 0.0559
 > [9] 0.0520
 
-# Les loadings
+# Les loadings (pour toutes les dimensions)
 res.acp$vectors %*% diag(sqrt(res.acp$values))
 >          [,1]    [,2]    [,3]     [,4]     [,5]    [,6]
 >  [1,] 0.15072 -0.6776  0.1101 -0.10901 -0.16094  0.6295
@@ -1087,17 +1087,17 @@ parallel.maison(res.acp$values, ns = 584)
 
 ```r
 library(Rnest)
-> 
-> Attachement du package : 'Rnest'
-> L'objet suivant est masqué depuis 'package:tidyr':
-> 
->     nest
-> L'objet suivant est masqué depuis 'package:stats':
-> 
->     loadings
+FALSE 
+FALSE Attachement du package : 'Rnest'
+FALSE L'objet suivant est masqué depuis 'package:tidyr':
+FALSE 
+FALSE     nest
+FALSE L'objet suivant est masqué depuis 'package:stats':
+FALSE 
+FALSE     loadings
 res <- nest(jd)
 res
-> At 95% confidence, Nest Eigenvalue Sufficiency Test (NEST) suggests 3 factors.
+FALSE At 95% confidence, Nest Eigenvalue Sufficiency Test (NEST) suggests 3 factors.
 plot(res)
 ```
 
@@ -1750,17 +1750,14 @@ loadings(res.fa)
 > Proportion Var   0.166   0.065   0.047
 > Cumulative Var   0.166   0.232   0.278
 # ou pour voir tous les loadings
-res.fa$loadings[]
->     Factor1 Factor2  Factor3
-> i1  0.02377  0.4743  0.06556
-> i2  0.02849  0.3752 -0.04153
-> i3  0.01940  0.4300  0.05369
-> i4  0.71095  0.1527  0.00653
-> i5  0.71632  0.0547 -0.17282
-> i6  0.69060 -0.0862  0.22903
-> i7  0.00348  0.0251  0.24697
-> i8 -0.01169 -0.0144  0.40274
-> i9  0.02029  0.0302  0.32649
+head(res.fa$loadings[])
+>    Factor1 Factor2  Factor3
+> i1  0.0238  0.4743  0.06556
+> i2  0.0285  0.3752 -0.04153
+> i3  0.0194  0.4300  0.05369
+> i4  0.7109  0.1527  0.00653
+> i5  0.7163  0.0547 -0.17282
+> i6  0.6906 -0.0862  0.22903
 ```
 
 
