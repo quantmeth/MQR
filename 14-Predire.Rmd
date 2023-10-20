@@ -759,7 +759,7 @@ Par souci esthétique la diagonale de $\mathbf{R}_{\text{partielle}}$ est souven
 
 La corrélation semi partielle mesure le degré d'association *asymétrique* entre une variable indépendante et dépendante en contrôlant pour toutes les autres. Conceptuellement, il s'agit de retirer l'effet d'un ensemble de variables *contrôles* sur la variable dépendante, puis d'utiliser la variable indépendante comme nouveau prédicteur. Autrement dit, il s'agit de la **contribution ajouté** d'une variable sur une autre.
 
-Le calcul de la matrice de corrélation semi partielle part de la matrice de corrélation partielle et applique un dénominateur pondérant les contributions des autres variables dans la matrice [@Seongho15]. La formule est représenté par l'équation\ \@ref(eq:semipartielle)
+Le calcul de la matrice de corrélation semi partielle part de la matrice de corrélation partielle et applique un dénominateur pondérant les contributions des autres variables dans la matrice [@Seongho15]. La formule est représentée par l'équation\ \@ref(eq:semipartielle).
 
 \begin{equation}
 \frac{\mathbf{R}_{\text{partielle}}}{{\sqrt{\text{diag}(\mathbf{S})}\sqrt{|\mathbf{S}^{-1}-(\frac{((\mathbf{S}^{-1})^2)^{\prime}}{\text{diag}(\mathbf{S}^{-1})}})^{\prime}|}}

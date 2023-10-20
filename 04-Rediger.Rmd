@@ -148,7 +148,7 @@ Cette section n'est qu'un survol des possibilités. Pour aller plus loin, il y a
 
 8. Rédiger une fonction calculant un score-$z$ pour une variable. Rappel: un score-$z$, correspond à $z=\frac{x-\mu}{\sigma}$.
 
-9. Rédiger une fonction calculant la médiane d'une variable (ne recopiez pas celle de ce livre).
+9. Rédiger une fonction calculant la médiane d'une variable (ne pas recopier celle de ce livre).
 
 10. Rédiger une fonction qui pivote une liste de $k$ éléments par $n$. Par exemple, une liste de six ($k=6$ comme $[1,2,3,4,5,6]$) pivoté de deux ($n=2$) devient ($[3,4,5,6,1,2]$).
 

@@ -282,6 +282,26 @@ Voici comment rapporter l'ANOVA dans un article scientifique.
 
 > Une ANOVA est réalisée pour comparer les groupes sur un certain score. Les résutats montrent une différence significative (pour un $\alpha = .05$), $F(4, 95) = 13.998, p < .001$.
 
+### La sortie de `aov()`
+
+Une petite digression pour parler de la sortie de `aov()`. Normalement, **R** produit [des listes][Créer des listes] comme sortie, particulièrement en ce qui a trait aux analyses statistiques. Le cas de `aov()` est différent : le sommaire est une liste vide. 
+
+
+```r
+sommaire <- summary(res)
+# Extraire les éléments de la sortie `sommaire`
+names(sommaire)
+> NULL
+```
+Pour avoir accès directement au tableau de résultats du sommaire pour le manipuler, il faut ajouter `[[1]]` à la suite du code, ce qui permet d'atteindre les résultats. Les manipulations usuelles d'une liste sont maintenant réalisables.
+
+
+```r
+sommaire <- summary(res)[[1]]
+names(sommaire)
+> [1] "Df"      "Sum Sq"  "Mean Sq" "F value" "Pr(>F)"
+```
+Le symbole `[[1]]` indique que seulement le premier élément de la liste est désiré. Il s'agit d'une formule renforcée [des crochets][Référer à des sous-éléments] pour ne choisir qu'un seul élément de la liste. Et dans cette liste, on retrouve la liste contenant des résultats. En d'autres termes, la sortie de `aov()` est une liste. Il y a bien deux niveaux de liste dans cette sortie, la première rendant plus difficile à la seconde. Une petit idiosyncrasie de **R**.
 
 ## Les tests posthoc
 

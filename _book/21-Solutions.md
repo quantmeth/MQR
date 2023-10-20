@@ -144,7 +144,7 @@ Voir [Les fonctions] pour plus d'informations. Les scores-$z$ sont abordés plus
 
 ### Question 9 {-}
 
-9. Rédiger une fonction calculant la médiane d'une variable (ne recopiez pas celle de ce livre).
+9. Rédiger une fonction calculant la médiane d'une variable (ne pas recopier celle de ce livre).
 
 Voici une autre fonction calculant une médiane d'un vecteur.
 

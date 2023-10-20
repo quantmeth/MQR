@@ -602,6 +602,7 @@ kbl(tab2, align = "c", booktabs = TRUE, caption = "Tableau de contingence étend
 ```
 
 ### Le $\chi^2$ pour table de contingence
+
 Maintenant que la question statistique et que l'hypothèse nulle sont posées, comment mesurer le degré selon lequel les données s'écartent des attentes *théoriques*. Le $\chi^2$ (khi-carré) permet de calculer une telle mesure. Le $\chi^2$ correspond à la distance entre une valeur observée et théorique au carré, pondérée par la valeur théorique.
 $$ \chi^2_v = \sum_{i=1}^{l}\sum_{j=1}^c(\frac{(o_{ij}-t_{ij})^2}{t_{ij}})$$
 où $o$ correspond aux valeurs observées, $t$ réfère aux valeurs théoriques, $v$ représente les degrés de liberté et $i$ et $j$ les lignes et colonnes respectivement. Le degré de liberté est 
@@ -707,4 +708,8 @@ fisher.test(donnees$sexe, donnees$tabac)
 
 > La relation entre le sexe et le consommation de tabac est investiguée. Il appert que cette relation n'est pas statistiquement significative avec une seuil $\alpha = .05$, $chi^2(`r resultat$parameter`) = `r resultat$statistic`$,\ $p = `r resultat$p.value`$. Le test exact de Fisher est calculé également et, pareillement,  ne rejette pas l'hypothèse nulle, $p =`r resultat.fisher$p.value`$.
 
+### La correction de Yates
 
+Même si c'est généralement le test classique de Pearson qui est utilisé, le $\chi^2$ avec correction de Yates, l'option par défaut de `chisq.test()`, est préférable. C'est un test un peu plus conservateur qui compense pour les déviations de la distribution de probabilité théorique. La correction consiste à faire la différence absolue entre la fréquence observée et théorique, puis de soustraire $\frac{1}{2}$, ce qui est représentée par l'équation suivante. 
+
+$$ \chi^2_v = \sum_{i=1}^{l}\sum_{j=1}^c(\frac{(|o_{ij}-t_{ij}|-\frac{1}{2})^2}{t_{ij}})$$

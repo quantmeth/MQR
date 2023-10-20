@@ -652,9 +652,9 @@ et d'un vecteur de variances
 \text{diag}(\mathbf{\Sigma}) = \left(\sigma^2_{x_1},...,\sigma^2_{x_p} \right)
 \end{equation}
 
-Ces matrices sont construites de façon générale. La matrice $\mathbf{B}$ est de dimension $p \times p$ avec des valeurs nulles comme triangle supérieur incluant la diagonale et toutes celles qui se trouvent au-dessus. Les coefficients de régresison se trouvent dans le triangle extérieur. Le vecteur de variance contient $p$ valeurs qui représentent les variances de variables. Elles sont toutes à l'unité quand le scénario est standardisé.
+Ces matrices sont construites de façon générale. La matrice $\mathbf{B}$ est de dimension $p \times p$ avec des valeurs nulles comme triangle supérieur incluant la diagonale. Les coefficients de régresison se trouvent dans le triangle extérieur. Le vecteur de variance contient $p$ valeurs qui représentent les variances de variables. Elles sont toutes à l'unité quand le scénario est standardisé.
 
-L'idée sous-jacente est qu'il est possible de calculer les covariances de la variable $i$ à partir de la matrice de covariance des variables précédente $1:(i-1)$ soit $\mathbf{\Sigma}_{1:(i-1),1:(i-1)}$ et des coefficients de régression associés $\mathbf{B}_{i, 1:(i-1)}$ en procédant en série pour toutes variables de $x_2$ ($i=2$) (prédite par au moins une variable, toutes sauf la première) jusqu'à la dernière variable $x_p$ ($i=p$). Le calcul est décrit à l'équation \@ref(eq:buildS), malheureusement, elle recourt à l'algèbre matricielle, mais demeure toujours beaucoup plus simple et générale que si elle était présentée en algèbre linéaire.
+L'idée sous-jacente est qu'il est possible de calculer les covariances de la variable $i$ à partir de la matrice de covariance des variables précédente $1:(i-1)$ soit $\mathbf{\Sigma}_{1:(i-1),1:(i-1)}$ et des coefficients de régression associés $\mathbf{B}_{i, 1:(i-1)}$ en procédant en série pour toutes variables de $x_2$ ($i=2$) (prédite par au moins une variable, toutes sauf la première) jusqu'à la dernière variable $x_p$ ($i=p$). Le calcul est décrit à l'équation \@ref(eq:buildS), malheureusement pour certain, elle recourt à l'algèbre matricielle, mais demeure toujours beaucoup plus simple et générale que si elle était présentée en algèbre linéaire.
 
 \begin{equation}
 \begin{aligned}

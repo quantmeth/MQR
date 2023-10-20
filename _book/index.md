@@ -1,7 +1,7 @@
 --- 
 title: "Méthodes quantitatives avec R"
 author: "P.-O. Caron"
-date: "2023-08-04"
+date: "2023-10-20"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: "ma.bib"

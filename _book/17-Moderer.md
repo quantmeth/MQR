@@ -302,22 +302,22 @@ summary(res1.lm)
 > lm(formula = y ~ x * w, data = jd.continue)
 > 
 > Residuals:
->    Min     1Q Median     3Q    Max 
-> -3.450 -0.613 -0.001  0.584  2.843 
+>     Min      1Q  Median      3Q     Max 
+> -2.4099 -0.5928 -0.0498  0.5966  2.4218 
 > 
 > Coefficients:
 >             Estimate Std. Error t value Pr(>|t|)    
-> (Intercept)   0.0178     0.0459    0.39  0.69929    
-> x             0.0992     0.0458    2.17  0.03085 *  
-> w             0.1770     0.0470    3.76  0.00019 ***
-> x:w           0.2898     0.0357    8.11  3.9e-15 ***
+> (Intercept)   0.0974     0.0420    2.32    0.021 *  
+> x             0.0327     0.0456    0.72    0.474    
+> w             0.3015     0.0454    6.63  8.6e-11 ***
+> x:w           0.2451     0.0340    7.21  2.0e-12 ***
 > ---
 > Signif. codes:  
 > 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 > 
-> Residual standard error: 0.911 on 496 degrees of freedom
-> Multiple R-squared:  0.178,	Adjusted R-squared:  0.174 
-> F-statistic: 35.9 on 3 and 496 DF,  p-value: <2e-16
+> Residual standard error: 0.862 on 496 degrees of freedom
+> Multiple R-squared:  0.199,	Adjusted R-squared:  0.194 
+> F-statistic: 41.1 on 3 and 496 DF,  p-value: <2e-16
 
 # Pour comparer avec aov
 res1.aov <- aov(y ~ x * w, data = jd.continue)
@@ -325,11 +325,11 @@ res1.aov <- aov(y ~ x * w, data = jd.continue)
 # L'intercepte est inclus
 summary(res1.aov, intercept = TRUE)
 >              Df Sum Sq Mean Sq F value  Pr(>F)    
-> (Intercept)   1     15    15.4    18.6 2.0e-05 ***
-> x             1     20    19.6    23.6 1.6e-06 ***
-> w             1     15    15.2    18.3 2.3e-05 ***
-> x:w           1     55    54.7    65.8 3.9e-15 ***
-> Residuals   496    412     0.8                    
+> (Intercept)   1     19    19.0    25.6 6.0e-07 ***
+> x             1     16    16.1    21.6 4.3e-06 ***
+> w             1     37    36.8    49.5 6.5e-12 ***
+> x:w           1     39    38.7    52.0 2.0e-12 ***
+> Residuals   496    369     0.7                    
 > ---
 > Signif. codes:  
 > 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
@@ -349,11 +349,11 @@ res1.anova
 > 
 > Response: y
 >             Sum Sq  Df F value  Pr(>F)    
-> (Intercept)      0   1    0.15 0.69929    
-> x                4   1    4.69 0.03085 *  
-> w               12   1   14.16 0.00019 ***
-> x:w             55   1   65.85 3.9e-15 ***
-> Residuals      412 496                    
+> (Intercept)      4   1    5.39   0.021 *  
+> x                0   1    0.51   0.474    
+> w               33   1   44.01 8.6e-11 ***
+> x:w             39   1   52.04 2.0e-12 ***
+> Residuals      369 496                    
 > ---
 > Signif. codes:  
 > 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1

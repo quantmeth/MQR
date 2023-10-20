@@ -242,7 +242,7 @@
 <span class="header-section-number">7.2.1</span> Les fonctions utiles<a class="anchor" aria-label="anchor" href="#les-fonctions-utiles"><i class="fas fa-link"></i></a>
 </h3>
 <p>Un des avantages et originalité d’utiliser le <code>tidyverse</code> est d’obtenir l’opérateur <code>%&gt;%</code> (appelée <em>pipe</em> en anglais que l’on peut traduire par <em>tuyau</em>) qui provient originellement du package <code>magrittr</code> <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-magri" role="doc-biblioref">Bache &amp; Wickham, 2020</a>)</span> et est importé par <code>dplyr</code>. L’opérateur favorise la lisibilité et la productivité, car il est plus facile de suivre le flux de plusieurs fonctions à travers ces <em>tuyaux</em> que de revenir en arrière lorsque plusieurs fonctions sont imbriquées. En fait, il favorise la lecture par verbes, soit par action (fonction), dans une séquence temporelle intuitive. Si les arguments sont placés en une seule ligne, non seulement la ligne est-elle longue et complexe, voire illisible, mais, en plus, les éléments les plus à gauche (les premiers à la lecture) sont les derniers opérés. Si chacune des fonctions était en ligne, alors il faudrait écraser ou créer des variables temporaires inutiles tout simplement pour arriver à réaliser les fonctions. La philosophie <code>tidyverse</code>, par l’usage de <code>%&gt;%</code>, évite tous ses problèmes.</p>
-<p>L’opérateur <code>%&gt;%</code> s’ajoute à la fin d’une ligne syntaxe. Son fonctionnement se traduit par l’argument de la ligne à gauche est introduit dans la fonction de droite, et ce, du haut vers le bas. Il peut être commandé plus rapidement avec le raccourci <strong>Ctrl + Shift + M</strong> sur Windows. En plus de l’opérateur <code>%&gt;%</code> , <code>dplyr</code> offre de nouvelles fonctions pour gérer un jeu de données. Quelques-unes des plus importantes sont décrites ici. Par la suite, une mise en situation permet de mieux comprendre leur fonctionnement.</p>
+<p>L’opérateur <code>%&gt;%</code> s’ajoute à la fin d’une ligne syntaxe. Son fonctionnement se traduit par l’argument de la ligne à gauche est introduit dans la fonction de droite, et ce, du haut vers le bas. Il peut être commandé plus rapidement avec le raccourci <strong>Ctrl + Shift + M</strong> sur Windows ou <strong>Cmd + Shift + M</strong> sur Mac. En plus de l’opérateur <code>%&gt;%</code> , <code>dplyr</code> offre de nouvelles fonctions pour gérer un jeu de données. Quelques-unes des plus importantes sont décrites ici. Par la suite, une mise en situation permet de mieux comprendre leur fonctionnement.</p>
 <div id="sélectionner-des-variables" class="section level4" number="7.2.1.1">
 <h4>
 <span class="header-section-number">7.2.1.1</span> Sélectionner des variables<a class="anchor" aria-label="anchor" href="#s%C3%A9lectionner-des-variables"><i class="fas fa-link"></i></a>
@@ -375,7 +375,7 @@
 <span id="cb93-18"><a href="manipuler.html#cb93-18" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>  <span class="dv">9</span> male      <span class="dv">80</span>   <span class="fl">1.8</span>  Human    <span class="fl">24.7</span></span>
 <span id="cb93-19"><a href="manipuler.html#cb93-19" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">10</span> male      <span class="dv">77</span>   <span class="fl">1.7</span>  Human    <span class="fl">26.6</span></span>
 <span id="cb93-20"><a href="manipuler.html#cb93-20" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># ℹ 12 more rows</span></span></code></pre></div>
-<p>Le jeu de données est créé en autant de ligne de syntaxe. Par contre, la lecture n’est pas aussi intuitive qu’avec l’utilisation de l’opérateur <code>%&gt;%</code> et des fonctions associées <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code>. Il ne faut pas trop penser à quoi ressemblerait ces manipulations en une seule ligne de syntaxe.</p>
+<p>Le jeu de données est créé en autant de ligne de syntaxe. Par contre, la lecture n’est pas aussi intuitive que l’opérateur <code>%&gt;%</code> et les fonctions <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code>. Il ne faut pas trop penser à quoi ressemblerait ces manipulations en une seule ligne de syntaxe.</p>
 </div>
 </div>
 <div id="décrire-et-analyser-en-tidyverse" class="section level2" number="7.3">
@@ -464,7 +464,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2023-08-04.</p>
+    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2023-10-20.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

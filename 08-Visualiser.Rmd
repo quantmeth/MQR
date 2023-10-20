@@ -129,7 +129,7 @@ ggplot(data = jd) +
   geom_histogram(mapping = aes(x = IMC))
 ```
 
-Des techniques plus avancées permettent de créer la Figure \@ref(fig:hist) d'un seul coup.
+Des techniques plus avancées permettent de créer la Figure \@ref(fig:hist) d'un seul coup^[Notamment, le code nécessite `gather()` de `tidyr`[@R-tidyr] et `keep()` de `purrr` [@R-purrr].].
 
 ```{r hist, fig.cap="Histogrammes des variables continues", fig.align='center', out.height="75%", out.width="75%" ,message=FALSE, warning=FALSE}
 # Trois histogrammes en une seule figure
@@ -185,11 +185,13 @@ stat.descr %>%
 
 Une fois ces statistiques calculées et enregistrées dans le nouveau jeu de données `jd`, il est possible de créer le graphique avec les représentations géométriques désirées. Remarquez comment spécifier la cartographie dans le niveau `ggplot()` rend la syntaxe moins compliquée. Cette syntaxe produit un graphique avec `dose` à l'axe des $x$, `supp` comme pointeurs et les moyennes de `len` (longueur moyenne des dents). La fonction `geom_errorbar()` indique où placer les limites inférieures et supérieures des intervalles. Les arguments `size = 5` et `width = .05` sont ajoutés simplment pour l'esthétisme. L'argument `.groups = "drop"` de `summarise` permet d'éviter une avertissement expliquant qu'une variable de groupement est utilisé pour regrouper les résultats à la fin. Ajouter ou retirer cet argument ne change pas les calculs, ni la Figure\ \@ref(fig:erreurbar).
 
-###  De meilleures barres d'erreurs
+## De meilleures barres d'erreurs pour les devis inter participants
 
 Il existe un package `superb` [@superb] qui permet d'obtenir des graphiques à barre d'erreur avec précision et facilement ajustable. Une fois installé et importé dans l'environnement, `superb` offre la fonction principale `superbPlot` permet la création de ces figures.
 
-La Figure \@ref(fig:erreurbar2) reproduit la Figure\ \@ref(fig:erreurbar). Dans le code, il faut préciser les facteurs intersujets (`BSFactors`) et la variable dépendante (`variable`). La fonction contrôle aussi le type de graphique avec `plotStyle`. 
+Il y a deux avantages principales a utilisé `superb`. La première est qu'elle permet des ajustements avec l'argument `adjustments` afin de préciser le type de barres d'erreurs^[Oui, oui, il en existe plusieurs!], comme `"single"`, `"difference"`, ou `"tryon"`. Généralement, ce sera l'option `purpose = "difference"` qui sera désirée. Deuxièmement, `superb` tient aussi compte des devis intra participants avec l’argument `WSFactors`, ce qui permet l'utilisation de différentes techniques de décorrélation des temps de mesure. La fonction produit de bien meilleurs graphiques à barres d'erreurs avec plus d'ajustement et de précision.
+
+La Figure \@ref(fig:erreurbar2) reproduit la Figure\ \@ref(fig:erreurbar). Dans le code, il faut préciser les facteurs inter participants `BSFactors` (pour *between subject* ou *BS*) et la variable dépendante, `variable`. La fonction contrôle aussi le type de graphique avec `plotStyle`. 
 
 ```{r erreurbar2, fig.cap="Les effets de la vitamine C sur les cochons d'inde avec `superb`", fig.align='center', out.height="75%", out.width="75%", warning = FALSE}
 library(superb)
@@ -199,22 +201,20 @@ superbPlot(ToothGrowth,
     plotStyle = "line")
 ```
 
-La fonction retourne souvent des messages d'avertissement pour préciser certaines décisions qu'elle peut avoir pris. Le code ci-dessus retourne le message : `superb::FYI: The variables will be plotted in that order: dose, supp (use factorOrder to change).`. C'est à l'utilisateur d'en prendre note et de s'assurer que c'était bien ce qui était désiré, ce qui est le cas ici.
-
-Il y a deux avantages principales a utilisé `superb`. La première est qu'elle permet des ajustements avec l'argument `adjustments` afin de préciser le type de barres d'erreurs^[Oui, oui, il en existe plusieurs!], comme `"single"`, `"difference"`, ou `"tryon"`. Généralement, ce sera l'option `purpose = "difference"` qui sera désirée. Deuxièmement, `superb` tient aussi compte des devis intrasujets avec l’argument `WSFactors`, ce qui permet l'utilisation de différentes techniques de décorrélation des temps de mesure comme `"CM"`, `"LM"`, `"CA"` ou `"none"`. Consultez la documentation pour en savoir plus sur son fonctionnement et ce qui conviendra le mieux à la situation qui se présent. Bref, la fonction produit de bien meilleurs graphiques à barres d'erreurs avec plus d'ajustement et de précision.
+La fonction retourne souvent des messages d'avertissement (orange) pour préciser certaines décisions qu'elle peut avoir pris. Le code ci-dessus retourne le message : `superb::FYI: The variables will be plotted in that order: dose, supp (use factorOrder to change).`. C'est à l'utilisateur d'en prendre note et de s'assurer que c'était bien ce qui était désiré, ce qui est le cas ici.
 
 Pour plus de flexibilité pour l'utilisateur, les statistiques descriptives peuvent être obtenues afin de produire personnellement les figures, comme cela avait été fait dans le premier exemple sur [Les barres d'erreurs].
 
 ```{r, warning=FALSE}
 stat.descr <- superbData(ToothGrowth, 
                          BSFactors = c("dose","supp"), 
-                         variables = "len")
+                         variables = "len",
+                         adjustments = list(purpose = "difference"))
 ```
-
 
 Attention! Cette variable est une liste contenant deux éléments, les statistiques descriptives (`$summaryStatistics`) et les données brutes (`$rawData`). Elle peuvent être extraites avec le signe `$`, comme `stat.descr$summaryStatistics`.
 
-Pour reproduire la Figure\ \@ref(fig:erreurbar) avec le jeu de données extrait de `superbData()`, il faut procéder à quelques ajustements, comme le nom des variables qui ne sont pas les mêmes, et le fait que la variable `dose` est maintenant traitée en variable nominale, alors qu'il est souhaitable qu'elle soit numérique pour utiliser la représentation géométrique `geom_line()`.
+Pour reproduire la Figure\ \@ref(fig:erreurbar) avec le jeu de données extrait de `superbData()`, il faut procéder à quelques ajustements, comme le nom des variables qui ne sont pas les mêmes, et le fait que la variable `dose` est maintenant traitée en variable nominale, alors qu'il est souhaitable qu'elle soit numérique pour utiliser la représentation géométrique `geom_line()`. La Figure\ \@ref(fig:erreurbar3) illustre le résultat.
 
 ```{r erreurbar3, fig.cap="Les effets de la vitamine C sur les cochons d'inde avec `superb`", fig.align='center', out.height="75%", out.width="75%", warning = FALSE}
 stat.descr$summaryStatistics %>% 
@@ -229,9 +229,56 @@ stat.descr$summaryStatistics %>%
     geom_point()
 ```
 
+## De meilleures barres d'erreur pour les devis intra participants
+
+La fonction `superbPlot()` permet non seulement de produire des barres d'erreurs pour les devis inter participants (deux ou plusieurs groupes de participants différent dans chaque groupe), mais également pour les devis intra partipants (les mêmes participants mesurés plusieurs fois). Elle excelle d'ailleurs dans ce domaine, car elle permet d'ajuster pour type d'intervalle de confiance désiré, mais aussi pour l'ajustement intra participant.
+
+Voici un jeu de données synthétiques pour réaliser une figure avec un devis intra participant. Voir [Le test-$t$ dépendant] pour plus de détails sur la création de ces données.
+
+```{r}
+# Un exemple de jeu de données
+set.seed(148)
+temps1 <- rnorm(n = 25, mean = 0, sd = 2)
+difference <- rnorm(n = 25, mean = 2, sd = 2)
+temps2 <- temps1 + difference
+jd_intra <- data.frame(temps1 = temps1,
+                 temps2 = temps2)
+```
+
+
+Pour produire la figure, il faut définir le facteur intra participant (*within subject* ou *WS*) par l'argument `WSFactors`. Cette argument est particulier, il nécessite un mot arbitraire pour identifier l'effet temporelle, ici `WSFactors = "temps`, mais aussi entre parenthèses, le nombre de temps de mesures, ici `"(2)"`, ce qui forme l'argument complet `WSFactors = "temps(2)"`. Ensuite, pour la variable dépendante, on combine ensemble tous les temps de mesure spécifiés, ici `variables = c("temps1", "temps2")`. Il reste à définir le style de graphique et les ajustements. Pour l'objectif (`purpose`), ce sont les mêmes options que pour les devis inter participants, soit (`"single"`, `"difference"` ou `"tryon"`).
+
+```{r erreurbar4, fig.cap="Comparaison de deux temps de mesure avec `superb` (sans décorrélation)", fig.align='center', out.height="75%", out.width="75%", warning = FALSE}
+superbPlot(jd_intra, 
+    WSFactors = "temps(2)", 
+    variables = c("temps1", "temps2"),
+    plotStyle = "line",
+    adjustments = list(purpose = "difference"))
+```
+La Figure \@ref(fig:erreurbar4) montre le résultat obtenu.
+
+Le package `superb` permet aussi l'utilisation de techniques de décorrélation comme `"CM"`, `"LM"`, `"CA"` ou `"none"` (par défaut) pour améliorer les intervalles de confiance. Consultez la documentation pour en savoir plus sur son fonctionnement et ce qui conviendra le mieux à la situation qui se présente. Pour l'implantation, il suffit d'ajouter à la liste d'arguments fournie à `adjustements`, le type de décorrlation désirée, ici `decorrelation = "CM"`).
+
+```{r erreurbar5, fig.cap="Comparaison de deux temps de mesure avec `superb` (avec décorrélation)", fig.align='center', out.height="75%", out.width="75%", warning = FALSE}
+superbPlot(jd_intra, 
+    WSFactors = "temps(2)", 
+    variables = c("temps1", "temps2"),
+    plotStyle = "line",
+    adjustments = list(purpose = "difference", decorrelation = "CM"))
+```
+Les barres d'erreur de la Figure \@ref(fig:erreurbar5) sont légèrement différentes de la Figure \@ref(fig:erreurbar4), mais plus adéquates pour illustrer les résultats.
+
+## Quelques trucs en rafale
+
+Il est possible de renommer les axes avec `xlab()` et `ylab()` et le titre avec `labs()`.
+
+Plusieurs ajustements des axes sont possibles avec `scale_y_continuous()` et `scale_x_continuous()` et leur équivalent nominal `scale_y_discrete()`, `scale_x_discrete()` , comme ajuster les limites (`limits`), les marqueurs (`breaks`) et les libellées des marqueurs  (`labels`).
+
+Il est possible de séparer une digure en différents cadran en spécifiant une variable de séparation avec `facet_wrap()` ou `facet_grid()`.
+
 ## Exporter la figure
 
-Pour exporter une figure, `ggplot2` offre la très conviviale fonction `gggsave()` qui permet d'enregistrer la dernière figure produite en fichier. Celle-ci vient avec plusieurs options pour gérer l'enregistrement. 
+Pour exporter une figure, `ggplot2` offre la très conviviale fonction `ggsave()` qui permet d'enregistrer **la dernière figure** produite en fichier. Celle-ci vient avec plusieurs options pour gérer l'enregistrement. 
 
 L'option `filename` gère le nom du fichier le nom et le type de fichier, comme les usuels `"pdf"`, `"jpeg"`, `"png"`, ou les moins fréquents, mais aussi pratiques `"bmp"`, `"eps"`, `"tiff"`, `"ps"`, `"tex"`, `"svg"` et `"wmf"`.
 
@@ -241,7 +288,7 @@ La taille de résolution de la figure est gérée avec l'argument `dpi`, ce qui 
 
 Voici un exemple. 
 
-```{r, echo = FALSE, eval = FALSE}
+```{r, eval = FALSE}
 # Préalablement produire une figure
 ggsave(filename = "mafigure.pdf",
        width = "6"
@@ -249,15 +296,7 @@ ggsave(filename = "mafigure.pdf",
        unit = "cm")
 ```
 
-Il faudra éventuellement ajuster la taille et la qualité en fonction de la figure désirée. Quelques essais seront probablement nécessaires pour l'obtenir.
-
-## Quelques trucs en rafale
-
-Il est possible de renommer les axes avec `xlab()` et `ylab()`.
-
-Plusieurs ajustements des axes sont possibles avec `scale_y_continuous()` et `scale_x_continuous()` et leur équivalent nominal `scale_y_discrete()`, `scale_x_discrete()` , comme ajuster les limites (`limits`), les marqueurs (`breaks`) et les libellées des marqueurs  (`labels`).
-
-Il est possible de séparer une digure en différents cadran en spécifiant une variable de séparation avec `facet_wrap()` ou `facet_grid()`.
+Il faudra éventuellement ajuster la taille et la qualité de la figure en fonction de la sortie désirée. Quelques essais seront probablement nécessaires pour y arriver.
 
 ## Pour aller plus loin
 

@@ -24,6 +24,8 @@ fig:hist2
 fig:erreurbar
 fig:erreurbar2
 fig:erreurbar3
+fig:erreurbar4
+fig:erreurbar5
 fig:lognormal
 fig:testn
 fig:regle
@@ -272,9 +274,10 @@ diagramme-de-dispersion
 boîte-à-moustache
 histogramme
 les-barres-derreurs
-de-meilleures-barres-derreurs
-exporter-la-figure
+de-meilleures-barres-derreurs-pour-les-devis-inter-participants
+de-meilleures-barres-derreur-pour-les-devis-intra-participants
 quelques-trucs-en-rafale
+exporter-la-figure
 pour-aller-plus-loin-1
 décrire
 les-variables-à-échelles-continues
@@ -300,6 +303,7 @@ rapporter-une-corrélation
 les-données-nominales
 le-chi2-pour-table-de-contingence
 rapporter-un-chi2
+la-correction-de-yates
 simuler
 les-simulations-monte-carlo
 le-problème-de-monty-hall
@@ -312,6 +316,7 @@ la-création-de-données
 codage-factice
 analyse
 rapporter-lanova
+la-sortie-de-aov
 les-tests-posthoc
 prédire
 retour-sur-lassociation-linéaire
