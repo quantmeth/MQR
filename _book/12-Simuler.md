@@ -2,9 +2,9 @@
 
 
 
-Dans plusieurs contextes statistiques, les informations cruciales nécessaires pour réaliser une analyse statistique ou tirer des résultats spécifiques ne sont pas connues (par exemple, le chapitre [Analyser] présente des analyses soutenues par des théorèmes). Pire, parfois certains postulats sont violés rendant les démarches usuelles caduques. Enfin, dans certains contextes, une analyse formelle pourrait s'avérer fort complexe, voire irrésolvable, alors qu'une analyse plus empirique usant des techniques de rééchantillonnage résoudra ces problèmes simplement et immédiatement.
+Dans plusieurs contextes statistiques, les informations cruciales pour réaliser une analyse statistique ou tirer des résultats spécifiques ne sont pas connues (par exemple, le chapitre [Analyser] présente des analyses soutenues par des théorèmes). Pire, parfois certains postulats sont violés rendant les démarches usuelles caduques. Dans certains contextes, une analyse formelle pourrait s'avérer fort complexe, voire irrésolvable, alors qu'une analyse plus empirique usant des techniques de rééchantillonnage résoudra ces problèmes simplement et immédiatement.
 
-Jusqu'à présent, les situations connues des analyses statistiques ont été présentées. Maintenant, les techniques de rééchantillonnage, comme le bootstrap et de simulations Monte-Carlo seront présentés.
+Jusqu'à présent, les situations des analyses statistiques étaient connues. Maintenant, ce sont les techniques nécessitant moins de prérequis statistiques, comme le bootstrap et les simulations Monte-Carlo qui seront présentés.
 
 ## Les simulations Monte-Carlo
 
@@ -35,7 +35,7 @@ Le problème de Monty Hall [attribuables à @Selvin75] présente un joueur devan
 <p class="caption">(\#fig:MH)Illustration du problème de Monty Hall</p>
 </div>
 
-Par la suite, le présentateur, qui connaît le contenu derrière les portes, ouvre une porte qui (a) ne cache pas la voiture et (b) que le participant n'a pas choisie. Le joueur peut alors choisir (a) de conserver la porte choisie ou (b) de changer de porte. Quelle option, s'il y en a une, assurera la meilleure probabilité de choisir la voiture? Rester ou changer? Par exemple, suivant l'illustration de la Figure\ \@ref(fig:MH), le joueur choisit la porte\ 1, alors le présentateur doit ouvrir la porte\ 2 (non choisie et ne contient pas la voiture). Le joueur doit-il changer son choix? Ici, la réponse est évidente, car la réponse est connue. Qu'en est-il alors si le joueur avait choisi la porte\ 3 et le présentateur ouvre l'une des deux autres porte? *Le joueur doit-il changer ou rester?* La question sous-jacente est qu’elles sont les probabilités de rester et de changer respectivement. Sont-elles différentes?
+Par la suite, le présentateur, qui connaît le contenu derrière les portes, ouvre une porte qui (a) ne cache pas la voiture et (b) que le participant n'a pas choisie. Le joueur peut alors choisir (a) de conserver la porte choisie ou (b) de changer de porte. Quelle option, s'il y en a une, assurera la meilleure probabilité de choisir la voiture? Rester ou changer? Par exemple, suivant l'illustration de la Figure\ \@ref(fig:MH), le joueur choisit la porte\ 1, alors le présentateur doit ouvrir la porte\ 2 (non choisie et ne contient pas la voiture). Le joueur doit-il changer son choix? Ici, la réponse est évidente, car la réponse est connue. Qu'en est-il alors si le joueur a choisi la porte\ 3 et le présentateur ouvre l'une des deux autres porte? *Le joueur doit-il changer ou rester?* La question sous-jacente est qu’elles sont les probabilités de rester et de changer respectivement. Sont-elles différentes?
 
 Comme le résultat n'est pas des plus intuitif (et sans divulgâcher le résultat), une petite simulation s'impose (ou une analyse formelle pour les lecteurs enclins mathématiquement). La situation sera recréée un millier de fois pour vérifier l'option (rester ou changer) qui maximise de gagner la voiture.
 
@@ -55,7 +55,7 @@ En se référant aux trois points caractérisant une simulation Monte-Carlo susm
 
   Il y a une variable dépendante :
   
-  +  le succès (gagner le prix) ou l'échec (choisir la mauvaise porte).
+  +  le succès (gagner le prix) ou l'échec (ne pas gagner le prix).
 
 3. La simulation est reprise 1000 fois.
 
@@ -144,7 +144,7 @@ Quelles sont les résultats de cette simulation? Le fait de *rester* sur le prem
 
 Une explication simple est de dénombrer les possibilités. Dans le cas où le joueur ne change pas d'idée, il a une chance sur trois, soit : choisir la chèvre\ 1, et garder la chèvre\ 1; choisir la chèvre\ 2, et garder la chèvre\ 2; et choisir la voiture, et garder la voiture. Si le joueur change d'idée **après l'ouverture des portes**, les chances sont maintenant de deux sur trois, soit choisir la chèvre\ 1, changer pour le prix; choisir la chèvre\ 2 et changer pour le prix; ou choisir le prix et changer pour une chèvre.
 
-Une autre façon de rendre se problème plus intuitif est de considérer le problème avec 100 portes au lieu de 3. Le présentateur ouvre les 98 portes qui ne sont pas un prix. Si le joueur choisit une porte et garde, il a effectivement 1% de chance de remporter le prix. Par contre, s'il choisit une porte et que le présentateur lui ouvre toutes les autres portes chèvres, le joueur gagne à tout les coups s'il change, **sauf** s'il a choisi le prix au premier coup. C'est un peu comme si le participant ouvrait les 99 portent, sauf celle qu'il a choisit au début.
+Une autre façon de rendre se problème plus intuitif est de considérer le problème avec 100 portes au lieu de 3. Le présentateur ouvre les 98 portes qui ne sont pas un prix. Si le joueur choisit une porte et garde, il a effectivement 1% de chance de remporter le prix. Par contre, s'il choisit une porte et que le présentateur lui ouvre toutes les autres portes chèvres, le joueur gagne à tout les coups s'il change, **sauf** s'il a choisi le prix au premier coup. C'est comme si le participant ouvrait les 99 portent, sauf celle qu'il a choisit au début.
 
 Avec quelques modifications de la syntaxe précédente, le code suivant illustre le cas à 100 portes. À noter que l'usage du conditionnelle n'est plus nécessaire au bon fonctionnement de `sample()`, car il y a maintenant plus de trois portes.
 
@@ -198,15 +198,15 @@ cbind(gain.rester,gain.changer)  / nreps
 
 La simulation montre que rester gagne 0.9% et que changer gagne 99.1%.
 
-Des situations fort plus compliquées pourraient être apportées en simulations Monte-Carlo. Le jeu de Black Jack en est un exemple, bien qu'il soit déjà résolu pour des résultats optimaux [@Millman83]. Peu importe la situation à simuler, il suffit d'avoir la patience de la programmer pour confirmer les résultats analytiques.
+Des situations fort plus compliquées peuvent être apportées en simulations Monte-Carlo. Le jeu de Black Jack en est un exemple, bien qu'il soit déjà résolu pour des résultats optimaux [@Millman83]. Peu importe la situation à simuler, il suffit d'avoir la patience de la programmer pour confirmer les résultats analytiques.
 
 Sur le plan pratique pour l'expérimentateur, les simulations Monte-Carlo peuvent être utiles pour calculer des tailles d'échantillons pour des modèles complexes, comme des modèles par équations structurelles compliquées, multiniveaux ou de classes latentes. Il peut être utile également pour imiter des processus cognitifs ou comportementaux. Toutefois, une sous-famille est d'une importance significative pour l'expérimentateur, celle qui sera abordée maintenant, le bootstrap.
 
 ## Le bootstrap
 
-Le *bootstrap* (dont il n'y a pas d'excellente traduction en français) est une des techniques de rééchantillonnage astucieuses permettant des inférences statistiques [@Efron79]. Il fait partie de la famille des simulations Monte-Carlo, car il se base sur la réitération multiple d'une statistique à partir d'un jeu de données. Sans vouloir entrer dans les détails, il existe plusieurs types de techniques de bootstrap, qui font elles-mêmes parties d'une plus grande famille, les simulations stochastiques. Y est inclus les simulations de Monte-Carlo (dont le bootstrap fait parti) ou les méthodes numériques bayésiennes.
+Le *bootstrap* (dont il n'y a pas d'excellente traduction en français) est une des techniques de rééchantillonnage astucieuses permettant des inférences statistiques [@Efron79]. Il fait partie de la famille des simulations Monte-Carlo, car il se base sur la réitération multiple d'une statistique à partir d'un jeu de données. Sans entrer dans les détails, il existe plusieurs types de techniques de bootstrap, qui font elles-mêmes parties d'une plus grande famille, les simulations stochastiques. Y est inclus les simulations de Monte-Carlo (dont le bootstrap fait parti) et les méthodes numériques bayésiennes.
 
-Cet ouvrage insiste sur le bootstrap non paramétrique, impliquant que les distributions sous-jacentes aux échantillons ne soient pas spécifiées, bien qu'il existe du bootstrap paramétrique. Ce type de bootstrap est certainement la plus utile pour l'expérimentateur.
+Cet ouvrage insiste sur le bootstrap non paramétrique, impliquant que les distributions sous-jacentes aux échantillons ne soient pas spécifiées, bien qu'il existe du bootstrap paramétrique. Ce premier type de bootstrap est certainement la plus utile pour l'expérimentateur.
 
 Dans le bootstrap, l'échantillon initial est considéré comme une pseudopopulation. Il ne nécessite pas d'autre information que celle fournie par l'échantillon. Il permet d'obtenir une distribution d’échantillonnage et tous ses bénéfices. Alors que dans les chapitres [Inférer] et [Analyser], il faut préciser et connaître quelle distribution d'échantillonnage correspond à quelle statistique (p. ex., le score-$z$ d'une unité à la distribution normale; la moyenne d'un échantillon à la distribution $t$ si la variance est inconnue), aucune de ces connaissances n'est nécessaire. L'étendue d'application du bootstrap est immense, surtout pour les concepts statistiques qui offriront plus de défis, ce qui sera vu dans des chapitres ultérieurs.
 
@@ -220,7 +220,7 @@ Comme abordé dans le chapitre [Inférer], la distribution d'échantillonnage pe
 
 * de réaliser un test d'hypothèse;
 
-tout cela en ignorant les distributions et postulats sous-jacents qui empêchent ou limitent leurs usages. Le bootstrap n'a que deux hypothèses fondamentales\ : l'échantillon reflète la population et chaque unité est indépendante et identiquement distribuée. Autrement dit, chaque unité provienne bel et bien d'une même boîte (*population*, voir [Inférer]) et le tirage d'une unité n'en influence celle d'une autre.
+tout cela en ignorant les distributions et postulats sous-jacents qui empêchent ou limitent leurs usages. Le bootstrap n'a que deux hypothèses fondamentales\ : l'échantillon reflète la population et chaque unité est indépendante et identiquement distribuée. Autrement dit, chaque unité provienne bel et bien d'une même boîte (*population*, voir [Inférer]) et le tirage d'une unité n'influence pas celle d'une autre.
 
 Le fondement du bootstrap repose sur les étapes suivantes :
 
@@ -330,6 +330,8 @@ Pour réaliser le test d'hypothèse nulle, il suffit de constater si l'intervall
 **R** n'est pas particulièrement efficace pour réaliser des boucles. Il existe une famille de fonctions `apply` qui permet d'appliquer une fonction sur une série de vecteurs (comme une liste, un jeu de données ou une matrice). L'appel à l'aide `?apply` donne beaucoup d'informations à ce sujet. 
 
 La fonction principale est `apply()`. Elle nécessite le jeu de données (`X`) sur lequel appliqué la fonction (`FUN`) et un argument (`MARGIN`) pour identifier la dimension selon laquelle il faut appliquer la fonction, comme `MARGIN = 1` produit l'opération par lignes; `MARGIN = 2` produit l'opération par colonnes.^[Il y a aussi des cas plus complexes lorsque le jeu possède plus de deux dimensions, comme `MARGIN = c(1,2)` produit l'opération sur une matrice (lignes par colonnes) ou `MARGIN = n` produit l'opération sur la n^e^ dimension.]
+
+<!-- TODO EXPLIQUER PLUS -->
 
 
 ```r

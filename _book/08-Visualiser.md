@@ -364,7 +364,7 @@ Il est possible de renommer les axes avec `xlab()` et `ylab()` et le titre avec 
 
 Plusieurs ajustements des axes sont possibles avec `scale_y_continuous()` et `scale_x_continuous()` et leur équivalent nominal `scale_y_discrete()`, `scale_x_discrete()` , comme ajuster les limites (`limits`), les marqueurs (`breaks`) et les libellées des marqueurs  (`labels`).
 
-Il est possible de séparer une digure en différents cadran en spécifiant une variable de séparation avec `facet_wrap()` ou `facet_grid()`.
+Il est possible de séparer une Figure en différents cadran en spécifiant une variable de séparation avec `facet_wrap()` ou `facet_grid()`.
 
 ## Exporter la figure
 

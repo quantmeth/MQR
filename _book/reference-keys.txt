@@ -327,7 +327,7 @@ la-régression
 le-modèle-de-régression-simple
 lanalyse-de-régression
 la-création-de-données-1
-conditions-dapplication-de-la-régression
+les-conditions-dapplication-de-la-régression
 lanalyse-de-régression-avec-r
 rapporter-la-régression
 la-matrice-de-corrélation-partielle-et-semi-partielle

@@ -2,7 +2,7 @@
 
 Dans le chapitre sur la [régression][Prédire], les variables indépendantes sont créées simultanément à partir d'une matrice de corrélation, puis des coefficients de régressions sont utilisés pour créer la variable dépendante. Dans un modèle plus élaboré, plutôt que d'ignorer ces corrélations, les liens entre les variables prédictrices peuvent être explicitement modélisés. Cela revient à décrire un modèle de façon à ce qu'une première variable *cause* la seconde; la première et la seconde *causent* la troisième et ainsi de suite.
 
-La modélisation en système d'équations devient primordial dans les prochaines sections, notamment pour les analyses de trajectoires, de médiation, de modération, et plus. C'est le fondement de la modélisation par équations structurelles (SEM). 
+La modélisation en système d'équations devient primordiale dans les prochaines sections, notamment pour les analyses de trajectoires, de médiation, de modération, et plus. C'est le fondement de la modélisation par équations structurelles (SEM). 
 
 Dans ce chapitre^[La section est partiellement basée sur @Caron21.], des techniques de modélisation avancées sont présentées. Elles s'appliquent à des modèles de trajectoires récursifs, c'est-à-dire que la *causalité* s'enchaîne dans une direction, de la première variable vers la dernière^[Il n'y a pas de boucle d'effet].
 

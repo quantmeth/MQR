@@ -386,4 +386,4 @@ jd %>%
 > # ℹ 1 more variable: method <chr>
 ```
 
-Pour le test-$t$ avec `t_test()`, il faut demander la variable dépendante à gauche et la variable de groupement à gauche. Les deux variables sont séparées par le `~` (tilde, voir [L'analyse de régression avec R] pour plus de renseignements). Pour la corrélation avec `cor_test()`, il faut s'assurer de sélectionner uniquement les variables ayant une échelle continue.
+Pour le test-$t$ avec `t_test()`, il faut demander la variable dépendante à gauche et la variable de groupement à gauche. Les deux variables sont séparées par le `~` (tilde, voir [L'analyse de régression avec **R**] pour plus de renseignements). Pour la corrélation avec `cor_test()`, il faut s'assurer de sélectionner uniquement les variables ayant une échelle continue.

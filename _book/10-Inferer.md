@@ -8,14 +8,14 @@ Cette tâche peut apparaître difficile considérant le peu d'informations sur l
 
 ## Le théorème central limite
 
-Les valeurs d'un échantillon sont, pour le statisticien, des variables aléatoires. Une variable aléatoire, c'est un peu comme piger dans une boîte à l'aveuglette pour obtenir une valeur. La boîte est impénétrable, personne ne sait par quel processus elle accorde telle ou telle autre valeur. Pour le statisticien, ce qui importe c'est que chaque valeur possède une chance égale aux autres d'être sélectionnée et qu'elles soient indépendantes entre elles (le fait d'en choisir une soit sans conséquence sur la probabilité des autres). 
+Les valeurs d'un échantillon sont, pour le statisticien, des variables aléatoires. Une variable aléatoire, c'est un peu comme piger dans une boîte à l'aveuglette pour obtenir une valeur. La boîte est impénétrable, personne ne sait par quel processus elle accorde telle ou telle autre valeur. Pour le statisticien, ce qui importe c'est que chaque valeur possède une chance égale aux autres d'être sélectionnée et qu'elles soient indépendantes entre elles (le fait qu'en choisir une soit sans conséquence sur la probabilité des autres). 
 
 Pour le non-initié aux fonctions permettant de créer des nombres pseudoaléatoires, une fonction **R** comme `rnorm()` ou `runif()` (*r* suivi d'un nom de distribution, voir [Les distributions]) joue parfaitement le rôle de cette boîte. Si l'usager demande une valeur, la fonction retourne une valeur aléatoire (imprévisible à chaque fois) sans connaître comment cette valeur est produite.
 
 
 ```r
 runif(n = 1)
-> [1] 0.579
+> [1] 0.128
 ```
 
 Le statisticien s'intéresse à inférer comment ces valeurs sont générées. Il postule ainsi que les valeurs aléatoires suivent une distribution de probabilité. Connaître cette distribution est très important, car c'est elle qui permet de répondre à des questions comme : quelle est la probabilité d'obtenir un résultat aussi rare que $x$? Ou quelle sont les valeurs attendues pour $95\%$ des tirages? Questions tout à fait pertinentes pour l'expérimentateur. Une des distributions les plus connues est certainement la distribution normale, celle qui est derrière la fonction `rnorm()` d'ailleurs. Mais, il y en a beaucoup, beaucoup d'autres. 
@@ -55,12 +55,12 @@ En calculant la somme de plusieurs variables aléatoires de cette distribution, 
 # Différentes tailles d'échantillons
 N <- seq(10, 90, by = 10)
 # Nombre de tirage pour chaque élément de N
-reps <- 1000
+nreps <- 1000
 
 # Une boucle pour tester toutes les possibilités
 for(n in N){
   total <- as.numeric()
-  for(i in 1:reps){
+  for(i in 1:nreps){
     # Faire la somme de n valeurs tirés d'une distribution log normale
     total[i] <- sum(rlnorm(n))
   }
@@ -79,7 +79,7 @@ La Figure \@ref(fig:testn) montre que la distribution d'échantillonnage de la s
 
 Les expérimentateurs ne connaissent pas les distributions sous-jacentes aux valeurs des unités issues de la population. Par contre, à l'aide des statisticiens et du théorème central limite, ils savent comment se comportent les sommes des variables. Les expérimentateurs s'intéressent toutefois rarement aux sommes de variable... ou le sont-ils? En fait, les expérimentateurs s'intéressent particulièrement aux sommes de variables, comme la moyenne (une somme de variables divisée par la constante $n$), la variance (la somme des écarts au carré) ou la corrélation (la somme des produits de deux variables divisée par $n-1$). Dans le cas de la moyenne, le théorème central limite stipule qu'une distribution de probabilité ayant une moyenne $\mu$ et un écart type $\sigma$ dont l'échantillon est constitué de $n$ unités, génère une distribution d'échantillonnage des moyennes avec une espérance de $\mu_{\bar{x}}$ et un écart type de $\sigma_{\bar{x}}/\sqrt{n}$.
 
-Dans la mesure où l'expérimentateur connaît la distribution de la population (extrêmement rare, mais permet de mieux illustrer la théorie) ou qu'il recoure à une distribution d'échantillonnage connue, il peut inférer la probabilité d'une variable aléatoire par rapport à ce qui est attendu simplement par hasard. Il juge alors si cette variable est trop rare par rapport à l'hypothèse de base (nulle).
+Dans la mesure où l'expérimentateur connaît la distribution de la population (extrêmement rare, mais permet de mieux illustrer la théorie) ou qu'il recoure à une distribution d'échantillonnage connue, il peut inférer la probabilité d'une variable aléatoire par rapport à ce qui est attendu simplement par hasard. Il juge alors si cette variable est trop rare par rapport à l'hypothèse de base (l'hypothèse nulle).
 
 La théorie traditionnelle des tests d'hypothèses repose sur l'idée selon laquelle on compare la vraisemblance d'une variable aléatoire estimée auprès d'un échantillon par rapport à une hypothèse nulle (l'absence d'effet). En épistémologie des sciences, il n'est pas possible de montrer l'exactitude d'une hypothèse, seulement son inexactitude. Cela rappelle le principe du falsificationnisme selon lequel on ne peut prouver une hypothèse, on ne peut que la falsifier. En statistiques, c'est la rareté d'une donnée qui agira comme indice d'*inexactitude*. Si la variable aléatoire est trop rare pour l'hypothèse nulle, celle-ci est rejetée : d'autres hypothèses doivent être considérées pour expliquer ce résultat. Autrement, l'hypothèse nulle n'est pas rejetée, les preuves sont insuffisantes pour informer l’expérimentateur sur l'hypothèse nulle.
 
@@ -87,9 +87,9 @@ La théorie traditionnelle des tests d'hypothèses repose sur l'idée selon laqu
 
 
 
-Un excellent exemple en sciences humaines et sociales où la distribution de probabilité de la population est connue est le quotient intellectuel (QI). Le QI d'une population occidentale est distribué normalement (établi intentionnellement par les psychométriciens) avec une moyenne de 100 ($\mu=100$) et un écart type de $\sigma = 15$. Ces valeurs sont totalement arbitraires, il est tout aussi convenable de parler d'une moyenne de 0 et d'un écart type de 1 (la distribution peut être standardisée) quoiqu'il est contre-intuitif de parle d'un QI de 0. (Qui voudrait avoir une intelligence de 0?)
+Un excellent exemple en sciences humaines et sociales où la distribution de probabilité de la population est connue est le quotient intellectuel (QI). Le QI d'une population occidentale est distribué normalement (établi intentionnellement par les psychométriciens) avec une moyenne de 100 ($\mu=100$) et un écart type de $\sigma = 15$. Ces valeurs sont totalement arbitraires, il est tout aussi convenable de parler d'une moyenne de 0 et d'un écart type de 1 (la distribution peut être standardisée) quoiqu'il est contre-intuitif de parler d'un QI de 0. (*Qui voudrait avoir une intelligence de 0?*)
 
-Dans la population, bien que la moyenne et la variance peuvent être connues, sélectionner une unité au hasard génère une variable aléatoire. Chaque individu de la population a une probabilité très faible d'être sélectionné et est indépendant des autres individus de la population. Il est très difficile de prédire le score exact d'une personne. Toutefois, il est possible d'avoir un idée de la variabilité des scores. La Figure \@ref(fig:regle) montre la distribution normale par rapport à la moyenne, $\mu$ pour différentes valeurs d'écart type, $\sigma$. Elle montre que 68.269% devrait se retrouvé entre plus ou moins un écart types ou encore que 95.45%  devrait se retrouvé entre plus ou moins deux écarts types. Ajuster au QI, il s'agit de 85 à 115 et de 70 à 130 respectivement
+Dans la population, bien que la moyenne et la variance peuvent être connues, sélectionner une unité au hasard génère une variable aléatoire. Chaque individu de la population a une probabilité très faible d'être sélectionné et est indépendant des autres individus de la population. Il est très difficile de prédire le score exact d'une personne. Toutefois, il est possible d'avoir un idée de la variabilité des scores. La Figure \@ref(fig:regle) montre la distribution normale par rapport à la moyenne, $\mu$ pour différentes valeurs d'écart type, $\sigma$. Elle montre que 68.269% des personnes devraient se retrouver entre plus ou moins un écart type ou encore que 95.45%  devraient se retrouver entre plus ou moins deux écarts types. Ajusté au QI, il s'agit de 85 à 115 et de 70 à 130 respectivement.
 
 
 <div class="figure" style="text-align: center">
@@ -97,7 +97,7 @@ Dans la population, bien que la moyenne et la variance peuvent être connues, s�
 <p class="caption">(\#fig:regle)La distribution normale du QI</p>
 </div>
 
-Une autre façon de fonctionner est de prendre une personne au hasard et de mesurer son QI. Le score obtenu est une valeur aléatoire. Comme la distribution est connue avec ses paramètres, il est possible de juger de la vraisemblance de ce score (est-il rare?) par rapport à la population. 
+Une autre façon de fonctionner est de prendre une personne au hasard et de mesurer son QI. Le score obtenu est une valeur aléatoire. Comme la distribution est connue avec ses paramètres, il est possible de juger de la vraisemblance de ce score (*est-il rare?*) par rapport à la population. 
 
 Voici un exemple où ces informations sont pertinentes. Un groupe d'*expérimentateurs* mettent en place un outil d'évaluation qui teste si un individu donné est un humain ou un reptilien (une race d'extra-terrestre). Leur outil n'est pas si sophistiqué. En fait, il se base sur le QI, car les expérimentateurs ont remarqué que les reptiliens ont un QI beaucoup plus élevé que le QI humain.
 
@@ -120,7 +120,7 @@ z = \frac{x-\mu}{\sigma}
 (\#eq:zzz)
 \end{equation}
 
-Comme un score-$z$ est standardisé, la Figure \@ref(fig:regle) est utilisable pour tirer des conclusions, car celle-ci applicable pour toutes sortes de situations où la distribution est vraisemblablement normale.
+Comme un score-$z$ est standardisé, la Figure \@ref(fig:regle) est utilisable pour tirer des conclusions, car celle-ci est applicable pour toutes sortes de situations où la distribution est vraisemblablement normale.
 
 
 ```r
@@ -141,9 +141,9 @@ pnorm(z.fanny) * 100
 > [1] 90.9
 ```
 
-L'expectative sous l'hypothèse nulle est d'observer un score pareil ou supérieur à celui de Fanny 9.121 % du temps. Cette statistique correspond à la *valeur-$p$*, la probabilité de l'indice par rapport à sa distribution d'échantillonnage (hypothèse nulle). Comme elle ne dépasse pas le seuil de 5%, soit la limite selon laquelle le score est jugé invraisemblable, l'hypothèse nulle n'est pas rejetée (elle est humaine!).
+L'expectative sous l'hypothèse nulle est d'observer un score pareil ou supérieur à celui de Fanny 9.121 % du temps. Cette statistique correspond à la *valeur-$p$*, la probabilité de l'indice par rapport à sa distribution d'échantillonnage (hypothèse nulle). Comme elle ne dépasse pas le seuil de 5%, soit la limite selon laquelle le score est jugé invraisemblable, l'hypothèse nulle n'est pas rejetée (*elle est humaine!*).
 
-Avec le critère d'identifier erronément les 5 % humains les plus intelligents, il s'agit, du même coup, du **taux de faux positif** *acceptable* de l'étude. Un faible sacrifice à réaliser afin identifier des reptiliens parmi les humains. La zone de rejet, c'est-à-dire la zone dans laquelle l'hypothèse nulle (humain) est rejetée, correspond à la zone ombragée à droite de la distribution.
+Avec le critère d'identifier erronément les 5 % humains les plus intelligents, il s'agit, du même coup, du **taux de faux positif** *acceptable* de l'étude. Un faible sacrifice à réaliser afin identifier des reptiliens parmi les humains. La zone de rejet, c'est-à-dire la zone dans laquelle l'hypothèse nulle (humain) est rejetée, correspond à la zone ombragée à droite de la distribution de la Figure\ \@ref(fig:fannyd).
 
 La logique des tests statistiques inférentiels repose sur cette série d'étapes : choisir un indice, connaître sa distribution sous-jacente, déterminer l'hypothèse nulle (généralement l'absence d'effet), calculer la probabilité de l'indice par rapport à cette hypothèse nulle.
 
@@ -151,14 +151,14 @@ La logique des tests statistiques inférentiels repose sur cette série d'étape
 
 Jusqu'à maintenant, seule une unité d'observation était traitée. L'indice et la distribution étaient également spécifiés. Dans cette section, l'exemple est étendu aux échantillons (plus d'une unité d'observation).
 
-Fanny a un QI de 120. Si une autre personne est sélectionnée, cette nouvelle personne aurait inévitablement un autre score. Cette logique s'applique également aux échantillons. L'exemple ci-dessous échantillonne 10 unités d'une population de QI distribuée normalement avec les paramètres usuels.
+Fanny a un QI de 120. Si une autre personne est sélectionnée, cette nouvelle personne aura inévitablement un autre score. Cette logique s'applique également aux échantillons. L'exemple ci-dessous échantillonne 10 unités d'une population de QI distribuée normalement avec les paramètres usuels.
 
 
 ```r
 # Création d'un échantillon de 10 unités
 set.seed(824)
 
-# Dix valeurs arrondies avec une moyenne de 100 et un écart type de 10
+# Dix valeurs arrondies à partir d'une moyenne de 100 et un écart type de 10
 QI <- round(rnorm(n = 10, mean = 100, sd = 15))
 QI
 >  [1] 110 111 102  99 109 102  99 110 132 114

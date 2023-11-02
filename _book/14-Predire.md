@@ -529,7 +529,7 @@ var(y)
 
 Maintenant, il est possible de *déstandardisé* `X` et `y` en additionnant des moyennes ou multipliant par des écarts types à chaque variable.
 
-### Conditions d'application de la régression
+### Les conditions d'application de la régression
 
 La régression possède quatre hypothèses sous-jacentes :
 
