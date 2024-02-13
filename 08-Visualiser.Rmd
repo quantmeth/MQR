@@ -144,7 +144,7 @@ jd %>%
 
 Enfin, s'il est désiré de comparer deux distributions de groupes différents, l'argument `fill` dans la cartographie indique à la fonction de différencier les valeurs selon le *remplissage* des histogrammes.
 
-```{r hist2, fig.cap="Histogrammes de l'IMC par rapport au sexe", fig.align='center', out.height="75%", out.width="75%"}
+```{r hist2, fig.cap="Histogrammes de l'IMC par rapport au sexe", fig.align='center', out.height="75%", out.width="75%",message=FALSE,warning=FALSE}
 jd %>% 
   ggplot(mapping = aes(x = IMC, fill = sex)) + 
   geom_histogram(position = "identity", alpha = .7) + 
@@ -193,7 +193,7 @@ Il y a deux avantages principales a utilisé `superb`. La première est qu'elle 
 
 La Figure \@ref(fig:erreurbar2) reproduit la Figure\ \@ref(fig:erreurbar). Dans le code, il faut préciser les facteurs inter participants `BSFactors` (pour *between subject* ou *BS*) et la variable dépendante, `variable`. La fonction contrôle aussi le type de graphique avec `plotStyle`. 
 
-```{r erreurbar2, fig.cap="Les effets de la vitamine C sur les cochons d'inde avec `superb`", fig.align='center', out.height="75%", out.width="75%", warning = FALSE}
+```{r erreurbar2, fig.cap="Les effets de la vitamine C sur les cochons d'inde avec `superb`", fig.align='center', out.height="75%", out.width="75%", warning = FALSE,message=FALSE}
 library(superb)
 superbPlot(ToothGrowth, 
     BSFactors = c("dose","supp"), 
@@ -205,7 +205,7 @@ La fonction retourne souvent des messages d'avertissement (orange) pour précise
 
 Pour plus de flexibilité pour l'utilisateur, les statistiques descriptives peuvent être obtenues afin de produire personnellement les figures, comme cela avait été fait dans le premier exemple sur [Les barres d'erreurs].
 
-```{r, warning=FALSE}
+```{r, warning=FALSE,message=FALSE}
 stat.descr <- superbData(ToothGrowth, 
                          BSFactors = c("dose","supp"), 
                          variables = "len",
@@ -248,7 +248,7 @@ jd_intra <- data.frame(temps1 = temps1,
 
 Pour produire la figure, il faut définir le facteur intra participant (*within subject* ou *WS*) par l'argument `WSFactors`. Cette argument est particulier, il nécessite un mot arbitraire pour identifier l'effet temporelle, ici `WSFactors = "temps`, mais aussi entre parenthèses, le nombre de temps de mesures, ici `"(2)"`, ce qui forme l'argument complet `WSFactors = "temps(2)"`. Ensuite, pour la variable dépendante, on combine ensemble tous les temps de mesure spécifiés, ici `variables = c("temps1", "temps2")`. Il reste à définir le style de graphique et les ajustements. Pour l'objectif (`purpose`), ce sont les mêmes options que pour les devis inter participants, soit (`"single"`, `"difference"` ou `"tryon"`).
 
-```{r erreurbar4, fig.cap="Comparaison de deux temps de mesure avec `superb` (sans décorrélation)", fig.align='center', out.height="75%", out.width="75%", warning = FALSE}
+```{r erreurbar4, fig.cap="Comparaison de deux temps de mesure avec `superb` (sans décorrélation)", fig.align='center', out.height="75%", out.width="75%", message=FALSE, warning = FALSE}
 superbPlot(jd_intra, 
     WSFactors = "temps(2)", 
     variables = c("temps1", "temps2"),
@@ -259,7 +259,7 @@ La Figure \@ref(fig:erreurbar4) montre le résultat obtenu.
 
 Le package `superb` permet aussi l'utilisation de techniques de décorrélation comme `"CM"`, `"LM"`, `"CA"` ou `"none"` (par défaut) pour améliorer les intervalles de confiance. Consultez la documentation pour en savoir plus sur son fonctionnement et ce qui conviendra le mieux à la situation qui se présente. Pour l'implantation, il suffit d'ajouter à la liste d'arguments fournie à `adjustements`, le type de décorrlation désirée, ici `decorrelation = "CM"`).
 
-```{r erreurbar5, fig.cap="Comparaison de deux temps de mesure avec `superb` (avec décorrélation)", fig.align='center', out.height="75%", out.width="75%", warning = FALSE}
+```{r erreurbar5, fig.cap="Comparaison de deux temps de mesure avec `superb` (avec décorrélation)", fig.align='center', out.height="75%", out.width="75%", warning=FALSE, message=FALSE}
 superbPlot(jd_intra, 
     WSFactors = "temps(2)", 
     variables = c("temps1", "temps2"),

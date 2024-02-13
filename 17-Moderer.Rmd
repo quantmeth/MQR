@@ -78,6 +78,9 @@ $$
 
 
 ```{r}
+# Pour la reproductibilité
+set.seed(1302)
+
 # Tailles d'échantillon
 n <- 500
 
@@ -181,7 +184,7 @@ Toutefois, il sera plus simple de standardiser `W` avant de créer les interacti
 
 ```{r}
 # Standardiser les codes factices
-W <- apply(W, MARGIN = 2, FUN = scale)
+W <- scale(W)
 
 # Mettre tous les prédicteurs ensemble 
 # pour le modèle linéaire sous forme de matrice
@@ -190,7 +193,7 @@ X2 <- cbind(x = x,
             xw = x * W)
 ```
 
-Alors la covariance entre $w_i$ et $w_j$ et la covariance entre $xw_i$ et $xw_j$ deviennent
+Alors la covariance entre $w_i$ et $w_j$ et entre $xw_i$ et $xw_j$ deviennent
 $$p_1 p_2 / \sqrt{p_1(1 - p_1) p_2 (1 - p_2)}$$
 soit leur covariance originale divisée par leur écart type. Tous les autres valeurs deviennent 1 dans le cas des variances et 0 pour les covariances.
 
@@ -250,7 +253,7 @@ S'il y a un effet d'interaction, alors les effets simples ne sont pas interprét
 
 Les programmeurs de **R** championnent cette perspective en définissant l'option de type de sommes de carrés par défaut pour les fonctions `lm()` et `aov()`. Ils y vont de mots très durs à l'endroit des logiciels qui recourent automatiquement au type III. 
 
-Le choix entre type I ou type III revient à l'expérimentateur. Par contre, la plupart des ouvrages statistiques pour les sciences appliquées utilisent implicitement le type III. D'autres le recommandent activement. De plus, lorsque le devis n'est pas balancé, le type III est préférable. Si le lecteur veut comparer avec des analyses de modération avec celles d'autres ouvrages, il doit recourir au type III. 
+Le choix entre type I ou type III revient à l'expérimentateur. Par contre, la plupart des ouvrages statistiques pour les sciences appliquées utilisent implicitement le type III. D'autres le recommandent activement. De plus, lorsque le devis n'est pas balancé, le type III est préférable. Si le lecteur veut comparer des analyses de modération produites dans d'autres ouvrages, il doit recourir au type III. 
 
 Cela dit, il demeure possible d'utiliser `aov()` avec les SC de type III, mais il faudra recourir à la fonction `Anova()` du package `car` [@car].
 
@@ -398,7 +401,7 @@ La Figure \@ref(fig:jn1) montre le graphique Johnson-Neyman. La zone bleue indiq
 
 Dans cet exemple, plus l'unité à un niveau de modérateur élevé (en termes absolus), plus il accentue l'effet de la variable indépendante (zones bleues). Le modérateur joue donc un rôle très important dans ce modèle.
 
-## Rapport l'analyse de modération
+## Rapporter l'analyse de modération
 
 Pour rapporter l'analyse de modération, plusieurs éléments peuvent être pertinents à rapporter et varient en fonction des domaines. Il importe de rapporter le ou les effets d'interaction. Ensuite, l'ajout de graphique, comme le Johnson-Neyman ou celui des pentes simples permettent de mieux comprendre, mais surtout de mieux visualiser les interprétations qui auront été rapporter en texte dans l'article. C'est un appui primordial pour le lecteur qui devra lui aussi dégager les tendances des résultats, mais qui, contrairement aux auteurs, n'est pas nécessairement très familier avec le jeu de données. En plus de ces informations primordiales, certains domaines de recherche demanderont de rapporter le modèle de régression réalisé (voir [Rapporter la régression]).
 

@@ -145,7 +145,7 @@ Il convient également d'ajouter que, comme $\mathbf{\Sigma} = \mathbf{S}$ (à l
 
 La Figure\ \@ref(fig:acpsuj) montre à gauche les données originales sur les axes représentés par les deux variables (une reprise de la Figure\ \@ref(fig:plotacp)). À droite, il s'agit de la rotation trouvée par l'ACP (`eigen()` ou `svd()`). Les participants conservent entre eux les mêmes distances par rapport aux autres, mais aussi par rapport aux axes originaux représentés par des lignes pointillées. C'est vraiment l'orientation du plan qui change^[Tout problème de distance, s'il y a lieu, est dû à l'échelle des figures.].
 
-```{r acpsuj, echo = FALSE, fig.align='center',fig.cap='Représentations des participants selon les variables (gauche) ou les composantes principales (droite).', out.height="75%", out.width="75%"}
+```{r acpsuj, echo = FALSE, fig.align='center',fig.cap='Représentations des participants selon les variables (gauche) et les composantes principales (droite).', out.height="75%", out.width="75%"}
 r.svd <- svd(jd.acp)
 participants <- r.svd$u %*% diag(r.svd$d)
 ld <- res.eig$vectors %*% diag(sqrt(res.eig$values))
@@ -167,7 +167,7 @@ La première composante retrouvée correspond (approximativement) à la droite d
 
 La Figure\ \@ref(fig:varacp) offre une vue de l'agencement des variables sur les deux axes. Il s'agit des loadings des variables dans l'espace des composantes. Cette représentation est assez triviale pour deux variables, mais peut devenir très pertinente lorsque plusieurs variables (ou items) sont concernées. Il est possible d'observer alors des regroupements d'items sur les facteurs. Elle se limite toutefois à une ou deux composantes étant donné la complexité de réaliser et d'interpréter des figures de trois dimensions et plus.
 
-```{r varacp, echo = FALSE, fig.align='center', fig.cap="Représentations des vraiables selon les composantes principales.", out.height="75%", out.width="75%"}
+```{r varacp, echo = FALSE, fig.align='center', fig.cap="Représentations des variables selon les composantes principales.", out.height="75%", out.width="75%"}
 plot(ld, xlim = c(-1,1), ylim = c(-1,1), pch = 19, bty = "l", lwd = 2, yaxs="i", xlab = "Composante 1", ylab = "Composante 2", pty = "s")
 segments(x0 = -2, y0 = 0, y1 = 0, x1 = 2, col = "grey")
 segments(x0 = 0, y0 = -2, y1 = 2, x1 = 0, col = "grey")
