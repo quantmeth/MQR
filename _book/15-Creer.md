@@ -81,20 +81,22 @@ s.x1^2 + s.x2^2 + 2 * s.x1x2
 > [1] 7.45
 ```
 
-Pour rappel, la corrélation s'obtient avec $\rho_{x_1,x_2}=\sigma_{x_1,x_2}/(\sigma_{x_1} \sigma_{x_2})$ et inversement la covariance est obtenue par $\rho_{x_1,x_2} \sigma_{x_1} \sigma_{x_2}=\sigma_{x_1,x_2}$. En calculant la covariance d'abord, soit
+Pour rappel, la corrélation s'obtient avec $\rho_{x_1,x_2}=\sigma_{x_1,x_2}/(\sigma_{x_1} \sigma_{x_2})$ et inversement la covariance est obtenue par $\rho_{x_1,x_2} \sigma_{x_1} \sigma_{x_2}=\sigma_{x_1,x_2}$. En calculant d'abord la covariance
 
-$$\sigma_{x_1,x_2} = \rho_{x_1,x_2} \sigma_{x_1} \sigma_{x_2} = 0.5 \times 1.414 \times 1.732 = 1.225$$
-et confirmé par **R**.
+$$\sigma_{x_1,x_2} = \rho_{x_1,x_2} \sigma_{x_1} \sigma_{x_2} = 0.5 \times 1.414 \times 1.732 = 1.225$$,
+
+confirmée par **R**,
+
 
 ```r
 s.x1x2
 > [1] 1.22
 ```
 
-L'équation \@ref(eq:eq3) pour la variance de `y` mène à 
+l'équation \@ref(eq:eq3) pour la variance de `y` mène à 
 
 $$\sigma_y^2=\sigma_{x_1}^2+\sigma_{x_2}^2+2\sigma_{x_1,x_2}= 2+3 + 2 \times 1.225  = 7.449$$
-très près du résultat simulé.
+ce qui est très près du résultat simulé.
  
 La loi des sommes des variances est directement reliée au théorème de Pythagore tel qu'illustré par l'équation \@ref(eq:eq2). Deux variables non corrélées peuvent être envisagées comme formant un triangle rectangle. L'équation \@ref(eq:eq3) est la règle du cosinus, ou la généralisation du théorème de Pythagore pour les triangles non rectangulaires, de sorte que la corrélation représente géométriquement un angle [@Rodgers88].
 
@@ -115,7 +117,7 @@ Une autre façon mathématiquement plus simple de calculer la loi de la somme de
 (\#eq:eq4)
 \end{equation}
 
-ce qui, en faisant la somme, conduit à l'équation \@ref(eq:eq3). Encore une fois, si $\sigma_{x_1,x_2}=0$, alors l'équation \@ref(eq:eq4) est égale à l'équation \@ref(eq:eq2). Cette formulation a l'avantage de montrer l'origine des deux covariances dans l'équation \@ref(eq:eq3). En code **R**, la syntaxe est dès plus rudimentaire.
+ce qui, en faisant la somme, conduit à l'équation \@ref(eq:eq3). Encore une fois, si $\sigma_{x_1,x_2}=0$, alors l'équation \@ref(eq:eq4) est égale à l'équation \@ref(eq:eq2). Cette formulation a l'avantage de montrer l'origine des deux covariances dans l'équation \@ref(eq:eq3). La syntaxe est dès plus rudimentaire en code **R**.
 
 
 ```r
@@ -128,7 +130,7 @@ Même si la notation matricielle peut sembler peu attrayante au départ, elle de
 Pour un exemple à $p=3$, l'équation \@ref(eq:eq4) devient ceci.
 
 \begin{equation}
-\sigma_y^2=\text{grand somme}(\mathbf{\Sigma})=\text{grand somme}
+\sigma_y^2=\text{grande somme}(\mathbf{\Sigma})=\text{grande somme}
 \left(\begin{array}{ccc}
 \sigma_{x_1}^2&\sigma_{x_1,x_2}&\sigma_{x_1 x_3} \\
 \sigma_{x_1,x_2}&\sigma_{x_2}^2&\sigma_{x_2 x_3}\\
@@ -166,7 +168,7 @@ t(Un) %*% S %*% Un  # Grande somme
 
 Cette opération produit la somme de tous les éléments de $\mathbf{\Sigma}$ (`Sigma`). Cela sera utile pour dériver un cas plus général dans la section suivante.
 
-### Ajout des constantes d'échelle $\beta$
+### L'ajout des constantes d'échelle $\beta$
 	
 Les équations \@ref(eq:eq3), \@ref(eq:eq4), \@ref(eq:eq5) et \@ref(eq:eq6) sont des cas particuliers d'une loi plus générale. Elles ne fonctionnent pas si des constantes d'échelle (*scaling constant*) sont ajoutées (qui seront plus tard des coefficients de régression) ou pour calculer la différence (un type d'échelle également).
 
@@ -179,7 +181,7 @@ y=\beta x
 
 un modèle linéaire qui ne comporte pas d'erreur ($\epsilon$ est ignoré pour l'instant). 
 
-Il peut être utile de considérer $\beta$ comme, éventuellement, le degré de relation entre deux variances, mais aussi comme un pur modificateur de l'écart type (également une constante d'échelle). De la même manière, une variable aléatoire avec une moyenne de $0$ et un écart type de $1$, $x\sim \mathcal{N}(0,1)$, multipliée par la valeur $\beta$, un facteur d'échelle arbitraire, devient distribuée comme $\beta x \sim \mathcal{N}(0,\beta)$. Ainsi, $\beta$ a modifié (ou mis à l'échelle) l'écart type de la distribution. Un cas connexe et fréquemment rencontré est lorsque les données sont normalisées en tant que score-$z$ ou non normalisées (divisées ou multipliées respectivement par $\sigma$). La contribution est un écart-type, donc $\beta$ doit être élevé au carré pour donner la variance de $y$, soit $\beta^2$. Cela mène à l'équation \@ref(eq:eq8) qui permet le calcul de la variance de $y$.
+Il peut être utile de considérer $\beta$ comme, éventuellement, le degré de relation entre deux variances, mais aussi comme un pur modificateur de l'écart type (également une constante d'échelle). De la même manière, une variable aléatoire avec une moyenne de $0$ et un écart type de $1$, $x\sim \mathcal{N}(0,1)$, multipliée par la valeur $\beta$, un facteur d'échelle arbitraire, devient distribuée comme $\beta x \sim \mathcal{N}(0,\beta)$. Ainsi, $\beta$ a modifié (ou mis à l'échelle) l'écart type de la distribution. Un cas connexe et fréquemment rencontré est lorsque les données sont standardisées en tant que score-$z$ ou non standardisées (divisées ou multipliées respectivement par $\sigma$). La contribution est un écart-type, donc $\beta$ doit être élevé au carré pour donner la variance de $y$, soit $\beta^2$. Cela mène à l'équation \@ref(eq:eq8) qui permet le calcul de la variance de $y$.
 
 \begin{equation}
 \sigma_y^2=\beta^2 \sigma_x^2
@@ -269,14 +271,14 @@ où $\mathbf{B}$ ($\beta$ majuscule) est un vecteur contenant tous les coefficie
 beta <- c(beta1, beta2)
 
 # S est la matrice de covariance calculée auparavant.
-beta %*% S %*% beta 
+t(beta) %*% S %*% beta 
 >      [,1]
 > [1,]  156
 ```
 
-un code plus général et qui s'appliquera à toutes les situations (peu importe la valeur de $p$, le nombre de variables). 
+un code plus général et qui s'appliquera à toutes les situations (peu importe la valeur de $p$, le nombre de variables). La fonction `t()` correspond à la transposeition, soit le symbole $^\prime$ de l'équation \@ref(eq:eq12)^[À noter que `t()` est facultatif en programmation **R**.].
 
-Il est intéressant de noter que l'équation \@ref(eq:eq12) est la même que les coefficients de détermination, $R^2$ [@Cohen03], lorsque toutes les variables et les coefficients de régression sont normalisés.
+Il est intéressant de noter que l'équation \@ref(eq:eq12) est la même que les coefficients de détermination, $R^2$ [@Cohen03], lorsque toutes les variables et les coefficients de régression sont standardisés.
 
 Dans le modèle linéaire simple décrit dans l'équation \@ref(eq:eq9), l'équation \@ref(eq:eq11) devient
 
@@ -295,6 +297,8 @@ Dans le modèle linéaire simple décrit dans l'équation \@ref(eq:eq9), l'équa
 \end{equation}
 
 ce qui est équivalent à l'équation \@ref(eq:eq11). À ce stade, le lecteur peut avoir l'intuition que les équations \@ref(eq:eq1) à \@ref(eq:eq6) n'étaient qu'un cas particulier où tous les $\beta=1$.
+
+### La différence de variances
 
 La variance de la différence de deux variables revient à affirmer que le $\beta$ des variables soustraites est de signe inverse (s'il est négatif, il devient positif ou s'il est positif, il devient négatif), c'est-à-dire $-\beta$, ce qui pour le modèle conduit à
 
@@ -350,7 +354,7 @@ beta %*% S %*% beta       # Forme matricielle
 ```
 
 
-## Implications pour la modélisation
+## Les implications pour la modélisation
 
 La loi de la somme des variances a de nombreuses implications dans la modélisation, en particulier si les données sont façonnées selon certaines caractéristiques souhaitables, comme dans les modèles linéaires. La régression linéaire est une approche permettant de modéliser des effets additifs (variables indépendantes, $x_i$) pour prédire une variable dépendante ($y$). La linéarité fait référence à la propriété d'une fonction d'être compatible avec l'addition et la mise à l'échelle. En tant que tel, il existe une relation directe entre les équations ci-dessus et le modèle linéaire :
 
@@ -361,7 +365,7 @@ y=\beta_1 x_1 + ... +\beta_p x_p+\epsilon
 
 en omettant la constante $\beta_0$, qui ne joue aucun rôle dans la variance de la variable dépendante et en ajoutant l'erreur, une variable indépendante particulière qui est supposée ne pas être liée à $x$, avoir une moyenne de $0$, un écart-type $\sigma_\epsilon$. L'équation \@ref(eq:eq17) est la forme générale du modèle linéaire de l'équation \@ref(eq:eq1) et \@ref(eq:eq8) dans laquelle la variance de $y$ est une fonction des variances-covariances des $x$ pondérées par $\beta$. 
 
-### Calcul de la variance de l'erreur
+### Le calcul de la variance de l'erreur
 
 Le modèle linéaire le plus simple, soit à deux variables est représentée par l'équation suivante
 
@@ -370,7 +374,7 @@ y=x+\epsilon
 (\#eq:eq18)
 \end{equation}
 
-où $\epsilon$ est le terme d'erreur résiduel. C'est le minimum pour construire un modèle bivarié. Il s'agit de la même somme bivariée que l'équation \@ref(eq:eq1), mais où $x_2$ est remplacé $\epsilon$ et défini comme indépendant de $x_1$ (non corrélé). Sur la base de ce modèle, l'équation \@ref(eq:eq2) conduit à l'équation suivante.
+où $\epsilon$ est le terme d'erreur résiduel. C'est le minimum pour construire un modèle bivarié. Il s'agit de la même somme bivariée que l'équation \@ref(eq:eq1), mais où $x_2$ est remplacé par $\epsilon$ et est défini comme indépendant de $x_1$ (non corrélé). Sur la base de ce modèle, l'équation \@ref(eq:eq2) conduit à l'équation suivante.
 
 <!-- \begin{equation} -->
 $$
@@ -416,7 +420,7 @@ $$
 <!-- (\#eq:eq22) -->
 <!-- \end{equation} -->
 
-### Variance des erreurs avec $\beta$
+### La variance des erreurs avec $\beta$
 
 Une préoccupation lors de la modélisation des données est de préserver les propriétés souhaitées du modèle dans les jeux de données comme la variance de l'erreur, les paramètres de régression, les covariances, etc. Après la variance du terme d'erreur, le dernier élément à considérer est les coefficients de régression, $\beta$, autrement dit, le degré de la relation entre les variables indépendantes et dépendantes. À partir de l'équation \@ref(eq:eq18), on ajoute la pente et l'erreur :
 
@@ -479,13 +483,13 @@ Comme mentionner pour l'équation \@ref(eq:eq12), ces deux dernières équations
 
 Dans la pratique, les scénarios sont rarement standardisés. Les variables n'ont pas toutes des variances de $1$ et des moyennes de $0$. Pour ajouter une touche de naturelle aux jeux de données, il est possible, une fois que le système d'équations est complètement obtenu, d'ajouter des variances différentes en multipliant une variable par l'écart-type souhaité et d'additionner une moyenne. Cela modifiera la matrice de covariance et les coefficients de régression, mais la force relative des liens et la matrice de corrélation resteront identiques. En d'autres termes, la *déstandardisation* est l'inverse d'un score $z$. Les données créées jusqu'ici sont des scores $z$ et pour les déstandardisés, il faut procéder ainsi $x = s(z + \bar{x})$, où $s$ est l'écart-type et $\bar{x}$ est la moyenne de la variable déstandardisée.
 
-## Création de variables en série
+## La création de modèle récursif
 
 Jusqu'à présent, seule la création d'une variable est présentée. Le défi pour créer un système d'équations est d'obtenir la matrice de covariance des variables précédentes pour chaque variable subséquente. 
 
 Puisque le sujet peut devenir compliqué rapidement, cette section est basée sur un exemple à trois variables avec un scénario standardisé (variables centrées et réduites). Le cas général sera développé par la suite.
 
-### Cas spécifique
+### Le cas spécifique
 
 Le défi commence lorsqu'il y a trois ou plus variables à générer. Le cas à trois variables est tout de même abordable. La *causalité* est unidirectionnelle, c'est-à-dire d'une variable vers une autre, sans retour en arrière. Cela se nomme un modèle **récursif**, impliquant du même coup l'existence de modèles **non-récursifs**. Les modèles non-récursifs ont la caractéristique d'avoir une ou des boucles de *causalité* bidirectionnelle, comme $x \leftrightarrow y$, alors que les modèles récursif n'ont que des *causalité* directionnel comme $x \rightarrow y$. Les modèles non-récursifs dépassent la portée de cet chapitre.
 
@@ -628,7 +632,7 @@ lm(x3 ~ x1 + x2, data = X)
 
 Comme il s'agit d'un scénario standardisé, la matrice de corrélation est similaire à la matrice de covariance. Notamment, les variances sont près de $1$. Aussi, les résultats confirment que la covariance entre $x_1$ et $x_2$ est bel et bien le coefficient de régression, mais surtout, comme il était mentionné, qu'il s'agit du seul cas où cela est vrai. Les régressions effectuées par `lm()` retrouvent également les $\beta$ choisis pour l'exemple.
 
-### Cas général
+### Le cas général
 
 Un cas général permet d'obtenir la matrice de covariance $\mathbf{\Sigma}$ à partir de la matrice $\mathbf{B}$ et d'un vecteur de variance $\text{diag}(\mathbf{\Sigma})$. Par la suite, il est possible de créer des variables en série comme la section précédente, ou bien de revenir à ce qui se faisait dans les chapitres précédents, c'est-à-dire d'utiliser `MASS:mvrnorm()` pour générer des données.
 
@@ -686,7 +690,7 @@ B
 > [3,]  0.4 -0.5    0
 ```
 
-Voici pour l'exemple précédent les étapes de calcul de l'équation \@ref(eq:buildS) décrites une à une. D'abord, il faut construire une matrice, $\mathbf{\Sigma}$ (`S` en code **R**) avec comme diagonale les variances. Puis, calculer l'équation \@ref(eq:buildS). Ensuite, il faut remplacer le résultat obtenu des deux côtés de la diagonale de façon à ce que `S` demeure symétrique. Ces étapes sont répétées pour $i=2,...,p$ (dans cet exemple, $p=3$).
+Voici, pour l'exemple précédent, les étapes de calcul de l'équation \@ref(eq:buildS) décrites une à une. D'abord, il faut construire une matrice, $\mathbf{\Sigma}$ (`S` en code **R**) avec comme diagonale les variances. Puis, calculer l'équation \@ref(eq:buildS). Ensuite, il faut remplacer le résultat obtenu des deux côtés de la diagonale de façon à ce que `S` demeure symétrique. Ces étapes sont répétées pour $i=2,...,p$ (dans cet exemple, $p=3$).
 
 
 ```r
@@ -868,6 +872,6 @@ cov2beta(S)
 
 Ce qui est le cas.
 
-Une seule contrainte s'impose lors de la du calcul de la covariance à partir des coefficients de régression. Il s'agit de s'assurer que la matrice de covariance demeure **positive semi-définie** à chaque étape. Cela se manifeste notamment lorsque les coefficients de régression pour une variable dépendante sont si élevés que le coefficient de détermination surpasse la variance de la variable en question. Autrement dit, la variance de la variable n'est pas assez élevée pour le potentiel explicatif. Mathématiquement le problème est que $1-R^2_X < 0$ ou plus généralement que $\sigma^2_y-\mathbf{B^\prime\Sigma B}<0$. Dans ces cas, la variance résiduelle négative, ce qui est impossible. L'une des corrections a apporté sont les suivantes, réduire les coefficients de régression $\mathbf{B}$ pour cette variable ou encore d'augmenter sa variance $\sigma^2_y$ de sorte que $\sigma^2_y-\mathbf{B^\prime\Sigma B}>=0$ soit toujours vrai à chaque étape.
+Une seule contrainte s'impose lors de la du calcul de la covariance à partir des coefficients de régression. Il s'agit de s'assurer que la matrice de covariance demeure **positive semi-définie** à chaque étape. Cela se manifeste notamment lorsque les coefficients de régression pour une variable dépendante sont si élevés que le coefficient de détermination surpasse la variance de la variable en question. Autrement dit, la variance de la variable n'est pas assez élevée pour le potentiel explicatif. Mathématiquement, le problème revient à $1-R^2_X < 0$ ou plus généralement que $\sigma^2_y-\mathbf{B^\prime\Sigma B}<0$. Dans ces cas, la variance résiduelle négative, ce qui est impossible. Cette situation correspond à une variance expliquée de plus que 100%, autrement dit, la somme des parts d'informations (variables prédictrices plus les résidus) est plus grande que l'information totale. L'une des corrections a apporté sont soit de réduire les coefficients de régression $\mathbf{B}$ ou bien d'augmenter la variance de $\sigma^2_y$ de sorte que $\sigma^2_y-\mathbf{B^\prime\Sigma B}>=0$ soit toujours vrai à chaque étape.
 
 Une dernière note, comme ces équations et syntaxes procèdent de $i=2,...,p$, l'ordre des variables est primordiale et altérer leur ordre a des conséquences substantielles sur les résultats. Lorsque la matrice $\mathbf{B}$ est créées, il faut être sûr de l'ordre *déterministe* des variables, c'est-à-dire, quelle variable *cause* quelles autres variables, comme illustre à la Figure \@ref(fig:mod3) par exemple. Changer ou retirer ne serait-ce qu'une variable change les coefficients de régression : les régressions ne sont plus identiques, la matrice de coefficients de régression ne sera pas retrouvée. Il ne faut pas être surpris donc, si les résultats changent dans cette situation. Nonobstant, changer ou retirer une variable peut être pertinent dans certains contextes, surtout pour l'étude de la **misspécification** (en anglais) des modèles, c'est-à-dire lorsqu'un modèle erroné est utilisé plutôt que le vrai modèle, ce qui entraîne notamment des biais. Les études à ce sujet emprunteront  une méthode statistique similaire.

@@ -721,7 +721,7 @@ En plus de la matrice de corrélation, deux autres types de corrélation peuvent
 
 ### Les corrélations partielles
 
-La corrélation partielle mesure le degré d'association *symétrique* entre deux variables en contrôlant pour toutes les autres variables. La contribution des autres variables est retirée sur les deux variables cibles. Conceptuellement, pour une paire de variables, il s'agit de retirer l'effet d'un ensemble de variables *contrôles* sur chacune d'elle, puis de corréler les résidus de la paire. L'équation\ \@ref(eq:partielle) montre le calcul de la matrice de corrélation partielle.
+La corrélation partielle mesure le degré d'association *symétrique* entre deux variables en contrôlant pour toutes les autres variables. La contribution des autres variables est retirée sur les deux variables cibles. Conceptuellement, pour une paire de variables, il s'agit de retirer l'effet d'un ensemble de variables *contrôles* sur la paire de variables, puis de corréler leurs résidus. L'équation\ \@ref(eq:partielle) montre le calcul de la matrice de corrélation partielle.
 
 \begin{equation}
 \mathbf{R}_{\text{partielle}} = -\mathbf{D}_{\mathbf{S}^{-1}}\mathbf{S}^{-1}\mathbf{D}_{\mathbf{S}^{-1}}
@@ -736,11 +736,11 @@ La formule pour calculer $\mathbf{D}_{\mathbf{S}^{-1}}$ est la même que l'équa
 Rp <- -cov2cor(solve(S))
 ```
 
-Par souci esthétique la diagonale de $\mathbf{R}_{\text{partielle}}$ est souvent remplacée par l'unité, comme `diag(Rp) = 1`. 
+Par souci esthétique, la diagonale de $\mathbf{R}_{\text{partielle}}$ est souvent remplacée par l'unité, comme `diag(Rp) = 1`. 
 
-### Les corrélation semi partielles
+### Les corrélations semi partielles
 
-La corrélation semi partielle mesure le degré d'association *asymétrique* entre une variable indépendante et dépendante en contrôlant pour toutes les autres. Conceptuellement, il s'agit de retirer l'effet d'un ensemble de variables *contrôles* sur la variable dépendante, puis d'utiliser la variable indépendante comme nouveau prédicteur. Autrement dit, il s'agit de la **contribution ajouté** d'une variable sur une autre.
+La corrélation semi partielle mesure le degré d'association *asymétrique* entre une variable indépendante et dépendante en contrôlant pour toutes les autres. Conceptuellement, il s'agit de retirer l'effet d'un ensemble de variables *contrôles* sur la variable dépendante, puis d'utiliser la variable indépendante comme nouveau prédicteur. Autrement dit, il s'agit de la **contribution ajoutée** d'une variable sur une autre.
 
 Le calcul de la matrice de corrélation semi partielle part de la matrice de corrélation partielle et applique un dénominateur pondérant les contributions des autres variables dans la matrice [@Seongho15]. La formule est représentée par l'équation\ \@ref(eq:semipartielle).
 
@@ -762,7 +762,7 @@ Rsp <- -cov2cor(iS) /
 
 ### Une comparaison entre partielle et semi partielle 
 
-La section suivante développe un exemple afin de comparer la corrélation partielle et la corrélation semi partielle. L'équation\ \@ref(eq:covp3ex) présente un  exemple de matrice de corrélation.
+La section suivante développe un exemple afin de comparer la corrélation partielle et la corrélation semi partielle. L'équation\ \@ref(eq:covp3ex) présente une matrice de corrélation hypothétique.
 
 \begin{equation}
 \mathbf{\Sigma} = \left( 
@@ -811,26 +811,26 @@ Rsp
 > z -0.163 0.816  1.000
 ```
 
-Les matrices `Rp` et `Rsp` se lisent comme suit : La ligne (variable indépendante) prédit la colonne (variable dépendante). Cette distinction n'est pas importante pour la matrice `Rp` (corrélations partielles), car les variables sont symétriques, mais est très importantes pour la matrice `Rsp` (corrélations semi partielles), car la relation est asymétrique. Par exemple, la corrélation semi partielle de $x$ prédit $y$ est de 0.333, mais l'inverse est de 0.2.
+Les matrices `Rp` et `Rsp` se lisent comme suit : la ligne (variable indépendante) prédit la colonne (variable dépendante). Cette distinction n'est pas importante pour la matrice `Rp` (corrélations partielles), car les variables sont symétriques, mais est très importante pour la matrice `Rsp` (corrélations semi partielles), car la relation est asymétrique. Par exemple, la corrélation semi partielle de $x$ prédit $y$ est de 0.333, mais l'inverse est de 0.2.
 
-Plusieurs observations sont possibles.
+À partir de ces résultats, plusieurs constats sont possibles.
 
 Pour une même paire de variable, une même corrélation partielle et semi partielle sont de même signe et de magnitude comparable. 
 
 Pour une même paire de variable, la corrélation partielle est toujours plus grande ou égale que la corrélation semi partielle.
 
-La matrice de corrélation partielle est symétrique alors que la matrice de corrélation semi partielle ne l'est pas. Cela s'explique du fait que la corrélation semi partielle attribue un rôle (indépendant et dépendant) pour une paire de variable. La contribution des autres variables est retirée de la variable dépendante, puis c'est l'ajout de la variable indépendante qui est d'intérêt. Par exemple, l'effet de la variable `x` prédite par `y` en contrôlant par `x` est de 0.2. Ce lien est limité à cause de l'effet de `z` sur `x`. 
+La matrice de corrélation partielle est symétrique alors que la matrice de corrélation semi partielle ne l'est pas. Cela s'explique du fait que la corrélation semi partielle attribue un rôle (indépendant et dépendant) pour une paire de variable. La contribution des autres variables est retirée de la variable dépendante, puis c'est l'ajout de la variable indépendante qui est d'intérêt. Par exemple, l'effet de la variable `x` prédite par `y` en contrôlant par `z` est de 0.2. Le lien fixé auparavant à $.2$ entre n'est pas touché par `z`, car cette dernière est indépendante de `x`. Toutefois, si on inverse la relation, alors le lien entre `y` prédit par `x` est différent, car `z` est lié à `y` ($.8$)
 
-Une dernière observation : Les explications basées sur les diagrammes de Venn pour distinguer les corrélations partielles et semi partielles portent plus souvent à confusion (à long terme) qu'elles n'apportent d'éclaircissement (à court terme), bien qu'elles se retrouvent abondamment dans les manuels. 
+Une dernière observation : les explications basées sur les diagrammes de Venn pour distinguer les corrélations partielles et semi partielles portent plus souvent à confusion (à long terme) qu'elles n'apportent d'éclaircissement (à court terme), bien qu'elles se retrouvent abondamment dans les manuels. 
 
 <div class="figure" style="text-align: center">
 <img src="image//venn.png" alt="Diagramme représentant l'agencement des variables" width="75%" height="75%" />
 <p class="caption">(\#fig:venn)Diagramme représentant l'agencement des variables</p>
 </div>
 
-Dans la Figure\ \@ref(fig:venn), tirée de l'exemple avec `Sigma` ci-haut, la zone $a$ illustre la covariance entre $x$ et $y$ au carré^[Il faut mettre les corrélations partielles, semi partielles et les covariances au carré pour expliquer en termes d'aire.], soit $\sigma_{xy}^2 = a$, et de façon équivalente, $\sigma^2_{yz} = .8^2$ et $\sigma^2_{xz} = 0$. Chaque cercle possède une aire de 1, par exemple, l'aire du cercle en bas à gauche est $a+x=.2^2+.96 =1$. Par simplicité, les autres aires sont précalculées. Les ouvrages indiquent souvent que la corrélation partielle au carré entre $x$ vers $y$ est égale à $a/(a+y)=.2^2/(.2^2+.32)=.111$ dont la racine carré donne $.333$, comme prévu. L'inverse, la corrélation partielle au carré entre $y$ vers $x$, devrait être $a/(a+x)$, mais cela donne $a/(a+x)=.2^2/(.2^2+.96)=.04$. La racine carré donne $.2$... la corrélation semi partielle!? L'équation calcule plutôt la corrélation semi partielle et non la partielle. En plus, des zones comme la corrélation semi partielles entre $x$ vers $z$, qui est de -0.267 et au carré donne 0.071, ne sont étrangement pas illustrées. Où est la zone d'aire correspondante? Le pire est certainement que les ouvrages utilisent souvent des agencements de variables plus compliquées que celui-ci, un modèle simple avec deux variables non-corrélées, qui cache réduit les potentielles ambiguïtés.
+Dans la Figure\ \@ref(fig:venn), tirée de l'exemple avec `Sigma` ci-haut, la zone $a$ illustre la covariance entre $x$ et $y$ au carré^[Il faut mettre les corrélations partielles, semi partielles et les covariances au carré pour expliquer en termes d'aire.], soit $\sigma_{xy}^2 = a$, et de façon équivalente, $\sigma^2_{yz} = .8^2$ et $\sigma^2_{xz} = 0$. Chaque cercle possède une aire totale de $1$, par exemple, l'aire du cercle en bas à gauche est $a+x=.2^2+.96 =1$. Par simplicité, les autres aires sont précalculées. Les ouvrages indiquent souvent que la corrélation partielle au carré entre $x$ vers $y$ est égale à $a/(a+y)=.2^2/(.2^2+.32)=.111$ dont la racine carré donne $.333$, comme prévu. L'inverse, la corrélation partielle au carré entre $y$ vers $x$, devrait être $a/(a+x)$, mais cela donne $a/(a+x)=.2^2/(.2^2+.96)=.04$. La racine carré donne $.2$... la corrélation semi partielle!? L'équation calcule plutôt la corrélation semi partielle et non la partielle. En plus, des zones comme la corrélation semi partielles entre $x$ vers $z$, qui est de -0.267 et au carré donne 0.071, ne sont étrangement pas illustrées. Où est la zone d'aire correspondante? Le pire est certainement que les ouvrages utilisent des agencements de variables plus compliquées, p. ex., un modèle simple avec deux variables non-corrélées, qui cachent les potentielles ambiguïtés.
 
-Qu'est-ce qui explique ces divergences? Il revient au fait que les corrélations partielles et semi partielles se basent sur l'inverse de la matrice de covariance, $\mathbf{\Sigma}^{-1}$ ou `solve(Sigma)`, la matrice de précisions. Elles se retrouvent dans un espace différent de celle de la matrice de covariance qui, elle, est bien illustrée dans le diagramme de Venn. 
+Qu'est-ce qui explique ces divergences? Il revient au fait que les corrélations partielles et semi partielles se basent sur l'inverse de la matrice de covariance, $\mathbf{\Sigma}^{-1}$ ou `solve(Sigma)`, la matrice de précision. Elles se retrouve dans un espace différent de celle de la matrice de covariance qui, elle, est bien illustrée dans le diagramme de Venn. 
 
 Il faut toujours contre-vérifier.
 

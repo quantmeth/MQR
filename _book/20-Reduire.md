@@ -454,6 +454,18 @@ Un bel avantage du package est sa possibilité de créer un graphique pour diff�
 
 ```r
 plot(nest(jd, alpha = c(.01, .025, .05, .10)))
+> Warning: Use of `df$Position` is discouraged.
+> ℹ Use `Position` instead.
+> Warning: Use of `df$Eigenvalues` is discouraged.
+> ℹ Use `Eigenvalues` instead.
+> Warning: Use of `df$Confidence` is discouraged.
+> ℹ Use `Confidence` instead.
+> Warning: Use of `df$Position` is discouraged.
+> ℹ Use `Position` instead.
+> Warning: Use of `df$Eigenvalues` is discouraged.
+> ℹ Use `Eigenvalues` instead.
+> Warning: Use of `df$Confidence` is discouraged.
+> ℹ Use `Confidence` instead.
 ```
 
 <div class="figure" style="text-align: center">

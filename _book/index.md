@@ -1,7 +1,7 @@
 --- 
 title: "Méthodes quantitatives avec R"
 author: "P.-O. Caron"
-date: "2023-11-02"
+date: "2024-02-13"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: "ma.bib"
@@ -16,9 +16,7 @@ csl: apa.csl
 
 # Bienvenue! {-}
 
-Bienvenue dans la version préliminaire et en ligne du livre *Méthodes quantitatives avec ****R*** de [P.-O. Caron](https://www.teluq.ca/siteweb/univ/pcaron.html). Le livre porte sur la programmation statistique en **R** et vise à démystifier les mécanismes ésotériques derrière les logiciels statistiques afin de les rendre plus accessibles. Son objectif est de faire le pont entre la statistique et la programmation afin que les lecteurs comprennent mieux et autonomisent leur pratique. L'approche permet à la fois une meilleure compréhension des statistiques à l'aide du logiciel, mais constitue également un motif pour débuter la programmation.
-
-Il vise un public autant intéressé à s'initier à **R** qu'à en connaître davantage sur la statistique, mais surtout un lecteur qui souhaite maîtriser les deux à la fois.
+Bienvenue dans la version préliminaire et en ligne du livre *Méthodes quantitatives avec ****R*** de [P.-O. Caron](https://www.teluq.ca/siteweb/univ/pcaron.html). Le livre porte sur la programmation statistique en R et vise à démystifier les mécanismes ésotériques derrière les logiciels statistiques. Son objectif est de faire le pont entre la statistique et la programmation afin de les rendre plus accessibles et d'autonomiser la pratique. L'approche permet à la fois une meilleure compréhension des statistiques à l'aide du logiciel, mais constitue également un motif d'apprentissage pour débuter la programmation. Il vise un public autant intéressé à s'initier à **R** qu'à en connaître davantage sur la statistique, mais surtout un lecteur qui souhaite maîtriser les deux à la fois.
 
 Si vous avez des commentaires ou des suggestions, n'hésitez pas à me les partager. C'est ouvrage est en construction. Il est imparfait et contient malheureusement des erreurs. Vous pouvez m'écrire à l'adresse suivante : pier-olivier.caron[at]teluq.ca pour toutes suggestions d'amélioration. 
 

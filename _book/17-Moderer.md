@@ -80,6 +80,9 @@ $$
 
 
 ```r
+# Pour la reproductibilité
+set.seed(1302)
+
 # Tailles d'échantillon
 n <- 500
 
@@ -200,7 +203,7 @@ Toutefois, il sera plus simple de standardiser `W` avant de créer les interacti
 
 ```r
 # Standardiser les codes factices
-W <- apply(W, MARGIN = 2, FUN = scale)
+W <- scale(W)
 
 # Mettre tous les prédicteurs ensemble 
 # pour le modèle linéaire sous forme de matrice
@@ -209,7 +212,7 @@ X2 <- cbind(x = x,
             xw = x * W)
 ```
 
-Alors la covariance entre $w_i$ et $w_j$ et la covariance entre $xw_i$ et $xw_j$ deviennent
+Alors la covariance entre $w_i$ et $w_j$ et entre $xw_i$ et $xw_j$ deviennent
 $$p_1 p_2 / \sqrt{p_1(1 - p_1) p_2 (1 - p_2)}$$
 soit leur covariance originale divisée par leur écart type. Tous les autres valeurs deviennent 1 dans le cas des variances et 0 pour les covariances.
 
@@ -284,7 +287,7 @@ S'il y a un effet d'interaction, alors les effets simples ne sont pas interprét
 
 Les programmeurs de **R** championnent cette perspective en définissant l'option de type de sommes de carrés par défaut pour les fonctions `lm()` et `aov()`. Ils y vont de mots très durs à l'endroit des logiciels qui recourent automatiquement au type III. 
 
-Le choix entre type I ou type III revient à l'expérimentateur. Par contre, la plupart des ouvrages statistiques pour les sciences appliquées utilisent implicitement le type III. D'autres le recommandent activement. De plus, lorsque le devis n'est pas balancé, le type III est préférable. Si le lecteur veut comparer avec des analyses de modération avec celles d'autres ouvrages, il doit recourir au type III. 
+Le choix entre type I ou type III revient à l'expérimentateur. Par contre, la plupart des ouvrages statistiques pour les sciences appliquées utilisent implicitement le type III. D'autres le recommandent activement. De plus, lorsque le devis n'est pas balancé, le type III est préférable. Si le lecteur veut comparer des analyses de modération produites dans d'autres ouvrages, il doit recourir au type III. 
 
 Cela dit, il demeure possible d'utiliser `aov()` avec les SC de type III, mais il faudra recourir à la fonction `Anova()` du package `car` [@car].
 
@@ -302,22 +305,22 @@ summary(res1.lm)
 > lm(formula = y ~ x * w, data = jd.continue)
 > 
 > Residuals:
->     Min      1Q  Median      3Q     Max 
-> -2.5814 -0.6081  0.0306  0.6013  2.6545 
+>    Min     1Q Median     3Q    Max 
+> -2.727 -0.654  0.108  0.648  2.608 
 > 
 > Coefficients:
 >             Estimate Std. Error t value Pr(>|t|)    
-> (Intercept)  -0.0775     0.0444   -1.75    0.082 .  
-> x             0.0809     0.0467    1.73    0.084 .  
-> w             0.2179     0.0463    4.70  3.3e-06 ***
-> x:w           0.3096     0.0325    9.52  < 2e-16 ***
+> (Intercept)   0.0418     0.0464    0.90    0.368    
+> x             0.1076     0.0491    2.19    0.029 *  
+> w             0.2108     0.0504    4.18  3.4e-05 ***
+> x:w           0.3180     0.0369    8.63  < 2e-16 ***
 > ---
 > Signif. codes:  
 > 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 > 
-> Residual standard error: 0.911 on 496 degrees of freedom
+> Residual standard error: 0.931 on 496 degrees of freedom
 > Multiple R-squared:  0.201,	Adjusted R-squared:  0.196 
-> F-statistic: 41.5 on 3 and 496 DF,  p-value: <2e-16
+> F-statistic: 41.7 on 3 and 496 DF,  p-value: <2e-16
 
 # Pour comparer avec aov
 res1.aov <- aov(y ~ x * w, data = jd.continue)
@@ -325,11 +328,11 @@ res1.aov <- aov(y ~ x * w, data = jd.continue)
 # L'intercepte est inclus
 summary(res1.aov, intercept = TRUE)
 >              Df Sum Sq Mean Sq F value  Pr(>F)    
-> (Intercept)   1      3     3.3    3.99   0.046 *  
-> x             1     13    13.2   15.88 7.8e-05 ***
-> w             1     15    15.1   18.18 2.4e-05 ***
-> x:w           1     75    75.2   90.56 < 2e-16 ***
-> Residuals   496    412     0.8                    
+> (Intercept)   1     20    19.9    22.9 2.3e-06 ***
+> x             1     27    27.1    31.2 3.8e-08 ***
+> w             1     17    16.7    19.3 1.4e-05 ***
+> x:w           1     65    64.6    74.5 < 2e-16 ***
+> Residuals   496    430     0.9                    
 > ---
 > Signif. codes:  
 > 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
@@ -349,11 +352,11 @@ res1.anova
 > 
 > Response: y
 >             Sum Sq  Df F value  Pr(>F)    
-> (Intercept)      3   1    3.05   0.082 .  
-> x                2   1    2.99   0.084 .  
-> w               18   1   22.12 3.3e-06 ***
-> x:w             75   1   90.56 < 2e-16 ***
-> Residuals      412 496                    
+> (Intercept)      1   1    0.81   0.368    
+> x                4   1    4.80   0.029 *  
+> w               15   1   17.50 3.4e-05 ***
+> x:w             65   1   74.49 < 2e-16 ***
+> Residuals      430 496                    
 > ---
 > Signif. codes:  
 > 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
@@ -588,7 +591,7 @@ La Figure \@ref(fig:jn1) montre le graphique Johnson-Neyman. La zone bleue indiq
 
 Dans cet exemple, plus l'unité à un niveau de modérateur élevé (en termes absolus), plus il accentue l'effet de la variable indépendante (zones bleues). Le modérateur joue donc un rôle très important dans ce modèle.
 
-## Rapport l'analyse de modération
+## Rapporter l'analyse de modération
 
 Pour rapporter l'analyse de modération, plusieurs éléments peuvent être pertinents à rapporter et varient en fonction des domaines. Il importe de rapporter le ou les effets d'interaction. Ensuite, l'ajout de graphique, comme le Johnson-Neyman ou celui des pentes simples permettent de mieux comprendre, mais surtout de mieux visualiser les interprétations qui auront été rapporter en texte dans l'article. C'est un appui primordial pour le lecteur qui devra lui aussi dégager les tendances des résultats, mais qui, contrairement aux auteurs, n'est pas nécessairement très familier avec le jeu de données. En plus de ces informations primordiales, certains domaines de recherche demanderont de rapporter le modèle de régression réalisé (voir [Rapporter la régression]).
 

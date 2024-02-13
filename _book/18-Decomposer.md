@@ -158,8 +158,8 @@ Il convient également d'ajouter que, comme $\mathbf{\Sigma} = \mathbf{S}$ (à l
 La Figure\ \@ref(fig:acpsuj) montre à gauche les données originales sur les axes représentés par les deux variables (une reprise de la Figure\ \@ref(fig:plotacp)). À droite, il s'agit de la rotation trouvée par l'ACP (`eigen()` ou `svd()`). Les participants conservent entre eux les mêmes distances par rapport aux autres, mais aussi par rapport aux axes originaux représentés par des lignes pointillées. C'est vraiment l'orientation du plan qui change^[Tout problème de distance, s'il y a lieu, est dû à l'échelle des figures.].
 
 <div class="figure" style="text-align: center">
-<img src="18-Decomposer_files/figure-html/acpsuj-1.png" alt="Représentations des participants selon les variables (gauche) ou les composantes principales (droite)." width="75%" height="75%" />
-<p class="caption">(\#fig:acpsuj)Représentations des participants selon les variables (gauche) ou les composantes principales (droite).</p>
+<img src="18-Decomposer_files/figure-html/acpsuj-1.png" alt="Représentations des participants selon les variables (gauche) et les composantes principales (droite)." width="75%" height="75%" />
+<p class="caption">(\#fig:acpsuj)Représentations des participants selon les variables (gauche) et les composantes principales (droite).</p>
 </div>
 
 La première composante retrouvée correspond (approximativement) à la droite de régression de la Figure\ \@ref(fig:plotacp). Il s'agit de l'information partagée par les deux variables\ : c'est leur axe commun. L'erreur résiduelle correspond au deuxième axe (l'axe vertical). Cette intuition est fondamentale : une valeur propre élevée implique une dimension où de la variance est partagée entre les variables, alors qu'une valeur propre plus faible aura tendance à représenter une dimension de résidus, et par définition, d'informations non partagées. 
@@ -167,8 +167,8 @@ La première composante retrouvée correspond (approximativement) à la droite d
 La Figure\ \@ref(fig:varacp) offre une vue de l'agencement des variables sur les deux axes. Il s'agit des loadings des variables dans l'espace des composantes. Cette représentation est assez triviale pour deux variables, mais peut devenir très pertinente lorsque plusieurs variables (ou items) sont concernées. Il est possible d'observer alors des regroupements d'items sur les facteurs. Elle se limite toutefois à une ou deux composantes étant donné la complexité de réaliser et d'interpréter des figures de trois dimensions et plus.
 
 <div class="figure" style="text-align: center">
-<img src="18-Decomposer_files/figure-html/varacp-1.png" alt="Représentations des vraiables selon les composantes principales." width="75%" height="75%" />
-<p class="caption">(\#fig:varacp)Représentations des vraiables selon les composantes principales.</p>
+<img src="18-Decomposer_files/figure-html/varacp-1.png" alt="Représentations des variables selon les composantes principales." width="75%" height="75%" />
+<p class="caption">(\#fig:varacp)Représentations des variables selon les composantes principales.</p>
 </div>
 
 ## Les calculs de l'analyse en composantes principales

@@ -196,8 +196,6 @@ jd %>%
   ggplot(mapping = aes(x = IMC, fill = sex)) + 
   geom_histogram(position = "identity", alpha = .7) + 
   scale_fill_grey()
-> `stat_bin()` using `bins = 30`. Pick better value with
-> `binwidth`.
 ```
 
 <div class="figure" style="text-align: center">
@@ -260,7 +258,6 @@ superbPlot(ToothGrowth,
     BSFactors = c("dose","supp"), 
     variables = "len",
     plotStyle = "line")
-> superb::FYI: The variables will be plotted in that order: dose, supp (use factorOrder to change).
 ```
 
 <div class="figure" style="text-align: center">
@@ -278,7 +275,6 @@ stat.descr <- superbData(ToothGrowth,
                          BSFactors = c("dose","supp"), 
                          variables = "len",
                          adjustments = list(purpose = "difference"))
-> superb::FYI: The variables will be plotted in that order: dose, supp (use factorOrder to change).
 ```
 
 Attention! Cette variable est une liste contenant deux éléments, les statistiques descriptives (`$summaryStatistics`) et les données brutes (`$rawData`). Elle peuvent être extraites avec le signe `$`, comme `stat.descr$summaryStatistics`.
@@ -348,8 +344,6 @@ superbPlot(jd_intra,
     variables = c("temps1", "temps2"),
     plotStyle = "line",
     adjustments = list(purpose = "difference", decorrelation = "CM"))
-> superb::FYI: The HyunhFeldtEpsilon measure of sphericity per group are  1.000
-> superb::FYI: All the groups' data are compound symmetric. Consider using CA.
 ```
 
 <div class="figure" style="text-align: center">
