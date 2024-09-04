@@ -79,7 +79,7 @@ ggplot(data = vp,
   geom_line() + 
   geom_point() +
   ylab("Valeur propre") +
-  theme(legend.position = c(0.8, 0.8))
+  theme(legend.position.inside = c(0.8, 0.8))
 ```
 
 <div class="figure" style="text-align: center">
@@ -156,7 +156,7 @@ ggplot(data = vp,
   geom_line() + 
   geom_point() +
   ylab("Valeur propre") +
-  theme(legend.position = c(0.8, 0.8))
+  theme(legend.position.inside = c(0.8, 0.8))
 ```
 
 <div class="figure" style="text-align: center">
@@ -264,7 +264,7 @@ ggplot(data = vp,
   geom_line() + 
   geom_point() +
   ylab("Valeur propre") +
-  theme(legend.position = c(0.8, 0.8))
+  theme(legend.position.inside = c(0.8, 0.8))
 ```
 
 <div class="figure" style="text-align: center">
@@ -400,10 +400,14 @@ La sortie ici, `nfactors`  représente le nombre de dimensions à retenir.
 
 
 
-Il existe une version préliminaire d'un package permettant de réaliser facilement NEST en plus de fournir quelques fonctions utiles. Le package est `Rnest` [@Rnest]. Il est disponible par GitHub et est importable sur **R** avec la syntaxe suivante.
+Il existe un package permettant de réaliser facilement NEST en plus de fournir quelques fonctions utiles. Le package est `Rnest` [@Rnest] est disponible par GitHub (pour la version en développement) et CRAN. Les deux version sont importables sur **R** avec la syntaxe suivante.
 
 
 ```r
+# CRAN
+install.packages("Rnest")
+
+# GitHub
 remotes::install_github(repo = "quantmeth/Rnest")
 ```
 
@@ -441,7 +445,7 @@ ggplot(data = vp,
   geom_line() + 
   geom_point() +
   ylab("Valeur propre") +
-  theme(legend.position = c(0.8, 0.8))
+  theme(legend.position.inside = c(0.8, 0.8))
 ```
 
 <div class="figure" style="text-align: center">
@@ -454,18 +458,6 @@ Un bel avantage du package est sa possibilité de créer un graphique pour diff�
 
 ```r
 plot(nest(jd, alpha = c(.01, .025, .05, .10)))
-> Warning: Use of `df$Position` is discouraged.
-> ℹ Use `Position` instead.
-> Warning: Use of `df$Eigenvalues` is discouraged.
-> ℹ Use `Eigenvalues` instead.
-> Warning: Use of `df$Confidence` is discouraged.
-> ℹ Use `Confidence` instead.
-> Warning: Use of `df$Position` is discouraged.
-> ℹ Use `Position` instead.
-> Warning: Use of `df$Eigenvalues` is discouraged.
-> ℹ Use `Eigenvalues` instead.
-> Warning: Use of `df$Confidence` is discouraged.
-> ℹ Use `Confidence` instead.
 ```
 
 <div class="figure" style="text-align: center">

@@ -74,7 +74,7 @@ ggplot(data = vp,
   geom_line() + 
   geom_point() +
   ylab("Valeur propre") +
-  theme(legend.position = c(0.8, 0.8))
+  theme(legend.position.inside = c(0.8, 0.8))
 ```
 La Figure\ \@ref(fig:scree) est une bonne représentation visuelle des valeurs propres. Elle ne répond pas à la question d'intérêt : combien y a-t-il de dimensions *importantes*? Elle donne toutefois une idée. Probablement 2 ou 3? La première est indubitable; la valeur propre est très élevée. Les 4^e^, 5^e^ et 6^e^ sont quant à elles très petites et sont très près. Comment déterminer avec plus de rigueur le nombre de dimensions? C'est là que les règles d'arrêt entre en jeu.
 
@@ -126,7 +126,7 @@ ggplot(data = vp,
   geom_line() + 
   geom_point() +
   ylab("Valeur propre") +
-  theme(legend.position = c(0.8, 0.8))
+  theme(legend.position.inside = c(0.8, 0.8))
 ```
 
 Voici un exemple d'une fonction maison simple pour programmer le test de Kaiser.
@@ -220,7 +220,7 @@ ggplot(data = vp,
   geom_line() + 
   geom_point() +
   ylab("Valeur propre") +
-  theme(legend.position = c(0.8, 0.8))
+  theme(legend.position.inside = c(0.8, 0.8))
 ```
 Voici une fonction pour programmer l'analyse parallèle.
 
@@ -351,9 +351,13 @@ remotes::install_github(repo = "quantmeth/Rnest")
 ```
 
 
-Il existe une version préliminaire d'un package permettant de réaliser facilement NEST en plus de fournir quelques fonctions utiles. Le package est `Rnest` [@Rnest]. Il est disponible par GitHub et est importable sur **R** avec la syntaxe suivante.
+Il existe un package permettant de réaliser facilement NEST en plus de fournir quelques fonctions utiles. Le package est `Rnest` [@Rnest] est disponible par GitHub (pour la version en développement) et CRAN. Les deux version sont importables sur **R** avec la syntaxe suivante.
 
 ```{r, eval = FALSE}
+# CRAN
+install.packages("Rnest")
+
+# GitHub
 remotes::install_github(repo = "quantmeth/Rnest")
 ```
 
@@ -387,7 +391,7 @@ ggplot(data = vp,
   geom_line() + 
   geom_point() +
   ylab("Valeur propre") +
-  theme(legend.position = c(0.8, 0.8))
+  theme(legend.position.inside = c(0.8, 0.8))
 ```
 
 Un bel avantage du package est sa possibilité de créer un graphique pour différentes valeurs critiques `alpha`. La Figure\ \@ref(fig:screenest) illustre la sortie.
@@ -431,7 +435,7 @@ ggplot(data = vp,
   geom_point() +
   ylab("Valeur propre") +
   scale_x_continuous(breaks = scales::pretty_breaks())+
-  theme(legend.position = c(0.8, 0.8))
+  theme(legend.position.inside = c(0.8, 0.8))
 ```
 
 Il s'agit d'une structure très difficile pour les règles d'arrêt basées sur les valeurs propres, comme le test de Kaiser, l'analyse parallèle et NEST. Voici les tests comparés.

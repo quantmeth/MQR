@@ -184,7 +184,7 @@ Figure 20.1: Pigeon compressé à divers niveaux de dimension <span class="math 
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">"Valeur propre"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.8</span>, <span class="fl">0.8</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position.inside <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.8</span>, <span class="fl">0.8</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:scree"></span>
 <img src="20-Reduire_files/figure-html/scree-1.png" alt="Les valeurs propres en fonction de la position de l'axe" width="75%" height="75%"><p class="caption">
@@ -246,7 +246,7 @@ Figure 20.2: Les valeurs propres en fonction de la position de l’axe
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">"Valeur propre"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.8</span>, <span class="fl">0.8</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position.inside <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.8</span>, <span class="fl">0.8</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:kaiser"></span>
 <img src="20-Reduire_files/figure-html/kaiser-1.png" alt="Les valeurs propres en fonctions de la position de l'axe" width="75%" height="75%"><p class="caption">
@@ -338,7 +338,7 @@ Dans la syntaxe ci-dessous, les mêmes caractéristiques que le jeu de données 
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">"Valeur propre"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.8</span>, <span class="fl">0.8</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position.inside <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.8</span>, <span class="fl">0.8</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:scree2"></span>
 <img src="20-Reduire_files/figure-html/scree2-1.png" alt="Comparaison des valeurs propres empiriques et simulées" width="75%" height="75%"><p class="caption">
@@ -463,9 +463,13 @@ H_1 : k \geq1
 <h4>
 <span class="header-section-number">20.3.3.1</span> Le package Rnest<a class="anchor" aria-label="anchor" href="#le-package-rnest"><i class="fas fa-link"></i></a>
 </h4>
-<p>Il existe une version préliminaire d’un package permettant de réaliser facilement NEST en plus de fournir quelques fonctions utiles. Le package est <code>Rnest</code> <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-Rnest" role="doc-biblioref">Caron, 2023</a>)</span>. Il est disponible par GitHub et est importable sur <strong>R</strong> avec la syntaxe suivante.</p>
+<p>Il existe un package permettant de réaliser facilement NEST en plus de fournir quelques fonctions utiles. Le package est <code>Rnest</code> <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-Rnest" role="doc-biblioref">Caron, 2023</a>)</span> est disponible par GitHub (pour la version en développement) et CRAN. Les deux version sont importables sur <strong>R</strong> avec la syntaxe suivante.</p>
 <div class="sourceCode" id="cb294"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span>repo <span class="op">=</span> <span class="st">"quantmeth/Rnest"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># CRAN</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"Rnest"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># GitHub</span></span>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span>repo <span class="op">=</span> <span class="st">"quantmeth/Rnest"</span><span class="op">)</span></span></code></pre></div>
 <p>Comme à l’habitude, il faut l’appeler dans l’environnement.</p>
 <div class="sourceCode" id="cb295"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">Rnest</span><span class="op">)</span></span></code></pre></div>
@@ -489,7 +493,7 @@ H_1 : k \geq1
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">"Valeur propre"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.8</span>, <span class="fl">0.8</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position.inside <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.8</span>, <span class="fl">0.8</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:scree3"></span>
 <img src="20-Reduire_files/figure-html/scree3-1.png" alt="Comparaison des valeurs propres empiriques et simulées (analyses parallèle et nest)" width="75%" height="75%"><p class="caption">
@@ -497,19 +501,8 @@ Figure 20.5: Comparaison des valeurs propres empiriques et simulées (analyses p
 </p>
 </div>
 <p>Un bel avantage du package est sa possibilité de créer un graphique pour différentes valeurs critiques <code>alpha</code>. La Figure <a href="r%C3%A9duire.html#fig:screenest">20.6</a> illustre la sortie.</p>
-<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="r%C3%A9duire.html#cb298-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">nest</span>(jd, <span class="at">alpha =</span> <span class="fu">c</span>(.<span class="dv">01</span>, .<span class="dv">025</span>, .<span class="dv">05</span>, .<span class="dv">10</span>)))</span>
-<span id="cb298-2"><a href="r%C3%A9duire.html#cb298-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Warning<span class="sc">:</span> Use of <span class="st">`</span><span class="at">df$Position</span><span class="st">`</span> is discouraged.</span>
-<span id="cb298-3"><a href="r%C3%A9duire.html#cb298-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> ℹ Use <span class="st">`</span><span class="at">Position</span><span class="st">`</span> instead.</span>
-<span id="cb298-4"><a href="r%C3%A9duire.html#cb298-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Warning<span class="sc">:</span> Use of <span class="st">`</span><span class="at">df$Eigenvalues</span><span class="st">`</span> is discouraged.</span>
-<span id="cb298-5"><a href="r%C3%A9duire.html#cb298-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> ℹ Use <span class="st">`</span><span class="at">Eigenvalues</span><span class="st">`</span> instead.</span>
-<span id="cb298-6"><a href="r%C3%A9duire.html#cb298-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Warning<span class="sc">:</span> Use of <span class="st">`</span><span class="at">df$Confidence</span><span class="st">`</span> is discouraged.</span>
-<span id="cb298-7"><a href="r%C3%A9duire.html#cb298-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> ℹ Use <span class="st">`</span><span class="at">Confidence</span><span class="st">`</span> instead.</span>
-<span id="cb298-8"><a href="r%C3%A9duire.html#cb298-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Warning<span class="sc">:</span> Use of <span class="st">`</span><span class="at">df$Position</span><span class="st">`</span> is discouraged.</span>
-<span id="cb298-9"><a href="r%C3%A9duire.html#cb298-9" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> ℹ Use <span class="st">`</span><span class="at">Position</span><span class="st">`</span> instead.</span>
-<span id="cb298-10"><a href="r%C3%A9duire.html#cb298-10" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Warning<span class="sc">:</span> Use of <span class="st">`</span><span class="at">df$Eigenvalues</span><span class="st">`</span> is discouraged.</span>
-<span id="cb298-11"><a href="r%C3%A9duire.html#cb298-11" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> ℹ Use <span class="st">`</span><span class="at">Eigenvalues</span><span class="st">`</span> instead.</span>
-<span id="cb298-12"><a href="r%C3%A9duire.html#cb298-12" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Warning<span class="sc">:</span> Use of <span class="st">`</span><span class="at">df$Confidence</span><span class="st">`</span> is discouraged.</span>
-<span id="cb298-13"><a href="r%C3%A9duire.html#cb298-13" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> ℹ Use <span class="st">`</span><span class="at">Confidence</span><span class="st">`</span> instead.</span></code></pre></div>
+<div class="sourceCode" id="cb298"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/Rnest/man/nest.html">nest</a></span><span class="op">(</span><span class="va">jd</span>, alpha <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.01</span>, <span class="fl">.025</span>, <span class="fl">.05</span>, <span class="fl">.10</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:screenest"></span>
 <img src="20-Reduire_files/figure-html/screenest-1.png" alt="Graphique produit par `nest` de `Rnest`" width="75%" height="75%"><p class="caption">
@@ -590,7 +583,7 @@ Figure 20.8: Les valeurs propres de <code>ex_4factors_corr</code>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2024-02-13.</p>
+    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2024-09-04.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

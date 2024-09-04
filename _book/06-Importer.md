@@ -227,7 +227,7 @@ Il n'existe pas de fonction de base pour importer des fichiers Microsoft Excel (
 ```r
 # Excel
 library(readxl)
-jd = read_excel("fichier.xls")
+jd <- read_excel("fichier.xls")
 ```
 
 La fonction `read_excel()` possède un argument `sheet = ` qui permet de préciser la feuille qu'il faut importer ou `range = ` (p. ex. `range = A1:B20` qui permet d'importer un rectangle de plage de données (du coin supérieur gauche `A1` au coin inférieur droit `B20`). 

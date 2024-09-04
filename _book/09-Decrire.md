@@ -71,24 +71,24 @@ psych::describe.by(ToothGrowth, group = ToothGrowth$supp)
 > 
 >  Descriptive statistics by group 
 > group: OJ
->       vars  n  mean   sd median trimmed  mad min  max range
-> len      1 30 20.66 6.61   22.7   21.04 5.49 8.2 30.9  22.7
-> supp*    2 30  1.00 0.00    1.0    1.00 0.00 1.0  1.0   0.0
-> dose     3 30  1.17 0.63    1.0    1.15 0.74 0.5  2.0   1.5
->        skew kurtosis   se
-> len   -0.52    -1.03 1.21
-> supp*   NaN      NaN 0.00
-> dose   0.36    -1.60 0.12
+>      vars  n  mean   sd median trimmed  mad min  max range
+> len     1 30 20.66 6.61   22.7   21.04 5.49 8.2 30.9  22.7
+> supp    2 30  1.00 0.00    1.0    1.00 0.00 1.0  1.0   0.0
+> dose    3 30  1.17 0.63    1.0    1.15 0.74 0.5  2.0   1.5
+>       skew kurtosis   se
+> len  -0.52    -1.03 1.21
+> supp   NaN      NaN 0.00
+> dose  0.36    -1.60 0.12
 > --------------------------------------------- 
 > group: VC
->       vars  n  mean   sd median trimmed  mad min  max range
-> len      1 30 16.96 8.27   16.5   16.58 9.27 4.2 33.9  29.7
-> supp*    2 30  2.00 0.00    2.0    2.00 0.00 2.0  2.0   0.0
-> dose     3 30  1.17 0.63    1.0    1.15 0.74 0.5  2.0   1.5
->       skew kurtosis   se
-> len   0.28    -0.93 1.51
-> supp*  NaN      NaN 0.00
-> dose  0.36    -1.60 0.12
+>      vars  n  mean   sd median trimmed  mad min  max range
+> len     1 30 16.96 8.27   16.5   16.58 9.27 4.2 33.9  29.7
+> supp    2 30  2.00 0.00    2.0    2.00 0.00 2.0  2.0   0.0
+> dose    3 30  1.17 0.63    1.0    1.15 0.74 0.5  2.0   1.5
+>      skew kurtosis   se
+> len  0.28    -0.93 1.51
+> supp  NaN      NaN 0.00
+> dose 0.36    -1.60 0.12
 ```
 
 Enfin, il faut porter attention, car `describe()` et `describeBy()` transforment les variables ordinales^[Définis en facteurs.] et nominales en variables continues. Les indices statistiques rapportées pourraient n'avoir aucun intérêt. Il faudra alors retirer ces lignes (comme c'est fait avec les colonnes ci-haut).
