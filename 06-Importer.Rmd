@@ -6,7 +6,7 @@ Les jeux de données sont traités de la même façon que les scripts. Il est d'
 
 Un jeu de données porte généralement les extensions ".Rdata", lorsqu'elles proviennent de **R**, ou d'extensions ".dat" et ".txt". Évidemment, **R** permet une grande flexibilité, il est ainsi possible d'exporter et d'importer dans d'autres extensions. Les extensions ".Rdata" sont des environnements **R**, elles contiennent potentiellement plusieurs variables, comme une séance de travail complète. Elles ont aussi l'avantage que, si l'utilisateur double-clique sur un fichier d'extension ".Rdata", celui-ci s'ouvre automatiquement dans l'environnement **R**.
 
-Il faut importer le jeu de données à chaque nouvelle séance utilisation. Contrairement aux logiciels traditionnels, il n'est pas nécessaire, **ni même recommander!**, de modifier, d'altérer ou de manipuler un fichier contenant des données. Cela n'est pas nécessaire dans la mesure où **les syntaxes décrivant ces manipulations sont conservées**. Il devient alors impossible d'endommager, de corrompre, d'altérer ou d'archiver erronément le fichier de données. **Les données originales restent intactes**. Il suffit de les importer à chaque nouvelle séance, de commander la syntaxe qui lui est associée pour obtenir de nouveau la version *propre* du jeu de données.
+Il faut importer le jeu de données à chaque nouvelle séance d'utilisation. Contrairement aux logiciels traditionnels, il n'est pas nécessaire, **ni même recommander!**, de modifier, d'altérer ou de manipuler un fichier contenant des données. Cela n'est pas nécessaire dans la mesure où **les syntaxes décrivant ces manipulations sont conservées**. Il devient alors impossible d'endommager, de corrompre, d'altérer ou d'archiver erronément le fichier de données. **Les données originales restent intactes**. Il suffit de les importer à chaque nouvelle séance, de commander la syntaxe qui lui est associée pour obtenir de nouveau la version *propre* du jeu de données.
 
 Il est recommandé de ne jamais manipuler les fichiers de données une fois toutes les vérifications réalisées (absence d'erreur dans les données). Il n'est jamais nécessaire de modifier ces fichiers avec **R**. Également, un même jeu de données peut être associé à plusieurs syntaxes de nettoyage, de manipulation et d'analyse, mais tous les collaborateurs partagent le même jeu de données, ce qui facilite les échanges entre eux.
 
@@ -89,7 +89,7 @@ Il est possible de voir les données en utilisant la fonction `View()` et en y i
 
 ## Emplacement du jeu de données
 
-Idéalement, le fichier contenant le jeu de données se retrouve déjà dans le directoire de travail (ou dan le projet **R** en cours). Dans ce contexte, il suffit de référer seulement au nom du fichier.
+Idéalement, le fichier contenant le jeu de données se retrouve déjà dans le directoire de travail (ou dans le projet **R** en cours). Dans ce contexte, il suffit de référer seulement au nom du fichier.
 
 ```{r, eval=FALSE}
 jd <- read.table("fichier.txt")
@@ -119,7 +119,7 @@ L'utilisateur doit identifier manuellement (pointer et cliquer) où se trouve le
 
 ## Importer avec **R**
 
-Dans la plupart des situations, les analyses et les graphiques sont réalisés à partir d'un jeu de données se trouvant dans un fichier. Ce lui-ci est importé en **R** pour être manipulé. Les jeux de données peuvent se trouver dans un fichier dans l'ordinateur, mais aussi sur le web. Ils peuvent être en différents types de format.
+Dans la plupart des situations, les analyses et les graphiques sont réalisés à partir d'un jeu de données se trouvant dans un fichier. Celui-ci est importé en **R** pour être manipulé. Les jeux de données peuvent se trouver dans un fichier dans l'ordinateur, mais aussi sur le web. Ils peuvent être en différents types de format.
 
 Pour la description de l'importation, le présent ouvrage prend pour acquis que le fichier de données se retrouve dans le directoire de travail (ce qui est l'idéal en général). La création de trajectoires pour différents emplacements est présentée dans la section [Emplacement du jeu de données].
 
@@ -176,7 +176,7 @@ Comme pour `read.csv()` et `read.csv2()`, les fonctions `read.delim()` et `read.
 
 Comme le lecteur s'en doute peut-être, **R** de base ne permet pas d'importer des fichiers spécifiques d'autres logiciels. Par contre, avec les années se sont développés des packages permettant de pallier la situation. Le package `foreign` [@foreign] permet d'importer des fichiers issus de IBM SPSS (`.sav`), Stata (`.dta`) et Systat (`.syd`) et Minitab (`mtp`) avec, respectivement les fonctions `read.spss()`, `read.data()`, `read.systat()` et `read.mtp()`. La logique d'importation est la même pour ces quatre fonctions.
 
-Pour `read.spss()`, il y a deux arguments qui sont importants à souligner. Par défaut, la fonctionne ne retourne pas un *data frame* et utilise les libellés de valeurs (*value labels*). Dans la plupart des cas, l'utilisateur désire probablement obtenir un jeu de données de type *data.frame* et les valeurs sous-jacentes aux libellés de valeurs. L'utilisateur  peut alors changer ces arguments `to.data.frame = TRUE` (par défaut, `FALSE`) et `use.value.labels = FALSE`(par défaut, `TRUE`).                                                                                                               
+Pour `read.spss()`, il y a deux arguments qui sont importants à souligner. Par défaut, la fonction ne retourne pas un *data frame* et utilise les libellés de valeurs (*value labels*). Dans la plupart des cas, l'utilisateur désire probablement obtenir un jeu de données de type *data.frame* et les valeurs sous-jacentes aux libellés de valeurs. L'utilisateur  peut alors changer ces arguments `to.data.frame = TRUE` (par défaut, `FALSE`) et `use.value.labels = FALSE`(par défaut, `TRUE`).                                                                                                               
 ```{r, eval = FALSE}
 library(foreign)
 

@@ -147,7 +147,7 @@ Figure 4.1: Boîte de dialogue de Rmarkdown
 Figure 4.2: Exemple de Rmarkdown
 </p>
 </div>
-<p>Il est possible de voir immédiatement le résultat final de ce script en cliquant sur <code>Knit</code> (<em>tricoter</em>) au milieu en haut (le symbole de pelote de laine avec une aiguille). À chaque que l’utilisateur désirer produire le rapport, il faudra le *tricoter en cliquant sur cet icône.</p>
+<p>Il est possible de voir immédiatement le résultat final de ce script en cliquant sur <code>Knit</code> (<em>tricoter</em>) au milieu en haut (le symbole de pelote de laine avec une aiguille). À chaque fois que l’utilisateur désire produire le rapport, il faudra le <em>tricoter</em> en cliquant sur cet icône.</p>
 </div>
 <div id="les-éléments-importants" class="section level2" number="4.3">
 <h2>
@@ -291,14 +291,14 @@ dist
 <p>Il arrive qu’il soit nécessaire d’ajouter des équations dans un rapport. Pour ce faire, <strong>R</strong> utilise latex, un très puissant langage de programmation pour la rédaction de texte. Toute équation commence et termine avec le signe de dollars $. Par exemple, l’équation <span class="math inline">\(2+2=4\)</span> s’écrit <code>$2+2=4$</code>. Il est possible d’ajouter des exposants avec <code>^</code> ou des indices avec <code>_</code>. Les lettres grecques s’écrivent avec une barre oblique, par exemple, <span class="math inline">\(\beta\)</span>, s’écrit <code>$\beta$</code> ou la variance <span class="math inline">\(\sigma^2\)</span>, s’écrit <code>$\sigma^2$</code>.</p>
 <p>S’il faut utiliser les vrais symboles, par exemple $ et %, alors il faut ajouter un <code>\</code> devant, comme <code>\$</code> ou <code>\%</code>. Également, l’utilisation de la barre oblique devant un espace permet de créer un espace insécable.</p>
 </div>
-<div id="référer-à-des-variables-de-r-dans-le-texte" class="section level3" number="4.3.8">
+<div id="référer-à-des-variables-dans-le-texte" class="section level3" number="4.3.8">
 <h3>
-<span class="header-section-number">4.3.8</span> Référer à des variables de <strong>R</strong> dans le texte<a class="anchor" aria-label="anchor" href="#r%C3%A9f%C3%A9rer-%C3%A0-des-variables-de-r-dans-le-texte"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.3.8</span> Référer à des variables dans le texte<a class="anchor" aria-label="anchor" href="#r%C3%A9f%C3%A9rer-%C3%A0-des-variables-dans-le-texte"><i class="fas fa-link"></i></a>
 </h3>
 <p>Pour référer à des variables de l’environnement du rapport, il est possible d’appeler ces valeurs des accents graves. Voici un exemple.</p>
 <div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">moyenne</span> <span class="op">&lt;-</span> <span class="fl">10</span></span></code></pre></div>
-<p>Pour rapporter la variable <code>moyenne</code> dans le texte, il faut recourir à <code>`r moyenne`</code>, c’est-à-dire un accent grave, l’appel à <code>r</code> pour indiquer que la suite est du code <strong>R</strong>, le nom de la variable et un autre accent grave pour indiquer la fin. Ainsi, <code>`r moyenne`</code> produit le contenu de 10.</p>
+<p>Pour rapporter la nouvelle variable <code>moyenne</code> dans le texte, il faut écrire <code>`r moyenne`</code>, c’est-à-dire un accent grave, l’appel à <code>r</code> pour indiquer que la suite est du code <strong>R</strong>, le nom de la variable et un autre accent grave pour indiquer la fin. Ainsi, <code>`r moyenne`</code> retranscrit son contenu, soit 10.</p>
 </div>
 <div id="formater-du-texte" class="section level3" number="4.3.9">
 <h3>
@@ -345,7 +345,7 @@ dist
 <li><a class="nav-link" href="#les-images-externes"><span class="header-section-number">4.3.5</span> Les images externes</a></li>
 <li><a class="nav-link" href="#les-tableaux"><span class="header-section-number">4.3.6</span> Les tableaux</a></li>
 <li><a class="nav-link" href="#les-%C3%A9quations"><span class="header-section-number">4.3.7</span> Les équations</a></li>
-<li><a class="nav-link" href="#r%C3%A9f%C3%A9rer-%C3%A0-des-variables-de-r-dans-le-texte"><span class="header-section-number">4.3.8</span> Référer à des variables de R dans le texte</a></li>
+<li><a class="nav-link" href="#r%C3%A9f%C3%A9rer-%C3%A0-des-variables-dans-le-texte"><span class="header-section-number">4.3.8</span> Référer à des variables dans le texte</a></li>
 <li><a class="nav-link" href="#formater-du-texte"><span class="header-section-number">4.3.9</span> Formater du texte</a></li>
 <li><a class="nav-link" href="#ajouter-un-hyperlien"><span class="header-section-number">4.3.10</span> Ajouter un hyperlien</a></li>
 <li><a class="nav-link" href="#les-commentaires-dans-le-texte"><span class="header-section-number">4.3.11</span> Les commentaires dans le texte</a></li>
@@ -369,7 +369,7 @@ dist
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2024-09-04.</p>
+    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2024-09-19.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

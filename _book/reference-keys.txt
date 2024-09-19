@@ -223,7 +223,7 @@ les-figures
 les-images-externes
 les-tableaux
 les-équations
-référer-à-des-variables-de-r-dans-le-texte
+référer-à-des-variables-dans-le-texte
 formater-du-texte
 ajouter-un-hyperlien
 les-commentaires-dans-le-texte
@@ -256,7 +256,7 @@ quelques-conseils
 manipuler
 manipulation-de-données
 référer-à-une-variable-dans-un-jeu-de-données
-référer-à-un-sous-ensemble-dunité.
+référer-à-un-sous-ensemble-dunité
 nommer-des-variables-dans-un-jeu-de-données
 données-manquantes
 le-tidyverse

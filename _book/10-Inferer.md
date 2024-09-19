@@ -8,14 +8,14 @@ Cette tâche peut apparaître difficile considérant le peu d'informations sur l
 
 ## Le théorème central limite
 
-Les valeurs d'un échantillon sont, pour le statisticien, des variables aléatoires. Une variable aléatoire, c'est un peu comme piger dans une boîte à l'aveuglette pour obtenir une valeur. La boîte est impénétrable, personne ne sait par quel processus elle accorde telle ou telle autre valeur. Pour le statisticien, ce qui importe c'est que chaque valeur possède une chance égale aux autres d'être sélectionnée et qu'elles soient indépendantes entre elles (le fait qu'en choisir une soit sans conséquence sur la probabilité des autres). 
+Les valeurs d'un échantillon sont, pour le statisticien, des variables aléatoires. Une variable aléatoire, c'est un peu comme piger dans une boîte à l'aveuglette pour obtenir une valeur. La boîte est impénétrable, personne ne sait par quel processus elle accorde telle ou telle autre valeur. Pour le statisticien, ce qui importe c'est que chaque valeur possède une chance égale aux autres d'être sélectionnée et qu'elles soient indépendantes entre elles (le fait d'en choisir est sans conséquence sur la probabilité de choisir les autres). 
 
 Pour le non-initié aux fonctions permettant de créer des nombres pseudoaléatoires, une fonction **R** comme `rnorm()` ou `runif()` (*r* suivi d'un nom de distribution, voir [Les distributions]) joue parfaitement le rôle de cette boîte. Si l'usager demande une valeur, la fonction retourne une valeur aléatoire (imprévisible à chaque fois) sans connaître comment cette valeur est produite.
 
 
 ```r
 runif(n = 1)
-> [1] 0.398
+> [1] 0.114
 ```
 
 Le statisticien s'intéresse à inférer comment ces valeurs sont générées. Il postule ainsi que les valeurs aléatoires suivent une distribution de probabilité. Connaître cette distribution est très important, car c'est elle qui permet de répondre à des questions comme : quelle est la probabilité d'obtenir un résultat aussi rare que $x$? Ou quelle sont les valeurs attendues pour $95\%$ des tirages? Questions tout à fait pertinentes pour l'expérimentateur. Une des distributions les plus connues est certainement la distribution normale, celle qui est derrière la fonction `rnorm()` d'ailleurs. Mais, il y en a beaucoup, beaucoup d'autres. 
@@ -51,7 +51,7 @@ En calculant la somme de plusieurs variables aléatoires de cette distribution, 
 
 
 ```r
-# Cette fonction sort les nombres, mais pas les graphiques.
+# Cette fonction produit les nombres, mais pas les graphiques.
 # Différentes tailles d'échantillons
 N <- seq(10, 90, by = 10)
 # Nombre de tirage pour chaque élément de N
@@ -69,7 +69,7 @@ for(n in N){
 ```
 
 
-La Figure \@ref(fig:testn) montre que la distribution d'échantillonnage de la somme des variables converge vers une distribution normale à mesure que la taille d'échantillon $n$ augmente. Cela est vrai pour n'importe quelle distribution de probabilité de la population. Le théorème central en dit plus que simplement la forme de la distribution. Elle affirme également qu'une distribution de probabilité d'une population ayant une moyenne $\mu$ et un écart type $\sigma$ échantillonnées sur $n$ unités, génére une distribution d'échantillonnage des totaux (indicé $t$) ayant une espérance (la moyenne) de $n\mu_t$ et un écart type de $n\sigma_t^2$.
+La Figure \@ref(fig:testn) montre que la distribution d'échantillonnage de la somme des variables converge vers une distribution normale à mesure que la taille d'échantillon $n$ augmente. Cela est vrai pour n'importe quelle distribution de probabilité de la population. Le théorème central limite en dit plus que simplement la forme de la distribution. Il affirme également qu'une distribution de probabilité d'une population ayant une moyenne $\mu$ et un écart type $\sigma$ échantillonnées sur $n$ unités, génère une distribution d'échantillonnage des totaux (indicé $t$) ayant une espérance (la moyenne) de $n\mu_t$ et un écart type de $n\sigma_t$.
 
 <div class="figure">
 <img src="10-Inferer_files/figure-html/testn-1.png" alt="Distributions des totaux de n variables log normales" width="672" />
@@ -132,7 +132,7 @@ Fanny a un score-$z$ de 1.333. Maintenant, il faut traduire cette valeur en prob
 
 
 ```r
-# La probabilité que Fanny ait un QI de -Inf à z.fanny
+# La probabilité qu'un score de QI soit entre -Inf à z.fanny
 pnorm(z.fanny)
 > [1] 0.909
 

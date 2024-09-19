@@ -27,7 +27,7 @@ Dans la grammaire de graphique, une figure possède huit niveaux, dont les trois
 
 * *geometric représentation*, la représentation géométrique ou le type de représentation graphique, par exemple, diagramme de dispersion, histogramme, boîte à moustache, etc.
 
-Les cinq autres son, *statistics*, *facet*, *coordinate space*, *labels*, *theme* permettent de personnaliser la figure. 
+Les cinq autres *statistics*, *facet*, *coordinate space*, *labels*, *theme* permettent de personnaliser la figure. 
 
 Les composantes les plus importantes sont les trois premières, soit les données, la cartographie et la représentation géométrique. Ce sont les éléments de base pour débuter le graphique. Les autres composantes viennent bonifier la figure tout en l'ajustant au besoin de l'utilisateur.
 
@@ -103,7 +103,7 @@ jd %>%
 
 ## Boîte à moustache
 
-La boîte à moustaches (*box-and-whisker plot*) est une figure permettant de voir la variabilité des données. Elle  résume seulement quelques indicateurs de position soit la médiane, les quartiles, le minimum, et le maximum. Ce diagramme est utilisé principalement pour détecter des valeurs aberrantes et comparer la variabilité entre les groupes. C'est la représentation géométrique `geom_boxplot()` qui permettra de créer des boîtes à moustache. La cartographie prend en argument un variable nominale en `x` et une variable continue en `y`. La Figure \@ref(fig:boxplot1) montre un exemple de boîte à moustache.
+La boîte à moustaches (*box-and-whisker plot*) est une figure permettant de voir la variabilité des données. Elle  résume seulement quelques indicateurs de position soit la médiane, les quartiles, le minimum, et le maximum. Ce diagramme est utilisé principalement pour détecter des valeurs aberrantes et comparer la variabilité entre les groupes. C'est la représentation géométrique `geom_boxplot()` qui permettra de créer des boîtes à moustache. La cartographie prend en argument une variable nominale en `x` et une variable continue en `y`. La Figure \@ref(fig:boxplot1) montre un exemple de boîte à moustache.
 
 ```{r boxplot1, fig.cap = "Boîte à moustache de l'IMC en fonction du sexe", fig.align='center', out.height="75%", out.width="75%"}
 ggplot(data = jd) + 
@@ -189,7 +189,7 @@ Une fois ces statistiques calculées et enregistrées dans le nouveau jeu de don
 
 Il existe un package `superb` [@superb] qui permet d'obtenir des graphiques à barre d'erreur avec précision et facilement ajustable. Une fois installé et importé dans l'environnement, `superb` offre la fonction principale `superbPlot` permet la création de ces figures.
 
-Il y a deux avantages principales a utilisé `superb`. La première est qu'elle permet des ajustements avec l'argument `adjustments` afin de préciser le type de barres d'erreurs^[Oui, oui, il en existe plusieurs!], comme `"single"`, `"difference"`, ou `"tryon"`. Généralement, ce sera l'option `purpose = "difference"` qui sera désirée. Deuxièmement, `superb` tient aussi compte des devis intra participants avec l’argument `WSFactors`, ce qui permet l'utilisation de différentes techniques de décorrélation des temps de mesure. La fonction produit de bien meilleurs graphiques à barres d'erreurs avec plus d'ajustement et de précision.
+Il y a deux avantages principaux a utilisé `superb`. La première est qu'elle permet des ajustements avec l'argument `adjustments` afin de préciser le type de barres d'erreurs^[Oui, oui, il en existe plusieurs!], comme `"single"`, `"difference"`, ou `"tryon"`. Généralement, ce sera l'option `purpose = "difference"` qui sera désirée. Deuxièmement, `superb` tient aussi compte des devis intra participants avec l’argument `WSFactors`, ce qui permet l'utilisation de différentes techniques de décorrélation des temps de mesure. La fonction produit de bien meilleurs graphiques à barres d'erreurs avec plus d'ajustement et de précision.
 
 La Figure \@ref(fig:erreurbar2) reproduit la Figure\ \@ref(fig:erreurbar). Dans le code, il faut préciser les facteurs inter participants `BSFactors` (pour *between subject* ou *BS*) et la variable dépendante, `variable`. La fonction contrôle aussi le type de graphique avec `plotStyle`. 
 

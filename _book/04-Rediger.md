@@ -35,7 +35,7 @@ Cette procédure ouvre un [script][Les scripts] d'extension `.Rmd`. Il s'agit d'
 <p class="caption">(\#fig:rediger2)Exemple de Rmarkdown</p>
 </div>
 
-Il est possible de voir immédiatement le résultat final de ce script en cliquant sur `Knit` (*tricoter*) au milieu en haut (le symbole de pelote de laine avec une aiguille). À chaque que l'utilisateur désirer produire le rapport, il faudra le *tricoter en cliquant sur cet icône.
+Il est possible de voir immédiatement le résultat final de ce script en cliquant sur `Knit` (*tricoter*) au milieu en haut (le symbole de pelote de laine avec une aiguille). À chaque fois que l'utilisateur désire produire le rapport, il faudra le *tricoter* en cliquant sur cet icône.
 
 ## Les éléments importants
 
@@ -149,14 +149,14 @@ Il arrive qu'il soit nécessaire d'ajouter des équations dans un rapport. Pour 
 
 S'il faut utiliser les vrais symboles, par exemple \$ et \%, alors il faut ajouter un `\` devant, comme `\$` ou `\%`. Également, l'utilisation de la barre oblique devant un espace permet de créer un espace insécable.
 
-### Référer à des variables de **R** dans le texte
+### Référer à des variables dans le texte
 
 Pour référer à des variables de l'environnement du rapport, il est possible d'appeler ces valeurs des accents graves. Voici un exemple.
 
 ```r
 moyenne <- 10
 ```
-Pour rapporter la variable `moyenne` dans le texte, il faut recourir à   `` `r moyenne` ``, c'est-à-dire un accent grave, l'appel à `r` pour indiquer que la suite est du code **R**, le nom de la variable et un autre accent grave pour indiquer la fin.  Ainsi,  `` `r moyenne` `` produit le contenu de 10.
+Pour rapporter la nouvelle variable `moyenne` dans le texte, il faut écrire   `` `r moyenne` ``, c'est-à-dire un accent grave, l'appel à `r` pour indiquer que la suite est du code **R**, le nom de la variable et un autre accent grave pour indiquer la fin.  Ainsi,  `` `r moyenne` `` retranscrit son contenu, soit 10.
 
 ### Formater du texte
 
