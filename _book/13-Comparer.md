@@ -392,3 +392,165 @@ pairwise.t.test(donnees$score, donnees$groupe, p.adj = "none")
 
 Cette technique à l'avantage d'être prête pour la plupart corrections, par exemple `p.adj = "bonferroni"` ou `p.adj = "holm"`.
 
+TODO
+
+## ANOVA à mesures répétées
+
+
+```r
+# Un exemple d'ANOVA à mesures répétées
+res.aov.r <- aov(circumference ~ age + Error(Tree/age), data = Orange)
+res.aov.r
+> 
+> Call:
+> aov(formula = circumference ~ age + Error(Tree/age), data = Orange)
+> 
+> Grand Mean: 116
+> 
+> Stratum 1: Tree
+> 
+> Terms:
+>                 Residuals
+> Sum of Squares      11841
+> Deg. of Freedom         4
+> 
+> Residual standard error: 54.4
+> 
+> Stratum 2: Tree:age
+> 
+> Terms:
+>                   age Residuals
+> Sum of Squares  93772      4043
+> Deg. of Freedom     1         4
+> 
+> Residual standard error: 31.8
+> Estimated effects are balanced
+> 
+> Stratum 3: Within
+> 
+> Terms:
+>                 Residuals
+> Sum of Squares       2711
+> Deg. of Freedom        25
+> 
+> Residual standard error: 10.4
+summary(res.aov.r)
+> 
+> Error: Tree
+>           Df Sum Sq Mean Sq F value Pr(>F)
+> Residuals  4  11841    2960               
+> 
+> Error: Tree:age
+>           Df Sum Sq Mean Sq F value  Pr(>F)    
+> age        1  93772   93772    92.8 0.00065 ***
+> Residuals  4   4043    1011                    
+> ---
+> Signif. codes:  
+> 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+> 
+> Error: Within
+>           Df Sum Sq Mean Sq F value Pr(>F)
+> Residuals 25   2711     108
+```
+
+<!-- ## Anova avec facteur intersujet et intrasujet -->
+
+<!-- ```{r} -->
+<!-- jd <- data.frame( -->
+<!--   Sujet = factor(rep(1:10, each = 4)),             # 10 sujets, chacun mesuré 4 fois -->
+<!--   Facteur_Intersujet = factor(rep(c("A", "B"), each = 20)),  # Facteur intersujet (A et B) -->
+<!--   Facteur_Intrasujet = factor(rep(c("T1", "T2"), times = 10)), # Facteur intrasujet (T1 et T2) -->
+<!--   Reponse = rnorm(40)                              # Variable de réponse simulée -->
+<!-- ) -->
+
+<!-- model <- aov(Reponse ~ Facteur_Intersujet * Facteur_Intrasujet +  -->
+<!--              Error(Sujet/Facteur_Intrasujet), data = jd) -->
+
+<!-- # Afficher les résultats -->
+<!-- summary(model) -->
+
+<!-- ``` -->
+
+
+## MANOVA : analyse de variance multivariée
+
+
+```r
+# Un example d'ANOVA multivarié
+
+res.maov <- manova(cbind(Sepal.Length, Petal.Length) ~ Species, data = iris)
+res.maov
+> Call:
+>    manova(cbind(Sepal.Length, Petal.Length) ~ Species, data = iris)
+> 
+> Terms:
+>                 Species Residuals
+> Sepal.Length         63        39
+> Petal.Length        437        27
+> Deg. of Freedom       2       147
+> 
+> Residual standard errors: 0.515 0.43
+> Estimated effects may be unbalanced
+summary(res.maov)
+>            Df Pillai approx F num Df den Df Pr(>F)    
+> Species     2  0.989     71.8      4    294 <2e-16 ***
+> Residuals 147                                         
+> ---
+> Signif. codes:  
+> 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+summary.aov(res.maov)
+>  Response Sepal.Length :
+>              Df Sum Sq Mean Sq F value Pr(>F)    
+> Species       2   63.2   31.61     119 <2e-16 ***
+> Residuals   147   39.0    0.27                   
+> ---
+> Signif. codes:  
+> 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+> 
+>  Response Petal.Length :
+>              Df Sum Sq Mean Sq F value Pr(>F)    
+> Species       2    437   218.6    1180 <2e-16 ***
+> Residuals   147     27     0.2                   
+> ---
+> Signif. codes:  
+> 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+res.lda <- MASS::lda(Species ~ Sepal.Length + Petal.Length, data = iris)
+res.lda 
+> Call:
+> lda(Species ~ Sepal.Length + Petal.Length, data = iris)
+> 
+> Prior probabilities of groups:
+>     setosa versicolor  virginica 
+>      0.333      0.333      0.333 
+> 
+> Group means:
+>            Sepal.Length Petal.Length
+> setosa             5.01         1.46
+> versicolor         5.94         4.26
+> virginica          6.59         5.55
+> 
+> Coefficients of linear discriminants:
+>                LD1    LD2
+> Sepal.Length -1.66  2.462
+> Petal.Length  3.43 -0.928
+> 
+> Proportion of trace:
+>    LD1    LD2 
+> 0.9987 0.0013
+
+plot(res.lda)
+```
+
+<img src="13-Comparer_files/figure-html/unnamed-chunk-16-1.png" width="672" />
+
+```r
+
+# iris %>% 
+#   ggplot(mapping = aes(x = Sepal.Length,
+#                        y = Petal.Length, 
+#                        color = Species)) + 
+#            geom_point()
+```
+

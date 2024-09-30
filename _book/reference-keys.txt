@@ -318,6 +318,8 @@ analyse
 rapporter-lanova
 la-sortie-de-aov
 les-tests-posthoc
+anova-à-mesures-répétées
+manova-analyse-de-variance-multivariée
 prédire
 retour-sur-lassociation-linéaire
 illustration-de-la-covariance
@@ -397,3 +399,8 @@ lanalyse-parallèle-de-horn
 test-de-suffisance-de-la-prochaine-valeur-propre-dachim
 le-package-rnest
 comparaisons-des-règles-darrêts
+confirmer
+structurer
+classer
+profils-latents
+classes-latentes

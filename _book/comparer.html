@@ -103,6 +103,10 @@
 <li><a class="" href="explorer.html"><span class="header-section-number">19</span> Explorer</a></li>
 <li><a class="" href="r%C3%A9duire.html"><span class="header-section-number">20</span> Réduire</a></li>
 <li><a class="" href="exercice-factoriel.html">Exercices</a></li>
+<li class="book-part">Équations structurelles</li>
+<li><a class="" href="confirmer.html"><span class="header-section-number">21</span> Confirmer</a></li>
+<li><a class="" href="structurer.html"><span class="header-section-number">22</span> Structurer</a></li>
+<li><a class="" href="classer.html"><span class="header-section-number">23</span> Classer</a></li>
 <li class="book-part">Annexes</li>
 <li><a class="" href="solutions.html">Solutions</a></li>
 <li><a class="" href="r%C3%A9f%C3%A9rences.html">Références</a></li>
@@ -437,6 +441,156 @@ Figure 13.3: Illustration corrigée du test de comparaisons multiples de Tukey
 <span id="cb185-12"><a href="comparer.html#cb185-12" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
 <span id="cb185-13"><a href="comparer.html#cb185-13" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> P value adjustment method<span class="sc">:</span> none</span></code></pre></div>
 <p>Cette technique à l’avantage d’être prête pour la plupart corrections, par exemple <code>p.adj = "bonferroni"</code> ou <code>p.adj = "holm"</code>.</p>
+<p>TODO</p>
+</div>
+<div id="anova-à-mesures-répétées" class="section level2" number="13.7">
+<h2>
+<span class="header-section-number">13.7</span> ANOVA à mesures répétées<a class="anchor" aria-label="anchor" href="#anova-%C3%A0-mesures-r%C3%A9p%C3%A9t%C3%A9es"><i class="fas fa-link"></i></a>
+</h2>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="comparer.html#cb186-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Un exemple d'ANOVA à mesures répétées</span></span>
+<span id="cb186-2"><a href="comparer.html#cb186-2" aria-hidden="true" tabindex="-1"></a>res.aov.r <span class="ot">&lt;-</span> <span class="fu">aov</span>(circumference <span class="sc">~</span> age <span class="sc">+</span> <span class="fu">Error</span>(Tree<span class="sc">/</span>age), <span class="at">data =</span> Orange)</span>
+<span id="cb186-3"><a href="comparer.html#cb186-3" aria-hidden="true" tabindex="-1"></a>res.aov.r</span>
+<span id="cb186-4"><a href="comparer.html#cb186-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb186-5"><a href="comparer.html#cb186-5" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Call<span class="sc">:</span></span>
+<span id="cb186-6"><a href="comparer.html#cb186-6" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">aov</span>(<span class="at">formula =</span> circumference <span class="sc">~</span> age <span class="sc">+</span> <span class="fu">Error</span>(Tree<span class="sc">/</span>age), <span class="at">data =</span> Orange)</span>
+<span id="cb186-7"><a href="comparer.html#cb186-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb186-8"><a href="comparer.html#cb186-8" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Grand Mean<span class="sc">:</span> <span class="dv">116</span></span>
+<span id="cb186-9"><a href="comparer.html#cb186-9" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb186-10"><a href="comparer.html#cb186-10" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Stratum <span class="dv">1</span><span class="sc">:</span> Tree</span>
+<span id="cb186-11"><a href="comparer.html#cb186-11" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb186-12"><a href="comparer.html#cb186-12" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Terms<span class="sc">:</span></span>
+<span id="cb186-13"><a href="comparer.html#cb186-13" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span>                 Residuals</span>
+<span id="cb186-14"><a href="comparer.html#cb186-14" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Sum of Squares      <span class="dv">11841</span></span>
+<span id="cb186-15"><a href="comparer.html#cb186-15" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Deg. of Freedom         <span class="dv">4</span></span>
+<span id="cb186-16"><a href="comparer.html#cb186-16" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb186-17"><a href="comparer.html#cb186-17" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Residual standard error<span class="sc">:</span> <span class="fl">54.4</span></span>
+<span id="cb186-18"><a href="comparer.html#cb186-18" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb186-19"><a href="comparer.html#cb186-19" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Stratum <span class="dv">2</span><span class="sc">:</span> Tree<span class="sc">:</span>age</span>
+<span id="cb186-20"><a href="comparer.html#cb186-20" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb186-21"><a href="comparer.html#cb186-21" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Terms<span class="sc">:</span></span>
+<span id="cb186-22"><a href="comparer.html#cb186-22" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span>                   age Residuals</span>
+<span id="cb186-23"><a href="comparer.html#cb186-23" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Sum of Squares  <span class="dv">93772</span>      <span class="dv">4043</span></span>
+<span id="cb186-24"><a href="comparer.html#cb186-24" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Deg. of Freedom     <span class="dv">1</span>         <span class="dv">4</span></span>
+<span id="cb186-25"><a href="comparer.html#cb186-25" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb186-26"><a href="comparer.html#cb186-26" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Residual standard error<span class="sc">:</span> <span class="fl">31.8</span></span>
+<span id="cb186-27"><a href="comparer.html#cb186-27" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Estimated effects are balanced</span>
+<span id="cb186-28"><a href="comparer.html#cb186-28" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb186-29"><a href="comparer.html#cb186-29" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Stratum <span class="dv">3</span><span class="sc">:</span> Within</span>
+<span id="cb186-30"><a href="comparer.html#cb186-30" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb186-31"><a href="comparer.html#cb186-31" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Terms<span class="sc">:</span></span>
+<span id="cb186-32"><a href="comparer.html#cb186-32" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span>                 Residuals</span>
+<span id="cb186-33"><a href="comparer.html#cb186-33" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Sum of Squares       <span class="dv">2711</span></span>
+<span id="cb186-34"><a href="comparer.html#cb186-34" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Deg. of Freedom        <span class="dv">25</span></span>
+<span id="cb186-35"><a href="comparer.html#cb186-35" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb186-36"><a href="comparer.html#cb186-36" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Residual standard error<span class="sc">:</span> <span class="fl">10.4</span></span>
+<span id="cb186-37"><a href="comparer.html#cb186-37" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(res.aov.r)</span>
+<span id="cb186-38"><a href="comparer.html#cb186-38" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb186-39"><a href="comparer.html#cb186-39" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Error<span class="sc">:</span> Tree</span>
+<span id="cb186-40"><a href="comparer.html#cb186-40" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>           Df Sum Sq Mean Sq F value <span class="fu">Pr</span>(<span class="sc">&gt;</span>F)</span>
+<span id="cb186-41"><a href="comparer.html#cb186-41" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Residuals  <span class="dv">4</span>  <span class="dv">11841</span>    <span class="dv">2960</span>               </span>
+<span id="cb186-42"><a href="comparer.html#cb186-42" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb186-43"><a href="comparer.html#cb186-43" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Error<span class="sc">:</span> Tree<span class="sc">:</span>age</span>
+<span id="cb186-44"><a href="comparer.html#cb186-44" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>           Df Sum Sq Mean Sq F value  <span class="fu">Pr</span>(<span class="sc">&gt;</span>F)    </span>
+<span id="cb186-45"><a href="comparer.html#cb186-45" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> age        <span class="dv">1</span>  <span class="dv">93772</span>   <span class="dv">93772</span>    <span class="fl">92.8</span> <span class="fl">0.00065</span> <span class="sc">**</span><span class="er">*</span></span>
+<span id="cb186-46"><a href="comparer.html#cb186-46" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Residuals  <span class="dv">4</span>   <span class="dv">4043</span>    <span class="dv">1011</span>                    </span>
+<span id="cb186-47"><a href="comparer.html#cb186-47" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="sc">---</span></span>
+<span id="cb186-48"><a href="comparer.html#cb186-48" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Signif. codes<span class="sc">:</span>  </span>
+<span id="cb186-49"><a href="comparer.html#cb186-49" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="dv">0</span> <span class="st">'***'</span> <span class="fl">0.001</span> <span class="st">'**'</span> <span class="fl">0.01</span> <span class="st">'*'</span> <span class="fl">0.05</span> <span class="st">'.'</span> <span class="fl">0.1</span> <span class="st">' '</span> <span class="dv">1</span></span>
+<span id="cb186-50"><a href="comparer.html#cb186-50" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb186-51"><a href="comparer.html#cb186-51" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Error<span class="sc">:</span> Within</span>
+<span id="cb186-52"><a href="comparer.html#cb186-52" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>           Df Sum Sq Mean Sq F value <span class="fu">Pr</span>(<span class="sc">&gt;</span>F)</span>
+<span id="cb186-53"><a href="comparer.html#cb186-53" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Residuals <span class="dv">25</span>   <span class="dv">2711</span>     <span class="dv">108</span></span></code></pre></div>
+<!-- ## Anova avec facteur intersujet et intrasujet -->
+<!-- ```{r} -->
+<!-- jd <- data.frame( -->
+<!--   Sujet = factor(rep(1:10, each = 4)),             # 10 sujets, chacun mesuré 4 fois -->
+<!--   Facteur_Intersujet = factor(rep(c("A", "B"), each = 20)),  # Facteur intersujet (A et B) -->
+<!--   Facteur_Intrasujet = factor(rep(c("T1", "T2"), times = 10)), # Facteur intrasujet (T1 et T2) -->
+<!--   Reponse = rnorm(40)                              # Variable de réponse simulée -->
+<!-- ) -->
+<!-- model <- aov(Reponse ~ Facteur_Intersujet * Facteur_Intrasujet +  -->
+<!--              Error(Sujet/Facteur_Intrasujet), data = jd) -->
+<!-- # Afficher les résultats -->
+<!-- summary(model) -->
+<!-- ``` -->
+</div>
+<div id="manova-analyse-de-variance-multivariée" class="section level2" number="13.8">
+<h2>
+<span class="header-section-number">13.8</span> MANOVA : analyse de variance multivariée<a class="anchor" aria-label="anchor" href="#manova-analyse-de-variance-multivari%C3%A9e"><i class="fas fa-link"></i></a>
+</h2>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="comparer.html#cb187-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Un example d'ANOVA multivarié</span></span>
+<span id="cb187-2"><a href="comparer.html#cb187-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb187-3"><a href="comparer.html#cb187-3" aria-hidden="true" tabindex="-1"></a>res.maov <span class="ot">&lt;-</span> <span class="fu">manova</span>(<span class="fu">cbind</span>(Sepal.Length, Petal.Length) <span class="sc">~</span> Species, <span class="at">data =</span> iris)</span>
+<span id="cb187-4"><a href="comparer.html#cb187-4" aria-hidden="true" tabindex="-1"></a>res.maov</span>
+<span id="cb187-5"><a href="comparer.html#cb187-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Call<span class="sc">:</span></span>
+<span id="cb187-6"><a href="comparer.html#cb187-6" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span>    <span class="fu">manova</span>(<span class="fu">cbind</span>(Sepal.Length, Petal.Length) <span class="sc">~</span> Species, <span class="at">data =</span> iris)</span>
+<span id="cb187-7"><a href="comparer.html#cb187-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb187-8"><a href="comparer.html#cb187-8" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Terms<span class="sc">:</span></span>
+<span id="cb187-9"><a href="comparer.html#cb187-9" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span>                 Species Residuals</span>
+<span id="cb187-10"><a href="comparer.html#cb187-10" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Sepal.Length         <span class="dv">63</span>        <span class="dv">39</span></span>
+<span id="cb187-11"><a href="comparer.html#cb187-11" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Petal.Length        <span class="dv">437</span>        <span class="dv">27</span></span>
+<span id="cb187-12"><a href="comparer.html#cb187-12" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Deg. of Freedom       <span class="dv">2</span>       <span class="dv">147</span></span>
+<span id="cb187-13"><a href="comparer.html#cb187-13" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb187-14"><a href="comparer.html#cb187-14" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Residual standard errors<span class="sc">:</span> <span class="fl">0.515</span> <span class="fl">0.43</span></span>
+<span id="cb187-15"><a href="comparer.html#cb187-15" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Estimated effects may be unbalanced</span>
+<span id="cb187-16"><a href="comparer.html#cb187-16" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(res.maov)</span>
+<span id="cb187-17"><a href="comparer.html#cb187-17" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>            Df Pillai approx F num Df den Df <span class="fu">Pr</span>(<span class="sc">&gt;</span>F)    </span>
+<span id="cb187-18"><a href="comparer.html#cb187-18" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Species     <span class="dv">2</span>  <span class="fl">0.989</span>     <span class="fl">71.8</span>      <span class="dv">4</span>    <span class="dv">294</span> <span class="sc">&lt;</span><span class="fl">2e-16</span> <span class="sc">**</span><span class="er">*</span></span>
+<span id="cb187-19"><a href="comparer.html#cb187-19" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Residuals <span class="dv">147</span>                                         </span>
+<span id="cb187-20"><a href="comparer.html#cb187-20" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="sc">---</span></span>
+<span id="cb187-21"><a href="comparer.html#cb187-21" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Signif. codes<span class="sc">:</span>  </span>
+<span id="cb187-22"><a href="comparer.html#cb187-22" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="dv">0</span> <span class="st">'***'</span> <span class="fl">0.001</span> <span class="st">'**'</span> <span class="fl">0.01</span> <span class="st">'*'</span> <span class="fl">0.05</span> <span class="st">'.'</span> <span class="fl">0.1</span> <span class="st">' '</span> <span class="dv">1</span></span>
+<span id="cb187-23"><a href="comparer.html#cb187-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb187-24"><a href="comparer.html#cb187-24" aria-hidden="true" tabindex="-1"></a><span class="fu">summary.aov</span>(res.maov)</span>
+<span id="cb187-25"><a href="comparer.html#cb187-25" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>  Response Sepal.Length <span class="sc">:</span></span>
+<span id="cb187-26"><a href="comparer.html#cb187-26" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span>              Df Sum Sq Mean Sq F value <span class="fu">Pr</span>(<span class="sc">&gt;</span>F)    </span>
+<span id="cb187-27"><a href="comparer.html#cb187-27" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Species       <span class="dv">2</span>   <span class="fl">63.2</span>   <span class="fl">31.61</span>     <span class="dv">119</span> <span class="sc">&lt;</span><span class="fl">2e-16</span> <span class="sc">**</span><span class="er">*</span></span>
+<span id="cb187-28"><a href="comparer.html#cb187-28" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Residuals   <span class="dv">147</span>   <span class="fl">39.0</span>    <span class="fl">0.27</span>                   </span>
+<span id="cb187-29"><a href="comparer.html#cb187-29" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="sc">---</span></span>
+<span id="cb187-30"><a href="comparer.html#cb187-30" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Signif. codes<span class="sc">:</span>  </span>
+<span id="cb187-31"><a href="comparer.html#cb187-31" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="dv">0</span> <span class="st">'***'</span> <span class="fl">0.001</span> <span class="st">'**'</span> <span class="fl">0.01</span> <span class="st">'*'</span> <span class="fl">0.05</span> <span class="st">'.'</span> <span class="fl">0.1</span> <span class="st">' '</span> <span class="dv">1</span></span>
+<span id="cb187-32"><a href="comparer.html#cb187-32" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb187-33"><a href="comparer.html#cb187-33" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span>  Response Petal.Length <span class="sc">:</span></span>
+<span id="cb187-34"><a href="comparer.html#cb187-34" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span>              Df Sum Sq Mean Sq F value <span class="fu">Pr</span>(<span class="sc">&gt;</span>F)    </span>
+<span id="cb187-35"><a href="comparer.html#cb187-35" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Species       <span class="dv">2</span>    <span class="dv">437</span>   <span class="fl">218.6</span>    <span class="dv">1180</span> <span class="sc">&lt;</span><span class="fl">2e-16</span> <span class="sc">**</span><span class="er">*</span></span>
+<span id="cb187-36"><a href="comparer.html#cb187-36" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Residuals   <span class="dv">147</span>     <span class="dv">27</span>     <span class="fl">0.2</span>                   </span>
+<span id="cb187-37"><a href="comparer.html#cb187-37" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="sc">---</span></span>
+<span id="cb187-38"><a href="comparer.html#cb187-38" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Signif. codes<span class="sc">:</span>  </span>
+<span id="cb187-39"><a href="comparer.html#cb187-39" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="dv">0</span> <span class="st">'***'</span> <span class="fl">0.001</span> <span class="st">'**'</span> <span class="fl">0.01</span> <span class="st">'*'</span> <span class="fl">0.05</span> <span class="st">'.'</span> <span class="fl">0.1</span> <span class="st">' '</span> <span class="dv">1</span></span>
+<span id="cb187-40"><a href="comparer.html#cb187-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb187-41"><a href="comparer.html#cb187-41" aria-hidden="true" tabindex="-1"></a>res.lda <span class="ot">&lt;-</span> MASS<span class="sc">::</span><span class="fu">lda</span>(Species <span class="sc">~</span> Sepal.Length <span class="sc">+</span> Petal.Length, <span class="at">data =</span> iris)</span>
+<span id="cb187-42"><a href="comparer.html#cb187-42" aria-hidden="true" tabindex="-1"></a>res.lda </span>
+<span id="cb187-43"><a href="comparer.html#cb187-43" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Call<span class="sc">:</span></span>
+<span id="cb187-44"><a href="comparer.html#cb187-44" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">lda</span>(Species <span class="sc">~</span> Sepal.Length <span class="sc">+</span> Petal.Length, <span class="at">data =</span> iris)</span>
+<span id="cb187-45"><a href="comparer.html#cb187-45" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb187-46"><a href="comparer.html#cb187-46" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Prior probabilities of groups<span class="sc">:</span></span>
+<span id="cb187-47"><a href="comparer.html#cb187-47" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span>     setosa versicolor  virginica </span>
+<span id="cb187-48"><a href="comparer.html#cb187-48" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>      <span class="fl">0.333</span>      <span class="fl">0.333</span>      <span class="fl">0.333</span> </span>
+<span id="cb187-49"><a href="comparer.html#cb187-49" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb187-50"><a href="comparer.html#cb187-50" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Group means<span class="sc">:</span></span>
+<span id="cb187-51"><a href="comparer.html#cb187-51" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span>            Sepal.Length Petal.Length</span>
+<span id="cb187-52"><a href="comparer.html#cb187-52" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> setosa             <span class="fl">5.01</span>         <span class="fl">1.46</span></span>
+<span id="cb187-53"><a href="comparer.html#cb187-53" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> versicolor         <span class="fl">5.94</span>         <span class="fl">4.26</span></span>
+<span id="cb187-54"><a href="comparer.html#cb187-54" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> virginica          <span class="fl">6.59</span>         <span class="fl">5.55</span></span>
+<span id="cb187-55"><a href="comparer.html#cb187-55" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb187-56"><a href="comparer.html#cb187-56" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Coefficients of linear discriminants<span class="sc">:</span></span>
+<span id="cb187-57"><a href="comparer.html#cb187-57" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span>                LD1    LD2</span>
+<span id="cb187-58"><a href="comparer.html#cb187-58" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Sepal.Length <span class="sc">-</span><span class="fl">1.66</span>  <span class="fl">2.462</span></span>
+<span id="cb187-59"><a href="comparer.html#cb187-59" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Petal.Length  <span class="fl">3.43</span> <span class="sc">-</span><span class="fl">0.928</span></span>
+<span id="cb187-60"><a href="comparer.html#cb187-60" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb187-61"><a href="comparer.html#cb187-61" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Proportion of trace<span class="sc">:</span></span>
+<span id="cb187-62"><a href="comparer.html#cb187-62" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span>    LD1    LD2 </span>
+<span id="cb187-63"><a href="comparer.html#cb187-63" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fl">0.9987</span> <span class="fl">0.0013</span></span>
+<span id="cb187-64"><a href="comparer.html#cb187-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb187-65"><a href="comparer.html#cb187-65" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(res.lda)</span></code></pre></div>
+<div class="inline-figure"><img src="13-Comparer_files/figure-html/unnamed-chunk-16-1.png" width="672"></div>
+<div class="sourceCode" id="cb188"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
+<span><span class="co"># iris %&gt;% </span></span>
+<span><span class="co">#   ggplot(mapping = aes(x = Sepal.Length,</span></span>
+<span><span class="co">#                        y = Petal.Length, </span></span>
+<span><span class="co">#                        color = Species)) + </span></span>
+<span><span class="co">#            geom_point()</span></span></code></pre></div>
 
 </div>
 </div>
@@ -456,6 +610,8 @@ Figure 13.3: Illustration corrigée du test de comparaisons multiples de Tukey
 <a class="nav-link" href="#rapporter-lanova"><span class="header-section-number">13.5</span> Rapporter l’ANOVA</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#la-sortie-de-aov"><span class="header-section-number">13.5.1</span> La sortie de aov()</a></li></ul>
 </li>
 <li><a class="nav-link" href="#les-tests-posthoc"><span class="header-section-number">13.6</span> Les tests posthoc</a></li>
+<li><a class="nav-link" href="#anova-%C3%A0-mesures-r%C3%A9p%C3%A9t%C3%A9es"><span class="header-section-number">13.7</span> ANOVA à mesures répétées</a></li>
+<li><a class="nav-link" href="#manova-analyse-de-variance-multivari%C3%A9e"><span class="header-section-number">13.8</span> MANOVA : analyse de variance multivariée</a></li>
 </ul>
 
       <div class="book-extra">
@@ -473,7 +629,7 @@ Figure 13.3: Illustration corrigée du test de comparaisons multiples de Tukey
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2024-09-19.</p>
+    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2024-09-30.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

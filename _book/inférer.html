@@ -103,6 +103,10 @@
 <li><a class="" href="explorer.html"><span class="header-section-number">19</span> Explorer</a></li>
 <li><a class="" href="r%C3%A9duire.html"><span class="header-section-number">20</span> Réduire</a></li>
 <li><a class="" href="exercice-factoriel.html">Exercices</a></li>
+<li class="book-part">Équations structurelles</li>
+<li><a class="" href="confirmer.html"><span class="header-section-number">21</span> Confirmer</a></li>
+<li><a class="" href="structurer.html"><span class="header-section-number">22</span> Structurer</a></li>
+<li><a class="" href="classer.html"><span class="header-section-number">23</span> Classer</a></li>
 <li class="book-part">Annexes</li>
 <li><a class="" href="solutions.html">Solutions</a></li>
 <li><a class="" href="r%C3%A9f%C3%A9rences.html">Références</a></li>
@@ -126,7 +130,7 @@
 <p>Les valeurs d’un échantillon sont, pour le statisticien, des variables aléatoires. Une variable aléatoire, c’est un peu comme piger dans une boîte à l’aveuglette pour obtenir une valeur. La boîte est impénétrable, personne ne sait par quel processus elle accorde telle ou telle autre valeur. Pour le statisticien, ce qui importe c’est que chaque valeur possède une chance égale aux autres d’être sélectionnée et qu’elles soient indépendantes entre elles (le fait d’en choisir est sans conséquence sur la probabilité de choisir les autres).</p>
 <p>Pour le non-initié aux fonctions permettant de créer des nombres pseudoaléatoires, une fonction <strong>R</strong> comme <code><a href="https://rdrr.io/r/stats/Normal.html">rnorm()</a></code> ou <code><a href="https://rdrr.io/r/stats/Uniform.html">runif()</a></code> (<em>r</em> suivi d’un nom de distribution, voir <a href="calculer.html#les-distributions">Les distributions</a>) joue parfaitement le rôle de cette boîte. Si l’usager demande une valeur, la fonction retourne une valeur aléatoire (imprévisible à chaque fois) sans connaître comment cette valeur est produite.</p>
 <div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="inf%C3%A9rer.html#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="fu">runif</span>(<span class="at">n =</span> <span class="dv">1</span>)</span>
-<span id="cb130-2"><a href="inf%C3%A9rer.html#cb130-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">0.114</span></span></code></pre></div>
+<span id="cb130-2"><a href="inf%C3%A9rer.html#cb130-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">0.648</span></span></code></pre></div>
 <p>Le statisticien s’intéresse à inférer comment ces valeurs sont générées. Il postule ainsi que les valeurs aléatoires suivent une distribution de probabilité. Connaître cette distribution est très important, car c’est elle qui permet de répondre à des questions comme : quelle est la probabilité d’obtenir un résultat aussi rare que <span class="math inline">\(x\)</span>? Ou quelle sont les valeurs attendues pour <span class="math inline">\(95\%\)</span> des tirages? Questions tout à fait pertinentes pour l’expérimentateur. Une des distributions les plus connues est certainement la distribution normale, celle qui est derrière la fonction <code><a href="https://rdrr.io/r/stats/Normal.html">rnorm()</a></code> d’ailleurs. Mais, il y en a beaucoup, beaucoup d’autres.</p>
 <p>Lorsque plus d’une variable sont issues d’une même boîte (distribution), elles sont <em>identiquement distribuées</em>. Si ces variables aléatoires sont combinées, que ce soit en termes de produit, de quotient, d’addition, de soustraction, le résultat est une nouvelle variable aléatoire qui possède sa propre distribution nommée <em>distribution d’échantillonnage</em>. Sur le plan de la syntaxe <strong>R</strong>, il s’agit de réaliser des opérations mathématiques avec des variables aléatoires identiquement distribuées.</p>
 <div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="inf%C3%A9rer.html#cb131-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pour répliquer</span></span>
@@ -423,7 +427,7 @@ Figure 10.11: Valeur-<span class="math inline">\(t\)</span> de l’échantillon 
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2024-09-19.</p>
+    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2024-09-30.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

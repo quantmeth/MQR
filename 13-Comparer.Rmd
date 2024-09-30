@@ -309,3 +309,57 @@ pairwise.t.test(donnees$score, donnees$groupe, p.adj = "none")
 
 Cette technique à l'avantage d'être prête pour la plupart corrections, par exemple `p.adj = "bonferroni"` ou `p.adj = "holm"`.
 
+TODO
+
+## ANOVA à mesures répétées
+
+```{r}
+# Un exemple d'ANOVA à mesures répétées
+res.aov.r <- aov(circumference ~ age + Error(Tree/age), data = Orange)
+res.aov.r
+summary(res.aov.r)
+```
+
+<!-- ## Anova avec facteur intersujet et intrasujet -->
+
+<!-- ```{r} -->
+<!-- jd <- data.frame( -->
+<!--   Sujet = factor(rep(1:10, each = 4)),             # 10 sujets, chacun mesuré 4 fois -->
+<!--   Facteur_Intersujet = factor(rep(c("A", "B"), each = 20)),  # Facteur intersujet (A et B) -->
+<!--   Facteur_Intrasujet = factor(rep(c("T1", "T2"), times = 10)), # Facteur intrasujet (T1 et T2) -->
+<!--   Reponse = rnorm(40)                              # Variable de réponse simulée -->
+<!-- ) -->
+
+<!-- model <- aov(Reponse ~ Facteur_Intersujet * Facteur_Intrasujet +  -->
+<!--              Error(Sujet/Facteur_Intrasujet), data = jd) -->
+
+<!-- # Afficher les résultats -->
+<!-- summary(model) -->
+
+<!-- ``` -->
+
+
+## MANOVA : analyse de variance multivariée
+
+```{r}
+# Un example d'ANOVA multivarié
+
+res.maov <- manova(cbind(Sepal.Length, Petal.Length) ~ Species, data = iris)
+res.maov
+summary(res.maov)
+
+summary.aov(res.maov)
+
+res.lda <- MASS::lda(Species ~ Sepal.Length + Petal.Length, data = iris)
+res.lda 
+
+plot(res.lda)
+
+# iris %>% 
+#   ggplot(mapping = aes(x = Sepal.Length,
+#                        y = Petal.Length, 
+#                        color = Species)) + 
+#            geom_point()
+
+```
+

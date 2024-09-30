@@ -1,0 +1,4 @@
+# (PART) Équations structurelles {-}
+
+# Confirmer
+
