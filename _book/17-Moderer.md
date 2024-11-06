@@ -1,7 +1,8 @@
 # Modérer
 
-En plus des relations linéaires, c'est-à-dire des effets selon lesquels plus une variable augmente (ou diminue) plus une seconde variables augmente (ou diminue), il existe des variables qui interagissent de sorte à accentuer ou amenuiser la force d'un effet, voire même à altérer sa direction. Ce type d'effet, appelée modérateur, est analysé à l'aide d'analyse de modération, analyse statistique très populaire dans laquelle la relation entre la variable dépendante ($y$) et la variable indépendante ($x$) est altérée par une tierce variable, la variable modératrice ($w$). 
-Bien que la modération ait son chapitre désigné, elle a déjà été rencontrée dans ce livre, notamment, au chapitre [Prédire]. L'analyse de modération dans son essence correspond à étudier un effet d'interaction dans un modèle linaire, ou autrement dit, la multiplication entre deux variables, ici $x \times w$. Ainsi, en recourant aux fonctions `lm()` ou `aov()`, la modération se commande en employant le symbole `*` comme `lm(y ~ x * w)` ou `aov(y ~ x * w)`. Toutefois, ayant ses défis qui lui sont propres en création de données et en interprétation, le chapitre suivant propose une description approfondie de la modération^[La section est partiellement basée sur @Caron20.].
+En plus des relations linéaires, c'est-à-dire des effets selon lesquels plus une variable augmente (ou diminue) plus une seconde variable augmente (ou diminue), il existe des variables qui interagissent de sorte à accentuer ou amenuiser la force d'un effet, voire même à altérer sa direction. Ce type d'effet, appelée modérateur, est analysé à l'aide d'analyse de modération, analyse statistique très populaire dans laquelle la relation entre la variable dépendante ($y$) et la variable indépendante ($x$) est altérée par une tierce variable, la variable modératrice ($w$). 
+
+Bien que la modération ait son chapitre désigné, elle a déjà été rencontrée dans ce livre dans le chapitre [Prédire]. L'analyse de modération correspond à étudier un effet d'interaction dans un modèle linaire, ou autrement dit, la multiplication entre deux variables, ici $x \times w$. Ainsi, en recourant aux fonctions `lm()` ou `aov()`, la modération se commande en employant le symbole `*` comme `lm(y ~ x * w)` ou `aov(y ~ x * w)`. Toutefois, ayant ses défis qui lui sont propres en création de données et en interprétation, le chapitre suivant propose une description approfondie de la modération^[La section est partiellement basée sur @Caron20.].
 
 ## L'analyse de modération
 
@@ -150,9 +151,9 @@ n <- sum(c(g1, g2, g3))
 
 # Création de variables
 # Variable continue
-x <-  rnorm(n)  # Variable continue
+x <- rnorm(n)  # Variable continue
 # Vecteur de groupement (facteur)
-w <-  as.factor(c(rep(1, g1), rep(2, g2), rep(3, g3)))
+w <- as.factor(rep(1:3, times = c(g1, g2, g3)))
 
 
 # Codage factice du groupement
@@ -212,7 +213,7 @@ X2 <- cbind(x = x,
             xw = x * W)
 ```
 
-Alors la covariance entre $w_i$ et $w_j$ et entre $xw_i$ et $xw_j$ deviennent
+Alors la covariance entre $w_i$ et $w_j$ et celle entre $xw_i$ et $xw_j$ deviennent
 $$p_1 p_2 / \sqrt{p_1(1 - p_1) p_2 (1 - p_2)}$$
 soit leur covariance originale divisée par leur écart type. Tous les autres valeurs deviennent 1 dans le cas des variances et 0 pour les covariances.
 
@@ -246,7 +247,7 @@ cov(X2)
 >   -0.01201  0.0160 -0.00887 -0.4689  0.97049
 ```
 
-Il est possible d'ajouter des corrélations entre une variable continue et les groupes, mais cela déborde du cadre de ce livre et des connaissances détaillées jusqu'ici. Mais, c'est possible!
+Il est possible d'ajouter des corrélations entre une variable continue et les groupes, mais cela sort hors du cadre de ce livre et des connaissances détaillées jusqu'ici. Mais, c'est possible!
 
 Maintenant, il reste à créer la variable dépendante. Pour ce faire, il faut spécifier cinq coefficients de régressions, car une variable continue avec deux variables modératrices (facteurs transformés par le [codage factice]) donnent deux variables d'interaction.
 

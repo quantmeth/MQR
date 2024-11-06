@@ -20,7 +20,7 @@ La Figure\ \@ref(fig:simplemed) présente le diagramme de trajectoire correspond
 <p class="caption">(\#fig:simplemed)Modèle de médiation simple</p>
 </div>
 
-Le cadran supérieur devrait être familier aux lecteurs, car il a été abordé dans le chapitre [Créer], dans une orientation légèrement différente. La Figure\ \@ref(fig:simplemed) peut également être représentée avec une matrice de coefficients de régression $\mathbf{B}$ dans laquelle se retrouvent les coefficients de régression qui relient les variables.
+Le cadran supérieur devrait être familier aux lecteurs, car il a été abordé dans le chapitre [Créer] selon une orientation légèrement différente. La Figure\ \@ref(fig:simplemed) peut également être représentée avec une matrice de coefficients de régression $\mathbf{B}$ dans laquelle se retrouvent les coefficients de régression qui relient les variables.
 
 \begin{equation}
 \mathbf{B} = 
@@ -42,7 +42,7 @@ Dans ce cas-ci, $\beta_{2,1}$ signifie que la variable $x$ prédit le médiateur
 
 Ce résultat est dérivé notamment des travaux de @Wright34 sur la méthode de coefficients de trajectoires (*path coefficients*) qui est un moyen flexible de relier les coefficients de régression entre les variables d'un système d'équations.
 
-Lorsqu'il n'y a pas de $m$, la relation existante entre $x$ et $y$ est nommée l'**effet total** représentée par $\sigma_{x,y}$ et est illustrée dans le cadran inférieur de la Figure\ \@ref(fig:simplemed). Ce lien correspond au coefficient de régression entre $x$ et $y$. Dans ce cas spécifique à deux variables, il s'agit également de la covariance entre $x$ et $y$. L'effet total peut être séparé en deux autres effets dont il fait la somme : l'effet direct de $x$ sur $y$ ($\beta_{3,1}$) et l'effet indirect $\beta_{2,1}\beta_{3,2}$. 
+Lorsqu'il n'y a pas $m$, la relation existante entre $x$ et $y$ est nommée l'**effet total** représentée par $\sigma_{x,y}$ et est illustrée dans le cadran inférieur de la Figure\ \@ref(fig:simplemed). Ce lien correspond au coefficient de régression entre $x$ et $y$. Dans ce cas spécifique (uniquement deux variables), il s'agit également de la covariance entre $x$ et $y$. L'effet total peut être séparé en deux autres effets dont il fait la somme : l'effet direct de $x$ sur $y$ ($\beta_{3,1}$) et l'effet indirect $\beta_{2,1}\beta_{3,2}$. 
 
 \begin{equation}
 \sigma_{3,1} = \beta_{3,1} + \beta_{2,1} \beta_{3,2}

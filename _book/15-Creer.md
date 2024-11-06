@@ -668,7 +668,7 @@ L'idée sous-jacente est qu'il est possible de calculer les covariances de la va
 (\#eq:buildS)
 \end{equation}
 
-Il faut à chaque étape s'assurer de faire le remplacement des valeurs obtenues sur chaque côté de la diagonale, ce pourquoi deux équations sont reproduites à l'équaiton \@ref(eq:buildS) avec des indices différents pour $\mathbf{\Sigma}$.
+Il faut à chaque étape s'assurer de faire le remplacement des valeurs obtenues sur chaque côté de la diagonale, ce pourquoi deux équations sont reproduites à l'équation \@ref(eq:buildS) avec des indices différents pour $\mathbf{\Sigma}$.
 
 
 ```r

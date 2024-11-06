@@ -6,15 +6,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title> 17 Modérer | Méthodes quantitatives avec R</title>
 <meta name="author" content="P.-O. Caron">
-<meta name="description" content="En plus des relations linéaires, c’est-à-dire des effets selon lesquels plus une variable augmente (ou diminue) plus une seconde variables augmente (ou diminue), il existe des variables qui...">
+<meta name="description" content="En plus des relations linéaires, c’est-à-dire des effets selon lesquels plus une variable augmente (ou diminue) plus une seconde variable augmente (ou diminue), il existe des variables qui...">
 <meta name="generator" content="bookdown 0.34 with bs4_book()">
 <meta property="og:title" content=" 17 Modérer | Méthodes quantitatives avec R">
 <meta property="og:type" content="book">
 <meta property="og:url" content="mqr.teluq.ca/modérer.html">
-<meta property="og:description" content="En plus des relations linéaires, c’est-à-dire des effets selon lesquels plus une variable augmente (ou diminue) plus une seconde variables augmente (ou diminue), il existe des variables qui...">
+<meta property="og:description" content="En plus des relations linéaires, c’est-à-dire des effets selon lesquels plus une variable augmente (ou diminue) plus une seconde variable augmente (ou diminue), il existe des variables qui...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content=" 17 Modérer | Méthodes quantitatives avec R">
-<meta name="twitter:description" content="En plus des relations linéaires, c’est-à-dire des effets selon lesquels plus une variable augmente (ou diminue) plus une seconde variables augmente (ou diminue), il existe des variables qui...">
+<meta name="twitter:description" content="En plus des relations linéaires, c’est-à-dire des effets selon lesquels plus une variable augmente (ou diminue) plus une seconde variable augmente (ou diminue), il existe des variables qui...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.0/transition.js"></script><script src="libs/bs3compat-0.4.0/tabs.js"></script><script src="libs/bs3compat-0.4.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
@@ -105,8 +105,7 @@
 <li><a class="" href="exercice-factoriel.html">Exercices</a></li>
 <li class="book-part">Équations structurelles</li>
 <li><a class="" href="confirmer.html"><span class="header-section-number">21</span> Confirmer</a></li>
-<li><a class="" href="structurer.html"><span class="header-section-number">22</span> Structurer</a></li>
-<li><a class="" href="classer.html"><span class="header-section-number">23</span> Classer</a></li>
+<li><a class="" href="classer.html"><span class="header-section-number">22</span> Classer</a></li>
 <li class="book-part">Annexes</li>
 <li><a class="" href="solutions.html">Solutions</a></li>
 <li><a class="" href="r%C3%A9f%C3%A9rences.html">Références</a></li>
@@ -121,8 +120,8 @@
 <h1>
 <span class="header-section-number"> 17</span> Modérer<a class="anchor" aria-label="anchor" href="#mod%C3%A9rer"><i class="fas fa-link"></i></a>
 </h1>
-<p>En plus des relations linéaires, c’est-à-dire des effets selon lesquels plus une variable augmente (ou diminue) plus une seconde variables augmente (ou diminue), il existe des variables qui interagissent de sorte à accentuer ou amenuiser la force d’un effet, voire même à altérer sa direction. Ce type d’effet, appelée modérateur, est analysé à l’aide d’analyse de modération, analyse statistique très populaire dans laquelle la relation entre la variable dépendante (<span class="math inline">\(y\)</span>) et la variable indépendante (<span class="math inline">\(x\)</span>) est altérée par une tierce variable, la variable modératrice (<span class="math inline">\(w\)</span>).
-Bien que la modération ait son chapitre désigné, elle a déjà été rencontrée dans ce livre, notamment, au chapitre <a href="pr%C3%A9dire.html#pr%C3%A9dire">Prédire</a>. L’analyse de modération dans son essence correspond à étudier un effet d’interaction dans un modèle linaire, ou autrement dit, la multiplication entre deux variables, ici <span class="math inline">\(x \times w\)</span>. Ainsi, en recourant aux fonctions <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> ou <code><a href="https://rdrr.io/r/stats/aov.html">aov()</a></code>, la modération se commande en employant le symbole <code>*</code> comme <code>lm(y ~ x * w)</code> ou <code>aov(y ~ x * w)</code>. Toutefois, ayant ses défis qui lui sont propres en création de données et en interprétation, le chapitre suivant propose une description approfondie de la modération<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;La section est partiellement basée sur &lt;span class="citation"&gt;Caron et al. (&lt;a href="r%C3%A9f%C3%A9rences.html#ref-Caron20" role="doc-biblioref"&gt;2020&lt;/a&gt;)&lt;/span&gt;.&lt;/p&gt;'><sup>27</sup></a>.</p>
+<p>En plus des relations linéaires, c’est-à-dire des effets selon lesquels plus une variable augmente (ou diminue) plus une seconde variable augmente (ou diminue), il existe des variables qui interagissent de sorte à accentuer ou amenuiser la force d’un effet, voire même à altérer sa direction. Ce type d’effet, appelée modérateur, est analysé à l’aide d’analyse de modération, analyse statistique très populaire dans laquelle la relation entre la variable dépendante (<span class="math inline">\(y\)</span>) et la variable indépendante (<span class="math inline">\(x\)</span>) est altérée par une tierce variable, la variable modératrice (<span class="math inline">\(w\)</span>).</p>
+<p>Bien que la modération ait son chapitre désigné, elle a déjà été rencontrée dans ce livre dans le chapitre <a href="pr%C3%A9dire.html#pr%C3%A9dire">Prédire</a>. L’analyse de modération correspond à étudier un effet d’interaction dans un modèle linaire, ou autrement dit, la multiplication entre deux variables, ici <span class="math inline">\(x \times w\)</span>. Ainsi, en recourant aux fonctions <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> ou <code><a href="https://rdrr.io/r/stats/aov.html">aov()</a></code>, la modération se commande en employant le symbole <code>*</code> comme <code>lm(y ~ x * w)</code> ou <code>aov(y ~ x * w)</code>. Toutefois, ayant ses défis qui lui sont propres en création de données et en interprétation, le chapitre suivant propose une description approfondie de la modération<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;La section est partiellement basée sur &lt;span class="citation"&gt;Caron et al. (&lt;a href="r%C3%A9f%C3%A9rences.html#ref-Caron20" role="doc-biblioref"&gt;2020&lt;/a&gt;)&lt;/span&gt;.&lt;/p&gt;'><sup>27</sup></a>.</p>
 <div id="lanalyse-de-modération" class="section level2" number="17.1">
 <h2>
 <span class="header-section-number">17.1</span> L’analyse de modération<a class="anchor" aria-label="anchor" href="#lanalyse-de-mod%C3%A9ration"><i class="fas fa-link"></i></a>
@@ -251,9 +250,9 @@ Figure 17.2: Exemple de modèle de modération
 <span></span>
 <span><span class="co"># Création de variables</span></span>
 <span><span class="co"># Variable continue</span></span>
-<span><span class="va">x</span> <span class="op">&lt;-</span>  <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span>  <span class="co"># Variable continue</span></span>
+<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span>  <span class="co"># Variable continue</span></span>
 <span><span class="co"># Vecteur de groupement (facteur)</span></span>
-<span><span class="va">w</span> <span class="op">&lt;-</span>  <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="va">g1</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">2</span>, <span class="va">g2</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">3</span>, <span class="va">g3</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">w</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, times <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">g1</span>, <span class="va">g2</span>, <span class="va">g3</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span></span>
 <span><span class="co"># Codage factice du groupement</span></span>
@@ -302,7 +301,7 @@ Figure 17.2: Exemple de modèle de modération
 <span><span class="va">X2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>,</span>
 <span>            w <span class="op">=</span> <span class="va">W</span>,</span>
 <span>            xw <span class="op">=</span> <span class="va">x</span> <span class="op">*</span> <span class="va">W</span><span class="op">)</span></span></code></pre></div>
-<p>Alors la covariance entre <span class="math inline">\(w_i\)</span> et <span class="math inline">\(w_j\)</span> et entre <span class="math inline">\(xw_i\)</span> et <span class="math inline">\(xw_j\)</span> deviennent
+<p>Alors la covariance entre <span class="math inline">\(w_i\)</span> et <span class="math inline">\(w_j\)</span> et celle entre <span class="math inline">\(xw_i\)</span> et <span class="math inline">\(xw_j\)</span> deviennent
 <span class="math display">\[p_1 p_2 / \sqrt{p_1(1 - p_1) p_2 (1 - p_2)}\]</span>
 soit leur covariance originale divisée par leur écart type. Tous les autres valeurs deviennent 1 dans le cas des variances et 0 pour les covariances.</p>
 <div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="mod%C3%A9rer.html#cb254-1" aria-hidden="true" tabindex="-1"></a><span class="co"># La covariance</span></span>
@@ -331,7 +330,7 @@ soit leur covariance originale divisée par leur écart type. Tous les autres va
 <span id="cb254-24"><a href="mod%C3%A9rer.html#cb254-24" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>   <span class="sc">-</span><span class="fl">0.00288</span> <span class="sc">-</span><span class="fl">0.5000</span>  <span class="fl">1.00000</span>  <span class="fl">0.0160</span> <span class="sc">-</span><span class="fl">0.00887</span></span>
 <span id="cb254-25"><a href="mod%C3%A9rer.html#cb254-25" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>   <span class="sc">-</span><span class="fl">0.01736</span> <span class="sc">-</span><span class="fl">0.0174</span>  <span class="fl">0.01601</span>  <span class="fl">0.9666</span> <span class="sc">-</span><span class="fl">0.46885</span></span>
 <span id="cb254-26"><a href="mod%C3%A9rer.html#cb254-26" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>   <span class="sc">-</span><span class="fl">0.01201</span>  <span class="fl">0.0160</span> <span class="sc">-</span><span class="fl">0.00887</span> <span class="sc">-</span><span class="fl">0.4689</span>  <span class="fl">0.97049</span></span></code></pre></div>
-<p>Il est possible d’ajouter des corrélations entre une variable continue et les groupes, mais cela déborde du cadre de ce livre et des connaissances détaillées jusqu’ici. Mais, c’est possible!</p>
+<p>Il est possible d’ajouter des corrélations entre une variable continue et les groupes, mais cela sort hors du cadre de ce livre et des connaissances détaillées jusqu’ici. Mais, c’est possible!</p>
 <p>Maintenant, il reste à créer la variable dépendante. Pour ce faire, il faut spécifier cinq coefficients de régressions, car une variable continue avec deux variables modératrices (facteurs transformés par le <a href="comparer.html#codage-factice">codage factice</a>) donnent deux variables d’interaction.</p>
 <div class="sourceCode" id="cb255"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Les coefficients de régression</span></span>
@@ -671,7 +670,7 @@ Figure 17.6: Le graphique Johnson-Neyman pour interpréter les effets modérateu
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2024-09-30.</p>
+    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2024-11-06.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

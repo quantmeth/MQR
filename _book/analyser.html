@@ -105,8 +105,7 @@
 <li><a class="" href="exercice-factoriel.html">Exercices</a></li>
 <li class="book-part">Équations structurelles</li>
 <li><a class="" href="confirmer.html"><span class="header-section-number">21</span> Confirmer</a></li>
-<li><a class="" href="structurer.html"><span class="header-section-number">22</span> Structurer</a></li>
-<li><a class="" href="classer.html"><span class="header-section-number">23</span> Classer</a></li>
+<li><a class="" href="classer.html"><span class="header-section-number">22</span> Classer</a></li>
 <li class="book-part">Annexes</li>
 <li><a class="" href="solutions.html">Solutions</a></li>
 <li><a class="" href="r%C3%A9f%C3%A9rences.html">Références</a></li>
@@ -931,7 +930,7 @@ où <span class="math inline">\(o\)</span> correspond aux valeurs observées, <s
 <span id="cb163-26"><a href="analyser.html#cb163-26" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>   femme      <span class="dv">8</span>         <span class="dv">38</span></span>
 <span id="cb163-27"><a href="analyser.html#cb163-27" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>   homme      <span class="dv">4</span>         <span class="dv">50</span></span></code></pre></div>
 <p>La fonction <code><a href="https://rdrr.io/r/base/table.html">table()</a></code> de <strong>R</strong> génère une table de contingence. La fonction maison et deux méthodes de base <strong>R</strong> sont présentées et produisent les mêmes résultats pour le <span class="math inline">\(\chi^2\)</span>. Un autre, le test exact de Fisher est également présenté. Celui-ci est plus robuste, mais peut requérir plus intensive des ressources de l’ordinateur pour les grosses tables de contingences.</p>
-<p>Le test du <span class="math inline">\(\chi^2\)</span> est sujet à certains problèmes qu’il est important de considérer sans quoi l’interprétation peut être faussée. Si la taille d’échantillon (le nombre d’unités d’observation observées est trop faible), alors le test est biaisé. Par exemple, trois lancers de pile ou face ne sont pas suffisants pour tester une hypothèse de khi-carré, le nombre de résultats différents est de 2, ce qui ne donne pas une approximation satisfaisante de la distribution d’échantillonnage. La convention est de dire qu’une fréquence théorique est trop petite si elle est plus petite que 5. Si ce n’est pas cas, des corrections ou d’autres options doivent être considérées.</p>
+<p>Le test du <span class="math inline">\(\chi^2\)</span> est sujet à certains problèmes qu’il est important de considérer sans quoi l’interprétation peut être faussée. Si la taille d’échantillon (le nombre d’unités d’observation observées est trop faible), alors le test est biaisé. Par exemple, trois lancers de pile ou face ne sont pas suffisants pour tester une hypothèse de khi-carré, le nombre de résultats différents est de 2, ce qui ne donne pas une approximation satisfaisante de la distribution d’échantillonnage. La convention est de dire qu’une fréquence théorique est trop petite si elle est plus petite que 5. Si ce n’est pas le cas, des corrections ou d’autres options doivent être considérées.</p>
 <p>Dans le présent exemple, bien que les fréquences attendues respectent les critères usuels, il peut être utile d’envisager un test plus robuste comme le test exact de Fisher ou le <span class="math inline">\(\chi^2\)</span> avec correction de continuité. Le premier se commande avec la fonction <code><a href="https://rdrr.io/r/stats/fisher.test.html">fisher.test()</a></code> et le second est la fonction par défaut de <code><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.test()</a></code>. C’est deux fonctions prennet comme argument une table de contigence (la sortir de <code><a href="https://rdrr.io/r/base/table.html">table()</a></code>) ou deux variables nominales. Pour montrer l’équivalence entre la fonction <code><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.test()</a></code> et la fonction maison, l’option de correction est désactivée avec l’argument <code>correct = FALSE</code>.</p>
 <div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="analyser.html#cb164-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Table de contingence</span></span>
 <span id="cb164-2"><a href="analyser.html#cb164-2" aria-hidden="true" tabindex="-1"></a>TC <span class="ot">&lt;-</span> <span class="fu">table</span>(donnees)</span>
@@ -1078,7 +1077,7 @@ où <span class="math inline">\(o\)</span> correspond aux valeurs observées, <s
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2024-09-30.</p>
+    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2024-11-06.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
