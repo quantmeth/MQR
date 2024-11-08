@@ -160,13 +160,14 @@ fig:screenest
 fig:structcp
 fig:scree4
 fig:structcp3
+fig:lesem
 fig:cla1
 fig:lcaplot
 fig:testjitter
 fig:r3step
 fig:d3step
 fig:lpaplot
-tab:unnamed-chunk-6
+tab:tablpa
 fig:dataed2
 fig:unnamed-chunk-13
 fig:unnamed-chunk-14
@@ -407,6 +408,13 @@ test-de-suffisance-de-la-prochaine-valeur-propre-dachim
 le-package-rnest
 comparaisons-des-règles-darrêts
 confirmer
+spécifier-un-modèle
+les-fonctions-1
+les-indices-dajustement
+les-indices-de-modifcation
+les-résultats-standarisés
+analyse-factorielle-confirmatoire
+analyse-acheminatoire
 classer
 classes-latentes
 installations
@@ -414,5 +422,5 @@ déterminer-le-nombre-de-classes
 inspections
 représentations-graphiques
 analyses-supplémentaires
-quelques-fonctions-utiles
+quelques-conseils-utiles
 profils-latents
