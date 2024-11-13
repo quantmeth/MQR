@@ -2,15 +2,15 @@
 
 # Confirmer
 
-Dans ce livre, de multiples analyses ont été présentés jusqu'à présent. 
+La modélisation par équations structurelles permet de combiner toutes les analyses qui ont été vues jusqu'à maintenant que ce soit, la [modération][Modérer], la [médiation][Médier], la [régression][Prédire] et les [analyses factorielles][Explorer]. Ce chapitre insiste sur l'aspect confirmatoire des analyses statistiques. Autrement dit, la modélisation par équations structurelles ne devrait pas découvrir des modèles, mais bien à tester et vérifier. Pour rappel, c'était déjà le cas pour la [modération][Modérer] et la [médiation][Médier].
 
-La modélisation par équations structurelles permet de combiner toutes les analyses qui ont été vues jusqu'à maintenant que ce soit, la modération, la médiation, la régression, les analyses factorielles.
+Pour réaliser des modèles par équations structurelles, le package `lavaan` est le plus recommandé. Il se distingue par sa flexibilité et sa simplicité d'utilisation, permettant aux utilisateurs de spécifier et de tester des modèles compliqués avec un langage syntaxique clair et intuitif qui rappelle Mplus [@mplus]. Parmi ses principales qualités, `lavaan` offre une large gamme de fonctionnalités pour l'estimation des modèles, les ajustements, et la comparaison des modèles, tout en supportant les analyses confirmatoires et exploratoires. Sa capacité à gérer les modèles avec des variables latentes, ses options de diagnostic détaillées et ses outils de visualisation font de `lavaan` un outil essentiel pour les expérimentateurs et ulisistaeur souhaitant mener des modèles par équations structurelles robustes et fiables.
 
-Ce chapitre insiste sur l'aspect confirmatoire des analyses statistiques.
-
+Comme pour tous les [packages][les packages], il faut d'abord installer et appeler le programme avant de l'utiliseré
 
 
 ```r
+#
 library(lavaan)
 > This is lavaan 0.6-18
 > lavaan is FREE software! Please report any bugs.
@@ -18,20 +18,19 @@ library(lavaan)
 
 ## Spécifier un modèle
 
-La première étape d'un modèle avec `lavaan` est d'écrire un modèle. Comme il s'agit de multiple formules, il ne sera pas d'utiliser le traditionnel `~`. Un modèle d'équation structurelle de `lavaan` se compose d'une seule [chaîne de caractères] commençant et finissant par des guillemets anglophone comme `model <- "les équations"` et qui contient toutes les équations. Il est important que chaque équation ait sa propre ligne. Voici une liste d'opérateur les plus commun.
+La première étape d'un modèle avec `lavaan` est d'écrire un modèle. Comme il s'agit de multiple formules, il ne sera pas d'utiliser le traditionnel `~`. Un modèle d'équation structurelle de `lavaan` se compose d'une seule [chaîne de caractères][Les chaînes de caractère] commençant et finissant par des guillemets anglophone comme `model <- "les équations"` et qui contient toutes les équations. Il est important que chaque équation ait sa propre ligne. Voici une liste d'opérateur les plus commun.
 
-* `~` signifie *prédit par*, comme `y ~ x + m`
+* `~` signifie **prédit par**, comme `y ~ x + m`
 
-* `~~` se traduit par *est lié à*, comme une covariance `x ~~ y` 
+* `~~` se traduit par **est lié à**, comme une covariance `x ~~ y` 
 
-`=~` est *se mesure de*, comme `F1 =~ i1 + i2 + i3` 
+* `=~` est **se mesure de**, comme `F1 =~ i1 + i2 + i3` 
 
-`*` *nomme* ou *fixe* un paramètre, par exemple, `y ~ a*x` permet d'utiliser le coefficient de régression lié à `x`, `y ~ .5*x` fixe le coefficient à .5 ou si `a` (le libellé) est utilisé à plusieurs endroits, cela contraint la valeur à être identiquer pour les deux équations.
+*  `*` **nomme** ou **fixe** un paramètre selon le préfixe, par exemple, `y ~ a*x` permet d'utiliser le coefficient de régression lié à `x`, `y ~ .5*x` fixe le coefficient à .5 ou si `a` (le libellé) est utilisé à plusieurs endroits, cela contraint la valeur à être identiquer pour les deux équations.
 
-`:=` *définit* un paramètre, par exemple, s'il faut la somme ou le produit de différents coefficients.
+*  `:=` **définit** un paramètre, par exemple, s'il faut la somme ou le produit de différents coefficients.
 
 Une fois le modèle assigné dans une variable, les fonctions `sem()` et `cfa()` pourront être utilisées pour tester le modèle aux données. Les deux sont virtuellement identiques.
-
 
 ## Les fonctions
 
@@ -51,7 +50,7 @@ Le RMSEA est un indice utilisé dans la modélisation par équations structurell
 
 Le SRMR est un indice utilisé dans la modélisation par équations structurelles (SEM) pour évaluer la qualité de l'ajustement d'un modèle aux données observées. Cet indice mesure la différence moyenne entre les corrélations observées et les corrélations prédites par le modèle. Des valeurs plus faibles de SRMR indiquent un meilleur ajustement. En général, un SRMR inférieur à 0,08 est considéré comme un bon ajustement.
 
-Pour obtenir spécifiquement ces indices, il faut utilier la syntaxe suivante avec la sortie de `lavaan`. 
+Pour obtenir spécifiquement ces indices, il faut utilier la syntaxe suivante avec un objet `lavaan`, c'est-à-dire la sortie des fonctions `sem()` ou `cfa()`.
 
 
 ```r
@@ -59,18 +58,22 @@ fitmeasures(object, fit.measures = c("chisq", "df", "pvalue",
            "cfi", "tli", "RMSEA", "SRMR"))
 ```
 
-En tout, `lavaan` produit 46 indices statistiques différents. Ceux recommandés ici sont les mêmes que ceux rapportés par le logiciel Mplus. Il peut être intéressant de voir les autres options si cela est nécessaire pour l'utilisateur dans son domaine. Cela se fait simplement en laissant vide l'argument `fit.measures` qui par défaut est `fit.measures = "all"`.
+En tout, `lavaan` produit 46 indices statistiques différents. Ceux recommandés ici sont les mêmes que ceux rapportés par le logiciel Mplus [@caronmplus]. Il peut être intéressant de vérifier les autres options, surtout que certains pourront être spécifique à certains doomaines. Cela se fait simplement en laissant vide l'argument `fit.measures` qui par défaut est `fit.measures = "all"`.
 
 ### Les indices de modifcation
 
-Il est rare que le modèle testé atteint les critères généraux d'ajustement. Ainsi, il est possible d'améliorer le modèle en le peaufinant. La fonction `modindices()` suggère différentes équations.
+Il est rare que le modèle testé atteint les critères généraux d'ajustement du premier coup. Ainsi, il est possible d'améliorer le modèle en le peaufinant. La fonction `modindices()` suggère différents opérateurs à ajouter au modèle initial. Pour utiliser la fonction, il faut lui fournir un objet de classe `lavaan` (une sortie `sem()` ou `cfa`). 
 
 
 ```r
 modindices(object, sort = TRUE)
 ```
 
-L'argument `sort = TRUE` permet d'avoir les arguments en ordre d'importances. La fonction produit des résultats athéoriques qui ne font parfois aucun sens. Elle ne donne que des suggestions sur le plan statistique, jamais conceptuel ou théorique. C'est à l'utilisateur d'être judicieux dans ses choix. Par exemple, il est recommandé de d'abord envisager des covariances `~~`, car celles-ci sont les moins contraignantes sur le plan théoriques. Les opérations `=~`, et `~` peuvent être envisagées par la suite si elles sont justifiables théoriquement. 
+L'argument `sort = TRUE` permet d'avoir les arguments en ordre d'importances. La sortie peut devenir rapidement encombrante. Il est possible de raccourcir le fonction avec les arguments `minimum.value`, l'indice de modification minimale désiré, et `maximum.number`, le nombre d'opérateur suggéré maximale. 
+
+La fonction produit des résultats athéoriques qui ne font parfois aucun sens. Elle ne donne que des suggestions sur le plan statistique, jamais conceptuel ou théorique. C'est à l'utilisateur d'être judicieux dans ses choix. Par exemple, il est recommandé de d'abord envisager des covariances `~~`, car celles-ci sont les moins contraignantes sur le plan théoriques. Les opérations `=~`, et `~` peuvent être envisagées par la suite si elles sont justifiables théoriquement. 
+
+Une dernière recommandation : il est préférable de tester séquentiellement les ajouts. Autrement dit, éviter d'ajouter plusieurs opérateurs simultanément et vérifier à chaque étape la pertinence des ajouts précédents.
 
 ### Les résultats standarisés
 
@@ -84,13 +87,19 @@ standardizedSolution(object)
 
 ## Analyse factorielle confirmatoire
 
-Voici un exemple d'analyse factorielle exploratoire. La syntaxe suivante recrée le modèle présenté au chapitre [Explorer]. La matrice de corrélation se trouve dans le package `Rnest` pour aller plus rapidement.
+Voici un exemple d'analyse factorielle exploratoire. La syntaxe suivante recrée le modèle présenté au chapitre [Explorer]. La matrice de corrélation se trouve dans le package `Rnest` [@Rnest] pour aller plus rapidement. 
+
+<div class="figure" style="text-align: center">
+<img src="image//factstruct.png" alt="Structure factorielle de l'exemple" width="50%" height="50%" />
+<p class="caption">(\#fig:FactStructconfirmer)Structure factorielle de l'exemple</p>
+</div>
+
+La Figure\ \@ref(fig:FactStructconfrimer) (présentée auparavant à la Figure\ \@ref(fig:FactStruct)) montre la structure factorielle sous-jacente à la matrice de corrélation `ex.mqr`. La syntaxe crée un jeu de données basée sur cette matrice.
 
 
 ```r
 # Création de la matrice de recette de fabrication
 R <- Rnest::ex.mqr
-#R <- 
 set.seed(32)
 # Création du jeu de données
 jd.cfa <- MASS::mvrnorm(n = 500, 
@@ -98,7 +107,7 @@ jd.cfa <- MASS::mvrnorm(n = 500,
                     Sigma = R)
 ```
 
-La première étape est de définir le modèle. Dans la syntaxe, deux facteurs sont créés à partir des items qui devraient les composer. Ici, le lien `F1 =~ i6` est intentionnellement omit. L'ajout de `F1 ~~ 0*F2` qui fixe la covariance entre `F1` et `F2` à 0, ce qui facilitera la convergence de l'analyse dans ce cas spécifique.
+La première étape des modèles par équations structurelles est de définir le modèle. Dans la syntaxe, deux facteurs sont créés à partir des items qui devraient les composer. Ici, le lien `F1 =~ i6` est intentionnellement omit. L'ajout de `F1 ~~ 0*F2` qui fixe la covariance entre `F1` et `F2` à 0, ce qui facilitera la convergence de l'analyse dans ce cas spécifique.
 
 
 ```r
@@ -114,7 +123,9 @@ Une fois le modèle transcrit, il faut le rouler avec la fonction `cfa()` en inc
 
 ```r
 res.cfa1 <- cfa(model.cfa1, data = jd.cfa)
-#res.sem1 <- sem(model.cfa1, data = jd.cfa)
+
+# sem() fonctionne également
+# res.sem1 <- sem(model.cfa1, data = jd.cfa)
 ```
 
 À la place de `F1 ~~ 0*F2`, l'orthogonalité des facteurs aurait pu être demandé avec `orthogonal = TRUE`. Autrement, les facteurs sont obliques (libres d'être corrélés) par défaut.
@@ -133,7 +144,7 @@ fitmeasures(res.cfa1, c("chisq", "df", "pvalue",
 >  chisq     df pvalue    cfi    tli  rmsea   srmr 
 > 76.571  9.000  0.000  0.909  0.848  0.123  0.117
 ```
-Les indices pourraient être légèrement amélioré ici. Notamment, le `tli` est trop faible (en bas de .90), le `rmsea` et le `srmr` sont trop élevés (au dessus de .08) et le `chisq` est significatif à $p<.001$. La modification d'indice est demandé pour voir comment améliorer le modèle.
+Les indices pourraient être légèrement amélioré ici. Notamment, le `tli` est trop faible (en bas de .90), le `rmsea` et le `srmr` sont trop élevés (au dessus de .08) et le `chisq` est significatif à $p<.001$. La modification d'indice est demandée pour vérifier les possibles amélioreration du modèle.
 
 
 ```r
@@ -184,14 +195,18 @@ fitmeasures(res.cfa2, c("chisq", "df", "pvalue",
 ```
 Ils sont tous excellents et respectent les recommandations.
 
-Grâce au package [`lavaanExtra`][https://github.com/rempsyc/lavaanExtra] il est possible de produire rapidement une figure des résultats finaux. Il faut absolument avoir installer les packages `rsvg` et `DiagrammeRsvg` pour obtenir la figure.
+Grâce au package `lavaanExtra` [@lavaanExtra] il est possible de produire rapidement une figure des résultats finaux. Il faut absolument avoir installer les packages `rsvg` et `DiagrammeRsvg` pour obtenir la figure.
 
 
 ```r
-# TODO
-# Ne fonctionne pas pour le livre
 lavaanExtra::cfa_fit_plot(model.cfa2, data = jd.cfa)
 ```
+
+<div class="figure" style="text-align: center">
+<img src="image//leplot.png" alt="Représentation graphiques de la structure factorielle finale" width="60%" height="60%" />
+<p class="caption">(\#fig:leplot)Représentation graphiques de la structure factorielle finale</p>
+</div>
+
 
 Enfin, les paramètres pourront être extraits si l'utilisateur désire les observés.
 
@@ -203,7 +218,7 @@ parameterestimates(res.cfa2)
 
 
 ```r
-# Estimés standardisisé
+# Estimés standardisés
 standardizedSolution(res.cfa2)
 >    lhs op rhs est.std    se     z pvalue ci.lower ci.upper
 > 1   F1 =~  i1   0.903 0.022 41.06  0.000    0.860    0.946
@@ -226,6 +241,14 @@ standardizedSolution(res.cfa2)
 
 ## Analyse acheminatoire
 
+Comme second exemple basé sur les analyses acheminatoires, il s'agit d'un modèle tiré de @Lemardeletsoumis dont le jeu de données est disponible du package `pathanalysis` [@CaronPA]. Le modèle est une médiation sérielle avec deux médiateurs. La Figure\ \@ref(fig:exMED) présente le modèle.
+
+<div class="figure" style="text-align: center">
+<img src="image//exMED.png" alt="Modèle de médiation de Lemardelet et Caron (2022(" width="50%" height="50%" />
+<p class="caption">(\#fig:exMED)Modèle de médiation de Lemardelet et Caron (2022(</p>
+</div>
+
+Le jeu de données se trouve dans le packages `pathanalysis` sous le libellé `medEx`.
 
 
 
@@ -238,97 +261,84 @@ m2 ~ x + m1
 y  ~ m2 + m1 + x" 
 ```
 
+Une première transcription du modèle illustré à la Figure\ \@ref(fig:exMED) est la syntaxe ci-dessus. Tous les liens sont bien inscrits, ce qui permet seulement d'estimer les liens directs (voir [Médier]).
 
-Dans le cas de la médiation, il est possible de calculer l'effet indirect en nommant les paramètres et définissant l'effet indirect.
+Dans le cas de la médiation, il est désirable de calculer l'effet indirect en nommant les paramètres et définissant le ou les effets indirects. Comme le souligne @Lemardeletsoumis, un modèle à deux médiateurs sérielles se décompose en cinq effets indirects spécifiques, qui sont exprimés dans la syntaxe ci-dessous.
+
 
 
 ```r
 model.med2 <- "
-m1 ~ a*x
-m2 ~ x + b*m1
-y  ~ c*m2 + m1 + d*x
-indirect := a * b * c
-total := indirect + d"
-```
-
-
-
-```r
-model.med3 <- "
 m1 ~ a1*x
 m2 ~ a2*x + b2*m1
 y  ~ c2*m2 + c1*m1 + d*x
-total_indirect := a1 * b2 * c2
+ind_x_m1_m2_y := a1 * b2 * c2
 ind_x_m1_y  := a1 * c1
 ind_x_m2_y  := a2 * c2
 ind_x_m1_m2 := a1 * b2
 ind_m1_m2_y := b2 * c2
-total := total_indirect + d"
+total_ind := a1 * c1 + a1 *b2 * c2 + a2 * c2
+total := total_ind + d"
 ```
+
+Bien que ce modèle décrit cinq effets indirects, seulement trois sont importants pour l'analyse des médiateurs, ceux qui débutent de la variable indépendante jusqu'à la dernière variable dépendante du modèle. L'effet indirect total correspond à la somme de ces trois liens (dans cet exemple). Les deux autres, les effets indirects simple entre les médiateurs pourraient ou non être d’intérêt pour l'utilisateur. L'effet direct total correspond au lien entre la variable indépendante et dépendante en l'absence des médiateurs.
+
+La syntaxe ci-dessus extrait en plus l'effet indirect totale, la somme de tous les effets indirects débutant par la variable indépendante jusqu'à la dernière variable dépendante du modèle et l'effet total. 
 
 
 
 ```r
-res.lav.med3 <- sem(model.med3, data = jd.med)
+res.lav.med2 <- sem(model.med2, data = jd.med)
 ```
 
-Voir le output.
-
-```r
-parameterestimates(res.lav.med3)
->               lhs op              rhs          label    est
-> 1              m1  ~                x             a1  0.494
-> 2              m2  ~                x             a2  0.178
-> 3              m2  ~               m1             b2  0.452
-> 4               y  ~               m2             c2  0.664
-> 5               y  ~               m1             c1 -0.016
-> 6               y  ~                x              d  0.246
-> 7              m1 ~~               m1                 0.767
-> 8              m2 ~~               m2                 0.645
-> 9               y ~~                y                 0.355
-> 10              x ~~                x                 1.005
-> 11 total_indirect :=         a1*b2*c2 total_indirect  0.148
-> 12     ind_x_m1_y :=            a1*c1     ind_x_m1_y -0.008
-> 13     ind_x_m2_y :=            a2*c2     ind_x_m2_y  0.118
-> 14    ind_x_m1_m2 :=            a1*b2    ind_x_m1_m2  0.223
-> 15    ind_m1_m2_y :=            b2*c2    ind_m1_m2_y  0.300
-> 16          total := total_indirect+d          total  0.394
->       se      z pvalue ci.lower ci.upper
-> 1  0.042 11.738  0.000    0.411    0.576
-> 2  0.044  4.014  0.000    0.091    0.265
-> 3  0.044 10.254  0.000    0.366    0.539
-> 4  0.036 18.596  0.000    0.594    0.733
-> 5  0.036 -0.431  0.667   -0.087    0.056
-> 6  0.033  7.359  0.000    0.181    0.312
-> 7  0.052 14.697  0.000    0.665    0.870
-> 8  0.044 14.697  0.000    0.559    0.731
-> 9  0.024 14.697  0.000    0.308    0.402
-> 10 0.000     NA     NA    1.005    1.005
-> 11 0.021  7.132  0.000    0.107    0.189
-> 12 0.018 -0.431  0.667   -0.043    0.028
-> 13 0.030  3.924  0.000    0.059    0.177
-> 14 0.029  7.723  0.000    0.167    0.280
-> 15 0.033  8.980  0.000    0.235    0.366
-> 16 0.038 10.358  0.000    0.320    0.469
-```
-
-
-Ici, le modèle est saturé, mais il est tout de même possible d'obtenir les 
+Voici la sortie.
 
 
 ```r
-fitmeasures(res.lav.med3, c("chisq", "df", "pvalue",
+# parameterestimates(res.lav.med2)
+standardizedSolution(res.lav.med2)
+```
+Pour désencombrer la sortie de la fonction (pour mieux présenter pour ce chapitre), voici la sortie avec un peu moins de colonnes.
+
+
+```r
+standardizedSolution(res.lav.med2)[,-c(1:3,7,9:10)]
+>            label est.std    se pvalue
+> 1             a1   0.492 0.034  0.000
+> 2             a2   0.181 0.044  0.000
+> 3             b2   0.464 0.041  0.000
+> 4             c2   0.666 0.031  0.000
+> 5             c1  -0.016 0.038  0.667
+> 6              d   0.252 0.034  0.000
+> 7                  0.758 0.034  0.000
+> 8                  0.669 0.036  0.000
+> 9                  0.371 0.027  0.000
+> 10                 1.000 0.000     NA
+> 11 ind_x_m1_m2_y   0.152 0.020  0.000
+> 12    ind_x_m1_y  -0.008 0.018  0.667
+> 13    ind_x_m2_y   0.121 0.030  0.000
+> 14   ind_x_m1_m2   0.228 0.026  0.000
+> 15   ind_m1_m2_y   0.309 0.033  0.000
+> 16     total_ind   0.265 0.030  0.000
+> 17         total   0.517 0.033  0.000
+```
+
+Ici, le modèle est saturé, mais il est tout de même possible d'obtenir les indices d'ajustement. Si le modèle n'était pas saturé (s'il y avait des paramètres libres), il faudrait les vérifier comme [l'exemple précédent][Analyse factorielle confirmatoire].
+
+
+```r
+fitmeasures(res.lav.med2, c("chisq", "df", "pvalue",
                             "cfi", "tli", "RMSEA", "SRMR"))
 >  chisq     df pvalue    cfi    tli  rmsea   srmr 
 >      0      0     NA      1      1      0      0
 ```
 
 
-La Figure\ \@ref(fig:lesem) montre le modèle final.
+La Figure\ \@ref(fig:lesem) obtenue par `lavaanExtra` montre le modèle final.
 
 
 ```r
-lavaanExtra::nice_lavaanPlot(res.lav.med3)
+lavaanExtra::nice_lavaanPlot(res.lav.med2)
 ```
 
 <div class="figure" style="text-align: center">

@@ -6,15 +6,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title> 21 Confirmer | Méthodes quantitatives avec R</title>
 <meta name="author" content="P.-O. Caron">
-<meta name="description" content="Dans ce livre, de multiples analyses ont été présentés jusqu’à présent. La modélisation par équations structurelles permet de combiner toutes les analyses qui ont été vues jusqu’à maintenant que...">
+<meta name="description" content="La modélisation par équations structurelles permet de combiner toutes les analyses qui ont été vues jusqu’à maintenant que ce soit, la modération, la médiation, la régression et les analyses...">
 <meta name="generator" content="bookdown 0.34 with bs4_book()">
 <meta property="og:title" content=" 21 Confirmer | Méthodes quantitatives avec R">
 <meta property="og:type" content="book">
 <meta property="og:url" content="mqr.teluq.ca/confirmer.html">
-<meta property="og:description" content="Dans ce livre, de multiples analyses ont été présentés jusqu’à présent. La modélisation par équations structurelles permet de combiner toutes les analyses qui ont été vues jusqu’à maintenant que...">
+<meta property="og:description" content="La modélisation par équations structurelles permet de combiner toutes les analyses qui ont été vues jusqu’à maintenant que ce soit, la modération, la médiation, la régression et les analyses...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content=" 21 Confirmer | Méthodes quantitatives avec R">
-<meta name="twitter:description" content="Dans ce livre, de multiples analyses ont été présentés jusqu’à présent. La modélisation par équations structurelles permet de combiner toutes les analyses qui ont été vues jusqu’à maintenant que...">
+<meta name="twitter:description" content="La modélisation par équations structurelles permet de combiner toutes les analyses qui ont été vues jusqu’à maintenant que ce soit, la modération, la médiation, la régression et les analyses...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.0/transition.js"></script><script src="libs/bs3compat-0.4.0/tabs.js"></script><script src="libs/bs3compat-0.4.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
@@ -121,24 +121,25 @@
 <h1>
 <span class="header-section-number"> 21</span> Confirmer<a class="anchor" aria-label="anchor" href="#confirmer"><i class="fas fa-link"></i></a>
 </h1>
-<p>Dans ce livre, de multiples analyses ont été présentés jusqu’à présent.</p>
-<p>La modélisation par équations structurelles permet de combiner toutes les analyses qui ont été vues jusqu’à maintenant que ce soit, la modération, la médiation, la régression, les analyses factorielles.</p>
-<p>Ce chapitre insiste sur l’aspect confirmatoire des analyses statistiques.</p>
-<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="confirmer.html#cb313-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lavaan)</span>
-<span id="cb313-2"><a href="confirmer.html#cb313-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> This is lavaan <span class="fl">0.6</span><span class="dv">-18</span></span>
-<span id="cb313-3"><a href="confirmer.html#cb313-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> lavaan is FREE software<span class="sc">!</span> Please report any bugs.</span></code></pre></div>
+<p>La modélisation par équations structurelles permet de combiner toutes les analyses qui ont été vues jusqu’à maintenant que ce soit, la <a href="mod%C3%A9rer.html#mod%C3%A9rer">modération</a>, la <a href="m%C3%A9dier.html#m%C3%A9dier">médiation</a>, la <a href="pr%C3%A9dire.html#pr%C3%A9dire">régression</a> et les <a href="explorer.html#explorer">analyses factorielles</a>. Ce chapitre insiste sur l’aspect confirmatoire des analyses statistiques. Autrement dit, la modélisation par équations structurelles ne devrait pas découvrir des modèles, mais bien à tester et vérifier. Pour rappel, c’était déjà le cas pour la <a href="mod%C3%A9rer.html#mod%C3%A9rer">modération</a> et la <a href="m%C3%A9dier.html#m%C3%A9dier">médiation</a>.</p>
+<p>Pour réaliser des modèles par équations structurelles, le package <code>lavaan</code> est le plus recommandé. Il se distingue par sa flexibilité et sa simplicité d’utilisation, permettant aux utilisateurs de spécifier et de tester des modèles compliqués avec un langage syntaxique clair et intuitif qui rappelle Mplus <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-mplus" role="doc-biblioref">Muthén &amp; Muthén, 1998-2017</a>)</span>. Parmi ses principales qualités, <code>lavaan</code> offre une large gamme de fonctionnalités pour l’estimation des modèles, les ajustements, et la comparaison des modèles, tout en supportant les analyses confirmatoires et exploratoires. Sa capacité à gérer les modèles avec des variables latentes, ses options de diagnostic détaillées et ses outils de visualisation font de <code>lavaan</code> un outil essentiel pour les expérimentateurs et ulisistaeur souhaitant mener des modèles par équations structurelles robustes et fiables.</p>
+<p>Comme pour tous les <a href="m%C3%A9dier.html#les-packages-2">packages</a>, il faut d’abord installer et appeler le programme avant de l’utiliseré</p>
+<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="confirmer.html#cb313-1" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb313-2"><a href="confirmer.html#cb313-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lavaan)</span>
+<span id="cb313-3"><a href="confirmer.html#cb313-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> This is lavaan <span class="fl">0.6</span><span class="dv">-18</span></span>
+<span id="cb313-4"><a href="confirmer.html#cb313-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> lavaan is FREE software<span class="sc">!</span> Please report any bugs.</span></code></pre></div>
 <div id="spécifier-un-modèle" class="section level2" number="21.1">
 <h2>
 <span class="header-section-number">21.1</span> Spécifier un modèle<a class="anchor" aria-label="anchor" href="#sp%C3%A9cifier-un-mod%C3%A8le"><i class="fas fa-link"></i></a>
 </h2>
-<p>La première étape d’un modèle avec <code>lavaan</code> est d’écrire un modèle. Comme il s’agit de multiple formules, il ne sera pas d’utiliser le traditionnel <code>~</code>. Un modèle d’équation structurelle de <code>lavaan</code> se compose d’une seule [chaîne de caractères] commençant et finissant par des guillemets anglophone comme <code>model &lt;- "les équations"</code> et qui contient toutes les équations. Il est important que chaque équation ait sa propre ligne. Voici une liste d’opérateur les plus commun.</p>
+<p>La première étape d’un modèle avec <code>lavaan</code> est d’écrire un modèle. Comme il s’agit de multiple formules, il ne sera pas d’utiliser le traditionnel <code>~</code>. Un modèle d’équation structurelle de <code>lavaan</code> se compose d’une seule <a href="programmer.html#les-cha%C3%AEnes-de-caract%C3%A8re">chaîne de caractères</a> commençant et finissant par des guillemets anglophone comme <code>model &lt;- "les équations"</code> et qui contient toutes les équations. Il est important que chaque équation ait sa propre ligne. Voici une liste d’opérateur les plus commun.</p>
 <ul>
-<li><p><code>~</code> signifie <em>prédit par</em>, comme <code>y ~ x + m</code></p></li>
-<li><p><code>~~</code> se traduit par <em>est lié à</em>, comme une covariance <code>x ~~ y</code></p></li>
+<li><p><code>~</code> signifie <strong>prédit par</strong>, comme <code>y ~ x + m</code></p></li>
+<li><p><code>~~</code> se traduit par <strong>est lié à</strong>, comme une covariance <code>x ~~ y</code></p></li>
+<li><p><code>=~</code> est <strong>se mesure de</strong>, comme <code>F1 =~ i1 + i2 + i3</code></p></li>
+<li><p><code>*</code> <strong>nomme</strong> ou <strong>fixe</strong> un paramètre selon le préfixe, par exemple, <code>y ~ a*x</code> permet d’utiliser le coefficient de régression lié à <code>x</code>, <code>y ~ .5*x</code> fixe le coefficient à .5 ou si <code>a</code> (le libellé) est utilisé à plusieurs endroits, cela contraint la valeur à être identiquer pour les deux équations.</p></li>
+<li><p><code>:=</code> <strong>définit</strong> un paramètre, par exemple, s’il faut la somme ou le produit de différents coefficients.</p></li>
 </ul>
-<p><code>=~</code> est <em>se mesure de</em>, comme <code>F1 =~ i1 + i2 + i3</code></p>
-<p><code>*</code> <em>nomme</em> ou <em>fixe</em> un paramètre, par exemple, <code>y ~ a*x</code> permet d’utiliser le coefficient de régression lié à <code>x</code>, <code>y ~ .5*x</code> fixe le coefficient à .5 ou si <code>a</code> (le libellé) est utilisé à plusieurs endroits, cela contraint la valeur à être identiquer pour les deux équations.</p>
-<p><code>:=</code> <em>définit</em> un paramètre, par exemple, s’il faut la somme ou le produit de différents coefficients.</p>
 <p>Une fois le modèle assigné dans une variable, les fonctions <code>sem()</code> et <code>cfa()</code> pourront être utilisées pour tester le modèle aux données. Les deux sont virtuellement identiques.</p>
 </div>
 <div id="les-fonctions-1" class="section level2" number="21.2">
@@ -156,20 +157,22 @@
 <p>Le TLI varie également entre 0 et 1, avec des valeurs plus proches de 1 indiquant un meilleur ajustement. En général, un TLI supérieur à 0.90 est considéré comme indiquant un bon ajustement, tandis qu’un TLI supérieur à 0.95 est souvent interprété comme excellent.</p>
 <p>Le RMSEA est un indice utilisé dans la modélisation par équations structurelles (SEM) pour évaluer la qualité de l’ajustement d’un modèle aux données observées. Cet indice mesure l’écart entre le modèle hypothétique et la réalité observée. Des valeurs plus faibles de RMSEA indiquent un meilleur ajustement. En général, un RMSEA inférieur à 0,05 est considéré comme un bon ajustement, tandis qu’un RMSEA entre 0,05 et 0,08 est jugé acceptable.</p>
 <p>Le SRMR est un indice utilisé dans la modélisation par équations structurelles (SEM) pour évaluer la qualité de l’ajustement d’un modèle aux données observées. Cet indice mesure la différence moyenne entre les corrélations observées et les corrélations prédites par le modèle. Des valeurs plus faibles de SRMR indiquent un meilleur ajustement. En général, un SRMR inférieur à 0,08 est considéré comme un bon ajustement.</p>
-<p>Pour obtenir spécifiquement ces indices, il faut utilier la syntaxe suivante avec la sortie de <code>lavaan</code>.</p>
+<p>Pour obtenir spécifiquement ces indices, il faut utilier la syntaxe suivante avec un objet <code>lavaan</code>, c’est-à-dire la sortie des fonctions <code>sem()</code> ou <code>cfa()</code>.</p>
 <div class="sourceCode" id="cb314"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">fitmeasures</span><span class="op">(</span><span class="va">object</span>, fit.measures <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"chisq"</span>, <span class="st">"df"</span>, <span class="st">"pvalue"</span>,</span>
 <span>           <span class="st">"cfi"</span>, <span class="st">"tli"</span>, <span class="st">"RMSEA"</span>, <span class="st">"SRMR"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>En tout, <code>lavaan</code> produit 46 indices statistiques différents. Ceux recommandés ici sont les mêmes que ceux rapportés par le logiciel Mplus. Il peut être intéressant de voir les autres options si cela est nécessaire pour l’utilisateur dans son domaine. Cela se fait simplement en laissant vide l’argument <code>fit.measures</code> qui par défaut est <code>fit.measures = "all"</code>.</p>
+<p>En tout, <code>lavaan</code> produit 46 indices statistiques différents. Ceux recommandés ici sont les mêmes que ceux rapportés par le logiciel Mplus <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-caronmplus" role="doc-biblioref">Caron, 2018</a>)</span>. Il peut être intéressant de vérifier les autres options, surtout que certains pourront être spécifique à certains doomaines. Cela se fait simplement en laissant vide l’argument <code>fit.measures</code> qui par défaut est <code>fit.measures = "all"</code>.</p>
 </div>
 <div id="les-indices-de-modifcation" class="section level3" number="21.2.2">
 <h3>
 <span class="header-section-number">21.2.2</span> Les indices de modifcation<a class="anchor" aria-label="anchor" href="#les-indices-de-modifcation"><i class="fas fa-link"></i></a>
 </h3>
-<p>Il est rare que le modèle testé atteint les critères généraux d’ajustement. Ainsi, il est possible d’améliorer le modèle en le peaufinant. La fonction <code>modindices()</code> suggère différentes équations.</p>
+<p>Il est rare que le modèle testé atteint les critères généraux d’ajustement du premier coup. Ainsi, il est possible d’améliorer le modèle en le peaufinant. La fonction <code>modindices()</code> suggère différents opérateurs à ajouter au modèle initial. Pour utiliser la fonction, il faut lui fournir un objet de classe <code>lavaan</code> (une sortie <code>sem()</code> ou <code>cfa</code>).</p>
 <div class="sourceCode" id="cb315"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">modindices</span><span class="op">(</span><span class="va">object</span>, sort <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<p>L’argument <code>sort = TRUE</code> permet d’avoir les arguments en ordre d’importances. La fonction produit des résultats athéoriques qui ne font parfois aucun sens. Elle ne donne que des suggestions sur le plan statistique, jamais conceptuel ou théorique. C’est à l’utilisateur d’être judicieux dans ses choix. Par exemple, il est recommandé de d’abord envisager des covariances <code>~~</code>, car celles-ci sont les moins contraignantes sur le plan théoriques. Les opérations <code>=~</code>, et <code>~</code> peuvent être envisagées par la suite si elles sont justifiables théoriquement.</p>
+<p>L’argument <code>sort = TRUE</code> permet d’avoir les arguments en ordre d’importances. La sortie peut devenir rapidement encombrante. Il est possible de raccourcir le fonction avec les arguments <code>minimum.value</code>, l’indice de modification minimale désiré, et <code>maximum.number</code>, le nombre d’opérateur suggéré maximale.</p>
+<p>La fonction produit des résultats athéoriques qui ne font parfois aucun sens. Elle ne donne que des suggestions sur le plan statistique, jamais conceptuel ou théorique. C’est à l’utilisateur d’être judicieux dans ses choix. Par exemple, il est recommandé de d’abord envisager des covariances <code>~~</code>, car celles-ci sont les moins contraignantes sur le plan théoriques. Les opérations <code>=~</code>, et <code>~</code> peuvent être envisagées par la suite si elles sont justifiables théoriquement.</p>
+<p>Une dernière recommandation : il est préférable de tester séquentiellement les ajouts. Autrement dit, éviter d’ajouter plusieurs opérateurs simultanément et vérifier à chaque étape la pertinence des ajouts précédents.</p>
 </div>
 <div id="les-résultats-standarisés" class="section level3" number="21.2.3">
 <h3>
@@ -184,17 +187,23 @@
 <h2>
 <span class="header-section-number">21.3</span> Analyse factorielle confirmatoire<a class="anchor" aria-label="anchor" href="#analyse-factorielle-confirmatoire"><i class="fas fa-link"></i></a>
 </h2>
-<p>Voici un exemple d’analyse factorielle exploratoire. La syntaxe suivante recrée le modèle présenté au chapitre <a href="explorer.html#explorer">Explorer</a>. La matrice de corrélation se trouve dans le package <code>Rnest</code> pour aller plus rapidement.</p>
+<p>Voici un exemple d’analyse factorielle exploratoire. La syntaxe suivante recrée le modèle présenté au chapitre <a href="explorer.html#explorer">Explorer</a>. La matrice de corrélation se trouve dans le package <code>Rnest</code> <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-Rnest" role="doc-biblioref">Caron, 2023</a>)</span> pour aller plus rapidement.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:FactStructconfirmer"></span>
+<img src="image/factstruct.png" alt="Structure factorielle de l'exemple" width="50%" height="50%"><p class="caption">
+Figure 21.1: Structure factorielle de l’exemple
+</p>
+</div>
+<p>La Figure <a href="#fig:FactStructconfrimer"><strong>??</strong></a> (présentée auparavant à la Figure <a href="explorer.html#fig:FactStruct">19.1</a>) montre la structure factorielle sous-jacente à la matrice de corrélation <code>ex.mqr</code>. La syntaxe crée un jeu de données basée sur cette matrice.</p>
 <div class="sourceCode" id="cb317"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Création de la matrice de recette de fabrication</span></span>
 <span><span class="va">R</span> <span class="op">&lt;-</span> <span class="fu">Rnest</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/Rnest/man/ex.mqr.html">ex.mqr</a></span></span>
-<span><span class="co">#R &lt;- </span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">32</span><span class="op">)</span></span>
 <span><span class="co"># Création du jeu de données</span></span>
 <span><span class="va">jd.cfa</span> <span class="op">&lt;-</span> <span class="fu">MASS</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/MASS/man/mvrnorm.html">mvrnorm</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">500</span>, </span>
 <span>                    mu <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">R</span><span class="op">)</span><span class="op">)</span>, </span>
 <span>                    Sigma <span class="op">=</span> <span class="va">R</span><span class="op">)</span></span></code></pre></div>
-<p>La première étape est de définir le modèle. Dans la syntaxe, deux facteurs sont créés à partir des items qui devraient les composer. Ici, le lien <code>F1 =~ i6</code> est intentionnellement omit. L’ajout de <code>F1 ~~ 0*F2</code> qui fixe la covariance entre <code>F1</code> et <code>F2</code> à 0, ce qui facilitera la convergence de l’analyse dans ce cas spécifique.</p>
+<p>La première étape des modèles par équations structurelles est de définir le modèle. Dans la syntaxe, deux facteurs sont créés à partir des items qui devraient les composer. Ici, le lien <code>F1 =~ i6</code> est intentionnellement omit. L’ajout de <code>F1 ~~ 0*F2</code> qui fixe la covariance entre <code>F1</code> et <code>F2</code> à 0, ce qui facilitera la convergence de l’analyse dans ce cas spécifique.</p>
 <div class="sourceCode" id="cb318"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">model.cfa1</span> <span class="op">&lt;-</span> <span class="st">"</span></span>
 <span><span class="st">F1 =~ i1 + i2 + i3</span></span>
@@ -204,7 +213,9 @@
 <p>Une fois le modèle transcrit, il faut le rouler avec la fonction <code>cfa()</code> en incluant les données et le modèle</p>
 <div class="sourceCode" id="cb319"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">res.cfa1</span> <span class="op">&lt;-</span> <span class="fu">cfa</span><span class="op">(</span><span class="va">model.cfa1</span>, data <span class="op">=</span> <span class="va">jd.cfa</span><span class="op">)</span></span>
-<span><span class="co">#res.sem1 &lt;- sem(model.cfa1, data = jd.cfa)</span></span></code></pre></div>
+<span></span>
+<span><span class="co"># sem() fonctionne également</span></span>
+<span><span class="co"># res.sem1 &lt;- sem(model.cfa1, data = jd.cfa)</span></span></code></pre></div>
 <p>À la place de <code>F1 ~~ 0*F2</code>, l’orthogonalité des facteurs aurait pu être demandé avec <code>orthogonal = TRUE</code>. Autrement, les facteurs sont obliques (libres d’être corrélés) par défaut.</p>
 <div class="sourceCode" id="cb320"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">res.cfa1</span> <span class="op">&lt;-</span> <span class="fu">cfa</span><span class="op">(</span><span class="va">model.cfa1</span>, sample.cov <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">jd.cfa</span><span class="op">)</span>, sample.nobs <span class="op">=</span> <span class="fl">60</span><span class="op">)</span></span></code></pre></div>
@@ -213,7 +224,7 @@
 <span id="cb321-2"><a href="confirmer.html#cb321-2" aria-hidden="true" tabindex="-1"></a>                            <span class="st">"cfi"</span>, <span class="st">"tli"</span>, <span class="st">"RMSEA"</span>, <span class="st">"SRMR"</span>))</span>
 <span id="cb321-3"><a href="confirmer.html#cb321-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>  chisq     df pvalue    cfi    tli  rmsea   srmr </span>
 <span id="cb321-4"><a href="confirmer.html#cb321-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fl">76.571</span>  <span class="fl">9.000</span>  <span class="fl">0.000</span>  <span class="fl">0.909</span>  <span class="fl">0.848</span>  <span class="fl">0.123</span>  <span class="fl">0.117</span></span></code></pre></div>
-<p>Les indices pourraient être légèrement amélioré ici. Notamment, le <code>tli</code> est trop faible (en bas de .90), le <code>rmsea</code> et le <code>srmr</code> sont trop élevés (au dessus de .08) et le <code>chisq</code> est significatif à <span class="math inline">\(p&lt;.001\)</span>. La modification d’indice est demandé pour voir comment améliorer le modèle.</p>
+<p>Les indices pourraient être légèrement amélioré ici. Notamment, le <code>tli</code> est trop faible (en bas de .90), le <code>rmsea</code> et le <code>srmr</code> sont trop élevés (au dessus de .08) et le <code>chisq</code> est significatif à <span class="math inline">\(p&lt;.001\)</span>. La modification d’indice est demandée pour vérifier les possibles amélioreration du modèle.</p>
 <div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="confirmer.html#cb322-1" aria-hidden="true" tabindex="-1"></a><span class="fu">modindices</span>(res.cfa1, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb322-2"><a href="confirmer.html#cb322-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>    lhs op rhs     mi    epc sepc.lv sepc.all sepc.nox</span>
 <span id="cb322-3"><a href="confirmer.html#cb322-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">18</span>  F1 <span class="ot">=</span><span class="er">~</span>  i6 <span class="fl">62.727</span>  <span class="fl">0.405</span>   <span class="fl">0.352</span>    <span class="fl">0.353</span>    <span class="fl">0.353</span></span>
@@ -247,16 +258,20 @@
 <span id="cb324-3"><a href="confirmer.html#cb324-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>  chisq     df pvalue    cfi    tli  rmsea   srmr </span>
 <span id="cb324-4"><a href="confirmer.html#cb324-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>  <span class="fl">6.305</span>  <span class="fl">7.000</span>  <span class="fl">0.505</span>  <span class="fl">1.000</span>  <span class="fl">1.002</span>  <span class="fl">0.000</span>  <span class="fl">0.014</span></span></code></pre></div>
 <p>Ils sont tous excellents et respectent les recommandations.</p>
-<p>Grâce au package [<code>lavaanExtra</code>][<a href="https://github.com/rempsyc/lavaanExtra" class="uri">https://github.com/rempsyc/lavaanExtra</a>] il est possible de produire rapidement une figure des résultats finaux. Il faut absolument avoir installer les packages <code>rsvg</code> et <code>DiagrammeRsvg</code> pour obtenir la figure.</p>
+<p>Grâce au package <code>lavaanExtra</code> <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-lavaanExtra" role="doc-biblioref">Thériault, 2023</a>)</span> il est possible de produire rapidement une figure des résultats finaux. Il faut absolument avoir installer les packages <code>rsvg</code> et <code>DiagrammeRsvg</code> pour obtenir la figure.</p>
 <div class="sourceCode" id="cb325"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># TODO</span></span>
-<span><span class="co"># Ne fonctionne pas pour le livre</span></span>
-<span><span class="fu">lavaanExtra</span><span class="fu">::</span><span class="fu"><a href="https://lavaanExtra.remi-theriault.com/reference/cfa_fit_plot.html">cfa_fit_plot</a></span><span class="op">(</span><span class="va">model.cfa2</span>, data <span class="op">=</span> <span class="va">jd.cfa</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">lavaanExtra</span><span class="fu">::</span><span class="fu"><a href="https://lavaanExtra.remi-theriault.com/reference/cfa_fit_plot.html">cfa_fit_plot</a></span><span class="op">(</span><span class="va">model.cfa2</span>, data <span class="op">=</span> <span class="va">jd.cfa</span><span class="op">)</span></span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:leplot"></span>
+<img src="image/leplot.PNG" alt="Représentation graphiques de la structure factorielle finale" width="60%" height="60%"><p class="caption">
+Figure 21.2: Représentation graphiques de la structure factorielle finale
+</p>
+</div>
 <p>Enfin, les paramètres pourront être extraits si l’utilisateur désire les observés.</p>
 <div class="sourceCode" id="cb326"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Estimés non standardisés</span></span>
 <span><span class="fu">parameterestimates</span><span class="op">(</span><span class="va">res.cfa2</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="confirmer.html#cb327-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimés standardisisé</span></span>
+<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="confirmer.html#cb327-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimés standardisés</span></span>
 <span id="cb327-2"><a href="confirmer.html#cb327-2" aria-hidden="true" tabindex="-1"></a><span class="fu">standardizedSolution</span>(res.cfa2)</span>
 <span id="cb327-3"><a href="confirmer.html#cb327-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>    lhs op rhs est.std    se     z pvalue ci.lower ci.upper</span>
 <span id="cb327-4"><a href="confirmer.html#cb327-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">1</span>   F1 <span class="ot">=</span><span class="er">~</span>  i1   <span class="fl">0.903</span> <span class="fl">0.022</span> <span class="fl">41.06</span>  <span class="fl">0.000</span>    <span class="fl">0.860</span>    <span class="fl">0.946</span></span>
@@ -280,6 +295,14 @@
 <h2>
 <span class="header-section-number">21.4</span> Analyse acheminatoire<a class="anchor" aria-label="anchor" href="#analyse-acheminatoire"><i class="fas fa-link"></i></a>
 </h2>
+<p>Comme second exemple basé sur les analyses acheminatoires, il s’agit d’un modèle tiré de <span class="citation">Lemardelet &amp; Caron (<a href="r%C3%A9f%C3%A9rences.html#ref-Lemardeletsoumis" role="doc-biblioref">2022</a>)</span> dont le jeu de données est disponible du package <code>pathanalysis</code> <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-CaronPA" role="doc-biblioref">Caron, 2021</a>)</span>. Le modèle est une médiation sérielle avec deux médiateurs. La Figure <a href="confirmer.html#fig:exMED">21.3</a> présente le modèle.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:exMED"></span>
+<img src="image/exMED.png" alt="Modèle de médiation de Lemardelet et Caron (2022(" width="50%" height="50%"><p class="caption">
+Figure 21.3: Modèle de médiation de Lemardelet et Caron (2022(
+</p>
+</div>
+<p>Le jeu de données se trouve dans le packages <code>pathanalysis</code> sous le libellé <code>medEx</code>.</p>
 <div class="sourceCode" id="cb328"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">jd.med</span> <span class="op">&lt;-</span> <span class="fu">pathanalysis</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/pathanalysis/man/medEX.html">medEX</a></span></span>
 <span></span>
@@ -287,76 +310,61 @@
 <span><span class="st">m1 ~ x</span></span>
 <span><span class="st">m2 ~ x + m1</span></span>
 <span><span class="st">y  ~ m2 + m1 + x"</span> </span></code></pre></div>
-<p>Dans le cas de la médiation, il est possible de calculer l’effet indirect en nommant les paramètres et définissant l’effet indirect.</p>
+<p>Une première transcription du modèle illustré à la Figure <a href="confirmer.html#fig:exMED">21.3</a> est la syntaxe ci-dessus. Tous les liens sont bien inscrits, ce qui permet seulement d’estimer les liens directs (voir <a href="m%C3%A9dier.html#m%C3%A9dier">Médier</a>).</p>
+<p>Dans le cas de la médiation, il est désirable de calculer l’effet indirect en nommant les paramètres et définissant le ou les effets indirects. Comme le souligne <span class="citation">Lemardelet &amp; Caron (<a href="r%C3%A9f%C3%A9rences.html#ref-Lemardeletsoumis" role="doc-biblioref">2022</a>)</span>, un modèle à deux médiateurs sérielles se décompose en cinq effets indirects spécifiques, qui sont exprimés dans la syntaxe ci-dessous.</p>
 <div class="sourceCode" id="cb329"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">model.med2</span> <span class="op">&lt;-</span> <span class="st">"</span></span>
-<span><span class="st">m1 ~ a*x</span></span>
-<span><span class="st">m2 ~ x + b*m1</span></span>
-<span><span class="st">y  ~ c*m2 + m1 + d*x</span></span>
-<span><span class="st">indirect := a * b * c</span></span>
-<span><span class="st">total := indirect + d"</span></span></code></pre></div>
-<div class="sourceCode" id="cb330"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">model.med3</span> <span class="op">&lt;-</span> <span class="st">"</span></span>
 <span><span class="st">m1 ~ a1*x</span></span>
 <span><span class="st">m2 ~ a2*x + b2*m1</span></span>
 <span><span class="st">y  ~ c2*m2 + c1*m1 + d*x</span></span>
-<span><span class="st">total_indirect := a1 * b2 * c2</span></span>
+<span><span class="st">ind_x_m1_m2_y := a1 * b2 * c2</span></span>
 <span><span class="st">ind_x_m1_y  := a1 * c1</span></span>
 <span><span class="st">ind_x_m2_y  := a2 * c2</span></span>
 <span><span class="st">ind_x_m1_m2 := a1 * b2</span></span>
 <span><span class="st">ind_m1_m2_y := b2 * c2</span></span>
-<span><span class="st">total := total_indirect + d"</span></span></code></pre></div>
+<span><span class="st">total_ind := a1 * c1 + a1 *b2 * c2 + a2 * c2</span></span>
+<span><span class="st">total := total_ind + d"</span></span></code></pre></div>
+<p>Bien que ce modèle décrit cinq effets indirects, seulement trois sont importants pour l’analyse des médiateurs, ceux qui débutent de la variable indépendante jusqu’à la dernière variable dépendante du modèle. L’effet indirect total correspond à la somme de ces trois liens (dans cet exemple). Les deux autres, les effets indirects simple entre les médiateurs pourraient ou non être d’intérêt pour l’utilisateur. L’effet direct total correspond au lien entre la variable indépendante et dépendante en l’absence des médiateurs.</p>
+<p>La syntaxe ci-dessus extrait en plus l’effet indirect totale, la somme de tous les effets indirects débutant par la variable indépendante jusqu’à la dernière variable dépendante du modèle et l’effet total.</p>
+<div class="sourceCode" id="cb330"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">res.lav.med2</span> <span class="op">&lt;-</span> <span class="fu">sem</span><span class="op">(</span><span class="va">model.med2</span>, data <span class="op">=</span> <span class="va">jd.med</span><span class="op">)</span></span></code></pre></div>
+<p>Voici la sortie.</p>
 <div class="sourceCode" id="cb331"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">res.lav.med3</span> <span class="op">&lt;-</span> <span class="fu">sem</span><span class="op">(</span><span class="va">model.med3</span>, data <span class="op">=</span> <span class="va">jd.med</span><span class="op">)</span></span></code></pre></div>
-<p>Voir le output.</p>
-<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="confirmer.html#cb332-1" aria-hidden="true" tabindex="-1"></a><span class="fu">parameterestimates</span>(res.lav.med3)</span>
-<span id="cb332-2"><a href="confirmer.html#cb332-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>               lhs op              rhs          label    est</span>
-<span id="cb332-3"><a href="confirmer.html#cb332-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">1</span>              m1  <span class="sc">~</span>                x             a1  <span class="fl">0.494</span></span>
-<span id="cb332-4"><a href="confirmer.html#cb332-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">2</span>              m2  <span class="sc">~</span>                x             a2  <span class="fl">0.178</span></span>
-<span id="cb332-5"><a href="confirmer.html#cb332-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">3</span>              m2  <span class="sc">~</span>               m1             b2  <span class="fl">0.452</span></span>
-<span id="cb332-6"><a href="confirmer.html#cb332-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">4</span>               y  <span class="sc">~</span>               m2             c2  <span class="fl">0.664</span></span>
-<span id="cb332-7"><a href="confirmer.html#cb332-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">5</span>               y  <span class="sc">~</span>               m1             c1 <span class="sc">-</span><span class="fl">0.016</span></span>
-<span id="cb332-8"><a href="confirmer.html#cb332-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">6</span>               y  <span class="sc">~</span>                x              d  <span class="fl">0.246</span></span>
-<span id="cb332-9"><a href="confirmer.html#cb332-9" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">7</span>              m1 <span class="sc">~</span><span class="er">~</span>               m1                 <span class="fl">0.767</span></span>
-<span id="cb332-10"><a href="confirmer.html#cb332-10" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">8</span>              m2 <span class="sc">~</span><span class="er">~</span>               m2                 <span class="fl">0.645</span></span>
-<span id="cb332-11"><a href="confirmer.html#cb332-11" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">9</span>               y <span class="sc">~</span><span class="er">~</span>                y                 <span class="fl">0.355</span></span>
-<span id="cb332-12"><a href="confirmer.html#cb332-12" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">10</span>              x <span class="sc">~</span><span class="er">~</span>                x                 <span class="fl">1.005</span></span>
-<span id="cb332-13"><a href="confirmer.html#cb332-13" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">11</span> total_indirect <span class="sc">:</span><span class="er">=</span>         a1<span class="sc">*</span>b2<span class="sc">*</span>c2 total_indirect  <span class="fl">0.148</span></span>
-<span id="cb332-14"><a href="confirmer.html#cb332-14" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">12</span>     ind_x_m1_y <span class="sc">:</span><span class="er">=</span>            a1<span class="sc">*</span>c1     ind_x_m1_y <span class="sc">-</span><span class="fl">0.008</span></span>
-<span id="cb332-15"><a href="confirmer.html#cb332-15" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">13</span>     ind_x_m2_y <span class="sc">:</span><span class="er">=</span>            a2<span class="sc">*</span>c2     ind_x_m2_y  <span class="fl">0.118</span></span>
-<span id="cb332-16"><a href="confirmer.html#cb332-16" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">14</span>    ind_x_m1_m2 <span class="sc">:</span><span class="er">=</span>            a1<span class="sc">*</span>b2    ind_x_m1_m2  <span class="fl">0.223</span></span>
-<span id="cb332-17"><a href="confirmer.html#cb332-17" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">15</span>    ind_m1_m2_y <span class="sc">:</span><span class="er">=</span>            b2<span class="sc">*</span>c2    ind_m1_m2_y  <span class="fl">0.300</span></span>
-<span id="cb332-18"><a href="confirmer.html#cb332-18" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">16</span>          total <span class="sc">:</span><span class="er">=</span> total_indirect<span class="sc">+</span>d          total  <span class="fl">0.394</span></span>
-<span id="cb332-19"><a href="confirmer.html#cb332-19" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>       se      z pvalue ci.lower ci.upper</span>
-<span id="cb332-20"><a href="confirmer.html#cb332-20" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">1</span>  <span class="fl">0.042</span> <span class="fl">11.738</span>  <span class="fl">0.000</span>    <span class="fl">0.411</span>    <span class="fl">0.576</span></span>
-<span id="cb332-21"><a href="confirmer.html#cb332-21" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">2</span>  <span class="fl">0.044</span>  <span class="fl">4.014</span>  <span class="fl">0.000</span>    <span class="fl">0.091</span>    <span class="fl">0.265</span></span>
-<span id="cb332-22"><a href="confirmer.html#cb332-22" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">3</span>  <span class="fl">0.044</span> <span class="fl">10.254</span>  <span class="fl">0.000</span>    <span class="fl">0.366</span>    <span class="fl">0.539</span></span>
-<span id="cb332-23"><a href="confirmer.html#cb332-23" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">4</span>  <span class="fl">0.036</span> <span class="fl">18.596</span>  <span class="fl">0.000</span>    <span class="fl">0.594</span>    <span class="fl">0.733</span></span>
-<span id="cb332-24"><a href="confirmer.html#cb332-24" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">5</span>  <span class="fl">0.036</span> <span class="sc">-</span><span class="fl">0.431</span>  <span class="fl">0.667</span>   <span class="sc">-</span><span class="fl">0.087</span>    <span class="fl">0.056</span></span>
-<span id="cb332-25"><a href="confirmer.html#cb332-25" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">6</span>  <span class="fl">0.033</span>  <span class="fl">7.359</span>  <span class="fl">0.000</span>    <span class="fl">0.181</span>    <span class="fl">0.312</span></span>
-<span id="cb332-26"><a href="confirmer.html#cb332-26" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">7</span>  <span class="fl">0.052</span> <span class="fl">14.697</span>  <span class="fl">0.000</span>    <span class="fl">0.665</span>    <span class="fl">0.870</span></span>
-<span id="cb332-27"><a href="confirmer.html#cb332-27" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">8</span>  <span class="fl">0.044</span> <span class="fl">14.697</span>  <span class="fl">0.000</span>    <span class="fl">0.559</span>    <span class="fl">0.731</span></span>
-<span id="cb332-28"><a href="confirmer.html#cb332-28" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">9</span>  <span class="fl">0.024</span> <span class="fl">14.697</span>  <span class="fl">0.000</span>    <span class="fl">0.308</span>    <span class="fl">0.402</span></span>
-<span id="cb332-29"><a href="confirmer.html#cb332-29" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">10</span> <span class="fl">0.000</span>     <span class="cn">NA</span>     <span class="cn">NA</span>    <span class="fl">1.005</span>    <span class="fl">1.005</span></span>
-<span id="cb332-30"><a href="confirmer.html#cb332-30" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">11</span> <span class="fl">0.021</span>  <span class="fl">7.132</span>  <span class="fl">0.000</span>    <span class="fl">0.107</span>    <span class="fl">0.189</span></span>
-<span id="cb332-31"><a href="confirmer.html#cb332-31" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">12</span> <span class="fl">0.018</span> <span class="sc">-</span><span class="fl">0.431</span>  <span class="fl">0.667</span>   <span class="sc">-</span><span class="fl">0.043</span>    <span class="fl">0.028</span></span>
-<span id="cb332-32"><a href="confirmer.html#cb332-32" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">13</span> <span class="fl">0.030</span>  <span class="fl">3.924</span>  <span class="fl">0.000</span>    <span class="fl">0.059</span>    <span class="fl">0.177</span></span>
-<span id="cb332-33"><a href="confirmer.html#cb332-33" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">14</span> <span class="fl">0.029</span>  <span class="fl">7.723</span>  <span class="fl">0.000</span>    <span class="fl">0.167</span>    <span class="fl">0.280</span></span>
-<span id="cb332-34"><a href="confirmer.html#cb332-34" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">15</span> <span class="fl">0.033</span>  <span class="fl">8.980</span>  <span class="fl">0.000</span>    <span class="fl">0.235</span>    <span class="fl">0.366</span></span>
-<span id="cb332-35"><a href="confirmer.html#cb332-35" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">16</span> <span class="fl">0.038</span> <span class="fl">10.358</span>  <span class="fl">0.000</span>    <span class="fl">0.320</span>    <span class="fl">0.469</span></span></code></pre></div>
-<p>Ici, le modèle est saturé, mais il est tout de même possible d’obtenir les</p>
-<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb333-1"><a href="confirmer.html#cb333-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fitmeasures</span>(res.lav.med3, <span class="fu">c</span>(<span class="st">"chisq"</span>, <span class="st">"df"</span>, <span class="st">"pvalue"</span>,</span>
+<code class="sourceCode R"><span><span class="co"># parameterestimates(res.lav.med2)</span></span>
+<span><span class="fu">standardizedSolution</span><span class="op">(</span><span class="va">res.lav.med2</span><span class="op">)</span></span></code></pre></div>
+<p>Pour désencombrer la sortie de la fonction (pour mieux présenter pour ce chapitre), voici la sortie avec un peu moins de colonnes.</p>
+<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="confirmer.html#cb332-1" aria-hidden="true" tabindex="-1"></a><span class="fu">standardizedSolution</span>(res.lav.med2)[,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,<span class="dv">7</span>,<span class="dv">9</span><span class="sc">:</span><span class="dv">10</span>)]</span>
+<span id="cb332-2"><a href="confirmer.html#cb332-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>            label est.std    se pvalue</span>
+<span id="cb332-3"><a href="confirmer.html#cb332-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">1</span>             a1   <span class="fl">0.492</span> <span class="fl">0.034</span>  <span class="fl">0.000</span></span>
+<span id="cb332-4"><a href="confirmer.html#cb332-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">2</span>             a2   <span class="fl">0.181</span> <span class="fl">0.044</span>  <span class="fl">0.000</span></span>
+<span id="cb332-5"><a href="confirmer.html#cb332-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">3</span>             b2   <span class="fl">0.464</span> <span class="fl">0.041</span>  <span class="fl">0.000</span></span>
+<span id="cb332-6"><a href="confirmer.html#cb332-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">4</span>             c2   <span class="fl">0.666</span> <span class="fl">0.031</span>  <span class="fl">0.000</span></span>
+<span id="cb332-7"><a href="confirmer.html#cb332-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">5</span>             c1  <span class="sc">-</span><span class="fl">0.016</span> <span class="fl">0.038</span>  <span class="fl">0.667</span></span>
+<span id="cb332-8"><a href="confirmer.html#cb332-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">6</span>              d   <span class="fl">0.252</span> <span class="fl">0.034</span>  <span class="fl">0.000</span></span>
+<span id="cb332-9"><a href="confirmer.html#cb332-9" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">7</span>                  <span class="fl">0.758</span> <span class="fl">0.034</span>  <span class="fl">0.000</span></span>
+<span id="cb332-10"><a href="confirmer.html#cb332-10" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">8</span>                  <span class="fl">0.669</span> <span class="fl">0.036</span>  <span class="fl">0.000</span></span>
+<span id="cb332-11"><a href="confirmer.html#cb332-11" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">9</span>                  <span class="fl">0.371</span> <span class="fl">0.027</span>  <span class="fl">0.000</span></span>
+<span id="cb332-12"><a href="confirmer.html#cb332-12" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">10</span>                 <span class="fl">1.000</span> <span class="fl">0.000</span>     <span class="cn">NA</span></span>
+<span id="cb332-13"><a href="confirmer.html#cb332-13" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">11</span> ind_x_m1_m2_y   <span class="fl">0.152</span> <span class="fl">0.020</span>  <span class="fl">0.000</span></span>
+<span id="cb332-14"><a href="confirmer.html#cb332-14" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">12</span>    ind_x_m1_y  <span class="sc">-</span><span class="fl">0.008</span> <span class="fl">0.018</span>  <span class="fl">0.667</span></span>
+<span id="cb332-15"><a href="confirmer.html#cb332-15" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">13</span>    ind_x_m2_y   <span class="fl">0.121</span> <span class="fl">0.030</span>  <span class="fl">0.000</span></span>
+<span id="cb332-16"><a href="confirmer.html#cb332-16" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">14</span>   ind_x_m1_m2   <span class="fl">0.228</span> <span class="fl">0.026</span>  <span class="fl">0.000</span></span>
+<span id="cb332-17"><a href="confirmer.html#cb332-17" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">15</span>   ind_m1_m2_y   <span class="fl">0.309</span> <span class="fl">0.033</span>  <span class="fl">0.000</span></span>
+<span id="cb332-18"><a href="confirmer.html#cb332-18" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">16</span>     total_ind   <span class="fl">0.265</span> <span class="fl">0.030</span>  <span class="fl">0.000</span></span>
+<span id="cb332-19"><a href="confirmer.html#cb332-19" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">17</span>         total   <span class="fl">0.517</span> <span class="fl">0.033</span>  <span class="fl">0.000</span></span></code></pre></div>
+<p>Ici, le modèle est saturé, mais il est tout de même possible d’obtenir les indices d’ajustement. Si le modèle n’était pas saturé (s’il y avait des paramètres libres), il faudrait les vérifier comme <a href="confirmer.html#analyse-factorielle-confirmatoire">l’exemple précédent</a>.</p>
+<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb333-1"><a href="confirmer.html#cb333-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fitmeasures</span>(res.lav.med2, <span class="fu">c</span>(<span class="st">"chisq"</span>, <span class="st">"df"</span>, <span class="st">"pvalue"</span>,</span>
 <span id="cb333-2"><a href="confirmer.html#cb333-2" aria-hidden="true" tabindex="-1"></a>                            <span class="st">"cfi"</span>, <span class="st">"tli"</span>, <span class="st">"RMSEA"</span>, <span class="st">"SRMR"</span>))</span>
 <span id="cb333-3"><a href="confirmer.html#cb333-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>  chisq     df pvalue    cfi    tli  rmsea   srmr </span>
 <span id="cb333-4"><a href="confirmer.html#cb333-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>      <span class="dv">0</span>      <span class="dv">0</span>     <span class="cn">NA</span>      <span class="dv">1</span>      <span class="dv">1</span>      <span class="dv">0</span>      <span class="dv">0</span></span></code></pre></div>
-<p>La Figure <a href="confirmer.html#fig:lesem">21.1</a> montre le modèle final.</p>
+<p>La Figure <a href="confirmer.html#fig:lesem">21.4</a> obtenue par <code>lavaanExtra</code> montre le modèle final.</p>
 <div class="sourceCode" id="cb334"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">lavaanExtra</span><span class="fu">::</span><span class="fu"><a href="https://lavaanExtra.remi-theriault.com/reference/nice_lavaanPlot.html">nice_lavaanPlot</a></span><span class="op">(</span><span class="va">res.lav.med3</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">lavaanExtra</span><span class="fu">::</span><span class="fu"><a href="https://lavaanExtra.remi-theriault.com/reference/nice_lavaanPlot.html">nice_lavaanPlot</a></span><span class="op">(</span><span class="va">res.lav.med2</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:lesem"></span>
 <div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-c72387fd6c1102706219" style="width:75%;height:75%;"></div>
 <script type="application/json" data-for="htmlwidget-c72387fd6c1102706219">{"x":{"diagram":" digraph plot { \n graph [ rankdir = LR ] \n node [ shape = box, fontname = Helvetica ] \n node [shape = box] \n x; m1; m2; y \n node [shape = oval] \n  \n \n edge [ color = black ] \n x->m1 [label = \"0.49***\"] x->m2 [label = \"0.18***\"] m1->m2 [label = \"0.46***\"] m2->y [label = \"0.67***\"] m1->y [label = \"\"] x->y [label = \"0.25***\"]  \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script><p class="caption">
-Figure 21.1: Représentation graphiques du modèle acheminatoire
+Figure 21.4: Représentation graphiques du modèle acheminatoire
 </p>
 </div>
 
@@ -396,7 +404,7 @@ Figure 21.1: Représentation graphiques du modèle acheminatoire
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2024-11-08.</p>
+    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2024-11-13.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

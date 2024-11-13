@@ -160,6 +160,9 @@ fig:screenest
 fig:structcp
 fig:scree4
 fig:structcp3
+fig:FactStructconfirmer
+fig:leplot
+fig:exMED
 fig:lesem
 fig:cla1
 fig:lcaplot
