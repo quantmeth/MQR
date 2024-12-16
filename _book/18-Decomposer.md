@@ -59,7 +59,7 @@ Pour mieux illustrer, les valeurs propres, les vecteurs propres, les loadings, m
 La création de données pour une ACP est très simple. Il suffit de créer une matrice de covariance ou de corrélation. Dans cet exemple, 10 participants sont mesurés sur deux variables ayant une corrélation de .80 entre elles.
 
 
-```r
+``` r
 # Pour la reproductibilité
 set.seed(42)
 
@@ -97,7 +97,7 @@ Il existe quatre fonctions de base **R** pour faire l'analyse en composantes pri
 La fonction `eigen()` est celle des puristes. Rudimentaire, elle prend en argument une matrice de covariance ou de corrélation et calcule les valeurs propres (`values`) et les vecteurs propres (`vectors`).
 
 
-```r
+``` r
 # L'analyse de la matrice de corrélation 
 res.eig <- eigen(cor(jd.acp))
 
@@ -125,7 +125,7 @@ La fonction `eigen()` ne fonctionne qu'avec des matrices carrées et est donc tr
 L'analyse de décomposition en valeurs singulières (*singular value decomposition*, SVD) est généralement recommandée, car elle est computationnellement plus robuste que `eigen()`. Un puriste **R** choisirait probablement la fonction `eigen()`, car la fonction est plus *robuste* aux erreurs de l'utilisateur.
 
 
-```r
+``` r
 # L'analyse de la matrice de corrélation
 res.svd = svd(cor(jd.acp))
 
@@ -269,7 +269,7 @@ Les solutions sont $.2$ et $1.8$. Graphiquement, la Figure\ \@ref(fig:polycarf) 
 Cela fait beaucoup de mathématiques. Est-il possible d'y arriver plus simplement avec **R**? Le package `pracma` [@pracma] offre une fonction `charpoly()` qui permet de trouver le polynôme caractéristique d'une matrice. **R** de base a aussi une fonction permettant de résoudre des polynômes, `polyroot()`. Avec ces deux fonctions, il est possible de refaire toute la présente section. Il faut toutefois noter que les coefficients polynomiaux donnés par `charpoly()` doivent être inversés pour `polyroot()`. À noter également, l'ajout de la fonction`Re()` assure que les valeurs propres sont des nombres réels et non imaginaires^[Par exemple, $i=\sqrt{-1}$ est imaginaire]. Par convention, les valeurs propres sont ordonnées de façon décroissante, bien qu'elle n'est originalement pas d'ordre particulier.
 
 
-```r
+``` r
 # Trouver les coefficients polynomiaux
 coef.poly <- pracma::charpoly(S)
 
@@ -423,7 +423,7 @@ Pour ce faire, à chaque vecteur propre, la fonction reçoit la valeur propre as
 La fonction maison `cherche.vecteur()` calcule la somme (`sum()` des écarts absolus (`abs()`) entre les estimateurs et la valeur cible de 0 de l'équation\ \@ref(eq:vec11). La fonction **R** `optim()` prend cette fonction et tente de minimiser les distances, c'est-à-dire d'arriver au résultat de 0 en variant les estimateurs. Noter comment un estimateur est déjà fixé à 1 dans `matrix(c(1, est))` qui correspond à $v_j$ où $v_{1j}=1$. La fonction `optim()` prend un argument d'estimateur `par`, les paramètres à trouver et `fn` la fonction à optimiser et une méthode d'optimisation appropriée, `method = "BDGS` dans ce cas-ci. Les deux autres arguments sont pour la fonction à optimiser `cherche.vecteur()`, soit la matrice de covariance et la valeur propre.
 
 
-```r
+``` r
 # Fonction à optimiser
 cherche.vecteur <- function(est, Ep, M) {
   # est = estimateur
@@ -453,7 +453,7 @@ V <- t(t(V) / sqrt(colSums(V^2)))
 Il suffit maintenant de jumeler la syntaxe pour trouver les valeurs propres et celle ci-haut pour créer sa propre fonction d'analyse en composantes principales. 
 
 
-```r
+``` r
 acp.maison <- function(S){
   # Trouver les coefficients polynomiaux
 coef.poly <- pracma::charpoly(S)
@@ -498,7 +498,7 @@ return(list(valeur.propre = E,
 Pour terminer, la fonction est mise à l'épreuve.
 
 
-```r
+``` r
 acp.maison(S)
 > $valeur.propre
 > [1] 1.8 0.2

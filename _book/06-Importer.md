@@ -15,7 +15,7 @@ Il est recommandé de ne jamais manipuler les fichiers de données une fois tout
 Plusieurs packages offrent, en plus des fonctions, des jeux de données. Mieux encore! **R** offre des jeux de données inclus avec le logiciel. La fonction `data()` permet de voir la liste des jeux de données disponibles. Taper simplement le nom du jeu de données permet de l'utiliser comme s'il avait été déclaré auparavant.
 
 
-```r
+``` r
 head(cars)
 >   speed dist
 > 1     4    2
@@ -29,7 +29,7 @@ La fonction `head()` introduite ici donne simplement un aperçu des six premièr
 
 Pour consulter tous les jeux de données des packages importés, il est possible d'utiliser cette ligne de code.
 
-```r
+``` r
 data(package = .packages((all.available = TRUE)))
 ```
 Pour utiliser ces jeux, il faut rendre actif le package associé avec la fonction `library()`.
@@ -39,7 +39,7 @@ Pour utiliser ces jeux, il faut rendre actif le package associé avec la fonctio
 Une façon rudimentaire et efficace d'obtenir des données avec **R** est de les créer à l'aide des fonctions génératrices de données pseudoaléatoires vue à la section [Les distributions] et les joindre ensemble (voir section [Créer un jeu de données]). 
 
 
-```r
+``` r
 # Pour la reproductibilité
 set.seed(142)
 
@@ -73,7 +73,7 @@ Ici, deux nouvelles fonctions sont employées : `round()` arrondie les valeurs �
 Si un jeu de données est créé directement avec **R**, par exemple, les jeux de données artificiels, il est possible de les sauvegarder avec la fonction `save()` qui enregistre une variable dans un fichier.
 
 
-```r
+``` r
 save("variable", file = "fichier.Rdata")
 ```
 
@@ -82,7 +82,7 @@ La fonction `save()` a deux arguments principaux : un nom de variable à enregis
 Il est possible à la fin d'une session de travail de sauvegarder l'environnement complet dans un fichier `save.image()`. Ainsi, toutes les variables et fonctions maison sont conservées pour une future utilisation.
 
 
-```r
+``` r
 save.image(file = "SessionTravail.Rdata")
 ```
 
@@ -93,7 +93,7 @@ Il y a aussi la famille de fonction `write()` pour enregistrer le jeu de donnée
 Parfois des valeurs s'ajoutent lors de l'exportation ou l'importation des données. Des logiciels traditionnels font parfois ce mauvais tour. Une vérification de la base de données est par conséquent impérative, surtout lors de la première utilisation du jeu de données. Deux méthodes de vérification sont suggérées. D'abord, ouvrir le fichier avec un éditeur de texte de base, comme bloc-notes, pour s'assurer qu'aucun caractère indésirable ne s'est ajouté à l'insu de l'utilisateur. Ensuite, voir avec la fonction `View()` dans **R** si la base de données s'affiche correctement et que les colonnes et les lignes correspondent à ce qui est attendu.
 
 
-```r
+``` r
 View(jd)
 ```
 
@@ -105,21 +105,21 @@ Il est possible de voir les données en utilisant la fonction `View()` et en y i
 Idéalement, le fichier contenant le jeu de données se retrouve déjà dans le directoire de travail (ou dans le projet **R** en cours). Dans ce contexte, il suffit de référer seulement au nom du fichier.
 
 
-```r
+``` r
 jd <- read.table("fichier.txt")
 ```
 
 Si le jeu de données est sur le web, il peut être importé en précisant l'URL.
 
 
-```r
+``` r
 jd <- read.table("https://site/ou/trouver/le/fichier.txt")
 ```
 
 S'il est dans un fichier sur l'ordinateur, mais pas dans le directoire de travail, il s'agit essentiellement la même méthode.
 
 
-```r
+``` r
 jd <- read.table("C://site//ou//trouver//le//fichier.txt")
 ```
 
@@ -128,7 +128,7 @@ Pour ces deux derniers exemples d'importations, noter bien l'utilisation du `/` 
 Si l'utilisateur ne connaît pas exactement la trajectoire du fichier, il peut se résoudre à passer par l'explorateur de fichiers (Windows ou Apple) pour déterminer l'emplacement du fichier de jeu de données. Il faut alors utiliser la fonction `file.choose()` sans aucun argument à l'intérieur de la fonction d'importation.
 
 
-```r
+``` r
 chemin <- file.choose()
 ```
 
@@ -159,7 +159,7 @@ Si les lignes du fichier sont de tailles inégales, **R** assume qu'il s'agit de
 Un fichier d'extension `.txt` est un fichier texte délimité par des tabulations (*tab-delimited text files*) et est importé à l'aide de la fonction `read.table()`.
 
 
-```r
+``` r
 jd <- read.table("fichier.txt")
 ```
 
@@ -168,7 +168,7 @@ jd <- read.table("fichier.txt")
 Un fichier d'extension `.dat` est un fichier générique de données et est importé à l'aide de la fonction `read.table()`.
 
 
-```r
+``` r
 jd <- read.table("fichier.dat")
 ```
 
@@ -176,7 +176,7 @@ jd <- read.table("fichier.dat")
 
 Un fichier d'extension .csv use généralement de séparateur comme `";"` (lorsque le système numérique de la langue d'origine utilise la virgule - comme le français par exemple) ou `","` (pour les autres langues qui n'utilise pas la virgule) et ont généralement les noms de variables en première ligne. Ainsi, la fonction `read.table()` est utilisable pourvu que le séparateur soit précisé et la présence d'en-tête également.
 
-```r
+``` r
 jd <- read.table("fichier.csv", sep = ";", header = TRUE)
 ```
 
@@ -187,7 +187,7 @@ Il existe aussi la fonction `read.csv()` (nombres décimaux délimités par un p
 Pour les fichiers recourant à un autre caractère qu'une tabulation, qu'une `","`, ou un `";"` pour délimiter les valeurs, il faut spécifier le caractère dans `read.table()` importe le fichier.
 
 
-```r
+``` r
 jd <- read.table("fichier.txt", sep = "$")
 ```
 
@@ -199,7 +199,7 @@ Comme le lecteur s'en doute peut-être, **R** de base ne permet pas d'importer d
 
 Pour `read.spss()`, il y a deux arguments qui sont importants à souligner. Par défaut, la fonction ne retourne pas un *data frame* et utilise les libellés de valeurs (*value labels*). Dans la plupart des cas, l'utilisateur désire probablement obtenir un jeu de données de type *data.frame* et les valeurs sous-jacentes aux libellés de valeurs. L'utilisateur  peut alors changer ces arguments `to.data.frame = TRUE` (par défaut, `FALSE`) et `use.value.labels = FALSE`(par défaut, `TRUE`).                                                                                                               
 
-```r
+``` r
 library(foreign)
 
 # SPSS
@@ -224,7 +224,7 @@ Consulter la documentation du package pour plus d'informations sur les options p
 Il n'existe pas de fonction de base pour importer des fichiers Microsoft Excel (extensions `.xls` et `.xlsx`). Par contre, il existe plusieurs packages qui permettent de la faire, comme `readxl` [@readxl]. Le package `readlxl` permet d'utiliser la fonction `read_excel()` pour importer le fichier.
 
 
-```r
+``` r
 # Excel
 library(readxl)
 jd <- read_excel("fichier.xls")
@@ -239,7 +239,7 @@ Consulter la documentation du package pour plus d'informations sur les options p
 Il n'existe pas de fonction de base pour importer des fichiers d'extension .html, (HTML, *HyperText Markup Language*). Le package `XML` fournit une solution possible avec la fonction `readHMTLTable()` [@XML].
 
 
-```r
+``` r
 # HTML
 library(XML)
 jd <- readHMTLTable("fichier.html")
@@ -252,7 +252,7 @@ Consulter la documentation du package pour plus d'informations sur les options p
 Il n'existe pas de fonction de base pour importer des fichiers d'extension .json, (*JavaScript Object Notation*). Comme le lecteur pourra s'y attendre, il existe un package pour rectifier la situation : le package `rjson` et sa fonction `fromJSON()` [@rjson].
 
 
-```r
+``` r
 #JSON
 library(rjson)
 jd <- fromJSON("fichier.json")
@@ -265,7 +265,7 @@ Consulter la documentation du package pour plus d'informations sur les options p
 Il n'existe pas de fonction de base pour importer des fichiers d'extension `.sas7bdat`, (*Statistical Analysis System*).  Il existe le package `sas7bdat` pour importer des données de SAS vers **R** avec la fonction `read.sas7bdat()` [@sas].
 
 
-```r
+``` r
 # SAS
 library(sas7bdat)
 jd <- read.sas7bdat("fichier.sas7dbat")
@@ -286,7 +286,7 @@ Il est possible d'exporter des données de IBM SPSS pour une utilisation avec **
 En s'assurant que nouveau fichier se trouve dans le directoire actif de **R**, il suffit de télécharger le fichier.
 
 
-```r
+``` r
 jd <- read.table(file = "donnees.tab", header = TRUE)
 ```
 

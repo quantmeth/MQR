@@ -26,7 +26,7 @@ Une technique pour connaître l'importance d'une dimension est d'afficher les va
 La structure factorielle et le jeu de données du chapitre [Explorer] sont repris afin d'illustrer le propos.
 
 
-```r
+``` r
 # Pour la reproductibilité
 set.seed(44)
 
@@ -54,7 +54,7 @@ jd <- MASS::mvrnorm(n = 50,
 Voici l'analyse en composante principale.
 
 
-```r
+``` r
 # L'ACP
 res <- eigen(cor(jd))
 
@@ -66,7 +66,7 @@ res$values
 Une façon d'illustrer les valeurs propres graphiquement est d'utiliser un graphique nommé *scree plot* ou *graphique des éboulis*. La Figure\ \@ref(fig:scree) peut être produite avec la syntaxe ci-dessous. Il s'agit de mettre en axe des $x$ la séquence (`Position`) des valeurs propres (leur ordre) par rapport à la valeur propre en axe des $y$. Ce graphique se produit simplement avec `plot()` ou `ggplot()` (voir [Visualiser]).
 
 
-```r
+``` r
 Position <-  1:p
 vp <- data.frame(Position = Position ,
                  Valeurs.propres = c(res$values),
@@ -103,7 +103,7 @@ Le test de Kaiser se fonde sur l'idée selon laquelle, si les variables ne sont 
 À titre illustratif, une matrice de corrélation sans aucune corrélation est une matrice d'identité.
 
 
-```r
+``` r
 mat.cor <- diag(6)
 mat.cor
 >      [,1] [,2] [,3] [,4] [,5] [,6]
@@ -117,14 +117,14 @@ mat.cor
 Les valeurs propres de cette matrice sont toutes égales à 1.
 
 
-```r
+``` r
 eigen(mat.cor)$values
 > [1] 1 1 1 1 1 1
 ```
 Si une seule corrélation est ajoutée, aussi petite soit-elle, alors toutes les plus grandes valeurs propres tendent à capitaliser sur cette variance partagée.
 
 
-```r
+``` r
 mat.cor[1, 6] <- mat.cor[6,1] <- .1
 mat.cor
 >      [,1] [,2] [,3] [,4] [,5] [,6]
@@ -142,7 +142,7 @@ Autrement dit, si une valeur propre est supérieure à 1, c'est qu'il y a un fac
 La Figure\ \@ref(fig:kaiser) illustre le test de Kaiser avec le présent exemple qui suggère deux facteurs (comme simulé).
 
 
-```r
+``` r
 vp <- rbind(vp,
       data.frame(Position = Position,
                  Valeurs.propres = 1,
@@ -167,7 +167,7 @@ ggplot(data = vp,
 Voici un exemple d'une fonction maison simple pour programmer le test de Kaiser.
 
 
-```r
+``` r
 kaiser <- function(jd){
   # Obtenir la matrice de corrélation
   R <- cor(jd)
@@ -190,7 +190,7 @@ Le rééchantillonnage est réitéré sur des milliers de jeu de données artifi
 Dans la syntaxe ci-dessous, les mêmes caractéristiques que le jeu de données précédent sont utilisés, soit $p = 6$ et $n = 5000$. À la fin, il sera possible de comparer s'il y a effectivement deux facteurs selon l'analyse parallèle. 
 
 
-```r
+``` r
 # Pour la reproductibilité
 set.seed(1019)
 p <- 6        # Nombre de variables
@@ -233,7 +233,7 @@ apply(X = valeurs.propres,
 Pour connaître le nombre de dimensions, il suffit de tester les valeurs propres empiriques et les comparer aux valeurs propres simulées (moyenne ou 95^e^ percentile). Le nombre de valeur propre empirique supérieur aux valeurs propres simulés correspond au nombre de composantes à retenir.
 
 
-```r
+``` r
 # Les valeurs propres empiriques
 res$values
 > [1] 2.576 1.699 0.771 0.421 0.328 0.205
@@ -250,7 +250,7 @@ sum(res$values > rowMeans(valeurs.propres))
 Ainsi, 2 facteurs sont à retenir. Une façon d'illustrer les résultats de l'analyse parallèle est d'utiliser le graphique des éboulis en y représentant les valeurs propres empiriques comparativement aux simulées. Le nombre de valeurs propres empiriques supérieures aux simulées est le nombre de dimensions à retenir. Ce graphique est produit à la Figure \@ref(fig:scree2). Voici la syntaxe pour produire ce graphique avec `ggplot2`. La première étape est de mettre en commun les résultats obtenus dans un jeu de données. La variable `Position` indique l'ordre de la valeur propre, `valeurs.propres` contient les valeurs propres et `Test` indique s'il s'agit de valeurs propres empiriques ou simulées de l'analyse parallèle. Pour le reste, il s'agit de recourir à `ggplot()`.
 
 
-```r
+``` r
 vp <- rbind(vp,
       data.frame(Position = Position,
                  Valeurs.propres = rowMeans(valeurs.propres),
@@ -274,7 +274,7 @@ ggplot(data = vp,
 Voici une fonction pour programmer l'analyse parallèle.
 
 
-```r
+``` r
 analyse.parallele <- function(jd, 
                               p = ncol(jd), 
                               n = nrow(jd), 
@@ -338,7 +338,7 @@ La syntaxe suivante illustre de façon simplifiée le test NEST. Elle utilise pl
 * Elle utilise `factanal()` (voir [Explorer]) pour reconstruire la matrice de corrélation à $k$ facteurs.
 
 
-```r
+``` r
 mat.cor <- cor(jd)  # Matrice de corrélation du jeu de données
 p <- ncol(mat.cor)  # Nombre de variables (6)
 n <- nrow(jd)       # Nombre de participants (50)
@@ -403,7 +403,7 @@ La sortie ici, `nfactors`  représente le nombre de dimensions à retenir.
 Il existe un package permettant de réaliser facilement NEST en plus de fournir quelques fonctions utiles. Le package est `Rnest` [@Rnest] est disponible par GitHub (pour la version en développement) et CRAN. Les deux version sont importables sur **R** avec la syntaxe suivante.
 
 
-```r
+``` r
 # CRAN
 install.packages("Rnest")
 
@@ -414,7 +414,7 @@ remotes::install_github(repo = "quantmeth/Rnest")
 Comme à l'habitude, il faut l'appeler dans l'environnement.
 
 
-```r
+``` r
 library(Rnest)
 ```
 
@@ -423,14 +423,14 @@ La fonction principale est `nest()`. Elle prend en argument un jeu de données o
 Voici la fonction avec le présent exemple.
 
 
-```r
+``` r
 nest(jd)
-> At 95% confidence, Nest Eigenvalue Sufficiency Test (NEST) suggests 2 factors.
+> At 95% confidence, Next Eigenvalue Sufficiency Test (NEST) suggests 2 factors.
 ```
 Voici la sortie des valeurs propres comparées aux deux autres règles d'arrêt illustrée à la Figure\ \@ref(fig:scree3).
 
 
-```r
+``` r
 # Réorganisation du jeu de données contenant
 # les valeurs propres
 vp.nest <- plot(nest(jd))$data[-(1:p),]
@@ -456,7 +456,7 @@ ggplot(data = vp,
 Un bel avantage du package est sa possibilité de créer un graphique pour différentes valeurs critiques `alpha`. La Figure\ \@ref(fig:screenest) illustre la sortie.
 
 
-```r
+``` r
 plot(nest(jd, alpha = c(.01, .025, .05, .10)))
 ```
 
@@ -480,7 +480,7 @@ Le package `Rnest` founir une matrice de corrélation basée sur 4 facteurs corr
 À partir de cette matrice, il est possible de créer un jeu de données pour 2500 participants.
 
 
-```r
+``` r
 set.seed(1)
 jd2 <- MASS::mvrnorm(n = 2500,
                      mu = rep(0, ncol(ex_4factors_corr)),

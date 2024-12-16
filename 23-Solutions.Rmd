@@ -445,7 +445,11 @@ t.test(len ~ supp, data = ToothGrowth)
 7. Avec le jeu de données `sleep`, faire un test-$t$ permettant de comparer les deux temps de mesure nommés `group` par rapport à la variable dépendante `extra`. 
 
 ```{r t.test.d}
-t.test(extra ~ group, data = sleep, paired = TRUE)
+group1 <- sleep$extra[sleep$group == "1"]
+group2 <- sleep$extra[sleep$group == "2"]
+
+t.test(group1, group2, paired = TRUE)
+
 ```
 
 ### Question 8 {-}

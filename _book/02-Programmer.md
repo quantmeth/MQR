@@ -6,7 +6,7 @@ Une fois **R** (ou **R**Studio) ouvert, qu'est-il possible de réaliser? Dans le
 Pour manipuler des données, il faut recourir à des variables. Pour attribuer une valeur à  une variable, il faut assigner cette valeur avec `<-` (**ALT** + **-**) ou `=`, par exemple,
 
 
-```r
+``` r
 a <- 2
 a
 > [1] 2
@@ -24,7 +24,7 @@ Pour nommer des variables, seuls les caractères alphanumériques peuvent être 
 Réassigner une valeur à une variable déjà existante écrase la valeur précédente.
 
 
-```r
+``` r
 a <- 2
 a <- 3
 a
@@ -36,14 +36,14 @@ La sortie produit `3` et non plus `2`.
 Cette remarque est importante, car elle signifie que des fonctions sont écrasables en nommant des variables. Il faut ainsi éviter de nommer des variables avec des fonctions utilisées par **R**, notamment l'utilisation des noms suivants.
 
 
-```r
+``` r
 c; q; t; C; D; I; T; F; pi; mean; var; sd; length; diff; rep
 ```
 
 Certains mots sont tout simplement interdits d'utilisation.
 
 
-```r
+``` r
 TRUE; FALSE; break; for; in; if; else; 
 while; function; Inf; NA; NaN; NULL
 ```
@@ -52,7 +52,7 @@ while; function; Inf; NA; NaN; NULL
 
 La première utilisation d'un nouvel usager de **R** est généralement d'y recourir comme calculatrice. Les opérateurs arithmétiques de base comme l'addition `+`, la soustraction `-`, la multiplication `*`, la division `/` , et l'exposant `^` sont intuitivement disponibles.
 
-```r
+``` r
 2 + 2
 > [1] 4
 1 / 3
@@ -62,7 +62,7 @@ La première utilisation d'un nouvel usager de **R** est généralement d'y reco
 ```
 Évidemment, ces opérateurs fonctionnent sur des variables numériques.
 
-```r
+``` r
 a <- 1
 b <- 10
 a / b
@@ -72,20 +72,20 @@ a / b
 Les deux premières lignes assignent des valeurs à `a` et `b`, puis la troisième imprime la division. L'absence de marqueur `<-` ou `=` indique à **R** d'imprimer la réponse dans la console. Si le résultat `a / b` est assigné à une variable, alors aucun résultat n'est affiché, bien que la variable contienne la réponse.
 
 
-```r
+``` r
 resultat <- a / b
 ```
 
 Il n'y a aucune réponse d'affichée. Maintenant, si la variable `resultat` est demandée, R affiche son contenu.
 
 
-```r
+``` r
 resultat
 > [1] 0.1
 ```
 D'autres fonctions sont aussi très utiles. Par exemple, la racine carrée `sqrt()` (qui n'est rien d'autre que `^(.5)`) et le logarithme naturel `log()`. Il suffit d'insérer une variable ou une valeur à l'intérieur d'une de ces fonctions pour en obtenir le résultat.
 
-```r
+``` r
 sqrt(4)
 > [1] 2
 4^(1/2)
@@ -99,7 +99,7 @@ log(4)
 Les scripts **R** peuvent contenir des commentaires. Ceux-ci sont désignés par le désormais célèbre `#`. Une ligne de script commençant par ce symbole est ignorée par la console. Ces commentaires permettent aussi bien de préciser différentes étapes d'un script, que d'expliquer la nomenclature des variables ou encore d'expliquer une fonction, ses entrées, ses sorties. Les commentaires sont extrêmement utiles, car les annotations peuvent souvent sauver énormément de temps et d'effort lors d'utilisations ultérieures.
 
 
-```r
+``` r
 # La variable resultat est le quotient des variables a et b
 resultat <- a / b
 resultat
@@ -112,7 +112,7 @@ Dans cet exemple, la première ligne est ignorée. Autrement, la console **R** p
 La plupart du temps, les variables utilisées sont numériques, c'est-à-dire qu'elles contiennent des nombres. Parfois, les données sont des mots, c'est-à-dire, des chaînes de caractères (*string*). Les chaînes de caractères sont définis par le double apostrophe `"..."`, où on remplace les trois points par les mots désirés.^[Les simples apostrophes `'...'` fonctionnent également, mais les doubles sont préférés. En plus, R imprime toujours en double apostrophe. C'est un souci de cohérence.]
 
 
-```r
+``` r
 titre <- "Bonjour tout le monde!"
 titre
 > [1] "Bonjour tout le monde!"
@@ -127,7 +127,7 @@ Par défaut, **R** ne peut assigner qu'une valeur à une variable. Pour grouper 
 Une fonction fort utile permet de joindre des valeurs dans une seule variable. Précédemment, l'assignation d'une valeur à des variables se limitait à une chaîne de caractères ou à une valeur numérique. La fonction **c**oncaténer `c()` (ou **c**ombiner, **c**réer) met plusieurs éléments (deux ou plus) dans une seule variable. Son but est de *vectoriser* les arguments. Chaque élément est délimité par une virgule `,`.
 
 
-```r
+``` r
 valeurs <- c(-5, 5)
 valeurs
 > [1] -5  5
@@ -136,7 +136,7 @@ valeurs
 Elle fonctionne également avec les chaînes de caractères.
 
 
-```r
+``` r
 texte <- c("Bonjour", "tout", "le", "monde")
 texte
 > [1] "Bonjour" "tout"    "le"      "monde"
@@ -145,7 +145,7 @@ texte
 Et les deux.
 
 
-```r
+``` r
 phrase <- c(1, "Chat", 2, "Souris")
 phrase
 > [1] "1"      "Chat"   "2"      "Souris"
@@ -160,7 +160,7 @@ Il faudra également faire attention aux arguments passés à la fonction `c()`,
 La fonction `matrix()` crée des matrices, comme des matrices de covariances, par exemple. La fonction utilise trois arguments, une matrice de nombre à entrer dans la matrice, un nombre de colonnes et un nombre de lignes. La fonction utilise le recyclage, ce qui est utile à certaines occasions.
 
 
-```r
+``` r
 # Une matrice de 0 de taille 3 x 3
 matrix(0, ncol = 3, nrow = 3)
 >      [,1] [,2] [,3]
@@ -201,7 +201,7 @@ Une note devancée sur l'utilisation de `1:3` et `1:16` du code précédent qui 
 Un jeu de données (`data.frame`) est un peu comme l'extension de la matrice. La différence étant que les éléments entre les colonnes peuvent partager des attributs différents. Ainsi chaque ligne représente une unité (un participant, un objet) et chaque colonne représente une dimension (informations ou variable) différente de cette objectif. La fonction `data.frame()` permet de créer de tel objet. La fonction prend comme un argument une série de vecteurs. Des noms peuvent être attribués au colonnes qui correspondent à des variables.
 
 
-```r
+``` r
 # Quelques variables
 var1 <- c("Éloi", "Laurence")
 var2 <- c(6, 3)
@@ -234,7 +234,7 @@ Une troisième option pour stocker de informations dans une seule variable est d
 Pour créer une liste, il faut utiliser la fonction `list()`. Comme `data.frame()`, des noms de colonnes peuvent être donnés pour chaque liste pour faciliter la manipulation ultérieure de la liste.
 
 
-```r
+``` r
 #Quelques variables
 var1 <- c("chat", "chien")
 var2 <- 1:10
@@ -266,7 +266,7 @@ L'utilisation de listes est une caractéristique prédominante avec **R**. Par e
 Avec des variables contenant plusieurs valeurs, il peut être utile de référer à une seule valeur ou un ensemble de valeurs de la variable. Les crochets `[]` à la suite du nom d'une variable permettent d'en extraire les valeurs désirées sans tout sortir l'ensemble.
 
 
-```r
+``` r
 # Un exemple de vecteur
 phrase <- c(1, "Chat", 2, "Souris")
 
@@ -309,7 +309,7 @@ Une dernière faiblesse : les packages agissent parfois en boîte noire, c'est-�
 ### Installer des packages
 Pour installer un package, il faut utiliser la fonction
 
-```r
+``` r
 install.packages("...")
 ```
 où les `"..."` doivent être remplacé par le nom du package. Il est important de bien inscrire le nom du package entre guillemet anglophone. Il est aussi possible de sélectionner
@@ -323,7 +323,7 @@ puis de nommer le package sous l'onglet package. Avec **R** il faudra auparavant
 Ce qui n'est pas des plus intuitif avec **R**, c'est qu'une fois le package téléchargé, il n'est pas directement utilisable. Il faut d'abord l'appeler avec la fonction `library()`.
 
 
-```r
+``` r
 library("...")
 ```
 
@@ -336,7 +336,7 @@ Une technique à laquelle l'utilisateur peut avoir recourt lorsqu'il souhaite n'
 **R** offre une multitude de fonctions et permet également à l'usager de bâtir ses propres fonctions (fonctions maison). Elles permettent d'automatiser des calculs (généralement, mais peut faire beaucoup plus!). Tout au long de cet ouvrage, les fonctions sont identifiées par l'ajout de parenthèse à leur fin, comme ceci : `function()`. Ces fonctions ont généralement la forme suivante.
 
 
-```r
+``` r
 nom <- function(argument1, argument2, ...) {
   
   # Calcul à réaliser
@@ -351,7 +351,7 @@ Il est bien utile de créer ses propres fonctions bien que **R** possède une pl
 Voici un exemple trivial de fonction, soit la somme de deux nombres.
 
 
-```r
+``` r
 addition <- function(a, b) {
   
   a + b
@@ -365,7 +365,7 @@ addition(2,3)
 Par défaut, une fonction retourne la dernière ligne calculée si elle n'est pas assignée à une variable. Si le résultat d'une fonction est assigné, la fonction ne retourne pas le résultat dans la console, mais assigne bel et bien la variable.
 
 
-```r
+``` r
 addition2 <- function(a, b) {
   # Le résultat est assigné à une variable
   somme <- a + b
@@ -385,7 +385,7 @@ total
 L'utilisation de `return()` à la fin de la fonction est une bonne pratique, car elle permet d'éviter des problèmes ou des ambiguïtés.
 
 
-```r
+``` r
 addition3 <- function(a, b) {
   
   # Le résultat est assigné à une variable
@@ -407,7 +407,7 @@ total
 Pour automatiser certains calculs, il peut être utile de recourir à une boucle (*loop*) qui permet de répéter plusieurs fois une même opération. Voici l'anatomie d'une boucle.
 
 
-```r
+``` r
 for(i in vec){
   # Calcul désiré
 }
@@ -417,7 +417,7 @@ L'élément `for` est la fonction déclarant la boucle. Les renseignements sur l
 Il est aussi possible de rédiger la boucle en utilisant uniquement `k`. Alors, `i` prendra toutes les valeurs contenues dans `k`. La longueur du vecteur `k` définit le nombre d'itérations.
 
 
-```r
+``` r
 for(i in k){
   # Calcul désiré
 }
@@ -476,7 +476,7 @@ Pour réaliser des opérations sous certaines conditions ou opérer des décisio
 **R** teste si les valeurs de la variable correspondent à l'opérateur logique en les déclarant comme vraies (`TRUE`) ou fausses (`FALSE`).
 
 
-```r
+``` r
 valeurs <- 1:6
 # Toutes les valeurs plus grandes que 3.
 valeurs > 3
@@ -486,7 +486,7 @@ valeurs > 3
 Cela peut être utilisé pour référer à des sous-éléments comme abordés précédemment.
 
 
-```r
+``` r
 # Toutes les valeurs plus grandes que 3.
 valeurs[valeurs > 3]
 > [1] 4 5 6
@@ -497,7 +497,7 @@ Ici, toutes les valeurs vraies de l'opérateur logique sont rapportées.
 Les opérateurs logiques servent également à définir des opérations conditionnelles. La fonction `if` est alors utilisée. Il y a trois principales formes : `if` (Si ceci, alors cela), le `if  else` (Si ceci, alors cela, sinon autre chose) et les échelles `if else if else`.
 
 
-```r
+``` r
 if(x){
   # Opération désirée
 }
@@ -506,7 +506,7 @@ if(x){
 L'anatomie d'une fonction `if` comporte d'abord la fonction `if`. L'argument entre parenthèses à sa plus simple expression doit être vérifié par vrai (`TRUE`) ou faux (`FALSE`). Si l'argument est vrai, alors le calcul désiré est réalisé, autrement le logiciel ignore le calcul de la fonction entre accolades `{}`.
 
 
-```r
+``` r
 x <- -2
 if(x < 0){
   print("la valeur est négative")
@@ -517,7 +517,7 @@ if(x < 0){
 Il est possible d'élaborer cette logique avec la fonction `else` qui permet de spécifier une suite à la fonction si l'argument est faux (`FALSE`).
 
 
-```r
+``` r
 x <- 2
 if(x < 0){
   print("la valeur est négative")
@@ -530,7 +530,7 @@ if(x < 0){
 Enfin, il est possible d'élaborer un arbre de décision avec toute une échelle de conditionnels.
 
 
-```r
+``` r
 x <- 0
 if(x < 0){
   print("la valeur est négative")
@@ -551,7 +551,7 @@ Il peut arriver pour certaines fonctions de devoir spécifier si certains param�
 En utilisant `help(nom)` ou `?nom`, où il faut remplacer `nom` par le nom d'une fonction ou d'un package, **R** offre de la documentation. Les fonctions d'aide retournent une page de documentation contenant généralement de l'information sur les entrées et les sorties des fonctions. Certaines sont mieux détaillées que d'autres, tout dépendant de leurs créateurs et des personnes qui maintiennent ces fonctions.
 
 
-```r
+``` r
 # Obtenir de l'aide pour la fonction help()
 ?help
 ```

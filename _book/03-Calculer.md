@@ -11,7 +11,7 @@ La somme d'une chaîne de caractères est toujours de $1$, peu importe le nombre
 Une variable qui existe, mais qui ne contient pas de valeur aura une longueur égale à $0$. Ce type de variable est utile lorsqu'il faut créer une variable dont la taille sera altérée.
 
 
-```r
+``` r
 x <- c(1, 2, 3)
 length(x)
 > [1] 3
@@ -31,7 +31,7 @@ Pour les matrices et les jeux de données, `ncol()` (nombre de colonnes) et `nro
 La fonction `rep()` est utile pour répéter volontairement des valeurs. Il y trois possibilités de répétitions: l'argument `times` définit le nombre de fois que le vecteur est répété; l'argument `each` définit le nombre de fois que chaque élément est répété; l'argument `length.out` précise le nombre d'éléments de la sortie. Plusieurs combinaisons de ces arguments sont possibles.
 
 
-```r
+``` r
 vec <- c(2, 4, "chat")
 
 # Répéter `vec` trois fois
@@ -60,7 +60,7 @@ rep(vec, times = 2, each = 3)
 Une première fonction pour créer des séquences de nombres est l'utilisation de `:` avec un nombre avant et après la ponctuation. 
 
 
-```r
+``` r
 # 1:3 équivaut à c(1, 2, 3)
 1:3
 > [1] 1 2 3
@@ -69,7 +69,7 @@ Une première fonction pour créer des séquences de nombres est l'utilisation d
 Pour plus de malléabilité, la fonction `seq()` génère une séquence régulière de valeurs. Les arguments sont `seq(from = , to = , by = )` traduisibles par `de` , `à`, `par`. Les arguments par défaut seront très utiles pour simplifier l'écriture; La fonction commence ou termine la séquence par 1 et fera des bonds de 1 entre les valeurs. Un autre argument est la longueur de la sortie `length.out` qui spécifie le nombre d'éléments que devra comporter le vecteur de sortie.
 
 
-```r
+``` r
 # Une séquence de 1 (défaut, from = 1) à 10
 seq(10)
 >  [1]  1  2  3  4  5  6  7  8  9 10
@@ -96,7 +96,7 @@ seq(from = 2, by = 2, length.out = 5)
 Il est possible de calculer des sommes de variables pour en obtenir le total. En tant qu'humain, le calcul d'une série de nombre correspond à prendre chaque nombre et de les additionner un à un. La fonction suivante reproduit assez bien ce qu'un humain ferait (avec ses quelques caprices de programmation tel que devoir déclarer l'existence de la variable de `total` et spécifier le nombre d'éléments à calculer).
 
 
-```r
+``` r
 somme <- function(x){
   # La taille du vecteur `x`
   n <- length(x)
@@ -134,14 +134,14 @@ La moyenne est une mesure de tendance centrale qui représente le centre d'équi
 La moyenne d'un échantillon correspond à la somme de toutes les unités d'une variable divisée par le nombre de données de cette variable ou, mathématiquement, $$\bar{x}=\frac{\Sigma_{i=1}^n x}{n}$$ où $x$ est la variable, $n$ est le nombre d'unité et $\Sigma_i^n$ représente la somme de toutes les unités de $x$. **R** possède déjà une fonction permettant de calculer la moyenne sans effort, `mean()` où l'argument est la variable. Il est possible de développer une fonction maison pour calculer la moyenne comme
 
 
-```r
+``` r
 x_bar <- sum(x)/length(x)
 ```
 
 où `sum(x)` calculer la somme de toutes les unités de `x`, `/` permet la division et `length(x)` calcule le nombre d'unités du vecteur `x`. Par exemple, à partir d'une variable `x`, les fonctions suivantes donnent le même résultat. Par contre la fonction `mean()` est beaucoup plus robuste que cette dernière équation.
 
 
-```r
+``` r
 # Un vecteur
 x <- c(0, 1, 2, 3, 4, 5)
 
@@ -161,7 +161,7 @@ La médiane d'un échantillon correspond à la valeur où $50\%$ des données se
 Évidemment, **R** offre déjà une fonction `median()` pour réaliser le calcul. Il est toutefois possible de programmer une fonction maison. Il faut utiliser la fonction `sort()` pour ordonner les données (croissant par défaut).
 
 
-```r
+``` r
 mediane <- function(x) {
   # Longueur du vecteur
   n <- length(x)
@@ -186,7 +186,7 @@ mediane(x)
 L'expression `n%%2`, lue $n \bmod 2$, joue astucieusement le rôle de vérifier si `n` est impaire. La formule générale $x \bmod y$ représente une opération binaire associant à deux entiers naturels le reste de la division du premier par le second. Par exemple, $60 \bmod 7$, noter `60%%7` dans **R**, donne $4$ soit le reste de $7*8 + 4 = 60$. Le logiciel le confirme.
 
 
-```r
+``` r
 60%%7
 > [1] 4
 ```
@@ -204,7 +204,7 @@ $$
 Il est assez aisé d'élaborer une fonction pour réaliser se calculer avec les fonctions déjà abordées.
 
 
-```r
+``` r
 variance <- function(x){
   # Longueur du vecteur
   n <- length(x)
@@ -220,7 +220,7 @@ variance <- function(x){
 
 La variance peut aussi être calculée plus efficacement avec la fonction **R** `var()`.
 
-```r
+``` r
 # Un vecteur
 x <- c(26, 6, 40, 36, 14, 3, 21, 48, 43, 2)
 
@@ -240,7 +240,7 @@ s =\sqrt{s^2}= \sqrt{\frac{1}{n-1}\sum_{i=1}^n(x_i-\bar{x})^2}
 $$
 Avec **R**, la fonction de base est `sd()`. Il est possible de récupérer la fonction maison précédemment rédigée.
 
-```r
+``` r
 ecart.type <- function(x){
   # La racine carrée de la variance
   et <- sqrt(variance(x))
@@ -269,7 +269,7 @@ $$
 Et en code **R**.
 
 
-```r
+``` r
 asymetrie <- function(x){
   n <- length(x)           # Nombre de données
   x <- x - mean(x)         # Centrer les données
@@ -282,7 +282,7 @@ asymetrie <- function(x){
 **R** de base ne contient pas de fonction permettant de calculer l'asymétrie. Il faut utiliser le package `moments` pour obtenir la fonction requise, `moments::skewness()` ou `psych` avec `psych::skew()`. Plusieurs autres packages offrent des fonctions.
 
 
-```r
+``` r
 moments::skewness(x)
 psych::skew(x)
 ```
@@ -307,7 +307,7 @@ L'aplatissement $\beta_2$ représente l'**aplatissement régulier** et l'aplatis
 En code **R**.
 
 
-```r
+``` r
 aplatissement <- function(x){
   n <- length(x)            # Nombre de données
   x <- x - mean(x)          # Centrer les données
@@ -320,7 +320,7 @@ aplatissement <- function(x){
 **R** de base ne contient pas de fonction permettant de calculer l'aplatissement. Il faut utiliser le package `moments` pour obtenir la fonction requise `moments::kurtosis()` ou `psych` avec `psych::kurtosi()`. Il faut noter que `moments` calcule l'aplatissement régulier et que, dans le cas de `psych`, il y a plusieurs types d'aplatissement, le plus commun étant le type `1` (aplatissement excessif). Le type `3` est toutefois plus désirables comme il n'est pas biaisé. Plusieurs autres packages offrent des fonctions pour calculer l'aplatissement.
 
 
-```r
+``` r
 moments::kurtosis(x) - 3
 psych::kurtosi(x, type = 1)
 ```
@@ -330,7 +330,7 @@ psych::kurtosi(x, type = 1)
 Par souci de reproductibilité, il est possible de déclarer une valeur de départ aux variables pseudoaléatoires, ce que l'on nomme une graine ou *seed* en anglais. Cela permet de toujours d'obtenir les mêmes valeurs à plusieurs reprises, ce qui est très utile lors d'élaboration de simulations complexes ou lorsque des étudiants essaient de répliquer les résultats tirés d'un ouvrage pédagogique.
 
 
-```r
+``` r
 set.seed("nombre")
 ```
 
@@ -391,7 +391,7 @@ Les libellés ci-dessus ne commanderont pas de fonction. Il faut joindre en pré
 
 Voici un exemple avec la distribution normale.
 
-```r
+``` r
 set.seed(9876)
 
 # Génère 5 valeurs aléatoires en fonction des paramètres

@@ -7,7 +7,7 @@
 <title> 6 Importer | Méthodes quantitatives avec R</title>
 <meta name="author" content="P.-O. Caron">
 <meta name="description" content="Un jeu de données est essentiel pour réaliser des analyses statistiques et des représentations graphiques. Après l’ouverture de R, l’usager remarque, stupéfait, que le logiciel n’est pas un...">
-<meta name="generator" content="bookdown 0.34 with bs4_book()">
+<meta name="generator" content="bookdown 0.41 with bs4_book()">
 <meta property="og:title" content=" 6 Importer | Méthodes quantitatives avec R">
 <meta property="og:type" content="book">
 <meta property="og:url" content="mqr.teluq.ca/importer.html">
@@ -17,9 +17,10 @@
 <meta name="twitter:description" content="Un jeu de données est essentiel pour réaliser des analyses statistiques et des représentations graphiques. Après l’ouverture de R, l’usager remarque, stupéfait, que le logiciel n’est pas un...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.0/transition.js"></script><script src="libs/bs3compat-0.4.0/tabs.js"></script><script src="libs/bs3compat-0.4.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.8.0/transition.js"></script><script src="libs/bs3compat-0.8.0/tabs.js"></script><script src="libs/bs3compat-0.8.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-<script src="libs/htmlwidgets-1.6.0/htmlwidgets.js"></script><script src="libs/viz-1.8.2/viz.js"></script><link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
+<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script><script src="libs/viz-1.8.2/viz.js"></script><link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
 <script src="libs/grViz-binding-1.0.11/grViz.js"></script><!-- 
     \(
     \newcommand{\EX}{\mathbb{E}}
@@ -33,6 +34,7 @@
     div.csl-bib-body { }
     div.csl-entry {
       clear: both;
+          margin-bottom: 0em;
         }
     .hanging div.csl-entry {
       margin-left:2em;
@@ -131,14 +133,14 @@
 <span class="header-section-number">6.1</span> Jeux de données provenant de <strong>R</strong> et de packages<a class="anchor" aria-label="anchor" href="#jeux-de-donn%C3%A9es-provenant-de-r-et-de-packages"><i class="fas fa-link"></i></a>
 </h2>
 <p>Plusieurs packages offrent, en plus des fonctions, des jeux de données. Mieux encore! <strong>R</strong> offre des jeux de données inclus avec le logiciel. La fonction <code><a href="https://rdrr.io/r/utils/data.html">data()</a></code> permet de voir la liste des jeux de données disponibles. Taper simplement le nom du jeu de données permet de l’utiliser comme s’il avait été déclaré auparavant.</p>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="importer.html#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cars)</span>
-<span id="cb59-2"><a href="importer.html#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>   speed dist</span>
-<span id="cb59-3"><a href="importer.html#cb59-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">1</span>     <span class="dv">4</span>    <span class="dv">2</span></span>
-<span id="cb59-4"><a href="importer.html#cb59-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">2</span>     <span class="dv">4</span>   <span class="dv">10</span></span>
-<span id="cb59-5"><a href="importer.html#cb59-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">3</span>     <span class="dv">7</span>    <span class="dv">4</span></span>
-<span id="cb59-6"><a href="importer.html#cb59-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">4</span>     <span class="dv">7</span>   <span class="dv">22</span></span>
-<span id="cb59-7"><a href="importer.html#cb59-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">5</span>     <span class="dv">8</span>   <span class="dv">16</span></span>
-<span id="cb59-8"><a href="importer.html#cb59-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">6</span>     <span class="dv">9</span>   <span class="dv">10</span></span></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="importer.html#cb59-1" tabindex="-1"></a><span class="fu">head</span>(cars)</span>
+<span id="cb59-2"><a href="importer.html#cb59-2" tabindex="-1"></a><span class="sc">&gt;</span>   speed dist</span>
+<span id="cb59-3"><a href="importer.html#cb59-3" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">1</span>     <span class="dv">4</span>    <span class="dv">2</span></span>
+<span id="cb59-4"><a href="importer.html#cb59-4" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">2</span>     <span class="dv">4</span>   <span class="dv">10</span></span>
+<span id="cb59-5"><a href="importer.html#cb59-5" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">3</span>     <span class="dv">7</span>    <span class="dv">4</span></span>
+<span id="cb59-6"><a href="importer.html#cb59-6" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">4</span>     <span class="dv">7</span>   <span class="dv">22</span></span>
+<span id="cb59-7"><a href="importer.html#cb59-7" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">5</span>     <span class="dv">8</span>   <span class="dv">16</span></span>
+<span id="cb59-8"><a href="importer.html#cb59-8" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">6</span>     <span class="dv">9</span>   <span class="dv">10</span></span></code></pre></div>
 <p>La fonction <code><a href="https://rdrr.io/r/utils/head.html">head()</a></code> introduite ici donne simplement un aperçu des six premières lignes du jeu de données pour ne pas afficher le jeu de données complet (ce qui prend beaucoup d’espace inutilement dans la console).</p>
 <p>Pour consulter tous les jeux de données des packages importés, il est possible d’utiliser cette ligne de code.</p>
 <div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
@@ -272,7 +274,7 @@
 <h3>
 <span class="header-section-number">6.6.6</span> Fichiers d’extension .sav, .dta, .syd et .mtp<a class="anchor" aria-label="anchor" href="#fichiers-dextension-.sav-.dta-.syd-et-.mtp"><i class="fas fa-link"></i></a>
 </h3>
-<p>Comme le lecteur s’en doute peut-être, <strong>R</strong> de base ne permet pas d’importer des fichiers spécifiques d’autres logiciels. Par contre, avec les années se sont développés des packages permettant de pallier la situation. Le package <code>foreign</code> <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-foreign" role="doc-biblioref">R Core Team, 2020</a>)</span> permet d’importer des fichiers issus de IBM SPSS (<code>.sav</code>), Stata (<code>.dta</code>) et Systat (<code>.syd</code>) et Minitab (<code>mtp</code>) avec, respectivement les fonctions <code><a href="https://rdrr.io/pkg/foreign/man/read.spss.html">read.spss()</a></code>, <code>read.data()</code>, <code><a href="https://rdrr.io/pkg/foreign/man/read.systat.html">read.systat()</a></code> et <code><a href="https://rdrr.io/pkg/foreign/man/read.mtp.html">read.mtp()</a></code>. La logique d’importation est la même pour ces quatre fonctions.</p>
+<p>Comme le lecteur s’en doute peut-être, <strong>R</strong> de base ne permet pas d’importer des fichiers spécifiques d’autres logiciels. Par contre, avec les années se sont développés des packages permettant de pallier la situation. Le package <code>foreign</code> <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-foreign">R Core Team, 2020</a>)</span> permet d’importer des fichiers issus de IBM SPSS (<code>.sav</code>), Stata (<code>.dta</code>) et Systat (<code>.syd</code>) et Minitab (<code>mtp</code>) avec, respectivement les fonctions <code><a href="https://rdrr.io/pkg/foreign/man/read.spss.html">read.spss()</a></code>, <code>read.data()</code>, <code><a href="https://rdrr.io/pkg/foreign/man/read.systat.html">read.systat()</a></code> et <code><a href="https://rdrr.io/pkg/foreign/man/read.mtp.html">read.mtp()</a></code>. La logique d’importation est la même pour ces quatre fonctions.</p>
 <p>Pour <code><a href="https://rdrr.io/pkg/foreign/man/read.spss.html">read.spss()</a></code>, il y a deux arguments qui sont importants à souligner. Par défaut, la fonction ne retourne pas un <em>data frame</em> et utilise les libellés de valeurs (<em>value labels</em>). Dans la plupart des cas, l’utilisateur désire probablement obtenir un jeu de données de type <em>data.frame</em> et les valeurs sous-jacentes aux libellés de valeurs. L’utilisateur peut alors changer ces arguments <code>to.data.frame = TRUE</code> (par défaut, <code>FALSE</code>) et <code>use.value.labels = FALSE</code>(par défaut, <code>TRUE</code>).</p>
 <div class="sourceCode" id="cb73"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://svn.r-project.org/R-packages/trunk/foreign/">foreign</a></span><span class="op">)</span></span>
@@ -296,7 +298,7 @@
 <h3>
 <span class="header-section-number">6.6.7</span> Fichiers d’extension .xls et xlsx<a class="anchor" aria-label="anchor" href="#fichiers-dextension-.xls-et-xlsx"><i class="fas fa-link"></i></a>
 </h3>
-<p>Il n’existe pas de fonction de base pour importer des fichiers Microsoft Excel (extensions <code>.xls</code> et <code>.xlsx</code>). Par contre, il existe plusieurs packages qui permettent de la faire, comme <code>readxl</code> <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-readxl" role="doc-biblioref">Wickham &amp; Bryan, 2022</a>)</span>. Le package <code>readlxl</code> permet d’utiliser la fonction <code><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel()</a></code> pour importer le fichier.</p>
+<p>Il n’existe pas de fonction de base pour importer des fichiers Microsoft Excel (extensions <code>.xls</code> et <code>.xlsx</code>). Par contre, il existe plusieurs packages qui permettent de la faire, comme <code>readxl</code> <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-readxl">Wickham &amp; Bryan, 2022</a>)</span>. Le package <code>readlxl</code> permet d’utiliser la fonction <code><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel()</a></code> pour importer le fichier.</p>
 <div class="sourceCode" id="cb74"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Excel</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readxl.tidyverse.org">readxl</a></span><span class="op">)</span></span>
@@ -308,7 +310,7 @@
 <h3>
 <span class="header-section-number">6.6.8</span> Fichiers d’extension .html<a class="anchor" aria-label="anchor" href="#fichiers-dextension-.html"><i class="fas fa-link"></i></a>
 </h3>
-<p>Il n’existe pas de fonction de base pour importer des fichiers d’extension .html, (HTML, <em>HyperText Markup Language</em>). Le package <code>XML</code> fournit une solution possible avec la fonction <code>readHMTLTable()</code> <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-XML" role="doc-biblioref">Temple Lang, 2022</a>)</span>.</p>
+<p>Il n’existe pas de fonction de base pour importer des fichiers d’extension .html, (HTML, <em>HyperText Markup Language</em>). Le package <code>XML</code> fournit une solution possible avec la fonction <code>readHMTLTable()</code> <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-XML">Temple Lang, 2022</a>)</span>.</p>
 <div class="sourceCode" id="cb75"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># HTML</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://www.omegahat.net/RSXML/">XML</a></span><span class="op">)</span></span>
@@ -319,7 +321,7 @@
 <h3>
 <span class="header-section-number">6.6.9</span> Fichiers d’extension .json<a class="anchor" aria-label="anchor" href="#fichiers-dextension-.json"><i class="fas fa-link"></i></a>
 </h3>
-<p>Il n’existe pas de fonction de base pour importer des fichiers d’extension .json, (<em>JavaScript Object Notation</em>). Comme le lecteur pourra s’y attendre, il existe un package pour rectifier la situation : le package <code>rjson</code> et sa fonction <code>fromJSON()</code> <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-rjson" role="doc-biblioref">Couture-Beil, 2022</a>)</span>.</p>
+<p>Il n’existe pas de fonction de base pour importer des fichiers d’extension .json, (<em>JavaScript Object Notation</em>). Comme le lecteur pourra s’y attendre, il existe un package pour rectifier la situation : le package <code>rjson</code> et sa fonction <code>fromJSON()</code> <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-rjson">Couture-Beil, 2022</a>)</span>.</p>
 <div class="sourceCode" id="cb76"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#JSON</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/alexcb/rjson">rjson</a></span><span class="op">)</span></span>
@@ -330,7 +332,7 @@
 <h3>
 <span class="header-section-number">6.6.10</span> Fichiers d’extension .sas7bdat<a class="anchor" aria-label="anchor" href="#fichiers-dextension-.sas7bdat"><i class="fas fa-link"></i></a>
 </h3>
-<p>Il n’existe pas de fonction de base pour importer des fichiers d’extension <code>.sas7bdat</code>, (<em>Statistical Analysis System</em>). Il existe le package <code>sas7bdat</code> pour importer des données de SAS vers <strong>R</strong> avec la fonction <code>read.sas7bdat()</code> <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-sas" role="doc-biblioref">Shotwell, 2022</a>)</span>.</p>
+<p>Il n’existe pas de fonction de base pour importer des fichiers d’extension <code>.sas7bdat</code>, (<em>Statistical Analysis System</em>). Il existe le package <code>sas7bdat</code> pour importer des données de SAS vers <strong>R</strong> avec la fonction <code>read.sas7bdat()</code> <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-sas">Shotwell, 2022</a>)</span>.</p>
 <div class="sourceCode" id="cb77"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># SAS</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">sas7bdat</span><span class="op">)</span></span>
@@ -434,7 +436,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2024-11-13.</p>
+    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2024-12-16.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

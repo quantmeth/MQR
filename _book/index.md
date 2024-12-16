@@ -1,7 +1,7 @@
 --- 
 title: "Méthodes quantitatives avec R"
 author: "P.-O. Caron"
-date: "2024-11-13"
+date: "2024-12-16"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: "ma.bib"
@@ -33,7 +33,7 @@ Il faut être naïf pour croire que le code fonctionne tel que prévu.
 Par exemple, que vaut l'expression $-9^{(.5)}$? Reconnaître qu'il s'agit de $\sqrt{-9}$ indique immédiatement que le résultat n'est pas réel (c'est un nombre complexe). Si ce calcul est demandé à **R**,
 
 
-```r
+``` r
 -9^(.5)
 > [1] -3
 ```

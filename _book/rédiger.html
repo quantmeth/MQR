@@ -7,7 +7,7 @@
 <title> 4 Rédiger | Méthodes quantitatives avec R</title>
 <meta name="author" content="P.-O. Caron">
 <meta name="description" content="R et RStudio offrent un environnement pour rédiger des rapports de recherche. Le package Rmarkdown (Allaire et al., 2021) intègre les fonctions pour ce faire. Plus, R et RStudio permettent de...">
-<meta name="generator" content="bookdown 0.34 with bs4_book()">
+<meta name="generator" content="bookdown 0.41 with bs4_book()">
 <meta property="og:title" content=" 4 Rédiger | Méthodes quantitatives avec R">
 <meta property="og:type" content="book">
 <meta property="og:url" content="mqr.teluq.ca/rédiger.html">
@@ -17,9 +17,10 @@
 <meta name="twitter:description" content="R et RStudio offrent un environnement pour rédiger des rapports de recherche. Le package Rmarkdown (Allaire et al., 2021) intègre les fonctions pour ce faire. Plus, R et RStudio permettent de...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.0/transition.js"></script><script src="libs/bs3compat-0.4.0/tabs.js"></script><script src="libs/bs3compat-0.4.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.8.0/transition.js"></script><script src="libs/bs3compat-0.8.0/tabs.js"></script><script src="libs/bs3compat-0.8.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-<script src="libs/htmlwidgets-1.6.0/htmlwidgets.js"></script><script src="libs/viz-1.8.2/viz.js"></script><link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
+<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script><script src="libs/viz-1.8.2/viz.js"></script><link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
 <script src="libs/grViz-binding-1.0.11/grViz.js"></script><!-- 
     \(
     \newcommand{\EX}{\mathbb{E}}
@@ -33,6 +34,7 @@
     div.csl-bib-body { }
     div.csl-entry {
       clear: both;
+          margin-bottom: 0em;
         }
     .hanging div.csl-entry {
       margin-left:2em;
@@ -121,13 +123,13 @@
 <h1>
 <span class="header-section-number"> 4</span> Rédiger<a class="anchor" aria-label="anchor" href="#r%C3%A9diger"><i class="fas fa-link"></i></a>
 </h1>
-<p><strong>R</strong> et <strong>RStudio</strong> offrent un environnement pour rédiger des rapports de recherche. Le package <code>Rmarkdown</code> <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-R-rmarkdown" role="doc-biblioref">Allaire et al., 2021</a>)</span> intègre les fonctions pour ce faire. Plus, <strong>R</strong> et <strong>RStudio</strong> permettent de faire des articles, des livres (comme celui-ci), des sites, des applications, etc. Pour ce faire, ils intègrent différents langages de programmation. Cette section insiste sur la production de rapports de recherche simple. La philosophie étant, si <strong>Rmarkdown</strong> ne le fait pas, c’est superflu. Il demeure possible de personnaliser plusieurs éléments de ces textes, mais souvent cela sera inutile pour l’utilisateur débutant.</p>
+<p><strong>R</strong> et <strong>RStudio</strong> offrent un environnement pour rédiger des rapports de recherche. Le package <code>Rmarkdown</code> <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-R-rmarkdown">Allaire et al., 2021</a>)</span> intègre les fonctions pour ce faire. Plus, <strong>R</strong> et <strong>RStudio</strong> permettent de faire des articles, des livres (comme celui-ci), des sites, des applications, etc. Pour ce faire, ils intègrent différents langages de programmation. Cette section insiste sur la production de rapports de recherche simple. La philosophie étant, si <strong>Rmarkdown</strong> ne le fait pas, c’est superflu. Il demeure possible de personnaliser plusieurs éléments de ces textes, mais souvent cela sera inutile pour l’utilisateur débutant.</p>
 <p>L’avantage principal de rédiger dans <strong>R</strong> est certainement le fait de tenir dans un projet, toute la syntaxe, le jeu de données, les graphiques ainsi que le texte rapportant le tout dans un seul fichier.</p>
 <div id="préliminaires" class="section level2" number="4.1">
 <h2>
 <span class="header-section-number">4.1</span> Préliminaires<a class="anchor" aria-label="anchor" href="#pr%C3%A9liminaires"><i class="fas fa-link"></i></a>
 </h2>
-<p>Pour la toute première utilisation, il faut s’assurer est que le package <code>Rmarkdown</code> soit bien installé (voir <a href="m%C3%A9dier.html#les-packages-2">Les packages</a>). Il est préférable d’utiliser <strong>R</strong>Studio: l’environnement y est plus agréable et facilite l’expérience de l’utilisateur.</p>
+<p>Pour la toute première utilisation, il faut s’assurer est que le package <code>Rmarkdown</code> soit bien installé (voir <a href="programmer.html#les-packages">Les packages</a>). Il est préférable d’utiliser <strong>R</strong>Studio: l’environnement y est plus agréable et facilite l’expérience de l’utilisateur.</p>
 <p>Une seconde étape, si l’utilisateur veut produire des pdf, est d’installer un éditeur <span class="math inline">\(\LaTeX\)</span>. Cela peut se faire facilement avec la commande suivante.</p>
 <div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">tinytex</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tinytex/man/install_tinytex.html">install_tinytex</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
@@ -226,64 +228,35 @@ Figure 4.5: Ajouter une figure
 <span>             booktabs <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-table"><table class="table table-sm">
 <caption>
-<span id="tab:unnamed-chunk-2">Table 4.1: </span>Titre du tableau
-</caption>
-<thead><tr>
-<th style="text-align:center;">
-speed
-</th>
-<th style="text-align:center;">
-dist
-</th>
+<span id="tab:unnamed-chunk-2">Table 4.1: </span>Titre du tableau</caption>
+<thead><tr class="header">
+<th align="center">speed</th>
+<th align="center">dist</th>
 </tr></thead>
 <tbody>
-<tr>
-<td style="text-align:center;">
-4
-</td>
-<td style="text-align:center;">
-2
-</td>
+<tr class="odd">
+<td align="center">4</td>
+<td align="center">2</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-4
-</td>
-<td style="text-align:center;">
-10
-</td>
+<tr class="even">
+<td align="center">4</td>
+<td align="center">10</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-7
-</td>
-<td style="text-align:center;">
-4
-</td>
+<tr class="odd">
+<td align="center">7</td>
+<td align="center">4</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-7
-</td>
-<td style="text-align:center;">
-22
-</td>
+<tr class="even">
+<td align="center">7</td>
+<td align="center">22</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-8
-</td>
-<td style="text-align:center;">
-16
-</td>
+<tr class="odd">
+<td align="center">8</td>
+<td align="center">16</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-9
-</td>
-<td style="text-align:center;">
-10
-</td>
+<tr class="even">
+<td align="center">9</td>
+<td align="center">10</td>
 </tr>
 </tbody>
 </table></div>
@@ -373,7 +346,7 @@ dist
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2024-11-13.</p>
+    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2024-12-16.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -13,7 +13,7 @@ La LCA et la LPA sont considérés comme plus robustes que les autres techniques
 
 ## Classes latentes
 
-L'analyse de classes latentes (LCA) permet de partager et de distinguer des sous-groupes non observables (latents) d'individus sur la base de leurs réponses à un ensemble d'indicateurs observables (manifestes) ordinales. Elle fait ainsi partie de la famille des *finite mixture modelling*. Il s'agit d'une analyse **exploratoire** de la même façon que les [analyses factorielles exploratoires]. Elle se distingue d'[analyse factorielle][analyse factorielle exploratoire] qui tente plutôt de regrouper les indicateurs en facteurs (ou groupe), alors que la LCA tente plutôt de regrouper les participants en groupe.
+L'analyse de classes latentes (LCA) permet de partager et de distinguer des sous-groupes non observables (latents) d'individus sur la base de leurs réponses à un ensemble d'indicateurs observables (manifestes) ordinales. Elle fait ainsi partie de la famille des *finite mixture modelling*. Il s'agit d'une analyse **exploratoire** de la même façon que les [analyses factorielles exploratoires]. Elle se distingue des [analyse factorielle][Réduire] qui tente plutôt de regrouper les indicateurs en facteurs (ou groupe), alors que la LCA tente plutôt de regrouper les participants en groupe.
 
 
 ### Installations
@@ -40,7 +40,7 @@ jd <- ex1.poLCA
 f1 <- cbind(V1, V2, V3, V4, V5, V6) ~ 1
 ```
 
-Comme la Figure\ \@ref(fig:cla1) montre, les items sont les variables dépendantes et comme la [MANOVA][MANOVA : analyse de variance multivariée], il faut indiquer ces variables à gauche de la formule en les liant avec `cbind()`, comme `cbind(V1, V2, V3, V4, V5, V6)`. Le `~` délimite les variables dépendantes et dépendantes. L'utilisation de `1` indique la seule présence d'une constance, il serait possible d'ajouter des covariables pour contrôler des effets dans les variables dépendantes si l'utilisateur le jugeait nécessaire.
+Comme la Figure\ \@ref(fig:cla1) montre, les items sont les variables dépendantes et comme la [MANOVA][MANOVA : analyse de variance multivariée], il faut indiquer ces variables à gauche de la formule en les liant avec `cbind()`, comme `cbind(V1, V2, V3, V4, V5, V6)`. Le `~` délimite les variables dépendantes (gauche) et indépendantes (droite). L'utilisation de `1` indique la seule présence d'une constance, il serait possible d'ajouter des covariables pour contrôler des effets dans les variables dépendantes si l'utilisateur le jugeait nécessaire.
 
 Ensuite, il faut rouler différentes valeurs de nombre de classes en incrément de 1.
 
@@ -89,38 +89,15 @@ La représentation graphique des classes peut se faire facilement avec la foncti
 plot(LCA3)
 ```
 
-La Figure\ \@ref(fig:LCA) montre sur l'axe des $x$ (largeur), les classes avec les proportions, sur l'axe des $z$ (profondeur), il s'agit des différents items utilisés pour la classification et sur l'axe des $y$ la probabilité qu'une personne de la classe $x$ ait choisi une certaine réponse à l'item $z$. Si les items permettaient plus de choix de réponses (une échelle a plus deux options), la figure s'ajusterait en conséquences.
+La Figure\ \@ref(fig:lcaplot) montre sur l'axe des $x$ (largeur), les classes avec les proportions, sur l'axe des $z$ (profondeur), il s'agit des différents items utilisés pour la classification et sur l'axe des $y$ la probabilité qu'une personne de la classe $x$ ait choisi une certaine réponse à l'item $z$. Si les items permettaient plus de choix de réponses (une échelle a plus deux options), la figure s'ajusterait en conséquences.
 
-Une autre façon de présenter les données avec `ggplot2` serait de programmer cette figure (à venir ultérieurement dans `poLCAExtra`).
+Une autre façon de présenter les données avec `ggplot2` est cette cette figure.
 
 ```{r testjitter,fig.cap="Analyse visuelle supplémentaire des classes",fig.align="center", out.height='75%', out.width='75%'}
-#library(tidyverse)
-#jdtest <- LCAE$LCA[[3]]$y
-jdtest <- LCA3$y
-v <- (colnames(jdtest))
-jdtest$Classes <- as.factor(predict(LCA3)$Pred)
-
-jdtest <- jdtest %>% 
-  gather(key = "Variable", value = "Value", -Classes) 
-
-
-jds <- jdtest %>% 
-  group_by(Classes, Variable) %>% 
-  summarise(y = mean(Value), 
-            se = sd(Value)/sqrt(n()), 
-            ymin = y - 1.96*se, 
-            ymax = y + 1.96*se,
-            Value = y)
-
-
-jdtest %>%  
-  ggplot(aes(x = Variable, y = Value, fill = Classes, group = Classes, color = Classes)) + 
-  geom_jitter(alpha = .1) +
-  geom_point(jds, mapping = aes(x = Variable, y = y)) + 
-  geom_errorbar(jds, mapping = aes(ymin = ymin, ymax = ymax), alpha = 1) + theme_minimal()
+poLCA.plot(LCA3)
 ```
 
-Cette méthode sera plus similaire à l'analyse de classes latentes.
+Cette méthode sera plus similaire à l'analyse de profils latents.
 
 ### Analyses supplémentaires
 

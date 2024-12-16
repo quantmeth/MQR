@@ -46,7 +46,7 @@ Plus les moyennes sont variables, plus la valeur du CMI est élevée. Plus les u
 Dans un jeu de données commun, une variable désigne les groupes et une autre leur score sur une certaine mesure. La syntaxe suivante montre trois façons pour créer une variable facteur.
 
 
-```r
+``` r
 nk <- 5 # nombre d'unités par groupe
 k <- 4  # nombre de groupes
 # En ordre
@@ -83,7 +83,7 @@ cbind(groupe1, groupe2, groupe3)
 Il est aussi possible de remplacer les arguments, `1:k` par des chaînes de caractères (des catégories au lieu de nombres).
 
 
-```r
+``` r
 categorie <- c("char", "chat", "cheval", "chevalier", "chien")
 nk <- 2
 groupe <- as.factor(rep(categorie, each = nk)) # Déclarer comme facteur
@@ -97,7 +97,7 @@ Une bonne pratique dans le contexte des comparaisons de moyenne est de déclarer
 Pour créer des valeurs à ces catégories, une stratégie simple est de créer des valeurs pour chacun des groupes et de les combiner. 
 
 
-```r
+``` r
 # Pour la reproductibilité
 set.seed(2602)
 char      <- rnorm(n = nk, mean = 15, sd = 4) 
@@ -124,7 +124,7 @@ head(donnees)
 La plupart du temps, les variables de regroupement, les variables identifiant l'appartenance aux groupes, sont construites avec une variable de type facteur, c'est-à-dire une colonne avec différentes valeurs ou libellés. C'est d'ailleurs ce qui a été fait dans l'exemple précédent. Cette méthode d'identification de groupement implique une programmation plus intensive, surtout pour la création de valeurs. En termes de programmation, il est plus élégant de recourir à une fonction de codage factice (*dummy coding*). Cela permettra de représenter fidèlement le modèle sous-jacent. Étrangement, il n'y a pas de fonction de base avec **R** pour du codage factice. Une fonction maison permettra d'automatiser la réassignation des groupes (en une seule variable) sur plusieurs variables désignant leur appartenance.
 
 
-```r
+``` r
 dummy.coding <- function(x){
   # Retourne un codage factice de x
   # avec les facteurs en ordre alphabétique
@@ -159,7 +159,7 @@ La plupart du temps, les variables de regroupement, les variables identifiant l'
 La fonction maison retourne un codage factice pour les $k$ groupes. **Attention**, le codage factice est fait en ordre alphabétique. Comme il est redondant d'avoir $k$ groupes (identifier $k$ groupes nécessite $k-1$ variables), un groupe référent est désigné. Ce dernier aura 0 sur tous les scores. Pour retirer un groupe, l'utilisation des crochets et une valeur négative associés à la colonne du groupe référent feront l'affaire, p. ex. `dummy.coding(x)[,-k]` déclare le $k$^e^ groupe comme le groupe référent.
 
 
-```r
+``` r
 # Pour la reproductibilité
 set.seed(2602)
 
@@ -205,7 +205,7 @@ Les scores produits sont identiques. Dans cet exemple par contre, l'origine des 
 À toute fin pratique, un jeu de données est recréé avec les catégories et paramètres précédents, mais avec $n_k=20$ unités par groupe. La fonction **R** de base est `aov()`. Elle prend comme argument une formule, de forme `VD ~ VI` (variable dépendante prédite par variable indépendante) et un jeu de données duquel prendre les variables. Il existe également une fonction `anova()`, une fonction un peu plus complexe que `aov()`. Pour obtenir toute l'information désirée de la sortie de la fonction, il faut demander un sommaire de la sortie avec `summary()`.
 
 
-```r
+``` r
 # Anova de base
 res <- aov(score ~ groupe, data = donnees)
 summary(res)
@@ -263,7 +263,7 @@ Les résultats sont identiques, les seules différences étant dues à l'arrondi
 Voici comment commander une anova avec **R**. Il faut utilise la formule, `VD ~ VI` où la VD est la variable dépendante qui est d'échelle continue, la ou les VI, les variables indépendantes, contiennent les variables de groupement, mais aussi des variables continues, si besoin est.
 
 
-```r
+``` r
 res <- aov(score ~ groupe, data = donnees)
 summary(res)
 >             Df Sum Sq Mean Sq F value  Pr(>F)    
@@ -286,7 +286,7 @@ Voici comment rapporter l'ANOVA dans un article scientifique.
 Une petite digression pour parler de la sortie de `aov()`. Normalement, **R** produit [des listes][Créer des listes] comme sortie, particulièrement en ce qui a trait aux analyses statistiques. Le cas de `aov()` est différent : le sommaire est une liste vide. 
 
 
-```r
+``` r
 sommaire <- summary(res)
 # Extraire les éléments de la sortie `sommaire`
 names(sommaire)
@@ -295,7 +295,7 @@ names(sommaire)
 Pour avoir accès directement au tableau de résultats du sommaire pour le manipuler, il faut ajouter `[[1]]` à la suite du code, ce qui permet d'atteindre les résultats. Les manipulations usuelles d'une liste sont maintenant réalisables.
 
 
-```r
+``` r
 sommaire <- summary(res)[[1]]
 names(sommaire)
 > [1] "Df"      "Sum Sq"  "Mean Sq" "F value" "Pr(>F)"
@@ -309,7 +309,7 @@ Une fois que le test général montre une différence à laquelle l'expérimenta
 La première étape est évidement de rouler l'ANOVA globale, voir la section précédente [Rapporter l'ANOVA]. En deuxième étape, une façon simple de demander les comparaisons posthoc est d'utiliser la fonction `TukeyHSD()`, soit la différence significative honnête, ou plus simplement la méthode de Tukey, en y introduisant comme argument la sortie de l'ANOVA.
 
 
-```r
+``` r
 TukeyHSD(res)
 >   Tukey multiple comparisons of means
 >     95% family-wise confidence level
@@ -334,7 +334,7 @@ Dans cette sortie, chaque paire de groupes est indiquer à gauche, les différen
 La fonction `TukeyHSD()` est aussi lié à une figure qu'il est possible de commander avec `plot()` en y mettant comme argument la sortie de `TukeyHSD()`.
 
 
-```r
+``` r
 plot(TukeyHSD(res))
 ```
 
@@ -351,7 +351,7 @@ Malheureusement la Figure\ \@ref(fig:tukey) n'est pas parfaite, car elle n'affic
 D'abord, il faut importer le `tidyverse`. Ensuite, la prochaine étape consiste à extraire les résultats de `TukeyHSD()`, de les transformer en jeu de données avec `as.data.frame()` et de rendre le nom des lignes manipulables avec `add_rownames_to_column()`. Comme pour toutes les figures, il faut indiquer l'abscisse et l'ordonnée, ici le nom des lignes (`x`) et la différence entre les groupes(`y`), respectivement. Ensuite, comme la figure avec [les barres d'erreurs], il faut associer dans `geom_errorbar` les intervalles de confiance `lwr` et `upr` à `ymin` et `ymax`. Enfin, il est possible d'ajouter la moyenne sous forme de point (`geom_point()` et de tourner la figure avec `coord_flip`, ce qui permet de répliquer la figure originale.
 
 
-```r
+``` r
 TukeyHSD(res)[[1]] %>%   # Extraire les résultats
   as.data.frame() %>%    # Transformer en jeu de données
   rownames_to_column() %>%     # Ajouter les noms des lignes
@@ -374,7 +374,7 @@ La Figure\ \@ref(fig:tukey2) montre une illustration des comparaisons de Tukey p
 Une autre technique permet d'obtenir une table de comparaisons. Il s'agit de `pairwise.t.test()`. Cette fonction prend en argument deux vecteurs, la variable continue et la variable de groupement, et un troisième argument, soit la correction à appliquer avec l'argument `p.adj`.
 
 
-```r
+``` r
 pairwise.t.test(donnees$score, donnees$groupe, p.adj = "none")
 > 
 > 	Pairwise comparisons using t tests with pooled SD 
@@ -397,7 +397,7 @@ TODO
 ## ANOVA à mesures répétées
 
 
-```r
+``` r
 # Un exemple d'ANOVA à mesures répétées
 res.aov.r <- aov(circumference ~ age + Error(Tree/age), data = Orange)
 res.aov.r
@@ -475,7 +475,7 @@ summary(res.aov.r)
 ## MANOVA : analyse de variance multivariée
 
 
-```r
+``` r
 # Un example d'ANOVA multivarié
 
 res.maov <- manova(cbind(Sepal.Length, Petal.Length) ~ Species, data = iris)
@@ -545,12 +545,13 @@ plot(res.lda)
 
 <img src="13-Comparer_files/figure-html/unnamed-chunk-16-1.png" width="672" />
 
-```r
+``` r
 
 # iris %>% 
 #   ggplot(mapping = aes(x = Sepal.Length,
 #                        y = Petal.Length, 
 #                        color = Species)) + 
 #            geom_point()
+
 ```
 

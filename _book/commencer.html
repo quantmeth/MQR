@@ -7,7 +7,7 @@
 <title> 1 Commencer | Méthodes quantitatives avec R</title>
 <meta name="author" content="P.-O. Caron">
 <meta name="description" content="Dans cette section, le logiciel R est brièvement décrit ainsi qu’une justification, plus spécifiquement ces avantages, en plus de pointer quelques options complémentaires (RStudio) pour son...">
-<meta name="generator" content="bookdown 0.34 with bs4_book()">
+<meta name="generator" content="bookdown 0.41 with bs4_book()">
 <meta property="og:title" content=" 1 Commencer | Méthodes quantitatives avec R">
 <meta property="og:type" content="book">
 <meta property="og:url" content="mqr.teluq.ca/commencer.html">
@@ -17,9 +17,10 @@
 <meta name="twitter:description" content="Dans cette section, le logiciel R est brièvement décrit ainsi qu’une justification, plus spécifiquement ces avantages, en plus de pointer quelques options complémentaires (RStudio) pour son...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.0/transition.js"></script><script src="libs/bs3compat-0.4.0/tabs.js"></script><script src="libs/bs3compat-0.4.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.8.0/transition.js"></script><script src="libs/bs3compat-0.8.0/tabs.js"></script><script src="libs/bs3compat-0.8.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-<script src="libs/htmlwidgets-1.6.0/htmlwidgets.js"></script><script src="libs/viz-1.8.2/viz.js"></script><link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
+<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script><script src="libs/viz-1.8.2/viz.js"></script><link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
 <script src="libs/grViz-binding-1.0.11/grViz.js"></script><!-- 
     \(
     \newcommand{\EX}{\mathbb{E}}
@@ -33,6 +34,7 @@
     div.csl-bib-body { }
     div.csl-entry {
       clear: both;
+          margin-bottom: 0em;
         }
     .hanging div.csl-entry {
       margin-left:2em;
@@ -126,7 +128,7 @@
 <h2>
 <span class="header-section-number">1.1</span> <strong>R</strong>?<a class="anchor" aria-label="anchor" href="#r"><i class="fas fa-link"></i></a>
 </h2>
-<p><strong>R</strong> <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-R-base" role="doc-biblioref">R Core Team, 2023</a>)</span> est un logiciel de programmation statistique libre-accès et un environnement pour la computation statistique et l’affichage graphique. Il s’agit d’un projet GNU qui est similaire au langage et à l’environnement S, développés aux Laboratoires Bell (anciennement AT&amp;T, aujourd’hui Lucent Technologies) par John Chambers. Créé par <strong>R</strong>oss Ihaka et <strong>R</strong>obert Gentleman, <strong>R</strong> fournit une grande variété de techniques statistiques (modélisation linéaire et non linéaire, analyses statistiques classiques, analyse de séries chronologiques, classification) et graphiques, et est hautement extensible.</p>
+<p><strong>R</strong> <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-R-base">R Core Team, 2023</a>)</span> est un logiciel de programmation statistique libre-accès et un environnement pour la computation statistique et l’affichage graphique. Il s’agit d’un projet GNU qui est similaire au langage et à l’environnement S, développés aux Laboratoires Bell (anciennement AT&amp;T, aujourd’hui Lucent Technologies) par John Chambers. Créé par <strong>R</strong>oss Ihaka et <strong>R</strong>obert Gentleman, <strong>R</strong> fournit une grande variété de techniques statistiques (modélisation linéaire et non linéaire, analyses statistiques classiques, analyse de séries chronologiques, classification) et graphiques, et est hautement extensible.</p>
 <p><strong>R</strong> est un logiciel basé sur la syntaxe plutôt qu’une approche pointer-et-cliquer (<em>point-and-click</em>) comme les logiciels traditionnels. Il peut être plus effrayant ou apparaître trop complexe pour un nouvel utilisateur, mais une fois apprivoisée, cette bête démontre un fort potentiel que ce soit en automatisation, en personnalisation, en production de figure de haute qualité, etc. <strong>R</strong> a l’avantage de mettre en plein contrôle ses utilisateurs. Bref, c’est une créature qu’il vaut la peine de maîtriser.</p>
 </div>
 <div id="pourquoi-r" class="section level2" number="1.2">
@@ -181,8 +183,8 @@ Figure 1.1: Ouverture (effrayante!) de la console R
 </p>
 </div>
 <p>À titre d’exemple, la console peut être utilisée comme une calculatrice glorifiée.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="commencer.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span></span>
-<span id="cb2-2"><a href="commencer.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">4</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="commencer.html#cb2-1" tabindex="-1"></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span></span>
+<span id="cb2-2"><a href="commencer.html#cb2-2" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="dv">4</span></span></code></pre></div>
 <p>Plusieurs nouveaux utilisateurs se limitent à ouvrir <strong>R</strong> y faire quelques calculs, puis le referme et ne l’ouvre plus jamais. Ce livre tente d’emmener le lecteur un peu plus loin.</p>
 <p>Dans la Figure <a href="commencer.html#fig:ConsoleR">1.1</a>, <strong>R</strong> est défini en français. Cela n’a pour effet que de modifier le menu déroulant (“Fichier, Edition, etc.”) au sommet du logiciel et les différentes options de ce menu. Le fonctionnement reste le même (les fonctions ne sont pas traduites, par exemple).</p>
 <p>La console <strong>R</strong> n’étant pas un éditeur de texte, il faudra enregistrer la syntaxe utilisée lors d’une séance pour la conserver. Le logiciel offre une option d’écriture de script intégré, mais n’est pas lié directement à la console. Il faudra donc se résoudre à abuser du copier-coller ou à sourcer le script (tâche plus ardue pour les nouveaux utilisateurs). Plusieurs éditeurs de texte sont utiles ou même construits pour directement travailler avec <strong>R</strong>, le plus connu étant certainement <strong>R</strong>Studio, déjà mentionné. L’environnement intégré est beaucoup plus fonctionnel.</p>
@@ -241,7 +243,7 @@ Figure 1.2: Ouverture (moins effrayante) de <strong>R</strong>Studio
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2024-11-13.</p>
+    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2024-12-16.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

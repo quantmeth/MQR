@@ -414,7 +414,7 @@ confirmer
 spécifier-un-modèle
 les-fonctions-1
 les-indices-dajustement
-les-indices-de-modifcation
+les-indices-de-modification
 les-résultats-standarisés
 analyse-factorielle-confirmatoire
 analyse-acheminatoire

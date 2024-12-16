@@ -5,7 +5,7 @@ La visualisation de données est l'un des deux objectifs fondamentaux de **R** (
 L'exemple de cette section est basé sur celui de la section [Manipuler]. Voici la syntaxe pour obtenir le jeu de données de nouveau.
 
 
-```r
+``` r
 jd <- starwars %>% 
   select(name, sex, mass, height, species) %>% 
   filter(species == "Human") %>% 
@@ -16,7 +16,7 @@ jd <- starwars %>%
 
 ## ggplot2
 
-Le package `ggplot2` est une extension du `tidyverse` avec lequel il est possible de créer simplement et rapidement des graphiques. Ces graphiques sont de qualité de publications, idéale pour les articles scientifiques. Le package fournit un langage graphique pour la création intuitive de graphiques compliqués. Il permet à l'utilisateur de créer des graphiques qui représentent des données numériques et catégorielles univariées et multivariées.
+Le package `ggplot2` est une extension du `tidyverse` avec lequel il est possible de créer simplement et rapidement des graphiques. Ces graphiques sont de qualité de publications, idéales pour les articles scientifiques. Le package fournit un langage graphique pour la création intuitive de graphiques compliqués. Il permet à l'utilisateur de créer des graphiques qui représentent des données numériques et catégorielles univariées et multivariées.
 
 La logique de `ggplot2` repose sur la grammaire des graphiques (*Grammar  of Graphics*), l'idée selon laquelle toutes les figures peuvent être construites à partir des mêmes composantes. Il s'agit de la deuxième version du package. Voilà pour l'appellation *ggplot2*.
   
@@ -35,7 +35,7 @@ Les composantes les plus importantes sont les trois premières, soit les donnée
 La fonction `ggplot()` met en place la figure. Le résultat d'utiliser la fonction `ggplot()` seule est illustrée à la Figure \@ref(fig:ggplotseul)
 
 
-```r
+``` r
 ggplot(data = jd)
 ```
 
@@ -47,7 +47,7 @@ ggplot(data = jd)
 Il est aussi possible de *piper* (prononcé avec un fort accent anglophone) les données dans la fonction.
 
 
-```r
+``` r
 jd %>% 
   ggplot()
 ```
@@ -75,7 +75,7 @@ Certaines cartographies sont d'ailleurs compatibles, `geom_smooth()` et `geom_po
 La Figure \@ref(fig:ggplotpoint) montre un diagramme de dispersion construit à partir du jeu de données `jd` *pipé* dans la fonction `ggplot()`. Dans cette fonction, la cartographie est passée `mapping = aes(x = mass, y = height)` à un second niveau, `geom_point)` par le `+` et la représentation est produite.
 
 
-```r
+``` r
 jd %>% 
   ggplot(mapping = aes(x = mass, y = height)) + 
   geom_point()
@@ -93,7 +93,7 @@ Voici une liste d'exemples de différentes représentations visuelles des donné
 Pour réaliser un diagramme de dispersion, la fonction se nomme `geom_point()`. La cartographie identifie la variable à l'axe des $x$ (horizontal) et des $y$ (vertical). Dans cet exemple, il s'agit du poids ($x$) et de la taille ($y$). La cartographie ne se limite pas aux axes par contre. Dans cet exemple, la forme `shape` est aussi un dimension manipulée. Il peut s'agir de `color` et même de `size`. Dans la syntaxe ci-dessous, l'argument `size` est placé à l'extérieur de *mapping*. Il s'agit alors d'une constante (elle change la taille des points), c'est-à-dire qu'elle ne varie pas relativement à une variable.
 
 
-```r
+``` r
 jd %>% 
   ggplot() + 
   geom_point(mapping = aes(x = mass, y = height, shape = sex), size = 2) 
@@ -107,7 +107,7 @@ jd %>%
 La Figure \@ref(fig:diagdisp2) montre le résultat si `size``est ajouté au *mapping* pour identifier l'IMC. Les unités avec un plus grand IMC obtiennent un plus gros pointeur.
 
 
-```r
+``` r
 jd %>% 
   ggplot() + 
   geom_point(mapping = aes(x = mass, y = height, shape = sex, size = IMC)) 
@@ -121,7 +121,7 @@ jd %>%
 On peut y ajouter la droite de régression, comme la Figure \@ref(fig:diagdisp3) le montre. Sans `geom_point()`, la figure ne produit la droite. Les arguments de `geom_smooth()` indique  l'utilisation du modèle linéaire, `method = lm`, et l'absence des intervalles de confiance, `se = FALSE`. Dans cette syntaxe, comme le *mapping* est ajouté à `ggplot` directement, il se généralise directement à `geom_point()` et ` geom_smooth()`
 
 
-```r
+``` r
 jd %>% 
   ggplot(mapping = aes(x = mass, y = height)) + 
   geom_point(size = 2) +
@@ -139,7 +139,7 @@ jd %>%
 La boîte à moustaches (*box-and-whisker plot*) est une figure permettant de voir la variabilité des données. Elle  résume seulement quelques indicateurs de position soit la médiane, les quartiles, le minimum, et le maximum. Ce diagramme est utilisé principalement pour détecter des valeurs aberrantes et comparer la variabilité entre les groupes. C'est la représentation géométrique `geom_boxplot()` qui permettra de créer des boîtes à moustache. La cartographie prend en argument une variable nominale en `x` et une variable continue en `y`. La Figure \@ref(fig:boxplot1) montre un exemple de boîte à moustache.
 
 
-```r
+``` r
 ggplot(data = jd) + 
   geom_boxplot(mapping = aes(x = sex, y = IMC)) +
   coord_flip()
@@ -157,7 +157,7 @@ Une fonction intéressante est la fonction `coord_flip()` qui tourne (*flip*) le
 Un histogramme permet de représenter la répartition empirique d'une variable. Il donne un aperçu de la distribution sous-jacente, soit comment les données sont distribuées. Cette figure permet de voir la forme de la distribution et permet de voir si elle ne démontre pas d'anomalie. La représentation graphique `geom_histogram()` produit des histogrammes. S'il faut en produire pour différentes variables, une stratégie simple est de les produire en série.
 
 
-```r
+``` r
 # Trois histogrammes en trois figures
 ggplot(data = jd) + 
   geom_histogram(mapping = aes(x = height))
@@ -172,7 +172,7 @@ ggplot(data = jd) +
 Des techniques plus avancées permettent de créer la Figure \@ref(fig:hist) d'un seul coup^[Notamment, le code nécessite `gather()` de `tidyr`[@R-tidyr] et `keep()` de `purrr` [@R-purrr].].
 
 
-```r
+``` r
 # Trois histogrammes en une seule figure
 # en optimisant avec le tidyverse
 jd %>%
@@ -191,7 +191,7 @@ jd %>%
 Enfin, s'il est désiré de comparer deux distributions de groupes différents, l'argument `fill` dans la cartographie indique à la fonction de différencier les valeurs selon le *remplissage* des histogrammes.
 
 
-```r
+``` r
 jd %>% 
   ggplot(mapping = aes(x = IMC, fill = sex)) + 
   geom_histogram(position = "identity", alpha = .7) + 
@@ -214,7 +214,7 @@ La Figure \@ref(fig:erreurbar) illustre les différences entre moyennes avec des
 La première étape est de tirer les statistiques sommaires, moyennes, écart type, tailles des groupes. La syntaxe tire profit de `group_by()` pour tirer les groupes et en faire le sommaire. Le sommaire `summarise` permet d'obtenir les statistiques, notamment la moyenne, l'erreur standard (`se`) pour en calculer l'intervalle autour de la moyenne `ci`.
 
 
-```r
+``` r
 stat.descr <- ToothGrowth %>% 
   group_by(dose, supp) %>% 
   summarise(mlen = mean(len),
@@ -252,7 +252,7 @@ Il y a deux avantages principaux a utilisé `superb`. La première est qu'elle p
 La Figure \@ref(fig:erreurbar2) reproduit la Figure\ \@ref(fig:erreurbar). Dans le code, il faut préciser les facteurs inter participants `BSFactors` (pour *between subject* ou *BS*) et la variable dépendante, `variable`. La fonction contrôle aussi le type de graphique avec `plotStyle`. 
 
 
-```r
+``` r
 library(superb)
 superbPlot(ToothGrowth, 
     BSFactors = c("dose","supp"), 
@@ -270,7 +270,7 @@ La fonction retourne souvent des messages d'avertissement (orange) pour précise
 Pour plus de flexibilité pour l'utilisateur, les statistiques descriptives peuvent être obtenues afin de produire personnellement les figures, comme cela avait été fait dans le premier exemple sur [Les barres d'erreurs].
 
 
-```r
+``` r
 stat.descr <- superbData(ToothGrowth, 
                          BSFactors = c("dose","supp"), 
                          variables = "len",
@@ -282,7 +282,7 @@ Attention! Cette variable est une liste contenant deux éléments, les statistiq
 Pour reproduire la Figure\ \@ref(fig:erreurbar) avec le jeu de données extrait de `superbData()`, il faut procéder à quelques ajustements, comme le nom des variables qui ne sont pas les mêmes, et le fait que la variable `dose` est maintenant traitée en variable nominale, alors qu'il est souhaitable qu'elle soit numérique pour utiliser la représentation géométrique `geom_line()`. La Figure\ \@ref(fig:erreurbar3) illustre le résultat.
 
 
-```r
+``` r
 stat.descr$summaryStatistics %>% 
   ggplot(aes(x = as.numeric(dose),
              y = center, 
@@ -307,7 +307,7 @@ La fonction `superbPlot()` permet non seulement de produire des barres d'erreurs
 Voici un jeu de données synthétiques pour réaliser une figure avec un devis intra participant. Voir [Le test-$t$ dépendant] pour plus de détails sur la création de ces données.
 
 
-```r
+``` r
 # Un exemple de jeu de données
 set.seed(148)
 temps1 <- rnorm(n = 25, mean = 0, sd = 2)
@@ -321,7 +321,7 @@ jd_intra <- data.frame(temps1 = temps1,
 Pour produire la figure, il faut définir le facteur intra participant (*within subject* ou *WS*) par l'argument `WSFactors`. Cette argument est particulier, il nécessite un mot arbitraire pour identifier l'effet temporelle, ici `WSFactors = "temps`, mais aussi entre parenthèses, le nombre de temps de mesures, ici `"(2)"`, ce qui forme l'argument complet `WSFactors = "temps(2)"`. Ensuite, pour la variable dépendante, on combine ensemble tous les temps de mesure spécifiés, ici `variables = c("temps1", "temps2")`. Il reste à définir le style de graphique et les ajustements. Pour l'objectif (`purpose`), ce sont les mêmes options que pour les devis inter participants, soit (`"single"`, `"difference"` ou `"tryon"`).
 
 
-```r
+``` r
 superbPlot(jd_intra, 
     WSFactors = "temps(2)", 
     variables = c("temps1", "temps2"),
@@ -338,7 +338,7 @@ La Figure \@ref(fig:erreurbar4) montre le résultat obtenu.
 Le package `superb` permet aussi l'utilisation de techniques de décorrélation comme `"CM"`, `"LM"`, `"CA"` ou `"none"` (par défaut) pour améliorer les intervalles de confiance. Consultez la documentation pour en savoir plus sur son fonctionnement et ce qui conviendra le mieux à la situation qui se présente. Pour l'implantation, il suffit d'ajouter à la liste d'arguments fournie à `adjustements`, le type de décorrlation désirée, ici `decorrelation = "CM"`).
 
 
-```r
+``` r
 superbPlot(jd_intra, 
     WSFactors = "temps(2)", 
     variables = c("temps1", "temps2"),
@@ -373,7 +373,7 @@ La taille de résolution de la figure est gérée avec l'argument `dpi`, ce qui 
 Voici un exemple. 
 
 
-```r
+``` r
 # Préalablement produire une figure
 ggsave(filename = "mafigure.pdf",
        width = "6"

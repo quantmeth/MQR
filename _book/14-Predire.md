@@ -34,7 +34,7 @@ s_{x_j,x_k}=\frac{1}{n-1}\sum_{i=1}^n(x_{i,j})(x_{i,k})
 Avantageusement, lorsque $j=k$, les équations \@ref(eq:cov2) et \@ref(eq:cov3) calculent la variance de la variable correspondante. En syntaxe **R,** ces équations s'écrivent dans une fonction comme la suivante. Pour rappel, la fonction `cov()` dans laquelle une matrice de données est passée comme argument fournit la matrice de covariance.
 
 
-```r
+``` r
 covariance1 <- function(X){ 
   # X est un jeu de données
   Xc <- scale(X, scale = FALSE)  # Centrées les variables
@@ -143,7 +143,7 @@ x_{n,1} & x_{n,2} \\
 L'équation \@ref(eq:covmat2) illustre l'équation \@ref(eq:covmat1) qui sont toutes les deux équivalentes à \@ref(eq:cov3). En termes de syntaxe **R**, elles peuvent être traduites comme suit.
 
 
-```r
+``` r
 covariance2 = function(X){
   # X est une jeu de données ou matrice de n sujets par p variables
   n <- nrow(X)
@@ -183,7 +183,7 @@ Pour transformer la matrice de covariance en matrice de corrélation, trois tech
 La première est de standardiser $\mathbf{X}$ préalablement au calcul de la covariance.
 
 
-```r
+``` r
 Xz <- scale(X)
 n <- nrow(x)
 cor.X <- t(Xz) %*% Xz / (n - 1)
@@ -222,7 +222,7 @@ Le calcul complet de l'équation\ \@ref(eq:obtD1) en ajoutant \@ref(eq:obtD2) es
 
 En code **R**, l'équation \@ref(eq:cov2cor) se traduit ainsi. 
 
-```r
+``` r
 R = solve(diag(sqrt(diag(S)))) %*% S %*% solve(diag(sqrt(diag(S))))
 ```
 
@@ -324,7 +324,7 @@ Le ratio $\frac{B}{\text{se}_B} \sim t_{n-p-1}$, soit le quotient d'un estimateu
 Quelques détails sont importants à considérer pour la programmation. Afin d'ajouter l'intercepte (pour estimer $\beta_0$), la solution la plus simple est d'ajouter un vecteur d'unité (un vecteur ne contenant que des $1$) à la matrice $\mathbf{X}$. En programmation **R**, l'inversion de matrice se fait par la fonction `solve()` et non pas avec un signe d'exposant. En syntaxe **R**, la régression s'écrit comme ceci.
 
 
-```r
+``` r
 regression <- function(y, X){
   # Taille d'échantillon 
   n <- nrow(X)
@@ -371,7 +371,7 @@ Le modèle linéaire peut aussi contenir des variables nominales dans la mesure 
 Une façon simple et efficace de créer des données à ce stade est la package `MASS` dont un aperçu a été donné dans le chapitre [Analyser].
 
 
-```r
+``` r
 # Création de la matrice de covariance pour p = 3
 p <- 3   # Nombre de variables
 Sigma <- matrix(c(s11, s12, s13,
@@ -403,7 +403,7 @@ Il convient d'écrire $\mathbf{\Sigma}$ (sigma majuscule) et $\sigma$ (sigma min
 Une autre façon de créer des données en fonction d'un modèle linéaire plutôt qu'à partir de la matrice de corrélation (comme avec `MASS`) est de reprendre l'équation \@ref(eq:modlin) et de spécifier les paramètres libre. D'abord, il faut  remplacer les paramètres du modèle par des valeurs, $\beta_0$ et $\beta_1$, pour ensuite créer deux variables aléatoires de taille $n$ (la taille d'échantillon), une première pour $x$ et une seconde pour $\epsilon$. Les hypothèses sous-jacentes aux modèles linéaires assument que l'erreur ($\epsilon$) est distribuée normalement (avec implicitement une moyenne de 0), la fonction `rnorm()` pourra jouer le rôle. Pour $x$, il n'y a pas de distribution à respecter, mais une distribution normale fait très bien l'affaire. Voici un exemple de code **R**. En spécifiant une taille d'échantillon très grande `n = 10000`, l'erreur échantillonnalle est considérablement réduite.
 
 
-```r
+``` r
 n <- 10000 # Taille d'échantillon
 # Les betas
 beta0 <- 5
@@ -453,7 +453,7 @@ où l'équation \@ref(eq:modling) correspond à la généralisation de l'équati
 où $\mathbf{R}$ est la matrice de corrélation et $\mathbf{B}$ est le vecteur contenant tous les $\beta$ standardisés. Pour assurer un scénario standardisé $\sigma^2_y = 1$. La seule condition sous-jacente à l'équation \@ref(eq:emat) est de s'assurer que $\sigma^2_{\epsilon} > 0$, c'est-à-dire en vérifiant que $\mathbf{B}^{\prime}\mathbf{R}\mathbf{B} < \sigma^2_y$, autrement la variance est négative, ce qui est impossible. En termes de syntaxe **R**, l'équation \@ref(eq:emat) correspond à ceci.
 
 
-```r
+``` r
 # Calculer la variance de epsilon
 var_e <-  var_y - t(B) %*% R %*% B
 ```
@@ -474,7 +474,7 @@ $$
 Une fois les données de $\mathbf{X}$ créées, avec la fonction `MASS::mvrnorm()`, comme il a été fait précédemment, il suffit de multiplier $\mathbf{X}$ avec $\mathbf{B}$ et d'ajouter la variable aléatoire $\epsilon$ avec la variance appropriée pour obtenir la variable dépendante $y$.
 
 
-```r
+``` r
 set.seed(42)  # Pour reproductibilité
 n <- 1000      # Taille d'échantillon
 k <- 3         # Nombre de variables indépendantes
@@ -614,7 +614,7 @@ Tous les éléments peuvent être extraits avec `summary(res.lm)$...` en rempla�
 Les résultats de `lm()` sont comparables avec la fonction maison `regression()` expliquée auparavant à la section [L’analyse de régression].
 
 
-```r
+``` r
 regression(y = jd$y, X = jd[ ,2:4])
 >           Estimate Std.Error t.value  p.value
 > intercept   -0.018    0.0253  -0.713 4.76e-01
@@ -680,7 +680,7 @@ Un article scientifique rapporte les résultats à peu près comme ceci.
 Pour vérifier la qualité des résultats, il faut vérifier la distribution des résidus. Pour ce faire, il faut extraire les résidus et les valeurs prédites. Pour la création de graphiques, il est plus simple d'ajouter ces scores au jeu de données. Les fonctions `resid()` et `predict()` extraient les résidus et les prédictions en y insérant comme argument le sommaire de la fonction `lm()` obtenu avec les données.
 
 
-```r
+``` r
 # Ajouter les résidus et scores prédits à la base de données
 # avec la fonction `resid()`
 jd$residu <- resid(res.lm)
@@ -690,7 +690,7 @@ jd$predit <- predict(res.lm)
 Une fois ces valeurs extraites, le package `ggplot2` permet de réaliser rapidement des graphiques (voir  [Visualiser]), comme le diagramme de dispersion à la Figure\ \@ref(fig:respred) ou l'histogramme des résidus à la Figure\ \@ref(fig:reshist). Dans les meilleures situations, les résidus sont distribués normalement dans l'histogramme et aucune tendance n'est discernable dans le diagramme de dispersion. Si ce n'est pas le cas, il faut étudier davantage la situation, par exemple, une relation non linéaire imprévue. Les Figures\ \@ref(fig:respred)\ et\ \@ref(fig:reshist) ne signalent aucun problème, ce qui est attendu considérant la création des données employées.
 
 
-```r
+``` r
 # Diagramme de dispersion prédits par résidus
 jd %>% 
   ggplot(mapping = aes(x = predit, y = residu)) + 
@@ -703,7 +703,7 @@ jd %>%
 </div>
 
 
-```r
+``` r
 # Histogramme des résidus
 jd %>% 
   ggplot(mapping = aes(x = residu)) + 
@@ -731,7 +731,7 @@ La corrélation partielle mesure le degré d'association *symétrique* entre deu
 La formule pour calculer $\mathbf{D}_{\mathbf{S}^{-1}}$ est la même que l'équation\ \@ref(eq:obtD2), mais où $\mathbf{S}$ est remplacée par $\mathbf{S}^{-1}$. En code **R**, l'équation\ \@ref(eq:partielle) devient la syntaxe suivante.
 
 
-```r
+``` r
 # La matrice de corrélation partielle
 Rp <- -cov2cor(solve(S))
 ```
@@ -752,7 +752,7 @@ Le calcul de la matrice de corrélation semi partielle part de la matrice de cor
 Voici l'équation en code **R**.
 
 
-```r
+``` r
 # La matrice de corrélation semi partielle
 iS <- solve(S)
 Rsp <- -cov2cor(iS) / 
@@ -778,7 +778,7 @@ La section suivante développe un exemple afin de comparer la corrélation parti
 Le code suivant calcule la matrice de corrélation partielle et semi partielle en fonction des équations\ \@ref(eq:partielle)\ et\ \@ref(eq:semipartielle).
 
 
-```r
+``` r
 # Créer une matrice de covariance
 # avec des libellées
 Sigma <- matrix(c( 1, .2,  0,

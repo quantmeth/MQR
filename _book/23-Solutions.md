@@ -10,7 +10,7 @@
 Le résultat est $1, 2, 3$. Le fait d'assigner une valeur à une fonction (ou variable) écrase cette dernière.
 
 
-```r
+``` r
 mean <- c(1, 2, 3)
 mean
 > [1] 1 2 3
@@ -29,7 +29,7 @@ Le premier est une commentaire (voir [Les commentaires]) alors que le second est
 3. Créer un vecteur contenant les valeurs $4, 10, 32$. Calculer la moyenne et l'écart type de ce vecteur.
 
 
-```r
+``` r
 vecteur <- c(4, 10, 32)
 mean(vecteur)
 > [1] 15.3
@@ -44,7 +44,7 @@ Voir [Concaténer] pour créer un vecteur et [la moyenne] et [l'écart type] pou
 4. Créer un vecteur contenant les valeurs de $4$ à $11$. Sélectionner la deuxième valeur de ce vecteur, puis additionner 100 à cette valeur et remplacer la dans le vecteur.
 
 
-```r
+``` r
 vecteur <- 4:11 # ou seq(4, 11)
 vecteur[2] <- vecteur[2] + 100
 ```
@@ -56,7 +56,7 @@ Voir [Concaténer] pour créer un vecteur et [Référer à des sous-éléments] 
 5. Générer 10 valeurs aléatoires distribuées normalement avec une moyenne de 50 et un écart type de 4. Calculer la moyenne, la médiane et la variance.
 
 
-```r
+``` r
 # Pour la reproductibilité
 set.seed(42)
 
@@ -79,7 +79,7 @@ Voir [Les graines] pour la fonction `set.seed()`, [Les distributions] pour la fo
 6. Créer un jeu de données contenant quatre sujets avec, pour chacun, leur nom de famille, leur âge et un score d'appréciation tiré d'une distribution uniforme allant de 0 à 100.
 
 
-```r
+``` r
 # Pour la reproductibilité
 set.seed(1234)
 
@@ -106,7 +106,7 @@ Voir [Les graines] pour la fonction `set.seed()`, [Créer un jeu de données] po
 En prenant `a` et `b` comme arguments.
 
 
-```r
+``` r
 hypothenus <- function(a, b){
   sqrt(a^2 + b^2)
 }
@@ -123,7 +123,7 @@ Voir [Les fonctions] pour plus d'informations.
 Deux possibilités ici. Soit `x` est un vecteur contenant plusieurs nombres ou il est un nombre et il faut ajouter la moyenne ($\mu$) et l'écart type ($\sigma$).
 
 
-```r
+``` r
 # Premier cas
 score.z <- function(x) {
   (x-mean(x))/sd(x)
@@ -149,7 +149,7 @@ Voir [Les fonctions] pour plus d'informations. Les scores-$z$ sont abordés plus
 Voici une autre fonction calculant une médiane d'un vecteur.
 
 
-```r
+``` r
 mediane <- function(x){
   x <- sort(x)
   longueur <- length(x)
@@ -175,7 +175,7 @@ Voir [Les fonctions], mais surtout [La médiane], pour plus d'informations.
 Plusieurs solutions possibles dont en voici une.
 
 
-```r
+``` r
 pivot <- function(k, n){
   pivoter <- c((n+1):k, 1:n)
   pivoter
@@ -196,7 +196,7 @@ pivot(k = k, n = 2)
 Plusieurs solutions possibles dont en voici deux.
 
 
-```r
+``` r
 fibonnaci1 <-  function(n){
   # n est le nombre d'éléments de la série demandée.
   # Création d'un vecteur de taille n ne contenant que des 1.
@@ -220,7 +220,7 @@ fibonnaci1 <-  function(n){
 En voici une autre en utilisant la récursion (une fonction qui s’appelle elle-même).
 
 
-```r
+``` r
 fibonnaci2 <- function(n){
   if(n <= 2){
     # Si n est plus petit que 2, alors retourne 1
@@ -249,7 +249,7 @@ fibonnaci2(n)
 1. À l'aide de `data_edit()` du package `DataEditR`, créez un jeu données contenant trois participants ayant les caractéristiques suivantes, `nom = Alexandre, Samuel et Vincent` et `age = 20, 22 et 31`.
 
 
-```r
+``` r
 # Installer et appeler le package DataEditR, si ce n'est fait
 jd <- DataEditR::data_edit()
 ```
@@ -268,7 +268,7 @@ La Figure\ \@ref(fig:dataed2) montre le résultat dans le tableur.
 Avec le `tidyverse` de télécharger.
 
 
-```r
+``` r
 cars %>%                               # Le jeu de données
   select(dist) %>%                     # Sélectionner
   mutate(dist_m = dist / 3.2808)  %>%  # Transformer
@@ -291,7 +291,7 @@ La fonction `head()` permet d'afficher seulement les six premières lignes au li
 Avec le `tidyverse` de télécharger.
 
 
-```r
+``` r
 iris %>% 
   group_by(Species) %>% 
   summarise(M = mean(Petal.Length), ET = sd(Petal.Length))
@@ -307,7 +307,7 @@ Voir [La moyenne], [L'écart type] et [Manipuler]. Il est aussi possible d'utili
 Pour la figure, il faut prendre le résultat de la manipulation précédente et utiliser `ggplot2` avec la représentation géométrique `geom_col()` et la cartographie `mapping = aes(x = Species, y = M)`, ce qui donne l’espèce à l’abscisse et la moyenne (`M`) à l'ordonnée.
 
 
-```r
+``` r
 iris %>% 
   group_by(Species) %>% 
   summarise(M = mean(Petal.Length), ET = sd(Petal.Length)) %>% 
@@ -325,7 +325,7 @@ iris %>%
 4. Prenez le jeu de données `mtcars` et produisez un diagramme de dispersion montrant la puissance brute (en chevaux) (`hp`) par rapport à consommation en km/l (basé sur `mpg`) tout en soulignant l'effet du nombre de cylindres (`cyl`). **Attention** la fonction `as_factor` permettra d'utiliser `cyl` en facteur et le rapprt mpg vers kml approximativement $.425$.
 
 
-```r
+``` r
 mtcars %>% 
   mutate(kml = .425 * mpg,
          cyl = as_factor(cyl)) %>% 
@@ -343,7 +343,7 @@ mtcars %>%
 5. Avec le même jeu de données et objectif que la question précédente, ajouter une droite de prédiction avec `geom_smooth()` selon un modèle linéare (`lm`) et sans erreur standard (`se`).
 
 
-```r
+``` r
 mtcars %>% 
   mutate(kml = .425 * mpg,
          cyl = as_factor(cyl)) %>% 
@@ -363,7 +363,7 @@ mtcars %>%
 6. Avec le jeu de données `chickwts`, produire une boîte à moustache du poids des poulets en fonction de leur alimentation.
 
 
-```r
+``` r
 chickwts %>% 
   ggplot(mapping = aes(x = feed, y = weight)) +
   geom_boxplot()
@@ -382,7 +382,7 @@ Dans cette question, l'utilisation du filtre `filter(feed %in% c("horsebean", "s
 7. Prenez le jeu de données `mtcars` et produisez un histogramme montrant la variabilité de la consommation `mpg` par rapport à la transmission (`am`). **Attention** la fonction `as_factor` permettra d'utiliser `am` en facteur.
 
 
-```r
+``` r
 mtcars %>% 
   mutate(am = as_factor(am)) %>% 
   ggplot(mapping = aes(x = mpg, fill = am)) + 
@@ -398,7 +398,7 @@ Noter que `bins = 12` ne sert qu'à éviter un avertissement.
 Pour avoir les histogrammes dans des cadrans différents, la fonction `facet_wrap()` est utile. 
 
 
-```r
+``` r
 mtcars %>% 
   mutate(am = as_factor(am)) %>% 
   ggplot(mapping = aes(x = mpg)) + 
@@ -415,7 +415,7 @@ mtcars %>%
 8. Prendre le jeu de données `msleep` et produire un diagramme à barres pour observer la fréquence des régimes alimentaires.
 
 
-```r
+``` r
 # msleep fait parti du package `ggplot2`
 msleep %>% 
   ggplot(mapping = aes(x = vore)) + 
@@ -432,7 +432,7 @@ msleep %>%
 9. Prendre le jeu de données `msleep` et produisez une boîte à moustache pour observer le temps total de sommeil (`sleep_total`) moyen par rapport aux régimes (`vore`). **Attention** aux données manquantes.
 
 
-```r
+``` r
 msleep %>% 
   na.omit() %>% 
   ggplot(mapping = aes(x = vore, y= sleep_total)) + 
@@ -448,7 +448,7 @@ msleep %>%
 10. Avec le jeu de données `chickwts`, produire un diagramme à barres du poids moyen des poulets par rapport à leur alimentation en ne conservant que les graines de tournesols et les fèveroles. 
 
 
-```r
+``` r
 chickwts %>% 
   filter(feed %in% c("horsebean", "sunflower")) %>% 
   group_by(feed) %>% 
@@ -469,7 +469,7 @@ chickwts %>%
 1. Avec le jeu de données `mtcars`, réaliser une analyse descriptive complète. Ne conservez que la moyenne, l'écart type, l'asymétrie et l'aplatissement.
 
 
-```r
+``` r
 psych::describe(mtcars)[c("mean","sd","skew","kurtosis")]
 >        mean     sd  skew kurtosis
 > mpg   20.09   6.03  0.61    -0.37
@@ -492,7 +492,7 @@ Voir [Les variables à échelles continues] pour l'utilisation de `psych::descri
 2. Avec le jeu de données `CO2`, faire une table de contingence entre `Treatment` et `Type`.
 
 
-```r
+``` r
 table(CO2[c("Type","Treatment")])
 >              Treatment
 > Type          nonchilled chilled
@@ -507,7 +507,7 @@ Voir [Les variables à échelles nominales] pour l'utilisation de `table()` et [
 3. Produire les valeurs-$t$ critiques pour $dl = 1,2,3 ,... ,30$ et $\alpha=.05$ unilatérale.
 
 
-```r
+``` r
 alpha <- .05
 qt(1 - alpha, df = 1:30) # ou qt(alpha, df = 1:30, lower.tail = FALSE) 
 >  [1] 6.31 2.92 2.35 2.13 2.02 1.94 1.89 1.86 1.83 1.81 1.80
@@ -520,7 +520,7 @@ qt(1 - alpha, df = 1:30) # ou qt(alpha, df = 1:30, lower.tail = FALSE)
 4. Comparer la puissance de la distribution-$t$ avec 20 degrés de liberté par rapport à une distribution normale centrée réduite avec une $\alpha = .05$ bilatérale. L'hypothèse alternative est distribuée normalement et fixée à une moyenne de 2 et l'écart type est de 1.
 
 
-```r
+``` r
 # Fixer l'alpha
 alpha <- .05
 
@@ -540,7 +540,7 @@ pnorm(c(crit.t, crit.z), mean = 2, lower.tail = FALSE)
 5. Calculer la puissance d'une corrélation de $\rho = .30$ avec 80 participants et un $\alpha = .05$ bilatérale. Rappel : une corrélation peut se *standardiser* avec la tangente hyperbolique inverse, soit `atanh()`, et en multipliant par l'erreur type, $\sqrt{n-3}$. (Question difficile)
 
 
-```r
+``` r
 # Fixer les paramètres
 r <- .30
 alpha <- .05
@@ -564,7 +564,7 @@ L'équation \@ref(eq:r2t) de la section sur [la corrélation] permet de transfor
 6. Avec le jeu de données `ToothGrowth`, réaliser un test-$t$ afin de comparer les `supp` par rapport à la longueur des dents (`len`).
 
 
-```r
+``` r
 t.test(len ~ supp, data = ToothGrowth)
 > 
 > 	Welch Two Sample t-test
@@ -584,12 +584,15 @@ t.test(len ~ supp, data = ToothGrowth)
 7. Avec le jeu de données `sleep`, faire un test-$t$ permettant de comparer les deux temps de mesure nommés `group` par rapport à la variable dépendante `extra`. 
 
 
-```r
-t.test(extra ~ group, data = sleep, paired = TRUE)
+``` r
+group1 <- sleep$extra[sleep$group == "1"]
+group2 <- sleep$extra[sleep$group == "2"]
+
+t.test(group1, group2, paired = TRUE)
 > 
 > 	Paired t-test
 > 
-> data:  extra by group
+> data:  group1 and group2
 > t = -4, df = 9, p-value = 0.003
 > alternative hypothesis: true mean difference is not equal to 0
 > 95 percent confidence interval:
@@ -605,7 +608,7 @@ t.test(extra ~ group, data = sleep, paired = TRUE)
 Plusieurs simulations sont possibles. Voici un exemple.
 
 
-```r
+``` r
 # Énumérer les choix
 choix <- c("roche", "papier", "ciseau")
 
@@ -647,7 +650,7 @@ gain / nreps
 9. Réaliser une simulation. Trouver la valeur critique (`c.vrit`) pour un $\alpha = .025$ unilatérale d'une distribution normale centrée sur $0$ et un écart type de $1/\sqrt{n}$. Le scénario : tirer aléatoirement un échantillon de $n=30$ participants à partir d'une distribution normale de moyenne $.5$ et un écart type de 1. Calculer la moyenne de cet échantillon. Pour chaque scénario, additionner chaque occasion où cette moyenne est plus élevée que la valeur critique. Répéter ce scénario 1000 fois. Calculer la probabilité (en pourcentage) d'occurrence selon laquelle la moyenne de l'échantillon est plus élevée que la valeur critique.
 
 
-```r
+``` r
 # Fixer les paramètres
 alpha <- .025
 n <- 30
@@ -677,7 +680,7 @@ somme/nreps
 Avec les renseignements précédents, calculer la puissance.
 
 
-```r
+``` r
 pnorm(v.crit, mean = mu1, sd = 1/sqrt(n), lower.tail = FALSE)
 > [1] 0.782
 ```
@@ -686,7 +689,7 @@ pnorm(v.crit, mean = mu1, sd = 1/sqrt(n), lower.tail = FALSE)
 10. Réaliser un bootstrap la corrélation entre `sleep_total` (temps de sommeil total) et `bodywt` (poids du corps) dans le jeu de données `msleep` (du package `ggplot2`). Produire la moyenne et l'écart type des échantillons *bootstrapées* ainsi que l'intervalle de confiance à 95%.
 
 
-```r
+``` r
 # Initialiser 
 set.seed(2018)
 nreps <- 1000
@@ -718,7 +721,7 @@ quantile(correl, probs = c(alpha/2, 1-alpha/2))
 1. Avec le jeu de données `ToothGrowth`, réaliser l'anova de `len` par rapport à l'interaction entre `supp` et `dose`. Consulter le sommaire.
 
 
-```r
+``` r
 res.aov <- aov(len ~ supp * dose, data = ToothGrowth)
 summary(res.aov)
 >             Df Sum Sq Mean Sq F value  Pr(>F)    
@@ -736,7 +739,7 @@ summary(res.aov)
 2. Avec le jeu de données `ToothGrowth`, réaliser le régression de `len` par rapport à l'interaction entre `supp` et `dose`. Consulter le sommaire.
 
 
-```r
+``` r
 res.lm <- lm(len ~ supp * dose, data = ToothGrowth)
 summary(res.lm)
 > 
@@ -750,7 +753,7 @@ summary(res.lm)
 > Coefficients:
 >             Estimate Std. Error t value Pr(>|t|)    
 > (Intercept)    11.55       1.58    7.30  1.1e-09 ***
-> suppVC         -8.25       2.24   -3.69  0.00051 ***
+> suppVC         -8.26       2.24   -3.69  0.00051 ***
 > dose            7.81       1.20    6.53  2.0e-08 ***
 > suppVC:dose     3.90       1.69    2.31  0.02463 *  
 > ---
@@ -767,7 +770,7 @@ summary(res.lm)
 3. Créer un jeu de données pour la structure de la Figure\ \@ref(fig:modex1). Le jeu de données est standardisé et contient 123 sujets.
 
 
-```r
+``` r
 n <- 123
 set.seed(n)
 x <- rnorm(n)
@@ -789,7 +792,7 @@ head(jd)
 4. Créer un jeu de données pour la structure de la Figure\ \@ref(fig:modex2). Le jeu de données est standardisé et contient 456 sujets.
 
 
-```r
+``` r
 n <- 456
 set.seed(n)
 q <- rnorm(n)
@@ -816,7 +819,7 @@ head(jd)
 Pour faciliter la résolution de cette quesiton, il est beaucoup plus simplede passer par le [Cas général] de génération de données et d'utiliser la fonction maison `beta2cov` qui s'importe en collant la syntaxe directement dans l'environnement **R** ou qui est disponible dans le package `pathanalysis` vu dans la section [Rapporter l'analyse de médiation].
 
 
-```r
+``` r
 library(pathanalysis)
 n <- 789
 set.seed(n)
@@ -856,7 +859,7 @@ head(jd)
 Il existe plusieurs façona de faire l'analyse de l'analyse de médiation. Voici celle avec la fonction `mediation()` du package `pathanalysis`.
 
 
-```r
+``` r
 # Vérifier que les variables ont bien des nom de colonnes
 # Pour s'en assurer
 # colnames(jd) <- c("x", "y", "w", "z")
@@ -899,7 +902,7 @@ mediation(z ~ w ~ y ~ x, data = jd, standardized = TRUE)
 7. Avec le jeu de données `ToothGrowth`, analyser l'interaction entre `supp` et `dose` sur la variable dépendante `len`. Produire les graphiques
 
 
-```r
+``` r
 res.lm <- lm(len ~ supp * dose, data = ToothGrowth)
 summary(res.lm)
 > 
@@ -913,7 +916,7 @@ summary(res.lm)
 > Coefficients:
 >             Estimate Std. Error t value Pr(>|t|)    
 > (Intercept)    11.55       1.58    7.30  1.1e-09 ***
-> suppVC         -8.25       2.24   -3.69  0.00051 ***
+> suppVC         -8.26       2.24   -3.69  0.00051 ***
 > dose            7.81       1.20    6.53  2.0e-08 ***
 > suppVC:dose     3.90       1.69    2.31  0.02463 *  
 > ---
@@ -928,7 +931,7 @@ summary(res.lm)
 Le graphique des pentes simples.
 
 
-```r
+``` r
 library(interactions)
 interact_plot(model = res.lm,
               pred = dose,
@@ -943,26 +946,26 @@ interact_plot(model = res.lm,
 Le graphique de Johnson-Neyman.
 
 
-```r
+``` r
 sim_slopes(model = res.lm,
            pred = dose,
            modx = supp,
            jnplot = TRUE)
 > Warning: Johnson-Neyman intervals are not available for factor
-> moderators.
-> SIMPLE SLOPES ANALYSIS 
-> 
-> Slope of dose when supp = VC: 
-> 
->    Est.   S.E.   t val.      p
-> ------- ------ -------- ------
->   11.72   1.20     9.80   0.00
+> predictors or moderators.
+> SIMPLE SLOPES ANALYSIS
 > 
 > Slope of dose when supp = OJ: 
 > 
 >   Est.   S.E.   t val.      p
 > ------ ------ -------- ------
 >   7.81   1.20     6.53   0.00
+> 
+> Slope of dose when supp = VC: 
+> 
+>    Est.   S.E.   t val.      p
+> ------- ------ -------- ------
+>   11.72   1.20     9.80   0.00
 ```
 
 ## Analyses factorielles {-}
@@ -970,7 +973,7 @@ sim_slopes(model = res.lm,
 ### Question 1 {-}
 1. Créer un jeu de données pour la structure de la Figure\ \@ref(fig:structcp3). Le jeu de données est standardisé et contient 584 sujets.
 
-```r
+``` r
 # Programmer la structure factorielle
 FS <- matrix(c(.5, .5, .3, .2,  0,  0,  0,  0,  0,
                 0,  0,  0, .7, .7, .7,  0,  0,  0,
@@ -1013,7 +1016,7 @@ head(jd)
 ### Question 2 {-}
 2. Utiliser la fonction `eigen()` pour extraire les valeurs propres, la variance expliquée de chacune d'elle et les loadings du jeu de données de la Question\ 1.
 
-```r
+``` r
 # L'analyse en composantes principales
 res.acp <- eigen(cor(jd))
 
@@ -1029,32 +1032,32 @@ res.acp$values / ncol(jd)
 # Les loadings (pour toutes les dimensions)
 res.acp$vectors %*% diag(sqrt(res.acp$values))
 >          [,1]    [,2]    [,3]     [,4]     [,5]    [,6]
->  [1,] 0.15072 -0.6776  0.1101 -0.10901 -0.16094  0.6295
->  [2,] 0.13596 -0.5962  0.2087  0.47882  0.09149 -0.0687
->  [3,] 0.13756 -0.6536  0.0685 -0.37469 -0.00409 -0.5843
->  [4,] 0.83004  0.0229  0.0341  0.04461 -0.02579 -0.0199
->  [5,] 0.79778  0.1475  0.1708  0.00734  0.01265 -0.0669
->  [6,] 0.77087  0.2000 -0.1981 -0.05133 -0.02211  0.0780
->  [7,] 0.03508 -0.1477 -0.5661  0.67715  0.08179 -0.1098
->  [8,] 0.00983 -0.1087 -0.6674 -0.16089 -0.64746 -0.0442
->  [9,] 0.06704 -0.1702 -0.5951 -0.33729  0.65972  0.1328
+>  [1,] 0.15072  0.6776  0.1101  0.10901 -0.16094  0.6295
+>  [2,] 0.13596  0.5962  0.2087 -0.47882  0.09149 -0.0687
+>  [3,] 0.13756  0.6536  0.0685  0.37469 -0.00409 -0.5843
+>  [4,] 0.83004 -0.0229  0.0341 -0.04461 -0.02579 -0.0199
+>  [5,] 0.79778 -0.1475  0.1708 -0.00734  0.01265 -0.0669
+>  [6,] 0.77087 -0.2000 -0.1981  0.05133 -0.02211  0.0780
+>  [7,] 0.03508  0.1477 -0.5661 -0.67715  0.08179 -0.1098
+>  [8,] 0.00983  0.1087 -0.6674  0.16089 -0.64746 -0.0442
+>  [9,] 0.06704  0.1702 -0.5951  0.33729  0.65972  0.1328
 >          [,7]     [,8]     [,9]
->  [1,]  0.2625  0.00133  0.05561
->  [2,] -0.5825 -0.02710  0.01007
->  [3,]  0.2361 -0.10055  0.03887
->  [4,]  0.0722  0.12182 -0.53501
->  [5,]  0.0214  0.39869  0.38539
->  [6,] -0.0907 -0.53358  0.15615
->  [7,]  0.4191  0.00327  0.05981
->  [8,] -0.2760  0.13924  0.00353
->  [9,] -0.1772  0.11894 -0.01461
+>  [1,] -0.2625  0.00133  0.05561
+>  [2,]  0.5825 -0.02710  0.01007
+>  [3,] -0.2361 -0.10055  0.03887
+>  [4,] -0.0722  0.12182 -0.53501
+>  [5,] -0.0214  0.39869  0.38539
+>  [6,]  0.0907 -0.53358  0.15615
+>  [7,] -0.4191  0.00327  0.05981
+>  [8,]  0.2760  0.13924  0.00353
+>  [9,]  0.1772  0.11894 -0.01461
 ```
 
 ### Question 3 {-}
 3. Créer une fonction maison pour le test de Kaiser et utiliser le jeu de données créé à la Question\ 1.
 
 
-```r
+``` r
 kaiser.maison <- function(eig, crit = 1){
   return(sum(eig > crit))
 }
@@ -1065,7 +1068,7 @@ kaiser.maison(eig = res.acp$values)
 4. Créer une fonction maison pour l'analyse parallèle et utiliser le jeu de données créé à la Question\ 1.
 
 
-```r
+``` r
 parallel.maison <- function(eig, ns, nreps = 1000, percentile = .5){
   # Répliquer (replicate) l'ACP (eigen) d'une matrice 
   # de corrélation (cor) de données aléatoires (rnorm)
@@ -1085,7 +1088,7 @@ parallel.maison(res.acp$values, ns = 584)
 ### Question 5 {-}
 5. Utiliser `Rnest` avec le jeu de données créé à la Question\ 1. Produire une graphique.
 
-```r
+``` r
 library(Rnest)
 FALSE 
 FALSE Attachement du package : 'Rnest'
@@ -1097,7 +1100,7 @@ FALSE
 FALSE     loadings
 res <- nest(jd)
 res
-FALSE At 95% confidence, Nest Eigenvalue Sufficiency Test (NEST) suggests 3 factors.
+FALSE At 95% confidence, Next Eigenvalue Sufficiency Test (NEST) suggests 3 factors.
 plot(res)
 ```
 
@@ -1107,7 +1110,7 @@ plot(res)
 6. Utiliser `factanal()` pour 3 facteurs avec le jeu de données créé à la Question\ 1. Extraire les scores et les loadings.
 
 
-```r
+``` r
 # L'analyse factorielle
 res.fa <- factanal(jd,
          factors = 3,

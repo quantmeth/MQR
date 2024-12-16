@@ -78,7 +78,7 @@ Plusieurs modèles peuvent être utilisés, comme systématiquement choisir la m
 
 
 
-```r
+``` r
 # Simulation du problème de Monty Hall
 # Valeurs possibles des portes
 portes <- c("Chèvre", "Chèvre", "Voiture")
@@ -149,7 +149,7 @@ Une autre façon de rendre se problème plus intuitif est de considérer le prob
 Avec quelques modifications de la syntaxe précédente, le code suivant illustre le cas à 100 portes. À noter que l'usage du conditionnelle n'est plus nécessaire au bon fonctionnement de `sample()`, car il y a maintenant plus de trois portes.
 
 
-```r
+``` r
 # Simulation du problème de Monty Hall
 portes <- c("Voiture", rep("Chèvre", 99))
 n <- length(portes)
@@ -233,7 +233,7 @@ Le fondement du bootstrap repose sur les étapes suivantes :
 Ce processus hautement facilité par l'excellente performance des ordinateurs d'aujourd'hui, se réalise très facilement et rapidement. L'exemple suivant se base sur le rééchantillonnage (1000 fois) de la moyenne à partir d'une variable aléatoire tirée d'une distribution uniforme avec un minimum de 5 et d'une maximum de 15.
 
 
-```r
+``` r
 set.seed(158)
 # Nombre d'unités
 n <- 30
@@ -265,7 +265,7 @@ La fonction `sample(, replace = TRUE)` rééchantillonne avec remplacement les i
 À partir des informations obtenues, des inférences statistiques sont possibles. Toutes les estimations sont présentées comme un histogramme tel que l'illustre la Figure\ \@ref(fig:histmh2). Le code se retrouve ci-dessous. Quelques formules pour améliorer la présentation se retrouvent dans la syntaxe. L'utilisation simple de `hist()` pourra convenir.
 
 
-```r
+``` r
 hist(moyenne.X,              # Données
      ylab = " Frequence",    # Changer l'axe y
      main = "",              # Retirer le titre
@@ -286,7 +286,7 @@ Le cas illustré est trivial au sens où, par le théorème central limite, la d
 À partir des informations obtenues auprès du rééchantillonnage, il est possible d'obtenir les éléments désirés. Comme le cas est trivial, les indices statistiques seront très similaires. Cela confirmera au lecteur qu'aucun principe ésotérique ne s'est déroulé devant ses yeux en plus de confirmer que les statistiques attendues se produisent effectivement.
 
 
-```r
+``` r
 # Voici la moyenne et l'erreur standard originales
 mean(X) ; sd(X)/sqrt(n)
 > [1] 10.2
@@ -301,7 +301,7 @@ mean(moyenne.X)  ; sd(moyenne.X)
 La moyenne et l'erreur standard sont très près de la moyenne de l'échantillon et celle de la population (qui est de 10) et de l'erreur type attendue. Il est possible de créer des intervalles de confiances avec la fonction `quantile` qui prend en argument un vecteur de données et les probabilités désirées. Dans le cas de 95% pour une erreur de type I de 5%, soit $\alpha=.05$, il s'agit de $.05/2 = .025$ et $1-.05/2= .975$, laissant au total 5% aux extrémités.
 
 
-```r
+``` r
 # Erreur de type I
 alpha <- .05
 
@@ -334,7 +334,7 @@ La fonction principale est `apply()`. Elle nécessite le jeu de données (`X`) s
 <!-- TODO EXPLIQUER PLUS -->
 
 
-```r
+``` r
 # Il faut un vecteur de données `vec`, un nombre de répétitions `nreps`
 # et une fonction `theta` à calculer sur le vecteur
 bootstrap <- function(vec, nreps, theta){

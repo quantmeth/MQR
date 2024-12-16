@@ -226,7 +226,7 @@ temps2 <- temps1 + difference
 
 La fonction base de **R** est encore `t.test()`, mais il faudra spécifier l'argument `paired = TRUE` pour commander un test apparié (une autre appellation pour un test-$t$ dépendant).
 
-```{r}
+```{r investigate}
 t.test(temps1, temps2, paired = TRUE)
 testt.dep(temps1, temps2)
 ```
@@ -282,15 +282,6 @@ Pour la troisième option, comme l'équation sur le test-$t$ dépendant le sugg�
 ```{r}
 # Avec la différence des deux vecteurs
 t.test(temps2 - temps1)
-```
-Une quatrième option, si le temps est une colonne dans le jeu de données, alors le même style de formule peut être utilisé comme [Le test-$t$ indépendant] toujours en indiquant `paired = TRUE`.
-
-```{r}
-# Avec la formule et les variables dans le même jeu de données
-# Le temps est une seule variable
-jd.td2 <- data.frame(mesure = c(temps1, temps2),
-               temps = rep(1:2, each = 25))
-t.test(mesure ~ temps, data = jd.td2, paired = TRUE)
 ```
 
 ### Rapporter un test-$t$ dépendant

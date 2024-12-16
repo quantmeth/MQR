@@ -7,7 +7,7 @@
 <title> 13 Comparer | Méthodes quantitatives avec R</title>
 <meta name="author" content="P.-O. Caron">
 <meta name="description" content="Les expérimentateurs souhaitent souvent tester plus que deux moyennes. L’analyse de variance, souvent appelée ANOVA (ANalysis Of VAriance), permet de comparer une variable continue sur plusieurs...">
-<meta name="generator" content="bookdown 0.34 with bs4_book()">
+<meta name="generator" content="bookdown 0.41 with bs4_book()">
 <meta property="og:title" content=" 13 Comparer | Méthodes quantitatives avec R">
 <meta property="og:type" content="book">
 <meta property="og:url" content="mqr.teluq.ca/comparer.html">
@@ -17,9 +17,10 @@
 <meta name="twitter:description" content="Les expérimentateurs souhaitent souvent tester plus que deux moyennes. L’analyse de variance, souvent appelée ANOVA (ANalysis Of VAriance), permet de comparer une variable continue sur plusieurs...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.0/transition.js"></script><script src="libs/bs3compat-0.4.0/tabs.js"></script><script src="libs/bs3compat-0.4.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.8.0/transition.js"></script><script src="libs/bs3compat-0.8.0/tabs.js"></script><script src="libs/bs3compat-0.8.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-<script src="libs/htmlwidgets-1.6.0/htmlwidgets.js"></script><script src="libs/viz-1.8.2/viz.js"></script><link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
+<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script><script src="libs/viz-1.8.2/viz.js"></script><link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
 <script src="libs/grViz-binding-1.0.11/grViz.js"></script><!-- 
     \(
     \newcommand{\EX}{\mathbb{E}}
@@ -33,6 +34,7 @@
     div.csl-bib-body { }
     div.csl-entry {
       clear: both;
+          margin-bottom: 0em;
         }
     .hanging div.csl-entry {
       margin-left:2em;
@@ -157,73 +159,73 @@ où <span class="math inline">\(dl_1 = k-1\)</span>, et <span class="math inline
 <span class="header-section-number">13.2</span> La création de données<a class="anchor" aria-label="anchor" href="#la-cr%C3%A9ation-de-donn%C3%A9es"><i class="fas fa-link"></i></a>
 </h2>
 <p>Dans un jeu de données commun, une variable désigne les groupes et une autre leur score sur une certaine mesure. La syntaxe suivante montre trois façons pour créer une variable facteur.</p>
-<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="comparer.html#cb173-1" aria-hidden="true" tabindex="-1"></a>nk <span class="ot">&lt;-</span> <span class="dv">5</span> <span class="co"># nombre d'unités par groupe</span></span>
-<span id="cb173-2"><a href="comparer.html#cb173-2" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="dv">4</span>  <span class="co"># nombre de groupes</span></span>
-<span id="cb173-3"><a href="comparer.html#cb173-3" aria-hidden="true" tabindex="-1"></a><span class="co"># En ordre</span></span>
-<span id="cb173-4"><a href="comparer.html#cb173-4" aria-hidden="true" tabindex="-1"></a>groupe1 <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span>k, <span class="at">each =</span> nk)</span>
-<span id="cb173-5"><a href="comparer.html#cb173-5" aria-hidden="true" tabindex="-1"></a><span class="co"># En alternance</span></span>
-<span id="cb173-6"><a href="comparer.html#cb173-6" aria-hidden="true" tabindex="-1"></a>groupe2 <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span>k, <span class="at">times =</span> nk)</span>
-<span id="cb173-7"><a href="comparer.html#cb173-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Aléatoire</span></span>
-<span id="cb173-8"><a href="comparer.html#cb173-8" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">765</span>)</span>
-<span id="cb173-9"><a href="comparer.html#cb173-9" aria-hidden="true" tabindex="-1"></a>groupe3 <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span>k, <span class="at">size =</span> (k <span class="sc">*</span> nk), <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb173-10"><a href="comparer.html#cb173-10" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(groupe1, groupe2, groupe3)</span>
-<span id="cb173-11"><a href="comparer.html#cb173-11" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>       groupe1 groupe2 groupe3</span>
-<span id="cb173-12"><a href="comparer.html#cb173-12" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>  [<span class="dv">1</span>,]       <span class="dv">1</span>       <span class="dv">1</span>       <span class="dv">4</span></span>
-<span id="cb173-13"><a href="comparer.html#cb173-13" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>  [<span class="dv">2</span>,]       <span class="dv">1</span>       <span class="dv">2</span>       <span class="dv">2</span></span>
-<span id="cb173-14"><a href="comparer.html#cb173-14" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>  [<span class="dv">3</span>,]       <span class="dv">1</span>       <span class="dv">3</span>       <span class="dv">4</span></span>
-<span id="cb173-15"><a href="comparer.html#cb173-15" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>  [<span class="dv">4</span>,]       <span class="dv">1</span>       <span class="dv">4</span>       <span class="dv">3</span></span>
-<span id="cb173-16"><a href="comparer.html#cb173-16" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>  [<span class="dv">5</span>,]       <span class="dv">1</span>       <span class="dv">1</span>       <span class="dv">3</span></span>
-<span id="cb173-17"><a href="comparer.html#cb173-17" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>  [<span class="dv">6</span>,]       <span class="dv">2</span>       <span class="dv">2</span>       <span class="dv">4</span></span>
-<span id="cb173-18"><a href="comparer.html#cb173-18" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>  [<span class="dv">7</span>,]       <span class="dv">2</span>       <span class="dv">3</span>       <span class="dv">3</span></span>
-<span id="cb173-19"><a href="comparer.html#cb173-19" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>  [<span class="dv">8</span>,]       <span class="dv">2</span>       <span class="dv">4</span>       <span class="dv">1</span></span>
-<span id="cb173-20"><a href="comparer.html#cb173-20" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>  [<span class="dv">9</span>,]       <span class="dv">2</span>       <span class="dv">1</span>       <span class="dv">4</span></span>
-<span id="cb173-21"><a href="comparer.html#cb173-21" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">10</span>,]       <span class="dv">2</span>       <span class="dv">2</span>       <span class="dv">3</span></span>
-<span id="cb173-22"><a href="comparer.html#cb173-22" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">11</span>,]       <span class="dv">3</span>       <span class="dv">3</span>       <span class="dv">3</span></span>
-<span id="cb173-23"><a href="comparer.html#cb173-23" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">12</span>,]       <span class="dv">3</span>       <span class="dv">4</span>       <span class="dv">2</span></span>
-<span id="cb173-24"><a href="comparer.html#cb173-24" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">13</span>,]       <span class="dv">3</span>       <span class="dv">1</span>       <span class="dv">3</span></span>
-<span id="cb173-25"><a href="comparer.html#cb173-25" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">14</span>,]       <span class="dv">3</span>       <span class="dv">2</span>       <span class="dv">3</span></span>
-<span id="cb173-26"><a href="comparer.html#cb173-26" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">15</span>,]       <span class="dv">3</span>       <span class="dv">3</span>       <span class="dv">2</span></span>
-<span id="cb173-27"><a href="comparer.html#cb173-27" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">16</span>,]       <span class="dv">4</span>       <span class="dv">4</span>       <span class="dv">4</span></span>
-<span id="cb173-28"><a href="comparer.html#cb173-28" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">17</span>,]       <span class="dv">4</span>       <span class="dv">1</span>       <span class="dv">4</span></span>
-<span id="cb173-29"><a href="comparer.html#cb173-29" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">18</span>,]       <span class="dv">4</span>       <span class="dv">2</span>       <span class="dv">2</span></span>
-<span id="cb173-30"><a href="comparer.html#cb173-30" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">19</span>,]       <span class="dv">4</span>       <span class="dv">3</span>       <span class="dv">1</span></span>
-<span id="cb173-31"><a href="comparer.html#cb173-31" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">20</span>,]       <span class="dv">4</span>       <span class="dv">4</span>       <span class="dv">1</span></span></code></pre></div>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="comparer.html#cb172-1" tabindex="-1"></a>nk <span class="ot">&lt;-</span> <span class="dv">5</span> <span class="co"># nombre d'unités par groupe</span></span>
+<span id="cb172-2"><a href="comparer.html#cb172-2" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="dv">4</span>  <span class="co"># nombre de groupes</span></span>
+<span id="cb172-3"><a href="comparer.html#cb172-3" tabindex="-1"></a><span class="co"># En ordre</span></span>
+<span id="cb172-4"><a href="comparer.html#cb172-4" tabindex="-1"></a>groupe1 <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span>k, <span class="at">each =</span> nk)</span>
+<span id="cb172-5"><a href="comparer.html#cb172-5" tabindex="-1"></a><span class="co"># En alternance</span></span>
+<span id="cb172-6"><a href="comparer.html#cb172-6" tabindex="-1"></a>groupe2 <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span>k, <span class="at">times =</span> nk)</span>
+<span id="cb172-7"><a href="comparer.html#cb172-7" tabindex="-1"></a><span class="co"># Aléatoire</span></span>
+<span id="cb172-8"><a href="comparer.html#cb172-8" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">765</span>)</span>
+<span id="cb172-9"><a href="comparer.html#cb172-9" tabindex="-1"></a>groupe3 <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span>k, <span class="at">size =</span> (k <span class="sc">*</span> nk), <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb172-10"><a href="comparer.html#cb172-10" tabindex="-1"></a><span class="fu">cbind</span>(groupe1, groupe2, groupe3)</span>
+<span id="cb172-11"><a href="comparer.html#cb172-11" tabindex="-1"></a><span class="sc">&gt;</span>       groupe1 groupe2 groupe3</span>
+<span id="cb172-12"><a href="comparer.html#cb172-12" tabindex="-1"></a><span class="sc">&gt;</span>  [<span class="dv">1</span>,]       <span class="dv">1</span>       <span class="dv">1</span>       <span class="dv">4</span></span>
+<span id="cb172-13"><a href="comparer.html#cb172-13" tabindex="-1"></a><span class="sc">&gt;</span>  [<span class="dv">2</span>,]       <span class="dv">1</span>       <span class="dv">2</span>       <span class="dv">2</span></span>
+<span id="cb172-14"><a href="comparer.html#cb172-14" tabindex="-1"></a><span class="sc">&gt;</span>  [<span class="dv">3</span>,]       <span class="dv">1</span>       <span class="dv">3</span>       <span class="dv">4</span></span>
+<span id="cb172-15"><a href="comparer.html#cb172-15" tabindex="-1"></a><span class="sc">&gt;</span>  [<span class="dv">4</span>,]       <span class="dv">1</span>       <span class="dv">4</span>       <span class="dv">3</span></span>
+<span id="cb172-16"><a href="comparer.html#cb172-16" tabindex="-1"></a><span class="sc">&gt;</span>  [<span class="dv">5</span>,]       <span class="dv">1</span>       <span class="dv">1</span>       <span class="dv">3</span></span>
+<span id="cb172-17"><a href="comparer.html#cb172-17" tabindex="-1"></a><span class="sc">&gt;</span>  [<span class="dv">6</span>,]       <span class="dv">2</span>       <span class="dv">2</span>       <span class="dv">4</span></span>
+<span id="cb172-18"><a href="comparer.html#cb172-18" tabindex="-1"></a><span class="sc">&gt;</span>  [<span class="dv">7</span>,]       <span class="dv">2</span>       <span class="dv">3</span>       <span class="dv">3</span></span>
+<span id="cb172-19"><a href="comparer.html#cb172-19" tabindex="-1"></a><span class="sc">&gt;</span>  [<span class="dv">8</span>,]       <span class="dv">2</span>       <span class="dv">4</span>       <span class="dv">1</span></span>
+<span id="cb172-20"><a href="comparer.html#cb172-20" tabindex="-1"></a><span class="sc">&gt;</span>  [<span class="dv">9</span>,]       <span class="dv">2</span>       <span class="dv">1</span>       <span class="dv">4</span></span>
+<span id="cb172-21"><a href="comparer.html#cb172-21" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">10</span>,]       <span class="dv">2</span>       <span class="dv">2</span>       <span class="dv">3</span></span>
+<span id="cb172-22"><a href="comparer.html#cb172-22" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">11</span>,]       <span class="dv">3</span>       <span class="dv">3</span>       <span class="dv">3</span></span>
+<span id="cb172-23"><a href="comparer.html#cb172-23" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">12</span>,]       <span class="dv">3</span>       <span class="dv">4</span>       <span class="dv">2</span></span>
+<span id="cb172-24"><a href="comparer.html#cb172-24" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">13</span>,]       <span class="dv">3</span>       <span class="dv">1</span>       <span class="dv">3</span></span>
+<span id="cb172-25"><a href="comparer.html#cb172-25" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">14</span>,]       <span class="dv">3</span>       <span class="dv">2</span>       <span class="dv">3</span></span>
+<span id="cb172-26"><a href="comparer.html#cb172-26" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">15</span>,]       <span class="dv">3</span>       <span class="dv">3</span>       <span class="dv">2</span></span>
+<span id="cb172-27"><a href="comparer.html#cb172-27" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">16</span>,]       <span class="dv">4</span>       <span class="dv">4</span>       <span class="dv">4</span></span>
+<span id="cb172-28"><a href="comparer.html#cb172-28" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">17</span>,]       <span class="dv">4</span>       <span class="dv">1</span>       <span class="dv">4</span></span>
+<span id="cb172-29"><a href="comparer.html#cb172-29" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">18</span>,]       <span class="dv">4</span>       <span class="dv">2</span>       <span class="dv">2</span></span>
+<span id="cb172-30"><a href="comparer.html#cb172-30" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">19</span>,]       <span class="dv">4</span>       <span class="dv">3</span>       <span class="dv">1</span></span>
+<span id="cb172-31"><a href="comparer.html#cb172-31" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">20</span>,]       <span class="dv">4</span>       <span class="dv">4</span>       <span class="dv">1</span></span></code></pre></div>
 <p>Il est aussi possible de remplacer les arguments, <code>1:k</code> par des chaînes de caractères (des catégories au lieu de nombres).</p>
-<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="comparer.html#cb174-1" aria-hidden="true" tabindex="-1"></a>categorie <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"char"</span>, <span class="st">"chat"</span>, <span class="st">"cheval"</span>, <span class="st">"chevalier"</span>, <span class="st">"chien"</span>)</span>
-<span id="cb174-2"><a href="comparer.html#cb174-2" aria-hidden="true" tabindex="-1"></a>nk <span class="ot">&lt;-</span> <span class="dv">2</span></span>
-<span id="cb174-3"><a href="comparer.html#cb174-3" aria-hidden="true" tabindex="-1"></a>groupe <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(<span class="fu">rep</span>(categorie, <span class="at">each =</span> nk)) <span class="co"># Déclarer comme facteur</span></span>
-<span id="cb174-4"><a href="comparer.html#cb174-4" aria-hidden="true" tabindex="-1"></a>groupe</span>
-<span id="cb174-5"><a href="comparer.html#cb174-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>  [<span class="dv">1</span>] char      char      chat      chat      cheval   </span>
-<span id="cb174-6"><a href="comparer.html#cb174-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>  [<span class="dv">6</span>] cheval    chevalier chevalier chien     chien    </span>
-<span id="cb174-7"><a href="comparer.html#cb174-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Levels<span class="sc">:</span> char chat cheval chevalier chien</span></code></pre></div>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="comparer.html#cb173-1" tabindex="-1"></a>categorie <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"char"</span>, <span class="st">"chat"</span>, <span class="st">"cheval"</span>, <span class="st">"chevalier"</span>, <span class="st">"chien"</span>)</span>
+<span id="cb173-2"><a href="comparer.html#cb173-2" tabindex="-1"></a>nk <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb173-3"><a href="comparer.html#cb173-3" tabindex="-1"></a>groupe <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(<span class="fu">rep</span>(categorie, <span class="at">each =</span> nk)) <span class="co"># Déclarer comme facteur</span></span>
+<span id="cb173-4"><a href="comparer.html#cb173-4" tabindex="-1"></a>groupe</span>
+<span id="cb173-5"><a href="comparer.html#cb173-5" tabindex="-1"></a><span class="sc">&gt;</span>  [<span class="dv">1</span>] char      char      chat      chat      cheval   </span>
+<span id="cb173-6"><a href="comparer.html#cb173-6" tabindex="-1"></a><span class="sc">&gt;</span>  [<span class="dv">6</span>] cheval    chevalier chevalier chien     chien    </span>
+<span id="cb173-7"><a href="comparer.html#cb173-7" tabindex="-1"></a><span class="sc">&gt;</span> Levels<span class="sc">:</span> char chat cheval chevalier chien</span></code></pre></div>
 <p>Une bonne pratique dans le contexte des comparaisons de moyenne est de déclarer les variables catégorielles comme facteur avec <code><a href="https://rdrr.io/r/base/factor.html">as.factor()</a></code>.</p>
 <p>Pour créer des valeurs à ces catégories, une stratégie simple est de créer des valeurs pour chacun des groupes et de les combiner.</p>
-<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="comparer.html#cb175-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pour la reproductibilité</span></span>
-<span id="cb175-2"><a href="comparer.html#cb175-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2602</span>)</span>
-<span id="cb175-3"><a href="comparer.html#cb175-3" aria-hidden="true" tabindex="-1"></a>char      <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> nk, <span class="at">mean =</span> <span class="dv">15</span>, <span class="at">sd =</span> <span class="dv">4</span>) </span>
-<span id="cb175-4"><a href="comparer.html#cb175-4" aria-hidden="true" tabindex="-1"></a>chat      <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> nk, <span class="at">mean =</span> <span class="dv">20</span>, <span class="at">sd =</span> <span class="dv">4</span>) <span class="co"># Différences ici</span></span>
-<span id="cb175-5"><a href="comparer.html#cb175-5" aria-hidden="true" tabindex="-1"></a>cheval    <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> nk, <span class="at">mean =</span> <span class="dv">10</span>, <span class="at">sd =</span> <span class="dv">4</span>) <span class="co"># et ici</span></span>
-<span id="cb175-6"><a href="comparer.html#cb175-6" aria-hidden="true" tabindex="-1"></a>chevalier <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> nk, <span class="at">mean =</span> <span class="dv">15</span>, <span class="at">sd =</span> <span class="dv">4</span>)</span>
-<span id="cb175-7"><a href="comparer.html#cb175-7" aria-hidden="true" tabindex="-1"></a>chien     <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> nk, <span class="at">mean =</span> <span class="dv">15</span>, <span class="at">sd =</span> <span class="dv">4</span>) </span>
-<span id="cb175-8"><a href="comparer.html#cb175-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Combinés</span></span>
-<span id="cb175-9"><a href="comparer.html#cb175-9" aria-hidden="true" tabindex="-1"></a>score <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">c</span>(char, chat, cheval, chevalier, chien))</span>
-<span id="cb175-10"><a href="comparer.html#cb175-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Conserver toutes les informations en un jeu de données</span></span>
-<span id="cb175-11"><a href="comparer.html#cb175-11" aria-hidden="true" tabindex="-1"></a>donnees <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(groupe, score)</span>
-<span id="cb175-12"><a href="comparer.html#cb175-12" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(donnees)</span>
-<span id="cb175-13"><a href="comparer.html#cb175-13" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>   groupe score</span>
-<span id="cb175-14"><a href="comparer.html#cb175-14" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">1</span>   char    <span class="dv">14</span></span>
-<span id="cb175-15"><a href="comparer.html#cb175-15" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">2</span>   char    <span class="dv">12</span></span>
-<span id="cb175-16"><a href="comparer.html#cb175-16" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">3</span>   chat    <span class="dv">17</span></span>
-<span id="cb175-17"><a href="comparer.html#cb175-17" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">4</span>   chat    <span class="dv">21</span></span>
-<span id="cb175-18"><a href="comparer.html#cb175-18" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">5</span> cheval    <span class="dv">14</span></span>
-<span id="cb175-19"><a href="comparer.html#cb175-19" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">6</span> cheval    <span class="dv">10</span></span></code></pre></div>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="comparer.html#cb174-1" tabindex="-1"></a><span class="co"># Pour la reproductibilité</span></span>
+<span id="cb174-2"><a href="comparer.html#cb174-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2602</span>)</span>
+<span id="cb174-3"><a href="comparer.html#cb174-3" tabindex="-1"></a>char      <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> nk, <span class="at">mean =</span> <span class="dv">15</span>, <span class="at">sd =</span> <span class="dv">4</span>) </span>
+<span id="cb174-4"><a href="comparer.html#cb174-4" tabindex="-1"></a>chat      <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> nk, <span class="at">mean =</span> <span class="dv">20</span>, <span class="at">sd =</span> <span class="dv">4</span>) <span class="co"># Différences ici</span></span>
+<span id="cb174-5"><a href="comparer.html#cb174-5" tabindex="-1"></a>cheval    <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> nk, <span class="at">mean =</span> <span class="dv">10</span>, <span class="at">sd =</span> <span class="dv">4</span>) <span class="co"># et ici</span></span>
+<span id="cb174-6"><a href="comparer.html#cb174-6" tabindex="-1"></a>chevalier <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> nk, <span class="at">mean =</span> <span class="dv">15</span>, <span class="at">sd =</span> <span class="dv">4</span>)</span>
+<span id="cb174-7"><a href="comparer.html#cb174-7" tabindex="-1"></a>chien     <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> nk, <span class="at">mean =</span> <span class="dv">15</span>, <span class="at">sd =</span> <span class="dv">4</span>) </span>
+<span id="cb174-8"><a href="comparer.html#cb174-8" tabindex="-1"></a><span class="co"># Combinés</span></span>
+<span id="cb174-9"><a href="comparer.html#cb174-9" tabindex="-1"></a>score <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">c</span>(char, chat, cheval, chevalier, chien))</span>
+<span id="cb174-10"><a href="comparer.html#cb174-10" tabindex="-1"></a><span class="co"># Conserver toutes les informations en un jeu de données</span></span>
+<span id="cb174-11"><a href="comparer.html#cb174-11" tabindex="-1"></a>donnees <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(groupe, score)</span>
+<span id="cb174-12"><a href="comparer.html#cb174-12" tabindex="-1"></a><span class="fu">head</span>(donnees)</span>
+<span id="cb174-13"><a href="comparer.html#cb174-13" tabindex="-1"></a><span class="sc">&gt;</span>   groupe score</span>
+<span id="cb174-14"><a href="comparer.html#cb174-14" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">1</span>   char    <span class="dv">14</span></span>
+<span id="cb174-15"><a href="comparer.html#cb174-15" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">2</span>   char    <span class="dv">12</span></span>
+<span id="cb174-16"><a href="comparer.html#cb174-16" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">3</span>   chat    <span class="dv">17</span></span>
+<span id="cb174-17"><a href="comparer.html#cb174-17" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">4</span>   chat    <span class="dv">21</span></span>
+<span id="cb174-18"><a href="comparer.html#cb174-18" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">5</span> cheval    <span class="dv">14</span></span>
+<span id="cb174-19"><a href="comparer.html#cb174-19" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">6</span> cheval    <span class="dv">10</span></span></code></pre></div>
 </div>
 <div id="codage-factice" class="section level2" number="13.3">
 <h2>
 <span class="header-section-number">13.3</span> Codage factice<a class="anchor" aria-label="anchor" href="#codage-factice"><i class="fas fa-link"></i></a>
 </h2>
 <p>La plupart du temps, les variables de regroupement, les variables identifiant l’appartenance aux groupes, sont construites avec une variable de type facteur, c’est-à-dire une colonne avec différentes valeurs ou libellés. C’est d’ailleurs ce qui a été fait dans l’exemple précédent. Cette méthode d’identification de groupement implique une programmation plus intensive, surtout pour la création de valeurs. En termes de programmation, il est plus élégant de recourir à une fonction de codage factice (<em>dummy coding</em>). Cela permettra de représenter fidèlement le modèle sous-jacent. Étrangement, il n’y a pas de fonction de base avec <strong>R</strong> pour du codage factice. Une fonction maison permettra d’automatiser la réassignation des groupes (en une seule variable) sur plusieurs variables désignant leur appartenance.</p>
-<div class="sourceCode" id="cb176"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb175"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dummy.coding</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span></span>
 <span>  <span class="co"># Retourne un codage factice de x</span></span>
 <span>  <span class="co"># avec les facteurs en ordre alphabétique</span></span>
@@ -250,38 +252,38 @@ où <span class="math inline">\(dl_1 = k-1\)</span>, et <span class="math inline
 <!-- } -->
 <!-- ``` -->
 <p>La fonction maison retourne un codage factice pour les <span class="math inline">\(k\)</span> groupes. <strong>Attention</strong>, le codage factice est fait en ordre alphabétique. Comme il est redondant d’avoir <span class="math inline">\(k\)</span> groupes (identifier <span class="math inline">\(k\)</span> groupes nécessite <span class="math inline">\(k-1\)</span> variables), un groupe référent est désigné. Ce dernier aura 0 sur tous les scores. Pour retirer un groupe, l’utilisation des crochets et une valeur négative associés à la colonne du groupe référent feront l’affaire, p. ex. <code>dummy.coding(x)[,-k]</code> déclare le <span class="math inline">\(k\)</span><sup>e</sup> groupe comme le groupe référent.</p>
-<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="comparer.html#cb177-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pour la reproductibilité</span></span>
-<span id="cb177-2"><a href="comparer.html#cb177-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2602</span>)</span>
-<span id="cb177-3"><a href="comparer.html#cb177-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb177-4"><a href="comparer.html#cb177-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Facteur de groupe</span></span>
-<span id="cb177-5"><a href="comparer.html#cb177-5" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="fu">length</span>(categorie)</span>
-<span id="cb177-6"><a href="comparer.html#cb177-6" aria-hidden="true" tabindex="-1"></a>nk <span class="ot">&lt;-</span> <span class="dv">2</span></span>
-<span id="cb177-7"><a href="comparer.html#cb177-7" aria-hidden="true" tabindex="-1"></a>groupe <span class="ot">&lt;-</span> <span class="fu">rep</span>(categorie, <span class="at">each =</span> nk)</span>
-<span id="cb177-8"><a href="comparer.html#cb177-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb177-9"><a href="comparer.html#cb177-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Groupement</span></span>
-<span id="cb177-10"><a href="comparer.html#cb177-10" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">dummy.coding</span>(groupe)[,<span class="sc">-</span><span class="dv">5</span>] <span class="co"># groupe 4 "chien" comme référent</span></span>
-<span id="cb177-11"><a href="comparer.html#cb177-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb177-12"><a href="comparer.html#cb177-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Spécifications des paramètres</span></span>
-<span id="cb177-13"><a href="comparer.html#cb177-13" aria-hidden="true" tabindex="-1"></a>mu0 <span class="ot">&lt;-</span> <span class="dv">15</span></span>
-<span id="cb177-14"><a href="comparer.html#cb177-14" aria-hidden="true" tabindex="-1"></a>mu <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="sc">-</span><span class="dv">5</span>, <span class="dv">0</span>)</span>
-<span id="cb177-15"><a href="comparer.html#cb177-15" aria-hidden="true" tabindex="-1"></a>e <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> k <span class="sc">*</span> nk, <span class="at">sd =</span> <span class="dv">4</span>)</span>
-<span id="cb177-16"><a href="comparer.html#cb177-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb177-17"><a href="comparer.html#cb177-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Création des scores</span></span>
-<span id="cb177-18"><a href="comparer.html#cb177-18" aria-hidden="true" tabindex="-1"></a>score <span class="ot">&lt;-</span> <span class="fu">round</span>(mu0 <span class="sc">+</span> X <span class="sc">%*%</span> mu <span class="sc">+</span> e)</span>
-<span id="cb177-19"><a href="comparer.html#cb177-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb177-20"><a href="comparer.html#cb177-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Comparaison des valeurs</span></span>
-<span id="cb177-21"><a href="comparer.html#cb177-21" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(donnees, score)</span>
-<span id="cb177-22"><a href="comparer.html#cb177-22" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>       groupe score score</span>
-<span id="cb177-23"><a href="comparer.html#cb177-23" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">1</span>       char    <span class="dv">14</span>    <span class="dv">14</span></span>
-<span id="cb177-24"><a href="comparer.html#cb177-24" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">2</span>       char    <span class="dv">12</span>    <span class="dv">12</span></span>
-<span id="cb177-25"><a href="comparer.html#cb177-25" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">3</span>       chat    <span class="dv">17</span>    <span class="dv">17</span></span>
-<span id="cb177-26"><a href="comparer.html#cb177-26" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">4</span>       chat    <span class="dv">21</span>    <span class="dv">21</span></span>
-<span id="cb177-27"><a href="comparer.html#cb177-27" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">5</span>     cheval    <span class="dv">14</span>    <span class="dv">14</span></span>
-<span id="cb177-28"><a href="comparer.html#cb177-28" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">6</span>     cheval    <span class="dv">10</span>    <span class="dv">10</span></span>
-<span id="cb177-29"><a href="comparer.html#cb177-29" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">7</span>  chevalier    <span class="dv">12</span>    <span class="dv">12</span></span>
-<span id="cb177-30"><a href="comparer.html#cb177-30" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">8</span>  chevalier    <span class="dv">17</span>    <span class="dv">17</span></span>
-<span id="cb177-31"><a href="comparer.html#cb177-31" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">9</span>      chien    <span class="dv">21</span>    <span class="dv">21</span></span>
-<span id="cb177-32"><a href="comparer.html#cb177-32" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">10</span>     chien    <span class="dv">18</span>    <span class="dv">18</span></span></code></pre></div>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="comparer.html#cb176-1" tabindex="-1"></a><span class="co"># Pour la reproductibilité</span></span>
+<span id="cb176-2"><a href="comparer.html#cb176-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2602</span>)</span>
+<span id="cb176-3"><a href="comparer.html#cb176-3" tabindex="-1"></a></span>
+<span id="cb176-4"><a href="comparer.html#cb176-4" tabindex="-1"></a><span class="co"># Facteur de groupe</span></span>
+<span id="cb176-5"><a href="comparer.html#cb176-5" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="fu">length</span>(categorie)</span>
+<span id="cb176-6"><a href="comparer.html#cb176-6" tabindex="-1"></a>nk <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb176-7"><a href="comparer.html#cb176-7" tabindex="-1"></a>groupe <span class="ot">&lt;-</span> <span class="fu">rep</span>(categorie, <span class="at">each =</span> nk)</span>
+<span id="cb176-8"><a href="comparer.html#cb176-8" tabindex="-1"></a></span>
+<span id="cb176-9"><a href="comparer.html#cb176-9" tabindex="-1"></a><span class="co"># Groupement</span></span>
+<span id="cb176-10"><a href="comparer.html#cb176-10" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">dummy.coding</span>(groupe)[,<span class="sc">-</span><span class="dv">5</span>] <span class="co"># groupe 4 "chien" comme référent</span></span>
+<span id="cb176-11"><a href="comparer.html#cb176-11" tabindex="-1"></a></span>
+<span id="cb176-12"><a href="comparer.html#cb176-12" tabindex="-1"></a><span class="co"># Spécifications des paramètres</span></span>
+<span id="cb176-13"><a href="comparer.html#cb176-13" tabindex="-1"></a>mu0 <span class="ot">&lt;-</span> <span class="dv">15</span></span>
+<span id="cb176-14"><a href="comparer.html#cb176-14" tabindex="-1"></a>mu <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="sc">-</span><span class="dv">5</span>, <span class="dv">0</span>)</span>
+<span id="cb176-15"><a href="comparer.html#cb176-15" tabindex="-1"></a>e <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> k <span class="sc">*</span> nk, <span class="at">sd =</span> <span class="dv">4</span>)</span>
+<span id="cb176-16"><a href="comparer.html#cb176-16" tabindex="-1"></a></span>
+<span id="cb176-17"><a href="comparer.html#cb176-17" tabindex="-1"></a><span class="co"># Création des scores</span></span>
+<span id="cb176-18"><a href="comparer.html#cb176-18" tabindex="-1"></a>score <span class="ot">&lt;-</span> <span class="fu">round</span>(mu0 <span class="sc">+</span> X <span class="sc">%*%</span> mu <span class="sc">+</span> e)</span>
+<span id="cb176-19"><a href="comparer.html#cb176-19" tabindex="-1"></a></span>
+<span id="cb176-20"><a href="comparer.html#cb176-20" tabindex="-1"></a><span class="co"># Comparaison des valeurs</span></span>
+<span id="cb176-21"><a href="comparer.html#cb176-21" tabindex="-1"></a><span class="fu">cbind</span>(donnees, score)</span>
+<span id="cb176-22"><a href="comparer.html#cb176-22" tabindex="-1"></a><span class="sc">&gt;</span>       groupe score score</span>
+<span id="cb176-23"><a href="comparer.html#cb176-23" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">1</span>       char    <span class="dv">14</span>    <span class="dv">14</span></span>
+<span id="cb176-24"><a href="comparer.html#cb176-24" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">2</span>       char    <span class="dv">12</span>    <span class="dv">12</span></span>
+<span id="cb176-25"><a href="comparer.html#cb176-25" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">3</span>       chat    <span class="dv">17</span>    <span class="dv">17</span></span>
+<span id="cb176-26"><a href="comparer.html#cb176-26" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">4</span>       chat    <span class="dv">21</span>    <span class="dv">21</span></span>
+<span id="cb176-27"><a href="comparer.html#cb176-27" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">5</span>     cheval    <span class="dv">14</span>    <span class="dv">14</span></span>
+<span id="cb176-28"><a href="comparer.html#cb176-28" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">6</span>     cheval    <span class="dv">10</span>    <span class="dv">10</span></span>
+<span id="cb176-29"><a href="comparer.html#cb176-29" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">7</span>  chevalier    <span class="dv">12</span>    <span class="dv">12</span></span>
+<span id="cb176-30"><a href="comparer.html#cb176-30" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">8</span>  chevalier    <span class="dv">17</span>    <span class="dv">17</span></span>
+<span id="cb176-31"><a href="comparer.html#cb176-31" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">9</span>      chien    <span class="dv">21</span>    <span class="dv">21</span></span>
+<span id="cb176-32"><a href="comparer.html#cb176-32" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">10</span>     chien    <span class="dv">18</span>    <span class="dv">18</span></span></code></pre></div>
 <p>L’expression <code>X %*% mu</code> est une multiplication d’algèbre matricielle qui multiplie la matrice <span class="math inline">\(n \times p\)</span> de codage factice <span class="math inline">\(X\)</span> à une matrice <span class="math inline">\(p\times 1\)</span> de moyennes <span class="math inline">\(\mu\)</span>. L’opération multiple les <span class="math inline">\(p\)</span> éléments d’une ligne de <span class="math inline">\(X\)</span> à la colonne <span class="math inline">\(p\)</span> correspondante de <span class="math inline">\(\mu\)</span>. En algèbre matricielle Le résultat est une matrice <span class="math inline">\(n \times 1\)</span> qui contient les différences de moyennes pour chaque unité. Dans la même ligne de syntaxe, la moyenne de la population (groupe référent), <span class="math inline">\(\mu_0\)</span> est ajoutée et la variation individuelle, <span class="math inline">\(\epsilon\)</span>.</p>
 <p>Les scores produits sont identiques. Dans cet exemple par contre, l’origine des différences entre groupes est plus évidente, spécialement en comparant le modèle sous-jacent à l’analyse de variance. La source d’erreur est visible ainsi que les différences de moyennes. La force de cette deuxième méthode est qu’elle peut facilement être automatisée pour créer des jeux de données, alors que la première est plus compliquée. La seconde méthode nécessite six arguments (<span class="math inline">\(n_k\)</span>, <span class="math inline">\(\mu_0\)</span>, <span class="math inline">\(\mu_{1:k}\)</span>, et <span class="math inline">\(\sigma_{e}\)</span> en plus de catégories et définir le groupe référent), la première aurait de la difficulté à spécifier tous les arrangements de différence de moyennes automatiquement, quoiqu’elles sont plus personnalisables.</p>
 </div>
@@ -290,47 +292,47 @@ où <span class="math inline">\(dl_1 = k-1\)</span>, et <span class="math inline
 <span class="header-section-number">13.4</span> Analyse<a class="anchor" aria-label="anchor" href="#analyse"><i class="fas fa-link"></i></a>
 </h2>
 <p>À toute fin pratique, un jeu de données est recréé avec les catégories et paramètres précédents, mais avec <span class="math inline">\(n_k=20\)</span> unités par groupe. La fonction <strong>R</strong> de base est <code><a href="https://rdrr.io/r/stats/aov.html">aov()</a></code>. Elle prend comme argument une formule, de forme <code>VD ~ VI</code> (variable dépendante prédite par variable indépendante) et un jeu de données duquel prendre les variables. Il existe également une fonction <code><a href="https://rdrr.io/r/stats/anova.html">anova()</a></code>, une fonction un peu plus complexe que <code><a href="https://rdrr.io/r/stats/aov.html">aov()</a></code>. Pour obtenir toute l’information désirée de la sortie de la fonction, il faut demander un sommaire de la sortie avec <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code>.</p>
-<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="comparer.html#cb178-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Anova de base</span></span>
-<span id="cb178-2"><a href="comparer.html#cb178-2" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">aov</span>(score <span class="sc">~</span> groupe, <span class="at">data =</span> donnees)</span>
-<span id="cb178-3"><a href="comparer.html#cb178-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(res)</span>
-<span id="cb178-4"><a href="comparer.html#cb178-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>             Df Sum Sq Mean Sq F value  <span class="fu">Pr</span>(<span class="sc">&gt;</span>F)    </span>
-<span id="cb178-5"><a href="comparer.html#cb178-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> groupe       <span class="dv">4</span>    <span class="dv">834</span>   <span class="fl">208.4</span>      <span class="dv">14</span> <span class="fl">5.1e-09</span> <span class="sc">**</span><span class="er">*</span></span>
-<span id="cb178-6"><a href="comparer.html#cb178-6" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Residuals   <span class="dv">95</span>   <span class="dv">1414</span>    <span class="fl">14.9</span>                    </span>
-<span id="cb178-7"><a href="comparer.html#cb178-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="sc">---</span></span>
-<span id="cb178-8"><a href="comparer.html#cb178-8" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Signif. codes<span class="sc">:</span>  </span>
-<span id="cb178-9"><a href="comparer.html#cb178-9" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="dv">0</span> <span class="st">'***'</span> <span class="fl">0.001</span> <span class="st">'**'</span> <span class="fl">0.01</span> <span class="st">'*'</span> <span class="fl">0.05</span> <span class="st">'.'</span> <span class="fl">0.1</span> <span class="st">' '</span> <span class="dv">1</span></span>
-<span id="cb178-10"><a href="comparer.html#cb178-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb178-11"><a href="comparer.html#cb178-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Fonction maison</span></span>
-<span id="cb178-12"><a href="comparer.html#cb178-12" aria-hidden="true" tabindex="-1"></a>gr <span class="ot">&lt;-</span> <span class="fu">table</span>(donnees<span class="sc">$</span>groupe)</span>
-<span id="cb178-13"><a href="comparer.html#cb178-13" aria-hidden="true" tabindex="-1"></a>k  <span class="ot">&lt;-</span> <span class="fu">length</span>(gr)          <span class="co"># Nombre de groupes</span></span>
-<span id="cb178-14"><a href="comparer.html#cb178-14" aria-hidden="true" tabindex="-1"></a>nk <span class="ot">&lt;-</span> <span class="fu">dim</span>(donnees)[<span class="dv">1</span>] <span class="sc">/</span> k <span class="co"># Nombre de participants par groupe</span></span>
-<span id="cb178-15"><a href="comparer.html#cb178-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb178-16"><a href="comparer.html#cb178-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Moyennes et variance par (`by()`) groupes</span></span>
-<span id="cb178-17"><a href="comparer.html#cb178-17" aria-hidden="true" tabindex="-1"></a>moyenne  <span class="ot">&lt;-</span> <span class="fu">by</span>(donnees<span class="sc">$</span>score, donnees<span class="sc">$</span>groupe, mean)</span>
-<span id="cb178-18"><a href="comparer.html#cb178-18" aria-hidden="true" tabindex="-1"></a>variance <span class="ot">&lt;-</span> <span class="fu">by</span>(donnees<span class="sc">$</span>score, donnees<span class="sc">$</span>groupe, var)</span>
-<span id="cb178-19"><a href="comparer.html#cb178-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb178-20"><a href="comparer.html#cb178-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Statistiques</span></span>
-<span id="cb178-21"><a href="comparer.html#cb178-21" aria-hidden="true" tabindex="-1"></a>CMI <span class="ot">&lt;-</span> nk <span class="sc">*</span> <span class="fu">var</span>(moyenne)</span>
-<span id="cb178-22"><a href="comparer.html#cb178-22" aria-hidden="true" tabindex="-1"></a>CMR <span class="ot">&lt;-</span> <span class="fu">mean</span>(variance)</span>
-<span id="cb178-23"><a href="comparer.html#cb178-23" aria-hidden="true" tabindex="-1"></a>dl1 <span class="ot">&lt;-</span> k <span class="sc">-</span> <span class="dv">1</span></span>
-<span id="cb178-24"><a href="comparer.html#cb178-24" aria-hidden="true" tabindex="-1"></a>dl2 <span class="ot">&lt;-</span> k <span class="sc">*</span> (nk <span class="sc">-</span> <span class="dv">1</span>)</span>
-<span id="cb178-25"><a href="comparer.html#cb178-25" aria-hidden="true" tabindex="-1"></a>vf <span class="ot">&lt;-</span> CMI <span class="sc">/</span> CMR </span>
-<span id="cb178-26"><a href="comparer.html#cb178-26" aria-hidden="true" tabindex="-1"></a>vp <span class="ot">&lt;-</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">pf</span>(vf, <span class="at">df1 =</span> dl1, <span class="at">df2 =</span> dl2)) </span>
-<span id="cb178-27"><a href="comparer.html#cb178-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb178-28"><a href="comparer.html#cb178-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Création du tableau</span></span>
-<span id="cb178-29"><a href="comparer.html#cb178-29" aria-hidden="true" tabindex="-1"></a>resultats <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">5</span>) <span class="co"># Tableau vide</span></span>
-<span id="cb178-30"><a href="comparer.html#cb178-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb178-31"><a href="comparer.html#cb178-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Ajouter noms</span></span>
-<span id="cb178-32"><a href="comparer.html#cb178-32" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(resultats)  <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"dl"</span>, <span class="st">"SS"</span>, <span class="st">"CM"</span>, <span class="st">"F"</span>, <span class="st">"p"</span>)</span>
-<span id="cb178-33"><a href="comparer.html#cb178-33" aria-hidden="true" tabindex="-1"></a><span class="fu">row.names</span>(resultats) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"groupe"</span>, <span class="st">"residu"</span>)</span>
-<span id="cb178-34"><a href="comparer.html#cb178-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb178-35"><a href="comparer.html#cb178-35" aria-hidden="true" tabindex="-1"></a><span class="co"># Ajouter valeurs</span></span>
-<span id="cb178-36"><a href="comparer.html#cb178-36" aria-hidden="true" tabindex="-1"></a>resultats[<span class="dv">1</span>,] <span class="ot">&lt;-</span> <span class="fu">c</span>(dl1, CMI <span class="sc">*</span> dl1, CMI, vf, vp)</span>
-<span id="cb178-37"><a href="comparer.html#cb178-37" aria-hidden="true" tabindex="-1"></a>resultats[<span class="dv">2</span>,] <span class="ot">&lt;-</span> <span class="fu">c</span>(dl2, CMR <span class="sc">*</span> dl2, CMR, <span class="dv">0</span>, <span class="dv">0</span>)</span>
-<span id="cb178-38"><a href="comparer.html#cb178-38" aria-hidden="true" tabindex="-1"></a>resultats</span>
-<span id="cb178-39"><a href="comparer.html#cb178-39" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>        dl   SS    CM  F        p</span>
-<span id="cb178-40"><a href="comparer.html#cb178-40" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> groupe  <span class="dv">4</span>  <span class="dv">834</span> <span class="fl">208.4</span> <span class="dv">14</span> <span class="fl">5.15e-09</span></span>
-<span id="cb178-41"><a href="comparer.html#cb178-41" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> residu <span class="dv">95</span> <span class="dv">1414</span>  <span class="fl">14.9</span>  <span class="dv">0</span> <span class="fl">0.00e+00</span></span></code></pre></div>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="comparer.html#cb177-1" tabindex="-1"></a><span class="co"># Anova de base</span></span>
+<span id="cb177-2"><a href="comparer.html#cb177-2" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">aov</span>(score <span class="sc">~</span> groupe, <span class="at">data =</span> donnees)</span>
+<span id="cb177-3"><a href="comparer.html#cb177-3" tabindex="-1"></a><span class="fu">summary</span>(res)</span>
+<span id="cb177-4"><a href="comparer.html#cb177-4" tabindex="-1"></a><span class="sc">&gt;</span>             Df Sum Sq Mean Sq F value  <span class="fu">Pr</span>(<span class="sc">&gt;</span>F)    </span>
+<span id="cb177-5"><a href="comparer.html#cb177-5" tabindex="-1"></a><span class="sc">&gt;</span> groupe       <span class="dv">4</span>    <span class="dv">834</span>   <span class="fl">208.4</span>      <span class="dv">14</span> <span class="fl">5.1e-09</span> <span class="sc">**</span><span class="er">*</span></span>
+<span id="cb177-6"><a href="comparer.html#cb177-6" tabindex="-1"></a><span class="er">&gt;</span> Residuals   <span class="dv">95</span>   <span class="dv">1414</span>    <span class="fl">14.9</span>                    </span>
+<span id="cb177-7"><a href="comparer.html#cb177-7" tabindex="-1"></a><span class="sc">&gt;</span> <span class="sc">---</span></span>
+<span id="cb177-8"><a href="comparer.html#cb177-8" tabindex="-1"></a><span class="er">&gt;</span> Signif. codes<span class="sc">:</span>  </span>
+<span id="cb177-9"><a href="comparer.html#cb177-9" tabindex="-1"></a><span class="er">&gt;</span> <span class="dv">0</span> <span class="st">'***'</span> <span class="fl">0.001</span> <span class="st">'**'</span> <span class="fl">0.01</span> <span class="st">'*'</span> <span class="fl">0.05</span> <span class="st">'.'</span> <span class="fl">0.1</span> <span class="st">' '</span> <span class="dv">1</span></span>
+<span id="cb177-10"><a href="comparer.html#cb177-10" tabindex="-1"></a></span>
+<span id="cb177-11"><a href="comparer.html#cb177-11" tabindex="-1"></a><span class="co"># Fonction maison</span></span>
+<span id="cb177-12"><a href="comparer.html#cb177-12" tabindex="-1"></a>gr <span class="ot">&lt;-</span> <span class="fu">table</span>(donnees<span class="sc">$</span>groupe)</span>
+<span id="cb177-13"><a href="comparer.html#cb177-13" tabindex="-1"></a>k  <span class="ot">&lt;-</span> <span class="fu">length</span>(gr)          <span class="co"># Nombre de groupes</span></span>
+<span id="cb177-14"><a href="comparer.html#cb177-14" tabindex="-1"></a>nk <span class="ot">&lt;-</span> <span class="fu">dim</span>(donnees)[<span class="dv">1</span>] <span class="sc">/</span> k <span class="co"># Nombre de participants par groupe</span></span>
+<span id="cb177-15"><a href="comparer.html#cb177-15" tabindex="-1"></a></span>
+<span id="cb177-16"><a href="comparer.html#cb177-16" tabindex="-1"></a><span class="co"># Moyennes et variance par (`by()`) groupes</span></span>
+<span id="cb177-17"><a href="comparer.html#cb177-17" tabindex="-1"></a>moyenne  <span class="ot">&lt;-</span> <span class="fu">by</span>(donnees<span class="sc">$</span>score, donnees<span class="sc">$</span>groupe, mean)</span>
+<span id="cb177-18"><a href="comparer.html#cb177-18" tabindex="-1"></a>variance <span class="ot">&lt;-</span> <span class="fu">by</span>(donnees<span class="sc">$</span>score, donnees<span class="sc">$</span>groupe, var)</span>
+<span id="cb177-19"><a href="comparer.html#cb177-19" tabindex="-1"></a></span>
+<span id="cb177-20"><a href="comparer.html#cb177-20" tabindex="-1"></a><span class="co"># Statistiques</span></span>
+<span id="cb177-21"><a href="comparer.html#cb177-21" tabindex="-1"></a>CMI <span class="ot">&lt;-</span> nk <span class="sc">*</span> <span class="fu">var</span>(moyenne)</span>
+<span id="cb177-22"><a href="comparer.html#cb177-22" tabindex="-1"></a>CMR <span class="ot">&lt;-</span> <span class="fu">mean</span>(variance)</span>
+<span id="cb177-23"><a href="comparer.html#cb177-23" tabindex="-1"></a>dl1 <span class="ot">&lt;-</span> k <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb177-24"><a href="comparer.html#cb177-24" tabindex="-1"></a>dl2 <span class="ot">&lt;-</span> k <span class="sc">*</span> (nk <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb177-25"><a href="comparer.html#cb177-25" tabindex="-1"></a>vf <span class="ot">&lt;-</span> CMI <span class="sc">/</span> CMR </span>
+<span id="cb177-26"><a href="comparer.html#cb177-26" tabindex="-1"></a>vp <span class="ot">&lt;-</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">pf</span>(vf, <span class="at">df1 =</span> dl1, <span class="at">df2 =</span> dl2)) </span>
+<span id="cb177-27"><a href="comparer.html#cb177-27" tabindex="-1"></a></span>
+<span id="cb177-28"><a href="comparer.html#cb177-28" tabindex="-1"></a><span class="co"># Création du tableau</span></span>
+<span id="cb177-29"><a href="comparer.html#cb177-29" tabindex="-1"></a>resultats <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">5</span>) <span class="co"># Tableau vide</span></span>
+<span id="cb177-30"><a href="comparer.html#cb177-30" tabindex="-1"></a></span>
+<span id="cb177-31"><a href="comparer.html#cb177-31" tabindex="-1"></a><span class="co"># Ajouter noms</span></span>
+<span id="cb177-32"><a href="comparer.html#cb177-32" tabindex="-1"></a><span class="fu">colnames</span>(resultats)  <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"dl"</span>, <span class="st">"SS"</span>, <span class="st">"CM"</span>, <span class="st">"F"</span>, <span class="st">"p"</span>)</span>
+<span id="cb177-33"><a href="comparer.html#cb177-33" tabindex="-1"></a><span class="fu">row.names</span>(resultats) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"groupe"</span>, <span class="st">"residu"</span>)</span>
+<span id="cb177-34"><a href="comparer.html#cb177-34" tabindex="-1"></a></span>
+<span id="cb177-35"><a href="comparer.html#cb177-35" tabindex="-1"></a><span class="co"># Ajouter valeurs</span></span>
+<span id="cb177-36"><a href="comparer.html#cb177-36" tabindex="-1"></a>resultats[<span class="dv">1</span>,] <span class="ot">&lt;-</span> <span class="fu">c</span>(dl1, CMI <span class="sc">*</span> dl1, CMI, vf, vp)</span>
+<span id="cb177-37"><a href="comparer.html#cb177-37" tabindex="-1"></a>resultats[<span class="dv">2</span>,] <span class="ot">&lt;-</span> <span class="fu">c</span>(dl2, CMR <span class="sc">*</span> dl2, CMR, <span class="dv">0</span>, <span class="dv">0</span>)</span>
+<span id="cb177-38"><a href="comparer.html#cb177-38" tabindex="-1"></a>resultats</span>
+<span id="cb177-39"><a href="comparer.html#cb177-39" tabindex="-1"></a><span class="sc">&gt;</span>        dl   SS    CM  F        p</span>
+<span id="cb177-40"><a href="comparer.html#cb177-40" tabindex="-1"></a><span class="sc">&gt;</span> groupe  <span class="dv">4</span>  <span class="dv">834</span> <span class="fl">208.4</span> <span class="dv">14</span> <span class="fl">5.15e-09</span></span>
+<span id="cb177-41"><a href="comparer.html#cb177-41" tabindex="-1"></a><span class="sc">&gt;</span> residu <span class="dv">95</span> <span class="dv">1414</span>  <span class="fl">14.9</span>  <span class="dv">0</span> <span class="fl">0.00e+00</span></span></code></pre></div>
 <p>Les résultats sont identiques, les seules différences étant dues à l’arrondissement. Comme la valeur-<span class="math inline">\(p\)</span> est de 5.145^{-9}, ce qui est extrêmement plus petit que l’usuel .05 (ou un autre taux d’erreur de type I fixé à l’avance), l’hypothèse nulle est rejetée, il y a vraisemblablement une différence entre les groupes, ce qui est déjà connu. La Figure <a href="comparer.html#fig:ft">13.1</a> illustre très bien la rareté d’un tel jeu de données sous l’hypothèse nulle.</p>
 <div class="figure">
 <span style="display:block;" id="fig:ft"></span>
@@ -344,14 +346,14 @@ Figure 13.1: Valeur-<span class="math inline">\(F\)</span> de la comparaison des
 <span class="header-section-number">13.5</span> Rapporter l’ANOVA<a class="anchor" aria-label="anchor" href="#rapporter-lanova"><i class="fas fa-link"></i></a>
 </h2>
 <p>Voici comment commander une anova avec <strong>R</strong>. Il faut utilise la formule, <code>VD ~ VI</code> où la VD est la variable dépendante qui est d’échelle continue, la ou les VI, les variables indépendantes, contiennent les variables de groupement, mais aussi des variables continues, si besoin est.</p>
-<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="comparer.html#cb179-1" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">aov</span>(score <span class="sc">~</span> groupe, <span class="at">data =</span> donnees)</span>
-<span id="cb179-2"><a href="comparer.html#cb179-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(res)</span>
-<span id="cb179-3"><a href="comparer.html#cb179-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>             Df Sum Sq Mean Sq F value  <span class="fu">Pr</span>(<span class="sc">&gt;</span>F)    </span>
-<span id="cb179-4"><a href="comparer.html#cb179-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> groupe       <span class="dv">4</span>    <span class="dv">834</span>   <span class="fl">208.4</span>      <span class="dv">14</span> <span class="fl">5.1e-09</span> <span class="sc">**</span><span class="er">*</span></span>
-<span id="cb179-5"><a href="comparer.html#cb179-5" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Residuals   <span class="dv">95</span>   <span class="dv">1414</span>    <span class="fl">14.9</span>                    </span>
-<span id="cb179-6"><a href="comparer.html#cb179-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="sc">---</span></span>
-<span id="cb179-7"><a href="comparer.html#cb179-7" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Signif. codes<span class="sc">:</span>  </span>
-<span id="cb179-8"><a href="comparer.html#cb179-8" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="dv">0</span> <span class="st">'***'</span> <span class="fl">0.001</span> <span class="st">'**'</span> <span class="fl">0.01</span> <span class="st">'*'</span> <span class="fl">0.05</span> <span class="st">'.'</span> <span class="fl">0.1</span> <span class="st">' '</span> <span class="dv">1</span></span></code></pre></div>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="comparer.html#cb178-1" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">aov</span>(score <span class="sc">~</span> groupe, <span class="at">data =</span> donnees)</span>
+<span id="cb178-2"><a href="comparer.html#cb178-2" tabindex="-1"></a><span class="fu">summary</span>(res)</span>
+<span id="cb178-3"><a href="comparer.html#cb178-3" tabindex="-1"></a><span class="sc">&gt;</span>             Df Sum Sq Mean Sq F value  <span class="fu">Pr</span>(<span class="sc">&gt;</span>F)    </span>
+<span id="cb178-4"><a href="comparer.html#cb178-4" tabindex="-1"></a><span class="sc">&gt;</span> groupe       <span class="dv">4</span>    <span class="dv">834</span>   <span class="fl">208.4</span>      <span class="dv">14</span> <span class="fl">5.1e-09</span> <span class="sc">**</span><span class="er">*</span></span>
+<span id="cb178-5"><a href="comparer.html#cb178-5" tabindex="-1"></a><span class="er">&gt;</span> Residuals   <span class="dv">95</span>   <span class="dv">1414</span>    <span class="fl">14.9</span>                    </span>
+<span id="cb178-6"><a href="comparer.html#cb178-6" tabindex="-1"></a><span class="sc">&gt;</span> <span class="sc">---</span></span>
+<span id="cb178-7"><a href="comparer.html#cb178-7" tabindex="-1"></a><span class="er">&gt;</span> Signif. codes<span class="sc">:</span>  </span>
+<span id="cb178-8"><a href="comparer.html#cb178-8" tabindex="-1"></a><span class="er">&gt;</span> <span class="dv">0</span> <span class="st">'***'</span> <span class="fl">0.001</span> <span class="st">'**'</span> <span class="fl">0.01</span> <span class="st">'*'</span> <span class="fl">0.05</span> <span class="st">'.'</span> <span class="fl">0.1</span> <span class="st">' '</span> <span class="dv">1</span></span></code></pre></div>
 <p>Voici comment rapporter l’ANOVA dans un article scientifique.</p>
 <blockquote>
 <p>Une ANOVA est réalisée pour comparer les groupes sur un certain score. Les résutats montrent une différence significative (pour un <span class="math inline">\(\alpha = .05\)</span>), <span class="math inline">\(F(4, 95) = 13.998, p &lt; .001\)</span>.</p>
@@ -361,14 +363,14 @@ Figure 13.1: Valeur-<span class="math inline">\(F\)</span> de la comparaison des
 <span class="header-section-number">13.5.1</span> La sortie de <code>aov()</code><a class="anchor" aria-label="anchor" href="#la-sortie-de-aov"><i class="fas fa-link"></i></a>
 </h3>
 <p>Une petite digression pour parler de la sortie de <code><a href="https://rdrr.io/r/stats/aov.html">aov()</a></code>. Normalement, <strong>R</strong> produit [des listes][Créer des listes] comme sortie, particulièrement en ce qui a trait aux analyses statistiques. Le cas de <code><a href="https://rdrr.io/r/stats/aov.html">aov()</a></code> est différent : le sommaire est une liste vide.</p>
-<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="comparer.html#cb180-1" aria-hidden="true" tabindex="-1"></a>sommaire <span class="ot">&lt;-</span> <span class="fu">summary</span>(res)</span>
-<span id="cb180-2"><a href="comparer.html#cb180-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Extraire les éléments de la sortie `sommaire`</span></span>
-<span id="cb180-3"><a href="comparer.html#cb180-3" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(sommaire)</span>
-<span id="cb180-4"><a href="comparer.html#cb180-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="cn">NULL</span></span></code></pre></div>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="comparer.html#cb179-1" tabindex="-1"></a>sommaire <span class="ot">&lt;-</span> <span class="fu">summary</span>(res)</span>
+<span id="cb179-2"><a href="comparer.html#cb179-2" tabindex="-1"></a><span class="co"># Extraire les éléments de la sortie `sommaire`</span></span>
+<span id="cb179-3"><a href="comparer.html#cb179-3" tabindex="-1"></a><span class="fu">names</span>(sommaire)</span>
+<span id="cb179-4"><a href="comparer.html#cb179-4" tabindex="-1"></a><span class="sc">&gt;</span> <span class="cn">NULL</span></span></code></pre></div>
 <p>Pour avoir accès directement au tableau de résultats du sommaire pour le manipuler, il faut ajouter <code>[[1]]</code> à la suite du code, ce qui permet d’atteindre les résultats. Les manipulations usuelles d’une liste sont maintenant réalisables.</p>
-<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="comparer.html#cb181-1" aria-hidden="true" tabindex="-1"></a>sommaire <span class="ot">&lt;-</span> <span class="fu">summary</span>(res)[[<span class="dv">1</span>]]</span>
-<span id="cb181-2"><a href="comparer.html#cb181-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(sommaire)</span>
-<span id="cb181-3"><a href="comparer.html#cb181-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="st">"Df"</span>      <span class="st">"Sum Sq"</span>  <span class="st">"Mean Sq"</span> <span class="st">"F value"</span> <span class="st">"Pr(&gt;F)"</span></span></code></pre></div>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="comparer.html#cb180-1" tabindex="-1"></a>sommaire <span class="ot">&lt;-</span> <span class="fu">summary</span>(res)[[<span class="dv">1</span>]]</span>
+<span id="cb180-2"><a href="comparer.html#cb180-2" tabindex="-1"></a><span class="fu">names</span>(sommaire)</span>
+<span id="cb180-3"><a href="comparer.html#cb180-3" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="st">"Df"</span>      <span class="st">"Sum Sq"</span>  <span class="st">"Mean Sq"</span> <span class="st">"F value"</span> <span class="st">"Pr(&gt;F)"</span></span></code></pre></div>
 <p>Le symbole <code>[[1]]</code> indique que seulement le premier élément de la liste est désiré. Il s’agit d’une formule renforcée <a href="programmer.html#r%C3%A9f%C3%A9rer-%C3%A0-des-sous-%C3%A9l%C3%A9ments">des crochets</a> pour ne choisir qu’un seul élément de la liste. Et dans cette liste, on retrouve la liste contenant des résultats. En d’autres termes, la sortie de <code><a href="https://rdrr.io/r/stats/aov.html">aov()</a></code> est une liste. Il y a bien deux niveaux de liste dans cette sortie, la première rendant plus difficile à la seconde. Une petit idiosyncrasie de <strong>R</strong>.</p>
 </div>
 </div>
@@ -378,27 +380,27 @@ Figure 13.1: Valeur-<span class="math inline">\(F\)</span> de la comparaison des
 </h2>
 <p>Une fois que le test général montre une différence à laquelle l’expérimentateur juge pertinent de s’y pencher<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Pour ne pas dire &lt;em&gt;significative&lt;/em&gt;&lt;/p&gt;"><sup>14</sup></a>, ce dernier désire généralement connaître d’où origine cette différence globale entre les groupes. Autrement, il cherche à identifier spécifiquement les groupes qui diffère des autres.</p>
 <p>La première étape est évidement de rouler l’ANOVA globale, voir la section précédente <a href="comparer.html#rapporter-lanova">Rapporter l’ANOVA</a>. En deuxième étape, une façon simple de demander les comparaisons posthoc est d’utiliser la fonction <code><a href="https://rdrr.io/r/stats/TukeyHSD.html">TukeyHSD()</a></code>, soit la différence significative honnête, ou plus simplement la méthode de Tukey, en y introduisant comme argument la sortie de l’ANOVA.</p>
-<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="comparer.html#cb182-1" aria-hidden="true" tabindex="-1"></a><span class="fu">TukeyHSD</span>(res)</span>
-<span id="cb182-2"><a href="comparer.html#cb182-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>   Tukey multiple comparisons of means</span>
-<span id="cb182-3"><a href="comparer.html#cb182-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>     <span class="dv">95</span>% family<span class="sc">-</span>wise confidence level</span>
-<span id="cb182-4"><a href="comparer.html#cb182-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
-<span id="cb182-5"><a href="comparer.html#cb182-5" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Fit<span class="sc">:</span> <span class="fu">aov</span>(<span class="at">formula =</span> score <span class="sc">~</span> groupe, <span class="at">data =</span> donnees)</span>
-<span id="cb182-6"><a href="comparer.html#cb182-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
-<span id="cb182-7"><a href="comparer.html#cb182-7" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="er">$</span>groupe</span>
-<span id="cb182-8"><a href="comparer.html#cb182-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>                   diff     lwr   upr p adj</span>
-<span id="cb182-9"><a href="comparer.html#cb182-9" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> chat<span class="sc">-</span>char         <span class="fl">4.45</span>   <span class="fl">1.057</span>  <span class="fl">7.84</span> <span class="fl">0.004</span></span>
-<span id="cb182-10"><a href="comparer.html#cb182-10" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> cheval<span class="sc">-</span>char      <span class="sc">-</span><span class="fl">4.55</span>  <span class="sc">-</span><span class="fl">7.943</span> <span class="sc">-</span><span class="fl">1.16</span> <span class="fl">0.003</span></span>
-<span id="cb182-11"><a href="comparer.html#cb182-11" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> chevalier<span class="sc">-</span>char   <span class="sc">-</span><span class="fl">1.05</span>  <span class="sc">-</span><span class="fl">4.443</span>  <span class="fl">2.34</span> <span class="fl">0.910</span></span>
-<span id="cb182-12"><a href="comparer.html#cb182-12" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> chien<span class="sc">-</span>char       <span class="sc">-</span><span class="fl">1.00</span>  <span class="sc">-</span><span class="fl">4.393</span>  <span class="fl">2.39</span> <span class="fl">0.924</span></span>
-<span id="cb182-13"><a href="comparer.html#cb182-13" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> cheval<span class="sc">-</span>chat      <span class="sc">-</span><span class="fl">9.00</span> <span class="sc">-</span><span class="fl">12.393</span> <span class="sc">-</span><span class="fl">5.61</span> <span class="fl">0.000</span></span>
-<span id="cb182-14"><a href="comparer.html#cb182-14" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> chevalier<span class="sc">-</span>chat   <span class="sc">-</span><span class="fl">5.50</span>  <span class="sc">-</span><span class="fl">8.893</span> <span class="sc">-</span><span class="fl">2.11</span> <span class="fl">0.000</span></span>
-<span id="cb182-15"><a href="comparer.html#cb182-15" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> chien<span class="sc">-</span>chat       <span class="sc">-</span><span class="fl">5.45</span>  <span class="sc">-</span><span class="fl">8.843</span> <span class="sc">-</span><span class="fl">2.06</span> <span class="fl">0.000</span></span>
-<span id="cb182-16"><a href="comparer.html#cb182-16" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> chevalier<span class="sc">-</span>cheval  <span class="fl">3.50</span>   <span class="fl">0.107</span>  <span class="fl">6.89</span> <span class="fl">0.040</span></span>
-<span id="cb182-17"><a href="comparer.html#cb182-17" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> chien<span class="sc">-</span>cheval      <span class="fl">3.55</span>   <span class="fl">0.157</span>  <span class="fl">6.94</span> <span class="fl">0.036</span></span>
-<span id="cb182-18"><a href="comparer.html#cb182-18" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> chien<span class="sc">-</span>chevalier   <span class="fl">0.05</span>  <span class="sc">-</span><span class="fl">3.343</span>  <span class="fl">3.44</span> <span class="fl">1.000</span></span></code></pre></div>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="comparer.html#cb181-1" tabindex="-1"></a><span class="fu">TukeyHSD</span>(res)</span>
+<span id="cb181-2"><a href="comparer.html#cb181-2" tabindex="-1"></a><span class="sc">&gt;</span>   Tukey multiple comparisons of means</span>
+<span id="cb181-3"><a href="comparer.html#cb181-3" tabindex="-1"></a><span class="sc">&gt;</span>     <span class="dv">95</span>% family<span class="sc">-</span>wise confidence level</span>
+<span id="cb181-4"><a href="comparer.html#cb181-4" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb181-5"><a href="comparer.html#cb181-5" tabindex="-1"></a><span class="er">&gt;</span> Fit<span class="sc">:</span> <span class="fu">aov</span>(<span class="at">formula =</span> score <span class="sc">~</span> groupe, <span class="at">data =</span> donnees)</span>
+<span id="cb181-6"><a href="comparer.html#cb181-6" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb181-7"><a href="comparer.html#cb181-7" tabindex="-1"></a><span class="er">&gt;</span> <span class="er">$</span>groupe</span>
+<span id="cb181-8"><a href="comparer.html#cb181-8" tabindex="-1"></a><span class="sc">&gt;</span>                   diff     lwr   upr p adj</span>
+<span id="cb181-9"><a href="comparer.html#cb181-9" tabindex="-1"></a><span class="sc">&gt;</span> chat<span class="sc">-</span>char         <span class="fl">4.45</span>   <span class="fl">1.057</span>  <span class="fl">7.84</span> <span class="fl">0.004</span></span>
+<span id="cb181-10"><a href="comparer.html#cb181-10" tabindex="-1"></a><span class="sc">&gt;</span> cheval<span class="sc">-</span>char      <span class="sc">-</span><span class="fl">4.55</span>  <span class="sc">-</span><span class="fl">7.943</span> <span class="sc">-</span><span class="fl">1.16</span> <span class="fl">0.003</span></span>
+<span id="cb181-11"><a href="comparer.html#cb181-11" tabindex="-1"></a><span class="sc">&gt;</span> chevalier<span class="sc">-</span>char   <span class="sc">-</span><span class="fl">1.05</span>  <span class="sc">-</span><span class="fl">4.443</span>  <span class="fl">2.34</span> <span class="fl">0.910</span></span>
+<span id="cb181-12"><a href="comparer.html#cb181-12" tabindex="-1"></a><span class="sc">&gt;</span> chien<span class="sc">-</span>char       <span class="sc">-</span><span class="fl">1.00</span>  <span class="sc">-</span><span class="fl">4.393</span>  <span class="fl">2.39</span> <span class="fl">0.924</span></span>
+<span id="cb181-13"><a href="comparer.html#cb181-13" tabindex="-1"></a><span class="sc">&gt;</span> cheval<span class="sc">-</span>chat      <span class="sc">-</span><span class="fl">9.00</span> <span class="sc">-</span><span class="fl">12.393</span> <span class="sc">-</span><span class="fl">5.61</span> <span class="fl">0.000</span></span>
+<span id="cb181-14"><a href="comparer.html#cb181-14" tabindex="-1"></a><span class="sc">&gt;</span> chevalier<span class="sc">-</span>chat   <span class="sc">-</span><span class="fl">5.50</span>  <span class="sc">-</span><span class="fl">8.893</span> <span class="sc">-</span><span class="fl">2.11</span> <span class="fl">0.000</span></span>
+<span id="cb181-15"><a href="comparer.html#cb181-15" tabindex="-1"></a><span class="sc">&gt;</span> chien<span class="sc">-</span>chat       <span class="sc">-</span><span class="fl">5.45</span>  <span class="sc">-</span><span class="fl">8.843</span> <span class="sc">-</span><span class="fl">2.06</span> <span class="fl">0.000</span></span>
+<span id="cb181-16"><a href="comparer.html#cb181-16" tabindex="-1"></a><span class="sc">&gt;</span> chevalier<span class="sc">-</span>cheval  <span class="fl">3.50</span>   <span class="fl">0.107</span>  <span class="fl">6.89</span> <span class="fl">0.040</span></span>
+<span id="cb181-17"><a href="comparer.html#cb181-17" tabindex="-1"></a><span class="sc">&gt;</span> chien<span class="sc">-</span>cheval      <span class="fl">3.55</span>   <span class="fl">0.157</span>  <span class="fl">6.94</span> <span class="fl">0.036</span></span>
+<span id="cb181-18"><a href="comparer.html#cb181-18" tabindex="-1"></a><span class="sc">&gt;</span> chien<span class="sc">-</span>chevalier   <span class="fl">0.05</span>  <span class="sc">-</span><span class="fl">3.343</span>  <span class="fl">3.44</span> <span class="fl">1.000</span></span></code></pre></div>
 <p>Dans cette sortie, chaque paire de groupes est indiquer à gauche, les différences et les intervalles de confiance sont produites. La dernière colonnes (<code>p adj</code>) contient la valeur-<span class="math inline">\(p\)</span> indiquant si la paire est significativement différente ou non. Par exemple, la première ligne porte sur la comparaison <code>chat-char</code> et ces deux groupes sont vraisemblablement différents avec une valeur-<span class="math inline">\(p\)</span> de 0.004. Il est possible de définir différents arguments, comme l’ordre des paires avec <code>ordered = TRUE</code> qui ordonne les moyennes des groupes de la plus petite à la plus grandes, ou encore le degré de confiance <code>conf.level = 0.95</code> par défaut. Enfin, il est possible de sélectionner spécifiquement la variable de groupement avec l’argument <code>which</code>.</p>
 <p>La fonction <code><a href="https://rdrr.io/r/stats/TukeyHSD.html">TukeyHSD()</a></code> est aussi lié à une figure qu’il est possible de commander avec <code><a href="https://rdrr.io/r/graphics/plot.default.html">plot()</a></code> en y mettant comme argument la sortie de <code><a href="https://rdrr.io/r/stats/TukeyHSD.html">TukeyHSD()</a></code>.</p>
-<div class="sourceCode" id="cb183"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb182"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/TukeyHSD.html">TukeyHSD</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:tukey"></span>
@@ -408,7 +410,7 @@ Figure 13.2: Illustration du test de comparaisons multiples de Tukey
 </div>
 <p>Malheureusement la Figure <a href="comparer.html#fig:tukey">13.2</a> n’est pas parfaite, car elle n’affiche pas toutes les libellées de chaque ligne. Toutefois, chaque ligne de la Figure <a href="comparer.html#fig:tukey">13.2</a> correspond à une ligne de la figure. Avec le package <code>ggplot2</code>(voir [Visualier]), il est possible de remédier à la situation.</p>
 <p>D’abord, il faut importer le <code>tidyverse</code>. Ensuite, la prochaine étape consiste à extraire les résultats de <code><a href="https://rdrr.io/r/stats/TukeyHSD.html">TukeyHSD()</a></code>, de les transformer en jeu de données avec <code><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame()</a></code> et de rendre le nom des lignes manipulables avec <code>add_rownames_to_column()</code>. Comme pour toutes les figures, il faut indiquer l’abscisse et l’ordonnée, ici le nom des lignes (<code>x</code>) et la différence entre les groupes(<code>y</code>), respectivement. Ensuite, comme la figure avec <a href="visualiser.html#les-barres-derreurs">les barres d’erreurs</a>, il faut associer dans <code>geom_errorbar</code> les intervalles de confiance <code>lwr</code> et <code>upr</code> à <code>ymin</code> et <code>ymax</code>. Enfin, il est possible d’ajouter la moyenne sous forme de point (<code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point()</a></code> et de tourner la figure avec <code>coord_flip</code>, ce qui permet de répliquer la figure originale.</p>
-<div class="sourceCode" id="cb184"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb183"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/TukeyHSD.html">TukeyHSD</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>   <span class="co"># Extraire les résultats</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>    <span class="co"># Transformer en jeu de données</span></span>
 <span>  <span class="fu"><a href="https://tibble.tidyverse.org/reference/rownames.html">rownames_to_column</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>     <span class="co"># Ajouter les noms des lignes</span></span>
@@ -427,19 +429,19 @@ Figure 13.3: Illustration corrigée du test de comparaisons multiples de Tukey
 </div>
 <p>La Figure <a href="comparer.html#fig:tukey2">13.3</a> montre une illustration des comparaisons de Tukey plus adéquate.</p>
 <p>Une autre technique permet d’obtenir une table de comparaisons. Il s’agit de <code><a href="https://rdrr.io/r/stats/pairwise.t.test.html">pairwise.t.test()</a></code>. Cette fonction prend en argument deux vecteurs, la variable continue et la variable de groupement, et un troisième argument, soit la correction à appliquer avec l’argument <code>p.adj</code>.</p>
-<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="comparer.html#cb185-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pairwise.t.test</span>(donnees<span class="sc">$</span>score, donnees<span class="sc">$</span>groupe, <span class="at">p.adj =</span> <span class="st">"none"</span>)</span>
-<span id="cb185-2"><a href="comparer.html#cb185-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
-<span id="cb185-3"><a href="comparer.html#cb185-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span>   Pairwise comparisons using t tests with pooled SD </span>
-<span id="cb185-4"><a href="comparer.html#cb185-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
-<span id="cb185-5"><a href="comparer.html#cb185-5" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> data<span class="sc">:</span>  donnees<span class="sc">$</span>score and donnees<span class="sc">$</span>groupe </span>
-<span id="cb185-6"><a href="comparer.html#cb185-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
-<span id="cb185-7"><a href="comparer.html#cb185-7" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span>           char  chat  cheval chevalier</span>
-<span id="cb185-8"><a href="comparer.html#cb185-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> chat      <span class="fl">4e-04</span> <span class="sc">-</span>     <span class="sc">-</span>      <span class="sc">-</span>        </span>
-<span id="cb185-9"><a href="comparer.html#cb185-9" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> cheval    <span class="fl">3e-04</span> <span class="fl">6e-11</span> <span class="sc">-</span>      <span class="sc">-</span>        </span>
-<span id="cb185-10"><a href="comparer.html#cb185-10" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> chevalier <span class="fl">0.392</span> <span class="fl">2e-05</span> <span class="fl">0.005</span>  <span class="sc">-</span>        </span>
-<span id="cb185-11"><a href="comparer.html#cb185-11" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> chien     <span class="fl">0.415</span> <span class="fl">2e-05</span> <span class="fl">0.005</span>  <span class="fl">0.967</span>    </span>
-<span id="cb185-12"><a href="comparer.html#cb185-12" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
-<span id="cb185-13"><a href="comparer.html#cb185-13" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> P value adjustment method<span class="sc">:</span> none</span></code></pre></div>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="comparer.html#cb184-1" tabindex="-1"></a><span class="fu">pairwise.t.test</span>(donnees<span class="sc">$</span>score, donnees<span class="sc">$</span>groupe, <span class="at">p.adj =</span> <span class="st">"none"</span>)</span>
+<span id="cb184-2"><a href="comparer.html#cb184-2" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb184-3"><a href="comparer.html#cb184-3" tabindex="-1"></a><span class="er">&gt;</span>   Pairwise comparisons using t tests with pooled SD </span>
+<span id="cb184-4"><a href="comparer.html#cb184-4" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb184-5"><a href="comparer.html#cb184-5" tabindex="-1"></a><span class="er">&gt;</span> data<span class="sc">:</span>  donnees<span class="sc">$</span>score and donnees<span class="sc">$</span>groupe </span>
+<span id="cb184-6"><a href="comparer.html#cb184-6" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb184-7"><a href="comparer.html#cb184-7" tabindex="-1"></a><span class="er">&gt;</span>           char  chat  cheval chevalier</span>
+<span id="cb184-8"><a href="comparer.html#cb184-8" tabindex="-1"></a><span class="sc">&gt;</span> chat      <span class="fl">4e-04</span> <span class="sc">-</span>     <span class="sc">-</span>      <span class="sc">-</span>        </span>
+<span id="cb184-9"><a href="comparer.html#cb184-9" tabindex="-1"></a><span class="er">&gt;</span> cheval    <span class="fl">3e-04</span> <span class="fl">6e-11</span> <span class="sc">-</span>      <span class="sc">-</span>        </span>
+<span id="cb184-10"><a href="comparer.html#cb184-10" tabindex="-1"></a><span class="er">&gt;</span> chevalier <span class="fl">0.392</span> <span class="fl">2e-05</span> <span class="fl">0.005</span>  <span class="sc">-</span>        </span>
+<span id="cb184-11"><a href="comparer.html#cb184-11" tabindex="-1"></a><span class="er">&gt;</span> chien     <span class="fl">0.415</span> <span class="fl">2e-05</span> <span class="fl">0.005</span>  <span class="fl">0.967</span>    </span>
+<span id="cb184-12"><a href="comparer.html#cb184-12" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb184-13"><a href="comparer.html#cb184-13" tabindex="-1"></a><span class="er">&gt;</span> P value adjustment method<span class="sc">:</span> none</span></code></pre></div>
 <p>Cette technique à l’avantage d’être prête pour la plupart corrections, par exemple <code>p.adj = "bonferroni"</code> ou <code>p.adj = "holm"</code>.</p>
 <p>TODO</p>
 </div>
@@ -447,59 +449,59 @@ Figure 13.3: Illustration corrigée du test de comparaisons multiples de Tukey
 <h2>
 <span class="header-section-number">13.7</span> ANOVA à mesures répétées<a class="anchor" aria-label="anchor" href="#anova-%C3%A0-mesures-r%C3%A9p%C3%A9t%C3%A9es"><i class="fas fa-link"></i></a>
 </h2>
-<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="comparer.html#cb186-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Un exemple d'ANOVA à mesures répétées</span></span>
-<span id="cb186-2"><a href="comparer.html#cb186-2" aria-hidden="true" tabindex="-1"></a>res.aov.r <span class="ot">&lt;-</span> <span class="fu">aov</span>(circumference <span class="sc">~</span> age <span class="sc">+</span> <span class="fu">Error</span>(Tree<span class="sc">/</span>age), <span class="at">data =</span> Orange)</span>
-<span id="cb186-3"><a href="comparer.html#cb186-3" aria-hidden="true" tabindex="-1"></a>res.aov.r</span>
-<span id="cb186-4"><a href="comparer.html#cb186-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
-<span id="cb186-5"><a href="comparer.html#cb186-5" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Call<span class="sc">:</span></span>
-<span id="cb186-6"><a href="comparer.html#cb186-6" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">aov</span>(<span class="at">formula =</span> circumference <span class="sc">~</span> age <span class="sc">+</span> <span class="fu">Error</span>(Tree<span class="sc">/</span>age), <span class="at">data =</span> Orange)</span>
-<span id="cb186-7"><a href="comparer.html#cb186-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
-<span id="cb186-8"><a href="comparer.html#cb186-8" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Grand Mean<span class="sc">:</span> <span class="dv">116</span></span>
-<span id="cb186-9"><a href="comparer.html#cb186-9" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
-<span id="cb186-10"><a href="comparer.html#cb186-10" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Stratum <span class="dv">1</span><span class="sc">:</span> Tree</span>
-<span id="cb186-11"><a href="comparer.html#cb186-11" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
-<span id="cb186-12"><a href="comparer.html#cb186-12" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Terms<span class="sc">:</span></span>
-<span id="cb186-13"><a href="comparer.html#cb186-13" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span>                 Residuals</span>
-<span id="cb186-14"><a href="comparer.html#cb186-14" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Sum of Squares      <span class="dv">11841</span></span>
-<span id="cb186-15"><a href="comparer.html#cb186-15" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Deg. of Freedom         <span class="dv">4</span></span>
-<span id="cb186-16"><a href="comparer.html#cb186-16" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
-<span id="cb186-17"><a href="comparer.html#cb186-17" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Residual standard error<span class="sc">:</span> <span class="fl">54.4</span></span>
-<span id="cb186-18"><a href="comparer.html#cb186-18" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
-<span id="cb186-19"><a href="comparer.html#cb186-19" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Stratum <span class="dv">2</span><span class="sc">:</span> Tree<span class="sc">:</span>age</span>
-<span id="cb186-20"><a href="comparer.html#cb186-20" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
-<span id="cb186-21"><a href="comparer.html#cb186-21" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Terms<span class="sc">:</span></span>
-<span id="cb186-22"><a href="comparer.html#cb186-22" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span>                   age Residuals</span>
-<span id="cb186-23"><a href="comparer.html#cb186-23" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Sum of Squares  <span class="dv">93772</span>      <span class="dv">4043</span></span>
-<span id="cb186-24"><a href="comparer.html#cb186-24" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Deg. of Freedom     <span class="dv">1</span>         <span class="dv">4</span></span>
-<span id="cb186-25"><a href="comparer.html#cb186-25" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
-<span id="cb186-26"><a href="comparer.html#cb186-26" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Residual standard error<span class="sc">:</span> <span class="fl">31.8</span></span>
-<span id="cb186-27"><a href="comparer.html#cb186-27" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Estimated effects are balanced</span>
-<span id="cb186-28"><a href="comparer.html#cb186-28" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
-<span id="cb186-29"><a href="comparer.html#cb186-29" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Stratum <span class="dv">3</span><span class="sc">:</span> Within</span>
-<span id="cb186-30"><a href="comparer.html#cb186-30" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
-<span id="cb186-31"><a href="comparer.html#cb186-31" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Terms<span class="sc">:</span></span>
-<span id="cb186-32"><a href="comparer.html#cb186-32" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span>                 Residuals</span>
-<span id="cb186-33"><a href="comparer.html#cb186-33" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Sum of Squares       <span class="dv">2711</span></span>
-<span id="cb186-34"><a href="comparer.html#cb186-34" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Deg. of Freedom        <span class="dv">25</span></span>
-<span id="cb186-35"><a href="comparer.html#cb186-35" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
-<span id="cb186-36"><a href="comparer.html#cb186-36" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Residual standard error<span class="sc">:</span> <span class="fl">10.4</span></span>
-<span id="cb186-37"><a href="comparer.html#cb186-37" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(res.aov.r)</span>
-<span id="cb186-38"><a href="comparer.html#cb186-38" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
-<span id="cb186-39"><a href="comparer.html#cb186-39" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Error<span class="sc">:</span> Tree</span>
-<span id="cb186-40"><a href="comparer.html#cb186-40" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>           Df Sum Sq Mean Sq F value <span class="fu">Pr</span>(<span class="sc">&gt;</span>F)</span>
-<span id="cb186-41"><a href="comparer.html#cb186-41" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Residuals  <span class="dv">4</span>  <span class="dv">11841</span>    <span class="dv">2960</span>               </span>
-<span id="cb186-42"><a href="comparer.html#cb186-42" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
-<span id="cb186-43"><a href="comparer.html#cb186-43" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Error<span class="sc">:</span> Tree<span class="sc">:</span>age</span>
-<span id="cb186-44"><a href="comparer.html#cb186-44" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>           Df Sum Sq Mean Sq F value  <span class="fu">Pr</span>(<span class="sc">&gt;</span>F)    </span>
-<span id="cb186-45"><a href="comparer.html#cb186-45" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> age        <span class="dv">1</span>  <span class="dv">93772</span>   <span class="dv">93772</span>    <span class="fl">92.8</span> <span class="fl">0.00065</span> <span class="sc">**</span><span class="er">*</span></span>
-<span id="cb186-46"><a href="comparer.html#cb186-46" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Residuals  <span class="dv">4</span>   <span class="dv">4043</span>    <span class="dv">1011</span>                    </span>
-<span id="cb186-47"><a href="comparer.html#cb186-47" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="sc">---</span></span>
-<span id="cb186-48"><a href="comparer.html#cb186-48" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Signif. codes<span class="sc">:</span>  </span>
-<span id="cb186-49"><a href="comparer.html#cb186-49" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="dv">0</span> <span class="st">'***'</span> <span class="fl">0.001</span> <span class="st">'**'</span> <span class="fl">0.01</span> <span class="st">'*'</span> <span class="fl">0.05</span> <span class="st">'.'</span> <span class="fl">0.1</span> <span class="st">' '</span> <span class="dv">1</span></span>
-<span id="cb186-50"><a href="comparer.html#cb186-50" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
-<span id="cb186-51"><a href="comparer.html#cb186-51" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Error<span class="sc">:</span> Within</span>
-<span id="cb186-52"><a href="comparer.html#cb186-52" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>           Df Sum Sq Mean Sq F value <span class="fu">Pr</span>(<span class="sc">&gt;</span>F)</span>
-<span id="cb186-53"><a href="comparer.html#cb186-53" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Residuals <span class="dv">25</span>   <span class="dv">2711</span>     <span class="dv">108</span></span></code></pre></div>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="comparer.html#cb185-1" tabindex="-1"></a><span class="co"># Un exemple d'ANOVA à mesures répétées</span></span>
+<span id="cb185-2"><a href="comparer.html#cb185-2" tabindex="-1"></a>res.aov.r <span class="ot">&lt;-</span> <span class="fu">aov</span>(circumference <span class="sc">~</span> age <span class="sc">+</span> <span class="fu">Error</span>(Tree<span class="sc">/</span>age), <span class="at">data =</span> Orange)</span>
+<span id="cb185-3"><a href="comparer.html#cb185-3" tabindex="-1"></a>res.aov.r</span>
+<span id="cb185-4"><a href="comparer.html#cb185-4" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb185-5"><a href="comparer.html#cb185-5" tabindex="-1"></a><span class="er">&gt;</span> Call<span class="sc">:</span></span>
+<span id="cb185-6"><a href="comparer.html#cb185-6" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">aov</span>(<span class="at">formula =</span> circumference <span class="sc">~</span> age <span class="sc">+</span> <span class="fu">Error</span>(Tree<span class="sc">/</span>age), <span class="at">data =</span> Orange)</span>
+<span id="cb185-7"><a href="comparer.html#cb185-7" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb185-8"><a href="comparer.html#cb185-8" tabindex="-1"></a><span class="er">&gt;</span> Grand Mean<span class="sc">:</span> <span class="dv">116</span></span>
+<span id="cb185-9"><a href="comparer.html#cb185-9" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb185-10"><a href="comparer.html#cb185-10" tabindex="-1"></a><span class="er">&gt;</span> Stratum <span class="dv">1</span><span class="sc">:</span> Tree</span>
+<span id="cb185-11"><a href="comparer.html#cb185-11" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb185-12"><a href="comparer.html#cb185-12" tabindex="-1"></a><span class="er">&gt;</span> Terms<span class="sc">:</span></span>
+<span id="cb185-13"><a href="comparer.html#cb185-13" tabindex="-1"></a><span class="er">&gt;</span>                 Residuals</span>
+<span id="cb185-14"><a href="comparer.html#cb185-14" tabindex="-1"></a><span class="sc">&gt;</span> Sum of Squares      <span class="dv">11841</span></span>
+<span id="cb185-15"><a href="comparer.html#cb185-15" tabindex="-1"></a><span class="sc">&gt;</span> Deg. of Freedom         <span class="dv">4</span></span>
+<span id="cb185-16"><a href="comparer.html#cb185-16" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb185-17"><a href="comparer.html#cb185-17" tabindex="-1"></a><span class="er">&gt;</span> Residual standard error<span class="sc">:</span> <span class="fl">54.4</span></span>
+<span id="cb185-18"><a href="comparer.html#cb185-18" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb185-19"><a href="comparer.html#cb185-19" tabindex="-1"></a><span class="er">&gt;</span> Stratum <span class="dv">2</span><span class="sc">:</span> Tree<span class="sc">:</span>age</span>
+<span id="cb185-20"><a href="comparer.html#cb185-20" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb185-21"><a href="comparer.html#cb185-21" tabindex="-1"></a><span class="er">&gt;</span> Terms<span class="sc">:</span></span>
+<span id="cb185-22"><a href="comparer.html#cb185-22" tabindex="-1"></a><span class="er">&gt;</span>                   age Residuals</span>
+<span id="cb185-23"><a href="comparer.html#cb185-23" tabindex="-1"></a><span class="sc">&gt;</span> Sum of Squares  <span class="dv">93772</span>      <span class="dv">4043</span></span>
+<span id="cb185-24"><a href="comparer.html#cb185-24" tabindex="-1"></a><span class="sc">&gt;</span> Deg. of Freedom     <span class="dv">1</span>         <span class="dv">4</span></span>
+<span id="cb185-25"><a href="comparer.html#cb185-25" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb185-26"><a href="comparer.html#cb185-26" tabindex="-1"></a><span class="er">&gt;</span> Residual standard error<span class="sc">:</span> <span class="fl">31.8</span></span>
+<span id="cb185-27"><a href="comparer.html#cb185-27" tabindex="-1"></a><span class="sc">&gt;</span> Estimated effects are balanced</span>
+<span id="cb185-28"><a href="comparer.html#cb185-28" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb185-29"><a href="comparer.html#cb185-29" tabindex="-1"></a><span class="er">&gt;</span> Stratum <span class="dv">3</span><span class="sc">:</span> Within</span>
+<span id="cb185-30"><a href="comparer.html#cb185-30" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb185-31"><a href="comparer.html#cb185-31" tabindex="-1"></a><span class="er">&gt;</span> Terms<span class="sc">:</span></span>
+<span id="cb185-32"><a href="comparer.html#cb185-32" tabindex="-1"></a><span class="er">&gt;</span>                 Residuals</span>
+<span id="cb185-33"><a href="comparer.html#cb185-33" tabindex="-1"></a><span class="sc">&gt;</span> Sum of Squares       <span class="dv">2711</span></span>
+<span id="cb185-34"><a href="comparer.html#cb185-34" tabindex="-1"></a><span class="sc">&gt;</span> Deg. of Freedom        <span class="dv">25</span></span>
+<span id="cb185-35"><a href="comparer.html#cb185-35" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb185-36"><a href="comparer.html#cb185-36" tabindex="-1"></a><span class="er">&gt;</span> Residual standard error<span class="sc">:</span> <span class="fl">10.4</span></span>
+<span id="cb185-37"><a href="comparer.html#cb185-37" tabindex="-1"></a><span class="fu">summary</span>(res.aov.r)</span>
+<span id="cb185-38"><a href="comparer.html#cb185-38" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb185-39"><a href="comparer.html#cb185-39" tabindex="-1"></a><span class="er">&gt;</span> Error<span class="sc">:</span> Tree</span>
+<span id="cb185-40"><a href="comparer.html#cb185-40" tabindex="-1"></a><span class="sc">&gt;</span>           Df Sum Sq Mean Sq F value <span class="fu">Pr</span>(<span class="sc">&gt;</span>F)</span>
+<span id="cb185-41"><a href="comparer.html#cb185-41" tabindex="-1"></a><span class="sc">&gt;</span> Residuals  <span class="dv">4</span>  <span class="dv">11841</span>    <span class="dv">2960</span>               </span>
+<span id="cb185-42"><a href="comparer.html#cb185-42" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb185-43"><a href="comparer.html#cb185-43" tabindex="-1"></a><span class="er">&gt;</span> Error<span class="sc">:</span> Tree<span class="sc">:</span>age</span>
+<span id="cb185-44"><a href="comparer.html#cb185-44" tabindex="-1"></a><span class="sc">&gt;</span>           Df Sum Sq Mean Sq F value  <span class="fu">Pr</span>(<span class="sc">&gt;</span>F)    </span>
+<span id="cb185-45"><a href="comparer.html#cb185-45" tabindex="-1"></a><span class="sc">&gt;</span> age        <span class="dv">1</span>  <span class="dv">93772</span>   <span class="dv">93772</span>    <span class="fl">92.8</span> <span class="fl">0.00065</span> <span class="sc">**</span><span class="er">*</span></span>
+<span id="cb185-46"><a href="comparer.html#cb185-46" tabindex="-1"></a><span class="er">&gt;</span> Residuals  <span class="dv">4</span>   <span class="dv">4043</span>    <span class="dv">1011</span>                    </span>
+<span id="cb185-47"><a href="comparer.html#cb185-47" tabindex="-1"></a><span class="sc">&gt;</span> <span class="sc">---</span></span>
+<span id="cb185-48"><a href="comparer.html#cb185-48" tabindex="-1"></a><span class="er">&gt;</span> Signif. codes<span class="sc">:</span>  </span>
+<span id="cb185-49"><a href="comparer.html#cb185-49" tabindex="-1"></a><span class="er">&gt;</span> <span class="dv">0</span> <span class="st">'***'</span> <span class="fl">0.001</span> <span class="st">'**'</span> <span class="fl">0.01</span> <span class="st">'*'</span> <span class="fl">0.05</span> <span class="st">'.'</span> <span class="fl">0.1</span> <span class="st">' '</span> <span class="dv">1</span></span>
+<span id="cb185-50"><a href="comparer.html#cb185-50" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb185-51"><a href="comparer.html#cb185-51" tabindex="-1"></a><span class="er">&gt;</span> Error<span class="sc">:</span> Within</span>
+<span id="cb185-52"><a href="comparer.html#cb185-52" tabindex="-1"></a><span class="sc">&gt;</span>           Df Sum Sq Mean Sq F value <span class="fu">Pr</span>(<span class="sc">&gt;</span>F)</span>
+<span id="cb185-53"><a href="comparer.html#cb185-53" tabindex="-1"></a><span class="sc">&gt;</span> Residuals <span class="dv">25</span>   <span class="dv">2711</span>     <span class="dv">108</span></span></code></pre></div>
 <!-- ## Anova avec facteur intersujet et intrasujet -->
 <!-- ```{r} -->
 <!-- jd <- data.frame( -->
@@ -518,73 +520,73 @@ Figure 13.3: Illustration corrigée du test de comparaisons multiples de Tukey
 <h2>
 <span class="header-section-number">13.8</span> MANOVA : analyse de variance multivariée<a class="anchor" aria-label="anchor" href="#manova-analyse-de-variance-multivari%C3%A9e"><i class="fas fa-link"></i></a>
 </h2>
-<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="comparer.html#cb187-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Un example d'ANOVA multivarié</span></span>
-<span id="cb187-2"><a href="comparer.html#cb187-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb187-3"><a href="comparer.html#cb187-3" aria-hidden="true" tabindex="-1"></a>res.maov <span class="ot">&lt;-</span> <span class="fu">manova</span>(<span class="fu">cbind</span>(Sepal.Length, Petal.Length) <span class="sc">~</span> Species, <span class="at">data =</span> iris)</span>
-<span id="cb187-4"><a href="comparer.html#cb187-4" aria-hidden="true" tabindex="-1"></a>res.maov</span>
-<span id="cb187-5"><a href="comparer.html#cb187-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Call<span class="sc">:</span></span>
-<span id="cb187-6"><a href="comparer.html#cb187-6" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span>    <span class="fu">manova</span>(<span class="fu">cbind</span>(Sepal.Length, Petal.Length) <span class="sc">~</span> Species, <span class="at">data =</span> iris)</span>
-<span id="cb187-7"><a href="comparer.html#cb187-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
-<span id="cb187-8"><a href="comparer.html#cb187-8" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Terms<span class="sc">:</span></span>
-<span id="cb187-9"><a href="comparer.html#cb187-9" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span>                 Species Residuals</span>
-<span id="cb187-10"><a href="comparer.html#cb187-10" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Sepal.Length         <span class="dv">63</span>        <span class="dv">39</span></span>
-<span id="cb187-11"><a href="comparer.html#cb187-11" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Petal.Length        <span class="dv">437</span>        <span class="dv">27</span></span>
-<span id="cb187-12"><a href="comparer.html#cb187-12" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Deg. of Freedom       <span class="dv">2</span>       <span class="dv">147</span></span>
-<span id="cb187-13"><a href="comparer.html#cb187-13" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
-<span id="cb187-14"><a href="comparer.html#cb187-14" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Residual standard errors<span class="sc">:</span> <span class="fl">0.515</span> <span class="fl">0.43</span></span>
-<span id="cb187-15"><a href="comparer.html#cb187-15" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Estimated effects may be unbalanced</span>
-<span id="cb187-16"><a href="comparer.html#cb187-16" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(res.maov)</span>
-<span id="cb187-17"><a href="comparer.html#cb187-17" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>            Df Pillai approx F num Df den Df <span class="fu">Pr</span>(<span class="sc">&gt;</span>F)    </span>
-<span id="cb187-18"><a href="comparer.html#cb187-18" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Species     <span class="dv">2</span>  <span class="fl">0.989</span>     <span class="fl">71.8</span>      <span class="dv">4</span>    <span class="dv">294</span> <span class="sc">&lt;</span><span class="fl">2e-16</span> <span class="sc">**</span><span class="er">*</span></span>
-<span id="cb187-19"><a href="comparer.html#cb187-19" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Residuals <span class="dv">147</span>                                         </span>
-<span id="cb187-20"><a href="comparer.html#cb187-20" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="sc">---</span></span>
-<span id="cb187-21"><a href="comparer.html#cb187-21" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Signif. codes<span class="sc">:</span>  </span>
-<span id="cb187-22"><a href="comparer.html#cb187-22" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="dv">0</span> <span class="st">'***'</span> <span class="fl">0.001</span> <span class="st">'**'</span> <span class="fl">0.01</span> <span class="st">'*'</span> <span class="fl">0.05</span> <span class="st">'.'</span> <span class="fl">0.1</span> <span class="st">' '</span> <span class="dv">1</span></span>
-<span id="cb187-23"><a href="comparer.html#cb187-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb187-24"><a href="comparer.html#cb187-24" aria-hidden="true" tabindex="-1"></a><span class="fu">summary.aov</span>(res.maov)</span>
-<span id="cb187-25"><a href="comparer.html#cb187-25" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>  Response Sepal.Length <span class="sc">:</span></span>
-<span id="cb187-26"><a href="comparer.html#cb187-26" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span>              Df Sum Sq Mean Sq F value <span class="fu">Pr</span>(<span class="sc">&gt;</span>F)    </span>
-<span id="cb187-27"><a href="comparer.html#cb187-27" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Species       <span class="dv">2</span>   <span class="fl">63.2</span>   <span class="fl">31.61</span>     <span class="dv">119</span> <span class="sc">&lt;</span><span class="fl">2e-16</span> <span class="sc">**</span><span class="er">*</span></span>
-<span id="cb187-28"><a href="comparer.html#cb187-28" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Residuals   <span class="dv">147</span>   <span class="fl">39.0</span>    <span class="fl">0.27</span>                   </span>
-<span id="cb187-29"><a href="comparer.html#cb187-29" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="sc">---</span></span>
-<span id="cb187-30"><a href="comparer.html#cb187-30" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Signif. codes<span class="sc">:</span>  </span>
-<span id="cb187-31"><a href="comparer.html#cb187-31" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="dv">0</span> <span class="st">'***'</span> <span class="fl">0.001</span> <span class="st">'**'</span> <span class="fl">0.01</span> <span class="st">'*'</span> <span class="fl">0.05</span> <span class="st">'.'</span> <span class="fl">0.1</span> <span class="st">' '</span> <span class="dv">1</span></span>
-<span id="cb187-32"><a href="comparer.html#cb187-32" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
-<span id="cb187-33"><a href="comparer.html#cb187-33" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span>  Response Petal.Length <span class="sc">:</span></span>
-<span id="cb187-34"><a href="comparer.html#cb187-34" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span>              Df Sum Sq Mean Sq F value <span class="fu">Pr</span>(<span class="sc">&gt;</span>F)    </span>
-<span id="cb187-35"><a href="comparer.html#cb187-35" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Species       <span class="dv">2</span>    <span class="dv">437</span>   <span class="fl">218.6</span>    <span class="dv">1180</span> <span class="sc">&lt;</span><span class="fl">2e-16</span> <span class="sc">**</span><span class="er">*</span></span>
-<span id="cb187-36"><a href="comparer.html#cb187-36" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Residuals   <span class="dv">147</span>     <span class="dv">27</span>     <span class="fl">0.2</span>                   </span>
-<span id="cb187-37"><a href="comparer.html#cb187-37" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="sc">---</span></span>
-<span id="cb187-38"><a href="comparer.html#cb187-38" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Signif. codes<span class="sc">:</span>  </span>
-<span id="cb187-39"><a href="comparer.html#cb187-39" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="dv">0</span> <span class="st">'***'</span> <span class="fl">0.001</span> <span class="st">'**'</span> <span class="fl">0.01</span> <span class="st">'*'</span> <span class="fl">0.05</span> <span class="st">'.'</span> <span class="fl">0.1</span> <span class="st">' '</span> <span class="dv">1</span></span>
-<span id="cb187-40"><a href="comparer.html#cb187-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb187-41"><a href="comparer.html#cb187-41" aria-hidden="true" tabindex="-1"></a>res.lda <span class="ot">&lt;-</span> MASS<span class="sc">::</span><span class="fu">lda</span>(Species <span class="sc">~</span> Sepal.Length <span class="sc">+</span> Petal.Length, <span class="at">data =</span> iris)</span>
-<span id="cb187-42"><a href="comparer.html#cb187-42" aria-hidden="true" tabindex="-1"></a>res.lda </span>
-<span id="cb187-43"><a href="comparer.html#cb187-43" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Call<span class="sc">:</span></span>
-<span id="cb187-44"><a href="comparer.html#cb187-44" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">lda</span>(Species <span class="sc">~</span> Sepal.Length <span class="sc">+</span> Petal.Length, <span class="at">data =</span> iris)</span>
-<span id="cb187-45"><a href="comparer.html#cb187-45" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
-<span id="cb187-46"><a href="comparer.html#cb187-46" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Prior probabilities of groups<span class="sc">:</span></span>
-<span id="cb187-47"><a href="comparer.html#cb187-47" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span>     setosa versicolor  virginica </span>
-<span id="cb187-48"><a href="comparer.html#cb187-48" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>      <span class="fl">0.333</span>      <span class="fl">0.333</span>      <span class="fl">0.333</span> </span>
-<span id="cb187-49"><a href="comparer.html#cb187-49" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
-<span id="cb187-50"><a href="comparer.html#cb187-50" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Group means<span class="sc">:</span></span>
-<span id="cb187-51"><a href="comparer.html#cb187-51" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span>            Sepal.Length Petal.Length</span>
-<span id="cb187-52"><a href="comparer.html#cb187-52" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> setosa             <span class="fl">5.01</span>         <span class="fl">1.46</span></span>
-<span id="cb187-53"><a href="comparer.html#cb187-53" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> versicolor         <span class="fl">5.94</span>         <span class="fl">4.26</span></span>
-<span id="cb187-54"><a href="comparer.html#cb187-54" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> virginica          <span class="fl">6.59</span>         <span class="fl">5.55</span></span>
-<span id="cb187-55"><a href="comparer.html#cb187-55" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
-<span id="cb187-56"><a href="comparer.html#cb187-56" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Coefficients of linear discriminants<span class="sc">:</span></span>
-<span id="cb187-57"><a href="comparer.html#cb187-57" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span>                LD1    LD2</span>
-<span id="cb187-58"><a href="comparer.html#cb187-58" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Sepal.Length <span class="sc">-</span><span class="fl">1.66</span>  <span class="fl">2.462</span></span>
-<span id="cb187-59"><a href="comparer.html#cb187-59" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Petal.Length  <span class="fl">3.43</span> <span class="sc">-</span><span class="fl">0.928</span></span>
-<span id="cb187-60"><a href="comparer.html#cb187-60" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
-<span id="cb187-61"><a href="comparer.html#cb187-61" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> Proportion of trace<span class="sc">:</span></span>
-<span id="cb187-62"><a href="comparer.html#cb187-62" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span>    LD1    LD2 </span>
-<span id="cb187-63"><a href="comparer.html#cb187-63" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fl">0.9987</span> <span class="fl">0.0013</span></span>
-<span id="cb187-64"><a href="comparer.html#cb187-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb187-65"><a href="comparer.html#cb187-65" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(res.lda)</span></code></pre></div>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="comparer.html#cb186-1" tabindex="-1"></a><span class="co"># Un example d'ANOVA multivarié</span></span>
+<span id="cb186-2"><a href="comparer.html#cb186-2" tabindex="-1"></a></span>
+<span id="cb186-3"><a href="comparer.html#cb186-3" tabindex="-1"></a>res.maov <span class="ot">&lt;-</span> <span class="fu">manova</span>(<span class="fu">cbind</span>(Sepal.Length, Petal.Length) <span class="sc">~</span> Species, <span class="at">data =</span> iris)</span>
+<span id="cb186-4"><a href="comparer.html#cb186-4" tabindex="-1"></a>res.maov</span>
+<span id="cb186-5"><a href="comparer.html#cb186-5" tabindex="-1"></a><span class="sc">&gt;</span> Call<span class="sc">:</span></span>
+<span id="cb186-6"><a href="comparer.html#cb186-6" tabindex="-1"></a><span class="er">&gt;</span>    <span class="fu">manova</span>(<span class="fu">cbind</span>(Sepal.Length, Petal.Length) <span class="sc">~</span> Species, <span class="at">data =</span> iris)</span>
+<span id="cb186-7"><a href="comparer.html#cb186-7" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb186-8"><a href="comparer.html#cb186-8" tabindex="-1"></a><span class="er">&gt;</span> Terms<span class="sc">:</span></span>
+<span id="cb186-9"><a href="comparer.html#cb186-9" tabindex="-1"></a><span class="er">&gt;</span>                 Species Residuals</span>
+<span id="cb186-10"><a href="comparer.html#cb186-10" tabindex="-1"></a><span class="sc">&gt;</span> Sepal.Length         <span class="dv">63</span>        <span class="dv">39</span></span>
+<span id="cb186-11"><a href="comparer.html#cb186-11" tabindex="-1"></a><span class="sc">&gt;</span> Petal.Length        <span class="dv">437</span>        <span class="dv">27</span></span>
+<span id="cb186-12"><a href="comparer.html#cb186-12" tabindex="-1"></a><span class="sc">&gt;</span> Deg. of Freedom       <span class="dv">2</span>       <span class="dv">147</span></span>
+<span id="cb186-13"><a href="comparer.html#cb186-13" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb186-14"><a href="comparer.html#cb186-14" tabindex="-1"></a><span class="er">&gt;</span> Residual standard errors<span class="sc">:</span> <span class="fl">0.515</span> <span class="fl">0.43</span></span>
+<span id="cb186-15"><a href="comparer.html#cb186-15" tabindex="-1"></a><span class="sc">&gt;</span> Estimated effects may be unbalanced</span>
+<span id="cb186-16"><a href="comparer.html#cb186-16" tabindex="-1"></a><span class="fu">summary</span>(res.maov)</span>
+<span id="cb186-17"><a href="comparer.html#cb186-17" tabindex="-1"></a><span class="sc">&gt;</span>            Df Pillai approx F num Df den Df <span class="fu">Pr</span>(<span class="sc">&gt;</span>F)    </span>
+<span id="cb186-18"><a href="comparer.html#cb186-18" tabindex="-1"></a><span class="sc">&gt;</span> Species     <span class="dv">2</span>  <span class="fl">0.989</span>     <span class="fl">71.8</span>      <span class="dv">4</span>    <span class="dv">294</span> <span class="sc">&lt;</span><span class="fl">2e-16</span> <span class="sc">**</span><span class="er">*</span></span>
+<span id="cb186-19"><a href="comparer.html#cb186-19" tabindex="-1"></a><span class="er">&gt;</span> Residuals <span class="dv">147</span>                                         </span>
+<span id="cb186-20"><a href="comparer.html#cb186-20" tabindex="-1"></a><span class="sc">&gt;</span> <span class="sc">---</span></span>
+<span id="cb186-21"><a href="comparer.html#cb186-21" tabindex="-1"></a><span class="er">&gt;</span> Signif. codes<span class="sc">:</span>  </span>
+<span id="cb186-22"><a href="comparer.html#cb186-22" tabindex="-1"></a><span class="er">&gt;</span> <span class="dv">0</span> <span class="st">'***'</span> <span class="fl">0.001</span> <span class="st">'**'</span> <span class="fl">0.01</span> <span class="st">'*'</span> <span class="fl">0.05</span> <span class="st">'.'</span> <span class="fl">0.1</span> <span class="st">' '</span> <span class="dv">1</span></span>
+<span id="cb186-23"><a href="comparer.html#cb186-23" tabindex="-1"></a></span>
+<span id="cb186-24"><a href="comparer.html#cb186-24" tabindex="-1"></a><span class="fu">summary.aov</span>(res.maov)</span>
+<span id="cb186-25"><a href="comparer.html#cb186-25" tabindex="-1"></a><span class="sc">&gt;</span>  Response Sepal.Length <span class="sc">:</span></span>
+<span id="cb186-26"><a href="comparer.html#cb186-26" tabindex="-1"></a><span class="er">&gt;</span>              Df Sum Sq Mean Sq F value <span class="fu">Pr</span>(<span class="sc">&gt;</span>F)    </span>
+<span id="cb186-27"><a href="comparer.html#cb186-27" tabindex="-1"></a><span class="sc">&gt;</span> Species       <span class="dv">2</span>   <span class="fl">63.2</span>   <span class="fl">31.61</span>     <span class="dv">119</span> <span class="sc">&lt;</span><span class="fl">2e-16</span> <span class="sc">**</span><span class="er">*</span></span>
+<span id="cb186-28"><a href="comparer.html#cb186-28" tabindex="-1"></a><span class="er">&gt;</span> Residuals   <span class="dv">147</span>   <span class="fl">39.0</span>    <span class="fl">0.27</span>                   </span>
+<span id="cb186-29"><a href="comparer.html#cb186-29" tabindex="-1"></a><span class="sc">&gt;</span> <span class="sc">---</span></span>
+<span id="cb186-30"><a href="comparer.html#cb186-30" tabindex="-1"></a><span class="er">&gt;</span> Signif. codes<span class="sc">:</span>  </span>
+<span id="cb186-31"><a href="comparer.html#cb186-31" tabindex="-1"></a><span class="er">&gt;</span> <span class="dv">0</span> <span class="st">'***'</span> <span class="fl">0.001</span> <span class="st">'**'</span> <span class="fl">0.01</span> <span class="st">'*'</span> <span class="fl">0.05</span> <span class="st">'.'</span> <span class="fl">0.1</span> <span class="st">' '</span> <span class="dv">1</span></span>
+<span id="cb186-32"><a href="comparer.html#cb186-32" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb186-33"><a href="comparer.html#cb186-33" tabindex="-1"></a><span class="er">&gt;</span>  Response Petal.Length <span class="sc">:</span></span>
+<span id="cb186-34"><a href="comparer.html#cb186-34" tabindex="-1"></a><span class="er">&gt;</span>              Df Sum Sq Mean Sq F value <span class="fu">Pr</span>(<span class="sc">&gt;</span>F)    </span>
+<span id="cb186-35"><a href="comparer.html#cb186-35" tabindex="-1"></a><span class="sc">&gt;</span> Species       <span class="dv">2</span>    <span class="dv">437</span>   <span class="fl">218.6</span>    <span class="dv">1180</span> <span class="sc">&lt;</span><span class="fl">2e-16</span> <span class="sc">**</span><span class="er">*</span></span>
+<span id="cb186-36"><a href="comparer.html#cb186-36" tabindex="-1"></a><span class="er">&gt;</span> Residuals   <span class="dv">147</span>     <span class="dv">27</span>     <span class="fl">0.2</span>                   </span>
+<span id="cb186-37"><a href="comparer.html#cb186-37" tabindex="-1"></a><span class="sc">&gt;</span> <span class="sc">---</span></span>
+<span id="cb186-38"><a href="comparer.html#cb186-38" tabindex="-1"></a><span class="er">&gt;</span> Signif. codes<span class="sc">:</span>  </span>
+<span id="cb186-39"><a href="comparer.html#cb186-39" tabindex="-1"></a><span class="er">&gt;</span> <span class="dv">0</span> <span class="st">'***'</span> <span class="fl">0.001</span> <span class="st">'**'</span> <span class="fl">0.01</span> <span class="st">'*'</span> <span class="fl">0.05</span> <span class="st">'.'</span> <span class="fl">0.1</span> <span class="st">' '</span> <span class="dv">1</span></span>
+<span id="cb186-40"><a href="comparer.html#cb186-40" tabindex="-1"></a></span>
+<span id="cb186-41"><a href="comparer.html#cb186-41" tabindex="-1"></a>res.lda <span class="ot">&lt;-</span> MASS<span class="sc">::</span><span class="fu">lda</span>(Species <span class="sc">~</span> Sepal.Length <span class="sc">+</span> Petal.Length, <span class="at">data =</span> iris)</span>
+<span id="cb186-42"><a href="comparer.html#cb186-42" tabindex="-1"></a>res.lda </span>
+<span id="cb186-43"><a href="comparer.html#cb186-43" tabindex="-1"></a><span class="sc">&gt;</span> Call<span class="sc">:</span></span>
+<span id="cb186-44"><a href="comparer.html#cb186-44" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">lda</span>(Species <span class="sc">~</span> Sepal.Length <span class="sc">+</span> Petal.Length, <span class="at">data =</span> iris)</span>
+<span id="cb186-45"><a href="comparer.html#cb186-45" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb186-46"><a href="comparer.html#cb186-46" tabindex="-1"></a><span class="er">&gt;</span> Prior probabilities of groups<span class="sc">:</span></span>
+<span id="cb186-47"><a href="comparer.html#cb186-47" tabindex="-1"></a><span class="er">&gt;</span>     setosa versicolor  virginica </span>
+<span id="cb186-48"><a href="comparer.html#cb186-48" tabindex="-1"></a><span class="sc">&gt;</span>      <span class="fl">0.333</span>      <span class="fl">0.333</span>      <span class="fl">0.333</span> </span>
+<span id="cb186-49"><a href="comparer.html#cb186-49" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb186-50"><a href="comparer.html#cb186-50" tabindex="-1"></a><span class="er">&gt;</span> Group means<span class="sc">:</span></span>
+<span id="cb186-51"><a href="comparer.html#cb186-51" tabindex="-1"></a><span class="er">&gt;</span>            Sepal.Length Petal.Length</span>
+<span id="cb186-52"><a href="comparer.html#cb186-52" tabindex="-1"></a><span class="sc">&gt;</span> setosa             <span class="fl">5.01</span>         <span class="fl">1.46</span></span>
+<span id="cb186-53"><a href="comparer.html#cb186-53" tabindex="-1"></a><span class="sc">&gt;</span> versicolor         <span class="fl">5.94</span>         <span class="fl">4.26</span></span>
+<span id="cb186-54"><a href="comparer.html#cb186-54" tabindex="-1"></a><span class="sc">&gt;</span> virginica          <span class="fl">6.59</span>         <span class="fl">5.55</span></span>
+<span id="cb186-55"><a href="comparer.html#cb186-55" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb186-56"><a href="comparer.html#cb186-56" tabindex="-1"></a><span class="er">&gt;</span> Coefficients of linear discriminants<span class="sc">:</span></span>
+<span id="cb186-57"><a href="comparer.html#cb186-57" tabindex="-1"></a><span class="er">&gt;</span>                LD1    LD2</span>
+<span id="cb186-58"><a href="comparer.html#cb186-58" tabindex="-1"></a><span class="sc">&gt;</span> Sepal.Length <span class="sc">-</span><span class="fl">1.66</span>  <span class="fl">2.462</span></span>
+<span id="cb186-59"><a href="comparer.html#cb186-59" tabindex="-1"></a><span class="sc">&gt;</span> Petal.Length  <span class="fl">3.43</span> <span class="sc">-</span><span class="fl">0.928</span></span>
+<span id="cb186-60"><a href="comparer.html#cb186-60" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb186-61"><a href="comparer.html#cb186-61" tabindex="-1"></a><span class="er">&gt;</span> Proportion of trace<span class="sc">:</span></span>
+<span id="cb186-62"><a href="comparer.html#cb186-62" tabindex="-1"></a><span class="er">&gt;</span>    LD1    LD2 </span>
+<span id="cb186-63"><a href="comparer.html#cb186-63" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fl">0.9987</span> <span class="fl">0.0013</span></span>
+<span id="cb186-64"><a href="comparer.html#cb186-64" tabindex="-1"></a></span>
+<span id="cb186-65"><a href="comparer.html#cb186-65" tabindex="-1"></a><span class="fu">plot</span>(res.lda)</span></code></pre></div>
 <div class="inline-figure"><img src="13-Comparer_files/figure-html/unnamed-chunk-16-1.png" width="672"></div>
-<div class="sourceCode" id="cb188"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb187"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="co"># iris %&gt;% </span></span>
 <span><span class="co">#   ggplot(mapping = aes(x = Sepal.Length,</span></span>
@@ -629,7 +631,7 @@ Figure 13.3: Illustration corrigée du test de comparaisons multiples de Tukey
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2024-11-13.</p>
+    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2024-12-16.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

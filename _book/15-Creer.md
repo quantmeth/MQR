@@ -24,7 +24,7 @@ La variance de leur somme prend la forme suivante
 où $\sigma^2$ est le symbole habituel de la variance. La variance de la somme (ou de la différence) de deux variables indépendantes (non-corrélées) aléatoires est leur somme. En fait, la somme de $p$ variables indépendantes est la somme de leurs variances. En syntaxe **R**, ces équations ressemblent à ceci.
 
 
-```r
+``` r
 set.seed(1155)            # reproductibilité
 n <- 100000               # taille élevée pour la précision
 s.x1 <- sqrt(2)           # variance de 2 
@@ -38,7 +38,7 @@ x2 <- rnorm(n = n, sd = s.x2)
 Dans cet exemple, les variances de `x1` et de `x3` sont égales à 2 et 3 respectivement. Si ces deux variables sont additionnées pour créer `y`, l'équation \@ref(eq:eq2) implique que la variance est de $\sigma^2_{x_{1}} + \sigma^2_{x_2} = 2 + 3= 5$
 
 
-```r
+``` r
 y <- x1 + x2
 var(y)
 > [1] 5
@@ -60,7 +60,7 @@ En pratique, il est rare que les variables prédictrices soient non corrélées.
 L'équation \@ref(eq:eq2) est un cas particulier lorsque $\sigma_{x_1 x_2}=0$. En syntaxe **R**, pour $\rho = .5$, cela revient à programmer la syntaxe suivante.
 
 
-```r
+``` r
 # Création de variables corrélées
 rho <- .5                          # corrélation de .5
 s.x1x2 <- rho * s.x1 * s.x2        # covariance de x et y
@@ -88,7 +88,7 @@ $$\sigma_{x_1,x_2} = \rho_{x_1,x_2} \sigma_{x_1} \sigma_{x_2} = 0.5 \times 1.414
 confirmée par **R**,
 
 
-```r
+``` r
 s.x1x2
 > [1] 1.22
 ```
@@ -120,7 +120,7 @@ Une autre façon mathématiquement plus simple de calculer la loi de la somme de
 ce qui, en faisant la somme, conduit à l'équation \@ref(eq:eq3). Encore une fois, si $\sigma_{x_1,x_2}=0$, alors l'équation \@ref(eq:eq4) est égale à l'équation \@ref(eq:eq2). Cette formulation a l'avantage de montrer l'origine des deux covariances dans l'équation \@ref(eq:eq3). La syntaxe est dès plus rudimentaire en code **R**.
 
 
-```r
+``` r
 sum(S)
 > [1] 7.45
 ```
@@ -159,7 +159,7 @@ Une opération matricielle équivalente à la grande somme est
 où $1$ est un vecteur de longueur $p$ contenant seulement des 1. Voici en syntaxe **R**.
 
 
-```r
+``` r
 Un <- c(1, 1)       # Création du vecteur 1
 t(Un) %*% S %*% Un  # Grande somme
 >      [,1]
@@ -191,7 +191,7 @@ Il peut être utile de considérer $\beta$ comme, éventuellement, le degré de 
 En termes de syntaxe **R**, cela se traduit (toujours avec le même exemple).
 
 
-```r
+``` r
 beta <- 4
 # La variance de x1 est toujours de 2
 y <- beta * x1
@@ -231,7 +231,7 @@ et quand ils covarient, comme l'équation \@ref(eq:eq3), cela devient
 Dans ces équations, les $\beta_i$ mettent à l'échelle la variance et la covariance. Ces équations se vérifient avec **R** (toujours avec le même exemple).
 
 
-```r
+``` r
 # En suivant, l'exemple précédent
 beta1 <- 4
 beta2 <- 5
@@ -266,7 +266,7 @@ Comme précédemment, la formule en termes d'algèbre matricielle est plus simpl
 où $\mathbf{B}$ ($\beta$ majuscule) est un vecteur contenant tous les coefficients de régression $\beta_i$ de longueur $p$ prédisant $y$ et s'appliquant à un nombre quelconque de prédicteurs $x$. Le premier $\prime$ est le symbole de transposition, un opérateur qui pivote la matrice sur sa diagonale et, dans le cas d'un vecteur, retourne les colonnes en lignes et vice-versa (voir son implication dans l'équation \@ref(eq:eq13) par exemple). Dans l'équation \@ref(eq:eq12), les deux vecteurs $\mathbf{B}$ revient à élever au carré $\beta_i$. Si tous les éléments de $\mathbf{B}$ égalent 1, alors l'équation \@ref(eq:eq12) est identique à la définition d'une grande somme, voir l'équation \@ref(eq:GS). En syntaxe **R**, l'équation \@ref(eq:eq12) donne :
 
 
-```r
+``` r
 # Joint beta1 et beta2 dans un vecteur
 beta <- c(beta1, beta2)
 
@@ -341,7 +341,7 @@ donnent
 Comme prévu, la variance de la différence de deux variables aléatoires est la somme de leurs variances en soustrayant deux fois leur échelle de covariance par $\beta$. Cela se vérifie avec **R**.
 
 
-```r
+``` r
 y = beta1 * x1 - beta2 * x2
 var(y)
 > [1] 58
@@ -517,7 +517,7 @@ La Figure \@ref(fig:mod3) montre un modèle à trois variables. La première var
 Afin de bâtir un exemple complet avec **R**, la syntaxe ci-dessous montre les paramètres arbitraires pour la création de données à parti du modèle de la figure \@ref(fig:mod3).
 
 
-```r
+``` r
 # Pour la reproductibilité
 set.seed(1448)            
 n <- 100000
@@ -531,7 +531,7 @@ beta32 <- -.5
 La première variable $x_1$ est **exogène**, c'est-à-dire qu'elle n'est prédite par aucune autre variable, et n'obtient aucune information d'aucune autre variable. Cela se perçoit notamment dans la matrice $\mathbf{B}$ avec la première ligne ne contenant que des 0. Pour créer `x1`, il suffit de connaître sa variance (1 dans un scénario standardisé). Il faudra en supplément un vecteur de variances (ici, toutes fixées à 1 par le scénario standardisé).
 
 
-```r
+``` r
 # Création de la première variable
 x1 <- rnorm(n = n, sd = 1) # Variance de 1
 ```
@@ -551,7 +551,7 @@ $$
 En code **R**, il est possible de procéder ainsi.
 
 
-```r
+``` r
 # Variance résiduelle
 e_x2 <- 1 - beta21^2
 
@@ -577,7 +577,7 @@ $$
 Elle occasionne toutefois un défi, car la covariance entre $x_1$ et $x_2$ n'est pas explicitement connue. Dans le cas d'une variable prédite exclusivement par une autre variable qui elle est exogène (sans prédicteur), leur covariance est égale au coefficient de régression, soit $\beta_{21}$. Ce cas ne survient que dans cette situation précise. Il sera impératif de dégager une solution générale pour des modèles ayant plus de trois variables, la complexité du calcul de la covariance augmentant avec la croissance de $p$. En **R**, $x_3$ se génère ainsi.
 
 
-```r
+``` r
 # Variance résiduelle
 e_x3 <- 1 - (beta31^2 + beta32^2 + 
                2 * beta31 * beta32 * beta21)
@@ -590,7 +590,7 @@ x3 = beta31 * x1 + beta32 *
 Il est possible de vérifier les caractéristiques des trois modèles.
 
 
-```r
+``` r
 # Création du jeu de données
 X <- data.frame(x1 = x1,
                 x2 = x2,
@@ -671,7 +671,7 @@ L'idée sous-jacente est qu'il est possible de calculer les covariances de la va
 Il faut à chaque étape s'assurer de faire le remplacement des valeurs obtenues sur chaque côté de la diagonale, ce pourquoi deux équations sont reproduites à l'équation \@ref(eq:buildS) avec des indices différents pour $\mathbf{\Sigma}$.
 
 
-```r
+``` r
 # Matrice B
 # Rappel : beta21 <- .2; beta31 <- .4; beta32 <- -.5
 B <- matrix(c(  0,     0,    0,
@@ -693,7 +693,7 @@ B
 Voici, pour l'exemple précédent, les étapes de calcul de l'équation \@ref(eq:buildS) décrites une à une. D'abord, il faut construire une matrice, $\mathbf{\Sigma}$ (`S` en code **R**) avec comme diagonale les variances. Puis, calculer l'équation \@ref(eq:buildS). Ensuite, il faut remplacer le résultat obtenu des deux côtés de la diagonale de façon à ce que `S` demeure symétrique. Ces étapes sont répétées pour $i=2,...,p$ (dans cet exemple, $p=3$).
 
 
-```r
+``` r
 # Créer une matrice de covariance préliminaire
 S <- diag(V)
 
@@ -753,7 +753,7 @@ cov(X)
 Avant de procéder, une courte digression sur une façon de réaliser en moins de lignes, mais avec une syntaxe plus complexe, la réassignation des valeurs dans `S`. Le code est présenté dans la syntaxe ci-dessous. Il appert qu'il n'est pas aussi intéressant à programmer pour sauver deux lignes.
 
 
-```r
+``` r
 # Une note pour indiquer que les valeurs à remplacer pourrait
 # être fait en une seule ligne de syntaxe en bénéficiant du 
 # recyclage vectoriel de R, mais la solution n'est ni simple, 
@@ -765,7 +765,7 @@ S[remplacer]
 Trêve de digression, une fois la matrice de covariance `S` calculée, la fonction `MASS::mvrnorm()` peut être utilisée pour créer des données. Les résultats sont presque identiques pour les régressions.
 
 
-```r
+``` r
 # La même que l'exemple précédent
 set.seed(1448) 
 
@@ -802,7 +802,7 @@ Comme la formule est générale et qu'elle implique plusieurs itérations, il es
 
 
 
-```r
+``` r
 # De Beta vers covariance (beta 2 covariance)
 beta2cov <- function(B, V = NULL){
   
@@ -839,7 +839,7 @@ beta2cov <- function(B, V = NULL){
 L'équation \@ref(eq:buildB) se transforme (relativement) aisément en fonction maison. Par rapport à `beta2cov()`, la boucle n'inclut pas la $p$^e^ variable, mais bien la première.
 
 
-```r
+``` r
 # De la covariance à Beta (cov2beta)
 cov2beta <- function(S){
   
@@ -862,7 +862,7 @@ cov2beta <- function(S){
 La fonction maison `cov2beta()` est maintenant testée sur `S` pour évaluer si elle retourne bien la matrice `B` originale.
 
 
-```r
+``` r
 cov2beta(S)
 >      [,1] [,2] [,3]
 > [1,]  0.0  0.0    0

@@ -28,7 +28,7 @@ Pour démarrer, il faut d'abord installer le package, puis l'appeler. Pour comme
 Une fois l'interface ouvert, il est possible de manipuler le jeu de données avec les options affichés et avec le clic droit qui permettra notamment d'ajouter des lignes et des colonnes.
 
 
-```r
+``` r
 # Pour installer le package
 install.packages("DataEditR")
 

@@ -11,7 +11,7 @@ Une méthode simple et efficace pour obtenir des indices statistiques pour des v
 Voici un exemple avec le jeu de données `ToothGrowth` inclus avec **R**.
 
 
-```r
+``` r
 psych::describe(ToothGrowth)[,-c(1,5)]
 >        n  mean   sd trimmed  mad min  max range  skew
 > len   60 18.81 7.65   18.95 9.04 4.2 33.9  29.7 -0.14
@@ -26,7 +26,7 @@ psych::describe(ToothGrowth)[,-c(1,5)]
 Il est possible de conserver ou retirer les colonnes non désirées en les spécifiant (voir [Référer à des sous-éléments]).
 
 
-```r
+``` r
 # Enregistrer les analyses descriptives
 descriptif <- psych::describe(ToothGrowth)
 # Conserver mean et sd
@@ -50,7 +50,7 @@ descriptif[,-c(1, 6:10, 13)]
 Il est possible de retirer les colonnes non désirées en les spécifiant (voir [Référer à des sous-éléments]).
 
 
-```r
+``` r
 # Retirer n (1), 
 # trimmed, mad, min, max, range (6:10),
 # et se (13)
@@ -64,10 +64,11 @@ descriptif[,-c(1, 6:10, 13)]
 La fonction `describeBy()` permet de faire ces analyses en fonction d'une variable de groupement. Par exemple, le groupement est `supp`. 
 
 
-```r
+``` r
 psych::describe.by(ToothGrowth, group = ToothGrowth$supp)
-> Warning: describe.by is deprecated.  Please use the
-> describeBy function
+> Warning in psych::describe.by(ToothGrowth, group =
+> ToothGrowth$supp): describe.by is deprecated.  Please use
+> the describeBy function
 > 
 >  Descriptive statistics by group 
 > group: OJ
@@ -98,7 +99,7 @@ Enfin, il faut porter attention, car `describe()` et `describeBy()` transforment
 Pour les variables nominales et ordinales, la fonction `table()` qui permet de compter la fréquence des éléments contenus dans une variable.
 
 
-```r
+``` r
 table(ToothGrowth$supp)
 > 
 > OJ VC 
@@ -108,7 +109,7 @@ table(ToothGrowth$supp)
 La fonction `count()` de `dplyr` produit le même résultats, mais sa sortie est toutefois plus intéressante à [Manipuler].
 
 
-```r
+``` r
 dplyr::count(ToothGrowth, supp)
 >   supp  n
 > 1   OJ 30

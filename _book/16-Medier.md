@@ -78,7 +78,7 @@ Si une des conditions (`if`) n'est pas respectée, le test retourne l'hypothèse
 Pour chaque régression, il faut extraire la valeur-$p$ de l'estimateur concerné. La valeur-$p$ se trouve dans le sommaire (`summary()`) du résultat de la régression (`etape`) dans la liste `coefficients`. Dans cette liste, il faut identifier la ligne (`"estimateur"`) à la colonne `"Pr(>|t|)"` qui correspond aux valeurs-$p$. Au final, l'extraction se commande  `summary(etape)$coefficients["estimateur", "Pr(>|t|)"]`. Pour bien fonctionner, les variables du jeu de données doivent se nommer `x`, `m` et `y`. 
 
 
-```r
+``` r
 BK <- function(donnees, alpha = .05){
   # alpha est l'erreur de type I
   
@@ -147,7 +147,7 @@ où $z$ signifie qu'il s'agit d'un score-$z$, les $\beta$ sont les coefficients 
 La syntaxe suivante illustre une fonction qui calcule l'équation\ \@ref(eq:sobel). La syntaxe calcule deux régressions `m ~ x` et `m ~ x`. Du sommaire des résultats, elle extrait, les deux coefficients de régressions et leur erreur standard respective. Elle calcule enfin le score $z$ de l'équation\ \@ref(eq:sobel) avec la valeur-$p$ associée. Pour bien fonctionner avec cette fonction, les variables du jeu de données doivent se nommer `x`, `m` et `y`. 
 
 
-```r
+``` r
 mdm <- function(donnees, alpha = 0.05){
   # alpha est l'erreur de type I
   
@@ -215,7 +215,7 @@ gen.ind.effect <- function(Sigma, n){
 Par la suite, la fonction `replicate()` permet de répéter `n` fois la fonction `expr`. Il faut bien distinguer le `n` (nombre de participants) de `gen.ind.effect()` de celui de `replicate()` (nombre de réplications). Enfin, un histogramme est produit pour présenter les résultats.
 
 
-```r
+``` r
 # Répliquer 5000 la fonction `gen.ind.effect`
 test.ind <- replicate(n = 5000, expr = gen.ind.effect(Sigma, n = 50))
 
@@ -247,7 +247,7 @@ La technique la plus recommandée dans la littérature méthodologique est la m�
 Le test d'hypothèse de l'effet indirect n'échappe pas à cette logique.
 
 
-```r
+``` r
 boot <- function(donnees, alpha = .05, nreps = 5000){
   # alpha est l'erreur de type I
   # nreps  est le nombre de répétitions
@@ -313,7 +313,7 @@ Pour l'exemple, $\mathbf{B}$ spécifie les coefficients de régression.
 
 
 
-```r
+``` r
 # Pour la reproductibilité
 set.seed(1102)
 
@@ -390,7 +390,7 @@ Le défaut des fonctions maison (`BK()`, `mdm()` et `boot()`) est certainement q
 La fonction suivante extrait tous les coefficients de régression d'un modèle récursif. L'ordre des variables est ici d'une énorme importance, puisque c'est l'ordre des variables dans le jeu de données qui détermine l'ordre *causal* des variables: la première étant la *cause* de toutes, et la dernière l'*effet* de toutes.
 
 
-```r
+``` r
 indirect <-  function(donnees){
   COV <- cov(donnees)   # Matrice de covariance
   p <- ncol(COV)        # Nombre de variables
@@ -464,7 +464,7 @@ indirect <-  function(donnees){
 Pour tester ce code, il vaut la peine de tester chacune des étapes de la syntaxe précédente avec une matrice de covariance.
 
 
-```r
+``` r
 # Nombre de variables
 p <- 4
 
@@ -489,7 +489,7 @@ COV
 1. Transformer la matrice de covariance en matrice de coefficient de régression.
 
 
-```r
+``` r
 # Les prochaines calcules la matrice de coefficients
 # régression. Le lecteur assidu aura reconnu 
 # la fonction `cov2beta()`
@@ -509,7 +509,7 @@ BETA
 2. Vectoriser `BETA`. 
 
 
-```r
+``` r
 # Extraire les coefficients de régression en vecteur
 est <- as.matrix(BETA[lower.tri(BETA)])
 est
@@ -525,7 +525,7 @@ est
 3. Libeller les effets directs.
 
 
-```r
+``` r
 # Libellés des effets directs
 name <- colnames(COV)
 label <- matrix(name[combn(p, 2)], (p * (p-1) / 2), 2, byrow = TRUE)
@@ -547,7 +547,7 @@ est
 4. Lister tous les effets indirects possibles
 
 
-```r
+``` r
 # Lister tous les effets indirects possibles
 if(p != 3){
   # S'il y a plus de 3 variables, identifier les niveaux supérieurs
@@ -577,7 +577,7 @@ Dans cet exemple, il y a deux niveaux d'effets indirects : un niveau à trois va
 5. Extraire tous les effets indirects et les libeller adéquatement.
 
 
-```r
+``` r
 # Extraire tous les effets indirects
 for(i in 1:length(listeffects)){    # Nombre de niveaux d'effet indirect
   J <- ncol(listeffects[[i]])       # Nombre d'effet du niveau i
@@ -609,7 +609,7 @@ est
 6. Calculer les effets totaux de la première variable et mettre le tout en commun.
 
 
-```r
+``` r
 # Ajout les effets totaux
 # Calculs
 totald <-  as.matrix(solve(COV[1,1], COV[p, 1]))
@@ -649,7 +649,7 @@ Magnifique! Toutefois, le statisticien ne s'intéresse rarement qu'aux coefficie
 Avantageusement la fonction maison `indirect()` calcule tous les indices statistiques pertinents. Il ne reste que le rééchantillonnage et les réplications à programmer.
 
 
-```r
+``` r
 # Le bootstrap de `indirect()` pour le 
 # jeu de données en exemple (trois variables)
 # Informations préliminaires
@@ -762,7 +762,7 @@ Les résultats sont illustrés dans la Figure\ \@ref(fig:resmed). Les coefficien
 Calculer les valeurs-$t$ et valeurs-$p$ est envisageable en utilisant les résultats déjà recueillis. La valeur-$t$ est le ratio entre l'estimateur et son erreur type, la valeur-$p$ est la rareté d'observer cette valeur-$t$ ou une valeur plus rare par rapport à l'hypothèse nulle avec un degré de liberté de `dl = n - p`, soit plus exactement le nombre d'unités moins le nombre de variables indépendantes.
 
 
-```r
+``` r
 Resultats$t.value <- Resultats$Estimates / Resultats$S.E.
 Resultats$p.value <- (1 - pt(abs(Resultats$t.value), df = n - p)) * 2
 
@@ -798,14 +798,14 @@ Le présent chapitre ne fait que gratter la surface de ce qu'il est possible de 
 Il existe une version préliminaire d’un package permettant de réaliser facilement l'analyse de médiation. Le package est `pathanalysis` [@CaronPA]. Il est disponible par GitHub et est importable sur **R** avec la syntaxe suivante.
 
 
-```r
+``` r
 remotes::install_github(repo = "quantmeth/pathanalysis")
 ```
 
 Comme à l'habitude, si le package est déjà téléchargé, il faut l’appeler dans l'environnement.
 
 
-```r
+``` r
 library(pathanalysis)
 ```
 

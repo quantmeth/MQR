@@ -12,7 +12,7 @@ Pour la toute première utilisation, il faut s'assurer est que le package `Rmark
 Une seconde étape, si l'utilisateur veut produire des pdf, est d'installer un éditeur $\LaTeX$. Cela peut se faire facilement avec la commande suivante.
 
 
-```r
+``` r
 tinytex::install_tinytex()
 ```
 
@@ -87,7 +87,7 @@ Un souci qui arrive à l'occasion est la taille des figures dans le document fin
 Pour ajouter une image, il est possible de l'ajouter simplement avec la syntaxe suivante dans un chunk. Comme [les figures], il possible de leur donner une légende et de gérer leur taille.
 
 
-```r
+``` r
 knitr::include_graphics("chemin_vers_l_image/image.extension")
 ```
 
@@ -98,48 +98,25 @@ Pour ajouter un tableau, il est possible de passer par la fonction `kable()` de 
 Il importe pour chaque tableau de s'assurer que la variable contient le `data.frame` ou la `matrix` disposé tel que l'utilisateur le souhaite (voir [Concaténer] pour créer ces objets).
 
 
-```r
+``` r
 knitr::kable(head(cars), 
              caption = "Titre du tableau", 
              align = "c", 
              booktabs = TRUE)
 ```
 
-<table>
-<caption>(\#tab:unnamed-chunk-2)Titre du tableau</caption>
- <thead>
-  <tr>
-   <th style="text-align:center;"> speed </th>
-   <th style="text-align:center;"> dist </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:center;"> 4 </td>
-   <td style="text-align:center;"> 2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> 4 </td>
-   <td style="text-align:center;"> 10 </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> 7 </td>
-   <td style="text-align:center;"> 4 </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> 7 </td>
-   <td style="text-align:center;"> 22 </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> 8 </td>
-   <td style="text-align:center;"> 16 </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> 9 </td>
-   <td style="text-align:center;"> 10 </td>
-  </tr>
-</tbody>
-</table>
+
+
+Table: (\#tab:unnamed-chunk-2)Titre du tableau
+
+| speed | dist |
+|:-----:|:----:|
+|   4   |  2   |
+|   4   |  10  |
+|   7   |  4   |
+|   7   |  22  |
+|   8   |  16  |
+|   9   |  10  |
 
 
 
@@ -153,7 +130,7 @@ S'il faut utiliser les vrais symboles, par exemple \$ et \%, alors il faut ajout
 
 Pour référer à des variables de l'environnement du rapport, il est possible d'appeler ces valeurs des accents graves. Voici un exemple.
 
-```r
+``` r
 moyenne <- 10
 ```
 Pour rapporter la nouvelle variable `moyenne` dans le texte, il faut écrire   `` `r moyenne` ``, c'est-à-dire un accent grave, l'appel à `r` pour indiquer que la suite est du code **R**, le nom de la variable et un autre accent grave pour indiquer la fin.  Ainsi,  `` `r moyenne` `` retranscrit son contenu, soit 10.

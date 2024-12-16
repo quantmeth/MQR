@@ -13,9 +13,9 @@ Les valeurs d'un échantillon sont, pour le statisticien, des variables aléatoi
 Pour le non-initié aux fonctions permettant de créer des nombres pseudoaléatoires, une fonction **R** comme `rnorm()` ou `runif()` (*r* suivi d'un nom de distribution, voir [Les distributions]) joue parfaitement le rôle de cette boîte. Si l'usager demande une valeur, la fonction retourne une valeur aléatoire (imprévisible à chaque fois) sans connaître comment cette valeur est produite.
 
 
-```r
+``` r
 runif(n = 1)
-> [1] 0.768
+> [1] 0.13
 ```
 
 Le statisticien s'intéresse à inférer comment ces valeurs sont générées. Il postule ainsi que les valeurs aléatoires suivent une distribution de probabilité. Connaître cette distribution est très important, car c'est elle qui permet de répondre à des questions comme : quelle est la probabilité d'obtenir un résultat aussi rare que $x$? Ou quelle sont les valeurs attendues pour $95\%$ des tirages? Questions tout à fait pertinentes pour l'expérimentateur. Une des distributions les plus connues est certainement la distribution normale, celle qui est derrière la fonction `rnorm()` d'ailleurs. Mais, il y en a beaucoup, beaucoup d'autres. 
@@ -23,7 +23,7 @@ Le statisticien s'intéresse à inférer comment ces valeurs sont générées. I
 Lorsque plus d'une variable sont issues d'une même boîte (distribution), elles sont *identiquement distribuées*. Si ces variables aléatoires sont combinées, que ce soit en termes de produit, de quotient, d'addition, de soustraction, le résultat est une nouvelle variable aléatoire qui possède sa propre distribution nommée *distribution d'échantillonnage*. Sur le plan de la syntaxe **R**, il s'agit de réaliser des opérations mathématiques avec des variables aléatoires identiquement distribuées.
 
 
-```r
+``` r
 # Pour répliquer
 set.seed(1)
 
@@ -50,7 +50,7 @@ Par exemple, la fonction `rlnorm()` génère des variables issues d'une distribu
 En calculant la somme de plusieurs variables aléatoires de cette distribution, pour diverses valeurs de tailles d'échantillons (nombre de variables échantillonnées), les résultats tendent de plus en plus vers une distribution normale. Le code ci-dessous présente la démarche utilisée et la Figure \@ref(fig:testn) en fait la démonstration graphique en présentant les distributions d'échantillonnage obtenues.
 
 
-```r
+``` r
 # Cette fonction produit les nombres, mais pas les graphiques.
 # Différentes tailles d'échantillons
 N <- seq(10, 90, by = 10)
@@ -123,7 +123,7 @@ z = \frac{x-\mu}{\sigma}
 Comme un score-$z$ est standardisé, la Figure \@ref(fig:regle) est utilisable pour tirer des conclusions, car celle-ci est applicable pour toutes sortes de situations où la distribution est vraisemblablement normale.
 
 
-```r
+``` r
 fanny <- 120
 z.fanny <- (fanny - 100) / 15
 ```
@@ -131,7 +131,7 @@ z.fanny <- (fanny - 100) / 15
 Fanny a un score-$z$ de 1.333. Maintenant, il faut traduire cette valeur en probabilité.
 
 
-```r
+``` r
 # La probabilité qu'un score de QI soit entre -Inf à z.fanny
 pnorm(z.fanny)
 > [1] 0.909
@@ -154,7 +154,7 @@ Jusqu'à maintenant, seule une unité d'observation était traitée. L'indice et
 Fanny a un QI de 120. Si une autre personne est sélectionnée, cette nouvelle personne aura inévitablement un autre score. Cette logique s'applique également aux échantillons. L'exemple ci-dessous échantillonne 10 unités d'une population de QI distribuée normalement avec les paramètres usuels.
 
 
-```r
+``` r
 # Création d'un échantillon de 10 unités
 set.seed(824)
 
@@ -177,7 +177,7 @@ $$
 Cela donne le code suivant.
 
 
-```r
+``` r
 z <- (mean(QI) - 100)/(15 / sqrt(10))
 z
 > [1] 1.86
@@ -195,7 +195,7 @@ La fonction `(1 - pnorm(z)) * 100`, retourne la probabilité (en pourcentage) d'
 Pour l'instant, seule une boîte noire a été examinée - celle de l'hypothèse nulle. Qu'advient-il du vrai phénomène? Par exemple, si les reptiliens existent vraiment. Comme l'utilisateur est le maître du modèle, il peut spécifier les paramètres à sa convenance. Le QI des reptiliens est conceptualisé pour être distribué comme une distribution normale ayant $\mu_{r}=130, \sigma_r = 15$ où l'indice $r$ ne fait qu'indiquer qu'il s'agit des paramètres de la population reptilienne. Les paramètres humains sont désignés par $h$, soit $\mu_h = 100,\sigma_h = 15$.
 
 
-```r
+``` r
 mu.h <- 100 ; sd.h <- 15
 mu.r <- 130 ; sd.r <- 15
 ```
@@ -210,7 +210,7 @@ La Figure \@ref(fig:rh) présente les distributions de ces populations. Trois zo
 L'erreur de type I (présentée auparavant) représente la probabilité d'émettre un faux positif, souvent représentée par $\alpha$ (alpha). Elle correspond à la probabilité de rejeter l'hypothèse lorsqu'elle est vraie. Dans la Figure \@ref(fig:rh), il s'agit de la zone noire. Elle correspond à conclure qu'un vrai humain est un reptilien (ce qu'il n'est pas). Ce taux est fixé à l'avance par l'expérimentateur, ici, 5%. C'est le risque qu'il est prêt à prendre. Ainsi, 95% des humains sont correctement identifiés comme humains.
 
 
-```r
+``` r
 # Erreur de type I (fixé à l'avance)
 alpha <- .05 
 
@@ -274,7 +274,7 @@ $$ t_{n-1} = \frac{\bar{x}-\mu_0}{(s/\sqrt{n})} $$
 La distribution-$t$ a un degré de liberté (l'indice de $t$ dans l'équation) qui lui est associé et qui est fixé à $dl = n - 1$, la taille d'échantillon moins 1. Un degré est perdu à cause de l'estimation de l'écart type de l'échantillon. Qu'en est-il de la probabilité d'obtenir cette moyenne? En recourant à la distribution intégrée de **R**, `pt()` il est possible d'obtenir la probabilité d'une valeur-$t$ par rapport à l'hypothèse nulle. La fonction nécessite une valeur-$t$ et le degré de liberté associé, p. ex., `pt(t = , df = n - 1)`. La valeur produite donne la probabilité d'obtenir un score plus petit jusqu'à la valeur-$t$. Une astuce permet de calculer aisément la probabilité lorsque la distribution d'échantillonnage est symétrique. Utiliser une valeur absolue permet de considérer les deux côtés de la distribution simultanément. Les valeurs-$t$ négatives sont alors positives. Comme un côté est supprimé, l'espace positif est doublé, le code pour tenir compte de cet astuce est : `(1 - pt(abs(t), df = n - 1)) * 2` où `t` est la valeur-$t$ obtenue.
 
 
-```r
+``` r
 testt <- function(x, mu = 0){
   # x est une variable continue
   # mu est une moyenne à tester comme hypothèse nulle(H0)
@@ -294,7 +294,7 @@ testt <- function(x, mu = 0){
 Une fois la fonction créée, il est possible de la tester en la comparant avec la fonction **R** de base `test.t()`. Le code suivant crée un échantillon de 30 unités avec une moyenne de 1 et un écart type de 1.
 
 
-```r
+``` r
 # Un exemple de jeu de données
 set.seed(20)
 x = rnorm(n = 30, mean = 1, sd = 1)

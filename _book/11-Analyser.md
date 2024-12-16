@@ -22,7 +22,7 @@ Une fois le calcul réalisé, la logique du test d'hypothèse est la même, à l
 Voici un exemple de programmation du test-$t$ pour deux groupes indépendants.
 
 
-```r
+``` r
 testt.ind <- function(x1, x2){
   # x1 est une variable continue associée au groupe 1
   # x2 est une variable continue associée au groupe 2
@@ -55,7 +55,7 @@ y = \mu_0 + \mu_1x_1 + \epsilon
 où $y$ est le score observé des unités et les autres variables construisent ce score, $\mu_0$ correspond à la moyenne du groupe référent de population (le groupe *contrôle* en quelque sorte.), $\mu_1$ réfère à la différence de moyenne entre les deux groupes identifiés par $x_1$ qui réfère à l'assignation au groupe, soit 0 pour le groupe *contrôle* et 1 pour le groupe *différent*. Pour ce même exemple, $\mu_1 = -1$. Par le produit $\mu_1x_1$, le groupe *contrôle* associé à la valeur 0 n'a pas de modification de la moyenne, $-1*0=0$ alors le groupe *différent* associé  à la valeur\ 1, $-1*1=-1$. Enfin, $\epsilon$ correspond à la variabilité entre les unités. Cette façon de programmer la création des variables illustre bien l'association linéaire qui existe même dans les différences de moyennes et sera très utile pour des modèles plus compliqués.
 
 
-```r
+``` r
 # Un exemple de jeu de données programmé de deux façons
 # Méthode 1
 set.seed(2021)
@@ -92,7 +92,7 @@ Les données sont identiques.
 Une fois la fonction créée, il est possible de la tester et de la comparer avec la fonction **R** de base `test.t()`.
 
 
-```r
+``` r
 # Vérification de la fonction maison
 testt.ind(gr0, gr1)
 > $valeur.t
@@ -129,7 +129,7 @@ dl=\frac{\left(\frac{s^2_1}{n_1}+\frac{s^2_2}{n_2}\right)^2}{\frac{\left(\frac{s
 En apportant cette correction au code initial.
 
 
-```r
+``` r
 testt.ind2 <-function(x1, x2){
   # x1 est une variable continue associée au groupe 1
   # x2 est une variable continue associée au groupe 2
@@ -159,7 +159,7 @@ testt.ind2 <-function(x1, x2){
 Le voici comparé à la fonction **R** de base.
 
 
-```r
+``` r
 t.test(gr0, gr1) # Absence de l'argument var.equal = TRUE
 > 
 > 	Welch Two Sample t-test
@@ -197,7 +197,7 @@ La Figure \@ref(fig:disttt) illustre où se situe la moyenne de l'échantillon p
 Voici comment il est possible de rapporter les résultats. La syntaxe pour commander l'analyse est la suivante si les groupes sont dans deux vecteurs séparés.
 
 
-```r
+``` r
 t.test(gr0, gr1) # Absence de l'argument var.equal = TRUE
 > 
 > 	Welch Two Sample t-test
@@ -215,7 +215,7 @@ t.test(gr0, gr1) # Absence de l'argument var.equal = TRUE
 Il est également possible d'utiliser la formule si, dans le jeu de données, une variable permet de distinguer les deux groupes et que la variable continue (variable à comparer) se trouve dans une seule variable. 
 
 
-```r
+``` r
 # Mettre les variables en jeu de données
 jd.ti <- data.frame(VD = c(gr0, gr1),
                     VI = x1)
@@ -248,7 +248,7 @@ $$ t_{dl_1} = \frac{\bar{x_1}-\bar{x_2}}{\sigma_d/\sqrt{n}} $$
 avec $n-1$ degrés de liberté à cause de l'estimation de l'écart type des différences. Les étapes subséquentes sont identiques au test-$t$ à groupe unique.
 
 
-```r
+``` r
 testt.dep <- function(temps1, temps2){
   # Temps est une variable continue mesurée 
   # à deux occasions auprès des mêmes participants
@@ -273,7 +273,7 @@ Pour créer le jeu de données, les étapes sont similaires au test-$t$ indépen
 Dans le jeu de données suivant, 25 personnes sont mesurées à deux temps de reprises. Il n'y a pas de corrélation entre les temps de mesure. La variance des temps de mesure est de 1. La différence de moyenne est de 2. La syntaxe simule la situation suivante, le `temps1` correspond à la mesure initiale et `difference` correspond à la différence entre les temps de mesure. La somme de ces deux scores donnent la mesure au `temps2`. Cela montre assez simplement que la différence entre `temps2 - temps1` permet de retrouver le vecteur de `difference`.
 
 
-```r
+``` r
 # Un exemple de jeu de données
 set.seed(148)
 temps1 <- rnorm(n = 25, mean = 0, sd = 2)
@@ -284,7 +284,7 @@ temps2 <- temps1 + difference
 La fonction base de **R** est encore `t.test()`, mais il faudra spécifier l'argument `paired = TRUE` pour commander un test apparié (une autre appellation pour un test-$t$ dépendant).
 
 
-```r
+``` r
 t.test(temps1, temps2, paired = TRUE)
 > 
 > 	Paired t-test
@@ -323,7 +323,7 @@ La Figure \@ref(fig:testtttt) montre où se situe la différence de moyenne par 
 Il y a plusieurs façons de réaliser un test-$t$ dépendant. La première option est celle décrite précédemment.
 
 
-```r
+``` r
 # Technique précédent avec deux vecteurs
 t.test(x = temps1, y = temps2, paired = TRUE)
 > 
@@ -341,7 +341,7 @@ t.test(x = temps1, y = temps2, paired = TRUE)
 La second option utilise la formule et le jeu de données. La fonction `Pair()` n'a que seule objectif d'informer la fonction `t.test()` que les vecteurs qu'elle inclut sont pairés, ce qui permet d'utiliser la formule `Pair(temps1, temps2) ~ 1`.
 
 
-```r
+``` r
 # Avec la formule et les variables dans le même jeu de données
 jd.td <- data.frame(temps1 = temps1,
                     temps2 = temps2)
@@ -362,7 +362,7 @@ t.test(Pair(temps1, temps2) ~ 1, data = jd.td)
 Pour la troisième option, comme l'équation sur le test-$t$ dépendant le suggère, un test-$t$ dépendant revient à faire [un test-$t$ à échantillon unique][Le test-$t$ à échantillon unique] avec la différence entre les deux temps de mesure.
 
 
-```r
+``` r
 # Avec la différence des deux vecteurs
 t.test(temps2 - temps1)
 > 
@@ -376,27 +376,6 @@ t.test(temps2 - temps1)
 > sample estimates:
 > mean of x 
 >      1.32
-```
-Une quatrième option, si le temps est une colonne dans le jeu de données, alors le même style de formule peut être utilisé comme [Le test-$t$ indépendant] toujours en indiquant `paired = TRUE`.
-
-
-```r
-# Avec la formule et les variables dans le même jeu de données
-# Le temps est une seule variable
-jd.td2 <- data.frame(mesure = c(temps1, temps2),
-               temps = rep(1:2, each = 25))
-t.test(mesure ~ temps, data = jd.td2, paired = TRUE)
-> 
-> 	Paired t-test
-> 
-> data:  mesure by temps
-> t = -3, df = 24, p-value = 0.004
-> alternative hypothesis: true mean difference is not equal to 0
-> 95 percent confidence interval:
->  -2.172 -0.465
-> sample estimates:
-> mean difference 
->           -1.32
 ```
 
 ### Rapporter un test-$t$ dépendant
@@ -425,7 +404,7 @@ $$\text{cov}_{xy} = \frac{1}{n-1}\sum_{i=1}^nxy$$
 La programmation de la covariance peut se traduire ainsi.
 
 
-```r
+``` r
 covariance <- function(x, y){
   # X est une data.frame ou matrice de n sujets par p variables
   n <- length(x)
@@ -465,7 +444,7 @@ $$r_{xy} = \frac{\text{cov}_{xy}}{\sigma_x\sigma_y}$$
 Voici trois options de programmation de la corrélation. La première et la deuxième sont basées sur la covariance. Dans la première, la covariance est calculée de nouveau dans la fonction. La deuxième quant à elle profite avantageusement de l'existence d'une fonction maison qui calcule directement la covariance. La troisième recourt au produit de variables standardisées.
 
 
-```r
+``` r
 # Option 1 : Calcul complet
 correlation1 <- function(x, y){
   
@@ -532,7 +511,7 @@ Le lecteur avisé aura noté la ressemblance de nomenclature entre `mvrnorm()` (
 `rnorm()` (univariée). Enfin, la dernière étape est de produire une matrice de covariance $p \times p$. La fonction `matrix()` prend une variable de données, dans cet exemple , `c(1, r, r, 1)` qu'elle répartit ligne par colonne (voir [Créer une matrice]. Comme $p=2$, cela crée une matrice $2 \times 2$.
 
 
-```r
+``` r
 # Pour la reproductibilité
 set.seed(820)
 
@@ -598,7 +577,7 @@ t_{n-2} = \frac{r}{(\frac{\sqrt{1-r^2}}{\sqrt{n-2}})}
 L'équation\ \@ref(eq:r2t) se traduit simplement en code **R**.
 
 
-```r
+``` r
 # Création d'une matrice de corrélation 
 # Il pourrait également s'agir d'un vecteur ou d'un scalaire.
 r <- matrix(c( 1, .5, .4,
@@ -639,13 +618,13 @@ L'équation\ \@ref(eq:r2t) a l'avantage de montrer la relation entre l'estimateu
 Voici comment rapporter la corrélation dans un article. Plusieurs options sont possibles. Pour une seule corrélation, **R** permet d'obtenir la corrélation et la valeur-$p$ avec la fonction `cor.test()`. Il est possible de rédiger la syntaxe ainsi.
 
 
-```r
+``` r
 cor.test(donnees$x, donnees$y)
 ```
 ou encore comme ceci.
 
 
-```r
+``` r
 cor.test(~ y + x, data = donnees)
 > 
 > 	Pearson's product-moment correlation
@@ -663,7 +642,7 @@ cor.test(~ y + x, data = donnees)
 En général, la matrice corrélation complète est intéressante à rapporter. Cela se fait rapidement et simplement avec la fonction `cor()`. Toutefois, elle ne rapporte pas les valeurs-$p$ et n'est pas agrémentée d'étoiles scintillantes. Plusieurs packages et fonctions sont envisageables, mais `psych` avec sa fonction `corr.test` est l'une des plus pertinentes. Voici un exemple avec le jeu de données `mtcars` (disponible dans **R** de base). 
 
 
-```r
+``` r
 psych::corr.test(mtcars)
 > Call:psych::corr.test(x = mtcars)
 > Correlation matrix 
@@ -808,7 +787,7 @@ $$v = (n_{\text{ligne}}-1)(n_{\text{colonne}}-1)$$
 Si l'hypothèse nulle est vraie, les valeurs observées et théoriques devraient être très près. Le carré permet de calculer une distance euclidienne et le dénominateur pondère la distance. Comme l'[analyse de variance][Comparer], le test de $\chi^2$ pour table de contingence est global, il n'informe pas d'où provient la dépendance, mais bien s'il y a au moins une dépendance.
 
 
-```r
+``` r
 khicarre <- function(obs){
   # Obs est une table de contingence
   # Somme colonne
@@ -832,7 +811,7 @@ khicarre <- function(obs){
 Il y a plusieurs techniques pour créer une base de données, l'essentiel étant de lier les proportions désirées. Ici, une variable sexe est créée avec 50-50% de chance d'être l'un ou l'autre sexe. Par la suite, une proportion différente liée au sexe est utilisée pour générer la fréquence de consommation de tabac. La syntaxe sert principalement à identifier les valeurs `homme` et `femme` de la première variable pour en associer une valeur `tabac`.
 
 
-```r
+``` r
 set.seed(54)
 n <- 100
 
@@ -869,7 +848,7 @@ Le test du $\chi^2$ est sujet à certains problèmes qu'il est important de cons
 Dans le présent exemple, bien que les fréquences attendues respectent les critères usuels, il peut être utile d'envisager un test plus robuste comme le test exact de Fisher ou le $\chi^2$ avec correction de continuité. Le premier se commande avec la fonction `fisher.test()` et le second est la fonction par défaut de `chisq.test()`. C'est deux fonctions prennet comme argument une table de contigence (la sortir de `table()`) ou deux variables nominales. Pour montrer l'équivalence entre la fonction `chisq.test()` et la fonction maison, l'option de correction est désactivée avec l'argument `correct = FALSE`.
 
 
-```r
+``` r
 # Table de contingence
 TC <- table(donnees)
 # Fonction maison
@@ -935,7 +914,7 @@ resultat.fisher$p.value
 Voici comment rapporter un test de $\chi^2$ dans un article. Comme il a été vu ci-haut, plusieurs options sont possibles
 
 
-```r
+``` r
 # Pour le khi carré de Pearson
 chisq.test(donnees$sexe, donnees$tabac, correct = FALSE)
 > 

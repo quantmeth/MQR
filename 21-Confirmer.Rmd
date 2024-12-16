@@ -23,7 +23,7 @@ La première étape d'un modèle avec `lavaan` est d'écrire un modèle. Comme i
 
 * `=~` est **se mesure de**, comme `F1 =~ i1 + i2 + i3` 
 
-*  `*` **nomme** ou **fixe** un paramètre selon le préfixe, par exemple, `y ~ a*x` permet d'utiliser le coefficient de régression lié à `x`, `y ~ .5*x` fixe le coefficient à .5 ou si `a` (le libellé) est utilisé à plusieurs endroits, cela contraint la valeur à être identiquer pour les deux équations.
+*  `*` **nomme** ou **fixe** un paramètre selon le préfixe, par exemple, `y ~ a*x` permet d'utiliser le coefficient de régression lié à `x`, `y ~ .5*x` fixe le coefficient à .5 ou. si `a` (le libellé) est utilisé à plusieurs endroits, cela contraint la valeur à être identiquer pour les deux équations.
 
 *  `:=` **définit** un paramètre, par exemple, s'il faut la somme ou le produit de différents coefficients.
 
@@ -56,7 +56,7 @@ fitmeasures(object, fit.measures = c("chisq", "df", "pvalue",
 
 En tout, `lavaan` produit 46 indices statistiques différents. Ceux recommandés ici sont les mêmes que ceux rapportés par le logiciel Mplus [@caronmplus]. Il peut être intéressant de vérifier les autres options, surtout que certains pourront être spécifique à certains doomaines. Cela se fait simplement en laissant vide l'argument `fit.measures` qui par défaut est `fit.measures = "all"`.
 
-### Les indices de modifcation
+### Les indices de modification
 
 Il est rare que le modèle testé atteint les critères généraux d'ajustement du premier coup. Ainsi, il est possible d'améliorer le modèle en le peaufinant. La fonction `modindices()` suggère différents opérateurs à ajouter au modèle initial. Pour utiliser la fonction, il faut lui fournir un objet de classe `lavaan` (une sortie `sem()` ou `cfa`). 
 
@@ -87,11 +87,11 @@ Voici un exemple d'analyse factorielle exploratoire. La syntaxe suivante recrée
 knitr::include_graphics("image//factstruct.png")
 ```
 
-La Figure\ \@ref(fig:FactStructconfrimer) (présentée auparavant à la Figure\ \@ref(fig:FactStruct)) montre la structure factorielle sous-jacente à la matrice de corrélation `ex.mqr`. La syntaxe crée un jeu de données basée sur cette matrice.
+La Figure\ \@ref(fig:FactStructconfirmer) (présentée auparavant à la Figure\ \@ref(fig:FactStruct)) montre la structure factorielle sous-jacente à la matrice de corrélation `ex_mqr`. La syntaxe crée un jeu de données basée sur cette matrice.
 
 ```{r}
 # Création de la matrice de recette de fabrication
-R <- Rnest::ex.mqr
+R <- Rnest::ex_mqr
 set.seed(32)
 # Création du jeu de données
 jd.cfa <- MASS::mvrnorm(n = 500, 

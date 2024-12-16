@@ -7,7 +7,7 @@
 <title> 8 Visualiser | Méthodes quantitatives avec R</title>
 <meta name="author" content="P.-O. Caron">
 <meta name="description" content="La visualisation de données est l’un des deux objectifs fondamentaux de R (l’autre étant évidemment de faire des statistiques). Il existe plusieurs méthodes et packages pour produire rapidement et...">
-<meta name="generator" content="bookdown 0.34 with bs4_book()">
+<meta name="generator" content="bookdown 0.41 with bs4_book()">
 <meta property="og:title" content=" 8 Visualiser | Méthodes quantitatives avec R">
 <meta property="og:type" content="book">
 <meta property="og:url" content="mqr.teluq.ca/visualiser.html">
@@ -17,9 +17,10 @@
 <meta name="twitter:description" content="La visualisation de données est l’un des deux objectifs fondamentaux de R (l’autre étant évidemment de faire des statistiques). Il existe plusieurs méthodes et packages pour produire rapidement et...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.0/transition.js"></script><script src="libs/bs3compat-0.4.0/tabs.js"></script><script src="libs/bs3compat-0.4.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.8.0/transition.js"></script><script src="libs/bs3compat-0.8.0/tabs.js"></script><script src="libs/bs3compat-0.8.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-<script src="libs/htmlwidgets-1.6.0/htmlwidgets.js"></script><script src="libs/viz-1.8.2/viz.js"></script><link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
+<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script><script src="libs/viz-1.8.2/viz.js"></script><link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
 <script src="libs/grViz-binding-1.0.11/grViz.js"></script><!-- 
     \(
     \newcommand{\EX}{\mathbb{E}}
@@ -33,6 +34,7 @@
     div.csl-bib-body { }
     div.csl-entry {
       clear: both;
+          margin-bottom: 0em;
         }
     .hanging div.csl-entry {
       margin-left:2em;
@@ -134,7 +136,7 @@
 <h2>
 <span class="header-section-number">8.1</span> ggplot2<a class="anchor" aria-label="anchor" href="#ggplot2"><i class="fas fa-link"></i></a>
 </h2>
-<p>Le package <code>ggplot2</code> est une extension du <code>tidyverse</code> avec lequel il est possible de créer simplement et rapidement des graphiques. Ces graphiques sont de qualité de publications, idéale pour les articles scientifiques. Le package fournit un langage graphique pour la création intuitive de graphiques compliqués. Il permet à l’utilisateur de créer des graphiques qui représentent des données numériques et catégorielles univariées et multivariées.</p>
+<p>Le package <code>ggplot2</code> est une extension du <code>tidyverse</code> avec lequel il est possible de créer simplement et rapidement des graphiques. Ces graphiques sont de qualité de publications, idéales pour les articles scientifiques. Le package fournit un langage graphique pour la création intuitive de graphiques compliqués. Il permet à l’utilisateur de créer des graphiques qui représentent des données numériques et catégorielles univariées et multivariées.</p>
 <p>La logique de <code>ggplot2</code> repose sur la grammaire des graphiques (<em>Grammar of Graphics</em>), l’idée selon laquelle toutes les figures peuvent être construites à partir des mêmes composantes. Il s’agit de la deuxième version du package. Voilà pour l’appellation <em>ggplot2</em>.</p>
 <p>Dans la grammaire de graphique, une figure possède huit niveaux, dont les trois principaux sont les suivants :</p>
 <ul>
@@ -209,11 +211,11 @@ Figure 8.4: Le lien entre le poids et la taille en fonction de l’IMC et du sex
 </p>
 </div>
 <p>On peut y ajouter la droite de régression, comme la Figure <a href="visualiser.html#fig:diagdisp3">8.5</a> le montre. Sans <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point()</a></code>, la figure ne produit la droite. Les arguments de <code><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth()</a></code> indique l’utilisation du modèle linéaire, <code>method = lm</code>, et l’absence des intervalles de confiance, <code>se = FALSE</code>. Dans cette syntaxe, comme le <em>mapping</em> est ajouté à <code>ggplot</code> directement, il se généralise directement à <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point()</a></code> et <code><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth()</a></code></p>
-<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="visualiser.html#cb111-1" aria-hidden="true" tabindex="-1"></a>jd <span class="sc">%&gt;%</span> </span>
-<span id="cb111-2"><a href="visualiser.html#cb111-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> mass, <span class="at">y =</span> height)) <span class="sc">+</span> </span>
-<span id="cb111-3"><a href="visualiser.html#cb111-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb111-4"><a href="visualiser.html#cb111-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">"black"</span>)</span>
-<span id="cb111-5"><a href="visualiser.html#cb111-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="st">`</span><span class="at">geom_smooth()</span><span class="st">`</span> using formula <span class="ot">=</span> <span class="st">'y ~ x'</span></span></code></pre></div>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="visualiser.html#cb111-1" tabindex="-1"></a>jd <span class="sc">%&gt;%</span> </span>
+<span id="cb111-2"><a href="visualiser.html#cb111-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> mass, <span class="at">y =</span> height)) <span class="sc">+</span> </span>
+<span id="cb111-3"><a href="visualiser.html#cb111-3" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb111-4"><a href="visualiser.html#cb111-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">"black"</span>)</span>
+<span id="cb111-5"><a href="visualiser.html#cb111-5" tabindex="-1"></a><span class="sc">&gt;</span> <span class="st">`</span><span class="at">geom_smooth()</span><span class="st">`</span> using formula <span class="ot">=</span> <span class="st">'y ~ x'</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:diagdisp3"></span>
 <img src="08-Visualiser_files/figure-html/diagdisp3-1.png" alt="Le lien entre le poids et la taille en fonction de l'IMC" width="75%" height="75%"><p class="caption">
@@ -253,7 +255,7 @@ Figure 8.6: Boîte à moustache de l’IMC en fonction du sexe
 <span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">jd</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">IMC</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>Des techniques plus avancées permettent de créer la Figure <a href="visualiser.html#fig:hist">8.7</a> d’un seul coup<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Notamment, le code nécessite &lt;code&gt;gather()&lt;/code&gt; de &lt;code&gt;tidyr&lt;/code&gt;&lt;span class="citation"&gt;(&lt;a href="r%C3%A9f%C3%A9rences.html#ref-R-tidyr" role="doc-biblioref"&gt;Wickham &amp;amp; Girlich, 2022&lt;/a&gt;)&lt;/span&gt; et &lt;code&gt;keep()&lt;/code&gt; de &lt;code&gt;purrr&lt;/code&gt; &lt;span class="citation"&gt;(&lt;a href="r%C3%A9f%C3%A9rences.html#ref-R-purrr" role="doc-biblioref"&gt;Henry &amp;amp; Wickham, 2020&lt;/a&gt;)&lt;/span&gt;.&lt;/p&gt;'><sup>8</sup></a>.</p>
+<p>Des techniques plus avancées permettent de créer la Figure <a href="visualiser.html#fig:hist">8.7</a> d’un seul coup<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Notamment, le code nécessite &lt;code&gt;gather()&lt;/code&gt; de &lt;code&gt;tidyr&lt;/code&gt;&lt;span class="citation"&gt;(&lt;a href="r%C3%A9f%C3%A9rences.html#ref-R-tidyr"&gt;Wickham &amp;amp; Girlich, 2022&lt;/a&gt;)&lt;/span&gt; et &lt;code&gt;keep()&lt;/code&gt; de &lt;code&gt;purrr&lt;/code&gt; &lt;span class="citation"&gt;(&lt;a href="r%C3%A9f%C3%A9rences.html#ref-R-purrr"&gt;Henry &amp;amp; Wickham, 2020&lt;/a&gt;)&lt;/span&gt;.&lt;/p&gt;'><sup>8</sup></a>.</p>
 <div class="sourceCode" id="cb114"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Trois histogrammes en une seule figure</span></span>
 <span><span class="co"># en optimisant avec le tidyverse</span></span>
@@ -322,7 +324,7 @@ Figure 8.9: Les effets de la vitamine C sur les cochons d’inde
 <h2>
 <span class="header-section-number">8.6</span> De meilleures barres d’erreurs pour les devis inter participants<a class="anchor" aria-label="anchor" href="#de-meilleures-barres-derreurs-pour-les-devis-inter-participants"><i class="fas fa-link"></i></a>
 </h2>
-<p>Il existe un package <code>superb</code> <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-superb" role="doc-biblioref">Cousineau et al., 2021</a>)</span> qui permet d’obtenir des graphiques à barre d’erreur avec précision et facilement ajustable. Une fois installé et importé dans l’environnement, <code>superb</code> offre la fonction principale <code>superbPlot</code> permet la création de ces figures.</p>
+<p>Il existe un package <code>superb</code> <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-superb">Cousineau et al., 2021</a>)</span> qui permet d’obtenir des graphiques à barre d’erreur avec précision et facilement ajustable. Une fois installé et importé dans l’environnement, <code>superb</code> offre la fonction principale <code>superbPlot</code> permet la création de ces figures.</p>
 <p>Il y a deux avantages principaux a utilisé <code>superb</code>. La première est qu’elle permet des ajustements avec l’argument <code>adjustments</code> afin de préciser le type de barres d’erreurs<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Oui, oui, il en existe plusieurs!&lt;/p&gt;"><sup>9</sup></a>, comme <code>"single"</code>, <code>"difference"</code>, ou <code>"tryon"</code>. Généralement, ce sera l’option <code>purpose = "difference"</code> qui sera désirée. Deuxièmement, <code>superb</code> tient aussi compte des devis intra participants avec l’argument <code>WSFactors</code>, ce qui permet l’utilisation de différentes techniques de décorrélation des temps de mesure. La fonction produit de bien meilleurs graphiques à barres d’erreurs avec plus d’ajustement et de précision.</p>
 <p>La Figure <a href="visualiser.html#fig:erreurbar2">8.10</a> reproduit la Figure <a href="visualiser.html#fig:erreurbar">8.9</a>. Dans le code, il faut préciser les facteurs inter participants <code>BSFactors</code> (pour <em>between subject</em> ou <em>BS</em>) et la variable dépendante, <code>variable</code>. La fonction contrôle aussi le type de graphique avec <code>plotStyle</code>.</p>
 <div class="sourceCode" id="cb117"><pre class="downlit sourceCode r">
@@ -424,11 +426,11 @@ Figure 8.13: Comparaison de deux temps de mesure avec <code>superb</code> (avec 
 <p>Les options <code>width</code> (largeur), <code>height</code> (hauteur), et <code>units</code> (unités, comme <code>"in"</code>, pouce, <code>"cm"</code>, centimètre, <code>"mm"</code>, millimètre ou <code>"px"</code>, pixel) gère la taille de la figure.</p>
 <p>La taille de résolution de la figure est gérée avec l’argument <code>dpi</code>, ce qui peut être utile pour augmenter la qualité de la figure produite.</p>
 <p>Voici un exemple.</p>
-<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="visualiser.html#cb123-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Préalablement produire une figure</span></span>
-<span id="cb123-2"><a href="visualiser.html#cb123-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="at">filename =</span> <span class="st">"mafigure.pdf"</span>,</span>
-<span id="cb123-3"><a href="visualiser.html#cb123-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">width =</span> <span class="st">"6"</span></span>
-<span id="cb123-4"><a href="visualiser.html#cb123-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">heigth =</span> <span class="st">"8"</span>,</span>
-<span id="cb123-5"><a href="visualiser.html#cb123-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">unit =</span> <span class="st">"cm"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="visualiser.html#cb123-1" tabindex="-1"></a><span class="co"># Préalablement produire une figure</span></span>
+<span id="cb123-2"><a href="visualiser.html#cb123-2" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="at">filename =</span> <span class="st">"mafigure.pdf"</span>,</span>
+<span id="cb123-3"><a href="visualiser.html#cb123-3" tabindex="-1"></a>       <span class="at">width =</span> <span class="st">"6"</span></span>
+<span id="cb123-4"><a href="visualiser.html#cb123-4" tabindex="-1"></a>       <span class="at">heigth =</span> <span class="st">"8"</span>,</span>
+<span id="cb123-5"><a href="visualiser.html#cb123-5" tabindex="-1"></a>       <span class="at">unit =</span> <span class="st">"cm"</span>)</span></code></pre></div>
 <p>Il faudra éventuellement ajuster la taille et la qualité de la figure en fonction de la sortie désirée. Quelques essais seront probablement nécessaires pour y arriver.</p>
 </div>
 <div id="pour-aller-plus-loin-1" class="section level2" number="8.10">
@@ -473,7 +475,7 @@ Figure 8.13: Comparaison de deux temps de mesure avec <code>superb</code> (avec 
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2024-11-13.</p>
+    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2024-12-16.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -9,10 +9,10 @@ Pour réaliser des modèles par équations structurelles, le package `lavaan` es
 Comme pour tous les [packages][les packages], il faut d'abord installer et appeler le programme avant de l'utiliseré
 
 
-```r
+``` r
 #
 library(lavaan)
-> This is lavaan 0.6-18
+> This is lavaan 0.6-19
 > lavaan is FREE software! Please report any bugs.
 ```
 
@@ -26,7 +26,7 @@ La première étape d'un modèle avec `lavaan` est d'écrire un modèle. Comme i
 
 * `=~` est **se mesure de**, comme `F1 =~ i1 + i2 + i3` 
 
-*  `*` **nomme** ou **fixe** un paramètre selon le préfixe, par exemple, `y ~ a*x` permet d'utiliser le coefficient de régression lié à `x`, `y ~ .5*x` fixe le coefficient à .5 ou si `a` (le libellé) est utilisé à plusieurs endroits, cela contraint la valeur à être identiquer pour les deux équations.
+*  `*` **nomme** ou **fixe** un paramètre selon le préfixe, par exemple, `y ~ a*x` permet d'utiliser le coefficient de régression lié à `x`, `y ~ .5*x` fixe le coefficient à .5 ou. si `a` (le libellé) est utilisé à plusieurs endroits, cela contraint la valeur à être identiquer pour les deux équations.
 
 *  `:=` **définit** un paramètre, par exemple, s'il faut la somme ou le produit de différents coefficients.
 
@@ -53,19 +53,19 @@ Le SRMR est un indice utilisé dans la modélisation par équations structurelle
 Pour obtenir spécifiquement ces indices, il faut utilier la syntaxe suivante avec un objet `lavaan`, c'est-à-dire la sortie des fonctions `sem()` ou `cfa()`.
 
 
-```r
+``` r
 fitmeasures(object, fit.measures = c("chisq", "df", "pvalue",
            "cfi", "tli", "RMSEA", "SRMR"))
 ```
 
 En tout, `lavaan` produit 46 indices statistiques différents. Ceux recommandés ici sont les mêmes que ceux rapportés par le logiciel Mplus [@caronmplus]. Il peut être intéressant de vérifier les autres options, surtout que certains pourront être spécifique à certains doomaines. Cela se fait simplement en laissant vide l'argument `fit.measures` qui par défaut est `fit.measures = "all"`.
 
-### Les indices de modifcation
+### Les indices de modification
 
 Il est rare que le modèle testé atteint les critères généraux d'ajustement du premier coup. Ainsi, il est possible d'améliorer le modèle en le peaufinant. La fonction `modindices()` suggère différents opérateurs à ajouter au modèle initial. Pour utiliser la fonction, il faut lui fournir un objet de classe `lavaan` (une sortie `sem()` ou `cfa`). 
 
 
-```r
+``` r
 modindices(object, sort = TRUE)
 ```
 
@@ -80,7 +80,7 @@ Une dernière recommandation : il est préférable de tester séquentiellement l
 La fonction `standardizedSolution` du package `lavaan` est utilisée pour extraire les solutions standardisées des modèles d'équations structurelles (SEM). Ces solutions fournissent des coefficients standardisés qui facilitent l'interprétation des relations entre les variables dans le modèle, en éliminant les effets des unités de mesure.
 
 
-```r
+``` r
 standardizedSolution(object)
 ```
 
@@ -94,12 +94,12 @@ Voici un exemple d'analyse factorielle exploratoire. La syntaxe suivante recrée
 <p class="caption">(\#fig:FactStructconfirmer)Structure factorielle de l'exemple</p>
 </div>
 
-La Figure\ \@ref(fig:FactStructconfrimer) (présentée auparavant à la Figure\ \@ref(fig:FactStruct)) montre la structure factorielle sous-jacente à la matrice de corrélation `ex.mqr`. La syntaxe crée un jeu de données basée sur cette matrice.
+La Figure\ \@ref(fig:FactStructconfirmer) (présentée auparavant à la Figure\ \@ref(fig:FactStruct)) montre la structure factorielle sous-jacente à la matrice de corrélation `ex_mqr`. La syntaxe crée un jeu de données basée sur cette matrice.
 
 
-```r
+``` r
 # Création de la matrice de recette de fabrication
-R <- Rnest::ex.mqr
+R <- Rnest::ex_mqr
 set.seed(32)
 # Création du jeu de données
 jd.cfa <- MASS::mvrnorm(n = 500, 
@@ -110,7 +110,7 @@ jd.cfa <- MASS::mvrnorm(n = 500,
 La première étape des modèles par équations structurelles est de définir le modèle. Dans la syntaxe, deux facteurs sont créés à partir des items qui devraient les composer. Ici, le lien `F1 =~ i6` est intentionnellement omit. L'ajout de `F1 ~~ 0*F2` qui fixe la covariance entre `F1` et `F2` à 0, ce qui facilitera la convergence de l'analyse dans ce cas spécifique.
 
 
-```r
+``` r
 model.cfa1 <- "
 F1 =~ i1 + i2 + i3
 F2 =~ i4 + i5 + i6
@@ -121,7 +121,7 @@ F1 ~~ 0*F2
 Une fois le modèle transcrit, il faut le rouler avec la fonction `cfa()` en incluant les données et le modèle
 
 
-```r
+``` r
 res.cfa1 <- cfa(model.cfa1, data = jd.cfa)
 
 # sem() fonctionne également
@@ -131,14 +131,14 @@ res.cfa1 <- cfa(model.cfa1, data = jd.cfa)
 À la place de `F1 ~~ 0*F2`, l'orthogonalité des facteurs aurait pu être demandé avec `orthogonal = TRUE`. Autrement, les facteurs sont obliques (libres d'être corrélés) par défaut.
 
 
-```r
+``` r
 res.cfa1 <- cfa(model.cfa1, sample.cov = cor(jd.cfa), sample.nobs = 60)
 ```
 
 Pour juger du modèle, les indices d'ajustement sont extraits.
 
 
-```r
+``` r
 fitmeasures(res.cfa1, c("chisq", "df", "pvalue",
                             "cfi", "tli", "RMSEA", "SRMR"))
 >  chisq     df pvalue    cfi    tli  rmsea   srmr 
@@ -147,7 +147,7 @@ fitmeasures(res.cfa1, c("chisq", "df", "pvalue",
 Les indices pourraient être légèrement amélioré ici. Notamment, le `tli` est trop faible (en bas de .90), le `rmsea` et le `srmr` sont trop élevés (au dessus de .08) et le `chisq` est significatif à $p<.001$. La modification d'indice est demandée pour vérifier les possibles amélioreration du modèle.
 
 
-```r
+``` r
 modindices(res.cfa1, sort = TRUE)
 >    lhs op rhs     mi    epc sepc.lv sepc.all sepc.nox
 > 18  F1 =~  i6 62.727  0.405   0.352    0.353    0.353
@@ -176,7 +176,7 @@ Il faut par la suite réaliser de nouveau l'analyse pour tester le nouveau modè
 
 
 
-```r
+``` r
 model.cfa2 <- "
 F1 =~ i1 + i2 + i3 + i6
 F2 =~ i4 + i5 + i6"
@@ -187,7 +187,7 @@ res.cfa2 <- cfa(model.cfa2, data = jd.cfa)
 Les indices d'ajustement sont inspectés de nouveaux.
 
 
-```r
+``` r
 fitmeasures(res.cfa2, c("chisq", "df", "pvalue",
                             "cfi", "tli", "RMSEA", "SRMR"))
 >  chisq     df pvalue    cfi    tli  rmsea   srmr 
@@ -198,7 +198,7 @@ Ils sont tous excellents et respectent les recommandations.
 Grâce au package `lavaanExtra` [@lavaanExtra] il est possible de produire rapidement une figure des résultats finaux. Il faut absolument avoir installer les packages `rsvg` et `DiagrammeRsvg` pour obtenir la figure.
 
 
-```r
+``` r
 lavaanExtra::cfa_fit_plot(model.cfa2, data = jd.cfa)
 ```
 
@@ -211,13 +211,13 @@ lavaanExtra::cfa_fit_plot(model.cfa2, data = jd.cfa)
 Enfin, les paramètres pourront être extraits si l'utilisateur désire les observés.
 
 
-```r
+``` r
 # Estimés non standardisés
 parameterestimates(res.cfa2)
 ```
 
 
-```r
+``` r
 # Estimés standardisés
 standardizedSolution(res.cfa2)
 >    lhs op rhs est.std    se     z pvalue ci.lower ci.upper
@@ -252,7 +252,7 @@ Le jeu de données se trouve dans le packages `pathanalysis` sous le libellé `m
 
 
 
-```r
+``` r
 jd.med <- pathanalysis::medEX
 
 model.med1 <- "
@@ -267,7 +267,7 @@ Dans le cas de la médiation, il est désirable de calculer l'effet indirect en 
 
 
 
-```r
+``` r
 model.med2 <- "
 m1 ~ a1*x
 m2 ~ a2*x + b2*m1
@@ -287,21 +287,21 @@ La syntaxe ci-dessus extrait en plus l'effet indirect totale, la somme de tous l
 
 
 
-```r
+``` r
 res.lav.med2 <- sem(model.med2, data = jd.med)
 ```
 
 Voici la sortie.
 
 
-```r
+``` r
 # parameterestimates(res.lav.med2)
 standardizedSolution(res.lav.med2)
 ```
 Pour désencombrer la sortie de la fonction (pour mieux présenter pour ce chapitre), voici la sortie avec un peu moins de colonnes.
 
 
-```r
+``` r
 standardizedSolution(res.lav.med2)[,-c(1:3,7,9:10)]
 >            label est.std    se pvalue
 > 1             a1   0.492 0.034  0.000
@@ -326,7 +326,7 @@ standardizedSolution(res.lav.med2)[,-c(1:3,7,9:10)]
 Ici, le modèle est saturé, mais il est tout de même possible d'obtenir les indices d'ajustement. Si le modèle n'était pas saturé (s'il y avait des paramètres libres), il faudrait les vérifier comme [l'exemple précédent][Analyse factorielle confirmatoire].
 
 
-```r
+``` r
 fitmeasures(res.lav.med2, c("chisq", "df", "pvalue",
                             "cfi", "tli", "RMSEA", "SRMR"))
 >  chisq     df pvalue    cfi    tli  rmsea   srmr 
@@ -337,14 +337,14 @@ fitmeasures(res.lav.med2, c("chisq", "df", "pvalue",
 La Figure\ \@ref(fig:lesem) obtenue par `lavaanExtra` montre le modèle final.
 
 
-```r
+``` r
 lavaanExtra::nice_lavaanPlot(res.lav.med2)
 ```
 
 <div class="figure" style="text-align: center">
 
 ```{=html}
-<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-c72387fd6c1102706219" style="width:75%;height:75%;"></div>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-c72387fd6c1102706219" style="width:75%;height:75%;"></div>
 <script type="application/json" data-for="htmlwidget-c72387fd6c1102706219">{"x":{"diagram":" digraph plot { \n graph [ rankdir = LR ] \n node [ shape = box, fontname = Helvetica ] \n node [shape = box] \n x; m1; m2; y \n node [shape = oval] \n  \n \n edge [ color = black ] \n x->m1 [label = \"0.49***\"] x->m2 [label = \"0.18***\"] m1->m2 [label = \"0.46***\"] m2->y [label = \"0.67***\"] m1->y [label = \"\"] x->y [label = \"0.25***\"]  \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 ```
 

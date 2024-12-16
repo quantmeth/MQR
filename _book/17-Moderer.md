@@ -80,7 +80,7 @@ $$
 
 
 
-```r
+``` r
 # Pour la reproductibilité
 set.seed(1302)
 
@@ -129,7 +129,7 @@ Le code ci-dessus montre un scénario standardisé (toutes les moyennes sont 0; 
 Pour simuler une étude réelle, la variable d'interaction n'a pas à être enregistrée dans les deux jeux de données. Elle n'était nécessaire que pour la création de la variable dépendante.
 
 
-```r
+``` r
 # Jeu de données final 
 jd.continue <- jd.continue[, c("x","w","y")]
 ```
@@ -139,7 +139,7 @@ jd.continue <- jd.continue[, c("x","w","y")]
 Pour créer un jeu de données avec une variable indépendante continue et une variable modératrice nominale, la procédure sera similaire à celle de [l'analyse de variance][Comparer] avec le [Codage factice] en combinaison avec la technique décrite ci-haut.
 
 
-```r
+``` r
 # Pour la reproductibilité
 set.seed(50015610)  
 
@@ -173,7 +173,7 @@ X = cbind(x = x,
 En considérant $p_i = \frac{g_i}{n}$ comme la probabilité d'une unité d'être dans le groupe $i$, la variance d'un groupe, représentée par $w_i$, est $p_i(1-p_i)$, soit la variance d'une distribution binomiale pour une probabilité $p_i$. La covariance avec un autre groupe $j$ est de $-p_ip_j$, la probabilité d'être dans un groupe est négativement liée à celle d'être dans un autre groupe. Enfin, la variance d'une interaction est de $p_i$, car il s'agit du pourcentage de $x$ qui se retrouve dans l'interaction $xw_i$. En conséquence, comme il s'agit de la même information (à cause du multiple de 1 de la variable $w_i$, c'est-à-dire appartenir au groupe $i$), cela mène une covariance accidentelle de $p_i$ entre $x$ et $w_i$.
 
 
-```r
+``` r
 p1 <- g1/n
 p2 <- g2/n
 S <- matrix(c(1, 0, 0, p1, p2,
@@ -202,7 +202,7 @@ cov(X)
 Toutefois, il sera plus simple de standardiser `W` avant de créer les interactions, ce qui éliminera les covariances accidentelles.
 
 
-```r
+``` r
 # Standardiser les codes factices
 W <- scale(W)
 
@@ -218,7 +218,7 @@ $$p_1 p_2 / \sqrt{p_1(1 - p_1) p_2 (1 - p_2)}$$
 soit leur covariance originale divisée par leur écart type. Tous les autres valeurs deviennent 1 dans le cas des variances et 0 pour les covariances.
 
 
-```r
+``` r
 # La covariance
 rho = -(p1 * p2) / (sqrt((p1 * (1 - p1)) * (p2 * (1 - p2))))
 
@@ -252,7 +252,7 @@ Il est possible d'ajouter des corrélations entre une variable continue et les g
 Maintenant, il reste à créer la variable dépendante. Pour ce faire, il faut spécifier cinq coefficients de régressions, car une variable continue avec deux variables modératrices (facteurs transformés par le [codage factice]) donnent deux variables d'interaction.
 
 
-```r
+``` r
 # Les coefficients de régression
 B <-  c(.25, 0, 0, .50, -.50)
 
@@ -267,7 +267,7 @@ y <- X2 %*% B + rnorm(n = n, sd = sqrt(var_ey))
 Pour simuler une étude réelle, les variables d'interactions et le codage factices peuvent être écartés du jeu de données. Ces variables ne sont nécessaires que pour la création de la variable dépendante.
 
 
-```r
+``` r
 # Jeu de données final 
 jd.nominale <-  data.frame(x = x,
                            w = w,
@@ -297,7 +297,7 @@ Cela dit, il demeure possible d'utiliser `aov()` avec les SC de type III, mais i
 Pour le modèle avec deux variables continues, la syntaxe pour rouler `lm()`  est très similaire à ce qui se trouve dans le chapitre [Prédire]. Pour inclure l'effet d'interaction (modération) dans le modèle, il faut inscrire le `*` au lieu du `+`, comme `lm(y ~ x * w, data = jd.continue)`. La formule `y ~ x + w + x * w` fonctionne également.
 
 
-```r
+``` r
 # Réaliser l'analyse avec lm()
 res1.lm <- lm(y ~ x * w, data = jd.continue)
 summary(res1.lm)
@@ -346,7 +346,7 @@ Pour observer les résultats de `lm()` de la même façon que `aov` (avec une ta
 Pour obtenir l'analyse de variance avec le type III, il faut utiliser le package `car` et sa fonction `Anova()` en y spécifiant la sortie de la fonction `aov()` et le type de somme de carrés demandé.
 
 
-```r
+``` r
 res1.anova <- car::Anova(res1.aov, type = "III")
 res1.anova 
 > Anova Table (Type III tests)
@@ -374,7 +374,7 @@ Pour déterminer s'il y a présence de l'effet de modérateur, il faut se fier �
 Comme il y a un groupe de référence, **R** choisit par défaut le premier groupe. Dans ce cas, le groupe de référence était le troisième. Pour spécifier ce changement, la fonction `relevel()` déclarera le groupe de référence. Le premier argument est la variable et l'argument `ref =` indique le nouveau groupe de référence. La fonction ne fait que reclasser les valeurs afin que le premier groupe que ne voit **R** ne soit nul autre que le groupe de référence. Ce changement pourrait aussi être fait directement dans le formule de `lm()` comme `lm(y ~ x * relevel(w, ref = 3), data = jd.nominale)`
 
 
-```r
+``` r
 # Réaliser l'analyse avec lm()
 jd.nominale$w <-  relevel(jd.nominale$w, ref = 3)
 res2.lm <- lm(y ~ x * w, data = jd.nominale)
@@ -451,7 +451,7 @@ Deux graphiques sont particulièrement pertinents : le graphique de Johnson- Ney
 Pour réaliser ces graphiques, il faudra d'abord installer et importer le package.
 
 
-```r
+``` r
 library(interactions)
 ```
 

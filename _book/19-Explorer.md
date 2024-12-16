@@ -23,7 +23,7 @@ La Figure \@ref(fig:FactStruct) illustre un exemple de modèle. Les rectangles s
 La syntaxe ci-dessous reconstruit le modèle de la Figure \@ref(fig:FactStruct). La variable `phi`, pour $\Phi$, contient les loadings des deux composantes pour créer les six variables. Les lignes (les variables) sont identifiées par `i` et les colonnes (les facteurs) sont identifiées par `F`.
 
 
-```r
+``` r
 # Création de la matrice de recette de fabrication
 phi <- matrix(c(.9, .8, .7,  0,  0, .4,
                  0,  0,  0, .4, .5, .6), 
@@ -54,7 +54,7 @@ phi
 ou en code **R**.
 
 
-```r
+``` r
 R <- phi %*% t(phi)
 R
 >      i1   i2   i3   i4   i5   i6
@@ -71,7 +71,7 @@ Le lecteur attentif aura remarqué qu'il ne s'agit pas encore d'une matrice de c
 Il reste à ajouter le bruit, la variance résiduelle, ce qui est fait en changeant la diagonale de $R$ pour l'unité, $\text{diag}(R) = 1$. D'ailleurs, si une valeur de la diagonale `R` dépasse 1, alors le scénario standardisé n'est pas respecté. Il s'agit d'une des méthodes pour s'en assurer.
 
 
-```r
+``` r
 diag(R) <- 1
 R
 >      i1   i2   i3   i4  i5   i6
@@ -86,7 +86,7 @@ R
 Avec la matrice `R` calculée, il est évidemment possible, comme il a été fait précédemment de recourir à la fonction `MASS::mvrnorm()` avec comme argument `Sigma = R` pour la matrice de corrélation afin de créer `n` participants. Il ne reste qu'à choisir une taille d'échantillon.
 
 
-```r
+``` r
 # Pour la reproductibilité
 set.seed(33)
 
@@ -125,14 +125,14 @@ En désirant [le scénario standardisé], la variance de $x$ est fixée à 1 et 
 Les écarts types des $\epsilon$ de chaque $p$ variable de la structure factorielle `phi` se calculent simplement avec **R**.
 
 
-```r
+``` r
 sd.eps <- sqrt(1 - rowSums(phi^2))
 ```
 
 Maintenant, il faut ajouter cette variable à la structure factorielle. Comme les résidus sont tous indépendants par définition, ils ont tous leur propre facteur (chacun sa colonne), ce qui se fait bien avec la syntaxe suivante.
 
 
-```r
+``` r
 diag(sd.eps)
 >       [,1] [,2]  [,3]  [,4]  [,5]  [,6]
 > [1,] 0.436  0.0 0.000 0.000 0.000 0.000
@@ -146,7 +146,7 @@ diag(sd.eps)
 Il suffit maintenant de joindre cette matrice à `phi`.
 
 
-```r
+``` r
 phi2 <- cbind(phi, diag(sd.eps))
 ```
 
@@ -156,7 +156,7 @@ Comme à l'équation\ \@ref(eq:fact2cor), `phi2` permet d'obtenir la matrice de 
 
 
 
-```r
+``` r
 R2 <- phi2 %*% t(phi2)
 R2
 >      i1   i2   i3   i4  i5   i6
@@ -173,7 +173,7 @@ Exactement le même résultat que l'autre méthode, et ce, sans avoir à modifie
 Une fois la structure factorielle obtenue, il faut générer les scores des participants (les valeurs $z$ de l'équation\ \@ref(eq:fact2var)). Une technique usuelle est de créer une matrice $(k + p)  \times n$ de scores normaux, soit le nombre de facteurs plus le nombre de variables (pour les résidus) en ligne par $n$ le nombre d'unités en colonnes. Cette matrice représente les scores factoriaux de chaque unité pour chacun des scores et sont multipliés avec la structure factorielle. Autrement dit, chaque poids (loadings) est multiplié à une distribution normale qui représente le score du participant pour ce facteur. 
 
 
-```r
+``` r
 n <- 500; k <- 2; p <- 6
 score.ind <-  matrix(rnorm(n * p * k), 
                      nrow = (k + p), 
@@ -186,14 +186,14 @@ score.ind <-  matrix(rnorm(n * p * k),
 Il ne reste plus qu'à faire le produit matricielle de `phi2` ($\left[ \Phi, \text{diag}(\epsilon) \right]$) et des scores individuels (`score.ind`).
 
 
-```r
+``` r
 jd2 <- phi2 %*% score.ind
 ```
 
 La variable `jd2` contient tous les scores des $n$ participants sur les $p$ variables. Pour obtenir la base de données dans le sens usuel, il suffit de faire une transpose à `jd` avec la fonction `t()`.
 
 
-```r
+``` r
 jd2 <- t(jd2)
 head(jd2)
 >          i1     i2      i3      i4     i5     i6
@@ -212,7 +212,7 @@ Voilà une base de données prêtes à être utiliser pour une analyse factoriel
 À titre de comparaison, voici les résultats de l'analyse en composantes principales.
 
 
-```r
+``` r
 # Analyse en composantes principales
 res <- eigen(cor(jd2))
 res
@@ -251,7 +251,7 @@ Elle est assez près de la structure originale, mais pas exactement. Et ce n'est
 Pour réaliser une analyse factorielle exploratoire, la fonction `factanal()` de **R** prend un jeu de données et le nombre de facteurs à tester. La fonction détecte automatiquement s'il s'agit d'un jeu de données ou une matrice de covariance; l'un ou l'autre peut être fourni.
 
 
-```r
+``` r
 res1 <- factanal(jd2, factors = 1)
 res1
 > 
@@ -283,7 +283,7 @@ res1
 C'est aussi simple que l'ACP (même plus!). La sortie procure trois statistiques d'intérêt\ : les loadings, la proportion de variance expliquée (`Proportion Var`) et un test de $\chi^2$ avec sa valeur-$p$. Les loadings entre -.1 et .1 ne sont pas affichés afin d'attirer l'attention sur la structure. Les loadings peuvent être extraits avec la fonction `loadings()` ou en élément de liste. L'utilisation de `[]` permet d'afficher complètement la matrice de loadings.
 
 
-```r
+``` r
 loadings(res1)
 > 
 > Loadings:
@@ -311,7 +311,7 @@ res1$loadings[]
 La valeur-$p$ concerne la qualité de de l'ajustement de la strucuture à `factors` facteurs. Comme la valeur-$p$ est significative à un facteur, $p < .001$, cela signifie que la structure testée (un facteur) n'est pas vraisemblable. Il faut tester pour deux facteurs.
 
 
-```r
+``` r
 res2 <- factanal(jd2, factors = 2)
 res2
 > 
@@ -348,7 +348,7 @@ Les mêmes statistiques, mais pour deux facteurs, sont obtenues. Les résultats 
 Une fois le nombre de facteurs déterminé (voir [Réduire] à ce sujet), les scores factoriels des participants peuvent être utilisés. Pour les obtenir, il faut commander de nouveau l'analyse factorielle en y indiquant le type de scores désiré, soit `regression` ou `Bartlett`. Cela ajoutera les scores dans la liste de sortie de la fonction sous l'appellation `scores`. Voici un exemple.
 
 
-```r
+``` r
 # Commander l'analyse avec l'argument scores = "regression"
 res2 <- factanal(jd2, factors = 2, scores = "regression")
 
@@ -389,7 +389,7 @@ Ces deux règles évitent aux programmeurs de fixer son écran pendant des heure
 Ces deux recommandations se retrouvent en arguments et peuvent être modifiées
 
 
-```r
+``` r
 paf <- function(covmat, 
                 nfactors, 
                 converge = .000001, 
@@ -437,7 +437,7 @@ Noter l'ajout de `ncol = ` dans la fonction `diag()`. Cela a pour but de forcer 
 À toute fin de comparaison, voici la technique PAF maison (`paf()`) et l'analyse factorielle de **R**.
 
 
-```r
+``` r
 factanal(covmat = R, n.obs = n, factors = 2)
 > 
 > Call:
@@ -490,7 +490,7 @@ paf(covmat = R, nfactors = 2)
 Les résultats sont très près, beaucoup plus que l'ACP de la matrice `R`. La sortie `uniqueness` correspond à `1-C`, la variance résiduelle. Dans les cas, elles sont virtuellement identiques. Dans la sortie de `paf()`, la matrice de corrélation réduite de `R` est sortie et montre qu'elle correspond à ce qui est attendu, soit $\Phi\Phi^{\prime}$.
 
 
-```r
+``` r
 phi %*% t(phi)
 >      i1   i2   i3   i4   i5   i6
 > i1 0.81 0.72 0.63 0.00 0.00 0.36

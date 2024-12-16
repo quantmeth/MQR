@@ -7,7 +7,7 @@
 <title>Préface | Méthodes quantitatives avec R</title>
 <meta name="author" content="P.-O. Caron">
 <meta name="description" content="La méthode scientifique impose aux expérimentateurs de tirer des conclusions avec minutie sur leur objet d’étude. Toutefois, ils font confiance à d’autres pour des tâches qui dépassent leur propre...">
-<meta name="generator" content="bookdown 0.34 with bs4_book()">
+<meta name="generator" content="bookdown 0.41 with bs4_book()">
 <meta property="og:title" content="Préface | Méthodes quantitatives avec R">
 <meta property="og:type" content="book">
 <meta property="og:url" content="mqr.teluq.ca/préface.html">
@@ -17,9 +17,10 @@
 <meta name="twitter:description" content="La méthode scientifique impose aux expérimentateurs de tirer des conclusions avec minutie sur leur objet d’étude. Toutefois, ils font confiance à d’autres pour des tâches qui dépassent leur propre...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.0/transition.js"></script><script src="libs/bs3compat-0.4.0/tabs.js"></script><script src="libs/bs3compat-0.4.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.8.0/transition.js"></script><script src="libs/bs3compat-0.8.0/tabs.js"></script><script src="libs/bs3compat-0.8.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-<script src="libs/htmlwidgets-1.6.0/htmlwidgets.js"></script><script src="libs/viz-1.8.2/viz.js"></script><link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
+<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script><script src="libs/viz-1.8.2/viz.js"></script><link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
 <script src="libs/grViz-binding-1.0.11/grViz.js"></script><!-- 
     \(
     \newcommand{\EX}{\mathbb{E}}
@@ -33,6 +34,7 @@
     div.csl-bib-body { }
     div.csl-entry {
       clear: both;
+          margin-bottom: 0em;
         }
     .hanging div.csl-entry {
       margin-left:2em;
@@ -123,11 +125,11 @@
 <p>La méthode scientifique impose aux expérimentateurs de tirer des conclusions avec minutie sur leur objet d’étude. Toutefois, ils font confiance à d’autres pour des tâches qui dépassent leur propre champs de compétence, et ce, avec raisons, car celles-ci peuvent être fort compliquées et nécessitées des formations académiques complémentaires. Les statistiques font parties de ces expertises extérieures en sciences humaines et sociales. Pour ne pas faillir de son esprit critique, ne serait-ce qu’un instant, il est nécessaire de comprendre les fondements et l’implantation logiciel. Trop souvent, les expérimentateurs n’ont qu’une brève introduction aux statistiques et font confiance à des logiciels commerciaux pour les calculs sophistiqués. Le tout se déroule sans tracas apparent. Toutefois, une expérience plus soutenue avec ces logiciels révéle qu’ils ont eux-aussi leurs lots de défauts, de bogues et d’erreurs de calcul. Ces erreurs se produisent parfois à l’insu de l’utilisateur. Sans connaître le résultat attendu, comment distinguer le vrai du faux des sorties statistiques?</p>
 <p>Il faut être naïf pour croire que le code fonctionne tel que prévu.</p>
 <p>Par exemple, que vaut l’expression <span class="math inline">\(-9^{(.5)}\)</span>? Reconnaître qu’il s’agit de <span class="math inline">\(\sqrt{-9}\)</span> indique immédiatement que le résultat n’est pas réel (c’est un nombre complexe). Si ce calcul est demandé à <strong>R</strong>,</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="pr%C3%A9face.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span><span class="dv">9</span><span class="sc">^</span>(.<span class="dv">5</span>)</span>
-<span id="cb1-2"><a href="pr%C3%A9face.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="sc">-</span><span class="dv">3</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="pr%C3%A9face.html#cb1-1" tabindex="-1"></a><span class="sc">-</span><span class="dv">9</span><span class="sc">^</span>(.<span class="dv">5</span>)</span>
+<span id="cb1-2"><a href="pr%C3%A9face.html#cb1-2" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="sc">-</span><span class="dv">3</span></span></code></pre></div>
 <p>celui-ci retourne la réponse <span class="math inline">\(-3\)</span> à cause de la priorité des opérations, <span class="math inline">\(-(9)^{.5}\)</span>. Était-ce la réponse désirée?</p>
 <p>Des idiosyncrasies computationnelles se retrouvent dans tous les logiciels. En pratique, le programmeur doit en avoir conscience et ce type de problème devrait rester trivial…</p>
-<p><span class="citation">Bennett et al. (<a href="r%C3%A9f%C3%A9rences.html#ref-Bennett10" role="doc-biblioref">2010</a>)</span> montrent qu’un saumon de l’Atlantique décédé a des cognitions sociales. Ils placent sous imagerie par résonance magnétique fonctionnelle (IRMf) le saumon pendant une tâche de reconnaissance des émotions chez les humains. La Figure <a href="pr%C3%A9face.html#fig:saumon">0.1</a> montre le résultat de leur analyse. Soit ils sont tombés sur une découverte étonnante en termes de cognition ichtyologique post-mortem, soit quelque chose cloche en ce qui concerne l’approche statistique utilisée.</p>
+<p><span class="citation">Bennett et al. (<a href="r%C3%A9f%C3%A9rences.html#ref-Bennett10">2010</a>)</span> montrent qu’un saumon de l’Atlantique décédé a des cognitions sociales. Ils placent sous imagerie par résonance magnétique fonctionnelle (IRMf) le saumon pendant une tâche de reconnaissance des émotions chez les humains. La Figure <a href="pr%C3%A9face.html#fig:saumon">0.1</a> montre le résultat de leur analyse. Soit ils sont tombés sur une découverte étonnante en termes de cognition ichtyologique post-mortem, soit quelque chose cloche en ce qui concerne l’approche statistique utilisée.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:saumon"></span>
 <img src="image/saumon.PNG" alt="Cognitions sociales d'un saumon atlantique décédé. Tirés de Bennett et al. 2010, p.4" width="75%"><p class="caption">
@@ -135,8 +137,8 @@ Figure 0.1: Cognitions sociales d’un saumon atlantique décédé. Tirés de Be
 </p>
 </div>
 <p>Les points rouges de la Figure <a href="pr%C3%A9face.html#fig:saumon">0.1</a> indiquent les cognitions sociales du saumon. Plus sérieusement, ces chercheurs critiquent l’absence de contrôle de l’erreur de type I (faux positif) lors de comparaisons multiples. Ce problème est d’autant plus important avec des humains sous IRMf, car ces situations comportent beaucoup de bruits statistiques, contrairement au saumon décédé qui n’en produit pas du tout. Les auteurs montrent bien qu’en absence de ce contrôle, l’analyse peut fournir des résultats farfelus. Il revient à l’expérimentateur de bien utiliser les analyses statistiques et de savoir ce que le logiciel fait et ne fait pas.</p>
-<p>L’étude de <span class="citation">Bennett et al. (<a href="r%C3%A9f%C3%A9rences.html#ref-Bennett10" role="doc-biblioref">2010</a>)</span> n’est qu’un canular. Les auteurs ont remporté le prix Ig Nobel en 2012, un prix scientifique pour de vrais chercheurs ayant réalisé une vraie étude <em>faisant d’abord rire, puis réfléchir</em>. En pratique, ce type de problème devrait rester trivial…</p>
-<p><span class="citation">Eklund et al. (<a href="r%C3%A9f%C3%A9rences.html#ref-Eklund16" role="doc-biblioref">2016</a>)</span> tentent de valider les méthodes statistiques derrière l’IRMf à l’aide de données réelles. Ils utilisent des données d’IRMf provenant de 499 personnes saines et en état de repos pour effectuer 3 millions d’analyses de groupes de tâches. En utilisant ces données nulles avec différents plans expérimentaux, ils estiment l’incidence des résultats significatifs (en théorie fixé à 5% de faux positifs pour un seuil de signification de 5%). Toutefois, ils constatent que les progiciels les plus courants pour l’analyse de l’IRMf entraînent des taux de faux positifs allant jusqu’à 70%. Ces résultats remettent en question la validité d’un certain nombre d’études utilisant l’IRMf et ont des conséquences importantes sur l’interprétation des résultats de neuro-imagerie.</p>
+<p>L’étude de <span class="citation">Bennett et al. (<a href="r%C3%A9f%C3%A9rences.html#ref-Bennett10">2010</a>)</span> n’est qu’un canular. Les auteurs ont remporté le prix Ig Nobel en 2012, un prix scientifique pour de vrais chercheurs ayant réalisé une vraie étude <em>faisant d’abord rire, puis réfléchir</em>. En pratique, ce type de problème devrait rester trivial…</p>
+<p><span class="citation">Eklund et al. (<a href="r%C3%A9f%C3%A9rences.html#ref-Eklund16">2016</a>)</span> tentent de valider les méthodes statistiques derrière l’IRMf à l’aide de données réelles. Ils utilisent des données d’IRMf provenant de 499 personnes saines et en état de repos pour effectuer 3 millions d’analyses de groupes de tâches. En utilisant ces données nulles avec différents plans expérimentaux, ils estiment l’incidence des résultats significatifs (en théorie fixé à 5% de faux positifs pour un seuil de signification de 5%). Toutefois, ils constatent que les progiciels les plus courants pour l’analyse de l’IRMf entraînent des taux de faux positifs allant jusqu’à 70%. Ces résultats remettent en question la validité d’un certain nombre d’études utilisant l’IRMf et ont des conséquences importantes sur l’interprétation des résultats de neuro-imagerie.</p>
 <p>Cette étude a fait un tollé dans la littérature scientifique. Bien que certains aspects de l’étude soient attaquables, il n’en demeure pas moins qu’elle met en lumière le danger de faire confiance aveuglément aux analyses statistiques.</p>
 <p>L’objectif de ce court texte n’est pas de discrédité les analyses statistiques ou les chercheurs qui les emploient. Ce n’est pas non plus de concrétiser l’adage : <em>faire dire n’importe quoi à une statistique</em> (c’est plus facile de faire dire n’importe quoi à des mots, par ailleurs). Les statistiques sont très utiles et fournissent de l’information qu’il est impossible d’obtenir autrement. Il s’agit d’une mise en garde justifiant en partie l’approche pédagogique de ce livre.</p>
 <p>Il est dit en partie, car le seconde, en filigrane de ce livre, repose sur la double approche d’apprentissage statistique et programmation. Il s’agit de la symbiose entre les deux. D’une part, rendre accessible et efficace des calculs parfois laborieux et ennuyants et, d’autre part, de fournir un objectif de programmation afin de susciter l’intérêt et l’engagement. En programmant des modèles statistiques, le lecteur a une plus grande emprise sur ceux-ci. Il peut mieux les utiliser, les étudier et les modifier. Il peut s’en servir pour connaître et apprendre davantage. Certaines boîtes noires resteront irrémédiablement des boîtes noires pour le lecteur, mais plus elles seront démystifiées, mieux il comprendra ce qui se cache derrière les algorithmes statistiques.</p>
@@ -172,7 +174,7 @@ Figure 0.1: Cognitions sociales d’un saumon atlantique décédé. Tirés de Be
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2024-11-13.</p>
+    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2024-12-16.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

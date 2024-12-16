@@ -15,7 +15,7 @@ Dans la première section, les manipulations rudimentaires d'un jeu de données 
 Les tableaux ont généralement deux dimensions (lignes par colonnes). Différents éléments ou groupes d'éléments peuvent être extraits des jeux de données. Plusieurs méthodes peuvent être utilisées en fonction des besoins. Le jeu de données `cars` (disponible avec **R**) sera utilisé à des fins illustratives.
 
 
-```r
+``` r
 head(cars)
 >   speed dist
 > 1     4    2
@@ -33,7 +33,7 @@ Le jeu de données contient 50 unités d'observation (lignes) et deux variables 
 Il est possible de référer à une variable soit en utilisant l'emplacement de la variable par rapport aux autres en utilisant les crochets ou en utilisant le signe `$` puis le nom de la variable après le libellé de le jeu de données. L'opération est fort simple avec le symbole `$`.
 
 
-```r
+``` r
 # Avec $
 head(cars$dist)
 > [1]  2 10  4 22 16 10
@@ -42,7 +42,7 @@ head(cars$dist)
 Précédemment utilisés pour extraire des valeurs dans une variable unidimensionnelle (voir [Référer à des sous-éléments]), les `[]` peuvent extraire des données sur un tableau en deux dimensions (ligne par colonne). Entre crochets, il faut spécifier la ou les lignes désirées, puis la ou les colonnes désirées. Laissez une des dimensions en blanc (vide) indique au logiciel de rapporter toutes les valeurs. Par exemple, pour obtenir le même résultat que la syntaxe précédente, soit obtenir `dist` de la deuxième colonne, il faut référer entre crochets à la colonne $2$. Comme toutes les lignes sont désirées, la dimension des lignes reste vide.
 
 
-```r
+``` r
 # Entre crochets
 head(cars[,2])
 > [1]  2 10  4 22 16 10
@@ -51,7 +51,7 @@ head(cars[,2])
 Il est possible de faire la même chose avec les lignes.
 
 
-```r
+``` r
 # Entre crochets
 cars[4,]
 >   speed dist
@@ -62,7 +62,7 @@ Ici, toutes les variables de la 4^e^ unité sont rapportée. Remarquer bien l'ab
 Si certaines valeurs spécifiques étaient désirées, comme la valeur de la 4^e^ unité pour la 2^e^ variable.
 
 
-```r
+``` r
 # Entre crochets
 cars[4, 2]
 > [1] 22
@@ -71,7 +71,7 @@ cars[4, 2]
 Enfin, à l'intérieur d'un jeu de données, les variables peuvent être commandées avec le signe de `$` placé après le nom de la variable suivi du nom de la variable ou encore en identifiant les noms de variables entre crochets.
 
 
-```r
+``` r
 # Utilisation du signe $
 head(cars$speed)
 > [1] 4 4 7 7 8 9
@@ -93,7 +93,7 @@ head(cars["speed"])
 Pour référer à des unités ayant certaines caractéristiques, la fonction `subset()` peut s'avérer utile. Les arguments sont un jeu de données, le deuxième est un opérateur logique (voir [Les clauses conditionnelles]) en lien avec une variable du jeu de données.
 
 
-```r
+``` r
 # Extraire les données pour toutes les unités ayant une vitesse égale à 24
 subset(cars, speed == 24)
 >    speed dist
@@ -110,7 +110,7 @@ Cette fonction est utile s'il faut extraire les données d'un certain sexe ou le
 Il est possible d'attribuer ou de modifier des noms à des colonnes ou des lignes d'un tableau de données. Les fonctions `colnames()` et `rownames()` sont alors utilisées. Contrairement aux autres fonctions, celles-ci se retrouvent à gauche de l'équation.
 
 
-```r
+``` r
 colnames(cars) <-  c("vitesse", "distance")
 head(cars)
 >   vitesse distance
@@ -128,7 +128,7 @@ Il importe de fournir autant de noms qu'il y a de colonnes (ou lignes), et ce, e
 Les devis de recherche et les jeux de données empiriques sont rarement parfaits et peuvent souvent contenir des données manquantes. **R** reconnaît les données manquantes lorsqu'elles sont identifiées comme `NA` (*not available*). Plusieurs méthodes permettent de gérer les données manquantes. La méthode la plus simple est d'éliminer les unités ayant une donnée manquante, soit la suppression par liste (*listwise suppression*). Les fonctions natives de **R** recourrent à l'argument `na.rm = TRUE`. Si cela est impossible, la fonction `na.omit()` permet de créer des jeux de données sans les valeurs manquantes. Certaines fonctions, comme `mean()` ont des arguments pour gérer les données manquantes.
 
 
-```r
+``` r
 # Un vecteur
 valeurs <-  c(10, 12, 14, NA, 18)
 
@@ -155,7 +155,7 @@ Plusieurs packages respectent cette philosophie et font partie intégrante du *t
 Pour utiliser le package `tidyverse`, il faut d'abord l'installer puis l'appeler.
 
 
-```r
+``` r
 # Installer le package
 install.packages("tidyverse")
 
@@ -181,7 +181,7 @@ Pour filtrer les participants selon les caractéristiques désirées, la fonctio
 Voici quelques exemples en rafales à partir du [Jeux de données provenant de **R** et de packages][jeu de données] `cars`.
 
 
-```r
+``` r
 data("cars",cars)
 ```
 
@@ -189,7 +189,7 @@ data("cars",cars)
 Pour filtrer en fonction d'une valeur plus petite `<` (inclusivement avec `<=`) ou plus grande `>` (inclusivement avec `>=`) ou égale `==`.
 
 
-```r
+``` r
 # Plus petit que
 cars %>% 
   filter(speed < 9)
@@ -221,7 +221,7 @@ cars %>%
 Pour les groupes avec une dénomination en chaîne de caractères, on peut faire `== "groupe"` pour choisir un `groupe`. *Les nombres dans les exemples suivant sont entre guillemets anglophones pour rappeler que les noms de groupes sont plus souvent des chaînes de caractères que des nombres.*
 
 
-```r
+``` r
 cars %>% 
   filter(speed == "10")
 >   speed dist
@@ -233,7 +233,7 @@ cars %>%
 Ou `!= "groupe"` pour exclure un groupe.
 
 
-```r
+``` r
 cars %>% 
   filter(speed != "10")
 ```
@@ -252,7 +252,7 @@ cars %>%
 Ou `%in%  c("groupe1","groupe2")` pour choisir les groupes 1 et 2 (on mettre tous les groupes désirés dans le c)
 
 
-```r
+``` r
 # Inclure seulement ces groupes
 cars %>% 
   filter(speed %in% c("4","10"))
@@ -266,7 +266,7 @@ cars %>%
 Ou enfin, `!( %in% c("groupe1))`.
 
 
-```r
+``` r
 # Exclure tous ces groupes
 cars %>% 
   filter(!(speed %in% c("4","7","10","11","12","13","14","15","16","17","18","19","20")))
@@ -294,7 +294,7 @@ Pour créer ou transformer des variables, la fonction `mutate()` permettra de cr
 Dans ce contexte, la fonction `na_if()` peut être utile pour retirer une ou des valeurs aberrantes tout en gardant le participant (la ligne) pour les autres variables.
 
 
-```r
+``` r
 cars %>% 
   filter(speed <= 10) %>%         # Utiliser pour raccourcir la sortie
   mutate(speed = na_if(speed, 9))
@@ -315,7 +315,7 @@ Si les opérations mathématiques comme la soustraction, division, multiplicatio
 
 
 
-```r
+``` r
 cars %>% 
   filter(speed < 10) %>% 
   mutate(categorie = case_when(dist < 5 ~ "Pas loin",
@@ -347,7 +347,7 @@ Pour mettre en pratique la philosophie `tidyverse`, voici un exemple tiré du je
 Sans plus de préliminaire, la fonction `head()` donne un aperçu du jeu de données 
 
 
-```r
+``` r
 starwars[,1:6]
 > # A tibble: 87 × 6
 >    name         height  mass hair_color skin_color eye_color
@@ -368,7 +368,7 @@ starwars[,1:6]
 Pour obtenir de l'information sur ce jeu de données.
 
 
-```r
+``` r
 ?starwars
 ```
 
@@ -379,7 +379,7 @@ Voici la description du jeu de données (traduction libre),
 Peu utile comme descripteur, une inspection des données est plus informative. Pour afficher le jeu de données dans un nouvel onglet.
 
 
-```r
+``` r
 View(starwars)
 ```
 
@@ -414,7 +414,7 @@ Le fichier contient, le nom de 87 personnages mesurés sur 14 variables, soit
 Les étapes à considérer sont les suivantes : sélectionner les variables pertinentes, filtrer en retirant les unités d'espèces non humaines, tenir compte des données manquantes, corriger la taille des unités qui devrait être en mètre et non en centimètre (divisé par 100) et créer l'indice de masse corporelle.
 
 
-```r
+``` r
 jd <-  starwars %>% 
   select(sex, mass, height, species) %>% 
   filter(species == "Human") %>% 
@@ -422,20 +422,29 @@ jd <-  starwars %>%
   mutate(height = height  / 100) %>% 
   mutate(IMC = mass / height^2)  
 jd
-> # A tibble: 22 × 5
+> # A tibble: 20 × 5
 >    sex     mass height species   IMC
 >    <chr>  <dbl>  <dbl> <chr>   <dbl>
->  1 male      77   1.72 Human    26.0
->  2 male     136   2.02 Human    33.3
->  3 female    49   1.5  Human    21.8
->  4 male     120   1.78 Human    37.9
->  5 female    75   1.65 Human    27.5
->  6 male      84   1.83 Human    25.1
->  7 male      77   1.82 Human    23.2
->  8 male      84   1.88 Human    23.8
->  9 male      80   1.8  Human    24.7
-> 10 male      77   1.7  Human    26.6
-> # ℹ 12 more rows
+>  1 male    77     1.72 Human    26.0
+>  2 male   136     2.02 Human    33.3
+>  3 female  49     1.5  Human    21.8
+>  4 male   120     1.78 Human    37.9
+>  5 female  75     1.65 Human    27.5
+>  6 male    84     1.83 Human    25.1
+>  7 male    77     1.82 Human    23.2
+>  8 male    84     1.88 Human    23.8
+>  9 male    80     1.8  Human    24.7
+> 10 male    77     1.7  Human    26.6
+> 11 male    75     1.7  Human    26.0
+> 12 male    78.2   1.83 Human    23.4
+> 13 male    79     1.77 Human    25.2
+> 14 male    79     1.75 Human    25.8
+> 15 male    89     1.93 Human    23.9
+> 16 female  45     1.85 Human    13.1
+> 17 male    84     1.88 Human    23.8
+> 18 male    80     1.93 Human    21.5
+> 19 male    79     1.83 Human    23.6
+> 20 male    79     1.88 Human    22.4
 ```
 
 Les étapes de la syntaxe se lisent comme suit :
@@ -455,27 +464,36 @@ Les étapes de la syntaxe se lisent comme suit :
 Si une méthode plus traditionnelle avait été utilisée, la syntaxe pourrait ressembler à ceci.
 
 
-```r
+``` r
 jd <- starwars[, c("sex", "mass", "height", "species")]  # select()
 jd <- jd[jd[, "species"] == "Human",]                    # filter()
 jd <- na.omit(jd)                                        # na.omit()
 jd[,"height"] <- jd[,"height"] / 100                     # mutate()
 jd[,"IMC"] <- jd[,"mass"] / jd[,"height"]^2              # mutate()
 jd
-> # A tibble: 22 × 5
+> # A tibble: 20 × 5
 >    sex     mass height species   IMC
 >    <chr>  <dbl>  <dbl> <chr>   <dbl>
->  1 male      77   1.72 Human    26.0
->  2 male     136   2.02 Human    33.3
->  3 female    49   1.5  Human    21.8
->  4 male     120   1.78 Human    37.9
->  5 female    75   1.65 Human    27.5
->  6 male      84   1.83 Human    25.1
->  7 male      77   1.82 Human    23.2
->  8 male      84   1.88 Human    23.8
->  9 male      80   1.8  Human    24.7
-> 10 male      77   1.7  Human    26.6
-> # ℹ 12 more rows
+>  1 male    77     1.72 Human    26.0
+>  2 male   136     2.02 Human    33.3
+>  3 female  49     1.5  Human    21.8
+>  4 male   120     1.78 Human    37.9
+>  5 female  75     1.65 Human    27.5
+>  6 male    84     1.83 Human    25.1
+>  7 male    77     1.82 Human    23.2
+>  8 male    84     1.88 Human    23.8
+>  9 male    80     1.8  Human    24.7
+> 10 male    77     1.7  Human    26.6
+> 11 male    75     1.7  Human    26.0
+> 12 male    78.2   1.83 Human    23.4
+> 13 male    79     1.77 Human    25.2
+> 14 male    79     1.75 Human    25.8
+> 15 male    89     1.93 Human    23.9
+> 16 female  45     1.85 Human    13.1
+> 17 male    84     1.88 Human    23.8
+> 18 male    80     1.93 Human    21.5
+> 19 male    79     1.83 Human    23.6
+> 20 male    79     1.88 Human    22.4
 ```
 
 Le jeu de données est créé en autant de ligne de syntaxe. Par contre, la lecture n'est pas aussi intuitive que l'opérateur `%>%` et les fonctions `select()`, `filter()`, `mutate()`. Il ne faut pas trop penser à quoi ressemblerait ces manipulations en une seule ligne de syntaxe.
@@ -487,21 +505,21 @@ Le jeu de données est créé en autant de ligne de syntaxe. Par contre, la lect
 Une fois le jeu de données prêt, il est possible d'obtenir les informations sommaires. Ici, la moyenne, l'écart type, la valeur minimale, maximale et la taille de chaque sont demandés en fonction du sexe. À cette étape, l'avantage d'embrasser la philosophie `tidyverse` apparaît, en quelques lignes rudimentaires, les cinq statistiques demandées (`mean()`,`sd()`,`min()`,`max()`,`n()`) sont affichées, et ce, par groupes (`group_by()`) l'aide de la fonction `summarise()`.
 
 
-```r
+``` r
 jd %>% 
   group_by(sex) %>% 
   summarise(mean(IMC), sd(IMC), min(IMC), max(IMC), n()) 
 > # A tibble: 2 × 6
 >   sex    `mean(IMC)` `sd(IMC)` `min(IMC)` `max(IMC)` `n()`
 >   <chr>        <dbl>     <dbl>      <dbl>      <dbl> <int>
-> 1 female        22.0      5.51       16.5       27.5     3
-> 2 male          26.0      4.29       21.5       37.9    19
+> 1 female        20.8      7.25       13.1       27.5     3
+> 2 male          25.7      4.07       21.5       37.9    17
 ```
 
 Le jeu de données issu de ces opérations peut être utilisé normalement pour réaliser des analyses statistiques. Cela sera abordé dans les prochains chapitres. Il existe toutefois des packages comme `rstatix` avec lequel il est possible de faire des test-$t$ avec `test_t()`, des corrélations avec `cor_test()` et des analyses de variance `anova_test()` tout en demeurant dans le `tidyverse`^[Voir la documentation complète du package pour une vue d'ensemble de ce qu'il est possible d'accomplir avec `rstatix`.].
 
 
-```r
+``` r
 library(rstatix)
 
 # Test-t sur l'IMC en fonction du sexe
@@ -510,7 +528,7 @@ jd %>%
 > # A tibble: 1 × 8
 >   .y.   group1 group2    n1    n2 statistic    df     p
 > * <chr> <chr>  <chr>  <int> <int>     <dbl> <dbl> <dbl>
-> 1 IMC   female male       3    19     -1.23  2.40 0.326
+> 1 IMC   female male       3    17     -1.12  2.23 0.368
 
 # Analyse de corrélations
 jd %>% 
@@ -519,15 +537,15 @@ jd %>%
 > # A tibble: 9 × 8
 >   var1   var2     cor statistic         p conf.low conf.high
 >   <chr>  <chr>  <dbl>     <dbl>     <dbl>    <dbl>     <dbl>
-> 1 IMC    IMC     1      2.12e+8 5.26e-155    1.00      1    
-> 2 IMC    mass    0.85   7.32e+0 4.47e-  7    0.674     0.938
-> 3 IMC    height  0.18   8.13e-1 4.26e-  1   -0.262     0.558
-> 4 mass   IMC     0.85   7.32e+0 4.47e-  7    0.674     0.938
-> 5 mass   mass    1      3.00e+8 5.13e-158    1         1    
-> 6 mass   height  0.65   3.84e+0 1.02e-  3    0.317     0.842
-> 7 height IMC     0.18   8.13e-1 4.26e-  1   -0.262     0.558
-> 8 height mass    0.65   3.84e+0 1.02e-  3    0.317     0.842
-> 9 height height  1    Inf       0            1         1    
+> 1 IMC    IMC   1        2.85e+8 2.43e-142    1         1    
+> 2 IMC    mass  0.84     6.53e+0 3.85e-  6    0.630     0.934
+> 3 IMC    heig… 0.0046   1.93e-2 9.85e-  1   -0.439     0.446
+> 4 mass   IMC   0.84     6.53e+0 3.85e-  6    0.630     0.934
+> 5 mass   mass  1        2.85e+8 2.43e-142    1         1    
+> 6 mass   heig… 0.54     2.70e+0 1.48e-  2    0.123     0.791
+> 7 height IMC   0.0046   1.93e-2 9.85e-  1   -0.439     0.446
+> 8 height mass  0.54     2.70e+0 1.48e-  2    0.123     0.791
+> 9 height heig… 1      Inf       0            1         1    
 > # ℹ 1 more variable: method <chr>
 
 # Anayse de variances (ANOVA)
@@ -535,8 +553,8 @@ jd %>%
   anova_test(IMC ~ sex) 
 > ANOVA Table (type II tests)
 > 
->   Effect DFn DFd    F     p p<.05 ges
-> 1    sex   1  20 2.21 0.152       0.1
+>   Effect DFn DFd    F     p p<.05   ges
+> 1    sex   1  18 2.89 0.106       0.138
 ```
 
 Pour le test-$t$ avec `t_test()` et `anova_test()`, il faut demander la variable dépendante à gauche et la variable de groupement à gauche. Les deux variables sont séparées par le `~` (tilde, voir [L'analyse de régression avec **R**] pour plus de renseignements). Pour la corrélation avec `cor_test()`, il faut s'assurer de sélectionner uniquement les variables ayant une échelle continue.

@@ -61,7 +61,7 @@ Il existe plusieurs interfaces utilisateurs graphiques (GUI pour *Graphical User
 À titre d'exemple, la console peut être utilisée comme une calculatrice glorifiée.
 
 
-```r
+``` r
 2 + 2
 > [1] 4
 ```
