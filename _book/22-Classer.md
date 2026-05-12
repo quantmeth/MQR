@@ -1,25 +1,25 @@
 # Classer
 
-En plus d'essayer de [regrouper des variables][Décomposer] ensemble, il aussi possible d'essayer de regrouper les participants en groupes. Il s'agit de [l'analyse de classes latentes (LCA)][Classes latentes] et [l'analyse de profils latents (LPA)][Profils latents]. La LCA et la LPA se distinguent par le type de variables qu'elles considèrent, soit les variables continues (LPA) ou catégorielles (LCA). Ces techniques sont utiles lorsque l'expérimentateur souhaite réduire l'échantillon en sous-groupe afin de mieux comprendre les participants. Elles peuvent notamment permettre de décrire les profils de compétences et de difficultés parmi les enfants d'âge préscolaire, en identifiant ceux qui peuvent avoir besoin d'interventions éducatives spécifiques ou encore de décrire des groupes de résilience à la violence conjugale et de mieux orienter les interventions auprès des personnes ayant été victimes d'agressions sexuelles.
+En plus d'essayer de [regrouper des variables][Décomposer] ensemble, il est aussi possible d'essayer de regrouper les participants en groupes. Il s'agit de [l'analyse de classes latentes (LCA)][Classes latentes] et de [l'analyse de profils latents (LPA)][Profils latents]. La LCA et la LPA se distinguent par le type de variables qu'elles considèrent, soit les variables continues (LPA) ou catégorielles (LCA). Ces techniques sont utiles lorsque l'expérimentateur souhaite réduire l'échantillon en sous-groupes afin de mieux comprendre les participants. Elles peuvent notamment permettre de décrire les profils de compétences et de difficultés parmi les enfants d'âge préscolaire, en identifiant ceux qui peuvent avoir besoin d'interventions éducatives spécifiques ou encore de décrire des groupes de résilience à la violence conjugale et de mieux orienter les interventions auprès des personnes ayant été victimes d'agressions sexuelles.
 
-Ces analyses issues des modèles de mixture (*mixture modelling*) sont similaires aux techniques de regroupement (*clustering*), mais qui s'en distinguent car elles reposent sur un modèle explicite et prennent en compte le fait que les groupes identifiés sont incertains. Le modèle sous-jacent présenté à la Figure\ \@ref(fig:cla1).
+Ces analyses issues des modèles de mixture (*mixture modelling*) sont similaires aux techniques de regroupement (*clustering*), mais s'en distinguent car elles reposent sur un modèle explicite et prennent en compte le fait que les groupes identifiés sont incertains. Le modèle sous-jacent est présenté à la Figure\ \@ref(fig:cla1).
 
 <div class="figure" style="text-align: center">
-<img src="image//classes1.png" alt="Modèle de classes latentes" width="50%" height="50%" />
-<p class="caption">(\#fig:cla1)Modèle de classes latentes</p>
+<img src="image//classes1.png" alt="Modèle de classes latentes." width="50%" height="50%" />
+<p class="caption">(\#fig:cla1)Modèle de classes latentes.</p>
 </div>
 
-La LCA et la LPA sont considérés comme plus robustes que les autres techniques, comme le *k-mean*, par exemple, par ce qu'elle repose sur un modèles théorique. Cela revient au détriment d'être plus intensif computationnellement, ce qui pourra soulever des problèmes à l'ocassion, surtout pour la LCA. Néanmoins, il demeure que les techniques de regroupement sont en quelque sorte un *bricolage*. Au final, c'est la solution qui fera le plus de sens sur le plan théorique qui sera retenu. Même si les statistiques suggéreront un certain nombre de classes, elles ne seront pas toujours en harmonie entre elles. C'est la simplicité et le pouvoir explicatif qui devra être l'ultime décideur.
+La LCA et la LPA sont considérées comme plus robustes que les autres techniques, comme le *k-mean*, par exemple, parce qu'elle repose sur un modèles théorique. Cela revient au détriment d'être plus intensif computationnellement, ce qui pourra soulever des problèmes à l'ocassion, surtout pour la LCA. Néanmoins, il demeure que les techniques de regroupement sont en quelque sorte un *bricolage*. Au final, c'est la solution qui fera le plus de sens sur le plan théorique qui sera retenue. Même si les statistiques suggéreront un certain nombre de classes, elles ne seront pas toujours en harmonie entre elles. C'est la simplicité et le pouvoir explicatif qui devra être l'ultime décideur.
 
 
 ## Classes latentes
 
-L'analyse de classes latentes (LCA) permet de partager et de distinguer des sous-groupes non observables (latents) d'individus sur la base de leurs réponses à un ensemble d'indicateurs observables (manifestes) ordinales. Elle fait ainsi partie de la famille des *finite mixture modelling*. Il s'agit d'une analyse **exploratoire** de la même façon que les [analyses factorielles exploratoires]. Elle se distingue des [analyse factorielle][Réduire] qui tente plutôt de regrouper les indicateurs en facteurs (ou groupe), alors que la LCA tente plutôt de regrouper les participants en groupe.
+L'analyse de classes latentes (LCA) permet de partager et de distinguer des sous-groupes non observables (latents) d'individus sur la base de leurs réponses à un ensemble d'indicateurs observables (manifestes) ordinaux. Elle fait ainsi partie de la famille des *finite mixture modelling*. Il s'agit d'une analyse **exploratoire** de la même façon que les [analyses factorielles exploratoires][analyse factorielle exploratoire]. Elle se distingue des [analyses factorielles][Réduire] qui tentent plutôt de regrouper les indicateurs en facteurs (ou groupes), alors que la LCA tente plutôt de regrouper les participants en groupes.
 
 
 ### Installations
 
-Il existe un package permettant de réaliser la LCA avec **R**, soit `poLCA`. Ce package bien qu'excellent pour réaliser la LCA demeure relativement incomplet et mérite quelques amélioration, ce pourquoi le package `poLCAExtra` est recommandé. Installer `poLCAExtra` installera du même coup le package `poLCA`.
+Il existe un package permettant de réaliser la LCA avec **R**, soit `poLCA`. Ce package bien qu'excellent pour réaliser la LCA demeure relativement incomplet et mérite quelques améliorations. C'est pourquoi le package `poLCAExtra` est recommandé. Installer `poLCAExtra` installera du même coup le package `poLCA`.
 
 
 ``` r
@@ -44,7 +44,9 @@ jd <- ex1.poLCA
 f1 <- cbind(V1, V2, V3, V4, V5, V6) ~ 1
 ```
 
-Comme la Figure\ \@ref(fig:cla1) montre, les items sont les variables dépendantes et comme la [MANOVA][MANOVA : analyse de variance multivariée], il faut indiquer ces variables à gauche de la formule en les liant avec `cbind()`, comme `cbind(V1, V2, V3, V4, V5, V6)`. Le `~` délimite les variables dépendantes (gauche) et indépendantes (droite). L'utilisation de `1` indique la seule présence d'une constance, il serait possible d'ajouter des covariables pour contrôler des effets dans les variables dépendantes si l'utilisateur le jugeait nécessaire.
+<!-- TODO : Expliquer le 1 -->
+
+Comme la Figure\ \@ref(fig:cla1) montre, les items sont les variables dépendantes et comme la [MANOVA][MANOVA : analyse de variance multivariée], il faut indiquer ces variables à gauche de la formule en les liant avec `cbind()`, comme `cbind(V1, V2, V3, V4, V5, V6)`. Le `~` délimite les variables dépendantes (gauche) et indépendantes (droite). L'utilisation de `1` indique la seule présence d'une constante, soit que le classement se fasse directement sur les variables. Il est possible d'ajouter des covariables pour contrôler des effets dans les variables dépendantes si l'utilisateur le juge nécessaire de la même qu'un [modèle linéaire][L’analyse de régression avec R].
 
 Ensuite, il faut rouler différentes valeurs de nombre de classes en incrément de 1.
 
@@ -57,9 +59,9 @@ LCA4 <- poLCA(f1, data = jd, nclass = 4,
                 maxiter = 500, nrep = 4, verbose = FALSE)
 ```
 
-La fonction `poLCA()` prend en argument le jeu de donnée et la formule et le nombre de classes à rechercher. L'argument `verbose = FALSE` évite de polluer la console avec toutes les sorties de la fonction. Autrement, la fonction sort automatiquement la sortie même s'il y a assignation. Plus il y a de classes, plus le modèles est difficile à évaluer, c'est pourquoi à `nclass = 4`, les options `maxiter` et `nrep` sont ajoutées. Ces arguments augmenteront le nombre maximal d'itération et le nombre de répétions de départ, ce qui permettra d'assurer une meilleur estimation du modèle et aussi une meilleure stabilité. Bien que cela dépend de plusieurs facteurs, ces options deviennent obligatoire vers quatre classes. Et plus le modèle devient compliqué, plus ces valeurs devront augmentées. Il n'y a pas de critères définitifs pour ces valeurs, outre que plus, c'est mieux, mais plus long à calculer.
+La fonction `poLCA()` prend en argument le jeu de données et la formule et le nombre de classes à rechercher. L'argument `verbose = FALSE` évite de polluer la console avec toutes les sorties de la fonction. Autrement, la fonction produit automatiquement la sortie même s'il y a assignation. Plus il y a de classes, plus le modèle est difficile à évaluer, c'est pourquoi à `nclass = 4`, les options `maxiter` et `nrep` sont ajoutées. Ces arguments augmenteront le nombre maximal d'itérations et le nombre de répétions de départ, ce qui permettra d'assurer une meilleur estimation du modèle et aussi une meilleure stabilité. Bien que cela dépend de plusieurs facteurs, ces options deviennent obligatoires vers quatre classes. Et plus le modèle devient compliqué, plus ces valeurs devront augmenter. Il n'y a pas de critères définitifs pour ces valeurs, outre que plus, c'est mieux, mais plus long à calculer.
 
-Pour les comparer, le package `poLCAExtra` permet la comparaison automatique des modèles avec la fonction `anona()`.
+Pour les comparer, le package `poLCAExtra` permet la comparaison automatique des modèles avec la fonction `anova()`.
 
 
 ``` r
@@ -76,7 +78,7 @@ anova(LCA1, LCA2, LCA3, LCA4)
 >  49|73|324|354
 ```
 
-Plus simplement, à l'aide de `poLCAExtra`, ces deux derniers chunks pourraient être remplacés par celui-ci qui tester toutes les classes de `1:4`.
+Plus simplement, à l'aide de `poLCAExtra`, ces deux derniers chunks pourraient être remplacés par celui-ci qui teste toutes les classes de `1:4`.
 
 
 ``` r
@@ -84,11 +86,13 @@ LCAE <- poLCA(f1, data = jd, nclass = 1:4,
               maxiter = 500, nrep = 4)
 ```
 
-Dans cette sortie, plusieurs éléments pourront guidés la décision sur le nombre de classes. Généralement, on recourt au AIC, au BIC et l'entropie relative. Idéalement, il faudrait que le AIC et le BIC soit le plus faible possible avec des bonds importants entre chaque nombre de classes. Dans ce cas-ci ces deux indices commencent à augmenter à `nclass = 4`, ce qui laisse suggérer que trois classes est une bonne solution. Une autre recommandation est une entropie relative supérieure à .80. Il s'agit d'une allant de 0 à 1, le plus haut étant le meilleur. Ici, le modèle à quatre classes n'est pas soutenu. Il faudra jeter une regard à taille des classes afin d'éviter des classes trop petites ou disproportionnées. Cette taille varieront inévitablement d'une question de recherche à l'autre, mais il faut y porter attention. Ici, elle semble toute adéquate pour sauf l'option à deux classes. un dernier test souvent utilisé est le test de vraisemblance de Lo-Mendell-Rubin (LMR) qui fournit une valeur-*p*. Ce test suggère un nombre de classes jusqu'au premier modèle non-significatif (exclusivement). Ici, le LMR suggère trois classes, car la quatrième classes est non-significative au seuil de 5%. Ce test a tendance a être très libéral, il faut y recourir avec discernement.
+Dans cette sortie, plusieurs éléments pourront guider la décision sur le nombre de classes. Généralement, on recourt au AIC, au BIC et à l'entropie relative. Idéalement, il faut que le AIC et le BIC soient le plus faible possible avec des bonds importants entre chaque nombre de classes. Dans ce cas-ci ces deux indices commencent à augmenter à `nclass = 4`, ce qui laisse suggérer que trois classes est une bonne solution. Une autre recommandation est une entropie relative supérieure à .80. Il s'agit d'un indice allant de 0 à 1, le plus élevé étant meilleur. Ici aussi, le modèle à quatre classes n'est pas soutenu, puisque la valeur est inférieure à la recommandation. 
+
+Il faudra jeter un regard à la taille des classes afin d'éviter des classes trop petites ou disproportionnées. Ces tailles varieront inévitablement d'une question de recherche à l'autre, mais il faut y porter attention. Ici, elles semblent toutes adéquates sauf l'option à deux classes. Un dernier test souvent utilisé est le test de vraisemblance de Lo-Mendell-Rubin (LMR) qui fournit une valeur-*p*. Ce test suggère un nombre de classes jusqu'au premier modèle non-significatif (exclusivement). Ici, le LMR suggère trois classes, car la quatrième classe est non-significative au seuil de 5%. Ce test a tendance a être très libéral, il faut y recourir avec discernement.
 
 ### Inspections
 
-Une des hypothèses de la LCA est l'indépendance locale, soit qu'une fois les classes retirées, les variables observées sont indépendantes les unes des autres. Cela se traduit par l'absence de patterns entre les items non tenus compte par les classes. Pour vérifier cela, `poLCAExtra` ajoute la fonction `poLCA.tech10()` pour vérifier les patterns. 
+Une des hypothèses de la LCA est l'indépendance locale, soit qu'une fois les classes retirées, les variables observées sont indépendantes les unes des autres. Cela se traduit par l'absence de patterns entre les items non qui ne sont pas tenus en compte par les classes. Pour vérifier cela, `poLCAExtra` ajoute la fonction `poLCA.tech10()` pour vérifier les patterns. 
 
 
 ``` r
@@ -143,7 +147,7 @@ poLCA.tech10(LCA3)
 > Total number of possible patterns:  64
 ```
 
-Un certain nombre de patterns statistiquement significatifs est à prévoir. Les plus problématiques sont ceux ayant des fréquences observées fréquentes (les premières listées). Il est vraisemblable que les plus petites fréquences engendrent des contributions plus importantes. Une règle est de vérifier si le nombre de `check` est inférieur à 5% du nombre de pattern. Ici, il y 50 patterns, ce qui donne $.05*50=2.5$ patterns et comme il n'y a que deux patterns statistiquement significatifs, $2.5 > 2$, ces patterns peuvent être ignorés. Cependant, s'ils y a avait plus de checks touchant des patterns plus fréquent, il faudrait remédier à la situation, soit en retirant ou ajoutant des items ou, plus simplement, en augmentant le nombre de classes. 
+Un certain nombre de patterns statistiquement significatifs est à prévoir. Les plus problématiques sont ceux ayant des fréquences observées fréquentes (les premières listées). Il est vraisemblable que les plus petites fréquences engendrent des contributions plus importantes. Une règle est de vérifier si le nombre de `check`s est inférieur à 5% du nombre de patterns. Ici, il y 50 patterns, ce qui donne $.05*50=2.5$ patterns et comme il n'y a que deux patterns statistiquement significatifs, $2.5 > 2$, ces patterns peuvent être ignorés. Cependant, s'il y a avait plus de `check`s touchant des patterns plus fréquent, il faudrait remédier à la situation, soit en retirant ou en ajoutant des items ou, plus simplement, en augmentant le nombre de classes. 
 
 En effet, en plus de vérifier l'indépendance locale, l'inspection des patterns permet de vérifier l'adéquation du nombre de classes, car s'il y a trop peu de classes, il y aura beaucoup de patterns statistiquement significatifs.
 
@@ -157,13 +161,13 @@ plot(LCA3)
 ```
 
 <div class="figure" style="text-align: center">
-<img src="22-Classer_files/figure-html/lcaplot-1.png" alt="Analyse visuelle des classes" width="75%" height="75%" />
-<p class="caption">(\#fig:lcaplot)Analyse visuelle des classes</p>
+<img src="22-Classer_files/figure-html/lcaplot-1.png" alt="Analyse visuelle des classes." width="75%" height="75%" />
+<p class="caption">(\#fig:lcaplot)Analyse visuelle des classes.</p>
 </div>
 
-La Figure\ \@ref(fig:lcaplot) montre sur l'axe des $x$ (largeur), les classes avec les proportions, sur l'axe des $z$ (profondeur), il s'agit des différents items utilisés pour la classification et sur l'axe des $y$ la probabilité qu'une personne de la classe $x$ ait choisi une certaine réponse à l'item $z$. Si les items permettaient plus de choix de réponses (une échelle a plus deux options), la figure s'ajusterait en conséquences.
+La Figure\ \@ref(fig:lcaplot) montre sur l'axe des $x$ (largeur), les classes avec les proportions, sur l'axe des $z$ (profondeur), il s'agit des différents items utilisés pour la classification et sur l'axe des $y$, la probabilité qu'une personne de la classe $x$ ait choisi une certaine réponse à l'item $z$. Si les items permettaient plus de choix de réponses (une échelle a plus de deux options), la figure s'ajusterait en conséquence.
 
-Une autre façon de présenter les données avec `ggplot2` est cette cette figure.
+Une autre façon de présenter les données avec `ggplot2` est cette figure.
 
 
 ``` r
@@ -171,17 +175,17 @@ poLCA.plot(LCA3)
 ```
 
 <div class="figure" style="text-align: center">
-<img src="22-Classer_files/figure-html/testjitter-1.png" alt="Analyse visuelle supplémentaire des classes" width="75%" height="75%" />
-<p class="caption">(\#fig:testjitter)Analyse visuelle supplémentaire des classes</p>
+<img src="22-Classer_files/figure-html/testjitter-1.png" alt="Analyse visuelle supplémentaire des classes." width="75%" height="75%" />
+<p class="caption">(\#fig:testjitter)Analyse visuelle supplémentaire des classes.</p>
 </div>
 
 Cette méthode sera plus similaire à l'analyse de profils latents.
 
 ### Analyses supplémentaires
 
-L'expérimentateur souhaite parfois tester si les classes se comparent sur d'autres variables. Dans ces cas, il faut tenir compte de la probabilité d'appartenir à l'une des classes et non pas utiliser uniquement la classe prédite (la plus probable). Cela entraînerait des biais statistiques. Par exemple, un participant ayant 33\ %, 33\ % et 34\ %, se verrait attribuer à la troisième classe, même si, au fond, il pourrait bien appartenir à l'une des deux autres. Les analyses *3-step* sont développées justement pour tenir compte de ces probabilité. Il y a deux fonctions principales `r3step()` pour les variables continues et `d3step()` pour les variables nominales et catégorielles. 
+L'expérimentateur souhaite parfois tester si les classes se comparent sur d'autres variables. Dans ces cas, il faut tenir compte de la probabilité d'appartenir à l'une des classes et non pas utiliser uniquement la classe prédite (la plus probable). Cela entraînerait des biais statistiques. Par exemple, un participant ayant 33\ %, 33\ % et 34\ %, se verrait attribuer à la troisième classe, même si, au fond, il pourrait bien appartenir à l'une des deux autres. Les analyses *three-step* (ou `3step`) sont développées justement pour tenir compte de ces probabilités. Il y a deux fonctions principales `r3step()` pour les variables continues et `d3step()` pour les variables nominales et catégorielles. 
 
-Pour une variable à échelle continue, `r3step()` fonctionne avec la sortie avec le nombre approprié de classes ainsi que le nom de la variable dépendante ou une formule comme `continue ~ 1`.
+Pour une variable à échelle continue, `r3step()` fonctionne avec la sortie correspondant au nombre approprié de classes et avec le nom de la variable dépendante ou une formule comme `continue ~ 1`.
 
 
 ```r
@@ -193,11 +197,15 @@ Il est possible d'obtenir une représentation graphique ainsi.
 
 ``` r
 plot(res.r3)
+> Warning in fortify(data, ...): Arguments in `...` must be used.
+> ✖ Problematic argument:
+> • size = 5
+> ℹ Did you misspell an argument name?
 ```
 
 <div class="figure" style="text-align: center">
-<img src="22-Classer_files/figure-html/r3step-1.png" alt="r3step des classes" width="75%" height="75%" />
-<p class="caption">(\#fig:r3step)r3step des classes</p>
+<img src="22-Classer_files/figure-html/r3step-1.png" alt="r3step des classes." width="75%" height="75%" />
+<p class="caption">(\#fig:r3step)r3step des classes.</p>
 </div>
 
 
@@ -213,16 +221,20 @@ Cette fonction possède aussi une représentation graphique.
 
 ``` r
 plot(res.d3)
+> Warning in fortify(data, ...): Arguments in `...` must be used.
+> ✖ Problematic argument:
+> • size = 5
+> ℹ Did you misspell an argument name?
 ```
 
 <div class="figure" style="text-align: center">
-<img src="22-Classer_files/figure-html/d3step-1.png" alt="r3step des classes" width="75%" height="75%" />
-<p class="caption">(\#fig:d3step)r3step des classes</p>
+<img src="22-Classer_files/figure-html/d3step-1.png" alt="r3step des classes." width="75%" height="75%" />
+<p class="caption">(\#fig:d3step)r3step des classes.</p>
 </div>
 
 ### Quelques conseils utiles
 
-Une fois l'analyse terminée, il est recommander de rouler une dernière fois l'analyse avec une [graine][les graines] et les arguments `nrep` et `maxiter` pour s'assurer de la stabilité et de la répétabilité des résultats.
+Une fois l'analyse terminée, il est recommandé de rouler une dernière fois l'analyse avec une [graine][les graines] et les arguments `nrep` et `maxiter` pour s'assurer de la stabilité et de la répétabilité des résultats.
 
 ## Profils latents
 
@@ -249,24 +261,24 @@ LPA1_5 <- jd %>%
 LPA1_5
 > tidyLPA analysis using mclust: 
 > 
->  Model Classes AIC     BIC     Entropy prob_min prob_max
->  1     1       7170.48 7207.52 1.00    1.00     1.00    
->  1     2       5949.93 6009.19 0.96    0.98     0.99    
->  1     3       4934.20 5015.68 1.00    1.00     1.00    
->  1     4       4936.30 5040.00 0.91    0.62     1.00    
->  1     5       4947.38 5073.31 0.82    0.39     1.00    
->  n_min n_max BLRT_p
->  1.00  1.00        
->  0.35  0.65  0.01  
->  0.33  0.33  0.01  
->  0.08  0.33  0.20  
->  0.06  0.33  0.99
+>   Model Classes     AIC     BIC Entropy prob_min prob_max
+> 1     1       1 7170.48 7207.52    1.00     1.00     1.00
+> 2     1       2 5949.93 6009.19    0.96     0.98     0.99
+> 3     1       3 4934.20 5015.68    1.00     1.00     1.00
+> 4     1       4 4936.30 5040.00    0.91     0.62     1.00
+> 5     1       5 4947.38 5073.31    0.82     0.39     1.00
+>   n_min n_max BLRT_p
+> 1  1.00  1.00       
+> 2  0.35  0.65   0.01
+> 3  0.33  0.33   0.01
+> 4  0.08  0.33   0.20
+> 5  0.06  0.33   0.99
 ```
 
 
-Comme les analyses de classes latentes, il faut procéder étape par étape pour déterminer le nombre de classes. Dans `estimate_profiles()`, on peut directement inscrire toutes les classes à investiguer. Le meilleur nombre de classes se base sur des AIC et BIC le plus bas possibles et une entropie relative^[même s'il est écrit `Entropy`, il s'agit bien de l'entropie relative] de plus de .80. Il est aussi possible de se baser sur le `BLRT_p`, soit la valeur-$p$ d'un test de ratio de vraisemblance bootstrapé (similaire au Lo-Mendell-Rubin présenté dans les [classes latentes]). Dans cet exemple
+Comme les analyses de classes latentes, il faut procéder étape par étape pour déterminer le nombre de classes. Dans `estimate_profiles()`, on peut directement inscrire toutes les classes à investiguer. Le meilleur nombre de classes se base sur des AIC et BIC les plus bas possibles et une entropie relative^[même s'il est écrit `Entropy`, il s'agit bien de l'entropie relative] de plus de .80. Il est aussi possible de se baser sur le `BLRT_p`, soit la valeur-$p$ d'un test de ratio de vraisemblance bootstrapé (similaire au Lo-Mendell-Rubin présenté dans les [classes latentes]). 
 
-Il est possible de générer des graphiques pour comparer certains indices d'ajustement, notamment l'AIC, le BIC et l'entropie à l'aide de la fonction *plot*. 
+Dans cet exemple, il est possible de générer des graphiques pour comparer certains indices d'ajustement, notamment l'AIC, le BIC et l'entropie à l'aide de la fonction *plot*. 
 
 
 ``` r
@@ -275,7 +287,7 @@ plot(LPA1_5, statistics = 'BIC')
 plot(LPA1_5, statistics = 'Entropy')
 ```
 
-Une fois le nombre de classes décidé, il faut rerouler l'analyse avec le nombre désiré.
+Une fois le nombre de classes décidé, il faut rouler à nouveau l'analyse avec le nombre désiré.
 
 
 ``` r
@@ -309,13 +321,13 @@ LPA3 %>%
 ```
 
 <div class="figure" style="text-align: center">
-<img src="22-Classer_files/figure-html/lpaplot-1.png" alt="Analyse visuelle des profils" width="75%" height="75%" />
-<p class="caption">(\#fig:lpaplot)Analyse visuelle des profils</p>
+<img src="22-Classer_files/figure-html/lpaplot-1.png" alt="Analyse visuelle des profils." width="75%" height="75%" />
+<p class="caption">(\#fig:lpaplot)Analyse visuelle des profils.</p>
 </div>
 
-La Figure\@ref(fig:lpaplot) permet de visusalier le profil des réponses des participants selon les items.
+La Figure\ \@ref(fig:lpaplot) permet de visusalier le profil des réponses des participants selon les items.
 
-Enfin, différents type de modèles sont possibles. Le package `tidyLPA` en dénombre six dont la Table\ \@ref(tab:tablpa) présente leurs caractéristiques.
+Enfin, différents types de modèles sont possibles. Le Tableau\ \@ref(tab:tablpa) en dénombre six disponibles dans le package `tidyLPA` et présente leurs caractéristiques.
 
 <table class=" lightable-classic table" style='font-family: "Arial Narrow", "Source Sans Pro", sans-serif; width: auto !important; margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto;'>
 <caption>(\#tab:tablpa)Différents type de modèles possibles</caption>

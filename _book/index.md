@@ -1,7 +1,7 @@
 --- 
 title: "Méthodes quantitatives avec R"
 author: "P.-O. Caron"
-date: "2024-12-16"
+date: "2026-05-12"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: "ma.bib"
@@ -22,7 +22,7 @@ Si vous avez des commentaires ou des suggestions, n'hésitez pas à me les parta
 
 ## Remerciements {-}
 
-Les étudiants et étudiantes qui ont suivi des cours avec ce manuel et plus spécialement Catherine Meek-Bouchard pour ses commentaires.
+Les étudiants et étudiantes qui ont suivi des cours avec ce manuel, notamment les étudiants des cours *PSY7105 Techniques d'analyse quantitative de données II* (depuis 2020), *PSY7102 Techniques d'analyse quantitative de données I* (hiver 2023) et *PSY5521 - Statistique avancée en psychologie* (hiver 2025). Un remerciement plus particulier à Catherine Meek-Bouchard pour ses commentaires. 
 
 # Préface {-}
 

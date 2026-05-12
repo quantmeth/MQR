@@ -7,7 +7,7 @@
 <title> 8 Visualiser | Méthodes quantitatives avec R</title>
 <meta name="author" content="P.-O. Caron">
 <meta name="description" content="La visualisation de données est l’un des deux objectifs fondamentaux de R (l’autre étant évidemment de faire des statistiques). Il existe plusieurs méthodes et packages pour produire rapidement et...">
-<meta name="generator" content="bookdown 0.41 with bs4_book()">
+<meta name="generator" content="bookdown 0.46 with bs4_book()">
 <meta property="og:title" content=" 8 Visualiser | Méthodes quantitatives avec R">
 <meta property="og:type" content="book">
 <meta property="og:url" content="mqr.teluq.ca/visualiser.html">
@@ -17,9 +17,9 @@
 <meta name="twitter:description" content="La visualisation de données est l’un des deux objectifs fondamentaux de R (l’autre étant évidemment de faire des statistiques). Il existe plusieurs méthodes et packages pour produire rapidement et...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.8.0/transition.js"></script><script src="libs/bs3compat-0.8.0/tabs.js"></script><script src="libs/bs3compat-0.8.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.10.0/transition.js"></script><script src="libs/bs3compat-0.10.0/tabs.js"></script><script src="libs/bs3compat-0.10.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+<link href="libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet">
 <script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script><script src="libs/viz-1.8.2/viz.js"></script><link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
 <script src="libs/grViz-binding-1.0.11/grViz.js"></script><!-- 
     \(
@@ -146,13 +146,13 @@
 </ul>
 <p>Les cinq autres <em>statistics</em>, <em>facet</em>, <em>coordinate space</em>, <em>labels</em>, <em>theme</em> permettent de personnaliser la figure.</p>
 <p>Les composantes les plus importantes sont les trois premières, soit les données, la cartographie et la représentation géométrique. Ce sont les éléments de base pour débuter le graphique. Les autres composantes viennent bonifier la figure tout en l’ajustant au besoin de l’utilisateur.</p>
-<p>La fonction <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code> met en place la figure. Le résultat d’utiliser la fonction <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code> seule est illustrée à la Figure <a href="visualiser.html#fig:ggplotseul">8.1</a></p>
+<p>La fonction <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code> met en place la figure. Le résultat d’utiliser la fonction <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code> seule est illustrée à la Figure <a href="visualiser.html#fig:ggplotseul">8.1</a></p>
 <div class="sourceCode" id="cb106"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">jd</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:ggplotseul"></span>
-<img src="08-Visualiser_files/figure-html/ggplotseul-1.png" alt="La fonction ggplot() seule - Rien" width="75%" height="75%"><p class="caption">
-Figure 8.1: La fonction ggplot() seule - Rien
+<img src="08-Visualiser_files/figure-html/ggplotseul-1.png" alt="La fonction ggplot() seule - Rien." width="75%" height="75%"><p class="caption">
+Figure 8.1: La fonction ggplot() seule - Rien.
 </p>
 </div>
 <p>Il est aussi possible de <em>piper</em> (prononcé avec un fort accent anglophone) les données dans la fonction.</p>
@@ -166,20 +166,20 @@ Figure 8.1: La fonction ggplot() seule - Rien
 <li><p><code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point()</a></code> crée un diagramme de dispersion ou un nuage de point, très utile pour les corrélations;</p></li>
 <li><p><code><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar()</a></code> crée un diagramme à bâton, idéal pour présenter des proportions, des fréquences ou des données comptées;</p></li>
 <li><p><code><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram()</a></code> crée un histogramme des variables;</p></li>
-<li><p><code>geom_box()</code> crée une boîte à moustache, idéal pour identifier des valeurs aberrantes et comparer la variabilité entre des groupes;</p></li>
+<li><p><code><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot()</a></code> crée une boîte à moustache, idéal pour identifier des valeurs aberrantes et comparer la variabilité entre des groupes;</p></li>
 <li><p><code><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth()</a></code> crée la ligne de prédiction des données avec des intervalles de confiances, la plupart des utilisateurs voudront certainement ces arguments <code>method = lm</code> (par défaut) ou sans l’erreur standard (<code>se = FALSE</code>);</p></li>
 <li><p><code><a href="https://ggplot2.tidyverse.org/reference/geom_linerange.html">geom_errorbar()</a></code> ajoute des barres d’erreur ou des intervalles de confiances spécifiées.</p></li>
 </ul>
 <p>Certaines cartographies sont d’ailleurs compatibles, <code><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth()</a></code> et <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point()</a></code>, par exemple.</p>
-<p>La Figure <a href="visualiser.html#fig:ggplotpoint">8.2</a> montre un diagramme de dispersion construit à partir du jeu de données <code>jd</code> <em>pipé</em> dans la fonction <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code>. Dans cette fonction, la cartographie est passée <code>mapping = aes(x = mass, y = height)</code> à un second niveau, <code>geom_point)</code> par le <code>+</code> et la représentation est produite.</p>
+<p>La Figure <a href="visualiser.html#fig:ggplotpoint">8.2</a> montre un diagramme de dispersion construit à partir du jeu de données <code>jd</code> <em>pipé</em> dans la fonction <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code>. Dans cette fonction, la cartographie est passée <code>mapping = aes(x = mass, y = height)</code> à un second niveau, <code>geom_point)</code> par le <code>+</code> et la représentation est produite.</p>
 <div class="sourceCode" id="cb108"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">jd</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">mass</span>, y <span class="op">=</span> <span class="va">height</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:ggplotpoint"></span>
-<img src="08-Visualiser_files/figure-html/ggplotpoint-1.png" alt="Diagramme de dispersion" width="75%" height="75%"><p class="caption">
-Figure 8.2: Diagramme de dispersion
+<img src="08-Visualiser_files/figure-html/ggplotpoint-1.png" alt="Diagramme de dispersion." width="75%" height="75%"><p class="caption">
+Figure 8.2: Diagramme de dispersion.
 </p>
 </div>
 <p>Voici une liste d’exemples de différentes représentations visuelles des données.</p>
@@ -195,22 +195,22 @@ Figure 8.2: Diagramme de dispersion
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">mass</span>, y <span class="op">=</span> <span class="va">height</span>, shape <span class="op">=</span> <span class="va">sex</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> </span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:diagdisp"></span>
-<img src="08-Visualiser_files/figure-html/diagdisp-1.png" alt="Le lien entre le poids et la taille en fonction du sexe" width="75%" height="75%"><p class="caption">
-Figure 8.3: Le lien entre le poids et la taille en fonction du sexe
+<img src="08-Visualiser_files/figure-html/diagdisp-1.png" alt="Le lien entre le poids et la taille en fonction du sexe." width="75%" height="75%"><p class="caption">
+Figure 8.3: Le lien entre le poids et la taille en fonction du sexe.
 </p>
 </div>
-<p>La Figure <a href="visualiser.html#fig:diagdisp2">8.4</a> montre le résultat si `size``est ajouté au <em>mapping</em> pour identifier l’IMC. Les unités avec un plus grand IMC obtiennent un plus gros pointeur.</p>
+<p>La Figure <a href="visualiser.html#fig:diagdisp2">8.4</a> montre le résultat si `size``est ajouté au <em>mapping</em> pour identifier l’IMC. Les unités avec un plus grand IMC obtiennent un plus gros pointeur.</p>
 <div class="sourceCode" id="cb110"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">jd</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">mass</span>, y <span class="op">=</span> <span class="va">height</span>, shape <span class="op">=</span> <span class="va">sex</span>, size <span class="op">=</span> <span class="va">IMC</span><span class="op">)</span><span class="op">)</span> </span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:diagdisp2"></span>
-<img src="08-Visualiser_files/figure-html/diagdisp2-1.png" alt="Le lien entre le poids et la taille en fonction de l'IMC et du sexe" width="75%" height="75%"><p class="caption">
-Figure 8.4: Le lien entre le poids et la taille en fonction de l’IMC et du sexe
+<img src="08-Visualiser_files/figure-html/diagdisp2-1.png" alt="Le lien entre le poids et la taille en fonction de l'IMC et du sexe." width="75%" height="75%"><p class="caption">
+Figure 8.4: Le lien entre le poids et la taille en fonction de l’IMC et du sexe.
 </p>
 </div>
-<p>On peut y ajouter la droite de régression, comme la Figure <a href="visualiser.html#fig:diagdisp3">8.5</a> le montre. Sans <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point()</a></code>, la figure ne produit la droite. Les arguments de <code><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth()</a></code> indique l’utilisation du modèle linéaire, <code>method = lm</code>, et l’absence des intervalles de confiance, <code>se = FALSE</code>. Dans cette syntaxe, comme le <em>mapping</em> est ajouté à <code>ggplot</code> directement, il se généralise directement à <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point()</a></code> et <code><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth()</a></code></p>
+<p>On peut y ajouter la droite de régression, comme la Figure <a href="visualiser.html#fig:diagdisp3">8.5</a> le montre. Sans <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point()</a></code>, la figure ne produit la droite. Les arguments de <code><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth()</a></code> indique l’utilisation du modèle linéaire, <code>method = lm</code>, et l’absence des intervalles de confiance, <code>se = FALSE</code>. Dans cette syntaxe, comme le <em>mapping</em> est ajouté à <code>ggplot</code> directement, il se généralise directement à <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point()</a></code> et <code><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth()</a></code></p>
 <div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="visualiser.html#cb111-1" tabindex="-1"></a>jd <span class="sc">%&gt;%</span> </span>
 <span id="cb111-2"><a href="visualiser.html#cb111-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> mass, <span class="at">y =</span> height)) <span class="sc">+</span> </span>
 <span id="cb111-3"><a href="visualiser.html#cb111-3" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
@@ -218,8 +218,8 @@ Figure 8.4: Le lien entre le poids et la taille en fonction de l’IMC et du sex
 <span id="cb111-5"><a href="visualiser.html#cb111-5" tabindex="-1"></a><span class="sc">&gt;</span> <span class="st">`</span><span class="at">geom_smooth()</span><span class="st">`</span> using formula <span class="ot">=</span> <span class="st">'y ~ x'</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:diagdisp3"></span>
-<img src="08-Visualiser_files/figure-html/diagdisp3-1.png" alt="Le lien entre le poids et la taille en fonction de l'IMC" width="75%" height="75%"><p class="caption">
-Figure 8.5: Le lien entre le poids et la taille en fonction de l’IMC
+<img src="08-Visualiser_files/figure-html/diagdisp3-1.png" alt="Le lien entre le poids et la taille en fonction de l'IMC." width="75%" height="75%"><p class="caption">
+Figure 8.5: Le lien entre le poids et la taille en fonction de l’IMC.
 </p>
 </div>
 </div>
@@ -227,15 +227,15 @@ Figure 8.5: Le lien entre le poids et la taille en fonction de l’IMC
 <h2>
 <span class="header-section-number">8.3</span> Boîte à moustache<a class="anchor" aria-label="anchor" href="#bo%C3%AEte-%C3%A0-moustache"><i class="fas fa-link"></i></a>
 </h2>
-<p>La boîte à moustaches (<em>box-and-whisker plot</em>) est une figure permettant de voir la variabilité des données. Elle résume seulement quelques indicateurs de position soit la médiane, les quartiles, le minimum, et le maximum. Ce diagramme est utilisé principalement pour détecter des valeurs aberrantes et comparer la variabilité entre les groupes. C’est la représentation géométrique <code><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot()</a></code> qui permettra de créer des boîtes à moustache. La cartographie prend en argument une variable nominale en <code>x</code> et une variable continue en <code>y</code>. La Figure <a href="visualiser.html#fig:boxplot1">8.6</a> montre un exemple de boîte à moustache.</p>
+<p>La boîte à moustaches (<em>box-and-whisker plot</em>) est une figure permettant de voir la variabilité des données. Elle résume seulement quelques indicateurs de position soit la médiane, les quartiles, le minimum, et le maximum. Ce diagramme est utilisé principalement pour détecter des valeurs aberrantes et comparer la variabilité entre les groupes. C’est la représentation géométrique <code><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot()</a></code> qui permettra de créer des boîtes à moustache. La cartographie prend en argument une variable nominale en <code>x</code> et une variable continue en <code>y</code>. La Figure <a href="visualiser.html#fig:boxplot1">8.6</a> montre un exemple de boîte à moustache.</p>
 <div class="sourceCode" id="cb112"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">jd</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">sex</span>, y <span class="op">=</span> <span class="va">IMC</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:boxplot1"></span>
-<img src="08-Visualiser_files/figure-html/boxplot1-1.png" alt="Boîte à moustache de l'IMC en fonction du sexe" width="75%" height="75%"><p class="caption">
-Figure 8.6: Boîte à moustache de l’IMC en fonction du sexe
+<img src="08-Visualiser_files/figure-html/boxplot1-1.png" alt="Boîte à moustache de l'IMC en fonction du sexe." width="75%" height="75%"><p class="caption">
+Figure 8.6: Boîte à moustache de l’IMC en fonction du sexe.
 </p>
 </div>
 <p>Une fonction intéressante est la fonction <code><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip()</a></code> qui tourne (<em>flip</em>) les axes, les coordonnées. L’axe <span class="math inline">\(x\)</span> prend la place de <span class="math inline">\(y\)</span>; <span class="math inline">\(y\)</span> prend la place de <span class="math inline">\(x\)</span>. Elle peut être pratique pour améliorer la qualité visuelle de certains graphiques.</p>
@@ -255,7 +255,7 @@ Figure 8.6: Boîte à moustache de l’IMC en fonction du sexe
 <span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">jd</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">IMC</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>Des techniques plus avancées permettent de créer la Figure <a href="visualiser.html#fig:hist">8.7</a> d’un seul coup<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Notamment, le code nécessite &lt;code&gt;gather()&lt;/code&gt; de &lt;code&gt;tidyr&lt;/code&gt;&lt;span class="citation"&gt;(&lt;a href="r%C3%A9f%C3%A9rences.html#ref-R-tidyr"&gt;Wickham &amp;amp; Girlich, 2022&lt;/a&gt;)&lt;/span&gt; et &lt;code&gt;keep()&lt;/code&gt; de &lt;code&gt;purrr&lt;/code&gt; &lt;span class="citation"&gt;(&lt;a href="r%C3%A9f%C3%A9rences.html#ref-R-purrr"&gt;Henry &amp;amp; Wickham, 2020&lt;/a&gt;)&lt;/span&gt;.&lt;/p&gt;'><sup>8</sup></a>.</p>
+<p>Des techniques plus avancées permettent de créer la Figure <a href="visualiser.html#fig:hist">8.7</a> d’un seul coup<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Notamment, le code nécessite &lt;code&gt;gather()&lt;/code&gt; de &lt;code&gt;tidyr&lt;/code&gt;&lt;span class="citation"&gt;(&lt;a href="r%C3%A9f%C3%A9rences.html#ref-R-tidyr"&gt;Wickham &amp;amp; Girlich, 2022&lt;/a&gt;)&lt;/span&gt; et &lt;code&gt;keep()&lt;/code&gt; de &lt;code&gt;purrr&lt;/code&gt; &lt;span class="citation"&gt;(&lt;a href="r%C3%A9f%C3%A9rences.html#ref-R-purrr"&gt;Henry &amp;amp; Wickham, 2020&lt;/a&gt;)&lt;/span&gt;.&lt;/p&gt;'><sup>8</sup></a>.</p>
 <div class="sourceCode" id="cb114"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Trois histogrammes en une seule figure</span></span>
 <span><span class="co"># en optimisant avec le tidyverse</span></span>
@@ -267,8 +267,8 @@ Figure 8.6: Boîte à moustache de l’IMC en fonction du sexe
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:hist"></span>
-<img src="08-Visualiser_files/figure-html/hist-1.png" alt="Histogrammes des variables continues" width="75%" height="75%"><p class="caption">
-Figure 8.7: Histogrammes des variables continues
+<img src="08-Visualiser_files/figure-html/hist-1.png" alt="Histogrammes des variables continues." width="75%" height="75%"><p class="caption">
+Figure 8.7: Histogrammes des variables continues.
 </p>
 </div>
 <p>Enfin, s’il est désiré de comparer deux distributions de groupes différents, l’argument <code>fill</code> dans la cartographie indique à la fonction de différencier les valeurs selon le <em>remplissage</em> des histogrammes.</p>
@@ -279,43 +279,46 @@ Figure 8.7: Histogrammes des variables continues
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_grey.html">scale_fill_grey</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:hist2"></span>
-<img src="08-Visualiser_files/figure-html/hist2-1.png" alt="Histogrammes de l'IMC par rapport au sexe" width="75%" height="75%"><p class="caption">
-Figure 8.8: Histogrammes de l’IMC par rapport au sexe
+<img src="08-Visualiser_files/figure-html/hist2-1.png" alt="Histogrammes de l'IMC par rapport au sexe." width="75%" height="75%"><p class="caption">
+Figure 8.8: Histogrammes de l’IMC par rapport au sexe.
 </p>
 </div>
-<p>Dans la Figure <a href="visualiser.html#fig:hist2">8.8</a>, l’argument <code>position = "identity"</code> indique de traiter les deux groupes comme différents, autrement les colonnes s’additionnent dans le graphique. L’argument <code>alpha = .7</code> permet une transparence entre les couleurs, autrement, les valeurs <em>derrière</em> les autres ne paraissent pas. La valeur de <code>alpha</code> va de 0 (transparent) à 1 (opaque) et fonctionne dans la plupart des contextes, surtout ceux liés à <code>ggplot2</code>.</p>
+<p>Dans la Figure <a href="visualiser.html#fig:hist2">8.8</a>, l’argument <code>position = "identity"</code> indique de traiter les deux groupes comme différents, autrement les colonnes s’additionnent dans le graphique. L’argument <code>alpha = .7</code> permet une transparence entre les couleurs, autrement, les valeurs <em>derrière</em> les autres ne paraissent pas. La valeur de <code>alpha</code> va de 0 (transparent) à 1 (opaque) et fonctionne dans la plupart des contextes, surtout ceux liés à <code>ggplot2</code>.</p>
 </div>
 <div id="les-barres-derreurs" class="section level2" number="8.5">
 <h2>
 <span class="header-section-number">8.5</span> Les barres d’erreurs<a class="anchor" aria-label="anchor" href="#les-barres-derreurs"><i class="fas fa-link"></i></a>
 </h2>
 <p>Les barres d’erreur sont une représentation géométrique à part entière. La fonction pour les commandées est <code><a href="https://ggplot2.tidyverse.org/reference/geom_linerange.html">geom_errorbar()</a></code>. Elle nécessite deux arguments, soit l’intervalle de confiance maximale et minimale autour des moyennes à afficher.</p>
-<p>La Figure <a href="visualiser.html#fig:erreurbar">8.9</a> illustre les différences entre moyennes avec des barres d’erreur à partir de la base de données <code>ToothGrowth</code>, une étude de l’effet de la vitamine C (<code>dose</code>) selon leur administration (jus ou supplément <code>supp</code>) sur la longueur des dents des cochons d’inde. Il y a deux facteurs et une variable continue.</p>
+<p>La Figure <a href="visualiser.html#fig:erreurbar">8.9</a> illustre les différences entre moyennes avec des barres d’erreur à partir de la base de données <code>ToothGrowth</code>, une étude de l’effet de la vitamine C (<code>dose</code>) selon leur administration (jus ou supplément <code>supp</code>) sur la longueur des dents des cochons d’inde. Il y a deux facteurs et une variable continue.</p>
 <p>La première étape est de tirer les statistiques sommaires, moyennes, écart type, tailles des groupes. La syntaxe tire profit de <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> pour tirer les groupes et en faire le sommaire. Le sommaire <code>summarise</code> permet d’obtenir les statistiques, notamment la moyenne, l’erreur standard (<code>se</code>) pour en calculer l’intervalle autour de la moyenne <code>ci</code>.</p>
-<div class="sourceCode" id="cb116"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">stat.descr</span> <span class="op">&lt;-</span> <span class="va">ToothGrowth</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">dose</span>, <span class="va">supp</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>mlen <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">len</span><span class="op">)</span>,</span>
-<span>            sdlen <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">len</span><span class="op">)</span>,</span>
-<span>            nlen <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span>, </span>
-<span>            se <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">len</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>, </span>
-<span>            ci <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">qt</a></span><span class="op">(</span><span class="fl">.975</span>, df <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span> <span class="op">*</span> <span class="va">se</span>,</span>
-<span>            .groups <span class="op">=</span> <span class="st">"drop"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">stat.descr</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">dose</span>,</span>
-<span>             y <span class="op">=</span> <span class="va">mlen</span>, </span>
-<span>             shape <span class="op">=</span> <span class="va">supp</span><span class="op">)</span>,</span>
-<span>         size <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="op">+</span> </span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_linerange.html">geom_errorbar</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>ymin <span class="op">=</span> <span class="va">mlen</span> <span class="op">-</span> <span class="va">ci</span>,</span>
-<span>                      ymax <span class="op">=</span> <span class="va">mlen</span> <span class="op">+</span> <span class="va">ci</span><span class="op">)</span>, </span>
-<span>                  width <span class="op">=</span> <span class="fl">.05</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="visualiser.html#cb116-1" tabindex="-1"></a>stat.descr <span class="ot">&lt;-</span> ToothGrowth <span class="sc">%&gt;%</span> </span>
+<span id="cb116-2"><a href="visualiser.html#cb116-2" tabindex="-1"></a>  <span class="fu">group_by</span>(dose, supp) <span class="sc">%&gt;%</span> </span>
+<span id="cb116-3"><a href="visualiser.html#cb116-3" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mlen =</span> <span class="fu">mean</span>(len),</span>
+<span id="cb116-4"><a href="visualiser.html#cb116-4" tabindex="-1"></a>            <span class="at">sdlen =</span> <span class="fu">sd</span>(len),</span>
+<span id="cb116-5"><a href="visualiser.html#cb116-5" tabindex="-1"></a>            <span class="at">nlen =</span> <span class="fu">n</span>(), </span>
+<span id="cb116-6"><a href="visualiser.html#cb116-6" tabindex="-1"></a>            <span class="at">se =</span> <span class="fu">sd</span>(len)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">n</span>()), </span>
+<span id="cb116-7"><a href="visualiser.html#cb116-7" tabindex="-1"></a>            <span class="at">ci =</span> <span class="fu">qt</span>(.<span class="dv">975</span>, <span class="at">df =</span> <span class="fu">n</span>()<span class="sc">-</span><span class="dv">1</span>) <span class="sc">*</span> se,</span>
+<span id="cb116-8"><a href="visualiser.html#cb116-8" tabindex="-1"></a>            <span class="at">.groups =</span> <span class="st">"drop"</span>)</span>
+<span id="cb116-9"><a href="visualiser.html#cb116-9" tabindex="-1"></a></span>
+<span id="cb116-10"><a href="visualiser.html#cb116-10" tabindex="-1"></a>stat.descr <span class="sc">%&gt;%</span> </span>
+<span id="cb116-11"><a href="visualiser.html#cb116-11" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> dose,</span>
+<span id="cb116-12"><a href="visualiser.html#cb116-12" tabindex="-1"></a>             <span class="at">y =</span> mlen, </span>
+<span id="cb116-13"><a href="visualiser.html#cb116-13" tabindex="-1"></a>             <span class="at">shape =</span> supp),</span>
+<span id="cb116-14"><a href="visualiser.html#cb116-14" tabindex="-1"></a>         <span class="at">size =</span> <span class="dv">5</span>) <span class="sc">+</span> </span>
+<span id="cb116-15"><a href="visualiser.html#cb116-15" tabindex="-1"></a>    <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> mlen <span class="sc">-</span> ci,</span>
+<span id="cb116-16"><a href="visualiser.html#cb116-16" tabindex="-1"></a>                      <span class="at">ymax =</span> mlen <span class="sc">+</span> ci), </span>
+<span id="cb116-17"><a href="visualiser.html#cb116-17" tabindex="-1"></a>                  <span class="at">width =</span> .<span class="dv">05</span>) <span class="sc">+</span></span>
+<span id="cb116-18"><a href="visualiser.html#cb116-18" tabindex="-1"></a>    <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb116-19"><a href="visualiser.html#cb116-19" tabindex="-1"></a>    <span class="fu">geom_point</span>()</span>
+<span id="cb116-20"><a href="visualiser.html#cb116-20" tabindex="-1"></a><span class="sc">&gt;</span> Warning <span class="cf">in</span> <span class="fu">fortify</span>(data, ...)<span class="sc">:</span> Arguments <span class="cf">in</span> <span class="st">`</span><span class="at">...</span><span class="st">`</span> must be used.</span>
+<span id="cb116-21"><a href="visualiser.html#cb116-21" tabindex="-1"></a><span class="sc">&gt;</span> ✖ Problematic argument<span class="sc">:</span></span>
+<span id="cb116-22"><a href="visualiser.html#cb116-22" tabindex="-1"></a><span class="er">&gt;</span> • size <span class="ot">=</span> <span class="dv">5</span></span>
+<span id="cb116-23"><a href="visualiser.html#cb116-23" tabindex="-1"></a><span class="sc">&gt;</span> ℹ Did you misspell an argument name?</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:erreurbar"></span>
-<img src="08-Visualiser_files/figure-html/erreurbar-1.png" alt="Les effets de la vitamine C sur les cochons d'inde" width="75%" height="75%"><p class="caption">
-Figure 8.9: Les effets de la vitamine C sur les cochons d’inde
+<img src="08-Visualiser_files/figure-html/erreurbar-1.png" alt="Les effets de la vitamine C sur les cochons d'inde." width="75%" height="75%"><p class="caption">
+Figure 8.9: Les effets de la vitamine C sur les cochons d’inde.
 </p>
 </div>
 <p>Une fois ces statistiques calculées et enregistrées dans le nouveau jeu de données <code>jd</code>, il est possible de créer le graphique avec les représentations géométriques désirées. Remarquez comment spécifier la cartographie dans le niveau <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code> rend la syntaxe moins compliquée. Cette syntaxe produit un graphique avec <code>dose</code> à l’axe des <span class="math inline">\(x\)</span>, <code>supp</code> comme pointeurs et les moyennes de <code>len</code> (longueur moyenne des dents). La fonction <code><a href="https://ggplot2.tidyverse.org/reference/geom_linerange.html">geom_errorbar()</a></code> indique où placer les limites inférieures et supérieures des intervalles. Les arguments <code>size = 5</code> et <code>width = .05</code> sont ajoutés simplment pour l’esthétisme. L’argument <code>.groups = "drop"</code> de <code>summarise</code> permet d’éviter une avertissement expliquant qu’une variable de groupement est utilisé pour regrouper les résultats à la fin. Ajouter ou retirer cet argument ne change pas les calculs, ni la Figure <a href="visualiser.html#fig:erreurbar">8.9</a>.</p>
@@ -326,17 +329,17 @@ Figure 8.9: Les effets de la vitamine C sur les cochons d’inde
 </h2>
 <p>Il existe un package <code>superb</code> <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-superb">Cousineau et al., 2021</a>)</span> qui permet d’obtenir des graphiques à barre d’erreur avec précision et facilement ajustable. Une fois installé et importé dans l’environnement, <code>superb</code> offre la fonction principale <code>superbPlot</code> permet la création de ces figures.</p>
 <p>Il y a deux avantages principaux a utilisé <code>superb</code>. La première est qu’elle permet des ajustements avec l’argument <code>adjustments</code> afin de préciser le type de barres d’erreurs<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Oui, oui, il en existe plusieurs!&lt;/p&gt;"><sup>9</sup></a>, comme <code>"single"</code>, <code>"difference"</code>, ou <code>"tryon"</code>. Généralement, ce sera l’option <code>purpose = "difference"</code> qui sera désirée. Deuxièmement, <code>superb</code> tient aussi compte des devis intra participants avec l’argument <code>WSFactors</code>, ce qui permet l’utilisation de différentes techniques de décorrélation des temps de mesure. La fonction produit de bien meilleurs graphiques à barres d’erreurs avec plus d’ajustement et de précision.</p>
-<p>La Figure <a href="visualiser.html#fig:erreurbar2">8.10</a> reproduit la Figure <a href="visualiser.html#fig:erreurbar">8.9</a>. Dans le code, il faut préciser les facteurs inter participants <code>BSFactors</code> (pour <em>between subject</em> ou <em>BS</em>) et la variable dépendante, <code>variable</code>. La fonction contrôle aussi le type de graphique avec <code>plotStyle</code>.</p>
+<p>La Figure <a href="visualiser.html#fig:erreurbar2">8.10</a> reproduit la Figure <a href="visualiser.html#fig:erreurbar">8.9</a>. Dans le code, il faut préciser les facteurs inter participants <code>BSFactors</code> (pour <em>between subject</em> ou <em>BS</em>) et la variable dépendante, <code>variable</code>. La fonction contrôle aussi le type de graphique avec <code>plotStyle</code>.</p>
 <div class="sourceCode" id="cb117"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dcousin3.github.io/superb/">superb</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/dcousin3/superb/">superb</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="http://dcousin3.github.io/superb/reference/superbPlot.html">superbPlot</a></span><span class="op">(</span><span class="va">ToothGrowth</span>, </span>
 <span>    BSFactors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"dose"</span>,<span class="st">"supp"</span><span class="op">)</span>, </span>
 <span>    variables <span class="op">=</span> <span class="st">"len"</span>,</span>
 <span>    plotStyle <span class="op">=</span> <span class="st">"line"</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:erreurbar2"></span>
-<img src="08-Visualiser_files/figure-html/erreurbar2-1.png" alt="Les effets de la vitamine C sur les cochons d'inde avec `superb`" width="75%" height="75%"><p class="caption">
-Figure 8.10: Les effets de la vitamine C sur les cochons d’inde avec <code>superb</code>
+<img src="08-Visualiser_files/figure-html/erreurbar2-1.png" alt="Les effets de la vitamine C sur les cochons d'inde avec `superb`." width="75%" height="75%"><p class="caption">
+Figure 8.10: Les effets de la vitamine C sur les cochons d’inde avec <code>superb</code>.
 </p>
 </div>
 <p>La fonction retourne souvent des messages d’avertissement (orange) pour préciser certaines décisions qu’elle peut avoir pris. Le code ci-dessus retourne le message : <code>superb::FYI: The variables will be plotted in that order: dose, supp (use factorOrder to change).</code>. C’est à l’utilisateur d’en prendre note et de s’assurer que c’était bien ce qui était désiré, ce qui est le cas ici.</p>
@@ -361,8 +364,8 @@ Figure 8.10: Les effets de la vitamine C sur les cochons d’inde avec <code>sup
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:erreurbar3"></span>
-<img src="08-Visualiser_files/figure-html/erreurbar3-1.png" alt="Les effets de la vitamine C sur les cochons d'inde avec `superb`" width="75%" height="75%"><p class="caption">
-Figure 8.11: Les effets de la vitamine C sur les cochons d’inde avec <code>superb</code>
+<img src="08-Visualiser_files/figure-html/erreurbar3-1.png" alt="Les effets de la vitamine C sur les cochons d'inde avec `superb`." width="75%" height="75%"><p class="caption">
+Figure 8.11: Les effets de la vitamine C sur les cochons d’inde avec <code>superb</code>.
 </p>
 </div>
 </div>
@@ -389,11 +392,11 @@ Figure 8.11: Les effets de la vitamine C sur les cochons d’inde avec <code>sup
 <span>    adjustments <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>purpose <span class="op">=</span> <span class="st">"difference"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:erreurbar4"></span>
-<img src="08-Visualiser_files/figure-html/erreurbar4-1.png" alt="Comparaison de deux temps de mesure avec `superb` (sans décorrélation)" width="75%" height="75%"><p class="caption">
-Figure 8.12: Comparaison de deux temps de mesure avec <code>superb</code> (sans décorrélation)
+<img src="08-Visualiser_files/figure-html/erreurbar4-1.png" alt="Comparaison de deux temps de mesure avec `superb` (sans décorrélation)." width="75%" height="75%"><p class="caption">
+Figure 8.12: Comparaison de deux temps de mesure avec <code>superb</code> (sans décorrélation).
 </p>
 </div>
-<p>La Figure <a href="visualiser.html#fig:erreurbar4">8.12</a> montre le résultat obtenu.</p>
+<p>La Figure <a href="visualiser.html#fig:erreurbar4">8.12</a> montre le résultat obtenu.</p>
 <p>Le package <code>superb</code> permet aussi l’utilisation de techniques de décorrélation comme <code>"CM"</code>, <code>"LM"</code>, <code>"CA"</code> ou <code>"none"</code> (par défaut) pour améliorer les intervalles de confiance. Consultez la documentation pour en savoir plus sur son fonctionnement et ce qui conviendra le mieux à la situation qui se présente. Pour l’implantation, il suffit d’ajouter à la liste d’arguments fournie à <code>adjustements</code>, le type de décorrlation désirée, ici <code>decorrelation = "CM"</code>).</p>
 <div class="sourceCode" id="cb122"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="http://dcousin3.github.io/superb/reference/superbPlot.html">superbPlot</a></span><span class="op">(</span><span class="va">jd_intra</span>, </span>
@@ -403,11 +406,11 @@ Figure 8.12: Comparaison de deux temps de mesure avec <code>superb</code> (sans 
 <span>    adjustments <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>purpose <span class="op">=</span> <span class="st">"difference"</span>, decorrelation <span class="op">=</span> <span class="st">"CM"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:erreurbar5"></span>
-<img src="08-Visualiser_files/figure-html/erreurbar5-1.png" alt="Comparaison de deux temps de mesure avec `superb` (avec décorrélation)" width="75%" height="75%"><p class="caption">
-Figure 8.13: Comparaison de deux temps de mesure avec <code>superb</code> (avec décorrélation)
+<img src="08-Visualiser_files/figure-html/erreurbar5-1.png" alt="Comparaison de deux temps de mesure avec `superb` (avec décorrélation)." width="75%" height="75%"><p class="caption">
+Figure 8.13: Comparaison de deux temps de mesure avec <code>superb</code> (avec décorrélation).
 </p>
 </div>
-<p>Les barres d’erreur de la Figure <a href="visualiser.html#fig:erreurbar5">8.13</a> sont légèrement différentes de la Figure <a href="visualiser.html#fig:erreurbar4">8.12</a>, mais plus adéquates pour illustrer les résultats.</p>
+<p>Les barres d’erreur de la Figure <a href="visualiser.html#fig:erreurbar5">8.13</a> sont légèrement différentes de la Figure <a href="visualiser.html#fig:erreurbar4">8.12</a>, mais plus adéquates pour illustrer les résultats.</p>
 </div>
 <div id="quelques-trucs-en-rafale" class="section level2" number="8.8">
 <h2>
@@ -475,7 +478,7 @@ Figure 8.13: Comparaison de deux temps de mesure avec <code>superb</code> (avec 
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2024-12-16.</p>
+    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2026-05-12.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -1090,6 +1090,9 @@ parallel.maison(res.acp$values, ns = 584)
 
 ``` r
 library(Rnest)
+FALSE This is Rnest 1.3
+FALSE Rnest is FREE software!
+FALSE Please report any bugs to https://github.com/quantmeth/Rnest
 FALSE 
 FALSE Attachement du package : 'Rnest'
 FALSE L'objet suivant est masqué depuis 'package:tidyr':
@@ -1100,11 +1103,11 @@ FALSE
 FALSE     loadings
 res <- nest(jd)
 res
-FALSE At 95% confidence, Next Eigenvalue Sufficiency Test (NEST) suggests 3 factors.
+FALSE Next Eigenvalue Sufficiency Test (NEST) suggests 3 factors.
 plot(res)
 ```
 
-<img src="23-Solutions_files/figure-html/unnamed-chunk-39-1.png" width="672" />
+<img src="23-Solutions_files/figure-html/unnamed-chunk-39-1.png" alt="" width="672" />
 
 ### Question 6 {-}
 6. Utiliser `factanal()` pour 3 facteurs avec le jeu de données créé à la Question\ 1. Extraire les scores et les loadings.

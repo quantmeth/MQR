@@ -7,7 +7,7 @@
 <title> 16 Médier | Méthodes quantitatives avec R</title>
 <meta name="author" content="P.-O. Caron">
 <meta name="description" content="Outre les liens directs entre deux variables (ce qu’une régression permet de découvrir), il existe également des liens indirects, une relation sous-jacente entre une variable indépendante et une...">
-<meta name="generator" content="bookdown 0.41 with bs4_book()">
+<meta name="generator" content="bookdown 0.46 with bs4_book()">
 <meta property="og:title" content=" 16 Médier | Méthodes quantitatives avec R">
 <meta property="og:type" content="book">
 <meta property="og:url" content="mqr.teluq.ca/médier.html">
@@ -17,9 +17,9 @@
 <meta name="twitter:description" content="Outre les liens directs entre deux variables (ce qu’une régression permet de découvrir), il existe également des liens indirects, une relation sous-jacente entre une variable indépendante et une...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.8.0/transition.js"></script><script src="libs/bs3compat-0.8.0/tabs.js"></script><script src="libs/bs3compat-0.8.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.10.0/transition.js"></script><script src="libs/bs3compat-0.10.0/tabs.js"></script><script src="libs/bs3compat-0.10.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+<link href="libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet">
 <script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script><script src="libs/viz-1.8.2/viz.js"></script><link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
 <script src="libs/grViz-binding-1.0.11/grViz.js"></script><!-- 
     \(
@@ -124,7 +124,7 @@
 <span class="header-section-number"> 16</span> Médier<a class="anchor" aria-label="anchor" href="#m%C3%A9dier"><i class="fas fa-link"></i></a>
 </h1>
 <p>Outre les <em>liens directs</em> entre deux variables (ce qu’une <a href="pr%C3%A9dire.html#pr%C3%A9dire">régression</a> permet de découvrir), il existe également des <em>liens indirects</em>, une relation sous-jacente entre une variable indépendante et une variable dépendante expliquée par l’inclusion d’une troisième variable. L’attrait d’une telle analyse est patent : les expérimentateurs s’intéressent souvent à expliquer les mécanismes biologiques, psychologiques, cognitifs, etc., qui sous-tendent la relation entre deux variables.</p>
-<p>L’analyse de médiation permet de découvrir et tester des liens indirect. Elle est une analyse statistique de plus en plus populaire parmi les expérimentateurs, peu importe leur discipline, puisqu’elle quantifie le degré selon lequel une variable participe à la transmission du changement d’une <em>cause</em> vers son <em>effet</em>. L’analyse de médiation peut contribuer à mieux comprendre la relation entre une variable indépendante et une variable dépendante lorsque ces variables n’ont pas de lien direct évident.</p>
+<p>L’analyse de médiation permet de découvrir et tester des liens indirects. Elle est une analyse statistique de plus en plus populaire parmi les expérimentateurs, peu importe leur discipline, puisqu’elle quantifie le degré selon lequel une variable participe à la transmission du changement d’une <em>cause</em> vers son <em>effet</em>. L’analyse de médiation peut contribuer à mieux comprendre la relation entre une variable indépendante et une variable dépendante lorsque ces variables n’ont pas de lien direct évident.</p>
 <p>L’analyse de médiation est un sous-ensemble de l’analyse de trajectoire dans lequel le statisticien s’intéresse à la relation entre la variable indépendante <span class="math inline">\(x\)</span> sur la variable dépendante <span class="math inline">\(y\)</span> par l’intermédiaire de la variable médiatrice <span class="math inline">\(m\)</span>. Elle s’inscrit dans un système d’équations. L’analyse de médiation se base sur les <em>liens indirects</em> qui existent dans ce système d’équations. Ces liens indirects sont ces relations intermédiaires qui intéressent le statisticien.</p>
 <p>Il est plus aisé de concevoir ce qu’est un lien indirect en le comparant aux liens directs. Un <strong>lien direct</strong>, c’est la relation entre une variable indépendante et une dépendante, comme le coefficient de régression, par exemple. Le <strong>lien indirect</strong>, c’est la relation qui existe entre une variable indépendante et une dépendante à travers une ou plusieurs autres variables.</p>
 <p>Pour les fins de ce chapitre<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;La section est partiellement basée sur &lt;span class="citation"&gt;Caron &amp;amp; Valois (&lt;a href="r%C3%A9f%C3%A9rences.html#ref-Caron18"&gt;2018&lt;/a&gt;)&lt;/span&gt;.&lt;/p&gt;'><sup>22</sup></a>, l’analyse à un seul médiateur est présentée (aussi nommé l’analyse de médiation simple). Il existe de nombreuses extensions (parallèle, sérielle, modérée, etc.) dont les fondements reposent ultimement sur la même logique que celle présentée.</p>
@@ -135,8 +135,8 @@
 <p>La Figure <a href="m%C3%A9dier.html#fig:simplemed">16.1</a> présente le diagramme de trajectoire correspondant au modèle de médiation simple (un seul médiateur) dans le panneau supérieur.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:simplemed"></span>
-<img src="image/simplemed.png" alt="Modèle de médiation simple" width="75%" height="75%"><p class="caption">
-Figure 16.1: Modèle de médiation simple
+<img src="image/simplemed.png" alt="Modèle de médiation simple." width="75%" height="75%"><p class="caption">
+Figure 16.1: Modèle de médiation simple.
 </p>
 </div>
 <p>Le cadran supérieur devrait être familier aux lecteurs, car il a été abordé dans le chapitre <a href="cr%C3%A9er.html#cr%C3%A9er">Créer</a> selon une orientation légèrement différente. La Figure <a href="m%C3%A9dier.html#fig:simplemed">16.1</a> peut également être représentée avec une matrice de coefficients de régression <span class="math inline">\(\mathbf{B}\)</span> dans laquelle se retrouvent les coefficients de régression qui relient les variables.</p>
@@ -245,7 +245,7 @@ z=\frac{\beta_{2,1}\beta_{3,2}}{\sqrt{\beta_{3,2}^2\sigma^2_{\beta_{2,1}} +\beta
 \tag{16.4}
 \end{equation}\]</span></p>
 <p>où <span class="math inline">\(z\)</span> signifie qu’il s’agit d’un score-<span class="math inline">\(z\)</span>, les <span class="math inline">\(\beta\)</span> sont les coefficients de régression et les <span class="math inline">\(\sigma^2_\beta\)</span> sont les erreurs standard des coefficients de régression.</p>
-<p>La syntaxe suivante illustre une fonction qui calcule l’équation <a href="m%C3%A9dier.html#eq:sobel">(16.4)</a>. La syntaxe calcule deux régressions <code>m ~ x</code> et <code>m ~ x</code>. Du sommaire des résultats, elle extrait, les deux coefficients de régressions et leur erreur standard respective. Elle calcule enfin le score <span class="math inline">\(z\)</span> de l’équation <a href="m%C3%A9dier.html#eq:sobel">(16.4)</a> avec la valeur-<span class="math inline">\(p\)</span> associée. Pour bien fonctionner avec cette fonction, les variables du jeu de données doivent se nommer <code>x</code>, <code>m</code> et <code>y</code>.</p>
+<p>La syntaxe suivante illustre une fonction qui calcule l’équation <a href="m%C3%A9dier.html#eq:sobel">(16.4)</a>. La syntaxe calcule deux régressions <code>m ~ x</code> et <code>y ~ m + x</code>. Du sommaire des résultats, elle extrait, les deux coefficients de régressions et leur erreur standard respective. Elle calcule enfin le score <span class="math inline">\(z\)</span> de l’équation <a href="m%C3%A9dier.html#eq:sobel">(16.4)</a> avec la valeur-<span class="math inline">\(p\)</span> associée. Pour bien fonctionner avec cette fonction, les variables du jeu de données doivent se nommer <code>x</code>, <code>m</code> et <code>y</code>.</p>
 <div class="sourceCode" id="cb229"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mdm</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">donnees</span>, <span class="va">alpha</span> <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span><span class="op">{</span></span>
 <span>  <span class="co"># alpha est l'erreur de type I</span></span>
@@ -313,11 +313,11 @@ z=\frac{\beta_{2,1}\beta_{3,2}}{\sqrt{\beta_{3,2}^2\sigma^2_{\beta_{2,1}} +\beta
 <p>La Figure <a href="m%C3%A9dier.html#fig:sobelhist">16.2</a> montre la distribution des effets indirects obtenus avec la simulation. La ligne correspond à la distribution gaussienne sous-jacente au test de Sobel. Dans le cas <code>n = 50</code> testé, il appert évident que les effets ne suivent pas exactement la distribution attendue. La distribution est centrée sur la bonne valeur <span class="math inline">\(0.2 \times 0.3 = 0.06\)</span>. La distribution est toutefois asymétrique.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:sobelhist"></span>
-<img src="16-Medier_files/figure-html/sobelhist-1.png" alt="Distribution de l'effet indirect" width="672"><p class="caption">
-Figure 16.2: Distribution de l’effet indirect
+<img src="16-Medier_files/figure-html/sobelhist-1.png" alt="Distribution de l'effet indirect." width="672"><p class="caption">
+Figure 16.2: Distribution de l’effet indirect.
 </p>
 </div>
-<p>Le chapitre <a href="simuler.html#simuler">Simuler</a> présente une technique statistique toute désignée lorsque la disbribution statistique n’est pas connue<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Celle des produits de variables aléatoires est connues, simplement fort complexe et soivent difficilement calculables &lt;span class="citation"&gt;(&lt;a href="r%C3%A9f%C3%A9rences.html#ref-Cui"&gt;Cui et al., 2016&lt;/a&gt;)&lt;/span&gt;.&lt;/p&gt;'><sup>25</sup></a>, il s’agit du <a href="simuler.html#le-bootstrap">bootstrap</a>.</p>
+<p>Le chapitre <a href="simuler.html#simuler">Simuler</a> présente une technique statistique toute désignée lorsque la distribution statistique n’est pas connue<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Celle des produits de variables aléatoires est connues de façon approximative et est difficilement calculable &lt;span class="citation"&gt;(&lt;a href="r%C3%A9f%C3%A9rences.html#ref-Cui"&gt;Cui et al., 2016&lt;/a&gt;)&lt;/span&gt;.&lt;/p&gt;'><sup>25</sup></a>, il s’agit du <a href="simuler.html#le-bootstrap">bootstrap</a>.</p>
 </div>
 <div id="la-technique-du-bootstrap" class="section level3" number="16.2.3">
 <h3>
@@ -732,11 +732,11 @@ Figure 16.2: Distribution de l’effet indirect
 <p>La variable <code>Resultats</code> contient tous les résultats pertinents. La colonne <code>Resultats$Estimates</code> retourne tous les coefficients de régression avec leur erreur type (erreur standard ou <em>standard error</em>) en deuxième colonne. Les dernières colonnes donnent les intervalles de confiance inférieurs et supérieurs. Comme aucune ne contient la valeur 0 au sein de son intervalle, alors elles sont toutes significatives.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:resmed"></span>
-<img src="image/resmed.png" alt="Résultats de l'analyse de  médiation" width="75%" height="75%"><p class="caption">
-Figure 16.3: Résultats de l’analyse de médiation
+<img src="image/resmed.png" alt="Résultats de l'analyse de  médiation." width="75%" height="75%"><p class="caption">
+Figure 16.3: Résultats de l’analyse de médiation.
 </p>
 </div>
-<p>Les résultats sont illustrés dans la Figure <a href="m%C3%A9dier.html#fig:resmed">16.3</a>. Les coefficients sont ajoutés à leurs trajectoires respectivement. Par bonnes mesures, des étoiles de significativité, *, l’ultime symbole de découvertes scientifiques, sont ajoutés aux trajectoires dont les intervalles de confiance n’incluent pas 0. Il ne reste qu’à rapporter l’effet indirect dans le texte ou un tableau d’un article scientifique, comme le tableau <a href="m%C3%A9dier.html#tab:res">16.1</a>.</p>
+<p>Les résultats sont illustrés dans la Figure <a href="m%C3%A9dier.html#fig:resmed">16.3</a>. Les coefficients sont ajoutés à leurs trajectoires respectivement. Par bonnes mesures, des étoiles de significativité, *, l’ultime symbole de découvertes scientifiques, sont ajoutés aux trajectoires dont les intervalles de confiance n’incluent pas 0. Il ne reste qu’à rapporter l’effet indirect dans le texte ou un tableau d’un article scientifique, comme le tableau <a href="m%C3%A9dier.html#tab:res">16.1</a>.</p>
 <div class="inline-table"><table class=" lightable-classic table" style='font-family: "Arial Narrow", "Source Sans Pro", sans-serif; width: auto !important; margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto;'>
 <caption>
 <span id="tab:res">Table 16.1: </span>Résultats de l’analyse de médiation
@@ -925,8 +925,8 @@ total effect x -&gt; y
 </blockquote>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:mtmed"></span>
-<img src="image/mtcars_med.png" alt="Résultats de l'analyse de  médiation" width="75%" height="75%"><p class="caption">
-Figure 16.4: Résultats de l’analyse de médiation
+<img src="image/mtcars_med.png" alt="Résultats de l'analyse de  médiation." width="75%" height="75%"><p class="caption">
+Figure 16.4: Résultats de l’analyse de médiation.
 </p>
 </div>
 <p>En plus de ces informations primordiales, certains domaines de recherche demanderont, en plus, de rapporter les deux régressions réalisées (voir <a href="pr%C3%A9dire.html#rapporter-la-r%C3%A9gression">Rapporter la régression</a>), soit les liens directs pertinents et les modèles de régression, et également, l’aspect partiel ou complet de la médiation<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Même si cela n’est pas approprié&lt;/p&gt;"><sup>26</sup></a>.</p>
@@ -971,7 +971,7 @@ Figure 16.4: Résultats de l’analyse de médiation
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2024-12-16.</p>
+    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2026-05-12.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -7,7 +7,7 @@
 <title> 3 Calculer | Méthodes quantitatives avec R</title>
 <meta name="author" content="P.-O. Caron">
 <meta name="description" content="Dans cette section, les fonctions essentielles couramment utilisées sont présentées en rafale. L’accent est mis sur la définition de la fonction (qu’est-ce qu’elle fait?) et son utilité (à quoi...">
-<meta name="generator" content="bookdown 0.41 with bs4_book()">
+<meta name="generator" content="bookdown 0.46 with bs4_book()">
 <meta property="og:title" content=" 3 Calculer | Méthodes quantitatives avec R">
 <meta property="og:type" content="book">
 <meta property="og:url" content="mqr.teluq.ca/calculer.html">
@@ -17,9 +17,9 @@
 <meta name="twitter:description" content="Dans cette section, les fonctions essentielles couramment utilisées sont présentées en rafale. L’accent est mis sur la définition de la fonction (qu’est-ce qu’elle fait?) et son utilité (à quoi...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.8.0/transition.js"></script><script src="libs/bs3compat-0.8.0/tabs.js"></script><script src="libs/bs3compat-0.8.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.10.0/transition.js"></script><script src="libs/bs3compat-0.10.0/tabs.js"></script><script src="libs/bs3compat-0.10.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+<link href="libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet">
 <script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script><script src="libs/viz-1.8.2/viz.js"></script><link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
 <script src="libs/grViz-binding-1.0.11/grViz.js"></script><!-- 
     \(
@@ -284,7 +284,7 @@
 <h2>
 <span class="header-section-number">3.7</span> La variance<a class="anchor" aria-label="anchor" href="#la-variance"><i class="fas fa-link"></i></a>
 </h2>
-<p>La variance d’un échantillon est une mesure de dispersion. Elle représente la somme des écarts (distances) par rapport à la moyenne au carré divisée par la taille d’échantillon moins <span class="math inline">\(1\)</span>. Mathématiquement, il s’agit de l’équation <a href="calculer.html#eq:var">(3.1)</a>.</p>
+<p>La variance d’un échantillon est une mesure de dispersion. Elle représente la somme des écarts (distances) par rapport à la moyenne au carré divisée par la taille d’échantillon moins <span class="math inline">\(1\)</span>. Mathématiquement, il s’agit de l’équation <a href="calculer.html#eq:var">(3.1)</a>.</p>
 <p><span class="math display" id="eq:var">\[
 s^2 = \frac{1}{n-1}\sum_{i=1}^n(x_i-\bar{x})^2
 \tag{3.1}
@@ -352,9 +352,9 @@ Une asymétrie négative indique que la distribution est asymétrique à gauche 
 <span>          <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">x</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span><span class="op">^</span><span class="fl">3</span> <span class="co"># l'écart type au cube</span></span>
 <span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">skew</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
-<p><strong>R</strong> de base ne contient pas de fonction permettant de calculer l’asymétrie. Il faut utiliser le package <code>moments</code> pour obtenir la fonction requise, <code>moments::skewness()</code> ou <code>psych</code> avec <code><a href="https://rdrr.io/pkg/psych/man/skew.html">psych::skew()</a></code>. Plusieurs autres packages offrent des fonctions.</p>
+<p><strong>R</strong> de base ne contient pas de fonction permettant de calculer l’asymétrie. Il faut utiliser le package <code>moments</code> pour obtenir la fonction requise, <code><a href="https://rdrr.io/pkg/moments/man/skewness.html">moments::skewness()</a></code> ou <code>psych</code> avec <code><a href="https://rdrr.io/pkg/psych/man/skew.html">psych::skew()</a></code>. Plusieurs autres packages offrent des fonctions.</p>
 <div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">moments</span><span class="fu">::</span><span class="fu">skewness</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu">moments</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/moments/man/skewness.html">skewness</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
 <span><span class="fu">psych</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/psych/man/skew.html">skew</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div id="laplatissement" class="section level2" number="3.10">
@@ -380,16 +380,16 @@ L’aplatissement <span class="math inline">\(\beta_2\)</span> représente l’<
 <span>          <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">x</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span><span class="op">^</span><span class="fl">4</span> <span class="co"># l'écart type au bicarré</span></span>
 <span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">kurt</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
-<p><strong>R</strong> de base ne contient pas de fonction permettant de calculer l’aplatissement. Il faut utiliser le package <code>moments</code> pour obtenir la fonction requise <code>moments::kurtosis()</code> ou <code>psych</code> avec <code><a href="https://rdrr.io/pkg/psych/man/skew.html">psych::kurtosi()</a></code>. Il faut noter que <code>moments</code> calcule l’aplatissement régulier et que, dans le cas de <code>psych</code>, il y a plusieurs types d’aplatissement, le plus commun étant le type <code>1</code> (aplatissement excessif). Le type <code>3</code> est toutefois plus désirables comme il n’est pas biaisé. Plusieurs autres packages offrent des fonctions pour calculer l’aplatissement.</p>
+<p><strong>R</strong> de base ne contient pas de fonction permettant de calculer l’aplatissement. Il faut utiliser le package <code>moments</code> pour obtenir la fonction requise <code><a href="https://rdrr.io/pkg/moments/man/kurtosis.html">moments::kurtosis()</a></code> ou <code>psych</code> avec <code><a href="https://rdrr.io/pkg/psych/man/skew.html">psych::kurtosi()</a></code>. Il faut noter que <code>moments</code> calcule l’aplatissement régulier et que, dans le cas de <code>psych</code>, il y a plusieurs types d’aplatissement, le plus commun étant le type <code>1</code> (aplatissement excessif). Le type <code>3</code> est toutefois plus désirables comme il n’est pas biaisé. Plusieurs autres packages offrent des fonctions pour calculer l’aplatissement.</p>
 <div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">moments</span><span class="fu">::</span><span class="fu">kurtosis</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">-</span> <span class="fl">3</span></span>
+<code class="sourceCode R"><span><span class="fu">moments</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/moments/man/kurtosis.html">kurtosis</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">-</span> <span class="fl">3</span></span>
 <span><span class="fu">psych</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/psych/man/skew.html">kurtosi</a></span><span class="op">(</span><span class="va">x</span>, type <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div id="les-graines" class="section level2" number="3.11">
 <h2>
 <span class="header-section-number">3.11</span> Les graines<a class="anchor" aria-label="anchor" href="#les-graines"><i class="fas fa-link"></i></a>
 </h2>
-<p>Par souci de reproductibilité, il est possible de déclarer une valeur de départ aux variables pseudoaléatoires, ce que l’on nomme une graine ou <em>seed</em> en anglais. Cela permet de toujours d’obtenir les mêmes valeurs à plusieurs reprises, ce qui est très utile lors d’élaboration de simulations complexes ou lorsque des étudiants essaient de répliquer les résultats tirés d’un ouvrage pédagogique.</p>
+<p>Par souci de reproductibilité, il est possible de déclarer une valeur de départ aux variables pseudoaléatoires, ce que l’on nomme une graine ou <em>seed</em> en anglais. Cela permet de toujours d’obtenir les mêmes valeurs à plusieurs reprises, ce qui est très utile lors d’élaboration de simulations ou lorsque des étudiants essaient de répliquer les résultats tirés d’un ouvrage pédagogique.</p>
 <div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="st">"nombre"</span><span class="op">)</span></span></code></pre></div>
 <p>Il suffit de spécifier cette commande (en remplaçant <code>nombre</code> par un nombre) en début de syntaxe pour définir la séquence de nombre. Cette fonction sera utilisée à plusieurs reprises dans le but de reproduire les mêmes sorties.</p>
@@ -504,11 +504,11 @@ min, max
 <span id="cb53-16"><a href="calculer.html#cb53-16" tabindex="-1"></a><span class="fu">dnorm</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>))</span>
 <span id="cb53-17"><a href="calculer.html#cb53-17" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="fl">0.399</span> <span class="fl">0.242</span></span></code></pre></div>
 <p>Ces quatre lettres peuvent être associées à toutes les distributions énumérées et bien d’autres. Elles respectent toutes ce cadre.</p>
-<p>Afin d’illustrer ce que font ces variables, la Figure <a href="calculer.html#fig:distex">3.1</a> montre <code><a href="https://rdrr.io/r/stats/Normal.html">dnorm()</a></code>, <code><a href="https://rdrr.io/r/stats/Normal.html">pnorm()</a></code> et <code><a href="https://rdrr.io/r/stats/Normal.html">qnorm()</a></code>. La fonction <code><a href="https://rdrr.io/r/stats/Normal.html">rnorm()</a></code> n’est pas illustrée. Cette dernière retourne des valeurs de l’axe des <span class="math inline">\(x\)</span> en respectant les probabilités d’une courbe normale. La fonction <code><a href="https://rdrr.io/r/stats/Normal.html">dnorm()</a></code> prend en argument une valeur de l’axe des <span class="math inline">\(x\)</span> et retourne la valeur de la courbe normale (la densité) correspondante, soit la courbe illustrée. En d’autres termes, elle retourne la hauteur de la courbe (ligne pointillée). Les fonctions <code><a href="https://rdrr.io/r/stats/Normal.html">pnorm()</a></code> et <code><a href="https://rdrr.io/r/stats/Normal.html">qnorm()</a></code> sont interreliées. La fonction <code><a href="https://rdrr.io/r/stats/Normal.html">pnorm()</a></code> prend une valeur de l’axe des <span class="math inline">\(x\)</span> et retourne sa probabilité (de <span class="math inline">\(-\infty\)</span> à <span class="math inline">\(x\)</span>), soit la zone grise de la Figure <a href="calculer.html#fig:distex">3.1</a>. La fonction <code><a href="https://rdrr.io/r/stats/Normal.html">qnorm()</a></code>, quant à elle, prend une probabilité et retourne la valeur sur l’axe des <span class="math inline">\(x\)</span> correspondant.</p>
+<p>Afin d’illustrer ce que font ces variables, la Figure <a href="calculer.html#fig:distex">3.1</a> montre <code><a href="https://rdrr.io/r/stats/Normal.html">dnorm()</a></code>, <code><a href="https://rdrr.io/r/stats/Normal.html">pnorm()</a></code> et <code><a href="https://rdrr.io/r/stats/Normal.html">qnorm()</a></code>. La fonction <code><a href="https://rdrr.io/r/stats/Normal.html">rnorm()</a></code> n’est pas illustrée. Cette dernière retourne des valeurs de l’axe des <span class="math inline">\(x\)</span> en respectant les probabilités d’une courbe normale. La fonction <code><a href="https://rdrr.io/r/stats/Normal.html">dnorm()</a></code> prend en argument une valeur de l’axe des <span class="math inline">\(x\)</span> et retourne la valeur de la courbe normale (la densité) correspondante, soit la courbe illustrée. En d’autres termes, elle retourne la hauteur de la courbe (ligne pointillée). Les fonctions <code><a href="https://rdrr.io/r/stats/Normal.html">pnorm()</a></code> et <code><a href="https://rdrr.io/r/stats/Normal.html">qnorm()</a></code> sont interreliées. La fonction <code><a href="https://rdrr.io/r/stats/Normal.html">pnorm()</a></code> prend une valeur de l’axe des <span class="math inline">\(x\)</span> et retourne sa probabilité (de <span class="math inline">\(-\infty\)</span> à <span class="math inline">\(x\)</span>), soit la zone grise de la Figure <a href="calculer.html#fig:distex">3.1</a>. La fonction <code><a href="https://rdrr.io/r/stats/Normal.html">qnorm()</a></code>, quant à elle, prend une probabilité et retourne la valeur sur l’axe des <span class="math inline">\(x\)</span> correspondant.</p>
 <div class="figure">
 <span style="display:block;" id="fig:distex"></span>
-<img src="03-Calculer_files/figure-html/distex-1.png" alt="Illustration des fonctions liées à la distribution normale" width="90%" height="90%"><p class="caption">
-Figure 3.1: Illustration des fonctions liées à la distribution normale
+<img src="03-Calculer_files/figure-html/distex-1.png" alt="Illustration des fonctions liées à la distribution normale." width="90%" height="90%"><p class="caption">
+Figure 3.1: Illustration des fonctions liées à la distribution normale.
 </p>
 </div>
 <p>Ces fonctions entreront en jeu dans le chapitre <a href="inf%C3%A9rer.html#inf%C3%A9rer">Inférer</a>.</p>
@@ -552,7 +552,7 @@ Figure 3.1: Illustration des fonctions liées à la distribution normale
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2024-12-16.</p>
+    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2026-05-12.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

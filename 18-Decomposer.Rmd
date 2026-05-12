@@ -7,44 +7,44 @@ library(pracma)
 
 # Décomposer
 
-Prédire une variable dépendante à partir de variables indépendantes n'est pas la seule façon de décortiquer des données. Il existe des techniques statistiques qui réorganisent l'information (les corrélations) des variables. Il s'agit des **analyses factorielles**. Elles s'intéressent plus à la *structure* des corrélations qu'aux *systèmes* qui les lient. Bien qu'il s'agisse de nuances sur le plan statistique, les deux côtés d'une même médaille, les différences sont importantes sur le plan théorique. Plutôt que de parler de *cause* à *effet*, ce sera plutôt la structure sous-tendant les variables qui sera d'intérêt.
+Prédire une variable dépendante à partir de variables indépendantes n'est pas la seule façon de décortiquer des données. Il existe des techniques statistiques qui réorganisent l'information (les corrélations) des variables. Il s'agit des **analyses factorielles**. Elles s'intéressent plus à la *structure* des corrélations qu'aux *systèmes* qui les lient. Bien qu'il s'agisse de nuances sur le plan statistique, les deux côtés d'une même médaille, les différences sont importantes sur le plan théorique. Plutôt que de parler de *cause* à *effet*, c'est plutôt la structure sous-tendant les variables qui est d'intérêt.
 
 À titre d'illustration, la Figure\ \@ref(fig:regaf) présente à gauche la régression, $x_1$ prédit $x_2$, et à droite le facteur $F$ qui est la source de $x_1$ et $x_2$. 
 
-```{r regaf, echo = FALSE, fig.cap = "Représentations de la régression et l'analyse factorielle", out.height="75%" , out.width="75%", fig.align = "center"}
+```{r regaf, echo = FALSE, fig.cap = "Les représentations de la régression et l'analyse factorielle.", out.height="75%" , out.width="75%", fig.align = "center"}
 knitr::include_graphics("image//reg_af.png")
 ```
 
-Plusieurs éléments permettent de mieux mettre en évidence les différences entre les deux modèles. Les **variables manifestes** $x_i$ sont des mesures empiriques mesurées auprès d'unités d'observations. Elles sont représentées par des rectangles. Le facteur $F$ est représenté par un cercle. Il s'agit d'une **variable latente**, une variable non observée et inférée à partir des variables manifestes. Par exemple, les habiletés de lecture $x_1$ sont liées aux habiletés en mathématiques $x_2$. D'un côté, mieux le participant lit, plus il répond rapidement et exactement aux questions de mathématiques. De l'autre côté, les habiletés de mathématiques et de lectures peuvent aussi être liées à un facteur commun : l'intelligence. Les habiletés de mathématiques et de lectures sont observables par des évaluations, mais l'intelligence s'infère à partir de ces tests^[Il est particulièrement important d'identifier le facteur comme variable latente. Autrement, le modèle à droite pourrait également représenté une **variable confondante**, une variable qui cause *accidentellement* la corrélation entre deux autres. Par exemple, le lien entre l'intelligence et la grandeur des pieds provient de l'effet de l'âge.]. C'est là que les analyses factorielles entrent en jeu.
+Plusieurs éléments permettent de mieux mettre en évidence les différences entre les deux modèles. Les **variables manifestes** $x_i$ sont des mesures empiriques mesurées auprès d'unités d'observations. Elles sont représentées par des rectangles. Le facteur $F$ est représenté par un cercle. Il s'agit d'une **variable latente**, une variable non observée et inférée à partir des variables manifestes. Par exemple, les habiletés en lecture $x_1$ sont liées aux habiletés en mathématique $x_2$. D'un côté, mieux le participant lit, plus il répond rapidement et exactement aux questions de mathématique. De l'autre côté, les habiletés en mathématique et en lecture peuvent aussi être liées à un facteur commun : l'intelligence. Les habiletés en mathématique et en lecture sont observables par des évaluations, mais l'intelligence s'infère à partir de ces tests^[Il est particulièrement important d'identifier le facteur comme variable latente. Autrement, le modèle à droite pourrait également représenté une **variable confondante**, une variable qui cause *accidentellement* la corrélation entre deux autres. Par exemple, le lien entre l'intelligence et la grandeur des pieds provient de l'effet de l'âge.]. C'est là que les analyses factorielles entrent en jeu.
 
-Les analyses factorielles sont utilisées, par exemple, lors de la création d'un test psychométrique. Le psychométricien s'intéresse à connaître quels items (variables manifestes) sont liés sur quelle dimension et à quel degré. Les items communs sont liés sur certains facteurs et peu ou pas sur les autres. Le facteur à un fort potentiel explicatif pour les items qui lui sont fortement liés, voire même représente un concept, thème ou construit théorique commun partagé entre ces items.
+Les analyses factorielles sont utilisées, par exemple, lors de la création d'un test psychométrique. Le psychométricien s'intéresse à connaître quels items (variables manifestes) sont liés sur quelle dimension et à quel degré. Les items communs sont alors liés fortement sur certains facteurs et faiblement sur d'autres. Le facteur à un fort potentiel explicatif pour les items qui lui sont fortement liés, voire même représente un concept, thème ou construit théorique commun partagé entre ces items.
 
 <!-- L'ACP a une optique d'utilisation beaucoup plus grande que l'analyse factorielle exploratoire. L'expérimentateur pourrait s'intéresser à seulement réorganiser la variance sans aucune visée *factorielle*. Il pourrait vouloir identifier l'ensemble des meilleurs prédicteurs ou encore résumer l'information de façon à générer des figures qui seraient autrement trop complexes. Enfin, l'ACP peut aussi être conceptualisé comme une forme de compression comme en informatique. Puisque l'information se trouve dans les premières composantes, les moins informatives peuvent être discartées afin de résumer un maximum d'informations sur les données avec le minimum de facteurs. -->
 
 
-Dans ce livre, deux types d'analyse factorielle sont abordées : l'**analyse en composantes principales** et l'**analyse factorielle**. La première est un modèle athéorique (sans hypothèses sous-jacentes) à la structure des données, alors que la seconde présuppose, comme hypothèse, un ou des facteurs latents communs. Sur le plan computationnel, l'analyse en composantes principales réorganise tous les facteurs, alors que l'analyse factorielle extrait un nombre donné de facteurs. Les analyses factorielles se distinguent également en deux catégories : **exploratoire** et **confirmatoire**. Ces termes distinguent si l'analyse contraint ou non la structure factorielle. Tout cela sera abordé plus en détails dans les prochains chapitres.
+Dans ce livre, deux types d'analyse factorielle sont abordées : l'**analyse en composantes principales** et l'**analyse factorielle**. La première est un modèle athéorique (sans hypothèses sous-jacentes) à la structure des données, alors que la seconde présuppose, comme hypothèse, un ou des facteurs latents communs. Sur le plan computationnel, l'analyse en composantes principales réorganise tous les facteurs, alors que l'analyse factorielle extrait un nombre donné de facteurs. Les analyses factorielles se distinguent également en deux catégories\ : **exploratoire** et **confirmatoire**. Spécifiquement, ces deux termes distinguent si l'analyse contraint (confirmatoire) ou non (exploratoire) la structure factorielle. Tout cela sera abordé plus en détails dans les prochains chapitres.
 
 ## L'analyse en composantes principales
 
-L'analyse en composantes principales (ACP) fait partie de la famille des analyses factorielle exploratoire. Elle consiste à réorganiser des variables corrélées (une matrice de covariance) en nouvelles variables orthogonales (décorrélées) les unes des autres. Ces nouvelles *variables* sont des composantes principales, axes principaux ou encore des dimensions. Il s'agit d'une technique à la fois géométrique et statistique dont les champs d'application vont de la psychologie, la sociologie, la biologie, la chimie à la physique quantique jusqu'aux mathématiques pures. Elle ne se limite donc pas qu'à la psychométrie.
+L'analyse en composantes principales (ACP) fait partie de la famille des analyses factorielles exploratoires. Elle consiste à réorganiser des variables corrélées (une matrice de covariance) en nouvelles variables orthogonales (décorrélées) les unes des autres. Ces nouvelles *variables* sont des composantes principales, axes principaux ou encore des dimensions. Il s'agit d'une technique à la fois géométrique et statistique dont les champs d'application vont de la psychologie, la sociologie, la biologie, la chimie, la physique quantique jusqu'aux mathématiques pures. Elle ne se limite donc pas qu'à la psychométrie.
 
-L'ACP prend comme base la matrice de corrélation^[Afin de simplifier le propos, seule l'analyse en composantes principales sur une matrice corrélation sera présentée.] et la réorganisation (essentiellement une rotation géométrique) afin que les nouvelles dimensions soient indépendantes l'une de l'autre. L'ACP procure trois informations cruciales sur une matrice de corrélation, les valeurs propres et les vecteurs propres, desquels les *loadings*^[Souvent traduit par *charge*, mais le terme loading semble plus approprié.] sont calculables.
+L'ACP prend comme base la matrice de corrélation^[Afin de simplifier le propos, seule l'analyse en composantes principales sur une matrice corrélation sera présentée.] et la réorganise (essentiellement une rotation géométrique) afin que les nouvelles dimensions soient indépendantes l'une de l'autre. L'ACP procure trois informations cruciales sur une matrice de corrélation, les valeurs propres et les vecteurs propres, desquels les *loadings*^[Souvent traduit par *charge*, mais le terme loading semble plus approprié.] sont calculables.
 
 ### Les valeurs propres
 
 Les **valeurs propres** (*eigenvalues*) représentent l'aspect crucial de l'ACP, soit l'importance de chaque composante à représenter les variables. Plus les variables sont liées sur un même axe (en nombre et en poids), plus la valeur propre de cet axe sera élevée. Mathématiquement, les valeurs propres sont représentées par un vecteur $\Lambda$ ou une matrice diagonale $\text{diag}(\Lambda) = \mathbf{\Lambda}$.
 
-La somme des valeurs propres égale la somme des variances, ce qui équivaut en matrice de corrélation à $p$, le nombre de variables. Comme il s'agit du potentiel maximal de ce qui peut être expliqué et que les valeurs sont une part de ce total, il est possible de calculer leur importance relative par des pourcentages. Par exemple une valeur propre de 5 sur un total de $p=10$ variables signifie que l'axe correspondant explique $5/10  \times 100 = 50$% de la variance de la matrice de corrélation. En d'autres termes, la valeur propre est une bonne métrique de l'importance d'une dimension.
+La somme des valeurs propres est égale à la somme des variances, ce qui équivaut pour la matrice de corrélation à $p$, le nombre de variables. Comme il s'agit du potentiel maximal de ce qui peut être expliqué et que les valeurs sont une part de ce total, il est possible de calculer leur importance relative par des pourcentages. Par exemple une valeur propre de 5 sur un total de $p=10$ variables signifie que l'axe correspondant explique $5/10  \times 100 = 50$% de la variance de la matrice de corrélation. En d'autres termes, la valeur propre est une bonne mesure de l'importance d'une dimension.
 
-En identifiant les composantes principales, l'ACP révèle du même coup l'importance de chacune d'elle. Il devient tout naturel de les classer en ordre décroissant^[Bien que leur ordre soit arbitraire en principe.].
+En identifiant les composantes principales, l'ACP révèle du même coup l'importance de chacune d'elle. Il est alors naturel de les classer en ordre décroissant^[Bien que leur ordre soit arbitraire en principe.].
 
 ### Les vecteurs propres
 
-Les vecteurs propres (*eigenvectors*) sont les axes d'orientation des valeurs propres dans le plan de la matrice de corrélation originale. Chaque axe représenté est orthogonal (indépendant) aux autres. Ils sont également normalisés, c'est-à-dire des vecteurs unitaires (la somme de leur carré égale 1). Mathématiquement, les vecteurs propres sont représentés par une matrice $\mathbf{V}$.
+Les vecteurs propres (*eigenvectors*) sont les axes d'orientation des valeurs propres dans le plan de la matrice de corrélation originale. Chaque axe représenté est orthogonal (indépendant) aux autres. Ils sont également normalisés, c'est-à-dire des vecteurs unitaires (la somme de leur carré est égale à 1). Mathématiquement, les vecteurs propres sont représentés par une matrice $\mathbf{V}$.
 
 ### Les loadings
 
-Les vecteurs propres avec les valeurs propres permettent de calculer les loadings. Ils correspondent au lien entre chaque axe et les variables. En d'autres termes, les loadings correspondent au degré selon lequel une variable corrèle avec un facteur. C'est l'importance relative de chaque variable sur chaque axe. Par exemple, les variables très associées avec un certain axe ont de très forts loadings en lien avec cet axe, mais des loadings beaucoup plus faibles avec les axes avec lesquels ils sont moins associés. L'équation\ \@ref(eq:loadings) détaille l'équation.
+Les vecteurs propres avec les valeurs propres permettent de calculer les loadings. Ils correspondent au lien entre chaque axe et les variables. En d'autres termes, les loadings correspondent au degré selon lequel une variable corrèle avec un facteur. C'est l'importance relative de chaque variable sur chaque axe. Par exemple, les variables fortement associées partageront de très forts loadings avec un certain axe, alors que celles faiblement associées auront des loadings beaucoup plus faibles avec les axes qu'elles ne partagent pas. L'équation\ \@ref(eq:loadings) détaille cette relation.
 
 \begin{equation}
 \mathbf{L} =\mathbf{V}\mathbf{\Lambda^{\frac{1}{2}}}
@@ -81,7 +81,7 @@ L'argument `empirical = TRUE` assure que la matrice de corrélation de la popula
 
 La Figure\ \@ref(fig:plotacp) illustre la répartition des 10 participants par rapport aux variables\ 1\ et\ 2. La ligne pointillée désigne la droite de régression qui les relie, soit la pente $\beta = .8$.
 
-```{r plotacp, echo = FALSE, fig.cap = "Présentation des données (`jd.acp`)", out.height="75%" , out.width="75%", fig.align = "center"}
+```{r plotacp, echo = FALSE, fig.cap = "Présentation des données (`jd.acp`).", out.height="75%" , out.width="75%", fig.align = "center"}
 jd.acp <- as.data.frame(jd.acp)
 res <- coef(lm(x2~x1, data = jd.acp))
 plot(jd.acp, xlim = c(-2,2), ylim = c(-2,2), pch = 19, bty = "l", lwd = 2, yaxs="i", xlab = "Variable 1", ylab = "Variable 2")
@@ -92,13 +92,13 @@ segments(x0 = -4, y0 = res[1]+res[2] * -4, x1 = 3, y1 = res[1]+res[2]*3, lwd = 2
 
 ## Analyse
 
-Il existe plusieurs fonctions dans **R**, mais aussi dans des packages, pour réaliser l'ACP. L'analyse en soi n'a rien de sorcier (en autant que les statisticiens ne font pas de la magie), c'est surtout l'emballage (arguments, graphiques et sorties) qui change de l'une à l'autre des méthodes. Ces fonctions précalculent et extraient les statistiques désirées, rien que l'utilisateur ne peut faire lui-même.
+Il existe plusieurs fonctions dans **R**, mais aussi dans des packages, pour réaliser l'ACP. L'analyse en soi n'a rien de sorcier (cela en supposant la statistique ne repose pas sur la magie), c'est surtout l'emballage (arguments, graphiques et sorties) qui change en fonction de la méthode utilisée. Ces fonctions précalculent et extraient les statistiques désirées, rien que l'utilisateur ne peut faire lui-même.
 
 Il existe quatre fonctions de base **R** pour faire l'analyse en composantes principales. Les deux principales, `eigen()` et `svd()`, fournissent des résultats virtuellement identiques, mais se distinguent sur leur limite de ce qu'elles peuvent accomplir. Les deux autres, `princomp() et  `prcomp()`, sont leur emballage respectif. Les détails des calculs seront présentés dans une autre section, [Les calculs de l'analyse en composantes principales].
 
 ### `eigen()`
 
-La fonction `eigen()` est celle des puristes. Rudimentaire, elle prend en argument une matrice de covariance ou de corrélation et calcule les valeurs propres (`values`) et les vecteurs propres (`vectors`).
+La fonction `eigen()` est celle des puristes. Rudimentaire, elle prend comme argument une matrice de covariance ou de corrélation et calcule les valeurs propres (`values`) et les vecteurs propres (`vectors`).
 
 ```{r eigen}
 # L'analyse de la matrice de corrélation 
@@ -139,13 +139,13 @@ Les résultats sont identiques à la fonction `eigen()`. Le lecteur attentif aur
 
 La fonction `svd()` est plus générale et peut utiliser des matrices rectangulaires. Il faut faire attention de ne pas lui fournir le jeu de données et bien la matrice de covariance ou de corrélation.
 
-Il convient également d'ajouter que, comme $\mathbf{\Sigma} = \mathbf{S}$ (à l'aide de l'argument `empirical = TRUE` de `MASS::mvrnorm()`), il n'était pas nécessaire de générer de données à proprement parler pour réaliser les analyses, car `svd(S)` ou `eigen(S)` offre les mêmes résultats. C'est la matrice de corrélation qui est décomposée et non les participants. Remarquez d'ailleurs comment l'ACP est indépendante de la taille d'échantillon^[La taille d'échantillon a des conséquences sur la matrice de corrélation, mais l'ACP en est techniquement indépendante.].
+Il convient également d'ajouter que, comme $\mathbf{\Sigma} = \mathbf{S}$ (à l'aide de l'argument `empirical = TRUE` de `MASS::mvrnorm()`), il n'était pas nécessaire de générer de données pour réaliser les analyses, car `svd(S)` ou `eigen(S)` offre les mêmes résultats. C'est la matrice de corrélation qui est décomposée et non les participants. Remarquez d'ailleurs comment l'ACP est indépendante de la taille d'échantillon^[La taille d'échantillon a des conséquences sur la matrice de corrélation, mais l'ACP en est techniquement indépendante.].
 
 ## Représentations des résultats
 
 La Figure\ \@ref(fig:acpsuj) montre à gauche les données originales sur les axes représentés par les deux variables (une reprise de la Figure\ \@ref(fig:plotacp)). À droite, il s'agit de la rotation trouvée par l'ACP (`eigen()` ou `svd()`). Les participants conservent entre eux les mêmes distances par rapport aux autres, mais aussi par rapport aux axes originaux représentés par des lignes pointillées. C'est vraiment l'orientation du plan qui change^[Tout problème de distance, s'il y a lieu, est dû à l'échelle des figures.].
 
-```{r acpsuj, echo = FALSE, fig.align='center',fig.cap='Représentations des participants selon les variables (gauche) et les composantes principales (droite).', out.height="75%", out.width="75%"}
+```{r acpsuj, echo = FALSE, fig.align='center',fig.cap='Les représentations des participants selon les variables (gauche) ou selon les composantes principales (droite).', out.height="75%", out.width="75%"}
 r.svd <- svd(jd.acp)
 participants <- r.svd$u %*% diag(r.svd$d)
 ld <- res.eig$vectors %*% diag(sqrt(res.eig$values))
@@ -163,11 +163,11 @@ text(x = 2.3, y= ld[2,2] / ld[1,2] * - 2-.5, labels = "axe2", srt = -47)
 text(x = 1.75, y= -ld[2,2] / ld[1,2] * -2, labels = "axe1", srt = -47)
 ```
 
-La première composante retrouvée correspond (approximativement) à la droite de régression de la Figure\ \@ref(fig:plotacp). Il s'agit de l'information partagée par les deux variables\ : c'est leur axe commun. L'erreur résiduelle correspond au deuxième axe (l'axe vertical). Cette intuition est fondamentale : une valeur propre élevée implique une dimension où de la variance est partagée entre les variables, alors qu'une valeur propre plus faible aura tendance à représenter une dimension de résidus, et par définition, d'informations non partagées. 
+La première composante retrouvée correspond (approximativement) à la droite de régression de la Figure\ \@ref(fig:plotacp). Il s'agit de l'information partagée par les deux variables\ : c'est leur axe commun. L'erreur résiduelle correspond au deuxième axe (l'axe vertical). Cette intuition est fondamentale : une valeur propre élevée implique une dimension où la variance est partagée entre les variables, alors qu'une valeur propre plus faible aura tendance à représenter une dimension de résidus, et par définition, de l'informations non partagées. 
 
 La Figure\ \@ref(fig:varacp) offre une vue de l'agencement des variables sur les deux axes. Il s'agit des loadings des variables dans l'espace des composantes. Cette représentation est assez triviale pour deux variables, mais peut devenir très pertinente lorsque plusieurs variables (ou items) sont concernées. Il est possible d'observer alors des regroupements d'items sur les facteurs. Elle se limite toutefois à une ou deux composantes étant donné la complexité de réaliser et d'interpréter des figures de trois dimensions et plus.
 
-```{r varacp, echo = FALSE, fig.align='center', fig.cap="Représentations des variables selon les composantes principales.", out.height="75%", out.width="75%"}
+```{r varacp, echo = FALSE, fig.align='center', fig.cap="La représentation des variables selon les composantes principales.", out.height="75%", out.width="75%"}
 plot(ld, xlim = c(-1,1), ylim = c(-1,1), pch = 19, bty = "l", lwd = 2, yaxs="i", xlab = "Composante 1", ylab = "Composante 2", pty = "s")
 segments(x0 = -2, y0 = 0, y1 = 0, x1 = 2, col = "grey")
 segments(x0 = 0, y0 = -2, y1 = 2, x1 = 0, col = "grey")
@@ -269,7 +269,7 @@ a\lambda^2+b\lambda+c=0 \implies \lambda=\frac{-b \pm \sqrt{b^2-4ac}}{2a}
 
 Les solutions sont $.2$ et $1.8$. Graphiquement, la Figure\ \@ref(fig:polycarf) illustre l'équation polynomiale caractéristique \@ref(eq:polycar2).
 
-```{r polycarf, echo = FALSE, out.height="75%", out.width="75%",fig.align="center", fig.cap="L'équation du polynôme caractéristique"}
+```{r polycarf, echo = FALSE, out.height="75%", out.width="75%",fig.align="center", fig.cap="L'équation du polynôme caractéristique."}
 x = seq(0, 2, by = .01)
 y = x^2 - 2 * x + .36
 plot(x, y, pty = "s", bty = "l", type = "l", lwd = 2, xlab = expression(lambda), ylab = expression(paste(italic("f"),"(",lambda,")")))
@@ -462,7 +462,7 @@ for (i in 1:length(E)) {
 V <- t(t(V) / sqrt(colSums(V^2)))
 ```
 
-Il suffit maintenant de jumeler la syntaxe pour trouver les valeurs propres et celle ci-haut pour créer sa propre fonction d'analyse en composantes principales. 
+Il suffit maintenant de jumeler la syntaxe pour trouver les valeurs propres et celle ci-dessus pour créer sa propre fonction d'analyse en composantes principales. 
 
 ```{r}
 acp.maison <- function(S){

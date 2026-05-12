@@ -8,7 +8,7 @@ Dans cette section, le logiciel **R** est brièvement décrit ainsi qu'une justi
 
 **R** [@R-base] est un logiciel de programmation statistique libre-accès et un environnement pour la computation statistique et l'affichage graphique. Il s'agit d'un projet GNU qui est similaire au langage et à l'environnement S, développés aux Laboratoires Bell (anciennement AT\&T, aujourd'hui Lucent Technologies) par John Chambers. Créé par **R**oss Ihaka et **R**obert Gentleman, **R** fournit une grande variété de techniques statistiques (modélisation linéaire et non linéaire, analyses statistiques classiques, analyse de séries chronologiques, classification) et graphiques, et est hautement extensible. 
 
-**R** est un logiciel basé sur la syntaxe plutôt qu'une approche pointer-et-cliquer (*point-and-click*) comme les logiciels traditionnels. Il peut être plus effrayant ou apparaître trop complexe pour un nouvel utilisateur, mais une fois apprivoisée, cette bête démontre un fort potentiel que ce soit en automatisation, en personnalisation, en production de figure de haute qualité, etc. **R** a l'avantage de mettre en plein contrôle ses utilisateurs. Bref, c'est une créature qu'il vaut la peine de maîtriser.
+**R** est un logiciel basé sur la syntaxe plutôt qu'une approche pointer-et-cliquer (*point-and-click*) comme les logiciels traditionnels. Il peut être plus effrayant ou apparaître trop compliqué pour un nouvel utilisateur, mais une fois apprivoisée, cette bête démontre un fort potentiel que ce soit en automatisation, en personnalisation, en production de figure de haute qualité, etc. **R** a l'avantage de mettre en plein contrôle ses utilisateurs. Bref, c'est une créature qu'il vaut la peine de maîtriser.
 
 ## Pourquoi **R**?
 
@@ -51,9 +51,9 @@ Il existe plusieurs interfaces utilisateurs graphiques (GUI pour *Graphical User
 
 ## Démarrer **R** ou **R**Studio
 
-À l'ouverture de **R**, illustrée à la Figure \@ref(fig:ConsoleR), le logiciel présente la console, une interface très rudimentaire (et assez déstabilisante pour un logiciel pourtant si promu). Une fois le logiciel ouvert, l'application offre une invitation discrète à écrire des commandes. Le symbole `>` au bas de la console est une invite (*prompt*) indiquant où taper les commandes. C'est à cette ligne de commande que les expressions sont immédiatement évaluées.
+À l'ouverture de **R**, illustrée à la Figure\ \@ref(fig:ConsoleR), le logiciel présente la console, une interface très rudimentaire (et assez déstabilisante pour un logiciel pourtant si promu). Une fois le logiciel ouvert, l'application offre une invitation discrète à écrire des commandes. Le symbole `>` au bas de la console est une invite (*prompt*) indiquant où taper les commandes. C'est à cette ligne de commande que les expressions sont immédiatement évaluées.
 
-```{r ConsoleR, fig.cap="Ouverture (effrayante!) de la console R",echo=FALSE, out.width="75%", fig.align="center"}
+```{r ConsoleR, fig.cap="Ouverture (effrayante!) de la console R.",echo=FALSE, out.width="75%", fig.align="center"}
 knitr::include_graphics("image//ConsoleR.PNG")
 ```
 
@@ -65,13 +65,13 @@ knitr::include_graphics("image//ConsoleR.PNG")
 
 Plusieurs nouveaux utilisateurs se limitent à ouvrir **R** y faire quelques calculs, puis le referme et ne l'ouvre plus jamais. Ce livre tente d'emmener le lecteur un peu plus loin.
 
-Dans la Figure \@ref(fig:ConsoleR), **R** est défini en français. Cela n'a pour effet que de modifier le menu déroulant ("Fichier, Edition, etc.") au sommet du logiciel et les différentes options de ce menu. Le fonctionnement reste le même (les fonctions ne sont pas traduites, par exemple).
+Dans la Figure\ \@ref(fig:ConsoleR), **R** est défini en français. Cela n'a pour effet que de modifier le menu déroulant ("Fichier, Edition, etc.") au sommet du logiciel et les différentes options de ce menu. Le fonctionnement reste le même (les fonctions ne sont pas traduites, par exemple).
 
 La console **R** n'étant pas un éditeur de texte, il faudra enregistrer la syntaxe utilisée lors d'une séance pour la conserver. Le logiciel offre une option d'écriture de script intégré, mais n'est pas lié directement à la console. Il faudra donc se résoudre à abuser du copier-coller ou à sourcer le script (tâche plus ardue pour les nouveaux utilisateurs). Plusieurs éditeurs de texte sont utiles ou même construits pour directement travailler avec **R**, le plus connu étant certainement **R**Studio, déjà mentionné. L'environnement intégré est beaucoup plus fonctionnel.
 
-La Figure \@ref(fig:ConsoleRStudio), montre l'interface de **R**Studio, déjà un peu moins intimidante que celle de **R**. À l'ouverture de **R**Studio, quatre types de fenêtres sont disponibles : la console (cadran inférieur gauche), les scripts (cadran supérieur gauche), l'environnement (cadran supérieur droit) et l'affichage (cadran inférieur droit). L'emplacement de ces cadrans peut être modifié selon les désirs de l'utilisateur.  
+La Figure\ \@ref(fig:ConsoleRStudio), montre l'interface de **R**Studio, déjà un peu moins intimidante que celle de **R**. À l'ouverture de **R**Studio, quatre types de fenêtres sont disponibles : la console (cadran inférieur gauche), les scripts (cadran supérieur gauche), l'environnement (cadran supérieur droit) et l'affichage (cadran inférieur droit). L'emplacement de ces cadrans peut être modifié selon les désirs de l'utilisateur.  
 
-```{r ConsoleRStudio, fig.cap="Ouverture (moins effrayante) de **R**Studio",echo=FALSE, out.width="75%", fig.align="center"}
+```{r ConsoleRStudio, fig.cap="Ouverture (moins effrayante) de **R**Studio.",echo=FALSE, out.width="75%", fig.align="center"}
 knitr::include_graphics("image//ConsoleRStudio.PNG")
 ```
 

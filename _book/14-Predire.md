@@ -2,36 +2,36 @@
 
 Un objectif des expérimentateurs est généralement de développer des modèles afin de faire des prédictions à partir d'un échantillon. Les statistiques sont des outils idéaux pour développer ces modèles. La régression est l'une des analyses fondamentales pour réaliser cet objectif et constitue en quelques sortes les fondements de biens des méthodes récentes (comme l'apprentissage machine). 
 
-L'objectif de la régression est de décrire la relation entre un variable dépendante et un ensemble de variables indépendantes. Un aperçu est donnée à la section sur [l'association linéaire] dans le chapitre [Analyser]. Ce présent chapitre débute avec la notion de covariance et l'étend jusqu'à celle de régression. Des techniques rudimentaires de création de données sont présentées. Par la suite, les mathématiques et la programmation sous-jacente au modèle linéaire sont illustrées. 
+L'objectif de la régression est de décrire la relation entre une variable dépendante et un ensemble de variables indépendantes. Un aperçu est donné à la section sur [l'association linéaire] du chapitre [Analyser]. Ce présent chapitre débute avec la notion de covariance et la développe jusqu'à celle de régression. Des techniques rudimentaires de création de données sont présentées. Par la suite, les mathématiques et la programmation sous-jacentes au modèle linéaire sont illustrées. 
 
 ## Retour sur l'association linéaire
 
-Une première méthode de mesure d'association est [la covariance] qui est représentée par l'équation \@ref(eq:cov1).
+Une première méthode de mesure d'association est [la covariance] qui est représentée par l'équation\ \@ref(eq:cov1).
 
 \begin{equation}
 s_{xy}=\frac{1}{n-1}\sum_{i=1}^n(x_i-\bar{x})(y_i-\bar{y})
 (\#eq:cov1)
 \end{equation}
 
-L'équation \@ref(eq:cov1) représente la somme des produits des écarts à la moyenne de deux variables.
+L'équation\ \@ref(eq:cov1) représente la somme des produits des écarts à la moyenne de deux variables.
 
 Comment généraliser cette équation à un ensemble de plus de deux variables? 
 
-Pour débuter, les variables sont mises sur un même pied d'égalité. Plutôt que de recourir à des lettres différentes ($x$ et $y$), il faut toutes les considérées comme des $x_{i,j}$, où l'indice $i$ identifie le $i$^e^ participant, comme pour l'équation \@ref(eq:cov1), et l'indice $j$ indique la $j$^e^ variable parmi $p$. Le calcul pour chacune des paires de variables $j$ et $k$ est réalisé pour les $p$ variables; l'équation de la covariance devient ainsi l'équation\ \@ref(eq:cov2).
+Pour débuter, les variables sont mises sur un même pied d'égalité. Plutôt que de recourir à des lettres différentes ($x$ et $y$), il faut toutes les considérées comme des $x_{i,j}$, où l'indice $i$ identifie le $i$^e^ participant, comme pour l'équation\ \@ref(eq:cov1), et l'indice $j$ indique la $j$^e^ variable parmi $p$. Le calcul pour chacune des paires de variables $j$ et $k$ est réalisé pour les $p$ variables; l'équation de la covariance devient ainsi l'équation\ \@ref(eq:cov2).
 
 \begin{equation}
 s_{x_j,x_k}=\frac{1}{n-1}\sum_{i=1}^n(x_{i,j}-\bar{x_j})(x_{i,k}-\bar{x_k})
 (\#eq:cov2)
 \end{equation}
 
-Si les variables sont centrées, l'équation \@ref(eq:cov2) devient, pour faciliter l'intuition, l'équation \@ref(eq:cov3), soit la somme des produits entre deux variables. 
+Si les variables sont centrées, l'équation\ \@ref(eq:cov2) devient, pour faciliter l'intuition, l'équation\ \@ref(eq:cov3), soit la somme des produits entre deux variables. 
 
 \begin{equation}
 s_{x_j,x_k}=\frac{1}{n-1}\sum_{i=1}^n(x_{i,j})(x_{i,k})
 (\#eq:cov3)
 \end{equation}
 
-Avantageusement, lorsque $j=k$, les équations \@ref(eq:cov2) et \@ref(eq:cov3) calculent la variance de la variable correspondante. En syntaxe **R,** ces équations s'écrivent dans une fonction comme la suivante. Pour rappel, la fonction `cov()` dans laquelle une matrice de données est passée comme argument fournit la matrice de covariance.
+Avantageusement, lorsque $j=k$, les équations\ \@ref(eq:cov2)\ et\ \@ref(eq:cov3) calculent la variance de la variable correspondante. En syntaxe **R,** ces équations s'écrivent dans une fonction comme la suivante. Pour rappel, la fonction `cov()` dans laquelle une matrice de données est passée comme argument fournit la matrice de covariance.
 
 
 ``` r
@@ -55,22 +55,22 @@ covariance1 <- function(X){
 }
 ```
 
-Dans le code **R** ci-dessus, les fonctions `ncol()` et `nrow()` extraient le nombre de dimensions de la base de données, soit le nombre de variables et le nombre d'unités. La fonction `scale()` permet de centrer les variables de `X` et de les retourner dans `Xc`. Par défaut, l'argument pour centrer est `center = TRUE`, ce pourquoi l'argument n'est pas explicité, mais la fonction ne standardise pas les valeurs, car `scale = FALSE`. Une variable vide `S` est créé pour enregistrer les résultats. La boucle, quant à elle, calcule l'addition de l'équation\ \@ref(eq:cov3) pour enfin diviser la somme par $n-1$. Le résultat est `S`, la matrice de covariance.
+Dans le code **R** ci-dessus, les fonctions `ncol()` et `nrow()` extraient le nombre de dimensions de la base de données, soit le nombre de variables et le nombre d'unités. La fonction `scale()` permet de centrer les variables de `X` et de les retourner dans `Xc`. Par défaut, l'argument pour centrer est `center = TRUE`, ce qui explique pourquoi l'argument n'est pas explicité, mais la fonction ne standardise pas les valeurs, car `scale = FALSE`. Une variable vide `S` est créée pour enregistrer les résultats. La boucle, quant à elle, calcule l'addition de l'équation\ \@ref(eq:cov3) pour enfin diviser la somme par $n-1$. Le résultat est `S`, la matrice de covariance.
 
 ### Illustration de la covariance
 
-Il est relativement aisé d'exprimer graphiquement la covariance bivariée. L'équation\ \@ref(eq:cov3) rappelle l'aire d'un rectangle. Pour chaque paire $(x_i,y_i)$, un rectangle peut être dessiner à partir du centre $(0, 0)$ jusqu'au $(x_i,y_i)$. La Figure\ \@ref(fig:covfig) montre quatre exemples de ces rectangles. Lorsque la moyenne d'une variable est soustraite, les données deviennent centrées sur le point $(0, 0)$. L'expression $xy$ ou $x_ix_j$ rappelle le calcul de l'aire d'un rectangle. C'est effectivement ce qui se produit pour la covariance. L'équation calcule l'aire du rectangle formé par les points $(0,0)$ et $(x_i,y_i)$. En fait, l'équation\ \@ref(eq:cov1) calcule le rectangle *moyen* dont la somme des produits est divisée par le nombre de rectangles moins 1, soit $(n-1)$.
+La covariance bivariée se représente graphiquement, car l'équation\ \@ref(eq:cov3) rappelle celle de l'aire d'un rectangle. Pour chaque paire $(x_i,y_i)$, un rectangle peut être dessiné à partir du centre $(0, 0)$ jusqu'au point $(x_i,y_i)$. La Figure\ \@ref(fig:covfig) montre quatre exemples de ces rectangles. Lorsque la moyenne d'une variable est soustraite, les données deviennent centrées sur le point $(0, 0)$. L'expression $xy$ ou $x_ix_j$ rappelle le calcul de l'aire d'un rectangle. C'est effectivement ce qui se produit pour la covariance. L'équation calcule l'aire du rectangle formé par les points $(0,0)$ et $(x_i,y_i)$. En fait, l'équation\ \@ref(eq:cov1) calcule le rectangle *moyen* dont la somme des produits est divisée par le nombre de rectangles moins 1, soit $(n-1)$.
 
 
 <div class="figure" style="text-align: center">
-<img src="14-Predire_files/figure-html/covfig-1.png" alt="Illustration de la covariance" width="75%" height="75%" />
-<p class="caption">(\#fig:covfig)Illustration de la covariance</p>
+<img src="14-Predire_files/figure-html/covfig-1.png" alt="Illustration de la covariance." width="75%" height="75%" />
+<p class="caption">(\#fig:covfig)Illustration de la covariance.</p>
 </div>
 
 
 <div class="figure" style="text-align: center">
-<img src="14-Predire_files/figure-html/covfig2-1.png" alt="Illustration des produits (rectangles) pour différentes valeurs de covariance" width="672" />
-<p class="caption">(\#fig:covfig2)Illustration des produits (rectangles) pour différentes valeurs de covariance</p>
+<img src="14-Predire_files/figure-html/covfig2-1.png" alt="Illustration des produits (rectangles) pour différentes valeurs de covariance." width="672" />
+<p class="caption">(\#fig:covfig2)Illustration des produits (rectangles) pour différentes valeurs de covariance.</p>
 </div>
 
 Les Figures\ \@ref(fig:covfig)\ et\ \@ref(fig:covfig2) permettent d'inférer quelques propriétés de la covariance.
@@ -107,7 +107,7 @@ x_{n,1} & x_{n,2} & ... &x_{n,p}\\
 (\#eq:matex1)
 \end{equation}
 
-En syntaxe **R**, il ne s'agit rien de plus que de [concaténer] des variables (mesurant les mêmes individus) ensembles par des colonnes, comme il est fait avec des jeux de données `data.frame()`. Un jeu de données est, à peu de chose près, une matrice (voir [Concaténer]). Pour créer une matrice `X` à partir des variables `x`, `y`, et `z` avec **R**, par exemple, la ligne `X = cbind(x, y, z)` joindra les trois variables ensemble. La fonction `cbind()` et une fonction pour concaténer des colonnes. Il existe aussi `rbind()` pour les lignes.
+En syntaxe **R**, il ne s'agit rien de plus que de [concaténer] des variables (mesurant les mêmes individus) ensemble par des colonnes, comme il est fait avec des jeux de données `data.frame()`. Un jeu de données est, à peu de chose près, une matrice (voir [Concaténer]). Pour créer une matrice `X` à partir des variables `x`, `y`, et `z` avec **R**, par exemple, la ligne `X = cbind(x, y, z)` joindra les trois variables ensemble. La fonction `cbind()` et une fonction pour concaténer des colonnes. Il existe aussi `rbind()` pour les lignes.
 
 Pour réaliser le calcul de la covariance, il faut multiplier la matrice des données centrées (les variables concaténées) par elle-même puis diviser par $n-1$. Le symbole $X$ représente la concaténation des variables. Par simplicité, l'équation utilise des **variables centrées**.
 
@@ -140,7 +140,7 @@ x_{n,1} & x_{n,2} \\
 (\#eq:covmat2)
 \end{equation}
 
-L'équation \@ref(eq:covmat2) illustre l'équation \@ref(eq:covmat1) qui sont toutes les deux équivalentes à \@ref(eq:cov3). En termes de syntaxe **R**, elles peuvent être traduites comme suit.
+L'équation\ \@ref(eq:covmat2) illustre l'équation \@ref(eq:covmat1) qui sont toutes les deux équivalentes à l'équation\ \@ref(eq:cov3). En termes de syntaxe **R**, elles peuvent être traduites comme suit.
 
 
 ``` r
@@ -160,7 +160,7 @@ La fonction `t()` opère la transpose (représentée par $\prime$) et le symbole
 
 L'utilisation de l'algèbre matricielle est plus simple et efficace. Elle nécessite cinq lignes de code, élimine deux boucles, prend moins de temps à calculer, en plus de produire toutes les variances et covariances.
 
-Une matrice de covariance possède plusieurs propriétés importantes. Elle est toujours carrée soit $p \times p$ pour $p$ variables et contient $p^2$ éléments. Parmi ces éléments, les $p$ éléments de la diagonale sont des variances, ce pourquoi elle est parfois appelée matrice de variance-covariance. Les éléments triangulaires inférieurs hors diagonale sont un parfait reflet des éléments supérieurs, p.ex. $\sigma_{1,2} = \sigma_{2,1}$. Il y a ainsi $\frac{p(p-1)}{2}$ covariances uniques dans une matrice et $p(p+1)/2$ éléments uniques (variances et covariances). En plus, de ces caractéristiques, la matrice doit être *positive semi-définie*, ce qui est un terme mathématique impliquant, pour les fins de ce chapitre, que les variances ne peuvent être nulle^[C'est plus complexe que cela, mais il suffit d'accepter cette affirmation pour procéder.]. La Figure\ \@ref(eq:sigma123) illustre la matrice de covariance $\mathbf{\Sigma}$ de la population.
+Une matrice de covariance possède plusieurs propriétés importantes. Elle est toujours carrée soit $p \times p$ pour $p$ variables et contient $p^2$ éléments. Parmi ces éléments, les $p$ éléments de la diagonale sont des variances, ce pourquoi elle est parfois appelée matrice de variance-covariance. Les éléments triangulaires inférieurs hors diagonale sont un parfait reflet des éléments supérieurs, p.ex. $\sigma_{1,2} = \sigma_{2,1}$. Il y a ainsi $\frac{p(p-1)}{2}$ covariances uniques dans une matrice et $p(p+1)/2$ éléments uniques (variances et covariances). En plus, de ces caractéristiques, la matrice doit être *positive semi-définie*, ce qui est un terme mathématique impliquant, pour les fins de ce chapitre, que les variances ne peuvent être nulle^[C'est plus compliqué que cela, mais il suffit d'accepter cette affirmation pour procéder. Une discussion plus avancée sur ce sujet se retrouve dans [Créer]]. La Figure\ \@ref(eq:sigma123) illustre la matrice de covariance $\mathbf{\Sigma}$ de la population.
 
 \begin{equation}
 \mathbf{\Sigma} = \left( 
@@ -176,7 +176,7 @@ Une matrice de covariance possède plusieurs propriétés importantes. Elle est 
 
 ### La matrice de corrélation en termes d'algèbre matricielle
 
-Une matrice de corrélation est une matrice de covariance dont les variables sont standardisées. Cela implique de transformer la matrice afin que toute la diagonale soit à l'unité, c'est-à-dire que toutes les variances soient égalent à 1. Cela permet d'avoir une interprétation *standardisée* des corrélations, car celles-ci sont indépendantes des métriques originales. Les autres éléments conceptuels de la matrice de covariance s'appliquent pour la matrice de corrélation.
+Une matrice de corrélation est une matrice de covariance dont les variables sont standardisées. Cela implique de transformer la matrice afin que touts les éléments de la diagonale soit à l'unité, c'est-à-dire que toutes les variances égalent\ 1. Cela permet d'avoir une interprétation *standardisée* des corrélations, car celles-ci sont indépendantes des métriques originales. Les autres éléments conceptuels de la matrice de covariance s'appliquent pour la matrice de corrélation.
 
 Pour transformer la matrice de covariance en matrice de corrélation, trois techniques sont possibles. 
 
@@ -189,7 +189,7 @@ n <- nrow(x)
 cor.X <- t(Xz) %*% Xz / (n - 1)
 ```
 
-La deuxième méthode est de standardiser la matrice de covariance en utilisant l'algèbre matricielle, où $\mathbf{S}$ est la matrice de covariance. Pour ce faire, on pré et post multiplie $\mathbf{S}$ par $\mathbf{D}$, comme l'équation \@ref(eq:obtD1).
+La deuxième méthode est de standardiser la matrice de covariance en utilisant l'algèbre matricielle, où $\mathbf{S}$ est la matrice de covariance. Pour ce faire, on pré et post multiplie $\mathbf{S}$ par $\mathbf{D}$, comme l'équation\ \@ref(eq:obtD1).
 
 \begin{equation}
 \mathbf{R}=\mathbf{D_{S}}\mathbf{S}\mathbf{D_{S}}
@@ -220,19 +220,19 @@ Le calcul complet de l'équation\ \@ref(eq:obtD1) en ajoutant \@ref(eq:obtD2) es
 (\#eq:cov2cor)
 \end{equation}
 
-En code **R**, l'équation \@ref(eq:cov2cor) se traduit ainsi. 
+En code **R**, l'équation\ \@ref(eq:cov2cor) se traduit ainsi. 
 
 ``` r
 R = solve(diag(sqrt(diag(S)))) %*% S %*% solve(diag(sqrt(diag(S))))
 ```
 
-Lorsqu'une matrice est passée comme argument à `diag()`, elle extrait les éléments de la diagonale pour en faire un vecteur. Si un vecteur est passé en argument, alors `diag()` retourne une matrice avec les éléments du vecteur en diagonale. La fonction `solve()` calcule l'inverse d'une matrice, comme l'utilisateur pourrait attendre de $\mathbf{X}^{-1}$. Il s'agit certainement de l'aspect le plus biscornu de **R**.  Enfin, l'opérateur `%*%` est le produit matriciel. 
+Lorsqu'une matrice est donnée comme argument à `diag()`, elle extrait les éléments de la diagonale pour en faire un vecteur. Si un vecteur est passé en argument, alors `diag()` retourne une matrice avec les éléments du vecteur en diagonale. La fonction `solve()` calcule l'inverse d'une matrice, comme l'utilisateur pourrait attendre de $\mathbf{X}^{-1}$. Il s'agit certainement de l'aspect le plus biscornu de **R**.  Enfin, l'opérateur `%*%` est le produit matriciel. 
 
 La troisième méthode est d'utiliser la fonction de base `cov2cor()` pour transformer la matrice de covariance en matrice de corrélation, ce qui est plus simple et plus rapide que la deuxième option, mais qui cache ce qui se réalise vraiment, soit l'équation\ \@ref(eq:cov2cor).
 
 ## La régression
 
-Jusqu'à présent, des rudiments de la covariance et de la corrélation ont été présentés dans le but d'introduire graduellement l'algèbre matricielle. L'objectif étant atteint, le regard porte maintenant sur la régression en tant que moyen de prédire une variable $y$ à partir d'un ensemble de variables $\mathbf{X}$.
+Jusqu'à présent, des rudiments de la covariance et de la corrélation ont été présentés dans le but d'introduire graduellement l'algèbre matricielle. Pour la suite, le regard porte sur la régression en tant que moyen de prédire une variable $y$ à partir d'un ensemble de variables $\mathbf{X}$.
 
 Quelle est la différence entre les analyses de covariance et corrélation comparativement à l'analyse de régression? Bien que la logique sous-jacente soit très similaire, il faut maintenant déterminer une variable *différente* de l'autre, c'est-à-dire distinguer une variable dépendante, des variables indépendantes. Les variables indépendantes prédisent la variable dépendante  un peu comme dans un modèle *déterministe*, il faut décider de la *cause* (variables indépendantes) et l'*effet* (variable dépendante), ce dernier étant généré par les premiers. 
 
@@ -273,8 +273,8 @@ Pour aller un peu plus loin, dans un modèle bivarié, le coefficient de déterm
 
 
 <div class="figure" style="text-align: center">
-<img src="14-Predire_files/figure-html/modlinf-1.png" alt="Diagramme de dispersion" width="80%" height="80%" />
-<p class="caption">(\#fig:modlinf)Diagramme de dispersion</p>
+<img src="14-Predire_files/figure-html/modlinf-1.png" alt="Diagramme de dispersion." width="80%" height="80%" />
+<p class="caption">(\#fig:modlinf)Diagramme de dispersion.</p>
 </div>
 
 
@@ -301,14 +301,14 @@ où le symbole $\mathbb{E}$ signifie l'espérance (la moyenne). En multipliant p
 (\#eq:beta2)
 \end{equation}
 
-Dans l'équation \@ref(eq:beta2), le numérateur rappelle la covariance et au dénominateur la variance de $x$. Comment généraliser pour $k$ variables? En algèbre matricielle et dans la mesure où les variables contenues dans $\mathbf{X}$ sont centrées, cela revient au même que de calculer l'équation \@ref(eq:beta).
+Dans l'équation\ \@ref(eq:beta2), le numérateur rappelle la covariance et au dénominateur la variance de $x$. Comment généraliser pour $k$ variables? En algèbre matricielle et dans la mesure où les variables contenues dans $\mathbf{X}$ sont centrées, cela revient au même que de calculer l'équation\ \@ref(eq:beta).
 
 \begin{equation}
 \hat{\mathbf{B}} = (\mathbf{X}^{\prime} \mathbf{X})^{-1} \mathbf{X}^{\prime} y
 (\#eq:beta)
 \end{equation}
 
-Comme pour l'équation \@ref(eq:beta2), la composante $(X^{\prime} X)^{-1}$ agit en dénominateur (par l'exposant $-1$) et correspond à la matrice de variance-covariance des variables de $X$ ensemble, alors que $X^{\prime} y$ agit comme le numérateur, soit la covariance entre les variables de $X$ avec $y$.
+Comme pour l'équation\ \@ref(eq:beta2), la composante $(X^{\prime} X)^{-1}$ agit en dénominateur (par l'exposant $-1$) et correspond à la matrice de variance-covariance des variables de $X$ ensemble, alors que $X^{\prime} y$ agit comme le numérateur, soit la covariance entre les variables de $X$ avec $y$.
 
 Pour l'erreur standard, il s'agit de calculer l'équation\ \@ref(eq:errtype1).
 
@@ -385,7 +385,7 @@ donnees <- data.frame(MASS::mvrnorm(n = n,
                                     Sigma = Sigma))
 ```
 
-La matrice de covariance, $\mathbf{\Sigma}$, pour $p=3$, s'écrit comme l'équation \@ref(eq:covp3).
+La matrice de covariance, $\mathbf{\Sigma}$, pour $p=3$, s'écrit comme l'équation\ \@ref(eq:covp3).
 
 \begin{equation}
 \mathbf{\Sigma} = \left( 
@@ -400,7 +400,7 @@ La matrice de covariance, $\mathbf{\Sigma}$, pour $p=3$, s'écrit comme l'équat
 
 Il convient d'écrire $\mathbf{\Sigma}$ (sigma majuscule) et $\sigma$ (sigma minuscule) plutôt que $\mathbf{S}$, car il s'agit de la matrice de covariance de la population. Le résultat de `S = cov(donnees)` est empirique et la notation $\mathbf{S}$ est plus appropriée. Comme il y a $p=3$ variables dans la syntaxe, il faudra préalablement spécifier $3*4/2 = 6$ arguments : $p = 3$ variances $\sigma_{1,1},\sigma_{2,2},\sigma_{3,3}$ et $\frac{p(p-1)}{2}=3(2)/2 = 3$ covariances $\sigma_{1,2},\sigma_{1,3},\sigma_{2,3}$.
 
-Une autre façon de créer des données en fonction d'un modèle linéaire plutôt qu'à partir de la matrice de corrélation (comme avec `MASS`) est de reprendre l'équation \@ref(eq:modlin) et de spécifier les paramètres libre. D'abord, il faut  remplacer les paramètres du modèle par des valeurs, $\beta_0$ et $\beta_1$, pour ensuite créer deux variables aléatoires de taille $n$ (la taille d'échantillon), une première pour $x$ et une seconde pour $\epsilon$. Les hypothèses sous-jacentes aux modèles linéaires assument que l'erreur ($\epsilon$) est distribuée normalement (avec implicitement une moyenne de 0), la fonction `rnorm()` pourra jouer le rôle. Pour $x$, il n'y a pas de distribution à respecter, mais une distribution normale fait très bien l'affaire. Voici un exemple de code **R**. En spécifiant une taille d'échantillon très grande `n = 10000`, l'erreur échantillonnalle est considérablement réduite.
+Une autre façon de créer des données en fonction d'un modèle linéaire plutôt qu'à partir de la matrice de corrélation (comme avec `MASS`) est de reprendre l'équation\ \@ref(eq:modlin) et de spécifier les paramètres libre. D'abord, il faut  remplacer les paramètres du modèle par des valeurs, $\beta_0$ et $\beta_1$, pour ensuite créer deux variables aléatoires de taille $n$ (la taille d'échantillon), une première pour $x$ et une seconde pour $\epsilon$. Les hypothèses sous-jacentes aux modèles linéaires assument que l'erreur ($\epsilon$) est distribuée normalement (avec implicitement une moyenne de 0), la fonction `rnorm()` pourra jouer le rôle. Pour $x$, il n'y a pas de distribution à respecter, mais une distribution normale fait très bien l'affaire. Voici un exemple de code **R**. En spécifiant une taille d'échantillon très grande `n = 10000`, l'erreur échantillonnalle est considérablement réduite.
 
 
 ``` r
@@ -421,7 +421,7 @@ y <- beta0 + beta1 * x + e
 
 Si l'utilisateur souhaite ajouter une autre variable, il lui suffit d'ajouter un $\beta$ supplémentaire et de créer une autre variable aléatoire. 
 
-Cette méthode de création de données possède toutefois des limites. Principalement, elle ne spécifie pas les propriétés statistiques désirables, comme la corrélation entre les variables. Quelle est la corrélation entre `x`et `y` dans l'exemple précédent? Il est bien sûr possible de déterminer ces valeurs pour la population a posteriori. Il faut résoudre l'équation \@ref(eq:eqrho).
+Cette méthode de création de données possède toutefois des limites. Principalement, elle ne spécifie pas les propriétés statistiques désirables, comme la corrélation entre les variables. Quelle est la corrélation entre `x`et `y` dans l'exemple précédent? Il est bien sûr possible de déterminer ces valeurs pour la population a posteriori. Il faut résoudre l'équation\ \@ref(eq:eqrho).
 
 \begin{equation}
 \rho_{x,y} = \beta_1 \frac{\sigma_x}{\sigma_y} 
@@ -443,14 +443,14 @@ y = \beta_0 + \beta_1 x_1 + ... +\beta_k x_k + \epsilon
 (\#eq:modling)
 \end{equation}
 
-où l'équation \@ref(eq:modling) correspond à la généralisation de l'équation \@ref(eq:modlin) pour $k$ variables indépendantes, il est possible d'isoler $\epsilon$. La variance se calcule alors comme l'équation \@ref(eq:emat), pour le cas générale. 
+où l'équation\ \@ref(eq:modling) correspond à la généralisation de l'équation\ \@ref(eq:modlin) pour $k$ variables indépendantes, il est possible d'isoler $\epsilon$. La variance se calcule alors comme l'équation\ \@ref(eq:emat), pour le cas générale. 
 
 \begin{equation}
 \sigma^2_{\epsilon} = \sigma^2_y - \mathbf{B}^{\prime}\mathbf{R}\mathbf{B}
 (\#eq:emat)
 \end{equation}
 
-où $\mathbf{R}$ est la matrice de corrélation et $\mathbf{B}$ est le vecteur contenant tous les $\beta$ standardisés. Pour assurer un scénario standardisé $\sigma^2_y = 1$. La seule condition sous-jacente à l'équation \@ref(eq:emat) est de s'assurer que $\sigma^2_{\epsilon} > 0$, c'est-à-dire en vérifiant que $\mathbf{B}^{\prime}\mathbf{R}\mathbf{B} < \sigma^2_y$, autrement la variance est négative, ce qui est impossible. En termes de syntaxe **R**, l'équation \@ref(eq:emat) correspond à ceci.
+où $\mathbf{R}$ est la matrice de corrélation et $\mathbf{B}$ est le vecteur contenant tous les $\beta$ standardisés. Pour assurer un scénario standardisé $\sigma^2_y = 1$. La seule condition sous-jacente à l'équation \@ref(eq:emat) est de s'assurer que $\sigma^2_{\epsilon} > 0$, c'est-à-dire en vérifiant que $\mathbf{B}^{\prime}\mathbf{R}\mathbf{B} < \sigma^2_y$, autrement la variance est négative, ce qui est impossible. En termes de syntaxe **R**, l'équation\ \@ref(eq:emat) correspond à ceci.
 
 
 ``` r
@@ -546,23 +546,16 @@ Les deux premiers points sont davantage méthodologiques que statistiques bien q
 Les deux autres considérations, qui sont elles d'ordre statistique, concernent les résidus (l'écart entre la prédiction et les valeurs réelles de $y$). Les distributions des variables n'ont pas à être normales;  elles peuvent suivre différentes distributions de probabilités. Par contre, l'erreur résiduelle, elle, doit être normalement distribuées. Il s'agit d'un postulat de l'estimation des moindres carrés. La dernière hypothèse concerne la variance résiduelle homoscédastique, c'est-à-dire que l'écart entre les résidus et les valeurs prédites restent *constantes,* peu importe le niveau sur la droite de régression. Si ce n'est pas le cas pour l'une ou l'autre, c'est qu'une variable théorique important est vraisemblablement négligée ou qu'une des relations n'est pas linéaire entre les variables. 
 
 <div class="figure" style="text-align: center">
-<img src="14-Predire_files/figure-html/courbe-1.png" alt="Différentes formes de relation" width="80%" height="80%" />
-<p class="caption">(\#fig:courbe)Différentes formes de relation</p>
+<img src="14-Predire_files/figure-html/courbe-1.png" alt="Différentes formes de relation." width="80%" height="80%" />
+<p class="caption">(\#fig:courbe)Différentes formes de relation.</p>
 </div>
 
 
 ### L'analyse de régression avec **R**
 
-**R** de base offre la fonction `lm()` pour *linear model* (modèle linéaire) afin de réaliser une régression. Pour réaliser l'analyse, deux éléments sont primordiaux : le jeu de données et le modèle. Le jeu de données est en soi assez évident. Le modèle linéaire est quant à lui représenté par l'équation \@ref(eq:modling). 
+**R** de base offre la fonction `lm()` pour *linear model* (modèle linéaire) afin de réaliser une régression. Pour réaliser l'analyse, deux éléments sont primordiaux : le jeu de données et le modèle. Le jeu de données est en soi assez évident. Le modèle linéaire est quant à lui représenté par l'équation\ \@ref(eq:modling). 
 
-<!-- \begin{equation} -->
-<!-- y = \beta_0 + \beta_1 x_1 + ... +\beta_k x_k + \epsilon -->
-<!-- (\#eq:modling) -->
-<!-- \end{equation} -->
-
-<!-- où l'équation \@ref(eq:modling) correspond à la généralisation de l'équation \@ref(eq:modlin) pour $k$ variables indépendantes. -->
-
-Pour écrire le modèle en syntaxe **R**, il faut remplacer les $x$ par le nom des variables dans le jeu de données, utiliser le `~` (tilde) pour délimiter les variables dépendantes à gauche des variables indépendantes à droite. Les variables indépendantes sont délimitées, comme dans l'équation \@ref(eq:modling), par des signes d'addition `+`. Il est aussi de définir des effets d'interaction (modération) avec le signe de multiplication `*` (la section [Modérer] approfondie davantage ce sujet). Les symboles `-` (soustraction) et `/` (division) ne fonctionnent pas. L'intercepte ($\beta_0$) est ajouté par défaut. La fonction n'exige pas de mettre la formule entre guillemets^[Il faudrait le faire par contre si la formule est utilisée comme variable, par exemple, `formule = "y ~ x1 + x2 + x3" ` pour indiquer qu'il s'agit de texte.].
+Pour écrire le modèle en syntaxe **R**, il faut remplacer les $x$ par le nom des variables dans le jeu de données, utiliser le `~` (tilde) pour délimiter les variables dépendantes à gauche des variables indépendantes à droite. Les variables indépendantes sont délimitées, comme dans l'équation\ \@ref(eq:modling), par des signes d'addition `+`. Il est aussi de définir des effets d'interaction (modération) avec le signe de multiplication `*` (la section [Modérer] approfondie davantage ce sujet). Les symboles `-` (soustraction) et `/` (division) ne fonctionnent pas. L'intercepte ($\beta_0$) est ajouté par défaut. La fonction n'exige pas de mettre la formule entre guillemets^[Il faudrait le faire par contre si la formule est utilisée comme variable, par exemple, `formule = "y ~ x1 + x2 + x3" ` pour indiquer qu'il s'agit de texte.].
 
 
 ```r
@@ -698,8 +691,8 @@ jd %>%
 ```
 
 <div class="figure" style="text-align: center">
-<img src="14-Predire_files/figure-html/respred-1.png" alt="Relation entre prédicitons et résidus" width="75%" height="75%" />
-<p class="caption">(\#fig:respred)Relation entre prédicitons et résidus</p>
+<img src="14-Predire_files/figure-html/respred-1.png" alt="Relation entre prédicitons et résidus." width="75%" height="75%" />
+<p class="caption">(\#fig:respred)Relation entre prédicitons et résidus.</p>
 </div>
 
 
@@ -711,8 +704,8 @@ jd %>%
 ```
 
 <div class="figure" style="text-align: center">
-<img src="14-Predire_files/figure-html/reshist-1.png" alt="Histogramme des résidus" width="75%" height="75%" />
-<p class="caption">(\#fig:reshist)Histogramme des résidus</p>
+<img src="14-Predire_files/figure-html/reshist-1.png" alt="Histogramme des résidus." width="75%" height="75%" />
+<p class="caption">(\#fig:reshist)Histogramme des résidus.</p>
 </div>
 
 ## La matrice de corrélation partielle et semi partielle
@@ -824,8 +817,8 @@ La matrice de corrélation partielle est symétrique alors que la matrice de cor
 Une dernière observation : les explications basées sur les diagrammes de Venn pour distinguer les corrélations partielles et semi partielles portent plus souvent à confusion (à long terme) qu'elles n'apportent d'éclaircissement (à court terme), bien qu'elles se retrouvent abondamment dans les manuels. 
 
 <div class="figure" style="text-align: center">
-<img src="image//venn.png" alt="Diagramme représentant l'agencement des variables" width="75%" height="75%" />
-<p class="caption">(\#fig:venn)Diagramme représentant l'agencement des variables</p>
+<img src="image//venn.png" alt="Diagramme représentant l'agencement des variables." width="75%" height="75%" />
+<p class="caption">(\#fig:venn)Diagramme représentant l'agencement des variables.</p>
 </div>
 
 Dans la Figure\ \@ref(fig:venn), tirée de l'exemple avec `Sigma` ci-haut, la zone $a$ illustre la covariance entre $x$ et $y$ au carré^[Il faut mettre les corrélations partielles, semi partielles et les covariances au carré pour expliquer en termes d'aire.], soit $\sigma_{xy}^2 = a$, et de façon équivalente, $\sigma^2_{yz} = .8^2$ et $\sigma^2_{xz} = 0$. Chaque cercle possède une aire totale de $1$, par exemple, l'aire du cercle en bas à gauche est $a+x=.2^2+.96 =1$. Par simplicité, les autres aires sont précalculées. Les ouvrages indiquent souvent que la corrélation partielle au carré entre $x$ vers $y$ est égale à $a/(a+y)=.2^2/(.2^2+.32)=.111$ dont la racine carré donne $.333$, comme prévu. L'inverse, la corrélation partielle au carré entre $y$ vers $x$, devrait être $a/(a+x)$, mais cela donne $a/(a+x)=.2^2/(.2^2+.96)=.04$. La racine carré donne $.2$... la corrélation semi partielle!? L'équation calcule plutôt la corrélation semi partielle et non la partielle. En plus, des zones comme la corrélation semi partielles entre $x$ vers $z$, qui est de -0.267 et au carré donne 0.071, ne sont étrangement pas illustrées. Où est la zone d'aire correspondante? Le pire est certainement que les ouvrages utilisent des agencements de variables plus compliquées, p. ex., un modèle simple avec deux variables non-corrélées, qui cachent les potentielles ambiguïtés.

@@ -6,7 +6,7 @@ Bien que la modération ait son chapitre désigné, elle a déjà été rencontr
 
 ## L'analyse de modération
 
-Sur le plan quantitatif, l'analyse de modération est un modèle linéaire général réalisé en une seule étape (soit une analyse de la variance ou une régression, en fonction des variables concernées) dans laquelle une variable dépendante, $y$, est prédite par trois variables, la variable indépendante, $x$, l'effet simple de la variable modératrice, $w$, et leur produit $x \times w=xw$. En termes du modèle linéaire général (ANOVA, régression), un modérateur se subsume à une interaction. Mathématiquement, la relation s'exprime comme l'équation \@ref(eq:moderation)
+Sur le plan quantitatif, l'analyse de modération est un modèle linéaire général réalisé en une seule étape (soit une analyse de la variance ou une régression, en fonction des variables concernées) dans laquelle une variable dépendante, $y$, est prédite par trois variables, la variable indépendante, $x$, l'effet simple de la variable modératrice, $w$, et leur produit $x \times w=xw$. En termes du modèle linéaire général (ANOVA, régression), un modérateur se subsume à une interaction. Mathématiquement, la relation s'exprime comme l'équation\ \@ref(eq:moderation)
 
 \begin{equation}
 y = \beta_0 + \beta_1 x + \beta_2 w + \beta_3 (x \times w) + \epsilon
@@ -15,13 +15,13 @@ y = \beta_0 + \beta_1 x + \beta_2 w + \beta_3 (x \times w) + \epsilon
 
 où les $\beta$ sont les coefficients de régression reliant la variable correspondante à la variable dépendante.  
 
-```{r mod, fig.cap="Représentations de la modération",echo=FALSE, fig.align="center",out.height="75%" , out.width="75%"}
+```{r mod, fig.cap="Représentations de la modération.",echo=FALSE, fig.align="center",out.height="75%" , out.width="75%"}
 knitr::include_graphics("image//mod.png")
 ```
 
 L'analyse de modération est illustrée à la Figure\ \@ref(fig:mod). Le cadran a (gauche) montre une conceptualisation de l'effet attendu du modérateur, soit l'altération de l'effet entre $x$ et $y$. Le cadran b (droite) montre, quant à lui, la représentation statistique dans laquelle le lien direct entre $x$, $w$ et $xw$ par rapport à $y$.
 
-Une façon de mettre l'accent sur l'effet de modération est de réarranger l'équation \@ref(eq:moderation) afin d'obtenir l'équation \@ref(eq:moderation2), ce qui met en évidence le rôle clé de $w$.
+Une façon de mettre l'accent sur l'effet de modération est de réarranger l'équation\ \@ref(eq:moderation) afin d'obtenir l'équation\ \@ref(eq:moderation2), ce qui met en évidence le rôle clé de $w$.
 
 \begin{equation}
 y = \beta_0 + \beta_1 x + (\beta_2 + \beta_3 x) w + \epsilon
@@ -34,7 +34,7 @@ L'équation\ \@ref(eq:moderation2) montre comment $\beta_3$ altère la relation 
 
 Une caractéristique fondamentale de la création d'interactions est qu'elles doivent être créées à partir de ces composantes. Autrement dit, le produit $xw$ comme variable n'est calculable que si $x$ ou $w$ sont d'abord créées. Il faut connaître deux des trois variables pour calculer la troisième. En conséquence, il n'est pas possible de créer des variables d'interaction, comme c'était le cas auparavant avec la fonction `MASS::mvrnorm()`, malgré que la matrice de covariance et les coefficients de régression soient calculables a priori.
 
-La variance du produit de deux variables peut devenir rapidement compliquée. En fait, l'étude des produits de variables est si complexe, particulièrement lorsque les variables ont des moyennes non nulles qu'il n'y a eu que très dernièrement des développements mathématiques sur leur distribution formelle [@Nadarajah; @Cui], ce pourquoi les statisticiens préfèrent recourir généralement au bootstrap pour tester les effets médiateurs.
+La variance du produit de deux variables peut devenir rapidement compliquée. En fait, l'étude des produits de variables est si complexe, particulièrement lorsque les variables ont des moyennes non nulle,s qu'il n'y a eu que très dernièrement des développements mathématiques sur leur distribution formelle [@Nadarajah; @Cui], ce pourquoi les statisticiens préfèrent recourir généralement au bootstrap pour tester les effets médiateurs.
 
 La variance du produit de deux variables standardisées [@Craig; @Haldane] correspond à l'équation\ \@ref(eq:varprod).
 
@@ -119,7 +119,7 @@ jd.continue <- data.frame(x = X[,1],
 
 Le code ci-dessus montre un scénario standardisé (toutes les moyennes sont 0; toutes les variances égalent 1, sauf l'interaction). Le modèle est illustré à la Figure\ \@ref(fig:ex1mod).
 
-```{r ex1mod, fig.cap="Exemple de modèle de modération",echo=FALSE, fig.align="center",out.height="75%" , out.width="75%"}
+```{r ex1mod, fig.cap="Exemple de modèle de modération.",echo=FALSE, fig.align="center",out.height="75%" , out.width="75%"}
 knitr::include_graphics("image//ex1mod.png")
 ```
 
@@ -355,7 +355,7 @@ sim_slopes(model = res2.lm,
 
 Ce tableau pour les groupes de $w$ si l'effet modérateur est significatif.
 
-```{r ip1, cache = TRUE, fig.cap="Analyse de pentes simples pour un modérateur nominal"}
+```{r ip1, cache = TRUE, fig.cap="Analyse de pentes simples pour un modérateur nominal."}
 # Le graphique des pentes simples
 interact_plot(model = res2.lm,
               pred = x,
@@ -367,7 +367,7 @@ Le code ci-dessus illustre ce patron de différences avec la Figure\ \@ref(fig:i
 
 Le graphique des pentes peut aussi être réalisé pour un modérateur continu. La\ Figure \@ref(fig:ip2) illustre ce graphique. Lorsque le modérateur représente des groupes, les niveaux sont clairement définis. Dans le cas d'un modérateur continu, des niveaux arbitraires doivent être sélectionnés.
 
-```{r ip2, cache = TRUE, fig.cap="Analyses des pentes simples pour un modérateur continu"}
+```{r ip2, cache = TRUE, fig.cap="Analyses des pentes simples pour un modérateur continu."}
 interact_plot(model = res1.lm,
               pred = x,
               modx = w, 
@@ -376,7 +376,7 @@ interact_plot(model = res1.lm,
 
 Par défaut, l'analyse est réalisée avec $-1$ écart type, la moyenne et $+1$ écart type comme groupement de $w$. Ces valeurs peuvent être choisies manuellement avec `modx.values =` en y spécifiant les valeurs d'intérêt. En plus, cet argument est compatible non seulement avec `interact_plot()` et `sim_slopes()`. La Figure\ \@ref(fig:ip3) montre l'analyse des pentes pour des valeurs de `modx.values = c(-2, -1, 0, 1, 2)`.
 
-```{r ip3, cache = TRUE, fig.cap="Analyses des pentes simples pour un modérateur continu"}
+```{r ip3, cache = TRUE, fig.cap="Analyses des pentes simples pour un modérateur continu."}
 interact_plot(model = res1.lm,
               pred = x,
               modx = w, 
@@ -391,7 +391,7 @@ Lorsque le modérateur est continu, la méthode la plus rigoureuse d'explorer de
 La fonction `sim_slopes()` génère l'analyse des pentes simples, mais produit également l'intervalle de Johnson-Neyman et le graphique associé. La fonction est utilisée comme précédemment, à l'exception qu'il est possible de demander comme argument `jnplot = TRUE` pour obtenir le graphique Johnson-Neyman et qu'il n'est plus nécessaire de commander `johnson_neyman = FALSE` évite un message d'erreur.
 
 
-```{r jn1, fig.cap="Le graphique Johnson-Neyman pour interpréter les effets modérateurs", cache = TRUE}
+```{r jn1, fig.cap="Le graphique Johnson-Neyman pour interpréter les effets modérateurs.", cache = TRUE}
 sim_slopes(model = res1.lm,
            pred = x,
            modx = w, 
@@ -421,7 +421,7 @@ Pour rapporter l'analyse de modération, plusieurs éléments peuvent être pert
 
 3. Créer un jeu de données pour la structure de la Figure\ \@ref(fig:modex1). Le jeu de données est standardisé et contient 123 sujets.
 
-```{r modex1, fig.cap = "Diagramme de trajectoire (Question 3)", echo = FALSE, out.height="50%", out.width="50%", fig.align = "center"}
+```{r modex1, fig.cap = "Diagramme de trajectoire (Question 3).", echo = FALSE, out.height="50%", out.width="50%", fig.align = "center"}
 knitr::include_graphics("image//modex1.png")
 ```
 
@@ -429,7 +429,7 @@ knitr::include_graphics("image//modex1.png")
 
 4. Créer un jeu de données pour la structure de la Figure\ \@ref(fig:modex2). Le jeu de données est standardisé et contient 456 sujets.
 
-```{r modex2, fig.cap = "Diagramme de trajectoire (Question 4)", echo = FALSE, out.height="50%", out.width="50%", fig.align = "center"}
+```{r modex2, fig.cap = "Diagramme de trajectoire (Question 4).", echo = FALSE, out.height="50%", out.width="50%", fig.align = "center"}
 knitr::include_graphics("image//modex2.png")
 ```
 
@@ -437,7 +437,7 @@ knitr::include_graphics("image//modex2.png")
 
 5. Créer un jeu de données pour la structure de la Figure\ \@ref(fig:modex3). Le jeu de données est standardisé et contient 789 sujets.
 
-```{r modex3, fig.cap = "Diagramme de trajectoire (Question 5)", echo = FALSE, out.height="50%", out.width="50%", fig.align = "center"}
+```{r modex3, fig.cap = "Diagramme de trajectoire (Question 5).", echo = FALSE, out.height="50%", out.width="50%", fig.align = "center"}
 knitr::include_graphics("image//modex3.png")
 ```
 

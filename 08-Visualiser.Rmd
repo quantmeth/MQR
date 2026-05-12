@@ -31,9 +31,9 @@ Les cinq autres *statistics*, *facet*, *coordinate space*, *labels*, *theme* per
 
 Les composantes les plus importantes sont les trois premières, soit les données, la cartographie et la représentation géométrique. Ce sont les éléments de base pour débuter le graphique. Les autres composantes viennent bonifier la figure tout en l'ajustant au besoin de l'utilisateur.
 
-La fonction `ggplot()` met en place la figure. Le résultat d'utiliser la fonction `ggplot()` seule est illustrée à la Figure \@ref(fig:ggplotseul)
+La fonction `ggplot()` met en place la figure. Le résultat d'utiliser la fonction `ggplot()` seule est illustrée à la Figure\ \@ref(fig:ggplotseul)
 
-```{r ggplotseul, fig.align="center", fig.cap = "La fonction ggplot() seule - Rien", out.height="75%", out.width="75%"}
+```{r ggplotseul, fig.align="center", fig.cap = "La fonction ggplot() seule - Rien.", out.height="75%", out.width="75%"}
 ggplot(data = jd)
 ```
 
@@ -56,7 +56,7 @@ Voici une liste des représentations géométriques possibles :
 
 * `geom_histogram()` crée un histogramme des variables;
 
-* `geom_box()` crée une boîte à moustache, idéal pour identifier des valeurs aberrantes et comparer la variabilité entre des groupes;
+* `geom_boxplot()` crée une boîte à moustache, idéal pour identifier des valeurs aberrantes et comparer la variabilité entre des groupes;
 
 * `geom_smooth()` crée la ligne de prédiction des données avec des intervalles de confiances, la plupart des utilisateurs voudront certainement ces arguments `method = lm` (par défaut) ou sans l'erreur standard (`se = FALSE`);
 
@@ -64,9 +64,9 @@ Voici une liste des représentations géométriques possibles :
 
 Certaines cartographies sont d'ailleurs compatibles, `geom_smooth()` et `geom_point()`, par exemple.
 
-La Figure \@ref(fig:ggplotpoint) montre un diagramme de dispersion construit à partir du jeu de données `jd` *pipé* dans la fonction `ggplot()`. Dans cette fonction, la cartographie est passée `mapping = aes(x = mass, y = height)` à un second niveau, `geom_point)` par le `+` et la représentation est produite.
+La Figure\ \@ref(fig:ggplotpoint) montre un diagramme de dispersion construit à partir du jeu de données `jd` *pipé* dans la fonction `ggplot()`. Dans cette fonction, la cartographie est passée `mapping = aes(x = mass, y = height)` à un second niveau, `geom_point)` par le `+` et la représentation est produite.
 
-```{r ggplotpoint, fig.align="center", fig.cap = "Diagramme de dispersion", out.height="75%", out.width="75%"}
+```{r ggplotpoint, fig.align="center", fig.cap = "Diagramme de dispersion.", out.height="75%", out.width="75%"}
 jd %>% 
   ggplot(mapping = aes(x = mass, y = height)) + 
   geom_point()
@@ -78,23 +78,23 @@ Voici une liste d'exemples de différentes représentations visuelles des donné
 
 Pour réaliser un diagramme de dispersion, la fonction se nomme `geom_point()`. La cartographie identifie la variable à l'axe des $x$ (horizontal) et des $y$ (vertical). Dans cet exemple, il s'agit du poids ($x$) et de la taille ($y$). La cartographie ne se limite pas aux axes par contre. Dans cet exemple, la forme `shape` est aussi un dimension manipulée. Il peut s'agir de `color` et même de `size`. Dans la syntaxe ci-dessous, l'argument `size` est placé à l'extérieur de *mapping*. Il s'agit alors d'une constante (elle change la taille des points), c'est-à-dire qu'elle ne varie pas relativement à une variable.
 
-```{r diagdisp, fig.cap = "Le lien entre le poids et la taille en fonction du sexe", fig.align="center", out.height="75%", out.width="75%"}
+```{r diagdisp, fig.cap = "Le lien entre le poids et la taille en fonction du sexe.", fig.align="center", out.height="75%", out.width="75%"}
 jd %>% 
   ggplot() + 
   geom_point(mapping = aes(x = mass, y = height, shape = sex), size = 2) 
 ```
 
-La Figure \@ref(fig:diagdisp2) montre le résultat si `size``est ajouté au *mapping* pour identifier l'IMC. Les unités avec un plus grand IMC obtiennent un plus gros pointeur.
+La Figure\ \@ref(fig:diagdisp2) montre le résultat si `size``est ajouté au *mapping* pour identifier l'IMC. Les unités avec un plus grand IMC obtiennent un plus gros pointeur.
 
-```{r diagdisp2, fig.cap = "Le lien entre le poids et la taille en fonction de l'IMC et du sexe",fig.align='center', out.height="75%", out.width="75%"}
+```{r diagdisp2, fig.cap = "Le lien entre le poids et la taille en fonction de l'IMC et du sexe.",fig.align='center', out.height="75%", out.width="75%"}
 jd %>% 
   ggplot() + 
   geom_point(mapping = aes(x = mass, y = height, shape = sex, size = IMC)) 
 ```
 
-On peut y ajouter la droite de régression, comme la Figure \@ref(fig:diagdisp3) le montre. Sans `geom_point()`, la figure ne produit la droite. Les arguments de `geom_smooth()` indique  l'utilisation du modèle linéaire, `method = lm`, et l'absence des intervalles de confiance, `se = FALSE`. Dans cette syntaxe, comme le *mapping* est ajouté à `ggplot` directement, il se généralise directement à `geom_point()` et ` geom_smooth()`
+On peut y ajouter la droite de régression, comme la Figure\ \@ref(fig:diagdisp3) le montre. Sans `geom_point()`, la figure ne produit la droite. Les arguments de `geom_smooth()` indique  l'utilisation du modèle linéaire, `method = lm`, et l'absence des intervalles de confiance, `se = FALSE`. Dans cette syntaxe, comme le *mapping* est ajouté à `ggplot` directement, il se généralise directement à `geom_point()` et ` geom_smooth()`
 
-```{r diagdisp3, fig.cap = "Le lien entre le poids et la taille en fonction de l'IMC", fig.align='center', out.height="75%", out.width="75%"}
+```{r diagdisp3, fig.cap = "Le lien entre le poids et la taille en fonction de l'IMC.", fig.align='center', out.height="75%", out.width="75%"}
 jd %>% 
   ggplot(mapping = aes(x = mass, y = height)) + 
   geom_point(size = 2) +
@@ -103,9 +103,9 @@ jd %>%
 
 ## Boîte à moustache
 
-La boîte à moustaches (*box-and-whisker plot*) est une figure permettant de voir la variabilité des données. Elle  résume seulement quelques indicateurs de position soit la médiane, les quartiles, le minimum, et le maximum. Ce diagramme est utilisé principalement pour détecter des valeurs aberrantes et comparer la variabilité entre les groupes. C'est la représentation géométrique `geom_boxplot()` qui permettra de créer des boîtes à moustache. La cartographie prend en argument une variable nominale en `x` et une variable continue en `y`. La Figure \@ref(fig:boxplot1) montre un exemple de boîte à moustache.
+La boîte à moustaches (*box-and-whisker plot*) est une figure permettant de voir la variabilité des données. Elle  résume seulement quelques indicateurs de position soit la médiane, les quartiles, le minimum, et le maximum. Ce diagramme est utilisé principalement pour détecter des valeurs aberrantes et comparer la variabilité entre les groupes. C'est la représentation géométrique `geom_boxplot()` qui permettra de créer des boîtes à moustache. La cartographie prend en argument une variable nominale en `x` et une variable continue en `y`. La Figure\ \@ref(fig:boxplot1) montre un exemple de boîte à moustache.
 
-```{r boxplot1, fig.cap = "Boîte à moustache de l'IMC en fonction du sexe", fig.align='center', out.height="75%", out.width="75%"}
+```{r boxplot1, fig.cap = "Boîte à moustache de l'IMC en fonction du sexe.", fig.align='center', out.height="75%", out.width="75%"}
 ggplot(data = jd) + 
   geom_boxplot(mapping = aes(x = sex, y = IMC)) +
   coord_flip()
@@ -129,9 +129,9 @@ ggplot(data = jd) +
   geom_histogram(mapping = aes(x = IMC))
 ```
 
-Des techniques plus avancées permettent de créer la Figure \@ref(fig:hist) d'un seul coup^[Notamment, le code nécessite `gather()` de `tidyr`[@R-tidyr] et `keep()` de `purrr` [@R-purrr].].
+Des techniques plus avancées permettent de créer la Figure\ \@ref(fig:hist) d'un seul coup^[Notamment, le code nécessite `gather()` de `tidyr`[@R-tidyr] et `keep()` de `purrr` [@R-purrr].].
 
-```{r hist, fig.cap="Histogrammes des variables continues", fig.align='center', out.height="75%", out.width="75%" ,message=FALSE, warning=FALSE}
+```{r hist, fig.cap="Histogrammes des variables continues.", fig.align='center', out.height="75%", out.width="75%" ,message=FALSE, warning=FALSE}
 # Trois histogrammes en une seule figure
 # en optimisant avec le tidyverse
 jd %>%
@@ -144,24 +144,24 @@ jd %>%
 
 Enfin, s'il est désiré de comparer deux distributions de groupes différents, l'argument `fill` dans la cartographie indique à la fonction de différencier les valeurs selon le *remplissage* des histogrammes.
 
-```{r hist2, fig.cap="Histogrammes de l'IMC par rapport au sexe", fig.align='center', out.height="75%", out.width="75%",message=FALSE,warning=FALSE}
+```{r hist2, fig.cap="Histogrammes de l'IMC par rapport au sexe.", fig.align='center', out.height="75%", out.width="75%",message=FALSE,warning=FALSE}
 jd %>% 
   ggplot(mapping = aes(x = IMC, fill = sex)) + 
   geom_histogram(position = "identity", alpha = .7) + 
   scale_fill_grey()
 ```
 
-Dans la Figure \@ref(fig:hist2), l'argument `position = "identity"` indique de traiter les deux groupes comme différents, autrement les colonnes s'additionnent dans le graphique. L'argument `alpha = .7` permet une transparence entre les couleurs, autrement, les valeurs *derrière* les autres ne paraissent pas. La valeur de `alpha` va de 0 (transparent) à 1 (opaque) et fonctionne dans la plupart des contextes, surtout ceux liés à `ggplot2`.
+Dans la Figure\ \@ref(fig:hist2), l'argument `position = "identity"` indique de traiter les deux groupes comme différents, autrement les colonnes s'additionnent dans le graphique. L'argument `alpha = .7` permet une transparence entre les couleurs, autrement, les valeurs *derrière* les autres ne paraissent pas. La valeur de `alpha` va de 0 (transparent) à 1 (opaque) et fonctionne dans la plupart des contextes, surtout ceux liés à `ggplot2`.
 
 ## Les barres d'erreurs
 
 Les barres d'erreur sont une représentation géométrique à part entière. La fonction pour les commandées est `geom_errorbar()`. Elle nécessite deux arguments, soit l'intervalle de confiance maximale et minimale autour des moyennes à afficher. 
 
-La Figure \@ref(fig:erreurbar) illustre les différences entre moyennes avec des barres d'erreur à partir de la base de données `ToothGrowth`, une étude de l'effet de la vitamine C (`dose`) selon leur administration (jus ou supplément `supp`) sur la longueur des dents des cochons d'inde. Il y a deux facteurs et une variable continue.
+La Figure\ \@ref(fig:erreurbar) illustre les différences entre moyennes avec des barres d'erreur à partir de la base de données `ToothGrowth`, une étude de l'effet de la vitamine C (`dose`) selon leur administration (jus ou supplément `supp`) sur la longueur des dents des cochons d'inde. Il y a deux facteurs et une variable continue.
 
 La première étape est de tirer les statistiques sommaires, moyennes, écart type, tailles des groupes. La syntaxe tire profit de `group_by()` pour tirer les groupes et en faire le sommaire. Le sommaire `summarise` permet d'obtenir les statistiques, notamment la moyenne, l'erreur standard (`se`) pour en calculer l'intervalle autour de la moyenne `ci`.
 
-```{r erreurbar, fig.cap="Les effets de la vitamine C sur les cochons d'inde", fig.align='center', out.height="75%", out.width="75%"}
+```{r erreurbar, fig.cap="Les effets de la vitamine C sur les cochons d'inde.", fig.align='center', out.height="75%", out.width="75%"}
 stat.descr <- ToothGrowth %>% 
   group_by(dose, supp) %>% 
   summarise(mlen = mean(len),
@@ -191,9 +191,9 @@ Il existe un package `superb` [@superb] qui permet d'obtenir des graphiques à b
 
 Il y a deux avantages principaux a utilisé `superb`. La première est qu'elle permet des ajustements avec l'argument `adjustments` afin de préciser le type de barres d'erreurs^[Oui, oui, il en existe plusieurs!], comme `"single"`, `"difference"`, ou `"tryon"`. Généralement, ce sera l'option `purpose = "difference"` qui sera désirée. Deuxièmement, `superb` tient aussi compte des devis intra participants avec l’argument `WSFactors`, ce qui permet l'utilisation de différentes techniques de décorrélation des temps de mesure. La fonction produit de bien meilleurs graphiques à barres d'erreurs avec plus d'ajustement et de précision.
 
-La Figure \@ref(fig:erreurbar2) reproduit la Figure\ \@ref(fig:erreurbar). Dans le code, il faut préciser les facteurs inter participants `BSFactors` (pour *between subject* ou *BS*) et la variable dépendante, `variable`. La fonction contrôle aussi le type de graphique avec `plotStyle`. 
+La Figure\ \@ref(fig:erreurbar2) reproduit la Figure\ \@ref(fig:erreurbar). Dans le code, il faut préciser les facteurs inter participants `BSFactors` (pour *between subject* ou *BS*) et la variable dépendante, `variable`. La fonction contrôle aussi le type de graphique avec `plotStyle`. 
 
-```{r erreurbar2, fig.cap="Les effets de la vitamine C sur les cochons d'inde avec `superb`", fig.align='center', out.height="75%", out.width="75%", warning = FALSE,message=FALSE}
+```{r erreurbar2, fig.cap="Les effets de la vitamine C sur les cochons d'inde avec `superb`.", fig.align='center', out.height="75%", out.width="75%", warning = FALSE,message=FALSE}
 library(superb)
 superbPlot(ToothGrowth, 
     BSFactors = c("dose","supp"), 
@@ -216,7 +216,7 @@ Attention! Cette variable est une liste contenant deux éléments, les statistiq
 
 Pour reproduire la Figure\ \@ref(fig:erreurbar) avec le jeu de données extrait de `superbData()`, il faut procéder à quelques ajustements, comme le nom des variables qui ne sont pas les mêmes, et le fait que la variable `dose` est maintenant traitée en variable nominale, alors qu'il est souhaitable qu'elle soit numérique pour utiliser la représentation géométrique `geom_line()`. La Figure\ \@ref(fig:erreurbar3) illustre le résultat.
 
-```{r erreurbar3, fig.cap="Les effets de la vitamine C sur les cochons d'inde avec `superb`", fig.align='center', out.height="75%", out.width="75%", warning = FALSE}
+```{r erreurbar3, fig.cap="Les effets de la vitamine C sur les cochons d'inde avec `superb`.", fig.align='center', out.height="75%", out.width="75%", warning = FALSE}
 stat.descr$summaryStatistics %>% 
   ggplot(aes(x = as.numeric(dose),
              y = center, 
@@ -248,25 +248,25 @@ jd_intra <- data.frame(temps1 = temps1,
 
 Pour produire la figure, il faut définir le facteur intra participant (*within subject* ou *WS*) par l'argument `WSFactors`. Cette argument est particulier, il nécessite un mot arbitraire pour identifier l'effet temporelle, ici `WSFactors = "temps`, mais aussi entre parenthèses, le nombre de temps de mesures, ici `"(2)"`, ce qui forme l'argument complet `WSFactors = "temps(2)"`. Ensuite, pour la variable dépendante, on combine ensemble tous les temps de mesure spécifiés, ici `variables = c("temps1", "temps2")`. Il reste à définir le style de graphique et les ajustements. Pour l'objectif (`purpose`), ce sont les mêmes options que pour les devis inter participants, soit (`"single"`, `"difference"` ou `"tryon"`).
 
-```{r erreurbar4, fig.cap="Comparaison de deux temps de mesure avec `superb` (sans décorrélation)", fig.align='center', out.height="75%", out.width="75%", message=FALSE, warning = FALSE}
+```{r erreurbar4, fig.cap="Comparaison de deux temps de mesure avec `superb` (sans décorrélation).", fig.align='center', out.height="75%", out.width="75%", message=FALSE, warning = FALSE}
 superbPlot(jd_intra, 
     WSFactors = "temps(2)", 
     variables = c("temps1", "temps2"),
     plotStyle = "line",
     adjustments = list(purpose = "difference"))
 ```
-La Figure \@ref(fig:erreurbar4) montre le résultat obtenu.
+La Figure\ \@ref(fig:erreurbar4) montre le résultat obtenu.
 
 Le package `superb` permet aussi l'utilisation de techniques de décorrélation comme `"CM"`, `"LM"`, `"CA"` ou `"none"` (par défaut) pour améliorer les intervalles de confiance. Consultez la documentation pour en savoir plus sur son fonctionnement et ce qui conviendra le mieux à la situation qui se présente. Pour l'implantation, il suffit d'ajouter à la liste d'arguments fournie à `adjustements`, le type de décorrlation désirée, ici `decorrelation = "CM"`).
 
-```{r erreurbar5, fig.cap="Comparaison de deux temps de mesure avec `superb` (avec décorrélation)", fig.align='center', out.height="75%", out.width="75%", warning=FALSE, message=FALSE}
+```{r erreurbar5, fig.cap="Comparaison de deux temps de mesure avec `superb` (avec décorrélation).", fig.align='center', out.height="75%", out.width="75%", warning=FALSE, message=FALSE}
 superbPlot(jd_intra, 
     WSFactors = "temps(2)", 
     variables = c("temps1", "temps2"),
     plotStyle = "line",
     adjustments = list(purpose = "difference", decorrelation = "CM"))
 ```
-Les barres d'erreur de la Figure \@ref(fig:erreurbar5) sont légèrement différentes de la Figure \@ref(fig:erreurbar4), mais plus adéquates pour illustrer les résultats.
+Les barres d'erreur de la Figure\ \@ref(fig:erreurbar5) sont légèrement différentes de la Figure\ \@ref(fig:erreurbar4), mais plus adéquates pour illustrer les résultats.
 
 ## Quelques trucs en rafale
 

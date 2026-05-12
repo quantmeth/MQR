@@ -22,13 +22,13 @@ Il suffit de le faire une fois à la première utilisation ou pour d'éventuelle
 
 Une fois tout installé, il faut faire `File -> New File -> Rmarkdown` pour ouvrir un nouveau document. La boîte de dialogue affichée à la Figure\ \@ref(fig:rediger1) demande quatre éléments : le titre, le nom de l'auteur, la date et le format du rapport (html, pdf ou word). Les deux premiers sont les plus utilisés. Une fois rempli, il faut cliquer sur OK.
 
-```{r rediger1, fig.cap="Boîte de dialogue de Rmarkdown", fig.align='center', echo = FALSE,out.height="50%", out.width="50%"}
+```{r rediger1, fig.cap="Boîte de dialogue de Rmarkdown.", fig.align='center', echo = FALSE,out.height="50%", out.width="50%"}
 knitr::include_graphics("image/rediger1.PNG")
 ```
 
 Cette procédure ouvre un [script][Les scripts] d'extension `.Rmd`. Il s'agit d'un exemple typique qui rappelle des éléments de base pour produire un document. L'exemple est présenté à la Figure\ \@ref(fig:rediger2). C'est une bonne source pour se rappeler les lignes de la syntaxe `Rmarkdown`. Chaque élément est vu en détail dans la prochaines section.
 
-```{r rediger2, fig.cap="Exemple de Rmarkdown", fig.align='center', echo = FALSE, out.height="50%", out.width="50%"}
+```{r rediger2, fig.cap="Exemple de Rmarkdown.", fig.align='center', echo = FALSE, out.height="50%", out.width="50%"}
 knitr::include_graphics("image/rediger2.PNG")
 ```
 
@@ -40,7 +40,7 @@ Il est possible de voir immédiatement le résultat final de ce script en cliqua
 
 L'entête est la zone qui conserve les éléments du texte, permet la personnalisation et l'ajout de composante, le cas échéant. Cet espace se nomme YAML pour *Yet Another Markdown Language*. Pour l'instant, les renseignements initiaux s'y retrouvent (titre, nom, date et format). 
 
-```{r entete, fig.cap="Entête ou YAML", fig.align='center', out.height="50%", out.width="50%", echo = FALSE}
+```{r entete, fig.cap="Entête ou YAML.", fig.align='center', out.height="50%", out.width="50%", echo = FALSE}
 knitr::include_graphics("image/entete.PNG")
 ```
 
@@ -52,7 +52,7 @@ Pour les titres de section, les `#` permette d'indiquer qu'il s'agit effectiveme
 
 Comme le texte est rédiger dans **R**, il sera utile d'employer du code de ce langage dans le rapport. Ainsi, les rapports servent à jumeler, textes, analyses et graphiques. Pour déterminer le texte du code à lire, la syntaxe à rouler est inscrite dans un **chunk** (morceau en français). Les chunks sont délimités par trois accents graves (*backticks* en anglais), puis un accolade indiquant le langage utilisé dans le chunk (`r` en général), et se termine par trois autre accents grave. La Figure\ \@ref(fig:chunk1) montre un chunk.
 
-```{r chunk1, fig.cap="Un chunk", fig.align='center',echo = FALSE, out.height="50%", out.width="50%"}
+```{r chunk1, fig.cap="Un chunk.", fig.align='center',echo = FALSE, out.height="50%", out.width="50%"}
 knitr::include_graphics("image/chunk1.PNG")
 ```
 
@@ -68,7 +68,7 @@ Ces arguments `echo`  et `eval` doivent être spécifier dans les accolades du c
 
 Pour inclure une figure, il faut la programmer dans un chunk. Dans l'exemple, le graphique du jeu de `pressure` est présenté avec `plot(pressure)` dans un chunk, voir la Figure\ \@ref(fig:rediger3). Noter dans les accolades la présence de `echo=FALSE` qui, au moment de produire l'image, n'affichera pas le code source dans le document final (le chunk n'est pas rapporté). Seule la figure est affichée.
 
-```{r rediger3, fig.cap  = 'Ajouter une figure', echo = FALSE, out.height="50%", out.width="50%"}
+```{r rediger3, fig.cap  = 'Ajouter une figure.', echo = FALSE, out.height="50%", out.width="50%"}
 knitr::include_graphics("image/rediger3.PNG")
 ```
 

@@ -12,7 +12,9 @@ Comme pour tous les [packages][les packages], il faut d'abord installer et appel
 ``` r
 #
 library(lavaan)
-> This is lavaan 0.6-19
+> Warning: le package 'lavaan' a été compilé avec la version
+> R 4.4.3
+> This is lavaan 0.6-21
 > lavaan is FREE software! Please report any bugs.
 ```
 
@@ -36,15 +38,15 @@ Une fois le modèle assigné dans une variable, les fonctions `sem()` et `cfa()`
 
 ### Les indices d'ajustement
 
-Une fois l'analyse l'analyse, l'utilisateur peut regarder les indices d'ajustement. Il est recommandé de rapporter le $\chi^2$ avec sa valeur-$p$ et ses degrés de liberté ainsi que l'indice comparatif d'ajustement (CFI), l'indice de Tucker-Lewis (TLI), l'erreur quadratique moyenne d'approximation (RMSEA) et le résidu quadratique moyen standardiséé (SRMR).
+Une fois l'analyse réalisée, l'utilisateur peut regarder les indices d'ajustement. Il est recommandé de rapporter le $\chi^2$ avec sa valeur-$p$ et ses degrés de liberté ainsi que l'indice comparatif d'ajustement (CFI), l'indice de Tucker-Lewis (TLI), l'erreur quadratique moyenne d'approximation (RMSEA) et le résidu quadratique moyen standardiséé (SRMR).
 
 Dans le contexte des modèles d'équations structurelles, le $\chi^2$ est un indice classique de la qualité de l'ajustement du modèle aux données observées. Il compare la matrice de covariance observée des données à la matrice de covariance prédite par le modèle. Le but est de déterminer si les différences entre ces deux matrices peuvent être attribuées à des variations aléatoires. Une valeur-$p$ supérieure à 0.05 (non significative) suggère que le modèle s'ajuste bien aux données. Le $\chi^2$  est très sensible à la taille de l'échantillon. Pour des échantillons très grands, de petites différences peuvent produire une valeur significative, suggérant à tort un mauvais ajustement. Pareillement, pour les modèles avec de nombreux paramètres, il peut souvent indiquer un mauvais ajustement en raison de l'accumulation d'erreurs.
 
-Le CFI est un indice utilisé dans la modélisation par équations structurelles (SEM) pour évaluer la qualité de l'ajustement d'un modèle par rapport à un modèle de référence. Il compare le modèle testé à un modèle nul (ou indépendant) où il n'existe aucune relation entre les variables observées. Le CFI varie entre 0 et 1, avec des valeurs plus proches de 1 indiquant un meilleur ajustement. En général, un CFI supérieur à 0.90 est considéré comme indiquant un bon ajustement du modèle, tandis qu'un CFI supérieur à 0.95 est souvent interprété comme excellent.
+Le CFI est un indice utilisé dans la modélisation par équations structurelles (SEM) pour évaluer la qualité de l'ajustement d'un modèle par rapport à un modèle de référence. Il compare le modèle testé à un modèle nul (ou indépendant) où il n'existe aucune relation entre les variables observées. Le CFI varie entre 0 et 1 (théoriquement, il peut excéder cette valeur), avec des valeurs plus proches de 1 indiquant un meilleur ajustement. En général, un CFI supérieur à 0.90 est considéré comme indiquant un bon ajustement du modèle, tandis qu'un CFI supérieur à 0.95 est souvent interprété comme excellent.
 
 Comme le CFI, le TLI compare le modèle testé à un modèle nul où il n'y a pas de relations entre les variables observées. Cependant, contrairement au CFI, le TLI pénalise la complexité du modèle; il ajuste la statistique d'ajustement en fonction du nombre de paramètres estimés, ce qui signifie qu'il prend en compte le degré de liberté. Cela peut rendre le TLI plus strict, surtout pour des modèles très complexes.
 
-Le TLI varie également entre 0 et 1, avec des valeurs plus proches de 1 indiquant un meilleur ajustement. En général, un TLI supérieur à 0.90 est considéré comme indiquant un bon ajustement, tandis qu'un TLI supérieur à 0.95 est souvent interprété comme excellent.
+Le TLI varie également entre 0 et 1 (théoriquement, il peut excéder cette valeur), avec des valeurs plus proches de 1 indiquant un meilleur ajustement. En général, un TLI supérieur à 0.90 est considéré comme indiquant un bon ajustement, tandis qu'un TLI supérieur à 0.95 est souvent interprété comme excellent.
 
 Le RMSEA est un indice utilisé dans la modélisation par équations structurelles (SEM) pour évaluer la qualité de l'ajustement d'un modèle aux données observées. Cet indice mesure l'écart entre le modèle hypothétique et la réalité observée. Des valeurs plus faibles de RMSEA indiquent un meilleur ajustement. En général, un RMSEA inférieur à 0,05 est considéré comme un bon ajustement, tandis qu'un RMSEA entre 0,05 et 0,08 est jugé acceptable.
 
@@ -90,8 +92,8 @@ standardizedSolution(object)
 Voici un exemple d'analyse factorielle exploratoire. La syntaxe suivante recrée le modèle présenté au chapitre [Explorer]. La matrice de corrélation se trouve dans le package `Rnest` [@Rnest] pour aller plus rapidement. 
 
 <div class="figure" style="text-align: center">
-<img src="image//factstruct.png" alt="Structure factorielle de l'exemple" width="50%" height="50%" />
-<p class="caption">(\#fig:FactStructconfirmer)Structure factorielle de l'exemple</p>
+<img src="image//factstruct.png" alt="Structure factorielle de l'exemple." width="50%" height="50%" />
+<p class="caption">(\#fig:FactStructconfirmer)Structure factorielle de l'exemple.</p>
 </div>
 
 La Figure\ \@ref(fig:FactStructconfirmer) (présentée auparavant à la Figure\ \@ref(fig:FactStruct)) montre la structure factorielle sous-jacente à la matrice de corrélation `ex_mqr`. La syntaxe crée un jeu de données basée sur cette matrice.
@@ -199,14 +201,18 @@ Grâce au package `lavaanExtra` [@lavaanExtra] il est possible de produire rapid
 
 
 ``` r
-lavaanExtra::cfa_fit_plot(model.cfa2, data = jd.cfa)
+lavaanExtra::nice_lavaanPlot(res.cfa2)
 ```
 
 <div class="figure" style="text-align: center">
-<img src="image//leplot.png" alt="Représentation graphiques de la structure factorielle finale" width="60%" height="60%" />
-<p class="caption">(\#fig:leplot)Représentation graphiques de la structure factorielle finale</p>
-</div>
 
+```{=html}
+<div class="grViz html-widget html-fill-item" id="htmlwidget-c72387fd6c1102706219" style="width:75%;height:75%;"></div>
+<script type="application/json" data-for="htmlwidget-c72387fd6c1102706219">{"x":{"diagram":" digraph plot { \n graph [ rankdir = LR ] \n node [ shape = box, fontname = Helvetica ] \n node [shape = box] \n i1; i2; i3; i6; i4; i5 \n node [shape = oval] \n F1; F2 \n \n edge [ color = black ] \n  F1->i1 [label = \"0.9***\"] F1->i2 [label = \"0.75***\"] F1->i3 [label = \"0.69***\"] F1->i6 [label = \"0.32***\"] F2->i4 [label = \"0.47***\"] F2->i5 [label = \"0.55***\"] F2->i6 [label = \"0.53***\"] \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+```
+
+<p class="caption">(\#fig:leplot)Représentation graphique de la structure factorielle finale.</p>
+</div>
 
 Enfin, les paramètres pourront être extraits si l'utilisateur désire les observés.
 
@@ -244,8 +250,8 @@ standardizedSolution(res.cfa2)
 Comme second exemple basé sur les analyses acheminatoires, il s'agit d'un modèle tiré de @Lemardeletsoumis dont le jeu de données est disponible du package `pathanalysis` [@CaronPA]. Le modèle est une médiation sérielle avec deux médiateurs. La Figure\ \@ref(fig:exMED) présente le modèle.
 
 <div class="figure" style="text-align: center">
-<img src="image//exMED.png" alt="Modèle de médiation de Lemardelet et Caron (2022(" width="50%" height="50%" />
-<p class="caption">(\#fig:exMED)Modèle de médiation de Lemardelet et Caron (2022(</p>
+<img src="image//exMED.png" alt="Modèle de médiation de Lemardelet et Caron (2022)." width="50%" height="50%" />
+<p class="caption">(\#fig:exMED)Modèle de médiation de Lemardelet et Caron (2022).</p>
 </div>
 
 Le jeu de données se trouve dans le packages `pathanalysis` sous le libellé `medEx`.
@@ -344,11 +350,11 @@ lavaanExtra::nice_lavaanPlot(res.lav.med2)
 <div class="figure" style="text-align: center">
 
 ```{=html}
-<div class="grViz html-widget html-fill-item" id="htmlwidget-c72387fd6c1102706219" style="width:75%;height:75%;"></div>
-<script type="application/json" data-for="htmlwidget-c72387fd6c1102706219">{"x":{"diagram":" digraph plot { \n graph [ rankdir = LR ] \n node [ shape = box, fontname = Helvetica ] \n node [shape = box] \n x; m1; m2; y \n node [shape = oval] \n  \n \n edge [ color = black ] \n x->m1 [label = \"0.49***\"] x->m2 [label = \"0.18***\"] m1->m2 [label = \"0.46***\"] m2->y [label = \"0.67***\"] m1->y [label = \"\"] x->y [label = \"0.25***\"]  \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-be2e583e7bf17a4889c0" style="width:75%;height:75%;"></div>
+<script type="application/json" data-for="htmlwidget-be2e583e7bf17a4889c0">{"x":{"diagram":" digraph plot { \n graph [ rankdir = LR ] \n node [ shape = box, fontname = Helvetica ] \n node [shape = box] \n x; m1; m2; y \n node [shape = oval] \n  \n \n edge [ color = black ] \n x->m1 [label = \"0.49***\"] x->m2 [label = \"0.18***\"] m1->m2 [label = \"0.46***\"] m2->y [label = \"0.67***\"] m1->y [label = \"\"] x->y [label = \"0.25***\"]  \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 ```
 
-<p class="caption">(\#fig:lesem)Représentation graphiques du modèle acheminatoire </p>
+<p class="caption">(\#fig:lesem)Représentation graphique du modèle acheminatoire.</p>
 </div>
 
 

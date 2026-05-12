@@ -4,7 +4,7 @@ Comme mentionné d'entrée de jeu, l'analyse en composantes principales (ACP) n'
 
 Parallèlement, l'[analyse factorielle exploratoire] permet de dériver un indice de suffisance du nombre de dimensions (le $\chi^2$), toutefois, il existe de meilleures techniques pour déterminer le nombre de dimensions à retenir dans une analyse exploratoire.
 
-Cette section porte sur les méthodes afin d'identifier le nombre de dimensions à retenir. C'est un sujet très complexe dont seulement quelques brides seront abordées.
+Cette section porte sur les méthodes afin d'identifier le nombre de dimensions à retenir. C'est un sujet très laborieux dont seulement quelques brides seront abordées.
 
 ## Illustration
 
@@ -12,11 +12,11 @@ Qu'est-ce que la réduction de dimensions? La réduction de dimensions ou la dé
 
 La compression d'images, en informatique, est un exemple de réduction dimensionnelle dont il est possible d'illustrer visuellement. La réduction de dimensions permet de résumer l'information afin d'en réduire la taille pour ne conserver que le signifiant. Ainsi, les mêmes techniques permettant d'identifier les facteurs psychologiques peuvent être utilisées pour les images, l'identification des thèmes de films et bien d'autres.
 
-La Figure \@ref(fig:Pigeon) montre un exemple de compression d'une image de pigeon^[Tirée de https://pixnio.com/fr/faune-animaux/des-oiseaux-fr/pigeons-photos/oiseau-pigeon-tumbler-pigeon-mouche-animal-animal, License CC0]. Elle montre à différents niveaux factoriels de compression la même image. À trois dimensions, le pigeon est difficilement perceptible. Progressivement, le pigeon est plus facilement reconnaissable, mais surtout, à un certain seuil (deuxième et troisième lignes de la Figure \@ref(fig:Pigeon), par exemple), l'image gagne en clarté. Trente dimensions conviennent, les plus difficiles désireront peut-être retenir 125 dimensions. L'image à ce stade est très bien. Nonobstant ces nombres, ce sera toujours mieux, en termes de compression, que les 526 dimensions possibles (de l'image originale). Ainsi, à 23.764 % des dimensions, l'image est claire et le pigeon reconnaissable. Cette logique s'applique également pour les facteurs psychologiques.
+La Figure\ \@ref(fig:Pigeon) montre un exemple de compression d'une image de pigeon^[Tirée de https://pixnio.com/fr/faune-animaux/des-oiseaux-fr/pigeons-photos/oiseau-pigeon-tumbler-pigeon-mouche-animal-animal, License CC0]. Elle montre à différents niveaux factoriels de compression la même image. À trois dimensions, le pigeon est difficilement perceptible. Progressivement, le pigeon est plus facilement reconnaissable, mais surtout, à un certain seuil (deuxième et troisième lignes de la Figure\ \@ref(fig:Pigeon), par exemple), l'image gagne en clarté. Trente dimensions conviennent, les plus difficiles désireront peut-être retenir 125 dimensions. L'image à ce stade est très bien. Nonobstant ces nombres, ce sera toujours mieux, en termes de compression, que les 526 dimensions possibles (de l'image originale). Ainsi, à 23.764 % des dimensions, l'image est claire et le pigeon reconnaissable. Cette logique s'applique également pour les facteurs psychologiques.
 
 <div class="figure" style="text-align: center">
-<img src="image//Pigeon.png" alt="Pigeon compressé à divers niveaux de dimension $k$" width="75%" height="75%" />
-<p class="caption">(\#fig:Pigeon)Pigeon compressé à divers niveaux de dimension $k$</p>
+<img src="image//Pigeon.png" alt="Une image de pigeon compressé à divers niveaux de dimension $k$." width="75%" height="75%" />
+<p class="caption">(\#fig:Pigeon)Une image de pigeon compressé à divers niveaux de dimension $k$.</p>
 </div>
 
 ## Importance d'une dimension
@@ -83,8 +83,8 @@ ggplot(data = vp,
 ```
 
 <div class="figure" style="text-align: center">
-<img src="20-Reduire_files/figure-html/scree-1.png" alt="Les valeurs propres en fonction de la position de l'axe" width="75%" height="75%" />
-<p class="caption">(\#fig:scree)Les valeurs propres en fonction de la position de l'axe</p>
+<img src="20-Reduire_files/figure-html/scree-1.png" alt="Les valeurs propres en fonction de la position de l'axe." width="75%" height="75%" />
+<p class="caption">(\#fig:scree)Les valeurs propres en fonction de la position de l'axe.</p>
 </div>
 La Figure\ \@ref(fig:scree) est une bonne représentation visuelle des valeurs propres. Elle ne répond pas à la question d'intérêt : combien y a-t-il de dimensions *importantes*? Elle donne toutefois une idée. Probablement 2 ou 3? La première est indubitable; la valeur propre est très élevée. Les 4^e^, 5^e^ et 6^e^ sont quant à elles très petites et sont très près. Comment déterminer avec plus de rigueur le nombre de dimensions? C'est là que les règles d'arrêt entre en jeu.
 
@@ -160,8 +160,8 @@ ggplot(data = vp,
 ```
 
 <div class="figure" style="text-align: center">
-<img src="20-Reduire_files/figure-html/kaiser-1.png" alt="Les valeurs propres en fonctions de la position de l'axe" width="75%" height="75%" />
-<p class="caption">(\#fig:kaiser)Les valeurs propres en fonctions de la position de l'axe</p>
+<img src="20-Reduire_files/figure-html/kaiser-1.png" alt="Les valeurs propres en fonctions de la position de l'axe." width="75%" height="75%" />
+<p class="caption">(\#fig:kaiser)Les valeurs propres en fonctions de la position de l'axe.</p>
 </div>
 
 Voici un exemple d'une fonction maison simple pour programmer le test de Kaiser.
@@ -247,7 +247,7 @@ sum(res$values > rowMeans(valeurs.propres))
 > [1] 2
 ```
 
-Ainsi, 2 facteurs sont à retenir. Une façon d'illustrer les résultats de l'analyse parallèle est d'utiliser le graphique des éboulis en y représentant les valeurs propres empiriques comparativement aux simulées. Le nombre de valeurs propres empiriques supérieures aux simulées est le nombre de dimensions à retenir. Ce graphique est produit à la Figure \@ref(fig:scree2). Voici la syntaxe pour produire ce graphique avec `ggplot2`. La première étape est de mettre en commun les résultats obtenus dans un jeu de données. La variable `Position` indique l'ordre de la valeur propre, `valeurs.propres` contient les valeurs propres et `Test` indique s'il s'agit de valeurs propres empiriques ou simulées de l'analyse parallèle. Pour le reste, il s'agit de recourir à `ggplot()`.
+Ainsi, 2 facteurs sont à retenir. Une façon d'illustrer les résultats de l'analyse parallèle est d'utiliser le graphique des éboulis en y représentant les valeurs propres empiriques comparativement aux simulées. Le nombre de valeurs propres empiriques supérieures aux simulées est le nombre de dimensions à retenir. Ce graphique est produit à la Figure\ \@ref(fig:scree2). Voici la syntaxe pour produire ce graphique avec `ggplot2`. La première étape est de mettre en commun les résultats obtenus dans un jeu de données. La variable `Position` indique l'ordre de la valeur propre, `valeurs.propres` contient les valeurs propres et `Test` indique s'il s'agit de valeurs propres empiriques ou simulées de l'analyse parallèle. Pour le reste, il s'agit de recourir à `ggplot()`.
 
 
 ``` r
@@ -268,8 +268,8 @@ ggplot(data = vp,
 ```
 
 <div class="figure" style="text-align: center">
-<img src="20-Reduire_files/figure-html/scree2-1.png" alt="Comparaison des valeurs propres empiriques et simulées" width="75%" height="75%" />
-<p class="caption">(\#fig:scree2)Comparaison des valeurs propres empiriques et simulées</p>
+<img src="20-Reduire_files/figure-html/scree2-1.png" alt="Comparaison des valeurs propres empiriques et simulées." width="75%" height="75%" />
+<p class="caption">(\#fig:scree2)Comparaison des valeurs propres empiriques et simulées.</p>
 </div>
 Voici une fonction pour programmer l'analyse parallèle.
 
@@ -425,7 +425,7 @@ Voici la fonction avec le présent exemple.
 
 ``` r
 nest(jd)
-> At 95% confidence, Next Eigenvalue Sufficiency Test (NEST) suggests 2 factors.
+> Next Eigenvalue Sufficiency Test (NEST) suggests 2 factors.
 ```
 Voici la sortie des valeurs propres comparées aux deux autres règles d'arrêt illustrée à la Figure\ \@ref(fig:scree3).
 
@@ -449,8 +449,8 @@ ggplot(data = vp,
 ```
 
 <div class="figure" style="text-align: center">
-<img src="20-Reduire_files/figure-html/scree3-1.png" alt="Comparaison des valeurs propres empiriques et simulées (analyses parallèle et nest)" width="75%" height="75%" />
-<p class="caption">(\#fig:scree3)Comparaison des valeurs propres empiriques et simulées (analyses parallèle et nest)</p>
+<img src="20-Reduire_files/figure-html/scree3-1.png" alt="Comparaison des valeurs propres empiriques et simulées (analyse parallèle et nest)." width="75%" height="75%" />
+<p class="caption">(\#fig:scree3)Comparaison des valeurs propres empiriques et simulées (analyse parallèle et nest).</p>
 </div>
 
 Un bel avantage du package est sa possibilité de créer un graphique pour différentes valeurs critiques `alpha`. La Figure\ \@ref(fig:screenest) illustre la sortie.
@@ -461,20 +461,20 @@ plot(nest(jd, alpha = c(.01, .025, .05, .10)))
 ```
 
 <div class="figure" style="text-align: center">
-<img src="20-Reduire_files/figure-html/screenest-1.png" alt="Graphique produit par `nest` de `Rnest`" width="75%" height="75%" />
-<p class="caption">(\#fig:screenest)Graphique produit par `nest` de `Rnest`</p>
+<img src="20-Reduire_files/figure-html/screenest-1.png" alt="Graphique produit par `nest` de `Rnest`." width="75%" height="75%" />
+<p class="caption">(\#fig:screenest)Graphique produit par `nest` de `Rnest`.</p>
 </div>
 
 
 ### Comparaisons des règles d'arrêts
 
-À ce stage, les trois règles d'arrêt ont sorti le même nombre de facteurs. Elles semblent ne devenir qu'inutilement alambiqué. Il revient à l'exemple original d'être très simples : des loadings assez saillants, des valeurs propres élevées et une structure simple et orthogonale. Voici un exemple plus complexe.
+À ce stage, les trois règles d'arrêt ont sorti le même nombre de facteurs. Elles semblent ne devenir qu'inutilement alambiqué. Il revient à l'exemple original d'être très simples : des loadings assez saillants, des valeurs propres élevées et une structure simple et orthogonale. Voici un exemple plus difficile.
 
 Le package `Rnest` founir une matrice de corrélation basée sur 4 facteurs corrélées. La matrice se nomme `ex_4factors_corr` et la Figure\ \@ref(fig:structcp) représente la structure factorielle sous-jacente de cette matrice de corrélation. Il s'agit de quatre facteurs avec trois items chacun avec des loadings respectif de .9, .9 et .3 et deux paires de corrélation interfacteur de .7.
 
 <div class="figure" style="text-align: center">
-<img src="image//factstruct3.png" alt="Structure factorielle de `ex_4factors_corr`" width="50%" height="50%" />
-<p class="caption">(\#fig:structcp)Structure factorielle de `ex_4factors_corr`</p>
+<img src="image//factstruct3.png" alt="La structure factorielle de `ex_4factors_corr`." width="50%" height="50%" />
+<p class="caption">(\#fig:structcp)La structure factorielle de `ex_4factors_corr`.</p>
 </div>
 
 À partir de cette matrice, il est possible de créer un jeu de données pour 2500 participants.
@@ -490,8 +490,8 @@ jd2 <- MASS::mvrnorm(n = 2500,
 La Figure\ \@ref(fig:scree4) les valeurs propres du jeu de données.
 
 <div class="figure">
-<img src="20-Reduire_files/figure-html/scree4-1.png" alt="Les valeurs propres de `ex_4factors_corr`" width="672" />
-<p class="caption">(\#fig:scree4)Les valeurs propres de `ex_4factors_corr`</p>
+<img src="20-Reduire_files/figure-html/scree4-1.png" alt="Les valeurs propres de `ex_4factors_corr`." width="672" />
+<p class="caption">(\#fig:scree4)Les valeurs propres de `ex_4factors_corr`.</p>
 </div>
 
 Il s'agit d'une structure très difficile pour les règles d'arrêt basées sur les valeurs propres, comme le test de Kaiser, l'analyse parallèle et NEST. Voici les tests comparés.
@@ -515,8 +515,8 @@ Ici NEST montre clairement sa supériorité en étant sensible aux petites valeu
 1. Créer un jeu de données pour la structure de la Figure\ \@ref(fig:structcp3). Le jeu de données est standardisé et contient 584 sujets.
 
 <div class="figure" style="text-align: center">
-<img src="image//factstruct4.png" alt="Structure factorielle de `ex_4factors_corr`" width="50%" height="50%" />
-<p class="caption">(\#fig:structcp3)Structure factorielle de `ex_4factors_corr`</p>
+<img src="image//factstruct4.png" alt="La structure factorielle de `ex_4factors_corr`." width="50%" height="50%" />
+<p class="caption">(\#fig:structcp3)La structure factorielle de `ex_4factors_corr`.</p>
 </div>
 
 ### Question 2 {-}

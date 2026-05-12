@@ -33,15 +33,15 @@ Une fois le modèle assigné dans une variable, les fonctions `sem()` et `cfa()`
 
 ### Les indices d'ajustement
 
-Une fois l'analyse l'analyse, l'utilisateur peut regarder les indices d'ajustement. Il est recommandé de rapporter le $\chi^2$ avec sa valeur-$p$ et ses degrés de liberté ainsi que l'indice comparatif d'ajustement (CFI), l'indice de Tucker-Lewis (TLI), l'erreur quadratique moyenne d'approximation (RMSEA) et le résidu quadratique moyen standardiséé (SRMR).
+Une fois l'analyse réalisée, l'utilisateur peut regarder les indices d'ajustement. Il est recommandé de rapporter le $\chi^2$ avec sa valeur-$p$ et ses degrés de liberté ainsi que l'indice comparatif d'ajustement (CFI), l'indice de Tucker-Lewis (TLI), l'erreur quadratique moyenne d'approximation (RMSEA) et le résidu quadratique moyen standardiséé (SRMR).
 
 Dans le contexte des modèles d'équations structurelles, le $\chi^2$ est un indice classique de la qualité de l'ajustement du modèle aux données observées. Il compare la matrice de covariance observée des données à la matrice de covariance prédite par le modèle. Le but est de déterminer si les différences entre ces deux matrices peuvent être attribuées à des variations aléatoires. Une valeur-$p$ supérieure à 0.05 (non significative) suggère que le modèle s'ajuste bien aux données. Le $\chi^2$  est très sensible à la taille de l'échantillon. Pour des échantillons très grands, de petites différences peuvent produire une valeur significative, suggérant à tort un mauvais ajustement. Pareillement, pour les modèles avec de nombreux paramètres, il peut souvent indiquer un mauvais ajustement en raison de l'accumulation d'erreurs.
 
-Le CFI est un indice utilisé dans la modélisation par équations structurelles (SEM) pour évaluer la qualité de l'ajustement d'un modèle par rapport à un modèle de référence. Il compare le modèle testé à un modèle nul (ou indépendant) où il n'existe aucune relation entre les variables observées. Le CFI varie entre 0 et 1, avec des valeurs plus proches de 1 indiquant un meilleur ajustement. En général, un CFI supérieur à 0.90 est considéré comme indiquant un bon ajustement du modèle, tandis qu'un CFI supérieur à 0.95 est souvent interprété comme excellent.
+Le CFI est un indice utilisé dans la modélisation par équations structurelles (SEM) pour évaluer la qualité de l'ajustement d'un modèle par rapport à un modèle de référence. Il compare le modèle testé à un modèle nul (ou indépendant) où il n'existe aucune relation entre les variables observées. Le CFI varie entre 0 et 1 (théoriquement, il peut excéder cette valeur), avec des valeurs plus proches de 1 indiquant un meilleur ajustement. En général, un CFI supérieur à 0.90 est considéré comme indiquant un bon ajustement du modèle, tandis qu'un CFI supérieur à 0.95 est souvent interprété comme excellent.
 
 Comme le CFI, le TLI compare le modèle testé à un modèle nul où il n'y a pas de relations entre les variables observées. Cependant, contrairement au CFI, le TLI pénalise la complexité du modèle; il ajuste la statistique d'ajustement en fonction du nombre de paramètres estimés, ce qui signifie qu'il prend en compte le degré de liberté. Cela peut rendre le TLI plus strict, surtout pour des modèles très complexes.
 
-Le TLI varie également entre 0 et 1, avec des valeurs plus proches de 1 indiquant un meilleur ajustement. En général, un TLI supérieur à 0.90 est considéré comme indiquant un bon ajustement, tandis qu'un TLI supérieur à 0.95 est souvent interprété comme excellent.
+Le TLI varie également entre 0 et 1 (théoriquement, il peut excéder cette valeur), avec des valeurs plus proches de 1 indiquant un meilleur ajustement. En général, un TLI supérieur à 0.90 est considéré comme indiquant un bon ajustement, tandis qu'un TLI supérieur à 0.95 est souvent interprété comme excellent.
 
 Le RMSEA est un indice utilisé dans la modélisation par équations structurelles (SEM) pour évaluer la qualité de l'ajustement d'un modèle aux données observées. Cet indice mesure l'écart entre le modèle hypothétique et la réalité observée. Des valeurs plus faibles de RMSEA indiquent un meilleur ajustement. En général, un RMSEA inférieur à 0,05 est considéré comme un bon ajustement, tandis qu'un RMSEA entre 0,05 et 0,08 est jugé acceptable.
 
@@ -83,7 +83,7 @@ standardizedSolution(object)
 
 Voici un exemple d'analyse factorielle exploratoire. La syntaxe suivante recrée le modèle présenté au chapitre [Explorer]. La matrice de corrélation se trouve dans le package `Rnest` [@Rnest] pour aller plus rapidement. 
 
-```{r FactStructconfirmer, fig.cap = "Structure factorielle de l'exemple", fig.ext = 'png', cache=TRUE, echo = FALSE, out.height="50%", out.width="50%", fig.align = "center"}
+```{r FactStructconfirmer, fig.cap = "Structure factorielle de l'exemple.", fig.ext = 'png', cache=TRUE, echo = FALSE, out.height="50%", out.width="50%", fig.align = "center"}
 knitr::include_graphics("image//factstruct.png")
 ```
 
@@ -161,14 +161,9 @@ Ils sont tous excellents et respectent les recommandations.
 
 Grâce au package `lavaanExtra` [@lavaanExtra] il est possible de produire rapidement une figure des résultats finaux. Il faut absolument avoir installer les packages `rsvg` et `DiagrammeRsvg` pour obtenir la figure.
 
-```{r, eval = FALSE}
-lavaanExtra::cfa_fit_plot(model.cfa2, data = jd.cfa)
+```{r leplot, fig.cap="Représentation graphique de la structure factorielle finale.", fig.align="center", out.height='75%', out.width='75%'}
+lavaanExtra::nice_lavaanPlot(res.cfa2)
 ```
-
-```{r leplot, echo=FALSE,fig.cap="Représentation graphiques de la structure factorielle finale",fig.align="center", out.height='60%', out.width='60%'}
-knitr::include_graphics("image//leplot.png")
-```
-
 
 Enfin, les paramètres pourront être extraits si l'utilisateur désire les observés.
 
@@ -186,7 +181,7 @@ standardizedSolution(res.cfa2)
 
 Comme second exemple basé sur les analyses acheminatoires, il s'agit d'un modèle tiré de @Lemardeletsoumis dont le jeu de données est disponible du package `pathanalysis` [@CaronPA]. Le modèle est une médiation sérielle avec deux médiateurs. La Figure\ \@ref(fig:exMED) présente le modèle.
 
-```{r exMED, fig.cap = "Modèle de médiation de Lemardelet et Caron (2022(", fig.ext = 'png', cache=TRUE, echo = FALSE, out.height="50%", out.width="50%", fig.align = "center"}
+```{r exMED, fig.cap = "Modèle de médiation de Lemardelet et Caron (2022).", fig.ext = 'png', cache=TRUE, echo = FALSE, out.height="50%", out.width="50%", fig.align = "center"}
 knitr::include_graphics("image//exMED.png")
 ```
 
@@ -252,7 +247,7 @@ fitmeasures(res.lav.med2, c("chisq", "df", "pvalue",
 
 La Figure\ \@ref(fig:lesem) obtenue par `lavaanExtra` montre le modèle final.
 
-```{r lesem, fig.cap="Représentation graphiques du modèle acheminatoire ",fig.align="center", out.height='75%', out.width='75%'}
+```{r lesem, fig.cap="Représentation graphique du modèle acheminatoire.",fig.align="center", out.height='75%', out.width='75%'}
 lavaanExtra::nice_lavaanPlot(res.lav.med2)
 ```
 

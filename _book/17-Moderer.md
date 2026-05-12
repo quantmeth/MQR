@@ -6,7 +6,7 @@ Bien que la modération ait son chapitre désigné, elle a déjà été rencontr
 
 ## L'analyse de modération
 
-Sur le plan quantitatif, l'analyse de modération est un modèle linéaire général réalisé en une seule étape (soit une analyse de la variance ou une régression, en fonction des variables concernées) dans laquelle une variable dépendante, $y$, est prédite par trois variables, la variable indépendante, $x$, l'effet simple de la variable modératrice, $w$, et leur produit $x \times w=xw$. En termes du modèle linéaire général (ANOVA, régression), un modérateur se subsume à une interaction. Mathématiquement, la relation s'exprime comme l'équation \@ref(eq:moderation)
+Sur le plan quantitatif, l'analyse de modération est un modèle linéaire général réalisé en une seule étape (soit une analyse de la variance ou une régression, en fonction des variables concernées) dans laquelle une variable dépendante, $y$, est prédite par trois variables, la variable indépendante, $x$, l'effet simple de la variable modératrice, $w$, et leur produit $x \times w=xw$. En termes du modèle linéaire général (ANOVA, régression), un modérateur se subsume à une interaction. Mathématiquement, la relation s'exprime comme l'équation\ \@ref(eq:moderation)
 
 \begin{equation}
 y = \beta_0 + \beta_1 x + \beta_2 w + \beta_3 (x \times w) + \epsilon
@@ -16,13 +16,13 @@ y = \beta_0 + \beta_1 x + \beta_2 w + \beta_3 (x \times w) + \epsilon
 où les $\beta$ sont les coefficients de régression reliant la variable correspondante à la variable dépendante.  
 
 <div class="figure" style="text-align: center">
-<img src="image//mod.png" alt="Représentations de la modération" width="75%" height="75%" />
-<p class="caption">(\#fig:mod)Représentations de la modération</p>
+<img src="image//mod.png" alt="Représentations de la modération." width="75%" height="75%" />
+<p class="caption">(\#fig:mod)Représentations de la modération.</p>
 </div>
 
 L'analyse de modération est illustrée à la Figure\ \@ref(fig:mod). Le cadran a (gauche) montre une conceptualisation de l'effet attendu du modérateur, soit l'altération de l'effet entre $x$ et $y$. Le cadran b (droite) montre, quant à lui, la représentation statistique dans laquelle le lien direct entre $x$, $w$ et $xw$ par rapport à $y$.
 
-Une façon de mettre l'accent sur l'effet de modération est de réarranger l'équation \@ref(eq:moderation) afin d'obtenir l'équation \@ref(eq:moderation2), ce qui met en évidence le rôle clé de $w$.
+Une façon de mettre l'accent sur l'effet de modération est de réarranger l'équation\ \@ref(eq:moderation) afin d'obtenir l'équation\ \@ref(eq:moderation2), ce qui met en évidence le rôle clé de $w$.
 
 \begin{equation}
 y = \beta_0 + \beta_1 x + (\beta_2 + \beta_3 x) w + \epsilon
@@ -35,7 +35,7 @@ L'équation\ \@ref(eq:moderation2) montre comment $\beta_3$ altère la relation 
 
 Une caractéristique fondamentale de la création d'interactions est qu'elles doivent être créées à partir de ces composantes. Autrement dit, le produit $xw$ comme variable n'est calculable que si $x$ ou $w$ sont d'abord créées. Il faut connaître deux des trois variables pour calculer la troisième. En conséquence, il n'est pas possible de créer des variables d'interaction, comme c'était le cas auparavant avec la fonction `MASS::mvrnorm()`, malgré que la matrice de covariance et les coefficients de régression soient calculables a priori.
 
-La variance du produit de deux variables peut devenir rapidement compliquée. En fait, l'étude des produits de variables est si complexe, particulièrement lorsque les variables ont des moyennes non nulles qu'il n'y a eu que très dernièrement des développements mathématiques sur leur distribution formelle [@Nadarajah; @Cui], ce pourquoi les statisticiens préfèrent recourir généralement au bootstrap pour tester les effets médiateurs.
+La variance du produit de deux variables peut devenir rapidement compliquée. En fait, l'étude des produits de variables est si complexe, particulièrement lorsque les variables ont des moyennes non nulle,s qu'il n'y a eu que très dernièrement des développements mathématiques sur leur distribution formelle [@Nadarajah; @Cui], ce pourquoi les statisticiens préfèrent recourir généralement au bootstrap pour tester les effets médiateurs.
 
 La variance du produit de deux variables standardisées [@Craig; @Haldane] correspond à l'équation\ \@ref(eq:varprod).
 
@@ -122,8 +122,8 @@ jd.continue <- data.frame(x = X[,1],
 Le code ci-dessus montre un scénario standardisé (toutes les moyennes sont 0; toutes les variances égalent 1, sauf l'interaction). Le modèle est illustré à la Figure\ \@ref(fig:ex1mod).
 
 <div class="figure" style="text-align: center">
-<img src="image//ex1mod.png" alt="Exemple de modèle de modération" width="75%" height="75%" />
-<p class="caption">(\#fig:ex1mod)Exemple de modèle de modération</p>
+<img src="image//ex1mod.png" alt="Exemple de modèle de modération." width="75%" height="75%" />
+<p class="caption">(\#fig:ex1mod)Exemple de modèle de modération.</p>
 </div>
 
 Pour simuler une étude réelle, la variable d'interaction n'a pas à être enregistrée dans les deux jeux de données. Elle n'était nécessaire que pour la création de la variable dépendante.
@@ -494,7 +494,7 @@ sim_slopes(model = res2.lm,
 Ce tableau pour les groupes de $w$ si l'effet modérateur est significatif.
 
 
-```r
+``` r
 # Le graphique des pentes simples
 interact_plot(model = res2.lm,
               pred = x,
@@ -503,8 +503,8 @@ interact_plot(model = res2.lm,
 ```
 
 <div class="figure">
-<img src="17-Moderer_files/figure-html/ip1-1.png" alt="Analyse de pentes simples pour un modérateur nominal" width="672" />
-<p class="caption">(\#fig:ip1)Analyse de pentes simples pour un modérateur nominal</p>
+<img src="17-Moderer_files/figure-html/ip1-1.png" alt="Analyse de pentes simples pour un modérateur nominal." width="672" />
+<p class="caption">(\#fig:ip1)Analyse de pentes simples pour un modérateur nominal.</p>
 </div>
 
 Le code ci-dessus illustre ce patron de différences avec la Figure\ \@ref(fig:ip1). L'axe des $x$ et des $y$ montrent la relation entre les variables en fonction des groupes qui sont représentées par des lignes différentes. L'option `plot.point = TRUE` affiche optionnellement les données dans la figure. La Figure\ \@ref(fig:ip1) montre une tendance positive entre $x$ et $y$ pour le groupe de référence (`3`) qui s'accentue de façon importante pour le groupe\ (`1`), mais qui s'inverse pour le groupe\ `2`.
@@ -512,7 +512,7 @@ Le code ci-dessus illustre ce patron de différences avec la Figure\ \@ref(fig:i
 Le graphique des pentes peut aussi être réalisé pour un modérateur continu. La\ Figure \@ref(fig:ip2) illustre ce graphique. Lorsque le modérateur représente des groupes, les niveaux sont clairement définis. Dans le cas d'un modérateur continu, des niveaux arbitraires doivent être sélectionnés.
 
 
-```r
+``` r
 interact_plot(model = res1.lm,
               pred = x,
               modx = w, 
@@ -520,14 +520,14 @@ interact_plot(model = res1.lm,
 ```
 
 <div class="figure">
-<img src="17-Moderer_files/figure-html/ip2-1.png" alt="Analyses des pentes simples pour un modérateur continu" width="672" />
-<p class="caption">(\#fig:ip2)Analyses des pentes simples pour un modérateur continu</p>
+<img src="17-Moderer_files/figure-html/ip2-1.png" alt="Analyses des pentes simples pour un modérateur continu." width="672" />
+<p class="caption">(\#fig:ip2)Analyses des pentes simples pour un modérateur continu.</p>
 </div>
 
 Par défaut, l'analyse est réalisée avec $-1$ écart type, la moyenne et $+1$ écart type comme groupement de $w$. Ces valeurs peuvent être choisies manuellement avec `modx.values =` en y spécifiant les valeurs d'intérêt. En plus, cet argument est compatible non seulement avec `interact_plot()` et `sim_slopes()`. La Figure\ \@ref(fig:ip3) montre l'analyse des pentes pour des valeurs de `modx.values = c(-2, -1, 0, 1, 2)`.
 
 
-```r
+``` r
 interact_plot(model = res1.lm,
               pred = x,
               modx = w, 
@@ -536,8 +536,8 @@ interact_plot(model = res1.lm,
 ```
 
 <div class="figure">
-<img src="17-Moderer_files/figure-html/ip3-1.png" alt="Analyses des pentes simples pour un modérateur continu" width="672" />
-<p class="caption">(\#fig:ip3)Analyses des pentes simples pour un modérateur continu</p>
+<img src="17-Moderer_files/figure-html/ip3-1.png" alt="Analyses des pentes simples pour un modérateur continu." width="672" />
+<p class="caption">(\#fig:ip3)Analyses des pentes simples pour un modérateur continu.</p>
 </div>
 
 ### Le graphique de Johnson-Neyman
@@ -548,44 +548,44 @@ La fonction `sim_slopes()` génère l'analyse des pentes simples, mais produit �
 
 
 
-```r
+``` r
 sim_slopes(model = res1.lm,
            pred = x,
            modx = w, 
            jnplot = TRUE)
-> JOHNSON-NEYMAN INTERVAL 
+> JOHNSON-NEYMAN INTERVAL
 > 
-> When w is OUTSIDE the interval [-0.53, 0.00], the slope
+> When w is OUTSIDE the interval [-0.68, -0.03], the slope
 > of x is p < .05.
 > 
-> Note: The range of observed values of w is [-3.00, 3.20]
+> Note: The range of observed values of w is [-2.52, 2.96]
 ```
 
 <div class="figure">
-<img src="17-Moderer_files/figure-html/jn1-1.png" alt="Le graphique Johnson-Neyman pour interpréter les effets modérateurs" width="672" />
-<p class="caption">(\#fig:jn1)Le graphique Johnson-Neyman pour interpréter les effets modérateurs</p>
+<img src="17-Moderer_files/figure-html/jn1-1.png" alt="Le graphique Johnson-Neyman pour interpréter les effets modérateurs." width="672" />
+<p class="caption">(\#fig:jn1)Le graphique Johnson-Neyman pour interpréter les effets modérateurs.</p>
 </div>
 
 ```
-> SIMPLE SLOPES ANALYSIS 
+> SIMPLE SLOPES ANALYSIS
 > 
-> Slope of x when w = -1.100 (- 1 SD): 
+> Slope of x when w = -1.0351 (- 1 SD): 
 > 
 >    Est.   S.E.   t val.      p
 > ------- ------ -------- ------
->   -0.31   0.06    -5.08   0.00
+>   -0.22   0.06    -3.54   0.00
 > 
-> Slope of x when w = -0.075 (Mean): 
-> 
->   Est.   S.E.   t val.      p
-> ------ ------ -------- ------
->   0.07   0.05     1.38   0.17
-> 
-> Slope of x when w =  0.950 (+ 1 SD): 
+> Slope of x when w = -0.0484 (Mean): 
 > 
 >   Est.   S.E.   t val.      p
 > ------ ------ -------- ------
->   0.44   0.06     7.18   0.00
+>   0.09   0.05     1.88   0.06
+> 
+> Slope of x when w =  0.9383 (+ 1 SD): 
+> 
+>   Est.   S.E.   t val.      p
+> ------ ------ -------- ------
+>   0.41   0.06     6.80   0.00
 ```
 
 La Figure \@ref(fig:jn1) montre le graphique Johnson-Neyman. La zone bleue indique le niveau de modérateur où l'effet de $x$ est significativement différent de la pente de $x$ lorsque l'effet du modérateur est nul. La zone rouge montre l'étendue où il n'y a pas d'effet de modération. L'étendue est également précisée dans la première phrase imprimée de la sortie. La sortie a également produit la sortie de l'analyse de pentes simples ou l'information obtenue du graphique Johnson-Neyman est répétée d'une façon différente. 
@@ -612,8 +612,8 @@ Pour rapporter l'analyse de modération, plusieurs éléments peuvent être pert
 3. Créer un jeu de données pour la structure de la Figure\ \@ref(fig:modex1). Le jeu de données est standardisé et contient 123 sujets.
 
 <div class="figure" style="text-align: center">
-<img src="image//modex1.png" alt="Diagramme de trajectoire (Question 3)" width="50%" height="50%" />
-<p class="caption">(\#fig:modex1)Diagramme de trajectoire (Question 3)</p>
+<img src="image//modex1.png" alt="Diagramme de trajectoire (Question 3)." width="50%" height="50%" />
+<p class="caption">(\#fig:modex1)Diagramme de trajectoire (Question 3).</p>
 </div>
 
 ### Question 4 {-}
@@ -621,8 +621,8 @@ Pour rapporter l'analyse de modération, plusieurs éléments peuvent être pert
 4. Créer un jeu de données pour la structure de la Figure\ \@ref(fig:modex2). Le jeu de données est standardisé et contient 456 sujets.
 
 <div class="figure" style="text-align: center">
-<img src="image//modex2.png" alt="Diagramme de trajectoire (Question 4)" width="50%" height="50%" />
-<p class="caption">(\#fig:modex2)Diagramme de trajectoire (Question 4)</p>
+<img src="image//modex2.png" alt="Diagramme de trajectoire (Question 4)." width="50%" height="50%" />
+<p class="caption">(\#fig:modex2)Diagramme de trajectoire (Question 4).</p>
 </div>
 
 ### Question 5 {-}
@@ -630,8 +630,8 @@ Pour rapporter l'analyse de modération, plusieurs éléments peuvent être pert
 5. Créer un jeu de données pour la structure de la Figure\ \@ref(fig:modex3). Le jeu de données est standardisé et contient 789 sujets.
 
 <div class="figure" style="text-align: center">
-<img src="image//modex3.png" alt="Diagramme de trajectoire (Question 5)" width="50%" height="50%" />
-<p class="caption">(\#fig:modex3)Diagramme de trajectoire (Question 5)</p>
+<img src="image//modex3.png" alt="Diagramme de trajectoire (Question 5)." width="50%" height="50%" />
+<p class="caption">(\#fig:modex3)Diagramme de trajectoire (Question 5).</p>
 </div>
 
 ### Question 6 {-}

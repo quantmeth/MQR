@@ -24,15 +24,15 @@ Il suffit de le faire une fois à la première utilisation ou pour d'éventuelle
 Une fois tout installé, il faut faire `File -> New File -> Rmarkdown` pour ouvrir un nouveau document. La boîte de dialogue affichée à la Figure\ \@ref(fig:rediger1) demande quatre éléments : le titre, le nom de l'auteur, la date et le format du rapport (html, pdf ou word). Les deux premiers sont les plus utilisés. Une fois rempli, il faut cliquer sur OK.
 
 <div class="figure" style="text-align: center">
-<img src="image/rediger1.PNG" alt="Boîte de dialogue de Rmarkdown" width="50%" height="50%" />
-<p class="caption">(\#fig:rediger1)Boîte de dialogue de Rmarkdown</p>
+<img src="image/rediger1.PNG" alt="Boîte de dialogue de Rmarkdown." width="50%" height="50%" />
+<p class="caption">(\#fig:rediger1)Boîte de dialogue de Rmarkdown.</p>
 </div>
 
 Cette procédure ouvre un [script][Les scripts] d'extension `.Rmd`. Il s'agit d'un exemple typique qui rappelle des éléments de base pour produire un document. L'exemple est présenté à la Figure\ \@ref(fig:rediger2). C'est une bonne source pour se rappeler les lignes de la syntaxe `Rmarkdown`. Chaque élément est vu en détail dans la prochaines section.
 
 <div class="figure" style="text-align: center">
-<img src="image/rediger2.PNG" alt="Exemple de Rmarkdown" width="50%" height="50%" />
-<p class="caption">(\#fig:rediger2)Exemple de Rmarkdown</p>
+<img src="image/rediger2.PNG" alt="Exemple de Rmarkdown." width="50%" height="50%" />
+<p class="caption">(\#fig:rediger2)Exemple de Rmarkdown.</p>
 </div>
 
 Il est possible de voir immédiatement le résultat final de ce script en cliquant sur `Knit` (*tricoter*) au milieu en haut (le symbole de pelote de laine avec une aiguille). À chaque fois que l'utilisateur désire produire le rapport, il faudra le *tricoter* en cliquant sur cet icône.
@@ -44,8 +44,8 @@ Il est possible de voir immédiatement le résultat final de ce script en cliqua
 L'entête est la zone qui conserve les éléments du texte, permet la personnalisation et l'ajout de composante, le cas échéant. Cet espace se nomme YAML pour *Yet Another Markdown Language*. Pour l'instant, les renseignements initiaux s'y retrouvent (titre, nom, date et format). 
 
 <div class="figure" style="text-align: center">
-<img src="image/entete.PNG" alt="Entête ou YAML" width="50%" height="50%" />
-<p class="caption">(\#fig:entete)Entête ou YAML</p>
+<img src="image/entete.PNG" alt="Entête ou YAML." width="50%" height="50%" />
+<p class="caption">(\#fig:entete)Entête ou YAML.</p>
 </div>
 
 ### Les niveaux de titre
@@ -57,8 +57,8 @@ Pour les titres de section, les `#` permette d'indiquer qu'il s'agit effectiveme
 Comme le texte est rédiger dans **R**, il sera utile d'employer du code de ce langage dans le rapport. Ainsi, les rapports servent à jumeler, textes, analyses et graphiques. Pour déterminer le texte du code à lire, la syntaxe à rouler est inscrite dans un **chunk** (morceau en français). Les chunks sont délimités par trois accents graves (*backticks* en anglais), puis un accolade indiquant le langage utilisé dans le chunk (`r` en général), et se termine par trois autre accents grave. La Figure\ \@ref(fig:chunk1) montre un chunk.
 
 <div class="figure" style="text-align: center">
-<img src="image/chunk1.PNG" alt="Un chunk" width="50%" height="50%" />
-<p class="caption">(\#fig:chunk1)Un chunk</p>
+<img src="image/chunk1.PNG" alt="Un chunk." width="50%" height="50%" />
+<p class="caption">(\#fig:chunk1)Un chunk.</p>
 </div>
 
 Pour accélérer l'écriture au clavier, il est possible de faire **Ctrl + Alt + I** (pour Windows) ou  **Option + Cmd + I** (pour Mac) pour ouvrir un *chunk* complet automatiquement. C'est beaucoup plus efficace que de le taper caractère par caractère.
@@ -74,8 +74,8 @@ Ces arguments `echo`  et `eval` doivent être spécifier dans les accolades du c
 Pour inclure une figure, il faut la programmer dans un chunk. Dans l'exemple, le graphique du jeu de `pressure` est présenté avec `plot(pressure)` dans un chunk, voir la Figure\ \@ref(fig:rediger3). Noter dans les accolades la présence de `echo=FALSE` qui, au moment de produire l'image, n'affichera pas le code source dans le document final (le chunk n'est pas rapporté). Seule la figure est affichée.
 
 <div class="figure">
-<img src="image/rediger3.PNG" alt="Ajouter une figure" width="50%" height="50%" />
-<p class="caption">(\#fig:rediger3)Ajouter une figure</p>
+<img src="image/rediger3.PNG" alt="Ajouter une figure." width="50%" height="50%" />
+<p class="caption">(\#fig:rediger3)Ajouter une figure.</p>
 </div>
 
 Une autre option est utile pour les figure est de leur ajouter une légende (*caption* en anglais). Pour ce faire, il faut ajouter dans les accolades du chunk l'argument `fig.cap = 'Légende de la figure'`.

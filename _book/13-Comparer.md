@@ -202,7 +202,7 @@ Les scores produits sont identiques. Dans cet exemple par contre, l'origine des 
 
 
 
-À toute fin pratique, un jeu de données est recréé avec les catégories et paramètres précédents, mais avec $n_k=20$ unités par groupe. La fonction **R** de base est `aov()`. Elle prend comme argument une formule, de forme `VD ~ VI` (variable dépendante prédite par variable indépendante) et un jeu de données duquel prendre les variables. Il existe également une fonction `anova()`, une fonction un peu plus complexe que `aov()`. Pour obtenir toute l'information désirée de la sortie de la fonction, il faut demander un sommaire de la sortie avec `summary()`.
+À toute fin pratique, un jeu de données est recréé avec les catégories et paramètres précédents, mais avec $n_k=20$ unités par groupe. La fonction **R** de base est `aov()`. Elle prend comme argument une formule, de forme `VD ~ VI` (variable dépendante prédite par variable indépendante) et un jeu de données duquel prendre les variables. Il existe également une fonction `anova()`, une fonction un peu plus hétéroclite que `aov()`. Pour obtenir toute l'information désirée de la sortie de la fonction, il faut demander un sommaire de la sortie avec `summary()`.
 
 
 ``` r
@@ -252,8 +252,8 @@ resultats
 Les résultats sont identiques, les seules différences étant dues à l'arrondissement. Comme la valeur-$p$ est de 5.145\times 10^{-9}, ce qui est extrêmement plus petit que l'usuel .05 (ou un autre taux d'erreur de type I fixé à l'avance), l'hypothèse nulle est rejetée, il y a vraisemblablement une différence entre les groupes, ce qui est déjà connu. La Figure\ \@ref(fig:ft) illustre très bien la rareté d'un tel jeu de données sous l'hypothèse nulle.
 
 <div class="figure">
-<img src="13-Comparer_files/figure-html/ft-1.png" alt="Valeur-$F$ de la comparaison des moyennes" width="672" />
-<p class="caption">(\#fig:ft)Valeur-$F$ de la comparaison des moyennes</p>
+<img src="13-Comparer_files/figure-html/ft-1.png" alt="Valeur-$F$ de la comparaison des moyennes." width="672" />
+<p class="caption">(\#fig:ft)Valeur-$F$ de la comparaison des moyennes.</p>
 </div>
 
 
@@ -279,7 +279,7 @@ Voici comment rapporter l'ANOVA dans un article scientifique.
 
 
 
-> Une ANOVA est réalisée pour comparer les groupes sur un certain score. Les résutats montrent une différence significative (pour un $\alpha = .05$), $F(4, 95) = 13.998, p < .001$.
+> Une ANOVA est réalisée pour comparer les groupes sur un certain score. Les résultats montrent une différence significative (pour un $\alpha = .05$), $F(4, 95) = 13.998, p < .001$.
 
 ### La sortie de `aov()`
 
@@ -300,7 +300,7 @@ sommaire <- summary(res)[[1]]
 names(sommaire)
 > [1] "Df"      "Sum Sq"  "Mean Sq" "F value" "Pr(>F)"
 ```
-Le symbole `[[1]]` indique que seulement le premier élément de la liste est désiré. Il s'agit d'une formule renforcée [des crochets][Référer à des sous-éléments] pour ne choisir qu'un seul élément de la liste. Et dans cette liste, on retrouve la liste contenant des résultats. En d'autres termes, la sortie de `aov()` est une liste. Il y a bien deux niveaux de liste dans cette sortie, la première rendant plus difficile à la seconde. Une petit idiosyncrasie de **R**.
+Le symbole `[[1]]` indique que seulement le premier élément de la liste est désiré. Il s'agit d'une formule renforcée [des crochets][Référer à des sous-éléments] pour ne choisir qu'un seul élément de la liste. Et dans cette liste, on retrouve la liste contenant des résultats. En d'autres termes, la sortie de `aov()` est une liste. Il y a bien deux niveaux de liste dans cette sortie, la première rendant plus difficile à la seconde. Une petite idiosyncrasie de **R**.
 
 ## Les tests posthoc
 
@@ -339,11 +339,11 @@ plot(TukeyHSD(res))
 ```
 
 <div class="figure" style="text-align: center">
-<img src="13-Comparer_files/figure-html/tukey-1.png" alt="Illustration du test de comparaisons multiples de Tukey" width="50%" height="50%" />
-<p class="caption">(\#fig:tukey)Illustration du test de comparaisons multiples de Tukey</p>
+<img src="13-Comparer_files/figure-html/tukey-1.png" alt="Illustration du test de comparaisons multiples de Tukey." width="50%" height="50%" />
+<p class="caption">(\#fig:tukey)Illustration du test de comparaisons multiples de Tukey.</p>
 </div>
 
-Malheureusement la Figure\ \@ref(fig:tukey) n'est pas parfaite, car elle n'affiche pas toutes les libellées de chaque ligne. Toutefois, chaque ligne de la Figure\ \@ref(fig:tukey) correspond à une ligne de la figure. Avec le package `ggplot2`(voir [Visualier]), il est possible de remédier à la situation.
+Malheureusement la Figure\ \@ref(fig:tukey) n'est pas parfaite, car elle n'affiche pas toutes les libellés de chaque ligne. Toutefois, chaque ligne de la Figure\ \@ref(fig:tukey) correspond à une ligne de la figure. Avec le package `ggplot2`(voir [Visualier]), il est possible de remédier à la situation.
 
 
 
@@ -365,8 +365,8 @@ TukeyHSD(res)[[1]] %>%   # Extraire les résultats
 ```
 
 <div class="figure" style="text-align: center">
-<img src="13-Comparer_files/figure-html/tukey2-1.png" alt="Illustration corrigée du test de comparaisons multiples de Tukey" width="50%" height="50%" />
-<p class="caption">(\#fig:tukey2)Illustration corrigée du test de comparaisons multiples de Tukey</p>
+<img src="13-Comparer_files/figure-html/tukey2-1.png" alt="Illustration corrigée du test de comparaisons multiples de Tukey." width="50%" height="50%" />
+<p class="caption">(\#fig:tukey2)Illustration corrigée du test de comparaisons multiples de Tukey.</p>
 </div>
 
 La Figure\ \@ref(fig:tukey2) montre une illustration des comparaisons de Tukey plus adéquate.
@@ -390,7 +390,7 @@ pairwise.t.test(donnees$score, donnees$groupe, p.adj = "none")
 > P value adjustment method: none
 ```
 
-Cette technique à l'avantage d'être prête pour la plupart corrections, par exemple `p.adj = "bonferroni"` ou `p.adj = "holm"`.
+Cette technique a l'avantage de rendre la plupart des corrections disponibles, par exemple `p.adj = "bonferroni"` ou `p.adj = "holm"`.
 
 TODO
 
@@ -543,7 +543,7 @@ res.lda
 plot(res.lda)
 ```
 
-<img src="13-Comparer_files/figure-html/unnamed-chunk-16-1.png" width="672" />
+<img src="13-Comparer_files/figure-html/unnamed-chunk-16-1.png" alt="" width="672" />
 
 ``` r
 

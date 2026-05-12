@@ -168,7 +168,7 @@ score = round(mu0 + X %*% mu + e)
 donnees = data.frame(groupe, score)
 ```
 
-À toute fin pratique, un jeu de données est recréé avec les catégories et paramètres précédents, mais avec $n_k=20$ unités par groupe. La fonction **R** de base est `aov()`. Elle prend comme argument une formule, de forme `VD ~ VI` (variable dépendante prédite par variable indépendante) et un jeu de données duquel prendre les variables. Il existe également une fonction `anova()`, une fonction un peu plus complexe que `aov()`. Pour obtenir toute l'information désirée de la sortie de la fonction, il faut demander un sommaire de la sortie avec `summary()`.
+À toute fin pratique, un jeu de données est recréé avec les catégories et paramètres précédents, mais avec $n_k=20$ unités par groupe. La fonction **R** de base est `aov()`. Elle prend comme argument une formule, de forme `VD ~ VI` (variable dépendante prédite par variable indépendante) et un jeu de données duquel prendre les variables. Il existe également une fonction `anova()`, une fonction un peu plus hétéroclite que `aov()`. Pour obtenir toute l'information désirée de la sortie de la fonction, il faut demander un sommaire de la sortie avec `summary()`.
 
 ```{r}
 # Anova de base
@@ -207,7 +207,7 @@ resultats
 
 Les résultats sont identiques, les seules différences étant dues à l'arrondissement. Comme la valeur-$p$ est de `r vp`, ce qui est extrêmement plus petit que l'usuel .05 (ou un autre taux d'erreur de type I fixé à l'avance), l'hypothèse nulle est rejetée, il y a vraisemblablement une différence entre les groupes, ce qui est déjà connu. La Figure\ \@ref(fig:ft) illustre très bien la rareté d'un tel jeu de données sous l'hypothèse nulle.
 
-```{r ft, echo = FALSE, fig.cap="Valeur-$F$ de la comparaison des moyennes"}
+```{r ft, echo = FALSE, fig.cap="Valeur-$F$ de la comparaison des moyennes."}
 minx = 0 ; maxx = 20
 valeur.F = seq(minx, maxx, by = .001)
 Frequence = df(valeur.F, df = dl1, df2 = dl2)
@@ -241,7 +241,7 @@ r.aov <- summary(res)[[1]]
 ```
 
 
-> Une ANOVA est réalisée pour comparer les groupes sur un certain score. Les résutats montrent une différence significative (pour un $\alpha = .05$), $F(`r r.aov$Df[1]`, `r r.aov$Df[2]`) = `r r.aov[1,4]`, p < .001$.
+> Une ANOVA est réalisée pour comparer les groupes sur un certain score. Les résultats montrent une différence significative (pour un $\alpha = .05$), $F(`r r.aov$Df[1]`, `r r.aov$Df[2]`) = `r r.aov[1,4]`, p < .001$.
 
 ### La sortie de `aov()`
 
@@ -258,7 +258,7 @@ Pour avoir accès directement au tableau de résultats du sommaire pour le manip
 sommaire <- summary(res)[[1]]
 names(sommaire)
 ```
-Le symbole `[[1]]` indique que seulement le premier élément de la liste est désiré. Il s'agit d'une formule renforcée [des crochets][Référer à des sous-éléments] pour ne choisir qu'un seul élément de la liste. Et dans cette liste, on retrouve la liste contenant des résultats. En d'autres termes, la sortie de `aov()` est une liste. Il y a bien deux niveaux de liste dans cette sortie, la première rendant plus difficile à la seconde. Une petit idiosyncrasie de **R**.
+Le symbole `[[1]]` indique que seulement le premier élément de la liste est désiré. Il s'agit d'une formule renforcée [des crochets][Référer à des sous-éléments] pour ne choisir qu'un seul élément de la liste. Et dans cette liste, on retrouve la liste contenant des résultats. En d'autres termes, la sortie de `aov()` est une liste. Il y a bien deux niveaux de liste dans cette sortie, la première rendant plus difficile à la seconde. Une petite idiosyncrasie de **R**.
 
 ## Les tests posthoc
 
@@ -273,11 +273,11 @@ Dans cette sortie, chaque paire de groupes est indiquer à gauche, les différen
 
 La fonction `TukeyHSD()` est aussi lié à une figure qu'il est possible de commander avec `plot()` en y mettant comme argument la sortie de `TukeyHSD()`.
 
-```{r tukey, fig.cap="Illustration du test de comparaisons multiples de Tukey",  fig.align='center', out.height="50%", out.width="50%"}
+```{r tukey, fig.cap="Illustration du test de comparaisons multiples de Tukey.",  fig.align='center', out.height="50%", out.width="50%"}
 plot(TukeyHSD(res))
 ```
 
-Malheureusement la Figure\ \@ref(fig:tukey) n'est pas parfaite, car elle n'affiche pas toutes les libellées de chaque ligne. Toutefois, chaque ligne de la Figure\ \@ref(fig:tukey) correspond à une ligne de la figure. Avec le package `ggplot2`(voir [Visualier]), il est possible de remédier à la situation.
+Malheureusement la Figure\ \@ref(fig:tukey) n'est pas parfaite, car elle n'affiche pas toutes les libellés de chaque ligne. Toutefois, chaque ligne de la Figure\ \@ref(fig:tukey) correspond à une ligne de la figure. Avec le package `ggplot2`(voir [Visualier]), il est possible de remédier à la situation.
 
 ```{r, echo=FALSE}
 
@@ -286,7 +286,7 @@ Malheureusement la Figure\ \@ref(fig:tukey) n'est pas parfaite, car elle n'affic
 
 D'abord, il faut importer le `tidyverse`. Ensuite, la prochaine étape consiste à extraire les résultats de `TukeyHSD()`, de les transformer en jeu de données avec `as.data.frame()` et de rendre le nom des lignes manipulables avec `add_rownames_to_column()`. Comme pour toutes les figures, il faut indiquer l'abscisse et l'ordonnée, ici le nom des lignes (`x`) et la différence entre les groupes(`y`), respectivement. Ensuite, comme la figure avec [les barres d'erreurs], il faut associer dans `geom_errorbar` les intervalles de confiance `lwr` et `upr` à `ymin` et `ymax`. Enfin, il est possible d'ajouter la moyenne sous forme de point (`geom_point()` et de tourner la figure avec `coord_flip`, ce qui permet de répliquer la figure originale.
 
-```{r tukey2, fig.cap="Illustration corrigée du test de comparaisons multiples de Tukey", out.height="50%", out.width="50%", fig.align='center'}
+```{r tukey2, fig.cap="Illustration corrigée du test de comparaisons multiples de Tukey.", out.height="50%", out.width="50%", fig.align='center'}
 TukeyHSD(res)[[1]] %>%   # Extraire les résultats
   as.data.frame() %>%    # Transformer en jeu de données
   rownames_to_column() %>%     # Ajouter les noms des lignes
@@ -307,7 +307,7 @@ Une autre technique permet d'obtenir une table de comparaisons. Il s'agit de `pa
 pairwise.t.test(donnees$score, donnees$groupe, p.adj = "none")
 ```
 
-Cette technique à l'avantage d'être prête pour la plupart corrections, par exemple `p.adj = "bonferroni"` ou `p.adj = "holm"`.
+Cette technique a l'avantage de rendre la plupart des corrections disponibles, par exemple `p.adj = "bonferroni"` ou `p.adj = "holm"`.
 
 TODO
 

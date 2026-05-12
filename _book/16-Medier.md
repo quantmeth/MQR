@@ -3,7 +3,7 @@
 
 Outre les *liens directs* entre deux variables (ce qu'une [régression][Prédire] permet de découvrir), il existe également des *liens indirects*, une relation sous-jacente entre une variable indépendante et une variable dépendante expliquée par l'inclusion d'une troisième variable. L'attrait d'une telle analyse est patent : les expérimentateurs  s'intéressent souvent à expliquer les mécanismes biologiques, psychologiques, cognitifs, etc., qui sous-tendent la relation entre deux variables. 
 
-L'analyse de médiation permet de découvrir et tester des liens indirect. Elle est une analyse statistique de plus en plus populaire parmi les expérimentateurs, peu importe leur discipline, puisqu'elle quantifie le degré selon lequel une variable participe à la transmission du changement d'une *cause* vers son *effet*. L'analyse de médiation peut contribuer à mieux comprendre la relation entre une variable indépendante et une variable dépendante lorsque ces variables n'ont pas de lien direct évident. 
+L'analyse de médiation permet de découvrir et tester des liens indirects. Elle est une analyse statistique de plus en plus populaire parmi les expérimentateurs, peu importe leur discipline, puisqu'elle quantifie le degré selon lequel une variable participe à la transmission du changement d'une *cause* vers son *effet*. L'analyse de médiation peut contribuer à mieux comprendre la relation entre une variable indépendante et une variable dépendante lorsque ces variables n'ont pas de lien direct évident. 
 
 L'analyse de médiation est un sous-ensemble de l'analyse de trajectoire dans lequel le statisticien s'intéresse à la relation entre la variable indépendante $x$ sur la variable dépendante $y$ par l'intermédiaire de la variable médiatrice $m$. Elle s'inscrit dans un système d'équations. L'analyse de médiation se base sur les *liens indirects* qui existent dans ce système d'équations. Ces liens indirects sont ces relations intermédiaires qui intéressent le statisticien. 
 
@@ -16,8 +16,8 @@ Pour les fins de ce chapitre^[La section est partiellement basée sur @Caron18.]
 La Figure\ \@ref(fig:simplemed) présente le diagramme de trajectoire correspondant au modèle de médiation simple (un seul médiateur) dans le panneau supérieur. 
 
 <div class="figure" style="text-align: center">
-<img src="image//simplemed.png" alt="Modèle de médiation simple" width="75%" height="75%" />
-<p class="caption">(\#fig:simplemed)Modèle de médiation simple</p>
+<img src="image//simplemed.png" alt="Modèle de médiation simple." width="75%" height="75%" />
+<p class="caption">(\#fig:simplemed)Modèle de médiation simple.</p>
 </div>
 
 Le cadran supérieur devrait être familier aux lecteurs, car il a été abordé dans le chapitre [Créer] selon une orientation légèrement différente. La Figure\ \@ref(fig:simplemed) peut également être représentée avec une matrice de coefficients de régression $\mathbf{B}$ dans laquelle se retrouvent les coefficients de régression qui relient les variables.
@@ -144,7 +144,7 @@ z=\frac{\beta_{2,1}\beta_{3,2}}{\sqrt{\beta_{3,2}^2\sigma^2_{\beta_{2,1}} +\beta
 
 où $z$ signifie qu'il s'agit d'un score-$z$, les $\beta$ sont les coefficients de régression et les $\sigma^2_\beta$ sont les erreurs standard des coefficients de régression.
 
-La syntaxe suivante illustre une fonction qui calcule l'équation\ \@ref(eq:sobel). La syntaxe calcule deux régressions `m ~ x` et `m ~ x`. Du sommaire des résultats, elle extrait, les deux coefficients de régressions et leur erreur standard respective. Elle calcule enfin le score $z$ de l'équation\ \@ref(eq:sobel) avec la valeur-$p$ associée. Pour bien fonctionner avec cette fonction, les variables du jeu de données doivent se nommer `x`, `m` et `y`. 
+La syntaxe suivante illustre une fonction qui calcule l'équation\ \@ref(eq:sobel). La syntaxe calcule deux régressions `m ~ x` et `y ~ m + x`. Du sommaire des résultats, elle extrait, les deux coefficients de régressions et leur erreur standard respective. Elle calcule enfin le score $z$ de l'équation\ \@ref(eq:sobel) avec la valeur-$p$ associée. Pour bien fonctionner avec cette fonction, les variables du jeu de données doivent se nommer `x`, `m` et `y`. 
 
 
 ``` r
@@ -226,11 +226,11 @@ hist(test.ind, prob = TRUE)
 La Figure\ \@ref(fig:sobelhist) montre la distribution des effets indirects obtenus avec la simulation. La ligne correspond à la distribution gaussienne sous-jacente au test de Sobel. Dans le cas `n = 50` testé, il appert évident que les effets ne suivent pas exactement la distribution attendue. La distribution est centrée sur la bonne valeur $0.2 \times 0.3 = 0.06$. La distribution est toutefois asymétrique.
 
 <div class="figure" style="text-align: center">
-<img src="16-Medier_files/figure-html/sobelhist-1.png" alt="Distribution de l'effet indirect" width="672" />
-<p class="caption">(\#fig:sobelhist)Distribution de l'effet indirect</p>
+<img src="16-Medier_files/figure-html/sobelhist-1.png" alt="Distribution de l'effet indirect." width="672" />
+<p class="caption">(\#fig:sobelhist)Distribution de l'effet indirect.</p>
 </div>
 
-Le chapitre [Simuler] présente une technique statistique toute désignée lorsque la disbribution statistique n'est pas connue^[Celle des produits de variables aléatoires est connues, simplement fort complexe et soivent difficilement calculables [@Cui].], il s'agit du [bootstrap][Le bootstrap].
+Le chapitre [Simuler] présente une technique statistique toute désignée lorsque la distribution statistique n'est pas connue^[Celle des produits de variables aléatoires est connues de façon approximative et est difficilement calculable [@Cui].], il s'agit du [bootstrap][Le bootstrap].
 
 ### La technique du bootstrap
 
@@ -694,11 +694,11 @@ Resultats
 La variable `Resultats` contient tous les résultats pertinents. La colonne `Resultats$Estimates` retourne tous les coefficients de régression avec leur erreur type (erreur standard ou *standard error*) en deuxième colonne. Les dernières colonnes donnent les intervalles de confiance inférieurs et supérieurs. Comme aucune ne contient la valeur 0 au sein de son intervalle, alors elles sont toutes significatives.
 
 <div class="figure" style="text-align: center">
-<img src="image//resmed.png" alt="Résultats de l'analyse de  médiation" width="75%" height="75%" />
-<p class="caption">(\#fig:resmed)Résultats de l'analyse de  médiation</p>
+<img src="image//resmed.png" alt="Résultats de l'analyse de  médiation." width="75%" height="75%" />
+<p class="caption">(\#fig:resmed)Résultats de l'analyse de  médiation.</p>
 </div>
 
-Les résultats sont illustrés dans la Figure\ \@ref(fig:resmed). Les coefficients sont ajoutés à leurs trajectoires respectivement. Par bonnes mesures, des étoiles de significativité, *, l'ultime symbole de découvertes scientifiques,  sont ajoutés aux trajectoires dont les intervalles de confiance n'incluent pas 0. Il ne reste qu'à rapporter l'effet indirect dans le texte ou un tableau d'un article scientifique, comme le tableau \@ref(tab:res).
+Les résultats sont illustrés dans la Figure\ \@ref(fig:resmed). Les coefficients sont ajoutés à leurs trajectoires respectivement. Par bonnes mesures, des étoiles de significativité, *, l'ultime symbole de découvertes scientifiques,  sont ajoutés aux trajectoires dont les intervalles de confiance n'incluent pas 0. Il ne reste qu'à rapporter l'effet indirect dans le texte ou un tableau d'un article scientifique, comme le tableau\ \@ref(tab:res).
 
 <table class=" lightable-classic table" style='font-family: "Arial Narrow", "Source Sans Pro", sans-serif; width: auto !important; margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto;'>
 <caption>(\#tab:res)Résultats de l'analyse de médiation</caption>
@@ -842,8 +842,8 @@ Voici comment ces résultats peuvent être rapportés dans un article scientifiq
 > Une analyse de médiation avec bootstrap est effectuée pour tester le lien indirect le lien indirect de `wt` à `mpg` par l'intermédiaire de `hp`. Les résultats montrent un lien indirect significatif de -0.238, [95%IC\ -0.397,\ -0.137]. La Figure\ \@ref(fig:mtmed) présente les résultats.
 
 <div class="figure" style="text-align: center">
-<img src="image//mtcars_med.png" alt="Résultats de l'analyse de  médiation" width="75%" height="75%" />
-<p class="caption">(\#fig:mtmed)Résultats de l'analyse de  médiation</p>
+<img src="image//mtcars_med.png" alt="Résultats de l'analyse de  médiation." width="75%" height="75%" />
+<p class="caption">(\#fig:mtmed)Résultats de l'analyse de  médiation.</p>
 </div>
 
 En plus de ces informations primordiales, certains domaines de recherche demanderont, en plus, de rapporter les deux régressions réalisées (voir [Rapporter la régression]), soit les liens directs pertinents et les modèles de régression, et également, l'aspect partiel ou complet de la médiation^[Même si cela n'est pas approprié].

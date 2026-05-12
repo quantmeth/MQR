@@ -32,7 +32,7 @@ Les cinq autres *statistics*, *facet*, *coordinate space*, *labels*, *theme* per
 
 Les composantes les plus importantes sont les trois premières, soit les données, la cartographie et la représentation géométrique. Ce sont les éléments de base pour débuter le graphique. Les autres composantes viennent bonifier la figure tout en l'ajustant au besoin de l'utilisateur.
 
-La fonction `ggplot()` met en place la figure. Le résultat d'utiliser la fonction `ggplot()` seule est illustrée à la Figure \@ref(fig:ggplotseul)
+La fonction `ggplot()` met en place la figure. Le résultat d'utiliser la fonction `ggplot()` seule est illustrée à la Figure\ \@ref(fig:ggplotseul)
 
 
 ``` r
@@ -40,8 +40,8 @@ ggplot(data = jd)
 ```
 
 <div class="figure" style="text-align: center">
-<img src="08-Visualiser_files/figure-html/ggplotseul-1.png" alt="La fonction ggplot() seule - Rien" width="75%" height="75%" />
-<p class="caption">(\#fig:ggplotseul)La fonction ggplot() seule - Rien</p>
+<img src="08-Visualiser_files/figure-html/ggplotseul-1.png" alt="La fonction ggplot() seule - Rien." width="75%" height="75%" />
+<p class="caption">(\#fig:ggplotseul)La fonction ggplot() seule - Rien.</p>
 </div>
 
 Il est aussi possible de *piper* (prononcé avec un fort accent anglophone) les données dans la fonction.
@@ -64,7 +64,7 @@ Voici une liste des représentations géométriques possibles :
 
 * `geom_histogram()` crée un histogramme des variables;
 
-* `geom_box()` crée une boîte à moustache, idéal pour identifier des valeurs aberrantes et comparer la variabilité entre des groupes;
+* `geom_boxplot()` crée une boîte à moustache, idéal pour identifier des valeurs aberrantes et comparer la variabilité entre des groupes;
 
 * `geom_smooth()` crée la ligne de prédiction des données avec des intervalles de confiances, la plupart des utilisateurs voudront certainement ces arguments `method = lm` (par défaut) ou sans l'erreur standard (`se = FALSE`);
 
@@ -72,7 +72,7 @@ Voici une liste des représentations géométriques possibles :
 
 Certaines cartographies sont d'ailleurs compatibles, `geom_smooth()` et `geom_point()`, par exemple.
 
-La Figure \@ref(fig:ggplotpoint) montre un diagramme de dispersion construit à partir du jeu de données `jd` *pipé* dans la fonction `ggplot()`. Dans cette fonction, la cartographie est passée `mapping = aes(x = mass, y = height)` à un second niveau, `geom_point)` par le `+` et la représentation est produite.
+La Figure\ \@ref(fig:ggplotpoint) montre un diagramme de dispersion construit à partir du jeu de données `jd` *pipé* dans la fonction `ggplot()`. Dans cette fonction, la cartographie est passée `mapping = aes(x = mass, y = height)` à un second niveau, `geom_point)` par le `+` et la représentation est produite.
 
 
 ``` r
@@ -82,8 +82,8 @@ jd %>%
 ```
 
 <div class="figure" style="text-align: center">
-<img src="08-Visualiser_files/figure-html/ggplotpoint-1.png" alt="Diagramme de dispersion" width="75%" height="75%" />
-<p class="caption">(\#fig:ggplotpoint)Diagramme de dispersion</p>
+<img src="08-Visualiser_files/figure-html/ggplotpoint-1.png" alt="Diagramme de dispersion." width="75%" height="75%" />
+<p class="caption">(\#fig:ggplotpoint)Diagramme de dispersion.</p>
 </div>
 
 Voici une liste d'exemples de différentes représentations visuelles des données. 
@@ -100,11 +100,11 @@ jd %>%
 ```
 
 <div class="figure" style="text-align: center">
-<img src="08-Visualiser_files/figure-html/diagdisp-1.png" alt="Le lien entre le poids et la taille en fonction du sexe" width="75%" height="75%" />
-<p class="caption">(\#fig:diagdisp)Le lien entre le poids et la taille en fonction du sexe</p>
+<img src="08-Visualiser_files/figure-html/diagdisp-1.png" alt="Le lien entre le poids et la taille en fonction du sexe." width="75%" height="75%" />
+<p class="caption">(\#fig:diagdisp)Le lien entre le poids et la taille en fonction du sexe.</p>
 </div>
 
-La Figure \@ref(fig:diagdisp2) montre le résultat si `size``est ajouté au *mapping* pour identifier l'IMC. Les unités avec un plus grand IMC obtiennent un plus gros pointeur.
+La Figure\ \@ref(fig:diagdisp2) montre le résultat si `size``est ajouté au *mapping* pour identifier l'IMC. Les unités avec un plus grand IMC obtiennent un plus gros pointeur.
 
 
 ``` r
@@ -114,11 +114,11 @@ jd %>%
 ```
 
 <div class="figure" style="text-align: center">
-<img src="08-Visualiser_files/figure-html/diagdisp2-1.png" alt="Le lien entre le poids et la taille en fonction de l'IMC et du sexe" width="75%" height="75%" />
-<p class="caption">(\#fig:diagdisp2)Le lien entre le poids et la taille en fonction de l'IMC et du sexe</p>
+<img src="08-Visualiser_files/figure-html/diagdisp2-1.png" alt="Le lien entre le poids et la taille en fonction de l'IMC et du sexe." width="75%" height="75%" />
+<p class="caption">(\#fig:diagdisp2)Le lien entre le poids et la taille en fonction de l'IMC et du sexe.</p>
 </div>
 
-On peut y ajouter la droite de régression, comme la Figure \@ref(fig:diagdisp3) le montre. Sans `geom_point()`, la figure ne produit la droite. Les arguments de `geom_smooth()` indique  l'utilisation du modèle linéaire, `method = lm`, et l'absence des intervalles de confiance, `se = FALSE`. Dans cette syntaxe, comme le *mapping* est ajouté à `ggplot` directement, il se généralise directement à `geom_point()` et ` geom_smooth()`
+On peut y ajouter la droite de régression, comme la Figure\ \@ref(fig:diagdisp3) le montre. Sans `geom_point()`, la figure ne produit la droite. Les arguments de `geom_smooth()` indique  l'utilisation du modèle linéaire, `method = lm`, et l'absence des intervalles de confiance, `se = FALSE`. Dans cette syntaxe, comme le *mapping* est ajouté à `ggplot` directement, il se généralise directement à `geom_point()` et ` geom_smooth()`
 
 
 ``` r
@@ -130,13 +130,13 @@ jd %>%
 ```
 
 <div class="figure" style="text-align: center">
-<img src="08-Visualiser_files/figure-html/diagdisp3-1.png" alt="Le lien entre le poids et la taille en fonction de l'IMC" width="75%" height="75%" />
-<p class="caption">(\#fig:diagdisp3)Le lien entre le poids et la taille en fonction de l'IMC</p>
+<img src="08-Visualiser_files/figure-html/diagdisp3-1.png" alt="Le lien entre le poids et la taille en fonction de l'IMC." width="75%" height="75%" />
+<p class="caption">(\#fig:diagdisp3)Le lien entre le poids et la taille en fonction de l'IMC.</p>
 </div>
 
 ## Boîte à moustache
 
-La boîte à moustaches (*box-and-whisker plot*) est une figure permettant de voir la variabilité des données. Elle  résume seulement quelques indicateurs de position soit la médiane, les quartiles, le minimum, et le maximum. Ce diagramme est utilisé principalement pour détecter des valeurs aberrantes et comparer la variabilité entre les groupes. C'est la représentation géométrique `geom_boxplot()` qui permettra de créer des boîtes à moustache. La cartographie prend en argument une variable nominale en `x` et une variable continue en `y`. La Figure \@ref(fig:boxplot1) montre un exemple de boîte à moustache.
+La boîte à moustaches (*box-and-whisker plot*) est une figure permettant de voir la variabilité des données. Elle  résume seulement quelques indicateurs de position soit la médiane, les quartiles, le minimum, et le maximum. Ce diagramme est utilisé principalement pour détecter des valeurs aberrantes et comparer la variabilité entre les groupes. C'est la représentation géométrique `geom_boxplot()` qui permettra de créer des boîtes à moustache. La cartographie prend en argument une variable nominale en `x` et une variable continue en `y`. La Figure\ \@ref(fig:boxplot1) montre un exemple de boîte à moustache.
 
 
 ``` r
@@ -146,8 +146,8 @@ ggplot(data = jd) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="08-Visualiser_files/figure-html/boxplot1-1.png" alt="Boîte à moustache de l'IMC en fonction du sexe" width="75%" height="75%" />
-<p class="caption">(\#fig:boxplot1)Boîte à moustache de l'IMC en fonction du sexe</p>
+<img src="08-Visualiser_files/figure-html/boxplot1-1.png" alt="Boîte à moustache de l'IMC en fonction du sexe." width="75%" height="75%" />
+<p class="caption">(\#fig:boxplot1)Boîte à moustache de l'IMC en fonction du sexe.</p>
 </div>
 
 Une fonction intéressante est la fonction `coord_flip()` qui tourne (*flip*) les axes, les coordonnées. L'axe $x$  prend la place de $y$; $y$ prend la place de $x$. Elle peut être pratique pour améliorer la qualité visuelle de certains graphiques.
@@ -169,7 +169,7 @@ ggplot(data = jd) +
   geom_histogram(mapping = aes(x = IMC))
 ```
 
-Des techniques plus avancées permettent de créer la Figure \@ref(fig:hist) d'un seul coup^[Notamment, le code nécessite `gather()` de `tidyr`[@R-tidyr] et `keep()` de `purrr` [@R-purrr].].
+Des techniques plus avancées permettent de créer la Figure\ \@ref(fig:hist) d'un seul coup^[Notamment, le code nécessite `gather()` de `tidyr`[@R-tidyr] et `keep()` de `purrr` [@R-purrr].].
 
 
 ``` r
@@ -184,8 +184,8 @@ jd %>%
 ```
 
 <div class="figure" style="text-align: center">
-<img src="08-Visualiser_files/figure-html/hist-1.png" alt="Histogrammes des variables continues" width="75%" height="75%" />
-<p class="caption">(\#fig:hist)Histogrammes des variables continues</p>
+<img src="08-Visualiser_files/figure-html/hist-1.png" alt="Histogrammes des variables continues." width="75%" height="75%" />
+<p class="caption">(\#fig:hist)Histogrammes des variables continues.</p>
 </div>
 
 Enfin, s'il est désiré de comparer deux distributions de groupes différents, l'argument `fill` dans la cartographie indique à la fonction de différencier les valeurs selon le *remplissage* des histogrammes.
@@ -199,17 +199,17 @@ jd %>%
 ```
 
 <div class="figure" style="text-align: center">
-<img src="08-Visualiser_files/figure-html/hist2-1.png" alt="Histogrammes de l'IMC par rapport au sexe" width="75%" height="75%" />
-<p class="caption">(\#fig:hist2)Histogrammes de l'IMC par rapport au sexe</p>
+<img src="08-Visualiser_files/figure-html/hist2-1.png" alt="Histogrammes de l'IMC par rapport au sexe." width="75%" height="75%" />
+<p class="caption">(\#fig:hist2)Histogrammes de l'IMC par rapport au sexe.</p>
 </div>
 
-Dans la Figure \@ref(fig:hist2), l'argument `position = "identity"` indique de traiter les deux groupes comme différents, autrement les colonnes s'additionnent dans le graphique. L'argument `alpha = .7` permet une transparence entre les couleurs, autrement, les valeurs *derrière* les autres ne paraissent pas. La valeur de `alpha` va de 0 (transparent) à 1 (opaque) et fonctionne dans la plupart des contextes, surtout ceux liés à `ggplot2`.
+Dans la Figure\ \@ref(fig:hist2), l'argument `position = "identity"` indique de traiter les deux groupes comme différents, autrement les colonnes s'additionnent dans le graphique. L'argument `alpha = .7` permet une transparence entre les couleurs, autrement, les valeurs *derrière* les autres ne paraissent pas. La valeur de `alpha` va de 0 (transparent) à 1 (opaque) et fonctionne dans la plupart des contextes, surtout ceux liés à `ggplot2`.
 
 ## Les barres d'erreurs
 
 Les barres d'erreur sont une représentation géométrique à part entière. La fonction pour les commandées est `geom_errorbar()`. Elle nécessite deux arguments, soit l'intervalle de confiance maximale et minimale autour des moyennes à afficher. 
 
-La Figure \@ref(fig:erreurbar) illustre les différences entre moyennes avec des barres d'erreur à partir de la base de données `ToothGrowth`, une étude de l'effet de la vitamine C (`dose`) selon leur administration (jus ou supplément `supp`) sur la longueur des dents des cochons d'inde. Il y a deux facteurs et une variable continue.
+La Figure\ \@ref(fig:erreurbar) illustre les différences entre moyennes avec des barres d'erreur à partir de la base de données `ToothGrowth`, une étude de l'effet de la vitamine C (`dose`) selon leur administration (jus ou supplément `supp`) sur la longueur des dents des cochons d'inde. Il y a deux facteurs et une variable continue.
 
 La première étape est de tirer les statistiques sommaires, moyennes, écart type, tailles des groupes. La syntaxe tire profit de `group_by()` pour tirer les groupes et en faire le sommaire. Le sommaire `summarise` permet d'obtenir les statistiques, notamment la moyenne, l'erreur standard (`se`) pour en calculer l'intervalle autour de la moyenne `ci`.
 
@@ -234,11 +234,15 @@ stat.descr %>%
                   width = .05) +
     geom_line() +
     geom_point()
+> Warning in fortify(data, ...): Arguments in `...` must be used.
+> ✖ Problematic argument:
+> • size = 5
+> ℹ Did you misspell an argument name?
 ```
 
 <div class="figure" style="text-align: center">
-<img src="08-Visualiser_files/figure-html/erreurbar-1.png" alt="Les effets de la vitamine C sur les cochons d'inde" width="75%" height="75%" />
-<p class="caption">(\#fig:erreurbar)Les effets de la vitamine C sur les cochons d'inde</p>
+<img src="08-Visualiser_files/figure-html/erreurbar-1.png" alt="Les effets de la vitamine C sur les cochons d'inde." width="75%" height="75%" />
+<p class="caption">(\#fig:erreurbar)Les effets de la vitamine C sur les cochons d'inde.</p>
 </div>
 
 Une fois ces statistiques calculées et enregistrées dans le nouveau jeu de données `jd`, il est possible de créer le graphique avec les représentations géométriques désirées. Remarquez comment spécifier la cartographie dans le niveau `ggplot()` rend la syntaxe moins compliquée. Cette syntaxe produit un graphique avec `dose` à l'axe des $x$, `supp` comme pointeurs et les moyennes de `len` (longueur moyenne des dents). La fonction `geom_errorbar()` indique où placer les limites inférieures et supérieures des intervalles. Les arguments `size = 5` et `width = .05` sont ajoutés simplment pour l'esthétisme. L'argument `.groups = "drop"` de `summarise` permet d'éviter une avertissement expliquant qu'une variable de groupement est utilisé pour regrouper les résultats à la fin. Ajouter ou retirer cet argument ne change pas les calculs, ni la Figure\ \@ref(fig:erreurbar).
@@ -249,7 +253,7 @@ Il existe un package `superb` [@superb] qui permet d'obtenir des graphiques à b
 
 Il y a deux avantages principaux a utilisé `superb`. La première est qu'elle permet des ajustements avec l'argument `adjustments` afin de préciser le type de barres d'erreurs^[Oui, oui, il en existe plusieurs!], comme `"single"`, `"difference"`, ou `"tryon"`. Généralement, ce sera l'option `purpose = "difference"` qui sera désirée. Deuxièmement, `superb` tient aussi compte des devis intra participants avec l’argument `WSFactors`, ce qui permet l'utilisation de différentes techniques de décorrélation des temps de mesure. La fonction produit de bien meilleurs graphiques à barres d'erreurs avec plus d'ajustement et de précision.
 
-La Figure \@ref(fig:erreurbar2) reproduit la Figure\ \@ref(fig:erreurbar). Dans le code, il faut préciser les facteurs inter participants `BSFactors` (pour *between subject* ou *BS*) et la variable dépendante, `variable`. La fonction contrôle aussi le type de graphique avec `plotStyle`. 
+La Figure\ \@ref(fig:erreurbar2) reproduit la Figure\ \@ref(fig:erreurbar). Dans le code, il faut préciser les facteurs inter participants `BSFactors` (pour *between subject* ou *BS*) et la variable dépendante, `variable`. La fonction contrôle aussi le type de graphique avec `plotStyle`. 
 
 
 ``` r
@@ -261,8 +265,8 @@ superbPlot(ToothGrowth,
 ```
 
 <div class="figure" style="text-align: center">
-<img src="08-Visualiser_files/figure-html/erreurbar2-1.png" alt="Les effets de la vitamine C sur les cochons d'inde avec `superb`" width="75%" height="75%" />
-<p class="caption">(\#fig:erreurbar2)Les effets de la vitamine C sur les cochons d'inde avec `superb`</p>
+<img src="08-Visualiser_files/figure-html/erreurbar2-1.png" alt="Les effets de la vitamine C sur les cochons d'inde avec `superb`." width="75%" height="75%" />
+<p class="caption">(\#fig:erreurbar2)Les effets de la vitamine C sur les cochons d'inde avec `superb`.</p>
 </div>
 
 La fonction retourne souvent des messages d'avertissement (orange) pour préciser certaines décisions qu'elle peut avoir pris. Le code ci-dessus retourne le message : `superb::FYI: The variables will be plotted in that order: dose, supp (use factorOrder to change).`. C'est à l'utilisateur d'en prendre note et de s'assurer que c'était bien ce qui était désiré, ce qui est le cas ici.
@@ -296,8 +300,8 @@ stat.descr$summaryStatistics %>%
 ```
 
 <div class="figure" style="text-align: center">
-<img src="08-Visualiser_files/figure-html/erreurbar3-1.png" alt="Les effets de la vitamine C sur les cochons d'inde avec `superb`" width="75%" height="75%" />
-<p class="caption">(\#fig:erreurbar3)Les effets de la vitamine C sur les cochons d'inde avec `superb`</p>
+<img src="08-Visualiser_files/figure-html/erreurbar3-1.png" alt="Les effets de la vitamine C sur les cochons d'inde avec `superb`." width="75%" height="75%" />
+<p class="caption">(\#fig:erreurbar3)Les effets de la vitamine C sur les cochons d'inde avec `superb`.</p>
 </div>
 
 ## De meilleures barres d'erreur pour les devis intra participants
@@ -330,10 +334,10 @@ superbPlot(jd_intra,
 ```
 
 <div class="figure" style="text-align: center">
-<img src="08-Visualiser_files/figure-html/erreurbar4-1.png" alt="Comparaison de deux temps de mesure avec `superb` (sans décorrélation)" width="75%" height="75%" />
-<p class="caption">(\#fig:erreurbar4)Comparaison de deux temps de mesure avec `superb` (sans décorrélation)</p>
+<img src="08-Visualiser_files/figure-html/erreurbar4-1.png" alt="Comparaison de deux temps de mesure avec `superb` (sans décorrélation)." width="75%" height="75%" />
+<p class="caption">(\#fig:erreurbar4)Comparaison de deux temps de mesure avec `superb` (sans décorrélation).</p>
 </div>
-La Figure \@ref(fig:erreurbar4) montre le résultat obtenu.
+La Figure\ \@ref(fig:erreurbar4) montre le résultat obtenu.
 
 Le package `superb` permet aussi l'utilisation de techniques de décorrélation comme `"CM"`, `"LM"`, `"CA"` ou `"none"` (par défaut) pour améliorer les intervalles de confiance. Consultez la documentation pour en savoir plus sur son fonctionnement et ce qui conviendra le mieux à la situation qui se présente. Pour l'implantation, il suffit d'ajouter à la liste d'arguments fournie à `adjustements`, le type de décorrlation désirée, ici `decorrelation = "CM"`).
 
@@ -347,10 +351,10 @@ superbPlot(jd_intra,
 ```
 
 <div class="figure" style="text-align: center">
-<img src="08-Visualiser_files/figure-html/erreurbar5-1.png" alt="Comparaison de deux temps de mesure avec `superb` (avec décorrélation)" width="75%" height="75%" />
-<p class="caption">(\#fig:erreurbar5)Comparaison de deux temps de mesure avec `superb` (avec décorrélation)</p>
+<img src="08-Visualiser_files/figure-html/erreurbar5-1.png" alt="Comparaison de deux temps de mesure avec `superb` (avec décorrélation)." width="75%" height="75%" />
+<p class="caption">(\#fig:erreurbar5)Comparaison de deux temps de mesure avec `superb` (avec décorrélation).</p>
 </div>
-Les barres d'erreur de la Figure \@ref(fig:erreurbar5) sont légèrement différentes de la Figure \@ref(fig:erreurbar4), mais plus adéquates pour illustrer les résultats.
+Les barres d'erreur de la Figure\ \@ref(fig:erreurbar5) sont légèrement différentes de la Figure\ \@ref(fig:erreurbar4), mais plus adéquates pour illustrer les résultats.
 
 ## Quelques trucs en rafale
 

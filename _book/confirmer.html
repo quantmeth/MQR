@@ -7,7 +7,7 @@
 <title> 21 Confirmer | Méthodes quantitatives avec R</title>
 <meta name="author" content="P.-O. Caron">
 <meta name="description" content="La modélisation par équations structurelles permet de combiner toutes les analyses qui ont été vues jusqu’à maintenant que ce soit, la modération, la médiation, la régression et les analyses...">
-<meta name="generator" content="bookdown 0.41 with bs4_book()">
+<meta name="generator" content="bookdown 0.46 with bs4_book()">
 <meta property="og:title" content=" 21 Confirmer | Méthodes quantitatives avec R">
 <meta property="og:type" content="book">
 <meta property="og:url" content="mqr.teluq.ca/confirmer.html">
@@ -17,9 +17,9 @@
 <meta name="twitter:description" content="La modélisation par équations structurelles permet de combiner toutes les analyses qui ont été vues jusqu’à maintenant que ce soit, la modération, la médiation, la régression et les analyses...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.8.0/transition.js"></script><script src="libs/bs3compat-0.8.0/tabs.js"></script><script src="libs/bs3compat-0.8.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.10.0/transition.js"></script><script src="libs/bs3compat-0.10.0/tabs.js"></script><script src="libs/bs3compat-0.10.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+<link href="libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet">
 <script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script><script src="libs/viz-1.8.2/viz.js"></script><link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
 <script src="libs/grViz-binding-1.0.11/grViz.js"></script><!-- 
     \(
@@ -128,8 +128,10 @@
 <p>Comme pour tous les <a href="programmer.html#les-packages">packages</a>, il faut d’abord installer et appeler le programme avant de l’utiliseré</p>
 <div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="confirmer.html#cb312-1" tabindex="-1"></a><span class="co">#</span></span>
 <span id="cb312-2"><a href="confirmer.html#cb312-2" tabindex="-1"></a><span class="fu">library</span>(lavaan)</span>
-<span id="cb312-3"><a href="confirmer.html#cb312-3" tabindex="-1"></a><span class="sc">&gt;</span> This is lavaan <span class="fl">0.6</span><span class="dv">-19</span></span>
-<span id="cb312-4"><a href="confirmer.html#cb312-4" tabindex="-1"></a><span class="sc">&gt;</span> lavaan is FREE software<span class="sc">!</span> Please report any bugs.</span></code></pre></div>
+<span id="cb312-3"><a href="confirmer.html#cb312-3" tabindex="-1"></a><span class="sc">&gt;</span> Warning<span class="sc">:</span> le package <span class="st">'lavaan'</span> a été compilé avec la version</span>
+<span id="cb312-4"><a href="confirmer.html#cb312-4" tabindex="-1"></a><span class="sc">&gt;</span> R <span class="dv">4</span>.<span class="fl">4.3</span></span>
+<span id="cb312-5"><a href="confirmer.html#cb312-5" tabindex="-1"></a><span class="sc">&gt;</span> This is lavaan <span class="fl">0.6</span><span class="dv">-21</span></span>
+<span id="cb312-6"><a href="confirmer.html#cb312-6" tabindex="-1"></a><span class="sc">&gt;</span> lavaan is FREE software<span class="sc">!</span> Please report any bugs.</span></code></pre></div>
 <div id="spécifier-un-modèle" class="section level2" number="21.1">
 <h2>
 <span class="header-section-number">21.1</span> Spécifier un modèle<a class="anchor" aria-label="anchor" href="#sp%C3%A9cifier-un-mod%C3%A8le"><i class="fas fa-link"></i></a>
@@ -152,11 +154,11 @@
 <h3>
 <span class="header-section-number">21.2.1</span> Les indices d’ajustement<a class="anchor" aria-label="anchor" href="#les-indices-dajustement"><i class="fas fa-link"></i></a>
 </h3>
-<p>Une fois l’analyse l’analyse, l’utilisateur peut regarder les indices d’ajustement. Il est recommandé de rapporter le <span class="math inline">\(\chi^2\)</span> avec sa valeur-<span class="math inline">\(p\)</span> et ses degrés de liberté ainsi que l’indice comparatif d’ajustement (CFI), l’indice de Tucker-Lewis (TLI), l’erreur quadratique moyenne d’approximation (RMSEA) et le résidu quadratique moyen standardiséé (SRMR).</p>
+<p>Une fois l’analyse réalisée, l’utilisateur peut regarder les indices d’ajustement. Il est recommandé de rapporter le <span class="math inline">\(\chi^2\)</span> avec sa valeur-<span class="math inline">\(p\)</span> et ses degrés de liberté ainsi que l’indice comparatif d’ajustement (CFI), l’indice de Tucker-Lewis (TLI), l’erreur quadratique moyenne d’approximation (RMSEA) et le résidu quadratique moyen standardiséé (SRMR).</p>
 <p>Dans le contexte des modèles d’équations structurelles, le <span class="math inline">\(\chi^2\)</span> est un indice classique de la qualité de l’ajustement du modèle aux données observées. Il compare la matrice de covariance observée des données à la matrice de covariance prédite par le modèle. Le but est de déterminer si les différences entre ces deux matrices peuvent être attribuées à des variations aléatoires. Une valeur-<span class="math inline">\(p\)</span> supérieure à 0.05 (non significative) suggère que le modèle s’ajuste bien aux données. Le <span class="math inline">\(\chi^2\)</span> est très sensible à la taille de l’échantillon. Pour des échantillons très grands, de petites différences peuvent produire une valeur significative, suggérant à tort un mauvais ajustement. Pareillement, pour les modèles avec de nombreux paramètres, il peut souvent indiquer un mauvais ajustement en raison de l’accumulation d’erreurs.</p>
-<p>Le CFI est un indice utilisé dans la modélisation par équations structurelles (SEM) pour évaluer la qualité de l’ajustement d’un modèle par rapport à un modèle de référence. Il compare le modèle testé à un modèle nul (ou indépendant) où il n’existe aucune relation entre les variables observées. Le CFI varie entre 0 et 1, avec des valeurs plus proches de 1 indiquant un meilleur ajustement. En général, un CFI supérieur à 0.90 est considéré comme indiquant un bon ajustement du modèle, tandis qu’un CFI supérieur à 0.95 est souvent interprété comme excellent.</p>
+<p>Le CFI est un indice utilisé dans la modélisation par équations structurelles (SEM) pour évaluer la qualité de l’ajustement d’un modèle par rapport à un modèle de référence. Il compare le modèle testé à un modèle nul (ou indépendant) où il n’existe aucune relation entre les variables observées. Le CFI varie entre 0 et 1 (théoriquement, il peut excéder cette valeur), avec des valeurs plus proches de 1 indiquant un meilleur ajustement. En général, un CFI supérieur à 0.90 est considéré comme indiquant un bon ajustement du modèle, tandis qu’un CFI supérieur à 0.95 est souvent interprété comme excellent.</p>
 <p>Comme le CFI, le TLI compare le modèle testé à un modèle nul où il n’y a pas de relations entre les variables observées. Cependant, contrairement au CFI, le TLI pénalise la complexité du modèle; il ajuste la statistique d’ajustement en fonction du nombre de paramètres estimés, ce qui signifie qu’il prend en compte le degré de liberté. Cela peut rendre le TLI plus strict, surtout pour des modèles très complexes.</p>
-<p>Le TLI varie également entre 0 et 1, avec des valeurs plus proches de 1 indiquant un meilleur ajustement. En général, un TLI supérieur à 0.90 est considéré comme indiquant un bon ajustement, tandis qu’un TLI supérieur à 0.95 est souvent interprété comme excellent.</p>
+<p>Le TLI varie également entre 0 et 1 (théoriquement, il peut excéder cette valeur), avec des valeurs plus proches de 1 indiquant un meilleur ajustement. En général, un TLI supérieur à 0.90 est considéré comme indiquant un bon ajustement, tandis qu’un TLI supérieur à 0.95 est souvent interprété comme excellent.</p>
 <p>Le RMSEA est un indice utilisé dans la modélisation par équations structurelles (SEM) pour évaluer la qualité de l’ajustement d’un modèle aux données observées. Cet indice mesure l’écart entre le modèle hypothétique et la réalité observée. Des valeurs plus faibles de RMSEA indiquent un meilleur ajustement. En général, un RMSEA inférieur à 0,05 est considéré comme un bon ajustement, tandis qu’un RMSEA entre 0,05 et 0,08 est jugé acceptable.</p>
 <p>Le SRMR est un indice utilisé dans la modélisation par équations structurelles (SEM) pour évaluer la qualité de l’ajustement d’un modèle aux données observées. Cet indice mesure la différence moyenne entre les corrélations observées et les corrélations prédites par le modèle. Des valeurs plus faibles de SRMR indiquent un meilleur ajustement. En général, un SRMR inférieur à 0,08 est considéré comme un bon ajustement.</p>
 <p>Pour obtenir spécifiquement ces indices, il faut utilier la syntaxe suivante avec un objet <code>lavaan</code>, c’est-à-dire la sortie des fonctions <code>sem()</code> ou <code>cfa()</code>.</p>
@@ -192,8 +194,8 @@
 <p>Voici un exemple d’analyse factorielle exploratoire. La syntaxe suivante recrée le modèle présenté au chapitre <a href="explorer.html#explorer">Explorer</a>. La matrice de corrélation se trouve dans le package <code>Rnest</code> <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-Rnest">Caron, 2023</a>)</span> pour aller plus rapidement.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:FactStructconfirmer"></span>
-<img src="image/factstruct.png" alt="Structure factorielle de l'exemple" width="50%" height="50%"><p class="caption">
-Figure 21.1: Structure factorielle de l’exemple
+<img src="image/factstruct.png" alt="Structure factorielle de l'exemple." width="50%" height="50%"><p class="caption">
+Figure 21.1: Structure factorielle de l’exemple.
 </p>
 </div>
 <p>La Figure <a href="confirmer.html#fig:FactStructconfirmer">21.1</a> (présentée auparavant à la Figure <a href="explorer.html#fig:FactStruct">19.1</a>) montre la structure factorielle sous-jacente à la matrice de corrélation <code>ex_mqr</code>. La syntaxe crée un jeu de données basée sur cette matrice.</p>
@@ -262,11 +264,12 @@ Figure 21.1: Structure factorielle de l’exemple
 <p>Ils sont tous excellents et respectent les recommandations.</p>
 <p>Grâce au package <code>lavaanExtra</code> <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-lavaanExtra">Thériault, 2023</a>)</span> il est possible de produire rapidement une figure des résultats finaux. Il faut absolument avoir installer les packages <code>rsvg</code> et <code>DiagrammeRsvg</code> pour obtenir la figure.</p>
 <div class="sourceCode" id="cb324"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">lavaanExtra</span><span class="fu">::</span><span class="fu"><a href="https://lavaanExtra.remi-theriault.com/reference/cfa_fit_plot.html">cfa_fit_plot</a></span><span class="op">(</span><span class="va">model.cfa2</span>, data <span class="op">=</span> <span class="va">jd.cfa</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">lavaanExtra</span><span class="fu">::</span><span class="fu"><a href="https://lavaanExtra.remi-theriault.com/reference/nice_lavaanPlot.html">nice_lavaanPlot</a></span><span class="op">(</span><span class="va">res.cfa2</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:leplot"></span>
-<img src="image/leplot.png" alt="Représentation graphiques de la structure factorielle finale" width="60%" height="60%"><p class="caption">
-Figure 21.2: Représentation graphiques de la structure factorielle finale
+<div class="grViz html-widget html-fill-item" id="htmlwidget-c72387fd6c1102706219" style="width:75%;height:75%;"></div>
+<script type="application/json" data-for="htmlwidget-c72387fd6c1102706219">{"x":{"diagram":" digraph plot { \n graph [ rankdir = LR ] \n node [ shape = box, fontname = Helvetica ] \n node [shape = box] \n i1; i2; i3; i6; i4; i5 \n node [shape = oval] \n F1; F2 \n \n edge [ color = black ] \n  F1->i1 [label = \"0.9***\"] F1->i2 [label = \"0.75***\"] F1->i3 [label = \"0.69***\"] F1->i6 [label = \"0.32***\"] F2->i4 [label = \"0.47***\"] F2->i5 [label = \"0.55***\"] F2->i6 [label = \"0.53***\"] \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script><p class="caption">
+Figure 21.2: Représentation graphique de la structure factorielle finale.
 </p>
 </div>
 <p>Enfin, les paramètres pourront être extraits si l’utilisateur désire les observés.</p>
@@ -300,8 +303,8 @@ Figure 21.2: Représentation graphiques de la structure factorielle finale
 <p>Comme second exemple basé sur les analyses acheminatoires, il s’agit d’un modèle tiré de <span class="citation">Lemardelet &amp; Caron (<a href="r%C3%A9f%C3%A9rences.html#ref-Lemardeletsoumis">2022</a>)</span> dont le jeu de données est disponible du package <code>pathanalysis</code> <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-CaronPA">Caron, 2021</a>)</span>. Le modèle est une médiation sérielle avec deux médiateurs. La Figure <a href="confirmer.html#fig:exMED">21.3</a> présente le modèle.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:exMED"></span>
-<img src="image/exMED.png" alt="Modèle de médiation de Lemardelet et Caron (2022(" width="50%" height="50%"><p class="caption">
-Figure 21.3: Modèle de médiation de Lemardelet et Caron (2022(
+<img src="image/exMED.png" alt="Modèle de médiation de Lemardelet et Caron (2022)." width="50%" height="50%"><p class="caption">
+Figure 21.3: Modèle de médiation de Lemardelet et Caron (2022).
 </p>
 </div>
 <p>Le jeu de données se trouve dans le packages <code>pathanalysis</code> sous le libellé <code>medEx</code>.</p>
@@ -364,9 +367,9 @@ Figure 21.3: Modèle de médiation de Lemardelet et Caron (2022(
 <code class="sourceCode R"><span><span class="fu">lavaanExtra</span><span class="fu">::</span><span class="fu"><a href="https://lavaanExtra.remi-theriault.com/reference/nice_lavaanPlot.html">nice_lavaanPlot</a></span><span class="op">(</span><span class="va">res.lav.med2</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:lesem"></span>
-<div class="grViz html-widget html-fill-item" id="htmlwidget-c72387fd6c1102706219" style="width:75%;height:75%;"></div>
-<script type="application/json" data-for="htmlwidget-c72387fd6c1102706219">{"x":{"diagram":" digraph plot { \n graph [ rankdir = LR ] \n node [ shape = box, fontname = Helvetica ] \n node [shape = box] \n x; m1; m2; y \n node [shape = oval] \n  \n \n edge [ color = black ] \n x->m1 [label = \"0.49***\"] x->m2 [label = \"0.18***\"] m1->m2 [label = \"0.46***\"] m2->y [label = \"0.67***\"] m1->y [label = \"\"] x->y [label = \"0.25***\"]  \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script><p class="caption">
-Figure 21.4: Représentation graphiques du modèle acheminatoire
+<div class="grViz html-widget html-fill-item" id="htmlwidget-be2e583e7bf17a4889c0" style="width:75%;height:75%;"></div>
+<script type="application/json" data-for="htmlwidget-be2e583e7bf17a4889c0">{"x":{"diagram":" digraph plot { \n graph [ rankdir = LR ] \n node [ shape = box, fontname = Helvetica ] \n node [shape = box] \n x; m1; m2; y \n node [shape = oval] \n  \n \n edge [ color = black ] \n x->m1 [label = \"0.49***\"] x->m2 [label = \"0.18***\"] m1->m2 [label = \"0.46***\"] m2->y [label = \"0.67***\"] m1->y [label = \"\"] x->y [label = \"0.25***\"]  \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script><p class="caption">
+Figure 21.4: Représentation graphique du modèle acheminatoire.
 </p>
 </div>
 
@@ -406,7 +409,7 @@ Figure 21.4: Représentation graphiques du modèle acheminatoire
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2024-12-16.</p>
+    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2026-05-12.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

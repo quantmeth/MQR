@@ -12,7 +12,7 @@ a
 > [1] 2
 ```
 
-où `a` est maintenant égale à `2`. La première ligne assigne (*enregistre*) la valeur `2` à `a`. La deuxième ligne, indique à la console **R** d'imprimer le résultat pour le voir. Par la suite, `a` peut être utilisée dans des fonctions, des calculs ou analyses plus complexes. De surcroît, `a` peut devenir une fonction, une chaîne de caractère (*string*) ou un jeu de données.
+où `a` est maintenant égale à `2`. La première ligne assigne (*enregistre*) la valeur `2` à `a`. La deuxième ligne, indique à la console **R** d'imprimer le résultat pour le voir. Par la suite, `a` peut être utilisée dans des fonctions, des calculs ou analyses plus compliquées. De surcroît, `a` peut devenir une fonction, une chaîne de caractère (*string*) ou un jeu de données.
 
 Conventionnellement, les puristes de **R** recommandent l'usage de `<-` plutôt que `=` pour l'assignation. Il y a quelques nuances computationnelles entre les deux, mais qui échappent irrémédiablement aux néophytes et même aux usagers intermédiaires. Par tradition, `<-` prévaudra dans ce livre.
 

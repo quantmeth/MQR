@@ -15,7 +15,7 @@ Pour le non-initié aux fonctions permettant de créer des nombres pseudoaléato
 
 ``` r
 runif(n = 1)
-> [1] 0.13
+> [1] 0.811
 ```
 
 Le statisticien s'intéresse à inférer comment ces valeurs sont générées. Il postule ainsi que les valeurs aléatoires suivent une distribution de probabilité. Connaître cette distribution est très important, car c'est elle qui permet de répondre à des questions comme : quelle est la probabilité d'obtenir un résultat aussi rare que $x$? Ou quelle sont les valeurs attendues pour $95\%$ des tirages? Questions tout à fait pertinentes pour l'expérimentateur. Une des distributions les plus connues est certainement la distribution normale, celle qui est derrière la fonction `rnorm()` d'ailleurs. Mais, il y en a beaucoup, beaucoup d'autres. 
@@ -40,14 +40,14 @@ total <- a + b
 
 Entre en jeu le *théorème central limite*: plus des variables aléatoires identiquement distribuées sont additionnées ensemble, plus la distribution de probabilité de cette somme se rapproche d'une distribution normale.
 
-Par exemple, la fonction `rlnorm()` génère des variables issues d'une distribution log normale. Elle a la forme illustré à la Figure \@ref(fig:lognormal) (qui n'a rien de normal à première vue).
+Par exemple, la fonction `rlnorm()` génère des variables issues d'une distribution log normale. Elle a la forme illustré à la Figure\ \@ref(fig:lognormal) (qui n'a rien de normal à première vue).
 
 <div class="figure" style="text-align: center">
-<img src="10-Inferer_files/figure-html/lognormal-1.png" alt="Distribution log normale" width="80%" height="80%" />
-<p class="caption">(\#fig:lognormal)Distribution log normale</p>
+<img src="10-Inferer_files/figure-html/lognormal-1.png" alt="Distribution log normale." width="80%" height="80%" />
+<p class="caption">(\#fig:lognormal)Distribution log normale.</p>
 </div>
 
-En calculant la somme de plusieurs variables aléatoires de cette distribution, pour diverses valeurs de tailles d'échantillons (nombre de variables échantillonnées), les résultats tendent de plus en plus vers une distribution normale. Le code ci-dessous présente la démarche utilisée et la Figure \@ref(fig:testn) en fait la démonstration graphique en présentant les distributions d'échantillonnage obtenues.
+En calculant la somme de plusieurs variables aléatoires de cette distribution, pour diverses valeurs de tailles d'échantillons (nombre de variables échantillonnées), les résultats tendent de plus en plus vers une distribution normale. Le code ci-dessous présente la démarche utilisée et la Figure\ \@ref(fig:testn) en fait la démonstration graphique en présentant les distributions d'échantillonnage obtenues.
 
 
 ``` r
@@ -69,11 +69,11 @@ for(n in N){
 ```
 
 
-La Figure \@ref(fig:testn) montre que la distribution d'échantillonnage de la somme des variables converge vers une distribution normale à mesure que la taille d'échantillon $n$ augmente. Cela est vrai pour n'importe quelle distribution de probabilité de la population. Le théorème central limite en dit plus que simplement la forme de la distribution. Il affirme également qu'une distribution de probabilité d'une population ayant une moyenne $\mu$ et un écart type $\sigma$ échantillonnées sur $n$ unités, génère une distribution d'échantillonnage des totaux (indicé $t$) ayant une espérance (la moyenne) de $n\mu_t$ et un écart type de $n\sigma_t$.
+La Figure\ \@ref(fig:testn) montre que la distribution d'échantillonnage de la somme des variables converge vers une distribution normale à mesure que la taille d'échantillon $n$ augmente. Cela est vrai pour n'importe quelle distribution de probabilité de la population. Le théorème central limite en dit plus que simplement la forme de la distribution. Il affirme également qu'une distribution de probabilité d'une population ayant une moyenne $\mu$ et un écart type $\sigma$ échantillonnées sur $n$ unités, génère une distribution d'échantillonnage des totaux (indicé $t$) ayant une espérance (la moyenne) de $n\mu_t$ et un écart type de $n\sigma_t$.
 
 <div class="figure">
-<img src="10-Inferer_files/figure-html/testn-1.png" alt="Distributions des totaux de n variables log normales" width="672" />
-<p class="caption">(\#fig:testn)Distributions des totaux de n variables log normales</p>
+<img src="10-Inferer_files/figure-html/testn-1.png" alt="Distributions des totaux de n variables log normales." width="672" />
+<p class="caption">(\#fig:testn)Distributions des totaux de n variables log normales.</p>
 </div>
 
 
@@ -89,12 +89,12 @@ La théorie traditionnelle des tests d'hypothèses repose sur l'idée selon laqu
 
 Un excellent exemple en sciences humaines et sociales où la distribution de probabilité de la population est connue est le quotient intellectuel (QI). Le QI d'une population occidentale est distribué normalement (établi intentionnellement par les psychométriciens) avec une moyenne de 100 ($\mu=100$) et un écart type de $\sigma = 15$. Ces valeurs sont totalement arbitraires, il est tout aussi convenable de parler d'une moyenne de 0 et d'un écart type de 1 (la distribution peut être standardisée) quoiqu'il est contre-intuitif de parler d'un QI de 0. (*Qui voudrait avoir une intelligence de 0?*)
 
-Dans la population, bien que la moyenne et la variance peuvent être connues, sélectionner une unité au hasard génère une variable aléatoire. Chaque individu de la population a une probabilité très faible d'être sélectionné et est indépendant des autres individus de la population. Il est très difficile de prédire le score exact d'une personne. Toutefois, il est possible d'avoir un idée de la variabilité des scores. La Figure \@ref(fig:regle) montre la distribution normale par rapport à la moyenne, $\mu$ pour différentes valeurs d'écart type, $\sigma$. Elle montre que 68.269% des personnes devraient se retrouver entre plus ou moins un écart type ou encore que 95.45%  devraient se retrouver entre plus ou moins deux écarts types. Ajusté au QI, il s'agit de 85 à 115 et de 70 à 130 respectivement.
+Dans la population, bien que la moyenne et la variance peuvent être connues, sélectionner une unité au hasard génère une variable aléatoire. Chaque individu de la population a une probabilité très faible d'être sélectionné et est indépendant des autres individus de la population. Il est très difficile de prédire le score exact d'une personne. Toutefois, il est possible d'avoir un idée de la variabilité des scores. La Figure\ \@ref(fig:regle) montre la distribution normale par rapport à la moyenne, $\mu$ pour différentes valeurs d'écart type, $\sigma$. Elle montre que 68.269% des personnes devraient se retrouver entre plus ou moins un écart type ou encore que 95.45%  devraient se retrouver entre plus ou moins deux écarts types. Ajusté au QI, il s'agit de 85 à 115 et de 70 à 130 respectivement.
 
 
 <div class="figure" style="text-align: center">
-<img src="10-Inferer_files/figure-html/regle-1.png" alt="La distribution normale du QI" width="90%" height="90%" />
-<p class="caption">(\#fig:regle)La distribution normale du QI</p>
+<img src="10-Inferer_files/figure-html/regle-1.png" alt="La distribution normale du QI." width="90%" height="90%" />
+<p class="caption">(\#fig:regle)La distribution normale du QI.</p>
 </div>
 
 Une autre façon de fonctionner est de prendre une personne au hasard et de mesurer son QI. Le score obtenu est une valeur aléatoire. Comme la distribution est connue avec ses paramètres, il est possible de juger de la vraisemblance de ce score (*est-il rare?*) par rapport à la population. 
@@ -108,19 +108,19 @@ Les expérimentateurs émettent l'hypothèse que les 5 % personnes ayant le plus
 Le groupe d'expérimentateurs teste leur instrument sur Fanny. Elle a un QI de 120. La Figure\ \@ref(fig:fannyd) illustre la distribution de l'intelligence dans la population et où se situe Fanny parmi celle-ci. Comment tester si elle est reptilienne? 
 
 <div class="figure">
-<img src="10-Inferer_files/figure-html/fannyd-1.png" alt="Score de Fanny sur la distribution normale" width="672" />
-<p class="caption">(\#fig:fannyd)Score de Fanny sur la distribution normale</p>
+<img src="10-Inferer_files/figure-html/fannyd-1.png" alt="Score de Fanny sur la distribution normale." width="672" />
+<p class="caption">(\#fig:fannyd)Score de Fanny sur la distribution normale.</p>
 </div>
 
 
-La première étape est d'obtenir un **score-$z$**. Un score-$z$ est une échelle standardisée des distances d'une valeur par rapport à la moyenne. Lorsqu'une échelle de mesure est transformée en score-$z$, la moyenne est de 0 et l'écart type est égal à 1. Cela permet de mieux apprécier les distances et leur probabilité. Un score-$z$ s'obtient en prenant la différence entre une unité ($x$) par rapport à la moyenne ($\mu$) divisée par l'écart type ($\sigma$). L'équation \@ref(eq:zzz) illustre ce calcul.
+La première étape est d'obtenir un **score-$z$**. Un score-$z$ est une échelle standardisée des distances d'une valeur par rapport à la moyenne. Lorsqu'une échelle de mesure est transformée en score-$z$, la moyenne est de 0 et l'écart type est égal à 1. Cela permet de mieux apprécier les distances et leur probabilité. Un score-$z$ s'obtient en prenant la différence entre une unité ($x$) par rapport à la moyenne ($\mu$) divisée par l'écart type ($\sigma$). L'équation\ \@ref(eq:zzz) illustre ce calcul.
 
 \begin{equation}
 z = \frac{x-\mu}{\sigma}
 (\#eq:zzz)
 \end{equation}
 
-Comme un score-$z$ est standardisé, la Figure \@ref(fig:regle) est utilisable pour tirer des conclusions, car celle-ci est applicable pour toutes sortes de situations où la distribution est vraisemblablement normale.
+Comme un score-$z$ est standardisé, la Figure\ \@ref(fig:regle) est utilisable pour tirer des conclusions, car celle-ci est applicable pour toutes sortes de situations où la distribution est vraisemblablement normale.
 
 
 ``` r
@@ -165,11 +165,11 @@ QI
 ```
 
 <div class="figure">
-<img src="10-Inferer_files/figure-html/rept-1.png" alt="Scores des unités de l'échantillon" width="90%" height="90%" />
-<p class="caption">(\#fig:rept)Scores des unités de l'échantillon</p>
+<img src="10-Inferer_files/figure-html/rept-1.png" alt="Scores des unités de l'échantillon." width="90%" height="90%" />
+<p class="caption">(\#fig:rept)Scores des unités de l'échantillon.</p>
 </div>
 
-Dans la Figure \@ref(fig:rept), chaque unité est présentée par un trait vertical noir. La moyenne de cet échantillon est de 108.8 et l'écart type est de 9.762. Dans cet exemple, l'indice est clairement identifié, mais quelle est la distribution d'échantillonnage des moyennes? Selon le théorème central limite, la moyenne de la distribution d'échantillonnage est $\mu=\mu_{\bar{x}}=100$ et l'écart type est $\sigma_{\bar{x}} = \frac{\sigma}{\sqrt{n}}=\frac{15}{\sqrt{10}}=4.743$ . Maintenant, il est possible de calculer un score-$z$.
+Dans la Figure\ \@ref(fig:rept), chaque unité est présentée par un trait vertical noir. La moyenne de cet échantillon est de 108.8 et l'écart type est de 9.762. Dans cet exemple, l'indice est clairement identifié, mais quelle est la distribution d'échantillonnage des moyennes? Selon le théorème central limite, la moyenne de la distribution d'échantillonnage est $\mu=\mu_{\bar{x}}=100$ et l'écart type est $\sigma_{\bar{x}} = \frac{\sigma}{\sqrt{n}}=\frac{15}{\sqrt{10}}=4.743$ . Maintenant, il est possible de calculer un score-$z$.
 
 $$
 z = \frac{\bar{x}-\mu_{\bar{x}}}{\sigma/\sqrt{n}}=\frac{108.8-100}{15/\sqrt{10}}=1.855
@@ -186,8 +186,8 @@ z
 La fonction `(1 - pnorm(z)) * 100`, retourne la probabilité (en pourcentage) d'un résultat plus rare que l'indice obtenu auprès de l'échantillon par rapport à la population. Comme pour l'exemple de Fanny, ce chiffre est une valeur-$p$, soit la probabilité de l'indice observé par rapport à l'hypothèse nulle. La Figure\ \@ref(fig:tye) montre l'emplacement de l'échantillon sur la distribution d'échantillonnage. La probabilité de cet échantillon par rapport à l'hypothèse nulle est de 3.178 %, juste en deçà du 5 % fixé. Dans la Figure\ \@ref(fig:tye), la moyenne de l'échantillon se retrouve à l'intérieur de la zone de rejet (la zone grise). La conclusion est par conséquent de rejeter l'hypothèse nulle, l'échantillon semble provenir d'une autre distribution (avec des paramètres différents) que celle postulée.
 
 <div class="figure">
-<img src="10-Inferer_files/figure-html/tye-1.png" alt="Moyenne de l'échantillon sur la distribution normale" width="672" />
-<p class="caption">(\#fig:tye)Moyenne de l'échantillon sur la distribution normale</p>
+<img src="10-Inferer_files/figure-html/tye-1.png" alt="Moyenne de l'échantillon sur la distribution normale." width="672" />
+<p class="caption">(\#fig:tye)Moyenne de l'échantillon sur la distribution normale.</p>
 </div>
 
 **Qu'en est-il vraiment de ce résultat?** Pour l'expérimentateur, il ne peut aller plus loin, car il ne connaît pas la boîte noire selon laquelle les valeurs de l'échantillon sont générées. Il ne peut que constater que plusieurs (9/10) unités ont un score plus élevé que 100. Par contre, comme il s'agit d'un exemple simulé, la boîte noire est connue. C'est la fonction, `round(rnorm(n = 10, mean = 100, sd = 15))`, une distribution normale ayant $\mu=100,\sigma=15$ qui est utilisée pour générer les valeurs. L'utilisateur sait qu'il s'agit d'un faux positif (une erreur de Type I) : l'échantillon fait partie des 5 % des échantillons qui risquent de se faire rejeter accidentellement. Si l'utilisateur utilise une autre graine (`seed()`), la plupart (95%) des moyennes ne sont pas rejetées.
@@ -200,14 +200,14 @@ mu.h <- 100 ; sd.h <- 15
 mu.r <- 130 ; sd.r <- 15
 ```
 
-La Figure \@ref(fig:rh) présente les distributions de ces populations. Trois zones sont ajoutées pour illustrer les concepts statistiques d'erreur de type I, d'erreur de type II et de puissance statistique. Comme les populations sont connues, ces concepts statistiques sont calculables. 
+La Figure\ \@ref(fig:rh) présente les distributions de ces populations. Trois zones sont ajoutées pour illustrer les concepts statistiques d'erreur de type I, d'erreur de type II et de puissance statistique. Comme les populations sont connues, ces concepts statistiques sont calculables. 
 
 <div class="figure" style="text-align: center">
-<img src="10-Inferer_files/figure-html/rh-1.png" alt="Distribution du QI des humains et des reptiliens" width="90%" height="90%" />
-<p class="caption">(\#fig:rh)Distribution du QI des humains et des reptiliens</p>
+<img src="10-Inferer_files/figure-html/rh-1.png" alt="Distribution du QI des humains et des reptiliens." width="90%" height="90%" />
+<p class="caption">(\#fig:rh)Distribution du QI des humains et des reptiliens.</p>
 </div>
 
-L'erreur de type I (présentée auparavant) représente la probabilité d'émettre un faux positif, souvent représentée par $\alpha$ (alpha). Elle correspond à la probabilité de rejeter l'hypothèse lorsqu'elle est vraie. Dans la Figure \@ref(fig:rh), il s'agit de la zone noire. Elle correspond à conclure qu'un vrai humain est un reptilien (ce qu'il n'est pas). Ce taux est fixé à l'avance par l'expérimentateur, ici, 5%. C'est le risque qu'il est prêt à prendre. Ainsi, 95% des humains sont correctement identifiés comme humains.
+L'erreur de type I (présentée auparavant) représente la probabilité d'émettre un faux positif, souvent représentée par $\alpha$ (alpha). Elle correspond à la probabilité de rejeter l'hypothèse lorsqu'elle est vraie. Dans la Figure\ \@ref(fig:rh), il s'agit de la zone noire. Elle correspond à conclure qu'un vrai humain est un reptilien (ce qu'il n'est pas). Ce taux est fixé à l'avance par l'expérimentateur, ici, 5%. C'est le risque qu'il est prêt à prendre. Ainsi, 95% des humains sont correctement identifiés comme humains.
 
 
 ``` r
@@ -230,17 +230,17 @@ puissance
 > [1] 0.639
 ```
 
-La zone hachurée de la Figure \@ref(fig:rh) correspond à l'**erreur de type II**, souvent représentée par $\beta$ (beta), soit la probabilité de *ne pas rejeter* l'hypothèse nulle. Autrement dit, c'est la probabilité de ne pas trouver l'effet lorsque celui-ci est vrai. Pour cet exemple, il s'agit d'un reptilien assez sournois (avec un QI suffisamment faible pour sa population) qu'il passe inaperçu auprès des humains, ou, en d'autres termes, de conclure qu'un vrai reptilien est un humain (ce qu'il n'est pas). Cette probabilité est estimée à 36.124%, donc 36.124% des reptiliens passeront inaperçus.
+La zone hachurée de la Figure\ \@ref(fig:rh) correspond à l'**erreur de type II**, souvent représentée par $\beta$ (beta), soit la probabilité de *ne pas rejeter* l'hypothèse nulle. Autrement dit, c'est la probabilité de ne pas trouver l'effet lorsque celui-ci est vrai. Pour cet exemple, il s'agit d'un reptilien assez sournois (avec un QI suffisamment faible pour sa population) qu'il passe inaperçu auprès des humains, ou, en d'autres termes, de conclure qu'un vrai reptilien est un humain (ce qu'il n'est pas). Cette probabilité est estimée à 36.124%, donc 36.124% des reptiliens passeront inaperçus.
 
-La **puissance**, la zone grise de la Figure \@ref(fig:rh), correspond à la probabilité de rejeter correctement l'hypothèse nulle. Il s'agit de rejeter l'hypothèse nulle lorsqu'elle est fausse. Cela signifie d'identifier un vrai reptilien correctement. C'est exactement ce que le groupe de chercheur désire réaliser. Elle est estimée à 63.876% en ne prenant qu'une mesure de QI. La puissance est l'une des statistiques qui intéressent le plus l'expérimentateur *avant* de réaliser son étude, car elle donne une approximation sur la probabilité de trouver un résultat significatif. Par contre, les expérimentateurs ne connaissent que rarement les paramètres de la vraie distribution de l'effet qu'il désire trouver. En langage statistique, il s'agit un paramètre de non-centralité (ou de décentralisation) ou `ncp` en syntaxe **R**. L'expérimentateur recourt alors à d'habiles approximations éclairées basées sur leurs connaissances du phénomène et en regard des études déjà publiées sur le sujet (ou un sujet similaire), s'il y en a. Ces estimations souffrent tout de même d'être des variables aléatoires (elles respectent elles aussi une distribution d'échantillonnage), et non les paramètres recherchés.
+La **puissance**, la zone grise de la Figure\ \@ref(fig:rh), correspond à la probabilité de rejeter correctement l'hypothèse nulle. Il s'agit de rejeter l'hypothèse nulle lorsqu'elle est fausse. Cela signifie d'identifier un vrai reptilien correctement. C'est exactement ce que le groupe de chercheur désire réaliser. Elle est estimée à 63.876% en ne prenant qu'une mesure de QI. La puissance est l'une des statistiques qui intéressent le plus l'expérimentateur *avant* de réaliser son étude, car elle donne une approximation sur la probabilité de trouver un résultat significatif. Par contre, les expérimentateurs ne connaissent que rarement les paramètres de la vraie distribution de l'effet qu'il désire trouver. En langage statistique, il s'agit un paramètre de non-centralité (ou de décentralisation) ou `ncp` en syntaxe **R**. L'expérimentateur recourt alors à d'habiles approximations éclairées basées sur leurs connaissances du phénomène et en regard des études déjà publiées sur le sujet (ou un sujet similaire), s'il y en a. Ces estimations souffrent tout de même d'être des variables aléatoires (elles respectent elles aussi une distribution d'échantillonnage), et non les paramètres recherchés.
 
 Avant de procéder davantage, une dernière notion est importante à présenter : la direction du test. Dans tous les exemples précédents, l'hypothèse nulle était rejetée si une valeur plus rare était obtenue. Il s'agit d'un test d'hypothèse **unilatérale** (d'un seul côté). Cela facilite grandement la présentation de certains concepts et calculs. Un test peut être unilatérale inférieure, trouver un résultat plus faible qu'une valeur critique; ou unilatérale supérieure, trouver un résultat plus élevé qu'une valeur critique; ou encore **bilatérale**, soit trouver un résultat moins élevée ou plus élevée que des valeurs critiques. 
 
-Dans le cas d'un test bilatéral, l'erreur de type I est divisée par 2, $\alpha/2$ pour couvrir l'espace des deux côtés de la distribution. L'espace total est identique même s'il est divisé sur les deux extrêmes. Cela implique des valeurs critiques plus élevées que si le test n'était que d'un côté et par conséquent une puissance statistique un peu plus faible, car l'effet est directionnel. La probabilité de rejeter l'hypothèse dans une direction a été diminuée pour tenir compte de l'autre côté. La Figure \@ref(fig:tt) montre un exemple de chacun de ces types de tests pour $\alpha = .05$. 
+Dans le cas d'un test bilatéral, l'erreur de type I est divisée par 2, $\alpha/2$ pour couvrir l'espace des deux côtés de la distribution. L'espace total est identique même s'il est divisé sur les deux extrêmes. Cela implique des valeurs critiques plus élevées que si le test n'était que d'un côté et par conséquent une puissance statistique un peu plus faible, car l'effet est directionnel. La probabilité de rejeter l'hypothèse dans une direction a été diminuée pour tenir compte de l'autre côté. La Figure\ \@ref(fig:tt) montre un exemple de chacun de ces types de tests pour $\alpha = .05$. 
 
 <div class="figure" style="text-align: center">
-<img src="10-Inferer_files/figure-html/tt-1.png" alt="Illustration de l'erreur de type I" width="864" />
-<p class="caption">(\#fig:tt)Illustration de l'erreur de type I</p>
+<img src="10-Inferer_files/figure-html/tt-1.png" alt="Illustration de l'erreur de type I." width="864" />
+<p class="caption">(\#fig:tt)Illustration de l'erreur de type I.</p>
 </div>
 
 Le choix entre unilatérale inférieure, supérieure ou bilatérale repose essentiellement sur la question de recherche de l'expérimentateur. Qu'attend-il ou que veut-il savoir du résultat? L'expérimentateur recourt généralement au test bilatéral afin d'identifier des résultats allant pour son hypothèse ou à l'opposé de son hypothèse. Cela permet notamment d'identifier des devis qui peuvent nuire aux participants. Par exemple, si un expérimentateur développe une intervention pour réduire la consommation de drogues chez les adolescents et n'est concerné que par la probabilité que l'intervention soit efficace, il peut manquer l'effet délétère d'une telle intervention, soit que l'intervention augmente la consommation de drogue. Il est certain que l'expérimentateur souhaite être rapidement mis au courant si ces résultats se dessinent.
@@ -250,17 +250,17 @@ Le choix entre unilatérale inférieure, supérieure ou bilatérale repose essen
 Dans la plupart des cas, l'expérimentateur ne connaît pas la variance de la population. Il recourt alors à la meilleure estimation qui lui est disponible, celle obtenue auprès de l'échantillon. De recourir à une estimation au lieu de la vraie valeur cause un réel problème: l'estimation est une variable aléatoire respectant une distribution d'échantillonnage. La distribution des variances montre une légère asymétrie positive plus flagrante pour les petites tailles d'échantillon, car les variances sont distribuées en distribution-$\chi^2$.
 
 <div class="figure">
-<img src="10-Inferer_files/figure-html/illvar-1.png" alt="Distribution de la variance en fonction de la taille d'échantillon" width="672" />
-<p class="caption">(\#fig:illvar)Distribution de la variance en fonction de la taille d'échantillon</p>
+<img src="10-Inferer_files/figure-html/illvar-1.png" alt="Distribution de la variance en fonction de la taille d'échantillon." width="672" />
+<p class="caption">(\#fig:illvar)Distribution de la variance en fonction de la taille d'échantillon.</p>
 </div>
 
-Une petite simulation faite à partir d'une distribution normale standardisée par rapport à trois tailles d'échantillon et dont la variance est estimée 10^{4} fois est présentée dans la Figure \@ref(fig:illvar). Elle montre que l'estimation n'est pas biaisée (elles sont toutes les trois centrées à 1), mais relève l'asymétrie en question pour les petites tailles d'échantillon qui tend à décroître à mesure que $n$ augmente. Autrement dit, une estimation unique (pris d'un échantillon) est plus susceptible d'être sous-estimée. Ne pas tenir compte de cet aspect augmente indûment les valeurs obtenues (à cause du dénominateur plus petit). Ainsi, il est inadéquat d'utiliser une distribution normale lorsque la variance est inconnue. Il faut plutôt opter pour la **distribution-$t$** qui, elle, tient compte de la variabilité de l'estimation de la variance. 
+Une petite simulation faite à partir d'une distribution normale standardisée par rapport à trois tailles d'échantillon et dont la variance est estimée 10^{4} fois est présentée dans la Figure\ \@ref(fig:illvar). Elle montre que l'estimation n'est pas biaisée (elles sont toutes les trois centrées à 1), mais relève l'asymétrie en question pour les petites tailles d'échantillon qui tend à décroître à mesure que $n$ augmente. Autrement dit, une estimation unique (pris d'un échantillon) est plus susceptible d'être sous-estimée. Ne pas tenir compte de cet aspect augmente indûment les valeurs obtenues (à cause du dénominateur plus petit). Ainsi, il est inadéquat d'utiliser une distribution normale lorsque la variance est inconnue. Il faut plutôt opter pour la **distribution-$t$** qui, elle, tient compte de la variabilité de l'estimation de la variance. 
 
-La distribution-$t$ est symétrique, comme la distribution normale, mais a des queues plus larges pour tenir compte de la surestimation des valeurs dû à la sous-estimation de la variance. La distribution-$t$ tend vers une distribution normale lorsque $n$ augmente, ce qui est illustré à la Figure \@ref(fig:tnorm). La ligne pleine noire montre la distribution pour 5 unités, les deux autres lignes, traits et pointillés, pour 30 et 1000 unités respectivement. Il est difficile de distinguer ces deux dernières.
+La distribution-$t$ est symétrique, comme la distribution normale, mais a des queues plus larges pour tenir compte de la surestimation des valeurs dû à la sous-estimation de la variance. La distribution-$t$ tend vers une distribution normale lorsque $n$ augmente, ce qui est illustré à la Figure\ \@ref(fig:tnorm). La ligne pleine noire montre la distribution pour 5 unités, les deux autres lignes, traits et pointillés, pour 30 et 1000 unités respectivement. Il est difficile de distinguer ces deux dernières.
 
 <div class="figure" style="text-align: center">
-<img src="10-Inferer_files/figure-html/tnorm-1.png" alt="Comparaison d'une distribution normale à deux distributions-$t$" width="90%" height="90%" />
-<p class="caption">(\#fig:tnorm)Comparaison d'une distribution normale à deux distributions-$t$</p>
+<img src="10-Inferer_files/figure-html/tnorm-1.png" alt="Comparaison d'une distribution normale à deux distributions-$t$." width="90%" height="90%" />
+<p class="caption">(\#fig:tnorm)Comparaison d'une distribution normale à deux distributions-$t$.</p>
 </div>
 
 En ayant recours à des échantillons et une estimation de la variance (la variance est inconnue de l'expérimentateur, ce qui est généralement le cas), il faut procéder avec la distribution-$t$. La procédure est la même que celle utilisée avec les scores-$z$ précédemment, la différence étant que la distribution-$t$ est utilisée au lieu de la distribution normale, car l'écart type est estimé.
@@ -324,11 +324,11 @@ t.test(x)
 ```
 
 <div class="figure" style="text-align: center">
-<img src="10-Inferer_files/figure-html/sss-1.png" alt="Valeur-$t$ de l'échantillon sur la distribution-$t$" width="75%" height="75%" />
-<p class="caption">(\#fig:sss)Valeur-$t$ de l'échantillon sur la distribution-$t$</p>
+<img src="10-Inferer_files/figure-html/sss-1.png" alt="Valeur-$t$ de l'échantillon sur la distribution-$t$." width="75%" height="75%" />
+<p class="caption">(\#fig:sss)Valeur-$t$ de l'échantillon sur la distribution-$t$.</p>
 </div>
 
-Qu'est-ce que ces résultats signifient? La Figure \@ref(fig:sss) montre la distribution d'échantillonnage de l'hypothèse nulle, c'est-à-dire l'hypothèse selon laquelle la moyenne de la population est égale à 0. Les zones grises montrent les zones de rejet. Si une valeur-$t$ se retrouve dans ces zones, elle est jugée comme *trop rare*, il faut alors rejeter l'hypothèse nulle. C'est ce qui s'est produit ici. Rien de surprenant, l'échantillon est tiré d'une distribution normale avec une moyenne de 1 et un écart type de 1.
+Qu'est-ce que ces résultats signifient? La Figure\ \@ref(fig:sss) montre la distribution d'échantillonnage de l'hypothèse nulle, c'est-à-dire l'hypothèse selon laquelle la moyenne de la population est égale à 0. Les zones grises montrent les zones de rejet. Si une valeur-$t$ se retrouve dans ces zones, elle est jugée comme *trop rare*, il faut alors rejeter l'hypothèse nulle. C'est ce qui s'est produit ici. Rien de surprenant, l'échantillon est tiré d'une distribution normale avec une moyenne de 1 et un écart type de 1.
 
 ## Critiques des tests d'hypothèses
 

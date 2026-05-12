@@ -195,7 +195,7 @@ Il s'agit d'une technique de programmation très pratique. Dans le cas de `n%%2`
 
 ## La variance
 
-La variance d'un échantillon est une mesure de dispersion. Elle représente la somme des écarts (distances) par rapport à la moyenne au carré divisée par la taille d'échantillon moins $1$.  Mathématiquement, il s'agit de l'équation \@ref(eq:var).
+La variance d'un échantillon est une mesure de dispersion. Elle représente la somme des écarts (distances) par rapport à la moyenne au carré divisée par la taille d'échantillon moins $1$.  Mathématiquement, il s'agit de l'équation\ \@ref(eq:var).
 
 $$
 s^2 = \frac{1}{n-1}\sum_{i=1}^n(x_i-\bar{x})^2
@@ -327,7 +327,7 @@ psych::kurtosi(x, type = 1)
 
 ## Les graines
 
-Par souci de reproductibilité, il est possible de déclarer une valeur de départ aux variables pseudoaléatoires, ce que l'on nomme une graine ou *seed* en anglais. Cela permet de toujours d'obtenir les mêmes valeurs à plusieurs reprises, ce qui est très utile lors d'élaboration de simulations complexes ou lorsque des étudiants essaient de répliquer les résultats tirés d'un ouvrage pédagogique.
+Par souci de reproductibilité, il est possible de déclarer une valeur de départ aux variables pseudoaléatoires, ce que l'on nomme une graine ou *seed* en anglais. Cela permet de toujours d'obtenir les mêmes valeurs à plusieurs reprises, ce qui est très utile lors d'élaboration de simulations ou lorsque des étudiants essaient de répliquer les résultats tirés d'un ouvrage pédagogique.
 
 
 ``` r
@@ -413,11 +413,11 @@ dnorm(x = c(0, 1))
 
 Ces quatre lettres peuvent être associées à toutes les distributions énumérées et bien d'autres. Elles respectent toutes ce cadre.
 
-Afin d'illustrer ce que font ces variables, la Figure \@ref(fig:distex) montre `dnorm()`, `pnorm()` et `qnorm()`. La fonction `rnorm()` n'est pas illustrée. Cette dernière retourne des valeurs de l'axe des $x$ en respectant les probabilités d'une courbe normale. La fonction `dnorm()` prend en argument une valeur de l'axe des $x$ et retourne la valeur de la courbe normale (la densité) correspondante, soit la courbe illustrée. En d'autres termes, elle retourne la hauteur de la courbe (ligne pointillée). Les fonctions `pnorm()` et `qnorm()` sont interreliées. La fonction `pnorm()` prend une valeur de l'axe des $x$ et retourne sa probabilité (de $-\infty$ à $x$), soit la zone grise de la Figure \@ref(fig:distex). La fonction `qnorm()`, quant à elle, prend une probabilité et retourne la valeur sur l'axe des $x$ correspondant.
+Afin d'illustrer ce que font ces variables, la Figure\ \@ref(fig:distex) montre `dnorm()`, `pnorm()` et `qnorm()`. La fonction `rnorm()` n'est pas illustrée. Cette dernière retourne des valeurs de l'axe des $x$ en respectant les probabilités d'une courbe normale. La fonction `dnorm()` prend en argument une valeur de l'axe des $x$ et retourne la valeur de la courbe normale (la densité) correspondante, soit la courbe illustrée. En d'autres termes, elle retourne la hauteur de la courbe (ligne pointillée). Les fonctions `pnorm()` et `qnorm()` sont interreliées. La fonction `pnorm()` prend une valeur de l'axe des $x$ et retourne sa probabilité (de $-\infty$ à $x$), soit la zone grise de la Figure\ \@ref(fig:distex). La fonction `qnorm()`, quant à elle, prend une probabilité et retourne la valeur sur l'axe des $x$ correspondant.
 
 <div class="figure">
-<img src="03-Calculer_files/figure-html/distex-1.png" alt="Illustration des fonctions liées à la distribution normale" width="90%" height="90%" />
-<p class="caption">(\#fig:distex)Illustration des fonctions liées à la distribution normale</p>
+<img src="03-Calculer_files/figure-html/distex-1.png" alt="Illustration des fonctions liées à la distribution normale." width="90%" height="90%" />
+<p class="caption">(\#fig:distex)Illustration des fonctions liées à la distribution normale.</p>
 </div>
 
 Ces fonctions entreront en jeu dans le chapitre [Inférer].

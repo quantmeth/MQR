@@ -7,7 +7,7 @@
 <title> 13 Comparer | Méthodes quantitatives avec R</title>
 <meta name="author" content="P.-O. Caron">
 <meta name="description" content="Les expérimentateurs souhaitent souvent tester plus que deux moyennes. L’analyse de variance, souvent appelée ANOVA (ANalysis Of VAriance), permet de comparer une variable continue sur plusieurs...">
-<meta name="generator" content="bookdown 0.41 with bs4_book()">
+<meta name="generator" content="bookdown 0.46 with bs4_book()">
 <meta property="og:title" content=" 13 Comparer | Méthodes quantitatives avec R">
 <meta property="og:type" content="book">
 <meta property="og:url" content="mqr.teluq.ca/comparer.html">
@@ -17,9 +17,9 @@
 <meta name="twitter:description" content="Les expérimentateurs souhaitent souvent tester plus que deux moyennes. L’analyse de variance, souvent appelée ANOVA (ANalysis Of VAriance), permet de comparer une variable continue sur plusieurs...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.8.0/transition.js"></script><script src="libs/bs3compat-0.8.0/tabs.js"></script><script src="libs/bs3compat-0.8.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.10.0/transition.js"></script><script src="libs/bs3compat-0.10.0/tabs.js"></script><script src="libs/bs3compat-0.10.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+<link href="libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet">
 <script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script><script src="libs/viz-1.8.2/viz.js"></script><link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
 <script src="libs/grViz-binding-1.0.11/grViz.js"></script><!-- 
     \(
@@ -291,7 +291,7 @@ où <span class="math inline">\(dl_1 = k-1\)</span>, et <span class="math inline
 <h2>
 <span class="header-section-number">13.4</span> Analyse<a class="anchor" aria-label="anchor" href="#analyse"><i class="fas fa-link"></i></a>
 </h2>
-<p>À toute fin pratique, un jeu de données est recréé avec les catégories et paramètres précédents, mais avec <span class="math inline">\(n_k=20\)</span> unités par groupe. La fonction <strong>R</strong> de base est <code><a href="https://rdrr.io/r/stats/aov.html">aov()</a></code>. Elle prend comme argument une formule, de forme <code>VD ~ VI</code> (variable dépendante prédite par variable indépendante) et un jeu de données duquel prendre les variables. Il existe également une fonction <code><a href="https://rdrr.io/r/stats/anova.html">anova()</a></code>, une fonction un peu plus complexe que <code><a href="https://rdrr.io/r/stats/aov.html">aov()</a></code>. Pour obtenir toute l’information désirée de la sortie de la fonction, il faut demander un sommaire de la sortie avec <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code>.</p>
+<p>À toute fin pratique, un jeu de données est recréé avec les catégories et paramètres précédents, mais avec <span class="math inline">\(n_k=20\)</span> unités par groupe. La fonction <strong>R</strong> de base est <code><a href="https://rdrr.io/r/stats/aov.html">aov()</a></code>. Elle prend comme argument une formule, de forme <code>VD ~ VI</code> (variable dépendante prédite par variable indépendante) et un jeu de données duquel prendre les variables. Il existe également une fonction <code><a href="https://rdrr.io/r/stats/anova.html">anova()</a></code>, une fonction un peu plus hétéroclite que <code><a href="https://rdrr.io/r/stats/aov.html">aov()</a></code>. Pour obtenir toute l’information désirée de la sortie de la fonction, il faut demander un sommaire de la sortie avec <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code>.</p>
 <div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="comparer.html#cb177-1" tabindex="-1"></a><span class="co"># Anova de base</span></span>
 <span id="cb177-2"><a href="comparer.html#cb177-2" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">aov</span>(score <span class="sc">~</span> groupe, <span class="at">data =</span> donnees)</span>
 <span id="cb177-3"><a href="comparer.html#cb177-3" tabindex="-1"></a><span class="fu">summary</span>(res)</span>
@@ -336,8 +336,8 @@ où <span class="math inline">\(dl_1 = k-1\)</span>, et <span class="math inline
 <p>Les résultats sont identiques, les seules différences étant dues à l’arrondissement. Comme la valeur-<span class="math inline">\(p\)</span> est de 5.145^{-9}, ce qui est extrêmement plus petit que l’usuel .05 (ou un autre taux d’erreur de type I fixé à l’avance), l’hypothèse nulle est rejetée, il y a vraisemblablement une différence entre les groupes, ce qui est déjà connu. La Figure <a href="comparer.html#fig:ft">13.1</a> illustre très bien la rareté d’un tel jeu de données sous l’hypothèse nulle.</p>
 <div class="figure">
 <span style="display:block;" id="fig:ft"></span>
-<img src="13-Comparer_files/figure-html/ft-1.png" alt="Valeur-$F$ de la comparaison des moyennes" width="672"><p class="caption">
-Figure 13.1: Valeur-<span class="math inline">\(F\)</span> de la comparaison des moyennes
+<img src="13-Comparer_files/figure-html/ft-1.png" alt="Valeur-$F$ de la comparaison des moyennes." width="672"><p class="caption">
+Figure 13.1: Valeur-<span class="math inline">\(F\)</span> de la comparaison des moyennes.
 </p>
 </div>
 </div>
@@ -356,7 +356,7 @@ Figure 13.1: Valeur-<span class="math inline">\(F\)</span> de la comparaison des
 <span id="cb178-8"><a href="comparer.html#cb178-8" tabindex="-1"></a><span class="er">&gt;</span> <span class="dv">0</span> <span class="st">'***'</span> <span class="fl">0.001</span> <span class="st">'**'</span> <span class="fl">0.01</span> <span class="st">'*'</span> <span class="fl">0.05</span> <span class="st">'.'</span> <span class="fl">0.1</span> <span class="st">' '</span> <span class="dv">1</span></span></code></pre></div>
 <p>Voici comment rapporter l’ANOVA dans un article scientifique.</p>
 <blockquote>
-<p>Une ANOVA est réalisée pour comparer les groupes sur un certain score. Les résutats montrent une différence significative (pour un <span class="math inline">\(\alpha = .05\)</span>), <span class="math inline">\(F(4, 95) = 13.998, p &lt; .001\)</span>.</p>
+<p>Une ANOVA est réalisée pour comparer les groupes sur un certain score. Les résultats montrent une différence significative (pour un <span class="math inline">\(\alpha = .05\)</span>), <span class="math inline">\(F(4, 95) = 13.998, p &lt; .001\)</span>.</p>
 </blockquote>
 <div id="la-sortie-de-aov" class="section level3" number="13.5.1">
 <h3>
@@ -371,7 +371,7 @@ Figure 13.1: Valeur-<span class="math inline">\(F\)</span> de la comparaison des
 <div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="comparer.html#cb180-1" tabindex="-1"></a>sommaire <span class="ot">&lt;-</span> <span class="fu">summary</span>(res)[[<span class="dv">1</span>]]</span>
 <span id="cb180-2"><a href="comparer.html#cb180-2" tabindex="-1"></a><span class="fu">names</span>(sommaire)</span>
 <span id="cb180-3"><a href="comparer.html#cb180-3" tabindex="-1"></a><span class="sc">&gt;</span> [<span class="dv">1</span>] <span class="st">"Df"</span>      <span class="st">"Sum Sq"</span>  <span class="st">"Mean Sq"</span> <span class="st">"F value"</span> <span class="st">"Pr(&gt;F)"</span></span></code></pre></div>
-<p>Le symbole <code>[[1]]</code> indique que seulement le premier élément de la liste est désiré. Il s’agit d’une formule renforcée <a href="programmer.html#r%C3%A9f%C3%A9rer-%C3%A0-des-sous-%C3%A9l%C3%A9ments">des crochets</a> pour ne choisir qu’un seul élément de la liste. Et dans cette liste, on retrouve la liste contenant des résultats. En d’autres termes, la sortie de <code><a href="https://rdrr.io/r/stats/aov.html">aov()</a></code> est une liste. Il y a bien deux niveaux de liste dans cette sortie, la première rendant plus difficile à la seconde. Une petit idiosyncrasie de <strong>R</strong>.</p>
+<p>Le symbole <code>[[1]]</code> indique que seulement le premier élément de la liste est désiré. Il s’agit d’une formule renforcée <a href="programmer.html#r%C3%A9f%C3%A9rer-%C3%A0-des-sous-%C3%A9l%C3%A9ments">des crochets</a> pour ne choisir qu’un seul élément de la liste. Et dans cette liste, on retrouve la liste contenant des résultats. En d’autres termes, la sortie de <code><a href="https://rdrr.io/r/stats/aov.html">aov()</a></code> est une liste. Il y a bien deux niveaux de liste dans cette sortie, la première rendant plus difficile à la seconde. Une petite idiosyncrasie de <strong>R</strong>.</p>
 </div>
 </div>
 <div id="les-tests-posthoc" class="section level2" number="13.6">
@@ -404,11 +404,11 @@ Figure 13.1: Valeur-<span class="math inline">\(F\)</span> de la comparaison des
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/TukeyHSD.html">TukeyHSD</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:tukey"></span>
-<img src="13-Comparer_files/figure-html/tukey-1.png" alt="Illustration du test de comparaisons multiples de Tukey" width="50%" height="50%"><p class="caption">
-Figure 13.2: Illustration du test de comparaisons multiples de Tukey
+<img src="13-Comparer_files/figure-html/tukey-1.png" alt="Illustration du test de comparaisons multiples de Tukey." width="50%" height="50%"><p class="caption">
+Figure 13.2: Illustration du test de comparaisons multiples de Tukey.
 </p>
 </div>
-<p>Malheureusement la Figure <a href="comparer.html#fig:tukey">13.2</a> n’est pas parfaite, car elle n’affiche pas toutes les libellées de chaque ligne. Toutefois, chaque ligne de la Figure <a href="comparer.html#fig:tukey">13.2</a> correspond à une ligne de la figure. Avec le package <code>ggplot2</code>(voir [Visualier]), il est possible de remédier à la situation.</p>
+<p>Malheureusement la Figure <a href="comparer.html#fig:tukey">13.2</a> n’est pas parfaite, car elle n’affiche pas toutes les libellés de chaque ligne. Toutefois, chaque ligne de la Figure <a href="comparer.html#fig:tukey">13.2</a> correspond à une ligne de la figure. Avec le package <code>ggplot2</code>(voir [Visualier]), il est possible de remédier à la situation.</p>
 <p>D’abord, il faut importer le <code>tidyverse</code>. Ensuite, la prochaine étape consiste à extraire les résultats de <code><a href="https://rdrr.io/r/stats/TukeyHSD.html">TukeyHSD()</a></code>, de les transformer en jeu de données avec <code><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame()</a></code> et de rendre le nom des lignes manipulables avec <code>add_rownames_to_column()</code>. Comme pour toutes les figures, il faut indiquer l’abscisse et l’ordonnée, ici le nom des lignes (<code>x</code>) et la différence entre les groupes(<code>y</code>), respectivement. Ensuite, comme la figure avec <a href="visualiser.html#les-barres-derreurs">les barres d’erreurs</a>, il faut associer dans <code>geom_errorbar</code> les intervalles de confiance <code>lwr</code> et <code>upr</code> à <code>ymin</code> et <code>ymax</code>. Enfin, il est possible d’ajouter la moyenne sous forme de point (<code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point()</a></code> et de tourner la figure avec <code>coord_flip</code>, ce qui permet de répliquer la figure originale.</p>
 <div class="sourceCode" id="cb183"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/TukeyHSD.html">TukeyHSD</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>   <span class="co"># Extraire les résultats</span></span>
@@ -423,8 +423,8 @@ Figure 13.2: Illustration du test de comparaisons multiples de Tukey
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:tukey2"></span>
-<img src="13-Comparer_files/figure-html/tukey2-1.png" alt="Illustration corrigée du test de comparaisons multiples de Tukey" width="50%" height="50%"><p class="caption">
-Figure 13.3: Illustration corrigée du test de comparaisons multiples de Tukey
+<img src="13-Comparer_files/figure-html/tukey2-1.png" alt="Illustration corrigée du test de comparaisons multiples de Tukey." width="50%" height="50%"><p class="caption">
+Figure 13.3: Illustration corrigée du test de comparaisons multiples de Tukey.
 </p>
 </div>
 <p>La Figure <a href="comparer.html#fig:tukey2">13.3</a> montre une illustration des comparaisons de Tukey plus adéquate.</p>
@@ -442,7 +442,7 @@ Figure 13.3: Illustration corrigée du test de comparaisons multiples de Tukey
 <span id="cb184-11"><a href="comparer.html#cb184-11" tabindex="-1"></a><span class="er">&gt;</span> chien     <span class="fl">0.415</span> <span class="fl">2e-05</span> <span class="fl">0.005</span>  <span class="fl">0.967</span>    </span>
 <span id="cb184-12"><a href="comparer.html#cb184-12" tabindex="-1"></a><span class="sc">&gt;</span> </span>
 <span id="cb184-13"><a href="comparer.html#cb184-13" tabindex="-1"></a><span class="er">&gt;</span> P value adjustment method<span class="sc">:</span> none</span></code></pre></div>
-<p>Cette technique à l’avantage d’être prête pour la plupart corrections, par exemple <code>p.adj = "bonferroni"</code> ou <code>p.adj = "holm"</code>.</p>
+<p>Cette technique a l’avantage de rendre la plupart des corrections disponibles, par exemple <code>p.adj = "bonferroni"</code> ou <code>p.adj = "holm"</code>.</p>
 <p>TODO</p>
 </div>
 <div id="anova-à-mesures-répétées" class="section level2" number="13.7">
@@ -585,7 +585,7 @@ Figure 13.3: Illustration corrigée du test de comparaisons multiples de Tukey
 <span id="cb186-63"><a href="comparer.html#cb186-63" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fl">0.9987</span> <span class="fl">0.0013</span></span>
 <span id="cb186-64"><a href="comparer.html#cb186-64" tabindex="-1"></a></span>
 <span id="cb186-65"><a href="comparer.html#cb186-65" tabindex="-1"></a><span class="fu">plot</span>(res.lda)</span></code></pre></div>
-<div class="inline-figure"><img src="13-Comparer_files/figure-html/unnamed-chunk-16-1.png" width="672"></div>
+<div class="inline-figure"><img src="13-Comparer_files/figure-html/unnamed-chunk-16-1.png" alt="" width="672"></div>
 <div class="sourceCode" id="cb187"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="co"># iris %&gt;% </span></span>
@@ -631,7 +631,7 @@ Figure 13.3: Illustration corrigée du test de comparaisons multiples de Tukey
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2024-12-16.</p>
+    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2026-05-12.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

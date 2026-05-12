@@ -7,7 +7,7 @@
 <title> 4 Rédiger | Méthodes quantitatives avec R</title>
 <meta name="author" content="P.-O. Caron">
 <meta name="description" content="R et RStudio offrent un environnement pour rédiger des rapports de recherche. Le package Rmarkdown (Allaire et al., 2021) intègre les fonctions pour ce faire. Plus, R et RStudio permettent de...">
-<meta name="generator" content="bookdown 0.41 with bs4_book()">
+<meta name="generator" content="bookdown 0.46 with bs4_book()">
 <meta property="og:title" content=" 4 Rédiger | Méthodes quantitatives avec R">
 <meta property="og:type" content="book">
 <meta property="og:url" content="mqr.teluq.ca/rédiger.html">
@@ -17,9 +17,9 @@
 <meta name="twitter:description" content="R et RStudio offrent un environnement pour rédiger des rapports de recherche. Le package Rmarkdown (Allaire et al., 2021) intègre les fonctions pour ce faire. Plus, R et RStudio permettent de...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.8.0/transition.js"></script><script src="libs/bs3compat-0.8.0/tabs.js"></script><script src="libs/bs3compat-0.8.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.10.0/transition.js"></script><script src="libs/bs3compat-0.10.0/tabs.js"></script><script src="libs/bs3compat-0.10.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+<link href="libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet">
 <script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script><script src="libs/viz-1.8.2/viz.js"></script><link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
 <script src="libs/grViz-binding-1.0.11/grViz.js"></script><!-- 
     \(
@@ -142,15 +142,15 @@
 <p>Une fois tout installé, il faut faire <code>File -&gt; New File -&gt; Rmarkdown</code> pour ouvrir un nouveau document. La boîte de dialogue affichée à la Figure <a href="r%C3%A9diger.html#fig:rediger1">4.1</a> demande quatre éléments : le titre, le nom de l’auteur, la date et le format du rapport (html, pdf ou word). Les deux premiers sont les plus utilisés. Une fois rempli, il faut cliquer sur OK.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:rediger1"></span>
-<img src="image/rediger1.PNG" alt="Boîte de dialogue de Rmarkdown" width="50%" height="50%"><p class="caption">
-Figure 4.1: Boîte de dialogue de Rmarkdown
+<img src="image/rediger1.PNG" alt="Boîte de dialogue de Rmarkdown." width="50%" height="50%"><p class="caption">
+Figure 4.1: Boîte de dialogue de Rmarkdown.
 </p>
 </div>
 <p>Cette procédure ouvre un <a href="commencer.html#les-scripts">script</a> d’extension <code>.Rmd</code>. Il s’agit d’un exemple typique qui rappelle des éléments de base pour produire un document. L’exemple est présenté à la Figure <a href="r%C3%A9diger.html#fig:rediger2">4.2</a>. C’est une bonne source pour se rappeler les lignes de la syntaxe <code>Rmarkdown</code>. Chaque élément est vu en détail dans la prochaines section.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:rediger2"></span>
-<img src="image/rediger2.PNG" alt="Exemple de Rmarkdown" width="50%" height="50%"><p class="caption">
-Figure 4.2: Exemple de Rmarkdown
+<img src="image/rediger2.PNG" alt="Exemple de Rmarkdown." width="50%" height="50%"><p class="caption">
+Figure 4.2: Exemple de Rmarkdown.
 </p>
 </div>
 <p>Il est possible de voir immédiatement le résultat final de ce script en cliquant sur <code>Knit</code> (<em>tricoter</em>) au milieu en haut (le symbole de pelote de laine avec une aiguille). À chaque fois que l’utilisateur désire produire le rapport, il faudra le <em>tricoter</em> en cliquant sur cet icône.</p>
@@ -166,8 +166,8 @@ Figure 4.2: Exemple de Rmarkdown
 <p>L’entête est la zone qui conserve les éléments du texte, permet la personnalisation et l’ajout de composante, le cas échéant. Cet espace se nomme YAML pour <em>Yet Another Markdown Language</em>. Pour l’instant, les renseignements initiaux s’y retrouvent (titre, nom, date et format).</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:entete"></span>
-<img src="image/entete.PNG" alt="Entête ou YAML" width="50%" height="50%"><p class="caption">
-Figure 4.3: Entête ou YAML
+<img src="image/entete.PNG" alt="Entête ou YAML." width="50%" height="50%"><p class="caption">
+Figure 4.3: Entête ou YAML.
 </p>
 </div>
 </div>
@@ -184,8 +184,8 @@ Figure 4.3: Entête ou YAML
 <p>Comme le texte est rédiger dans <strong>R</strong>, il sera utile d’employer du code de ce langage dans le rapport. Ainsi, les rapports servent à jumeler, textes, analyses et graphiques. Pour déterminer le texte du code à lire, la syntaxe à rouler est inscrite dans un <strong>chunk</strong> (morceau en français). Les chunks sont délimités par trois accents graves (<em>backticks</em> en anglais), puis un accolade indiquant le langage utilisé dans le chunk (<code>r</code> en général), et se termine par trois autre accents grave. La Figure <a href="r%C3%A9diger.html#fig:chunk1">4.4</a> montre un chunk.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:chunk1"></span>
-<img src="image/chunk1.PNG" alt="Un chunk" width="50%" height="50%"><p class="caption">
-Figure 4.4: Un chunk
+<img src="image/chunk1.PNG" alt="Un chunk." width="50%" height="50%"><p class="caption">
+Figure 4.4: Un chunk.
 </p>
 </div>
 <p>Pour accélérer l’écriture au clavier, il est possible de faire <strong>Ctrl + Alt + I</strong> (pour Windows) ou <strong>Option + Cmd + I</strong> (pour Mac) pour ouvrir un <em>chunk</em> complet automatiquement. C’est beaucoup plus efficace que de le taper caractère par caractère.</p>
@@ -200,8 +200,8 @@ Figure 4.4: Un chunk
 <p>Pour inclure une figure, il faut la programmer dans un chunk. Dans l’exemple, le graphique du jeu de <code>pressure</code> est présenté avec <code>plot(pressure)</code> dans un chunk, voir la Figure <a href="r%C3%A9diger.html#fig:rediger3">4.5</a>. Noter dans les accolades la présence de <code>echo=FALSE</code> qui, au moment de produire l’image, n’affichera pas le code source dans le document final (le chunk n’est pas rapporté). Seule la figure est affichée.</p>
 <div class="figure">
 <span style="display:block;" id="fig:rediger3"></span>
-<img src="image/rediger3.PNG" alt="Ajouter une figure" width="50%" height="50%"><p class="caption">
-Figure 4.5: Ajouter une figure
+<img src="image/rediger3.PNG" alt="Ajouter une figure." width="50%" height="50%"><p class="caption">
+Figure 4.5: Ajouter une figure.
 </p>
 </div>
 <p>Une autre option est utile pour les figure est de leur ajouter une légende (<em>caption</em> en anglais). Pour ce faire, il faut ajouter dans les accolades du chunk l’argument <code>fig.cap = 'Légende de la figure'</code>.</p>
@@ -346,7 +346,7 @@ Figure 4.5: Ajouter une figure
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2024-12-16.</p>
+    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2026-05-12.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

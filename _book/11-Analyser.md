@@ -1,6 +1,6 @@
 # Analyser
 
-En continuation de l'introduction des théories des tests d'hypothèses (voir [Inférer]) et l'aperçu donnée par [le test-$t$ à échantillon unique], cette section poursuit la présentation en introduisant des analyses statistiques de bases comme les différences de moyennes, l'association linéaire et les tests pour données nominales. Les tests-$t$ indépendant et dépendant, la covariance, la corrélation ainsi que le test du $\chi2$ pour table de contingence sont présentées. 
+Suite à la présentation des théories des tests d'hypothèses (voir [Inférer]) et l'aperçu donné par [le test-$t$ à échantillon unique], cette section poursuit la présentation en introduisant des analyses statistiques de base comme les différences de moyennes, l'association linéaire et les tests pour données nominales. Les tests-$t$ indépendant et dépendant, la covariance, la corrélation ainsi que le test du $\chi2$ pour table de contingence sont présentées.
 
 ## Les différences de moyennes
 
@@ -8,16 +8,16 @@ En continuation de l'introduction des théories des tests d'hypothèses (voir [I
 
 En général, l'expérimentateur ne s'intéresse pas à comparer une moyenne à une valeur arbitraire, comme c'était le cas avec [le test-$t$ à échantillon unique]. Cela peut lui être assez trivial. Il s'intéresse plutôt à comparer une moyenne à une autre moyenne, soit une différence entre deux groupes indépendants, par exemple, quelle est la différence entre un groupe traitement et un groupe contrôle?
 
-En se basant sur le test $t$ à échantillon unique, la valeur-$t$ pour deux moyennes se calcule selon l'équation \@ref(eq:test2)
+En se basant sur le test $t$ à échantillon unique, la valeur-$t$ pour deux moyennes se calcule selon l'équation\ \@ref(eq:test2)
 
 \begin{equation}
 t_{n-2} = \frac{\bar{x_1}-\bar{x_2}}{\sqrt{\frac{s^2_{1}}{n_1}+\frac{s^2_{2}}{n_2}}}
 (\#eq:test2)
 \end{equation}
 
-où l'indice de la valeur-$t$ est le nombre de degrés de liberté $n-2$. Comme deux variances sont estimées, deux degrés de libertés sont imputés, ce qui octroi $n-2$ degrés. En plus de considérer $\bar{x_2}$ la valeur *arbitaire* de comparaison (l'ordre de $\bar{x_2}$ et $\bar{x^1}$ est arbitraire), les deux écarts types sont également considérés au dénominateur. 
+où l'indice de la valeur-$t$ est le nombre de degrés de liberté $n-2$. Comme deux variances sont estimées, deux degrés de libertés sont imputés, ce qui octroi $n-2$ degrés. En plus de considérer $\bar{x_2}$ la valeur *arbitaire* de comparaison (l'ordre de $\bar{x_2}$ et $\bar{x^1}$ est arbitraire), les deux écarts types sont également considérés au dénominateur.
 
-Une fois le calcul réalisé, la logique du test d'hypothèse est la même, à l'exception de l'hypothèse nulle qui correspond maintenant à l'absence de différence entre les deux moyennes. 
+Une fois le calcul réalisé, la logique du test d'hypothèse est la même, à l'exception de l'hypothèse nulle qui correspond maintenant à l'absence de différence entre les deux moyennes.
 
 Voici un exemple de programmation du test-$t$ pour deux groupes indépendants.
 
@@ -45,14 +45,14 @@ testt.ind <- function(x1, x2){
 }
 ```
 
-Pour générer un exemple de données, le code ci-après crée un échantillon de 15 unités réparties en deux groupes, le premier groupe (`gr0`) est tiré d'une distribution normale ayant une moyenne de 1 et un écart type de 1, le deuxième groupe (`gr1`), une moyenne de 0 et un écart type de 1. La syntaxe illustre la création de deux variables pour créer les deux groupes. Il est aussi possible d'envisager la création sur en termes d'équation linéaire, comme l'équation \@ref(eq:el1),
+Pour générer un exemple de données, le code ci-après crée un échantillon de 15 unités réparties en deux groupes, le premier groupe (`gr0`) est tiré d'une distribution normale ayant une moyenne de 1 et un écart type de 1, le deuxième groupe (`gr1`), une moyenne de 0 et un écart type de 1. La syntaxe illustre la création de deux variables pour créer les deux groupes. Il est aussi possible d'envisager la création en termes d'équation linéaire, comme l'équation\ \@ref(eq:el1),
 
 \begin{equation}
 y = \mu_0 + \mu_1x_1 + \epsilon
 (\#eq:el1)
 \end{equation}
 
-où $y$ est le score observé des unités et les autres variables construisent ce score, $\mu_0$ correspond à la moyenne du groupe référent de population (le groupe *contrôle* en quelque sorte.), $\mu_1$ réfère à la différence de moyenne entre les deux groupes identifiés par $x_1$ qui réfère à l'assignation au groupe, soit 0 pour le groupe *contrôle* et 1 pour le groupe *différent*. Pour ce même exemple, $\mu_1 = -1$. Par le produit $\mu_1x_1$, le groupe *contrôle* associé à la valeur 0 n'a pas de modification de la moyenne, $-1*0=0$ alors le groupe *différent* associé  à la valeur\ 1, $-1*1=-1$. Enfin, $\epsilon$ correspond à la variabilité entre les unités. Cette façon de programmer la création des variables illustre bien l'association linéaire qui existe même dans les différences de moyennes et sera très utile pour des modèles plus compliqués.
+où $y$ est le score observé des unités et les autres variables construisent ce score, $\mu_0$ correspond à la moyenne du groupe référent de population (le groupe *contrôle* en quelque sorte.), $\mu_1$ réfère à la différence de moyenne entre les deux groupes identifiés par $x_1$ qui réfère à l'assignation au groupe, soit 0 pour le groupe *contrôle* et 1 pour le groupe *différent*. Pour ce même exemple, $\mu_1 = -1$. Par le produit $\mu_1x_1$, le groupe *contrôle* associé à la valeur 0 n'a pas de modification de la moyenne, $-1*0=0$ alors le groupe *différent* associé à la valeur 1, $-1*1=-1$. Enfin, $\epsilon$ correspond à la variabilité entre les unités. Cette façon de programmer la création des variables illustre bien l'association linéaire qui existe même dans les différences de moyennes et sera très utile pour des modèles plus compliqués.
 
 
 ``` r
@@ -87,6 +87,7 @@ y <- mu0 + mu1 * x1 + e
 > [10,]  1.4811  1.4811
 > [11,]  1.5133  1.5133
 ```
+
 Les données sont identiques.
 
 Une fois la fonction créée, il est possible de la tester et de la comparer avec la fonction **R** de base `test.t()`.
@@ -190,7 +191,7 @@ Les sorties sont identiques.
 <p class="caption">(\#fig:disttt)Valeur-$t$ de la différence de moyenne sur la distribution-$t$</p>
 </div>
 
-La Figure \@ref(fig:disttt) illustre où se situe la moyenne de l'échantillon par rapport à la distribution d'échantillonnage de l'hypothèse nulle. Comme la valeur se retrouve dans la zone de rejet ou, de façon équivalente, la valeur-$p$ est plus petite que la valeur $\alpha$ fixée à .05, on rejette l'hypothèse nulle, il y a vraisemblablement une différence entre les groupes. C'est bien l'intention derrière la création des données.
+La Figure\ \@ref(fig:disttt) illustre où se situe la moyenne de l'échantillon par rapport à la distribution d'échantillonnage de l'hypothèse nulle. Comme la valeur se retrouve dans la zone de rejet ou, de façon équivalente, la valeur-$p$ est plus petite que la valeur $\alpha$ fixée à .05, on rejette l'hypothèse nulle, il y a vraisemblablement une différence entre les groupes. C'est bien l'intention derrière la création des données.
 
 ### Rapporter un test-$t$ indépendant
 
@@ -212,7 +213,7 @@ t.test(gr0, gr1) # Absence de l'argument var.equal = TRUE
 >     1.332    -0.029
 ```
 
-Il est également possible d'utiliser la formule si, dans le jeu de données, une variable permet de distinguer les deux groupes et que la variable continue (variable à comparer) se trouve dans une seule variable. 
+Il est également possible d'utiliser la formule si, dans le jeu de données, une variable permet de distinguer les deux groupes et que la variable continue (variable à comparer) se trouve dans une seule variable.
 
 
 ``` r
@@ -239,7 +240,7 @@ t.test(VD ~ VI, data = jd.ti)
 
 ### Le test-$t$ dépendant
 
-Un autre test-$t$ est celui permettant de comparer deux de temps de mesure sur les mêmes participants. L'hypothèse est de vérifier si $\mu_1 = \mu_2$, soit la moyenne du temps\ 1 est égale à la moyenne du temps\ 2. Une habile manipulation mathématique permet de poser cette hypothèse en hypothèse nulle, $\mu_1-\mu_2=0$. Il est intéressant de noter que la différence entre deux variables est normalement distribuée si la variance est connue ou distribuée en $t$ si la variance est inconnue.
+Un autre test-$t$ est celui permettant de comparer deux temps de mesure sur les mêmes participants. L'hypothèse est de vérifier si $\mu_1 = \mu_2$, soit la moyenne du temps 1 est égale à la moyenne du temps 2. Une habile manipulation mathématique permet de poser cette hypothèse en hypothèse nulle, $\mu_1-\mu_2=0$. Il est intéressant de noter que la différence entre deux variables est normalement distribuée si la variance est connue ou distribuée en $t$ si la variance est inconnue.
 
 Ce test est utile lorsqu'il faut tester si les participants se sont améliorés ou détériorés entre deux temps de mesure. Pour calculer la valeur-$t$,
 
@@ -268,9 +269,9 @@ testt.dep <- function(temps1, temps2){
 }
 ```
 
-Pour créer le jeu de données, les étapes sont similaires au test-$t$ indépendant pour des temps de mesure indépendants (sans corrélation) où seules les populations des temps de mesure sont définis. Il est possible de spécifier une corrélation entre les deux de mesures. Cela sera introduit dans la section [La corrélation].
+Pour créer le jeu de données, les étapes sont similaires au test-$t$ indépendant pour des temps de mesure indépendants (sans corrélation) où seules les populations des temps de mesure sont définis. Il est possible de spécifier une corrélation entre les deux temps de mesures. Cela sera introduit dans la section [La corrélation].
 
-Dans le jeu de données suivant, 25 personnes sont mesurées à deux temps de reprises. Il n'y a pas de corrélation entre les temps de mesure. La variance des temps de mesure est de 1. La différence de moyenne est de 2. La syntaxe simule la situation suivante, le `temps1` correspond à la mesure initiale et `difference` correspond à la différence entre les temps de mesure. La somme de ces deux scores donnent la mesure au `temps2`. Cela montre assez simplement que la différence entre `temps2 - temps1` permet de retrouver le vecteur de `difference`.
+Dans le jeu de données suivant, 25 personnes sont mesurées à deux reprises. Il n'y a pas de corrélation entre les temps de mesure. La variance des temps de mesure est de 1. La différence de moyenne est de 2. La syntaxe simule la situation suivante, le `temps1` correspond à la mesure initiale et `difference` correspond à la différence entre les temps de mesure. La somme de ces deux scores donnent la mesure au `temps2`. Cela montre assez simplement que la différence entre `temps2 - temps1` permet de retrouver le vecteur de `difference`.
 
 
 ``` r
@@ -315,8 +316,7 @@ Les sorties sont identiques.
 <p class="caption">(\#fig:testtttt)Valeur-$t$ de moyenne de différences sur la distribution-$t$</p>
 </div>
 
-La Figure \@ref(fig:testtttt) montre où se situe la différence de moyenne par rapport à la distribution d'échantillonnage de l'hypothèse nulle. Comme la valeur se retrouve dans la valeur-$p$ est plus petite que la valeur $\alpha$ fixée à .05, on rejette l'hypothèse nulle; il y a vraisemblablement une différence entre les temps de mesure, ce qui était l'intention derrière la création des données.
-
+La Figure\ \@ref(fig:testtttt) montre où se situe la différence de moyenne par rapport à la distribution d'échantillonnage de l'hypothèse nulle. Comme la valeur-$p$ est plus petite que la valeur $\alpha$ fixée à .05, on rejette l'hypothèse nulle; il y a vraisemblablement une différence entre les temps de mesure, ce qui était l'intention derrière la création des données.
 
 #### Autres syntaxes possibles
 
@@ -338,7 +338,8 @@ t.test(x = temps1, y = temps2, paired = TRUE)
 > mean difference 
 >           -1.32
 ```
-La second option utilise la formule et le jeu de données. La fonction `Pair()` n'a que seule objectif d'informer la fonction `t.test()` que les vecteurs qu'elle inclut sont pairés, ce qui permet d'utiliser la formule `Pair(temps1, temps2) ~ 1`.
+
+La seconde option utilise la formule et le jeu de données. La fonction `Pair()` a pour seul objectif d'informer la fonction `t.test()` que les vecteurs qu'elle inclut sont pairés, ce qui permet d'utiliser la formule `Pair(temps1, temps2) ~ 1`.
 
 
 ``` r
@@ -359,7 +360,7 @@ t.test(Pair(temps1, temps2) ~ 1, data = jd.td)
 >           -1.32
 ```
 
-Pour la troisième option, comme l'équation sur le test-$t$ dépendant le suggère, un test-$t$ dépendant revient à faire [un test-$t$ à échantillon unique][Le test-$t$ à échantillon unique] avec la différence entre les deux temps de mesure.
+Pour la troisième option, comme l'équation sur le test-$t$ dépendant le suggère, un test-$t$ dépendant revient à réaliser [un test-$t$ à échantillon unique][Le test-$t$ à échantillon unique] avec la différence entre les deux temps de mesure.
 
 
 ``` r
@@ -390,7 +391,7 @@ Voici comment rapporter dans un article.
 
 ### La covariance
 
-La covariance représente une mesure du degré auquel une variable augmente lorsque l'autre augmente. Elle correspond au produit moyen entre deux variables centrées (dont les moyennes sont soustraites). On retrouve la covariance sous la forme de l'équation\ \@ref(eq:cov101). 
+La covariance représente une mesure du degré auquel une variable augmente lorsque l'autre augmente. Elle correspond au produit moyen entre deux variables centrées (dont les moyennes sont soustraites). On retrouve la covariance sous la forme de l'équation\ \@ref(eq:cov101).
 
 \begin{equation}
 \text{cov}_{xy} = \sigma_{xy}=\frac{1}{n-1}\sum_{i=1}^n(x_i-\bar{x})(y_i-\bar{y})
@@ -399,9 +400,7 @@ La covariance représente une mesure du degré auquel une variable augmente lors
 
 La covariance est une extension multivariée de la variance. La variance est le produit d'une variable **centrée** avec elle-même (le carré de la variable), $$\sigma^2=\frac{1}{n-1}\sum_{i=1}^nx_ix_i$$.
 
-En transformant $x$ et $y$ pour qu'elles soient **centrées**, l'aspect de produit entre les deux variables devient évident dans l'expression de la covariance.
-$$\text{cov}_{xy} = \frac{1}{n-1}\sum_{i=1}^nxy$$
-La programmation de la covariance peut se traduire ainsi.
+En transformant $x$ et $y$ pour qu'elles soient **centrées**, l'aspect de produit entre les deux variables devient évident dans l'expression de la covariance. $$\text{cov}_{xy} = \frac{1}{n-1}\sum_{i=1}^nxy$$ La programmation de la covariance peut se traduire ainsi.
 
 
 ``` r
@@ -417,13 +416,11 @@ covariance <- function(x, y){
 }
 ```
 
-La fonction de base `cov()` est plus efficace (plus robuste et plus simple) que la fonction maison précédente. La fonction `cov()` peut tenir compte de plus de deux variables. 
-La covariance indique la direction de la covariation entre les deux variables, positives ou négatives, mais n'indique pas la force de la relation. Bien qu'une covariance de 0 indique l'absence de colinéarité, une covariance de 120 n'est pas nécessairement plus forte qu'une covariance de 1. La mesure est intrinsèquement influencée par les unités l'échelle de mesure. Il serait aberrant de considérer le système métrique comme moins efficace, car ces mesures sont moins variables que les mesures impériales. (Il y a plusieurs raisons de préférer le système métrique, mais ce n'en est pas une!)
+La fonction de base `cov()` est plus efficace (plus robuste et plus simple) que la fonction maison précédente. La fonction `cov()` peut tenir compte de plus de deux variables. La covariance indique la direction de la covariation entre les deux variables, positive ou négative, mais n'indique pas la force de la relation. Bien qu'une covariance de 0 indique l'absence de colinéarité, une covariance de 120 n'est pas nécessairement plus forte qu'une covariance de 1. La mesure est intrinsèquement influencée par les unités l'échelle de mesure. Il serait aberrant de considérer le système métrique comme moins efficace, car ces mesures sont moins variables que les mesures impériales. (Il y a plusieurs raisons de préférer le système métrique, mais ce n'en est pas une!)
 
 ### La corrélation
 
-La corrélation représente le degré d'association linéaire entre deux variables. Une façon simple de concevoir la corrélation est comme une covariance standardisée.  Elle varie entre -1 et 1, ces deux dernières valeurs impliquant, respectivement, une relation parfaitement négative et positive entre les deux variables. En plus d'indiquer la direction de la relation, la corrélation suggère une force à ce lien. Lorsque la valeur de la corrélation est nulle, $r=0$, un diagramme de dispersion ne montre qu'un nuage de point épars (sans structure). Plus la corrélation augmente (en terme absolu), plus le nuage tends vers une ligne droite. La Figure\ \@ref(fig:corimage) montre différentes valeurs de corrélation et un exemple de nuage de points qui lui est associé.
-
+La corrélation représente le degré d'association linéaire entre deux variables. Une façon simple de concevoir la corrélation est comme une covariance standardisée. Elle varie entre -1 et 1, ces deux dernières valeurs impliquant, respectivement, une relation parfaitement négative et positive entre les deux variables. En plus d'indiquer la direction de la relation, la corrélation suggère une force à ce lien. Lorsque la valeur de la corrélation est nulle, $r=0$, un diagramme de dispersion ne montre qu'un nuage de points épars (sans structure). Plus la corrélation augmente (en termes absolu), plus le nuage tend vers une ligne droite. La Figure\ \@ref(fig:corimage) montre différentes valeurs de corrélation et un exemple de nuage de points qui lui est associé.
 
 <div class="figure" style="text-align: center">
 <img src="11-Analyser_files/figure-html/corimage-1.png" alt="Illustrations de diagrammes de dispersion associé en fonction de corrélations" width="50%" height="50%" />
@@ -434,8 +431,7 @@ En statistiques, la corrélation est souvent représentée par la lettre grecque
 
 Il y a plusieurs méthodes pour calculer la corrélation. Une première est de considérer la corrélation comme le produit de variables standardisées (autrement dit, score-$z$). Pour la covariance, la moyenne était soustraite de la variable, c'est-à-dire des variables centrées. Pour la corrélation, on divise pas l'écart type également pour obtenir des variables standardisées.
 
-En admettant que $x$ et $y$ sont déjà **standardisée**, $z_x,z_y$, comme c'était le cas pour la covariance, l'aspect de produit entre les deux variables est conservé.
-$$\text{cor}_{xy} = r_{xy}= \frac{1}{n-1}\sum_{i=1}^nz_xz_y$$
+En admettant que $x$ et $y$ sont déjà **standardisées**, $z_x,z_y$, comme c'était le cas pour la covariance, l'aspect de produit entre les deux variables est conservé. $$\text{cor}_{xy} = r_{xy}= \frac{1}{n-1}\sum_{i=1}^nz_xz_y$$
 
 Il est possible de calculer directement la corrélation à partir de la covariance, soit en divisant par le produit des écarts types des variables.
 
@@ -499,16 +495,15 @@ correlation3 <- function(x, y){
 
 Une façon simple de produire des données à partir d'une matrice de corrélation (ou de covariance) est d'utiliser la fonction `mvrnorm()` du package `MASS`. Elle évite pour l'instant d'introduire les manipulations mathématiques nécessaires (ce sera donc pour l'instant l'une de ces boîtes noires ayant la confiance de l'utilisateur, mais élucider dans le chapitre [Créer]).
 
-La fonction `mvrnorm()` pour *MultiVariate Random NORMmal* nécessite trois arguments : 
+La fonction `mvrnorm()` pour *MultiVariate Random NORMmal* nécessite trois arguments :
 
-* la taille d'échantillon `n`;
+-   la taille d'échantillon `n`;
 
-* les moyennes `mu` des $p$ variables, et;
+-   les moyennes `mu` des $p$ variables, et;
 
-* la matrice de covariance `Sigma` (la corrélation est un cas particulier de la covariance où les variables sont standardisées). 
+-   la matrice de covariance `Sigma` (la corrélation est un cas particulier de la covariance où les variables sont standardisées).
 
-Le lecteur avisé aura noté la ressemblance de nomenclature entre `mvrnorm()` (multivariée) et 
-`rnorm()` (univariée). Enfin, la dernière étape est de produire une matrice de covariance $p \times p$. La fonction `matrix()` prend une variable de données, dans cet exemple , `c(1, r, r, 1)` qu'elle répartit ligne par colonne (voir [Créer une matrice]. Comme $p=2$, cela crée une matrice $2 \times 2$.
+Le lecteur avisé aura noté la ressemblance de nomenclature entre `mvrnorm()` (multivariée) et `rnorm()` (univariée). Enfin, la dernière étape est de produire une matrice de covariance $p \times p$. La fonction `matrix()` prend une variable de données, dans cet exemple , `c(1, r, r, 1)` qu'elle répartit ligne par colonne (voir [Créer une matrice]. Comme $p=2$, cela crée une matrice $2 \times 2$.
 
 
 ``` r
@@ -604,7 +599,7 @@ vt ; vp
 > [3,] 0.252 0.400 0.000
 ```
 
-Dans le code ci-dessous, l'équation\ \@ref(eq:r2t) précédente est subtilement réarrangée pour être plus simple et élégante quoiqu'équivalente. 
+Dans le code ci-dessous, l'équation\ \@ref(eq:r2t) précédente est subtilement réarrangée pour être plus simple et élégante quoiqu'équivalente.
 
 \begin{equation}
 t_{n-2} = \frac{r}{(\frac{\sqrt{1-r^2}}{\sqrt{n-2}})} = \frac{r\sqrt{n-2}}{\sqrt{1-r^2}}
@@ -621,6 +616,7 @@ Voici comment rapporter la corrélation dans un article. Plusieurs options sont 
 ``` r
 cor.test(donnees$x, donnees$y)
 ```
+
 ou encore comme ceci.
 
 
@@ -639,7 +635,7 @@ cor.test(~ y + x, data = donnees)
 > 0.699
 ```
 
-En général, la matrice corrélation complète est intéressante à rapporter. Cela se fait rapidement et simplement avec la fonction `cor()`. Toutefois, elle ne rapporte pas les valeurs-$p$ et n'est pas agrémentée d'étoiles scintillantes. Plusieurs packages et fonctions sont envisageables, mais `psych` avec sa fonction `corr.test` est l'une des plus pertinentes. Voici un exemple avec le jeu de données `mtcars` (disponible dans **R** de base). 
+En général, la matrice corrélation complète est intéressante à rapporter. Cela se fait rapidement et simplement avec la fonction `cor()`. Toutefois, elle ne rapporte pas les valeurs-$p$ et n'est pas agrémentée d'étoiles scintillantes. Plusieurs packages et fonctions sont envisageables, mais `psych` avec sa fonction `corr.test` est l'une des plus pertinentes. Voici un exemple avec le jeu de données `mtcars` (disponible dans **R** de base).
 
 
 ``` r
@@ -688,16 +684,16 @@ psych::corr.test(mtcars)
 > 
 >  To see confidence intervals of the correlations, print with the short=FALSE option
 ```
+
 La syntaxe retourne les corrélations, la taille d'échantillon et les valeurs-$p$. La sortie contient encore plus d'informations, mais elle n'imprime que les usuelles. Il ne reste qu'à rédiger les corrélations les plus pertinents à rapporter (selon la théorie du domaine concerné).
 
 
 
-> La matrice de corrélation des variables présentés. Parmi les corrélations d'intérêt, un lien remarquable est celui entre `qsec` et `mpg` qui est significatif, $r(10) = 0.42, p\ =\ =  0.42$.
+> La matrice de corrélation des variables présentées. Parmi les corrélations d'intérêt, un lien remarquable est celui entre `qsec` et `mpg` qui est significatif, $r(10) = 0.42, p\ =  0.42$.
 
+## Les données nominales
 
-## Les données nominales 
-
-Jusqu'à présent, deux types d'association de données ont été présenté : une variable nominale (identifiant des groupes) avec une variable continue (différences de moyenne) et deux variables continues (association linéaire). Dans cette section, l'association entre deux variables nominales est présentée. Une façon de représenter l'association entre deux variables nominales est le tableau de contingence, soit l'illustration d'une distribution d'une variable (en ligne) pour chaque catégorie de l'autre (en colonne). En voici, un exemple.
+Jusqu'à présent, deux types d'association de données ont été présentées : une variable nominale (identifiant des groupes) avec une variable continue (différences de moyenne) et deux variables continues (association linéaire). Dans cette section, l'association entre deux variables nominales est présentée. Une façon de représenter l'association entre deux variables nominales est le tableau de contingence, soit l'illustration d'une distribution d'une variable (en ligne) pour chaque catégorie de l'autre (en colonne). En voici, un exemple.
 
 <table class=" lightable-classic table" style='font-family: "Arial Narrow", "Source Sans Pro", sans-serif; width: auto !important; margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto;'>
 <caption>(\#tab:TCCV)Tableau de contingence de la relation entre posséder une voiture et le climatoscepticisme</caption>
@@ -728,15 +724,14 @@ Jusqu'à présent, deux types d'association de données ont été présenté : u
 
 
 
-
-Le tableau \@ref(tab:TCCV) présente deux variables nominales (`climatosceptique`, à la verticale, et posséder une `voiture`, à l'horizontale) ayant chacune deux catégories (`oui` et `non`). Il montre les proportions **observées**. Ces variables sont-elles associées? Pour traiter cette question, les proportions attendues jouent un rôle crucial. En fait, l'hypothèse nulle sous la table de contingence postule que toutes les proportions du tableau de contingence sont indépendantes. Mathématiquement, il s'agit de postuler que les proportions d'une variable (en ligne ou en colonne) n'influencent pas celles de l'autre variable. Pour obtenir les proportions **théoriques**, les totaux des lignes et colonnes sont calculés ainsi que le grand total. La fréquence attendue d'une cellule est obtenue en calculant, pour chaque cellule, le produit de sa colonne et de sa ligne respective divisé par le grand total. 
+Le tableau\ \@ref(tab:TCCV) présente deux variables nominales (`climatosceptique`, à la verticale, et posséder une `voiture`, à l'horizontale) ayant chacune deux catégories (`oui` et `non`). Il montre les proportions **observées**. Ces variables sont-elles associées? Pour traiter cette question, les proportions attendues jouent un rôle crucial. En fait, l'hypothèse nulle sous la table de contingence postule que toutes les proportions du tableau de contingence sont indépendantes. Mathématiquement, il s'agit de postuler que les proportions d'une variable (en ligne ou en colonne) n'influencent pas celles de l'autre variable. Pour obtenir les proportions **théoriques**, les totaux des lignes et colonnes sont calculés ainsi que le grand total. La fréquence attendue d'une cellule est obtenue en calculant, pour chaque cellule, le produit de sa colonne et de sa ligne respective divisé par le grand total.
 
 \begin{equation}
 t_{ij} = \frac{\text{total}_i \times \text{total}_j}{\sum \text{total}}
 (\#eq:chi1)
 \end{equation}
 
-L'équation \@ref(eq:chi1) ci-dessus illustre l'idée sous-jacente à la proportion attendue, $t$ d'une cellule de ligne, $i$, et colonne $j$.
+L'équation\ \@ref(eq:chi1) ci-dessus illustre l'idée sous-jacente à la proportion attendue, $t$ d'une cellule de ligne, $i$, et colonne $j$.
 
 <table class=" lightable-classic table" style='font-family: "Arial Narrow", "Source Sans Pro", sans-serif; width: auto !important; margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto;'>
 <caption>(\#tab:TCCV2)Tableau de contingence étendu avec les totaux</caption>
@@ -779,10 +774,7 @@ L'équation \@ref(eq:chi1) ci-dessus illustre l'idée sous-jacente à la proport
 
 ### Le $\chi^2$ pour table de contingence
 
-Maintenant que la question statistique et que l'hypothèse nulle sont posées, comment mesurer le degré selon lequel les données s'écartent des attentes *théoriques*. Le $\chi^2$ (khi-carré) permet de calculer une telle mesure. Le $\chi^2$ correspond à la distance entre une valeur observée et théorique au carré, pondérée par la valeur théorique.
-$$ \chi^2_v = \sum_{i=1}^{l}\sum_{j=1}^c(\frac{(o_{ij}-t_{ij})^2}{t_{ij}})$$
-où $o$ correspond aux valeurs observées, $t$ réfère aux valeurs théoriques, $v$ représente les degrés de liberté et $i$ et $j$ les lignes et colonnes respectivement. Le degré de liberté est 
-$$v = (n_{\text{ligne}}-1)(n_{\text{colonne}}-1)$$
+Maintenant que la question statistique et que l'hypothèse nulle sont posées, comment mesurer le degré selon lequel les données s'écartent des attentes *théoriques*? Le $\chi^2$ (khi-carré) permet de calculer une telle mesure. Le $\chi^2$ correspond à la distance entre une valeur observée et théorique au carré, pondérée par la valeur théorique. $$ \chi^2_v = \sum_{i=1}^{l}\sum_{j=1}^c(\frac{(o_{ij}-t_{ij})^2}{t_{ij}})$$ où $o$ correspond aux valeurs observées, $t$ réfère aux valeurs théoriques, $v$ représente les degrés de liberté et $i$ et $j$ les lignes et colonnes respectivement. Le degré de liberté est $$v = (n_{\text{ligne}}-1)(n_{\text{colonne}}-1)$$
 
 Si l'hypothèse nulle est vraie, les valeurs observées et théoriques devraient être très près. Le carré permet de calculer une distance euclidienne et le dénominateur pondère la distance. Comme l'[analyse de variance][Comparer], le test de $\chi^2$ pour table de contingence est global, il n'informe pas d'où provient la dépendance, mais bien s'il y a au moins une dépendance.
 
@@ -841,11 +833,11 @@ table(donnees)
 >   homme      4         50
 ```
 
-La fonction `table()` de **R** génère une table de contingence. La fonction maison et deux méthodes de base **R** sont présentées et produisent les mêmes résultats pour le $\chi^2$. Un autre, le test exact de Fisher est également présenté. Celui-ci est plus robuste, mais peut requérir plus intensive des ressources de l'ordinateur pour les grosses tables de contingences.
+La fonction `table()` de **R** génère une table de contingence. La fonction maison et deux méthodes de base **R** sont présentées et produisent les mêmes résultats pour le $\chi^2$. Un autre, le test exact de Fisher est également présenté. Celui-ci est plus robuste, mais implique des calculs plus intensifs pour l'ordinateur lorsque les tables de contingences sont très grandes.
 
-Le test du $\chi^2$ est sujet à certains problèmes qu'il est important de considérer sans quoi l'interprétation peut être faussée. Si la taille d'échantillon (le nombre d'unités d'observation observées est trop faible), alors le test est biaisé. Par exemple, trois lancers de pile ou face ne sont pas suffisants pour tester une hypothèse de khi-carré, le nombre de résultats différents est de 2, ce qui ne donne pas une approximation satisfaisante de la distribution d'échantillonnage. La convention est de dire qu'une fréquence théorique est trop petite si elle est plus petite que 5. Si ce n'est pas le cas, des corrections ou d'autres options doivent être considérées.
+Le test du $\chi^2$ est sujet à certains problèmes qu'il est important de considérer, sans quoi l'interprétation peut être faussée. Si la taille d'échantillon (le nombre d'unités d'observation observées est trop faible), alors le test est biaisé. Par exemple, trois lancers de pile ou face ne sont pas suffisants pour tester une hypothèse de khi-carré, le nombre de résultats différents est de 2, ce qui ne donne pas une approximation satisfaisante de la distribution d'échantillonnage. La convention est de dire qu'une fréquence théorique est trop petite si elle est plus petite que 5. Si ce n'est pas le cas, des corrections ou d'autres options doivent être considérées.
 
-Dans le présent exemple, bien que les fréquences attendues respectent les critères usuels, il peut être utile d'envisager un test plus robuste comme le test exact de Fisher ou le $\chi^2$ avec correction de continuité. Le premier se commande avec la fonction `fisher.test()` et le second est la fonction par défaut de `chisq.test()`. C'est deux fonctions prennet comme argument une table de contigence (la sortir de `table()`) ou deux variables nominales. Pour montrer l'équivalence entre la fonction `chisq.test()` et la fonction maison, l'option de correction est désactivée avec l'argument `correct = FALSE`.
+Dans le présent exemple, bien que les fréquences attendues respectent les critères usuels, il peut être utile d'envisager un test plus robuste comme le test exact de Fisher ou le $\chi^2$ avec correction de continuité. Le premier se commande avec la fonction `fisher.test()` et le second est la fonction par défaut de `chisq.test()`. Ces deux fonctions prennent comme argument une table de contingence (la sortir de `table()`) ou deux variables nominales. Pour montrer l'équivalence entre la fonction `chisq.test()` et la fonction maison, l'option de correction est désactivée avec l'argument `correct = FALSE`.
 
 
 ``` r
@@ -911,7 +903,7 @@ resultat.fisher$p.value
 
 ### Rapporter un $\chi^2$
 
-Voici comment rapporter un test de $\chi^2$ dans un article. Comme il a été vu ci-haut, plusieurs options sont possibles
+Voici comment rapporter un test de $\chi^2$ dans un article. Comme il a été vu ci-haut, plusieurs options sont possibles.
 
 
 ``` r
@@ -938,10 +930,10 @@ fisher.test(donnees$sexe, donnees$tabac)
 >       2.61
 ```
 
-> La relation entre le sexe et le consommation de tabac est investiguée. Il appert que cette relation n'est pas statistiquement significative avec une seuil $\alpha = .05$, $chi^2(1) = 2.345$,\ $p = 0.126$. Le test exact de Fisher est calculé également et, pareillement,  ne rejette pas l'hypothèse nulle, $p =0.216$.
+> La relation entre le sexe et le consommation de tabac est investiguée. Il appert que cette relation n'est pas statistiquement significative avec un seuil $\alpha = .05$, $chi^2(1) =2.345$, $p = 0.126$. Le test exact de Fisher est calculé également et, pareillement,  ne rejette pas l'hypothèse nulle, $p =0.216$.
 
 ### La correction de Yates
 
-Même si c'est généralement le test classique de Pearson qui est utilisé, le $\chi^2$ avec correction de Yates, l'option par défaut de `chisq.test()`, est préférable. C'est un test un peu plus conservateur qui compense pour les déviations de la distribution de probabilité théorique. La correction consiste à faire la différence absolue entre la fréquence observée et théorique, puis de soustraire $\frac{1}{2}$, ce qui est représentée par l'équation suivante. 
+Même si c'est généralement le test classique de Pearson qui est utilisé, le $\chi^2$ avec correction de Yates, l'option par défaut de `chisq.test()`, est préférable. C'est un test un peu plus conservateur qui compense pour les déviations de la distribution de probabilité théorique. La correction consiste à faire la différence absolue entre la fréquence observée et théorique, puis de soustraire $\frac{1}{2}$. L'équation suivante présente ce calcul.
 
 $$ \chi^2_v = \sum_{i=1}^{l}\sum_{j=1}^c(\frac{(|o_{ij}-t_{ij}|-\frac{1}{2})^2}{t_{ij}})$$

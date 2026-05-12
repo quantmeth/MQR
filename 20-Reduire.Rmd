@@ -4,7 +4,7 @@ Comme mentionné d'entrée de jeu, l'analyse en composantes principales (ACP) n'
 
 Parallèlement, l'[analyse factorielle exploratoire] permet de dériver un indice de suffisance du nombre de dimensions (le $\chi^2$), toutefois, il existe de meilleures techniques pour déterminer le nombre de dimensions à retenir dans une analyse exploratoire.
 
-Cette section porte sur les méthodes afin d'identifier le nombre de dimensions à retenir. C'est un sujet très complexe dont seulement quelques brides seront abordées.
+Cette section porte sur les méthodes afin d'identifier le nombre de dimensions à retenir. C'est un sujet très laborieux dont seulement quelques brides seront abordées.
 
 ## Illustration
 
@@ -12,9 +12,9 @@ Qu'est-ce que la réduction de dimensions? La réduction de dimensions ou la dé
 
 La compression d'images, en informatique, est un exemple de réduction dimensionnelle dont il est possible d'illustrer visuellement. La réduction de dimensions permet de résumer l'information afin d'en réduire la taille pour ne conserver que le signifiant. Ainsi, les mêmes techniques permettant d'identifier les facteurs psychologiques peuvent être utilisées pour les images, l'identification des thèmes de films et bien d'autres.
 
-La Figure \@ref(fig:Pigeon) montre un exemple de compression d'une image de pigeon^[Tirée de https://pixnio.com/fr/faune-animaux/des-oiseaux-fr/pigeons-photos/oiseau-pigeon-tumbler-pigeon-mouche-animal-animal, License CC0]. Elle montre à différents niveaux factoriels de compression la même image. À trois dimensions, le pigeon est difficilement perceptible. Progressivement, le pigeon est plus facilement reconnaissable, mais surtout, à un certain seuil (deuxième et troisième lignes de la Figure \@ref(fig:Pigeon), par exemple), l'image gagne en clarté. Trente dimensions conviennent, les plus difficiles désireront peut-être retenir 125 dimensions. L'image à ce stade est très bien. Nonobstant ces nombres, ce sera toujours mieux, en termes de compression, que les 526 dimensions possibles (de l'image originale). Ainsi, à `r 125/526*100` % des dimensions, l'image est claire et le pigeon reconnaissable. Cette logique s'applique également pour les facteurs psychologiques.
+La Figure\ \@ref(fig:Pigeon) montre un exemple de compression d'une image de pigeon^[Tirée de https://pixnio.com/fr/faune-animaux/des-oiseaux-fr/pigeons-photos/oiseau-pigeon-tumbler-pigeon-mouche-animal-animal, License CC0]. Elle montre à différents niveaux factoriels de compression la même image. À trois dimensions, le pigeon est difficilement perceptible. Progressivement, le pigeon est plus facilement reconnaissable, mais surtout, à un certain seuil (deuxième et troisième lignes de la Figure\ \@ref(fig:Pigeon), par exemple), l'image gagne en clarté. Trente dimensions conviennent, les plus difficiles désireront peut-être retenir 125 dimensions. L'image à ce stade est très bien. Nonobstant ces nombres, ce sera toujours mieux, en termes de compression, que les 526 dimensions possibles (de l'image originale). Ainsi, à `r 125/526*100` % des dimensions, l'image est claire et le pigeon reconnaissable. Cette logique s'applique également pour les facteurs psychologiques.
 
-```{r Pigeon, fig.cap="Pigeon compressé à divers niveaux de dimension $k$",echo=FALSE, fig.align="center", out.height='75%', out.width='75%'}
+```{r Pigeon, fig.cap="Une image de pigeon compressé à divers niveaux de dimension $k$.",echo=FALSE, fig.align="center", out.height='75%', out.width='75%'}
 knitr::include_graphics("image//Pigeon.png")
 ```
 
@@ -61,7 +61,7 @@ res$values
 
 Une façon d'illustrer les valeurs propres graphiquement est d'utiliser un graphique nommé *scree plot* ou *graphique des éboulis*. La Figure\ \@ref(fig:scree) peut être produite avec la syntaxe ci-dessous. Il s'agit de mettre en axe des $x$ la séquence (`Position`) des valeurs propres (leur ordre) par rapport à la valeur propre en axe des $y$. Ce graphique se produit simplement avec `plot()` ou `ggplot()` (voir [Visualiser]).
 
-```{r scree, fig.cap="Les valeurs propres en fonction de la position de l'axe",fig.align="center", out.height='75%', out.width='75%'}
+```{r scree, fig.cap="Les valeurs propres en fonction de la position de l'axe.",fig.align="center", out.height='75%', out.width='75%'}
 Position <-  1:p
 vp <- data.frame(Position = Position ,
                  Valeurs.propres = c(res$values),
@@ -112,7 +112,7 @@ Autrement dit, si une valeur propre est supérieure à 1, c'est qu'il y a un fac
 
 La Figure\ \@ref(fig:kaiser) illustre le test de Kaiser avec le présent exemple qui suggère deux facteurs (comme simulé).
 
-```{r kaiser, fig.cap="Les valeurs propres en fonctions de la position de l'axe",fig.align="center", out.height='75%', out.width='75%'}
+```{r kaiser, fig.cap="Les valeurs propres en fonctions de la position de l'axe.",fig.align="center", out.height='75%', out.width='75%'}
 vp <- rbind(vp,
       data.frame(Position = Position,
                  Valeurs.propres = 1,
@@ -204,9 +204,9 @@ rowMeans(valeurs.propres)
 sum(res$values > rowMeans(valeurs.propres))
 ```
 
-Ainsi, `r sum(res$values > rowMeans(valeurs.propres))` facteurs sont à retenir. Une façon d'illustrer les résultats de l'analyse parallèle est d'utiliser le graphique des éboulis en y représentant les valeurs propres empiriques comparativement aux simulées. Le nombre de valeurs propres empiriques supérieures aux simulées est le nombre de dimensions à retenir. Ce graphique est produit à la Figure \@ref(fig:scree2). Voici la syntaxe pour produire ce graphique avec `ggplot2`. La première étape est de mettre en commun les résultats obtenus dans un jeu de données. La variable `Position` indique l'ordre de la valeur propre, `valeurs.propres` contient les valeurs propres et `Test` indique s'il s'agit de valeurs propres empiriques ou simulées de l'analyse parallèle. Pour le reste, il s'agit de recourir à `ggplot()`.
+Ainsi, `r sum(res$values > rowMeans(valeurs.propres))` facteurs sont à retenir. Une façon d'illustrer les résultats de l'analyse parallèle est d'utiliser le graphique des éboulis en y représentant les valeurs propres empiriques comparativement aux simulées. Le nombre de valeurs propres empiriques supérieures aux simulées est le nombre de dimensions à retenir. Ce graphique est produit à la Figure\ \@ref(fig:scree2). Voici la syntaxe pour produire ce graphique avec `ggplot2`. La première étape est de mettre en commun les résultats obtenus dans un jeu de données. La variable `Position` indique l'ordre de la valeur propre, `valeurs.propres` contient les valeurs propres et `Test` indique s'il s'agit de valeurs propres empiriques ou simulées de l'analyse parallèle. Pour le reste, il s'agit de recourir à `ggplot()`.
 
-```{r scree2, fig.cap="Comparaison des valeurs propres empiriques et simulées",fig.align="center", out.height='75%', out.width='75%'}
+```{r scree2, fig.cap="Comparaison des valeurs propres empiriques et simulées.",fig.align="center", out.height='75%', out.width='75%'}
 vp <- rbind(vp,
       data.frame(Position = Position,
                  Valeurs.propres = rowMeans(valeurs.propres),
@@ -376,7 +376,7 @@ nest(jd)
 ```
 Voici la sortie des valeurs propres comparées aux deux autres règles d'arrêt illustrée à la Figure\ \@ref(fig:scree3).
 
-```{r scree3, fig.cap="Comparaison des valeurs propres empiriques et simulées (analyses parallèle et nest)",fig.align="center", out.height='75%', out.width='75%'}
+```{r scree3, fig.cap="Comparaison des valeurs propres empiriques et simulées (analyse parallèle et nest).",fig.align="center", out.height='75%', out.width='75%'}
 # Réorganisation du jeu de données contenant
 # les valeurs propres
 vp.nest <- plot(nest(jd))$data[-(1:p),]
@@ -396,18 +396,18 @@ ggplot(data = vp,
 
 Un bel avantage du package est sa possibilité de créer un graphique pour différentes valeurs critiques `alpha`. La Figure\ \@ref(fig:screenest) illustre la sortie.
 
-```{r screenest, fig.align="center", out.height='75%', out.width='75%', fig.cap="Graphique produit par `nest` de `Rnest`"}
+```{r screenest, fig.align="center", out.height='75%', out.width='75%', fig.cap="Graphique produit par `nest` de `Rnest`."}
 plot(nest(jd, alpha = c(.01, .025, .05, .10)))
 ```
 
 
 ### Comparaisons des règles d'arrêts
 
-À ce stage, les trois règles d'arrêt ont sorti le même nombre de facteurs. Elles semblent ne devenir qu'inutilement alambiqué. Il revient à l'exemple original d'être très simples : des loadings assez saillants, des valeurs propres élevées et une structure simple et orthogonale. Voici un exemple plus complexe.
+À ce stage, les trois règles d'arrêt ont sorti le même nombre de facteurs. Elles semblent ne devenir qu'inutilement alambiqué. Il revient à l'exemple original d'être très simples : des loadings assez saillants, des valeurs propres élevées et une structure simple et orthogonale. Voici un exemple plus difficile.
 
 Le package `Rnest` founir une matrice de corrélation basée sur 4 facteurs corrélées. La matrice se nomme `ex_4factors_corr` et la Figure\ \@ref(fig:structcp) représente la structure factorielle sous-jacente de cette matrice de corrélation. Il s'agit de quatre facteurs avec trois items chacun avec des loadings respectif de .9, .9 et .3 et deux paires de corrélation interfacteur de .7.
 
-```{r structcp, fig.cap = "Structure factorielle de `ex_4factors_corr`", fig.ext = 'png', cache=TRUE, echo = FALSE, out.height="50%", out.width="50%", fig.align = "center"}
+```{r structcp, fig.cap = "La structure factorielle de `ex_4factors_corr`.", fig.ext = 'png', cache=TRUE, echo = FALSE, out.height="50%", out.width="50%", fig.align = "center"}
 knitr::include_graphics("image//factstruct3.png")
 ```
 
@@ -422,7 +422,7 @@ jd2 <- MASS::mvrnorm(n = 2500,
 
 La Figure\ \@ref(fig:scree4) les valeurs propres du jeu de données.
 
-```{r scree4, echo = FALSE, fig.cap="Les valeurs propres de `ex_4factors_corr`"}
+```{r scree4, echo = FALSE, fig.cap="Les valeurs propres de `ex_4factors_corr`."}
 res <- eigen(cor(jd2), only.values = TRUE)$values
 vp <- data.frame(Position = rep(1:ncol(ex_4factors_corr),2) ,
                  Valeurs.propres = c(res,eigen(ex_4factors_corr)$values),
@@ -453,7 +453,7 @@ Ici NEST montre clairement sa supériorité en étant sensible aux petites valeu
 ### Question 1 {-}
 1. Créer un jeu de données pour la structure de la Figure\ \@ref(fig:structcp3). Le jeu de données est standardisé et contient 584 sujets.
 
-```{r structcp3, fig.cap = "Structure factorielle de `ex_4factors_corr`", echo = FALSE, out.height="50%", out.width="50%", fig.align = "center"}
+```{r structcp3, fig.cap = "La structure factorielle de `ex_4factors_corr`.", echo = FALSE, out.height="50%", out.width="50%", fig.align = "center"}
 knitr::include_graphics("image//factstruct4.png")
 ```
 

@@ -7,7 +7,7 @@
 <title> 17 Modérer | Méthodes quantitatives avec R</title>
 <meta name="author" content="P.-O. Caron">
 <meta name="description" content="En plus des relations linéaires, c’est-à-dire des effets selon lesquels plus une variable augmente (ou diminue) plus une seconde variable augmente (ou diminue), il existe des variables qui...">
-<meta name="generator" content="bookdown 0.41 with bs4_book()">
+<meta name="generator" content="bookdown 0.46 with bs4_book()">
 <meta property="og:title" content=" 17 Modérer | Méthodes quantitatives avec R">
 <meta property="og:type" content="book">
 <meta property="og:url" content="mqr.teluq.ca/modérer.html">
@@ -17,9 +17,9 @@
 <meta name="twitter:description" content="En plus des relations linéaires, c’est-à-dire des effets selon lesquels plus une variable augmente (ou diminue) plus une seconde variable augmente (ou diminue), il existe des variables qui...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.8.0/transition.js"></script><script src="libs/bs3compat-0.8.0/tabs.js"></script><script src="libs/bs3compat-0.8.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.10.0/transition.js"></script><script src="libs/bs3compat-0.10.0/tabs.js"></script><script src="libs/bs3compat-0.10.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+<link href="libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet">
 <script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script><script src="libs/viz-1.8.2/viz.js"></script><link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
 <script src="libs/grViz-binding-1.0.11/grViz.js"></script><!-- 
     \(
@@ -129,7 +129,7 @@
 <h2>
 <span class="header-section-number">17.1</span> L’analyse de modération<a class="anchor" aria-label="anchor" href="#lanalyse-de-mod%C3%A9ration"><i class="fas fa-link"></i></a>
 </h2>
-<p>Sur le plan quantitatif, l’analyse de modération est un modèle linéaire général réalisé en une seule étape (soit une analyse de la variance ou une régression, en fonction des variables concernées) dans laquelle une variable dépendante, <span class="math inline">\(y\)</span>, est prédite par trois variables, la variable indépendante, <span class="math inline">\(x\)</span>, l’effet simple de la variable modératrice, <span class="math inline">\(w\)</span>, et leur produit <span class="math inline">\(x \times w=xw\)</span>. En termes du modèle linéaire général (ANOVA, régression), un modérateur se subsume à une interaction. Mathématiquement, la relation s’exprime comme l’équation <a href="mod%C3%A9rer.html#eq:moderation">(17.1)</a></p>
+<p>Sur le plan quantitatif, l’analyse de modération est un modèle linéaire général réalisé en une seule étape (soit une analyse de la variance ou une régression, en fonction des variables concernées) dans laquelle une variable dépendante, <span class="math inline">\(y\)</span>, est prédite par trois variables, la variable indépendante, <span class="math inline">\(x\)</span>, l’effet simple de la variable modératrice, <span class="math inline">\(w\)</span>, et leur produit <span class="math inline">\(x \times w=xw\)</span>. En termes du modèle linéaire général (ANOVA, régression), un modérateur se subsume à une interaction. Mathématiquement, la relation s’exprime comme l’équation <a href="mod%C3%A9rer.html#eq:moderation">(17.1)</a></p>
 <p><span class="math display" id="eq:moderation">\[\begin{equation}
 y = \beta_0 + \beta_1 x + \beta_2 w + \beta_3 (x \times w) + \epsilon
 \tag{17.1}
@@ -137,12 +137,12 @@ y = \beta_0 + \beta_1 x + \beta_2 w + \beta_3 (x \times w) + \epsilon
 <p>où les <span class="math inline">\(\beta\)</span> sont les coefficients de régression reliant la variable correspondante à la variable dépendante.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:mod"></span>
-<img src="image/mod.png" alt="Représentations de la modération" width="75%" height="75%"><p class="caption">
-Figure 17.1: Représentations de la modération
+<img src="image/mod.png" alt="Représentations de la modération." width="75%" height="75%"><p class="caption">
+Figure 17.1: Représentations de la modération.
 </p>
 </div>
 <p>L’analyse de modération est illustrée à la Figure <a href="mod%C3%A9rer.html#fig:mod">17.1</a>. Le cadran a (gauche) montre une conceptualisation de l’effet attendu du modérateur, soit l’altération de l’effet entre <span class="math inline">\(x\)</span> et <span class="math inline">\(y\)</span>. Le cadran b (droite) montre, quant à lui, la représentation statistique dans laquelle le lien direct entre <span class="math inline">\(x\)</span>, <span class="math inline">\(w\)</span> et <span class="math inline">\(xw\)</span> par rapport à <span class="math inline">\(y\)</span>.</p>
-<p>Une façon de mettre l’accent sur l’effet de modération est de réarranger l’équation <a href="mod%C3%A9rer.html#eq:moderation">(17.1)</a> afin d’obtenir l’équation <a href="mod%C3%A9rer.html#eq:moderation2">(17.2)</a>, ce qui met en évidence le rôle clé de <span class="math inline">\(w\)</span>.</p>
+<p>Une façon de mettre l’accent sur l’effet de modération est de réarranger l’équation <a href="mod%C3%A9rer.html#eq:moderation">(17.1)</a> afin d’obtenir l’équation <a href="mod%C3%A9rer.html#eq:moderation2">(17.2)</a>, ce qui met en évidence le rôle clé de <span class="math inline">\(w\)</span>.</p>
 <p><span class="math display" id="eq:moderation2">\[\begin{equation}
 y = \beta_0 + \beta_1 x + (\beta_2 + \beta_3 x) w + \epsilon
 \tag{17.2}
@@ -154,7 +154,7 @@ y = \beta_0 + \beta_1 x + (\beta_2 + \beta_3 x) w + \epsilon
 <span class="header-section-number">17.2</span> Création de données<a class="anchor" aria-label="anchor" href="#cr%C3%A9ation-de-donn%C3%A9es"><i class="fas fa-link"></i></a>
 </h2>
 <p>Une caractéristique fondamentale de la création d’interactions est qu’elles doivent être créées à partir de ces composantes. Autrement dit, le produit <span class="math inline">\(xw\)</span> comme variable n’est calculable que si <span class="math inline">\(x\)</span> ou <span class="math inline">\(w\)</span> sont d’abord créées. Il faut connaître deux des trois variables pour calculer la troisième. En conséquence, il n’est pas possible de créer des variables d’interaction, comme c’était le cas auparavant avec la fonction <code><a href="https://rdrr.io/pkg/MASS/man/mvrnorm.html">MASS::mvrnorm()</a></code>, malgré que la matrice de covariance et les coefficients de régression soient calculables a priori.</p>
-<p>La variance du produit de deux variables peut devenir rapidement compliquée. En fait, l’étude des produits de variables est si complexe, particulièrement lorsque les variables ont des moyennes non nulles qu’il n’y a eu que très dernièrement des développements mathématiques sur leur distribution formelle <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-Cui">Cui et al., 2016</a>; <a href="r%C3%A9f%C3%A9rences.html#ref-Nadarajah">Nadarajah &amp; Pagány, 2016</a>)</span>, ce pourquoi les statisticiens préfèrent recourir généralement au bootstrap pour tester les effets médiateurs.</p>
+<p>La variance du produit de deux variables peut devenir rapidement compliquée. En fait, l’étude des produits de variables est si complexe, particulièrement lorsque les variables ont des moyennes non nulle,s qu’il n’y a eu que très dernièrement des développements mathématiques sur leur distribution formelle <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-Cui">Cui et al., 2016</a>; <a href="r%C3%A9f%C3%A9rences.html#ref-Nadarajah">Nadarajah &amp; Pagány, 2016</a>)</span>, ce pourquoi les statisticiens préfèrent recourir généralement au bootstrap pour tester les effets médiateurs.</p>
 <p>La variance du produit de deux variables standardisées <span class="citation">(<a href="r%C3%A9f%C3%A9rences.html#ref-Craig">Craig, 1936</a>; <a href="r%C3%A9f%C3%A9rences.html#ref-Haldane">Haldane, 1942</a>)</span> correspond à l’équation <a href="mod%C3%A9rer.html#eq:varprod">(17.3)</a>.</p>
 <p><span class="math display" id="eq:varprod">\[\begin{equation}
 \sigma^2_{x \times w} = 1 + \rho_{xw}^2
@@ -227,8 +227,8 @@ y = \beta_0 + \beta_1 x + (\beta_2 + \beta_3 x) w + \epsilon
 <p>Le code ci-dessus montre un scénario standardisé (toutes les moyennes sont 0; toutes les variances égalent 1, sauf l’interaction). Le modèle est illustré à la Figure <a href="mod%C3%A9rer.html#fig:ex1mod">17.2</a>.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:ex1mod"></span>
-<img src="image/ex1mod.png" alt="Exemple de modèle de modération" width="75%" height="75%"><p class="caption">
-Figure 17.2: Exemple de modèle de modération
+<img src="image/ex1mod.png" alt="Exemple de modèle de modération." width="75%" height="75%"><p class="caption">
+Figure 17.2: Exemple de modèle de modération.
 </p>
 </div>
 <p>Pour simuler une étude réelle, la variable d’interaction n’a pas à être enregistrée dans les deux jeux de données. Elle n’était nécessaire que pour la création de la variable dépendante.</p>
@@ -545,8 +545,8 @@ Comme le cas précédent, ce résultat est ardu à interpréter. Des représenta
 <span>              plot.points <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <div class="figure">
 <span style="display:block;" id="fig:ip1"></span>
-<img src="17-Moderer_files/figure-html/ip1-1.png" alt="Analyse de pentes simples pour un modérateur nominal" width="672"><p class="caption">
-Figure 17.3: Analyse de pentes simples pour un modérateur nominal
+<img src="17-Moderer_files/figure-html/ip1-1.png" alt="Analyse de pentes simples pour un modérateur nominal." width="672"><p class="caption">
+Figure 17.3: Analyse de pentes simples pour un modérateur nominal.
 </p>
 </div>
 <p>Le code ci-dessus illustre ce patron de différences avec la Figure <a href="mod%C3%A9rer.html#fig:ip1">17.3</a>. L’axe des <span class="math inline">\(x\)</span> et des <span class="math inline">\(y\)</span> montrent la relation entre les variables en fonction des groupes qui sont représentées par des lignes différentes. L’option <code>plot.point = TRUE</code> affiche optionnellement les données dans la figure. La Figure <a href="mod%C3%A9rer.html#fig:ip1">17.3</a> montre une tendance positive entre <span class="math inline">\(x\)</span> et <span class="math inline">\(y\)</span> pour le groupe de référence (<code>3</code>) qui s’accentue de façon importante pour le groupe (<code>1</code>), mais qui s’inverse pour le groupe <code>2</code>.</p>
@@ -558,8 +558,8 @@ Figure 17.3: Analyse de pentes simples pour un modérateur nominal
 <span>              plot.points <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <div class="figure">
 <span style="display:block;" id="fig:ip2"></span>
-<img src="17-Moderer_files/figure-html/ip2-1.png" alt="Analyses des pentes simples pour un modérateur continu" width="672"><p class="caption">
-Figure 17.4: Analyses des pentes simples pour un modérateur continu
+<img src="17-Moderer_files/figure-html/ip2-1.png" alt="Analyses des pentes simples pour un modérateur continu." width="672"><p class="caption">
+Figure 17.4: Analyses des pentes simples pour un modérateur continu.
 </p>
 </div>
 <p>Par défaut, l’analyse est réalisée avec <span class="math inline">\(-1\)</span> écart type, la moyenne et <span class="math inline">\(+1\)</span> écart type comme groupement de <span class="math inline">\(w\)</span>. Ces valeurs peuvent être choisies manuellement avec <code>modx.values =</code> en y spécifiant les valeurs d’intérêt. En plus, cet argument est compatible non seulement avec <code><a href="https://interactions.jacob-long.com/reference/interact_plot.html">interact_plot()</a></code> et <code><a href="https://interactions.jacob-long.com/reference/sim_slopes.html">sim_slopes()</a></code>. La Figure <a href="mod%C3%A9rer.html#fig:ip3">17.5</a> montre l’analyse des pentes pour des valeurs de <code>modx.values = c(-2, -1, 0, 1, 2)</code>.</p>
@@ -571,8 +571,8 @@ Figure 17.4: Analyses des pentes simples pour un modérateur continu
 <span>              modx.values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">2</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="figure">
 <span style="display:block;" id="fig:ip3"></span>
-<img src="17-Moderer_files/figure-html/ip3-1.png" alt="Analyses des pentes simples pour un modérateur continu" width="672"><p class="caption">
-Figure 17.5: Analyses des pentes simples pour un modérateur continu
+<img src="17-Moderer_files/figure-html/ip3-1.png" alt="Analyses des pentes simples pour un modérateur continu." width="672"><p class="caption">
+Figure 17.5: Analyses des pentes simples pour un modérateur continu.
 </p>
 </div>
 </div>
@@ -586,37 +586,37 @@ Figure 17.5: Analyses des pentes simples pour un modérateur continu
 <span id="cb264-2"><a href="mod%C3%A9rer.html#cb264-2" tabindex="-1"></a>           <span class="at">pred =</span> x,</span>
 <span id="cb264-3"><a href="mod%C3%A9rer.html#cb264-3" tabindex="-1"></a>           <span class="at">modx =</span> w, </span>
 <span id="cb264-4"><a href="mod%C3%A9rer.html#cb264-4" tabindex="-1"></a>           <span class="at">jnplot =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb264-5"><a href="mod%C3%A9rer.html#cb264-5" tabindex="-1"></a><span class="sc">&gt;</span> JOHNSON<span class="sc">-</span>NEYMAN INTERVAL </span>
+<span id="cb264-5"><a href="mod%C3%A9rer.html#cb264-5" tabindex="-1"></a><span class="sc">&gt;</span> JOHNSON<span class="sc">-</span>NEYMAN INTERVAL</span>
 <span id="cb264-6"><a href="mod%C3%A9rer.html#cb264-6" tabindex="-1"></a><span class="sc">&gt;</span> </span>
-<span id="cb264-7"><a href="mod%C3%A9rer.html#cb264-7" tabindex="-1"></a><span class="er">&gt;</span> When w is OUTSIDE the interval [<span class="sc">-</span><span class="fl">0.53</span>, <span class="fl">0.00</span>], the slope</span>
+<span id="cb264-7"><a href="mod%C3%A9rer.html#cb264-7" tabindex="-1"></a><span class="er">&gt;</span> When w is OUTSIDE the interval [<span class="sc">-</span><span class="fl">0.68</span>, <span class="sc">-</span><span class="fl">0.03</span>], the slope</span>
 <span id="cb264-8"><a href="mod%C3%A9rer.html#cb264-8" tabindex="-1"></a><span class="sc">&gt;</span> of x is p <span class="sc">&lt;</span> .<span class="fl">05.</span></span>
 <span id="cb264-9"><a href="mod%C3%A9rer.html#cb264-9" tabindex="-1"></a><span class="sc">&gt;</span> </span>
-<span id="cb264-10"><a href="mod%C3%A9rer.html#cb264-10" tabindex="-1"></a><span class="er">&gt;</span> Note<span class="sc">:</span> The range of observed values of w is [<span class="sc">-</span><span class="fl">3.00</span>, <span class="fl">3.20</span>]</span></code></pre></div>
+<span id="cb264-10"><a href="mod%C3%A9rer.html#cb264-10" tabindex="-1"></a><span class="er">&gt;</span> Note<span class="sc">:</span> The range of observed values of w is [<span class="sc">-</span><span class="fl">2.52</span>, <span class="fl">2.96</span>]</span></code></pre></div>
 <div class="figure">
 <span style="display:block;" id="fig:jn1"></span>
-<img src="17-Moderer_files/figure-html/jn1-1.png" alt="Le graphique Johnson-Neyman pour interpréter les effets modérateurs" width="672"><p class="caption">
-Figure 17.6: Le graphique Johnson-Neyman pour interpréter les effets modérateurs
+<img src="17-Moderer_files/figure-html/jn1-1.png" alt="Le graphique Johnson-Neyman pour interpréter les effets modérateurs." width="672"><p class="caption">
+Figure 17.6: Le graphique Johnson-Neyman pour interpréter les effets modérateurs.
 </p>
 </div>
-<pre><code>&gt; SIMPLE SLOPES ANALYSIS 
+<pre><code>&gt; SIMPLE SLOPES ANALYSIS
 &gt; 
-&gt; Slope of x when w = -1.100 (- 1 SD): 
+&gt; Slope of x when w = -1.0351 (- 1 SD): 
 &gt; 
 &gt;    Est.   S.E.   t val.      p
 &gt; ------- ------ -------- ------
-&gt;   -0.31   0.06    -5.08   0.00
+&gt;   -0.22   0.06    -3.54   0.00
 &gt; 
-&gt; Slope of x when w = -0.075 (Mean): 
-&gt; 
-&gt;   Est.   S.E.   t val.      p
-&gt; ------ ------ -------- ------
-&gt;   0.07   0.05     1.38   0.17
-&gt; 
-&gt; Slope of x when w =  0.950 (+ 1 SD): 
+&gt; Slope of x when w = -0.0484 (Mean): 
 &gt; 
 &gt;   Est.   S.E.   t val.      p
 &gt; ------ ------ -------- ------
-&gt;   0.44   0.06     7.18   0.00</code></pre>
+&gt;   0.09   0.05     1.88   0.06
+&gt; 
+&gt; Slope of x when w =  0.9383 (+ 1 SD): 
+&gt; 
+&gt;   Est.   S.E.   t val.      p
+&gt; ------ ------ -------- ------
+&gt;   0.41   0.06     6.80   0.00</code></pre>
 <p>La Figure <a href="mod%C3%A9rer.html#fig:jn1">17.6</a> montre le graphique Johnson-Neyman. La zone bleue indique le niveau de modérateur où l’effet de <span class="math inline">\(x\)</span> est significativement différent de la pente de <span class="math inline">\(x\)</span> lorsque l’effet du modérateur est nul. La zone rouge montre l’étendue où il n’y a pas d’effet de modération. L’étendue est également précisée dans la première phrase imprimée de la sortie. La sortie a également produit la sortie de l’analyse de pentes simples ou l’information obtenue du graphique Johnson-Neyman est répétée d’une façon différente.</p>
 <p>Dans cet exemple, plus l’unité à un niveau de modérateur élevé (en termes absolus), plus il accentue l’effet de la variable indépendante (zones bleues). Le modérateur joue donc un rôle très important dans ce modèle.</p>
 </div>
@@ -673,7 +673,7 @@ Figure 17.6: Le graphique Johnson-Neyman pour interpréter les effets modérateu
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2024-12-16.</p>
+    <p>"<strong>Méthodes quantitatives avec R</strong>" was written by P.-O. Caron. It was last built on 2026-05-12.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
